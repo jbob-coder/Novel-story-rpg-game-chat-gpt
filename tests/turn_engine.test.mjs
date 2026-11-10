@@ -32,3 +32,45 @@ test('stage player turn requires remote guard status',()=>assert.throws(()=>stag
 test('stage opening scene requires remote guard status',()=>assert.throws(()=>stageNarratorScene(initial,'Scene','scene-test-no-guard'),/Save guard required/));
 test('blocked previous save prevents next player turn',()=>{const failed=blockSave(startSave({source_head:'f'.repeat(40),chapter_id:'CH-000',turn:1}),'Network down');assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,save_guard:{observed_head:'f'.repeat(40),previous_attempt:failed}}),/NARRATIVE LOCKED/)});
 test('blocked previous save prevents next opening scene',()=>{const failed=blockSave(startSave({source_head:'f'.repeat(40),chapter_id:'CH-000',turn:0}),'Network down');assert.throws(()=>stageNarratorScene(initial,'Scene','scene-test-blocked',{observed_head:'f'.repeat(40),previous_attempt:failed}),/NARRATIVE LOCKED/)});
+
+test('player movement updates carried inventory and records each effect',()=>{
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'location_id',before:'LOC-WILSON-WORKSHOP',after:'LOC-WILSON-APARTMENT'}]});
+ assert.equal(x.state.player.location_id,'LOC-WILSON-APARTMENT');
+ assert.ok(x.state.player.inventory.filter(item=>item.carried).every(item=>item.location_id==='LOC-WILSON-APARTMENT'));
+ assert.ok(x.events.events.at(-1).state_changes.some(c=>c.field==='inventory_item'&&c.automatic_carry));
+ assert.equal(verifyNarrativeSnapshot(x),true);
+ assert.equal(initial.state.player.location_id,'LOC-WILSON-WORKSHOP');
+});
+test('NPC changes record relationship, plans and knowledge without RPG advancement',()=>{
+ const current=initial.state.world.actors['NPC-004'];
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[{actor_id:'NPC-004',outcome:'Elena continues preparing her drawing.',learned_fact:'The drawing is backed up',source:'Elena saved it herself',changes:[{field:'relationship',target_actor_id:'PLAYER-001',before:current.relationships['PLAYER-001'],after:{...current.relationships['PLAYER-001'],latest_shared_moment:'They discussed a drawing backup'}},{field:'independent_plan',before:current.independent_plan,after:'Prepare her presentation for school'}]}]});
+ const npc=x.state.world.actors['NPC-004'];
+ assert.equal(npc.independent_plan,'Prepare her presentation for school');
+ assert.ok(npc.knowledge.some(value=>value.includes('The drawing is backed up')));
+ assert.equal(npc.relationships['PLAYER-001'].latest_shared_moment,'They discussed a drawing backup');
+ assert.equal(verifyNarrativeSnapshot(x),true);
+});
+test('invalid or stale state changes never modify the original save',()=>{
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,changes:[{field:'location_id',before:'LOC-CROSSWATER-PLAZA',after:'LOC-WILSON-APARTMENT'}]}),/Stale actor location/);
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,changes:[{field:'progression',before:48,after:49}]}),/Unsupported state change/);
+ assert.equal(initial.manifest.last_completed_turn,6);
+ assert.equal(initial.state.player.location_id,'LOC-WILSON-WORKSHOP');
+});
+test('a saved relationship differing from its event is rejected',()=>{
+ const old=initial.state.player.relationships['NPC-004'];
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'relationship',target_actor_id:'NPC-004',before:old,after:{...old,bond:'closer'}}]});
+ x.state.player.relationships['NPC-004'].bond='unrelated';
+ assert.throws(()=>verifyNarrativeSnapshot(x),/Saved state differs from recorded relationship/);
+});
+test('material changes cannot create duplicate inventory ownership',()=>{
+ const phone=initial.state.player.inventory.find(item=>item.id==='ITEM-PHONE');
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,offscreen:[{actor_id:'NPC-004',outcome:'Elena finds a phone.',changes:[{field:'inventory_item',item_id:'ITEM-PHONE',before:null,after:{...phone,location_id:'LOC-WILSON-APARTMENT'}}]}]}),/Duplicate inventory ID/);
+});
+test('reloaded narrated turn retains precise original player message and its event effects',()=>{
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'conditions',before:[],after:['tired']}]});
+ const recovered=JSON.parse(JSON.stringify(x));
+ assert.equal(recovered.transcript.entries.at(-2).text,playerTurn.player_text);
+ assert.deepEqual(recovered.state.player.conditions,['tired']);
+ assert.equal(recovered.events.events.at(-1).state_changes[0].field,'conditions');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+});
