@@ -7,5 +7,5 @@
   "last_event_id": null,
   "state_schema_version": 2,
   "status": "checkpoint",
-  "notes": "Initial foundation; CH-000 awaits character creation. Manifest is written last when saving turns."
+  "notes": "Initial coherent CH-000 state schema v2, progression empty, no player turns. Manifest written after foundation files."
 }
