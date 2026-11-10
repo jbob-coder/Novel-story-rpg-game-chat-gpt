@@ -17,7 +17,15 @@ ChatGPT-run Living Superhuman World with a durable, reconstructable chapter reco
 - **Implementation plan scattered:** add `docs/IMPLEMENTATION_PLAN.md` with milestone acceptance criteria.
 
 ## Verification
-**Executed:** Read back 18 files from the working GitHub branch and ran 14 direct consistency checks on the retrieved content: **14/14 passed** (state/schema, chapter and event alignment, zero turns, pre-wave invariants, progression initialization, recovery links and documented decisions). All checks were performed against committed GitHub data.\n\n**Not executed:** The committed `python tools/validate_state.py` script could not be run on a full checkout here because the container cannot reach GitHub. A passing structural check is not proof of narrative quality or complete turn save/recovery. Run this command on an actual checkout before declaring M0 end-to-end verified.
+**Executed:** Read back 18 files from the working GitHub branch and ran 14 direct consistency checks on the retrieved content: **14/14 passed** (state/schema, chapter and event alignment, zero turns, pre-wave invariants, progression initialization, recovery links and documented decisions). All checks were performed against committed GitHub data.
+
+**Not executed:** The committed `python tools/validate_state.py` script could not be run on a full checkout here because the container cannot reach GitHub. A passing structural check is not proof of narrative quality or complete turn save/recovery. Run this command on an actual checkout before declaring M0 end-to-end verified.
+
+## Story context added for narration
+- `docs/WORLD_BIBLE.md` distinguishes confirmed world anchors from provisional details of everyday society, institutional pressures, causality and phases before/after Day 0.
+- `docs/NARRATIVE_STANDARD.md` defines concrete, player-centered scenes and how they record consequences and character knowledge.
+- `chapters/CH-000.PREP.md` provides a flexible opening scene framework and suggested everyday-life tensions, explicitly **not** actual played events or approved named lore.
+- These references improve narration readiness but **do not substitute for established starting location, player identity or authored NPC biographies**. A live end-to-end story-save/resume test remains pending.
 
 ## Still unresolved
 No live turn, independent actor event or long-duration continuity replay has yet occurred. Numeric XP thresholds, character creation rules, power growth, setting geography and starting cast require later design/playtesting. The assistant cannot do real-time game simulation when inactive.
