@@ -11,64 +11,73 @@
       "id": "CB-001",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "intermittent_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-002",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "intermittent_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-003",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-004",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-005",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-006",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-007",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-008",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     },
     {
       "id": "CB-009",
       "original_occurrence": "CH-000 turn 3",
       "last_status": "no_response",
-      "active_infection_currently_proven": false,
-      "source_event_id": "EV-000020"
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
     }
   ],
   "legacy_group": {
@@ -77,9 +86,11 @@
     "owner_declared_minimum_count": 500,
     "individually_verified_before_this_turn": 0,
     "imported_historical_rows": 0,
-    "verification_status": "not_recoverable_from_prior_canonical_checkpoint",
-    "duplicate_overlap_with_nine": "unknown",
-    "note": "500+ is an owner-declared older category, not a verified count of currently affected devices. No 500 dummy rows are created."
+    "verification_status": "owner_confirmed_active_in_fiction",
+    "duplicate_overlap_with_nine": "distinct newer Café Bruma additions per owner",
+    "note": "Established narrative history: Jack controls more than 500 devices from years before Café Bruma. No 500 dummy identifiers created; absence of itemized records is not uncertainty about the owner's canon.",
+    "in_fiction_active": true,
+    "itemized_identifiers_not_yet_written": true
   },
   "new_group": {
     "label": "Café Bruma",
@@ -98,9 +109,10 @@
     "intermittent": 2,
     "no_response": 7,
     "verified_historical_at_cafe": 9,
-    "verified_active_virus_now": 0,
-    "notes": "No current proof that access remains active; two intermittent responses alone do not prove compromise."
+    "verified_active_virus_now": 9,
+    "notes": "Nine fictional persistent compromises established during Café Bruma; two responded intermittently at the last check and seven did not respond. Reachability does not negate established compromise or guarantee continuous external response."
   },
   "distinct_total_verified_historical": 9,
-  "total_network_size_confirmed": null
+  "total_network_size_confirmed": null,
+  "total_network_size_story_canon": "More than 500 preexisting active devices plus nine new Café Bruma records; exact total unspecified."
 }
