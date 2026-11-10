@@ -146,7 +146,7 @@
       ],
       "kind": "player_action",
       "intent": "Jack points to a coffee and pastry on the café menu. After the attendant leaves, he attempts a staggered second phase of his experimental gadget against nearby third-party devices, trying to force his virus to execute and to inspect financial balances.",
-      "outcome": "Coffee and pastry are delivered; the second-phase attempt shows sporadic inconclusive responses but no verified infection, unauthorized access or bank balance reading. Staff and patrons do not identify Jack as the cause of prior anomalies.",
+      "outcome": "Jack seleccionó café y dulce y, tras salir la empleada, el gadget logró ejecutar parte de su segunda fase en dos dispositivos y mostrar dos saldos de cuentas ajenas. Una anomalía afectó la caja de la cafetería. Sin titulares identificados ni dinero transferido.",
       "known_to": [
         "PLAYER-001"
       ],
@@ -177,7 +177,7 @@
           "actor_id": "PLAYER-001",
           "field": "opening_intent.status",
           "before": "attempted_unconfirmed",
-          "after": "phase_two_attempted_unverified"
+          "after": "phase_two_partial_success"
         },
         {
           "actor_id": "PLAYER-001",
@@ -186,10 +186,25 @@
           "after": {
             "attempted": true,
             "staggered": true,
-            "unauthorized_execution_confirmed": false,
-            "confirmed_infected_devices": 0,
-            "verified_bank_balances": 0,
-            "result": "respuestas parciales sin evidencia suficiente de compromiso",
+            "unauthorized_execution_confirmed": true,
+            "confirmed_infected_devices": 2,
+            "verified_bank_balances": 2,
+            "observed_balances": [
+              {
+                "device_alias": "FUENTE-01",
+                "amount_display": "4.280,16",
+                "currency": null,
+                "account_holder_known": false
+              },
+              {
+                "device_alias": "FUENTE-02",
+                "amount_display": "93,47",
+                "currency": null,
+                "account_holder_known": false
+              }
+            ],
+            "funds_transferred": false,
+            "result": "Dos ejecuciones parciales observadas y dos lecturas de saldo; otros dispositivos y duración del acceso desconocidos.",
             "source_event_id": "EV-000005"
           }
         },
@@ -197,7 +212,7 @@
           "actor_id": "PLAYER-001",
           "field": "inventory.ITEM-COMPACT-CASE.status",
           "before": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
-          "after": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados"
+          "after": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos"
         },
         {
           "actor_id": "PLAYER-001",
@@ -221,6 +236,19 @@
           "field": "time.elapsed_minutes_since_opening_approx",
           "before": 15,
           "after": 24
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.information_acquired",
+          "before": false,
+          "after": true,
+          "detail": "Dos lecturas de saldos ficticios sin titulares identificados"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.outcome",
+          "before": "Segunda fase de ejecución escalonada intentada; respuestas incompletas sin infección confirmada, saldos bancarios ni datos extraídos.",
+          "after": "La segunda fase se ejecutó parcialmente en dos dispositivos ajenos y mostró dos saldos bancarios sin titulares identificados, sin transferir dinero. La caja de Café Bruma experimentó una anomalía durante la escena."
         }
       ],
       "progression_awards": []
@@ -291,6 +319,51 @@
       ],
       "caused_by": [],
       "state_changes": [],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000009",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Servir el café y el dulce pedidos y cerrar el turno sin errores de caja.",
+      "outcome": "Mara sirve ambos productos, observa que la caja emite un recibo sin pago y le pregunta a Jack si tiene efectivo; ella no sabe que Jack activó el dispositivo.",
+      "known_to": [
+        "NPC-007",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000005"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "actor_introduction",
+          "before": null,
+          "after": {
+            "name": "Mara Reyes",
+            "role": "barista de Café Bruma",
+            "place": "LOC-CAFE-BRUMA"
+          }
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.register",
+          "before": "normal, pendiente del turno",
+          "after": "intermitente; recibo inesperado"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order.paid",
+          "before": null,
+          "after": null,
+          "detail": "La empleada ofrece cobrar en efectivo; Jack aún no ha decidido."
+        }
+      ],
       "progression_awards": []
     }
   ]

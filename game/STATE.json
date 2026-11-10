@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000008"
+    "last_resolved_event_id": "EV-000009"
   },
   "time": {
     "day": -30,
@@ -109,8 +109,8 @@
         "size": "pequeño",
         "location_id": "LOC-CAFE-BRUMA",
         "carried": true,
-        "status": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados",
-        "description": "Gadget experimental en el estuche, usado en dos intentos durante la noche. Ha producido fallos visibles y respuestas incompletas, pero no hay infección ni robo de datos confirmados.",
+        "status": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos",
+        "description": "Gadget experimental que produjo fallos previos en Crosswater y, en Café Bruma, acceso parcial de origen ilícito a dos dispositivos, con dos saldos mostrados. No consta movimiento de dinero ni acceso generalizado. Sin detalles de funcionamiento operativo.",
         "narrative_only": true
       },
       {
@@ -178,19 +178,34 @@
     ],
     "conditions": [],
     "opening_intent": {
-      "status": "phase_two_attempted_unverified",
+      "status": "phase_two_partial_success",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": "Segunda fase de ejecución escalonada intentada; respuestas incompletas sin infección confirmada, saldos bancarios ni datos extraídos.",
+      "outcome": "La segunda fase se ejecutó parcialmente en dos dispositivos ajenos y mostró dos saldos bancarios sin titulares identificados, sin transferir dinero. La caja de Café Bruma experimentó una anomalía durante la escena.",
       "device_placed": false,
-      "information_acquired": false,
+      "information_acquired": true,
       "operational_details": "Not defined; keep narration nontechnical.",
       "phase_two": {
         "attempted": true,
         "staggered": true,
-        "unauthorized_execution_confirmed": false,
-        "confirmed_infected_devices": 0,
-        "verified_bank_balances": 0,
-        "result": "respuestas parciales sin evidencia suficiente de compromiso",
+        "unauthorized_execution_confirmed": true,
+        "confirmed_infected_devices": 2,
+        "verified_bank_balances": 2,
+        "observed_balances": [
+          {
+            "device_alias": "FUENTE-01",
+            "amount_display": "4.280,16",
+            "currency": null,
+            "account_holder_known": false
+          },
+          {
+            "device_alias": "FUENTE-02",
+            "amount_display": "93,47",
+            "currency": null,
+            "account_holder_known": false
+          }
+        ],
+        "funds_transferred": false,
+        "result": "Dos ejecuciones parciales observadas y dos lecturas de saldo; otros dispositivos y duración del acceso desconocidos.",
         "source_event_id": "EV-000005"
       }
     },
@@ -512,6 +527,40 @@
         },
         "last_resolved_action": null,
         "description": "Contacta con Jack por proyectos técnicos sin conocer todos sus planes."
+      },
+      "NPC-007": {
+        "id": "NPC-007",
+        "name": "Mara Reyes",
+        "age": 27,
+        "role": "barista del turno de noche en Café Bruma",
+        "location_id": "LOC-CAFE-BRUMA",
+        "goal": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo.",
+        "independent_plan": "Servir los últimos pedidos, cuadrar el cierre y resolver un problema inesperado en la caja.",
+        "knowledge": [
+          "Jack señaló café y pastelito en el menú.",
+          "La caja registradora se bloqueó y produjo un recibo extraño durante el turno.",
+          "El café y el dulce de Jack fueron servidos y su pago sigue pendiente."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "shift": "quedan unos veinte minutos",
+          "register": "intermitente, no registra correctamente el cobro de Jack",
+          "order": "café y dulce servidos; pago no completado"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000009",
+          "day": -30,
+          "summary": "Mara sirve café y dulce, ve fallar la caja y pregunta a Jack si puede pagar en efectivo."
+        },
+        "description": "Práctica, irónica sin crueldad y cuidadosa con el servicio pese al cansancio de fin de turno. No conoce las actividades privadas de Jack."
       }
     },
     "factions": {
@@ -641,24 +690,34 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 8,
+    "last_event_sequence": 9,
     "completed_chapters": [],
     "last_transcript_sequence": 6,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE"
+    ],
+    "story_revisions": [
+      {
+        "id": "REV-CH000-0001",
+        "turn": 2,
+        "prior_commit": "1da4a6ce69938df59d45ca28087376edaf0ea094",
+        "replacement_entry_id": "TXT-000006",
+        "audit_path": "chapters/revisions/REV-CH000-0001.json",
+        "reason": "El propietario solicitó volver a resolver el turno 2 con diferente narración y resultado."
+      }
     ]
   },
   "pending": {
     "type": "await_player_action",
     "location_id": "LOC-CAFE-BRUMA",
     "interaction_mode": "free_text_no_numbered_options",
-    "message": "Jack ha pedido café y dulce y revisado la segunda fase. No hay saldos ni infecciones confirmadas. Está en Café Bruma.",
+    "message": "Mara ha servido el café y el pastelito; la caja no funciona bien y pregunta si Jack puede pagar en efectivo. Dos saldos aparecieron en el gadget; no hay titulares completos ni fondos transferidos.",
     "last_player_action": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  "
   },
   "save": {
     "last_verified_turn": 2,
-    "notes": "CH-000 turno 2: pedido en Café Bruma y segunda fase intentada, sin compromiso o saldos confirmados; pendiente verificación remota de cinco archivos."
+    "notes": "Revisión del turno 2 autorizada por el propietario: acceso parcial a dos dispositivos y dos saldos ficticios, interrupción de la caja; pago de café pendiente. No se ha jugado turno 3."
   },
   "narrative_threads": [
     {
@@ -679,7 +738,7 @@
         {
           "kind": "develop",
           "event_id": "EV-000005",
-          "summary": "La segunda fase produjo respuestas irregulares, sin infección confirmada ni saldos bancarios obtenidos.",
+          "summary": "En Café Bruma se lograron dos ejecuciones parciales y se vieron dos saldos de terceros; la duración del acceso y las consecuencias aún están por conocerse.",
           "visibility": "known"
         }
       ]
@@ -704,6 +763,23 @@
           "event_id": "EV-000006",
           "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
           "visibility": "hidden"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000003",
+      "owner_actor_id": "NPC-007",
+      "question": "¿Cómo resolverá Mara la avería de la caja y el pago pendiente antes de cerrar el café?",
+      "scope": "observable",
+      "status": "open",
+      "origin_event_id": "EV-000009",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000009",
+          "summary": "Mara entregó el pedido, la caja falló y ofreció aceptar efectivo antes del cierre.",
+          "visibility": "known"
         }
       ]
     }

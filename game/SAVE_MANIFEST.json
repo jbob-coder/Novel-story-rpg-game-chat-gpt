@@ -3,12 +3,13 @@
   "game_id": "living-superhuman-world",
   "chapter_id": "CH-000",
   "last_completed_turn": 2,
-  "last_event_sequence": 8,
-  "last_event_id": "EV-000008",
+  "last_event_sequence": 9,
+  "last_event_id": "EV-000009",
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Turno 2 provisional, registrar pedido, nueva fase de gadget y sucesos NPC; no declarar guardado hasta lectura remota completa.",
+  "notes": "Revisión explícita de CH-000 turno 2 (REV-CH000-0001): nueva escena y resultado parcialmente exitoso; mismos dos turnos, 9 eventos y seis mensajes; copia anterior íntegra en archivo de auditoría y Git.",
   "last_transcript_sequence": 6,
-  "last_transcript_id": "TXT-000006"
+  "last_transcript_id": "TXT-000006",
+  "story_revision": 1
 }

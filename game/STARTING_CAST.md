@@ -49,3 +49,10 @@ Routine public transportation organization. Lena and Sora are workers, but neith
 - **Edad:** 32, propietario de un pequeño negocio de reparación y componentes en Market Row.
 - **Objetivo independiente:** sostener sus ventas y reputación.
 - **Relación:** contacto técnico habitual; conoce proyectos de ingeniería, no los planes privados de Jack.
+
+
+## NPC-007 — Mara Reyes (introducida en CH-000, turno 2 revisado)
+- **Edad:** 27. Barista del turno nocturno en Café Bruma, Market Row.
+- **Objetivo propio:** cerrar la caja correctamente y salir a tiempo del trabajo.
+- **Acción observada:** sirvió el café y dulce pedidos por Jack, la registradora falló y le preguntó si podía pagar en efectivo. Desconoce el dispositivo que Jack activó.
+- **Continúa:** cobro pendiente y avería de caja por resolver, sin sospecha automática contra Jack.
