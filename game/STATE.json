@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000012"
+    "last_resolved_event_id": "EV-000016"
   },
   "time": {
     "day": -30,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "evening",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 38
+    "elapsed_minutes_since_opening_approx": 65
   },
   "player": {
     "initialized": true,
@@ -24,7 +24,7 @@
     "role": "gray-hat hacker",
     "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
-    "location_id": "LOC-CAFE-BRUMA",
+    "location_id": "LOC-WILSON-APARTMENT",
     "progression": {
       "attributes": {
         "strength": 2,
@@ -87,7 +87,7 @@
         "id": "ITEM-PHONE",
         "name": "Teléfono personal",
         "size": "pequeño",
-        "location_id": "LOC-CAFE-BRUMA",
+        "location_id": "LOC-WILSON-APARTMENT",
         "carried": true,
         "status": "funcional",
         "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
@@ -97,7 +97,7 @@
         "id": "ITEM-VOICE-COLLAR",
         "name": "Collar sintetizador de voz",
         "size": "pequeño",
-        "location_id": "LOC-CAFE-BRUMA",
+        "location_id": "LOC-WILSON-APARTMENT",
         "carried": true,
         "status": "funcional",
         "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
@@ -107,10 +107,10 @@
         "id": "ITEM-COMPACT-CASE",
         "name": "Estuche compacto de electrónica",
         "size": "pequeño",
-        "location_id": "LOC-CAFE-BRUMA",
+        "location_id": "LOC-WILSON-APARTMENT",
         "carried": true,
-        "status": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas",
-        "description": "Gadget ficticio de intrusión con alcance local limitado: nueve dispositivos detectados y accesibles con privilegios en Café Bruma, sin alertas perceptibles. Los registros de sesión propios fueron limpiados; no hay evidencia de borrado de otros sistemas. Sus capacidades son narrativas, sin mecanismos operativos descritos.",
+        "status": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose",
+        "description": "Gadget ficticio con nueve conexiones locales registradas durante la noche en Café Bruma. Jack completó la sesión y regresó a casa; persistencia futura y huellas externas desconocidas. No se describen métodos operativos.",
         "narrative_only": true
       },
       {
@@ -179,7 +179,7 @@
         "id": "ITEM-WALLET",
         "name": "Cartera personal",
         "size": "pequeño",
-        "location_id": "LOC-CAFE-BRUMA",
+        "location_id": "LOC-WILSON-APARTMENT",
         "carried": true,
         "status": "funcional; contiene efectivo para gastos corrientes",
         "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
@@ -188,9 +188,9 @@
     ],
     "conditions": [],
     "opening_intent": {
-      "status": "phase_three_local_access_persistent",
+      "status": "session_finished_returned_home",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": "Jack conservó dos lecturas bancarias previas y obtuvo acceso privilegiado persistente a nueve aparatos detectados en el café. No se observan avisos visibles; no puede probarse borrado universal de evidencia ni acceso a todos los dispositivos de la ciudad.",
+      "outcome": "Jack cerró la sesión activa y volvió a Railgarden. Se conservan nueve registros históricos de acceso, sin evidencia nueva de alcance o persistencia desde su casa. No hay transferencias bancarias.",
       "device_placed": false,
       "information_acquired": true,
       "operational_details": "Not defined; keep narration nontechnical.",
@@ -230,7 +230,12 @@
         "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
         "mechanical_method": "unspecified; fiction only",
         "source_event_id": "EV-000010",
-        "observed_limit": "El estuche se calienta y el local se acerca al cierre."
+        "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+        "active_session_finished": true,
+        "completion_event_id": "EV-000013",
+        "historical_local_sessions": 9,
+        "current_device_reachability": "unknown after Jack's departure",
+        "current_privileged_access_verified": "not reassessed after leaving the cafe"
       }
     },
     "appearance": {
@@ -464,7 +469,7 @@
         "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
-        "independent_plan": "Preparar una presentación escolar y practicar ilustración digital.",
+        "independent_plan": "Mostrar a Jack una ilustración urbana y pedir opinión sobre legibilidad y perspectiva.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
           "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
@@ -479,7 +484,8 @@
         },
         "conditions": [],
         "resources": {
-          "daily_life": "recursos normales, sin cifras fijadas"
+          "daily_life": "recursos normales, sin cifras fijadas",
+          "current_project": "Ilustración digital de una ciudad para presentación escolar, aún en progreso."
         },
         "progression": {
           "attributes": null,
@@ -488,7 +494,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null,
+        "last_resolved_action": {
+          "event_id": "EV-000016",
+          "day": -30,
+          "summary": "Elena works on a stylized city illustration, talks with Rosa and asks Jack whether the picture reads clearly as a city."
+        },
         "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes."
       },
       "NPC-005": {
@@ -498,7 +508,7 @@
         "role": "abuela de Jack; jubilada aficionada a arreglos domésticos",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
-        "independent_plan": "Preparar materiales para una reunión vecinal de reparaciones.",
+        "independent_plan": "Consultar a Jack si desea ayudar a revisar un despertador antes de la próxima reunión vecinal.",
         "knowledge": [
           "Jack construye gadgets.",
           "Jack usa un collar que reproduce lo que escribe para hablar.",
@@ -514,7 +524,8 @@
         },
         "conditions": [],
         "resources": {
-          "daily_life": "recursos normales, sin cifras fijadas"
+          "daily_life": "recursos normales, sin cifras fijadas",
+          "current_repair": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta."
         },
         "progression": {
           "attributes": null,
@@ -523,7 +534,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null,
+        "last_resolved_action": {
+          "event_id": "EV-000015",
+          "day": -30,
+          "summary": "Rosa sorts screws, sketches the alarm clock's mechanism and asks Jack to inspect why the clock gains seven minutes when closed."
+        },
         "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
       },
       "NPC-006": {
@@ -578,7 +593,7 @@
         "relationships": {},
         "conditions": [],
         "resources": {
-          "shift": "cinco minutos antes del cierre de la zona de mesas",
+          "shift": "cierre de la zona de mesas en curso",
           "register": "averiada, venta anotada manualmente",
           "order": "café y pastelito cobrados en efectivo; recibido 10, cambio 2,20"
         },
@@ -590,9 +605,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000011",
+          "event_id": "EV-000014",
           "day": -30,
-          "summary": "Mara accepts cash, returns the change and records the sale manually, then prepares to close the section in five minutes. She has not identified Jack's hidden device activities."
+          "summary": "Mara accepts Jack's gesture, returns to the counter and prepares to close the seating area, still unaware of his gadget use."
         },
         "description": "Práctica, irónica sin crueldad y cuidadosa con el servicio pese al cansancio de fin de turno. No conoce las actividades privadas de Jack."
       }
@@ -724,13 +739,14 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 12,
+    "last_event_sequence": 16,
     "completed_chapters": [],
-    "last_transcript_sequence": 8,
+    "last_transcript_sequence": 10,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
-      "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE"
+      "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
+      "CH000-PLAYER-0004-RETURN-WILSON-HOME"
     ],
     "story_revisions": [
       {
@@ -746,13 +762,13 @@
   "pending": {
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
-    "location_id": "LOC-CAFE-BRUMA",
-    "message": "Mara solicita despejar la sección del café en cinco minutos; el pedido está pagado y Jack conserva acceso ficticio persistente a nueve dispositivos detectados, sin garantía sobre huellas externas.",
-    "last_player_action": "Estas haciendo echo de mensaje. Saco la cartera y le pregunto cuanto es, pago y después que se aleja continuo procesando los resto de los dispositivos hasta tenerlo todos también cree un backdoor y root en los dispositivos sin causar sospechas o alerta también limpia los rastros de los eventos"
+    "location_id": "LOC-WILSON-APARTMENT",
+    "message": "Jack llegó a la vivienda familiar. Rosa tiene un despertador descompuesto; Elena muestra una ilustración de la ciudad. Aster sigue incompleto en el taller.",
+    "last_player_action": "Hacer gesto de no problema y continuo terminado lo mio y después regreso a casa de mi abuela"
   },
   "save": {
-    "last_verified_turn": 3,
-    "notes": "CH-000 turno 3: Jack paga 7,80 en efectivo, obtiene acceso persistente ficticio a nueve dispositivos locales sin aviso visible, limpia su propio log de sesión, registros externos desconocidos. Mara anuncia cierre inminente."
+    "last_verified_turn": 4,
+    "notes": "CH-000 turno 4: Jack finaliza la sesión actual del gadget sin verificar su alcance futuro, abandona Café Bruma y llega a casa con Rosa y Elena. Aster permanece no operativo."
   },
   "narrative_threads": [
     {
@@ -780,6 +796,12 @@
           "kind": "develop",
           "event_id": "EV-000010",
           "summary": "Jack consiguió acceso persistente privilegiado a nueve aparatos detectables en el entorno del café, sin alertas visibles; el estuche se calentó y no pudo comprobar registros externos.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000013",
+          "summary": "Jack finalizó su sesión activa, volvió a Railgarden y conservó la información de los nueve accesos registrados; su persistencia después de la salida no está comprobada.",
           "visibility": "known"
         }
       ]

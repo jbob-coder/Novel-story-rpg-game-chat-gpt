@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 8,
+  "last_entry_sequence": 10,
   "entries": [
     {
       "id": "TXT-000001",
@@ -97,6 +97,31 @@
         "EV-000010",
         "EV-000011",
         "EV-000012"
+      ]
+    },
+    {
+      "id": "TXT-000009",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Hacer gesto de no problema y continuo terminado lo mio y después regreso a casa de mi abuela",
+      "event_ids": [
+        "EV-000013"
+      ]
+    },
+    {
+      "id": "TXT-000010",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "Mara sigue junto a la mesa, sosteniendo las tazas. Jack le hace un gesto de que no hay problema.\n\n—Te lo agradezco —responde ella.\n\nEn la barra, Iván ha encontrado otra bolsa de basura y está intentando meterla en un cubo demasiado pequeño.\n\n—Esa tampoco es —le advierte Mara, ya de camino hacia él.\n\n—Entonces aquí tenemos una colección de bolsas equivocadas.\n\n—Tenemos una colección de cosas que no sabes dónde van.\n\nLa voz de ambos se pierde entre el chirrido de las persianas.\n\nEn la mesa, las últimas señales del estuche terminan de estabilizarse. Nueve conexiones habían quedado registradas durante la noche. El ciclo pendiente se cierra y el aparato deja de exigir atención; conserva lo obtenido, aunque no ofrece ninguna garantía sobre lo que seguirá accesible cuando sus dueños se marchen, apaguen los teléfonos o cambien de lugar.\n\nEl calor acumulado en el estuche tarda un poco más en disiparse.\n\nCuando Jack sale, Mara está bajando una de las luces y un cliente discute, con tono ceremonioso, si aún tiene derecho a terminar su café. Ella señala el reloj sin perder la paciencia.\n\nAfuera, Market Row ya no se parece a la calle de unas horas antes. Los escaparates oscuros reflejan los semáforos. Un camión de reparto espera con las luces de emergencia puestas mientras alguien cierra a mano la persiana de una tienda. Más adelante, los edificios de Railgarden sustituyen a las oficinas; en algunas ventanas hay televisores encendidos y en otras solo se ve el resplandor amarillento de las cocinas.\n\nLa puerta del apartamento de los Wilson cede con su habitual pequeño roce contra el marco.\n\n—Elena, si vuelves a poner eso encima de mis tornillos, mañana vas a tener una exposición hecha de arandelas.\n\nLa voz de Rosa llega desde la cocina.\n\n—Abuela, es *una lámina*. No pesa nada.\n\n—Eso mismo dijiste de la caja que me aplastó los alicates.\n\nSobre la mesa hay un reloj despertador abierto, dos platillos con piezas ordenadas y una libreta donde Rosa ha dibujado el interior del mecanismo con una precisión sorprendente. Lleva las gafas bajas, casi en la punta de la nariz.\n\nElena, sentada enfrente, tiene una computadora abierta y una ilustración a medio terminar: una calle llena de gente, vista desde arriba, con los edificios dibujados en perspectivas exageradas. Varias capas de color permanecen visibles en un lado de la pantalla.\n\nAl advertir que Jack ha llegado, Rosa alza la mirada.\n\n—Ah, ya estás aquí. Pensé que no te veríamos hasta mañana.\n\nNo le pide explicaciones. Vuelve a colocar un diminuto engranaje en el reloj y hace una mueca cuando la pieza se resiste.\n\n—A ver si tú entiendes por qué este condenado aparato adelanta siete minutos cuando lo cierro.\n\n—Porque lo amenazas —dice Elena, sin levantar la vista.\n\nRosa suelta una risa breve.\n\n—Y a ti te voy a adelantar la hora de dormir.\n\nLa hermana de Jack gira entonces la computadora hacia la puerta.\n\n—Oye, antes de que te encierres en tu taller… ¿esto parece una ciudad o un montón de cajas?\n\nLa puerta del taller está entreabierta. Detrás, entre herramientas y piezas aún sin ensamblar, permanece la silueta inmóvil de Aster.\n\nRosa espera con el reloj en una mano. Elena deja la pantalla orientada hacia Jack, esperando su opinión.",
+      "event_ids": [
+        "EV-000013",
+        "EV-000014",
+        "EV-000015",
+        "EV-000016"
       ]
     }
   ]

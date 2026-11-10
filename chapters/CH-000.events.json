@@ -547,6 +547,194 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000013",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack gives Mara a polite gesture of no problem, finishes the pending session on his experimental gadget and returns via Market Row and Railgarden to his grandmother's home shared with Elena.",
+      "outcome": "Jack ends the current local gadget session, retains its nine historical registered connections without claiming future remote access certainty, lets the case cool, and returns to the Wilson apartment. Rosa is repairing a neighbor's clock and Elena works on a digital city illustration; both greet Jack and independently seek his input. Café Bruma closes its seating section.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT",
+          "route": [
+            "LOC-CAFE-BRUMA",
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-RAILGARDEN-RESIDENTIAL",
+            "LOC-WILSON-APARTMENT"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "phase_three_local_access_persistent",
+          "after": "session_finished_returned_home"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre."
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "unknown after Jack's departure",
+            "current_privileged_access_verified": "not reassessed after leaving the cafe"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas",
+          "after": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 38,
+          "after": 65
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000014",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish closing Café Bruma, clear the last occupied table and finish hand-noted sales.",
+      "outcome": "Mara accepts Jack's gesture, returns to the counter and prepares to close the seating area, still unaware of his gadget use.",
+      "known_to": [
+        "NPC-007",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.shift",
+          "before": "cinco minutos antes del cierre de la zona de mesas",
+          "after": "cierre de la zona de mesas en curso"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000015",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Prepare parts for a neighborhood repair meeting and restore a neighbor's faulty alarm clock.",
+      "outcome": "Rosa sorts screws, sketches the alarm clock's mechanism and asks Jack to inspect why the clock gains seven minutes when closed.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "resources.current_repair",
+          "before": null,
+          "after": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000016",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue working on a digital illustration for a school presentation while living with her family.",
+      "outcome": "Elena works on a stylized city illustration, talks with Rosa and asks Jack whether the picture reads clearly as a city.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "resources.current_project",
+          "before": null,
+          "after": "Ilustración digital de una ciudad para presentación escolar, aún en progreso."
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }
