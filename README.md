@@ -1,26 +1,26 @@
 # Living Superhuman World — ChatGPT-run narrative RPG
 
-This game is **played in the ChatGPT conversation**. ChatGPT is the narrator and world referee; the player writes what their character attempts. **No application download, browser client or installation is required.**
+**Played entirely in ChatGPT.** The assistant narrates the fictional world and resolves consequences from the player's free-form actions. GitHub stores approved lore, story chapters, character stats, skills, events and world-state checkpoints. **No game download or local browser is needed.**
 
-The story begins **30 in-world days before** a cosmic shockwave reaches Earth. On Day 0, some humans awaken abilities immediately, others later or never; animals, plants and the environment can also change. The living world progresses through player choices and independent NPC or organization activity.
+Earth starts on Day -30, a month before a cosmic shockwave arrives on Day 0. Later awakenings can occur in humans, and animals, plants and the environment can also change. Heroes, villains, ordinary people and organizations act for their own reasons. Skills grow through meaningful practice; powers are separate and not guaranteed.
 
-## Play loop
+## Resume safely
+**Start with [AGENTS.md](AGENTS.md).** Read the saved manifest, state, current chapter/event log and canon before any new narration. Never rely only on chat memory.
 
-1. ChatGPT reads the latest repository canon, chapter and checkpoint.
-2. ChatGPT narrates a scene and invites **free-form** player action.
-3. The player decides what to do; ChatGPT resolves outcomes and offscreen events without predetermining player choices.
-4. ChatGPT updates the chapter events and world-state checkpoint using authorized repository access, then reports whether the save was verified.
-5. Continue the narrative from that checkpoint in the next interaction.
+- [World canon](docs/CANON.md) and [approved decisions](docs/DECISIONS.md)
+- [Narrator rules](docs/NARRATOR_RULES.md) and [NPC/world simulation](docs/NPC_RULES.md)
+- [Skills and progression](docs/PROGRESSION.md) — provisional XP balancing
+- [Chapter and turn protocol](docs/CHAPTER_PROTOCOL.md) and [data schema](docs/STATE_SCHEMA.md)
+- [Context-loss recovery](docs/RECOVERY.md) and [handoff checkpoint](docs/HANDOFF.md)
+- [Implementation plan](docs/IMPLEMENTATION_PLAN.md) and [project status](docs/STATUS.md)
+- [Current manifest](game/SAVE_MANIFEST.json), [world state](game/STATE.json) and [opening chapter](chapters/CH-000.md)
 
-**Initial state:** [CH-000](chapters/CH-000.md) begins on Day -30 and awaits the player's character/background. No story turn has been completed.
+## Narration loop
+Read verified state → narrate → accept a free-form action → resolve player/NPC consequences and XP → record events and update chapter/state → verify completed save → resume. The world advances through **in-story time**, not while ChatGPT is inactive.
 
-## Documents
+## Developer/QA validator
+For a local copy of the repository (only needed for development), run `python tools/validate_state.py` with Python 3. The validator checks checkpoint format and references, not whether prose is good or a scene was fairly adjudicated.
 
-- [Approved canon](docs/CANON.md)
-- [Decisions and superseded ideas](docs/DECISIONS.md)
-- [Narrator rules](docs/NARRATOR_RULES.md)
-- [Chapter/save protocol](docs/CHAPTER_PROTOCOL.md)
-- [Current world checkpoint](game/STATE.json)
-- [Project checkpoint](docs/STATUS.md)
+**Initial story status:** CH-000, Day -30, no player-created character or completed turns.
 
-The repository can be public, but that does not grant public write access. Gameplay writes must use authorized permissions; `main` is not merged automatically. Existing browser-prototype PR #1 is **not** the intended delivery format.
+The repository may be public, but outsiders cannot directly write without GitHub access. Work in reviewable branches; neither draft PR #2 nor the older browser prototype PR #1 is automatically merged into `main`.
