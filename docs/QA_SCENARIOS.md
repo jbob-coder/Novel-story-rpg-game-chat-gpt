@@ -1,10 +1,10 @@
-# Continuity and RPG acceptance scenarios
+# Interactive novel continuity and narrative acceptance scenarios (D-036)
 
 These are planned end-to-end tests for real play. Passing the structural validator alone is **not** sufficient.
 
-1. **Cold start after context loss.** In a fresh chat, read `AGENTS.md`, manifest, state, current chapter and events. Recover exactly Day -30 and pending character setup without relying on a chat summary.
-2. **Consecutive player turns.** A player trains a known skill. Log intent, outcome, XP award and event ID; verify total XP, chapter prose and manifest; reload next chat and confirm progress persists.
-3. **Learning from failure.** A genuinely instructive failed attempt may earn XP and create consequences. Repeating trivial action in a loop must not create unlimited XP.
+1. **Cold start after context loss.** In a fresh chat, read `AGENTS.md`, manifest, state, current chapter and events. Recover the current manifest chapter/turn (at D-036: CH-000, turn 6) and pending scene without relying on a chat summary.
+2. **Consecutive player turns.** Jack performs an action; log intent, event, qualitative outcome, chapter prose and manifest. Confirm no RPG XP/ranks/levels are newly awarded and that a later session recovers consequences.
+3. **Learning from failure.** An instructive failure changes Jack's knowledge or relationships when justified. No numerical XP, ranks or trivial progress farming.
 4. **Offscreen NPC agency.** While the player ignores a faction, record a plausible independent NPC decision and later effects without assuming everyone knows it.
 5. **Actor knowledge isolation.** A private conversation cannot influence a distant NPC until a documented communication, observation or inference route exists.
 6. **Time and shockwave.** Before Day 0 no shockwave powers or wave-created flora/fauna anomalies. On Day 0 the event occurs once; delayed or absent awakening remains possible.
@@ -14,7 +14,7 @@ These are planned end-to-end tests for real play. Passing the structural validat
 10. **Privacy and public repo.** Fictional records only; no unapproved real-world private data, credentials or account details.
 
 ## Known unverified
-No actual story events exist yet. Gameplay, NPC memory, multi-turn save-and-restore, interrupted writes and skill balance have not been playtested. Record actual test outputs and commits in the PR or status document, never label these scenarios passed in advance.
+By the D-036 checkpoint six story turns and event EV-000021 are recorded. The revised novel-only flow, NPC continuity across future chapters, and interrupted writes still require full end-to-end tests. Prior RPG balancing scenarios are retired. Record actual test outputs and commits in the PR or status document, never label these scenarios passed in advance.
 
 
 ## Guardado bloqueante y organización (D-028/D-029)
@@ -27,3 +27,7 @@ No actual story events exist yet. Gameplay, NPC memory, multi-turn save-and-rest
 16. **Índices sin enlaces rotos:** todos los 18 índices y sus referencias deben existir. El inventario debe conservar una sola ubicación canónica por recurso.
 
 **Ejecución:** 15 pruebas dinámicas del flujo de bloqueo y narración aprobaron en el entorno JavaScript de esta sesión; 18 índices fueron leídos desde GitHub sin enlaces rotos. Los tests de Python y Node como procesos CLI aún no han sido ejecutados en checkout.
+
+17. **No RPG regression:** ensure the new turn engine rejects any `awards` for player or NPC; legacy progression numbers remain unchanged.
+18. **Canon continuity:** ensure the 500+ prior active fictional devices and nine new Café Bruma records are not repeatedly described as mere unverified proposals. No fictitious individual IDs or exact bank balances invented.
+19. **Cyber narration:** only depict fictional high-level events and their human consequences, not reproducible compromise, persistence or concealment steps.
