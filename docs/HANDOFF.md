@@ -1,3 +1,13 @@
+# Revisión operativa D-038 — documentación sin avance narrativo
+
+**Alcance:** se registró la autocrítica y se separaron dirección literaria, resolución/continuidad causal y guardado/entrega. El cierre de cada escena no está obligado a crear suspenso. Un commit leído de vuelta prueba **persistencia**, no entrega visible al lector. Ante entrega incierta se recupera exactamente el mismo texto; no se crea un turno adicional. Ver [modelo operativo](NARRATIVE_EXECUTION_MODEL.md).
+
+**Punto de guardado sin cambios por esta documentación:** CH-000, Día −30, noche; turno 6; EV-000021; TXT-000014. Jack está en el taller; Elena espera respuesta sobre una memoria USB escolar. Rosa continúa con su despertador y Aster está incompleto. El próximo turno solo puede comenzar cuando el lector decida qué hace Jack. Verificar el manifest en cada reanudación.
+
+**Notas históricas a continuación:** informan decisiones pasadas, no reemplazan el checkpoint ni la política D-036/D-037/D-038.
+
+---
+
 # Checkpoint actual y reglas — 2026-11-10 (D-036/D-037)
 
 **Estado autoritativo:** capítulo CH-000, último turno completo **6**, último evento **EV-000021**, última entrada de archivo **TXT-000014**, Jack en el taller de su casa; Elena espera una memoria para guardar su dibujo. Estos valores dependen de la verificación del manifest y archivos; no de las notas históricas inferiores. Esta actualización documental no juega el turno 7.

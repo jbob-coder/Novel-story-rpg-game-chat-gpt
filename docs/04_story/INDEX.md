@@ -1,6 +1,7 @@
 # 04 — Narración y capítulos
 
 - [Contrato vigente: novela interactiva sin RPG y ciberseguridad abstracta](../NARRATIVE_CONTRACT.md)
+- [Tres responsabilidades narrativas, continuidad y entrega (D-038)](../NARRATIVE_EXECUTION_MODEL.md)
 
 - [chapters/INDEX.md](../../chapters/INDEX.md)
 - [chapters/CH-000/INDEX.md](../../chapters/CH-000/INDEX.md)

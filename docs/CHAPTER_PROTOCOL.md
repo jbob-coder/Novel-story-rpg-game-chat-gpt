@@ -11,16 +11,17 @@ This is a ChatGPT-narrated interactive novel (no RPG mechanics). **GitHub files 
 - `game/SAVE_MANIFEST.json`: **last written completion marker** identifying the coherent turn, event and chapter.
 - `docs/HANDOFF.md`: orientation only, lower authority than event history or saved state.
 
-## Story turn protocol
-1. Read and validate latest manifest/checkpoint; locate chapter and player pending input.
-2. Narrate the current scene, receive the player's free-form input and resolve it without replacing their choice.
-3. Let relevant NPCs and factions pursue independent goals as in-fiction time passes. Track what each actor actually knows and record significant offscreen outcomes separately.
-4. Compute concrete changes to location/time, resources, injury, relationships, actor knowledge, chapter threads without XP, attributes, ranks or other RPG mechanics.
-5. Create one or more monotonically increasing event IDs (e.g. `EV-000001`), with chapter, turn, in-world day, actor IDs, kind, original intent (if player), outcome, known-to, causal predecessors, explicit state_changes, progression_awards.
-6. Save event log and chapter, then state. Validate they match (see `docs/STATE_SCHEMA.md`); update the manifest **last** and fetch it back. Mark the turn saved only after all artifacts agree.
-7. Update concise handoff information with confirmed turn/event, unresolved threads and next scene. If it fails, do not invalidate an otherwise verified manifest; mark handoff stale and reconstruct later.
+## Story turn protocol (D-038: separate writing, resolution, save and delivery)
+1. Verify the latest manifest, state, full transcript and event sequence at the working branch HEAD. Determine the *real* open scene; historical notes do not override it.
+2. Receive the player's **free-form action**. Do not decide Jack's words, movements, thoughts or feelings.
+3. Resolve only the chosen act and causally relevant NPC/offscreen changes in fictional time. Record knowledge, consequences, resources and meaningful relationships qualitatively: no XP or RPG stats.
+4. **Compose and edit the complete visible scene** before writing: natural pacing and dialog, third-person limited, agency, continuity, no obligatory dramatic hinge. The literary gate and the schema validator are separate.
+5. Stage all **five** pieces together: chapter transcript containing exact user/narrator text, event log, chapter prose, state and manifest. Validate consistency and exact wording.
+6. Make an atomic Git tree/commit on the authorized branch with a checked HEAD; read back the five files by committed SHA. Never call an incomplete write a completed save. D-028 blocks play on an unverified save.
+7. **Deliver the exact verified text to the reader.** A GitHub readback confirms persistence only, not the UI display. If delivery is interrupted, recover the already saved text verbatim; do not resolve a duplicate turn. Do not require ritual acknowledgment from the reader.
+8. Record a concise handoff after confirmation. This handoff is not more authoritative than the actual manifest/events/transcript.
 
-**Multi-file GitHub writes are not atomic.** On interruption, see `docs/RECOVERY.md`. A mismatching manifest/state/events combination is **not** a completed turn; recover from last known coherent commit rather than guessing or duplicating events.
+See [NARRATIVE_EXECUTION_MODEL.md](NARRATIVE_EXECUTION_MODEL.md) for the operational and editorial rationale. Individual Contents API commits followed by manifest-last are a *recovery fallback* and do not establish an atomic save. Documentation maintenance does not advance the story.
 
 ## Chapter boundaries
 Chapters are meaningful story arcs, not one day apiece. Preserve chronology, capabilities, inventory, relationships, secrets, NPC objectives and events across transitions. New chapter records must have stable IDs. Do not retcon past resolved events without explicitly recording a correction and reason.

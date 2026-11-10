@@ -17,7 +17,7 @@ Earth starts on Day -30, a month before a cosmic shockwave arrives on Day 0. Lat
 - [Current manifest](game/SAVE_MANIFEST.json), [world state](game/STATE.json) and [opening chapter](chapters/CH-000.md) and [chapter preparation](chapters/CH-000.PREP.md)
 
 ## Narration loop
-Read verified state → narrate → accept a free-form action → resolve player/NPC consequences (no XP) → record events and update chapter/state → verify completed save → resume. The world advances through **in-story time**, not while ChatGPT is inactive.
+Read verified checkpoint → receive a free-form Jack action → resolve grounded consequences → draft and **editorially review** the literary scene → atomically commit and verify all five save files → present the identical saved text. Remote persistence does **not** prove the reply reached the user's screen. See [D-038 narrative execution model](docs/NARRATIVE_EXECUTION_MODEL.md). The world advances through **in-story time**, not while ChatGPT is inactive.
 
 ## Developer/QA validator
 For a local copy of the repository (only needed for development), run `python tools/validate_state.py` with Python 3. The validator checks checkpoint format and references, not whether prose is good or a scene was fairly adjudicated.

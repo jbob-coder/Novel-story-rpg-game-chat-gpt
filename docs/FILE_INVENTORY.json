@@ -53,6 +53,7 @@
     ],
     "rules": [
       "docs/NARRATIVE_CONTRACT.md",
+      "docs/NARRATIVE_EXECUTION_MODEL.md",
       "docs/NARRATOR_RULES.md",
       "docs/NARRATIVE_STANDARD.md",
       "docs/NPC_RULES.md",
