@@ -2,8 +2,6 @@ name: Narrative integrity
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [work/chat-narrative-foundation]
 permissions:
   contents: read
 jobs:
