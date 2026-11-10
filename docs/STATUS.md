@@ -61,3 +61,8 @@ Elena es **17**, hermana menor; corrige edad anterior 25. Ambos padres fallecier
 ## Full-text story archive
 
 Owner requires full original text of all actual gameplay. Initialized `chapters/CH-000.transcript.json` empty at turn 0, added `tools/narrative_archive.mjs`, and integrated exact-message requirements in `tools/turn_engine.mjs`. It now requires `player_text` and `narration_messages` and includes the narrator text in the chapter. Regression tests were extended; read-back and separate test execution still required. No player action was fabricated or performed, and the `main` branch remains unchanged.
+
+
+### Full narration QA evidence — 2026-11-10
+
+Performed dynamic execution of the exact JavaScript modules retrieved from GitHub: 19 initial checks passed; one intentionally re-used NPC destination in a second-turn scenario was rejected by the engine's navigation validation. Correcting the **test scenario** (not gameplay data) passed 9/9 further checks, including two consecutive hypothetical turns, four verbatim transcript entries, preserved line breaks, NPC progression, counters, JSON round-trip restore, and unchanged real turn-0 save. The Node CLI test suite was committed but has **not** been executed as a Node process in an actual checkout. A real chat turn and full five-file commit/read-back still require live gameplay. No invented transcript was added to the actual saved game.
