@@ -39,7 +39,9 @@
       "chapters/CH-000.md",
       "chapters/CH-000.events.json",
       "chapters/CH-000.transcript.json",
-      "chapters/CH-000.PREP.md"
+      "chapters/CH-000.PREP.md",
+      "chapters/revisions/INDEX.md",
+      "chapters/revisions/REV-CH000-0001.json"
     ],
     "world": [
       "docs/CANON.md",
@@ -57,7 +59,8 @@
       "docs/RECOVERY.md",
       "docs/SAVE_BLOCKING_PROTOCOL.md",
       "docs/DECISION_OUTCOMES.md",
-      "docs/SCENE_CRAFT.md"
+      "docs/SCENE_CRAFT.md",
+      "docs/STORY_REVISIONS.md"
     ],
     "tracking": [
       "docs/STATUS.md",

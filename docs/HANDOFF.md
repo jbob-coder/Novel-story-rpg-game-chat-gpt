@@ -68,3 +68,8 @@ Jack señala en el menú un café y dulce; la empleada entrega el pedido, pago t
 ### D-032 editorial correction (no game advance)
 
 Player feedback: past prose sounded like a report, not a real story. Mandatory guide `docs/SCENE_CRAFT.md` now overrides old segmented scene/results templates and conflicting option-menu advice. On next player action, dramatize a genuine interaction with independent characters and plausible varied consequences. Keep CH-000 turn 2 exactly as saved; user did not authorize overwriting transcript. Café Bruma order delivered, payment not established, gadget second phase inconclusive.
+
+
+## D-033 — Turn 2 revised by explicit owner decision (verified content)
+
+The player asked to process the same last action again, **changing both the style and result**. In the active canonical CH-000 turn 2, a staggered second-phase gadget attempt had **partial success**: two unknown fictional devices were affected and two balance readings (`4.280,16` and `93,47`) appeared; **no full account identities and no transfers**. Barista **Mara Reyes (NPC-007)** served the coffee and pastry, the register failed, and she asked whether Jack could pay cash. Payment remains undecided; do not decide Jack's answer. Original verbatim narration, prior event records and relevant state retained in `chapters/revisions/REV-CH000-0001.json`, linked to previous commit. `m.last_completed_turn=2`, `history last_event_sequence=9`, `transcript count=6`; **never process this same action as a third turn**. `docs/STORY_REVISIONS.md` governs owner-requested revisions. The revised scene is active; resume only after a new freely authored player action.

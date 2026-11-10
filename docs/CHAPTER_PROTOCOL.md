@@ -53,3 +53,8 @@ The assistant must not narrate additional consequences or a next scene after a f
 ## Hilos y desenlaces vinculados a decisiones
 
 Antes de confirmar cada turno, evaluar `turn.consequence_updates` contra eventos realmente producidos por ese mismo turno. Registrar asuntos abiertos con `THREAD-`, desarrollarlos con eventos posteriores, resolverlos con un evento comprobado; nunca inventar resoluciones por simple intención, opción sugerida o salto de tiempo. El evento sustenta el resultado, el hilo registra la continuidad y la transcripción contiene el texto narrativo íntegro. Véase `docs/DECISION_OUTCOMES.md`.
+
+
+## Explicit revision exception (D-033)
+
+The default transcript is append-only. **Only an owner's clear instruction to revisit a played outcome** authorizes replacing the active message of the latest turn. Prior wording and events must be copied intact into `chapters/revisions/REV-...` with parent commit evidence, references, and reason. The amended event/state/narration checkpoint is committed atomically and read back, with no extra player-action turn or XP. The owner used this exception for CH-000 turn 2. See `docs/STORY_REVISIONS.md`.

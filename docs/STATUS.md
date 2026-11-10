@@ -106,3 +106,8 @@ Pedido de café y dulce y segundo intento de ejecución intermitente del gadget:
 ### D-032 — narration craft contract
 
 Added mandatory five-question literary quality gate, corrected contradictory obsolete options/results templates, and recorded owner feedback. Documentation update only. No new scene, turn, events, XP or transcript modification.
+
+
+### D-033 — explicit owner-authorized result revision
+
+The latest played turn was revised, not replayed as a new turn: `REV-CH000-0001` records the previous complete narrator message and four prior turn-2 events. New fiction grants partial success, two balance readings and a register problem at Café Bruma with barista NPC-007; no money transferred and the coffee/pastry unpaid. Five canonical checkpoint files and revision record committed in one coherent snapshot. Later verification matched the five blobs to commit tree and confirmed turn remains 2. Subsequent styling alignment of the narrator title does not change outcome. Future uses of this exception follow `docs/STORY_REVISIONS.md`.
