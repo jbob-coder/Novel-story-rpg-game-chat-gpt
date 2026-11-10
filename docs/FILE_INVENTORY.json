@@ -24,7 +24,8 @@
     "chapters/INDEX.md",
     "chapters/CH-000/INDEX.md",
     "tools/INDEX.md",
-    "tests/INDEX.md"
+    "tests/INDEX.md",
+    "game/finances/INDEX.md"
   ],
   "canonical": {
     "game": [
@@ -33,7 +34,9 @@
       "game/CHARACTER_JACK.md",
       "game/ASTER_SPEC.md",
       "game/STARTING_CAST.md",
-      "game/STARTING_LOCATIONS.md"
+      "game/STARTING_LOCATIONS.md",
+      "game/equipment/DEVICE_REGISTRY.json",
+      "game/finances/ASSET_LEDGER.json"
     ],
     "story": [
       "chapters/CH-000.md",

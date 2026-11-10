@@ -6,6 +6,7 @@
 - [game/world/INDEX.md](world/INDEX.md)
 - [game/equipment/INDEX.md](equipment/INDEX.md)
 - [game/saves/INDEX.md](saves/INDEX.md)
+- [Índice de cuentas y sociedades (estado ficcional)](finances/INDEX.md)
 - [Ficha de Jack Wilson](CHARACTER_JACK.md)
 - [Aster — diseño y límites](ASTER_SPEC.md)
 - [game/STARTING_CAST.md](STARTING_CAST.md)

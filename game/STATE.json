@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000019"
+    "last_resolved_event_id": "EV-000021"
   },
   "time": {
     "day": -30,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "evening",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 82
+    "elapsed_minutes_since_opening_approx": 94
   },
   "player": {
     "initialized": true,
@@ -109,8 +109,8 @@
         "size": "pequeño",
         "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
-        "status": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
-        "description": "Gadget ficticio con nueve conexiones locales registradas durante la noche en Café Bruma. Jack completó la sesión y regresó a casa; persistencia futura y huellas externas desconocidas. No se describen métodos operativos.",
+        "status": "nueve fichas locales indexadas: dos respuestas intermitentes, siete sin respuesta; red declarada 500+ pendiente de cotejo",
+        "description": "Gadget ficticio cuya actividad histórica en Café Bruma consta en nueve fichas del DEVICE_REGISTRY. Ningún dispositivo se declara comprometido en el presente sin evidencia; red heredada 500+ aún sin registros individuales.",
         "narrative_only": true
       },
       {
@@ -234,14 +234,16 @@
         "active_session_finished": true,
         "completion_event_id": "EV-000013",
         "historical_local_sessions": 9,
-        "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
-        "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
-        "last_observation_event_id": "EV-000017",
+        "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+        "current_privileged_access_verified": "not verified from current responses",
+        "last_observation_event_id": "EV-000020",
         "last_review_place": "LOC-WILSON-WORKSHOP",
         "responding_intermitently": 2,
         "no_response_current_check": 7,
         "new_bank_balance_reads": 0,
-        "remote_logs_verified_clean": false
+        "remote_logs_verified_clean": false,
+        "last_catalogue_event_id": "EV-000020",
+        "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
       }
     },
     "appearance": {
@@ -337,7 +339,13 @@
       "origin": "Reservas obtenidas mediante actividades pasadas de hacking según el propietario. No están establecidos métodos, montos, clientes ni delitos específicos.",
       "spending_pattern": "evita compras ostentosas de vivienda por la atención que atraerían; invierte dinero en herramientas, componentes y proyectos",
       "family_awareness": "la familia conoce su interés por los aparatos; no se ha establecido cuánto saben sobre sus reservas",
-      "note": "Vive discretamente con lo necesario cubierto aunque posee reservas para comprar una casa; las obtuvo de hacking pasado y usa parte para gadgets. No inventar cifras."
+      "note": "Vive discretamente con lo necesario cubierto aunque posee reservas para comprar una casa; las obtuvo de hacking pasado y usa parte para gadgets. No inventar cifras.",
+      "asset_ledger_path": "game/finances/ASSET_LEDGER.json",
+      "last_asset_review_event_id": "EV-000020",
+      "shell_companies_declared": true,
+      "shell_companies_verified_count": 0,
+      "personal_bank_accounts_verified_count": 0,
+      "last_review_status": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available."
     },
     "family_ids": [
       "NPC-004",
@@ -365,6 +373,19 @@
       "cash_tendered": 10,
       "change_returned": 2.2,
       "paid_event_id": "EV-000010"
+    },
+    "device_registry": {
+      "index_path": "game/equipment/DEVICE_REGISTRY.json",
+      "last_review_event_id": "EV-000020",
+      "legacy_label": "500+",
+      "legacy_claimed_minimum": 500,
+      "legacy_verified_records": 0,
+      "bruma_historical_records": 9,
+      "current_responses": 2,
+      "current_no_response": 7,
+      "current_infection_proven": 0,
+      "verified_total_history_with_records": 9,
+      "deduplication_complete": false
     }
   },
   "world": {
@@ -475,13 +496,14 @@
         "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
-        "independent_plan": "Añadir figuras humanas al fondo de la avenida y preparar la ilustración escolar para mostrársela mañana a la profesora.",
+        "independent_plan": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
           "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
           "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar.",
           "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out. (source: Elena herself adjusted the digital illustration after Jack's gestural feedback; EV-000018)",
-          "Jack vio el dibujo y señaló un problema de perspectiva; pudo corregirlo sin que el hermano escribiera diálogo."
+          "Jack vio el dibujo y señaló un problema de perspectiva; pudo corregirlo sin que el hermano escribiera diálogo.",
+          "She needs an external memory device to carry her artwork to school tomorrow. (source: Elena prepared the file and asked Jack from the workshop doorway.; EV-000021)"
         ],
         "relationships": {
           "PLAYER-001": {
@@ -494,7 +516,7 @@
         "conditions": [],
         "resources": {
           "daily_life": "recursos normales, sin cifras fijadas",
-          "current_project": "Ilustración digital urbana con perspectiva corregida y figuras de peatones en proceso; desea enseñarla mañana a su profesora."
+          "current_project": "Ilustración corregida en progreso; necesita guardar copia portátil para mañana."
         },
         "progression": {
           "attributes": null,
@@ -504,9 +526,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000018",
+          "event_id": "EV-000021",
           "day": -30,
-          "summary": "Elena understands the perspective problem after Jack indicates the misaligned buildings; she corrects them and begins drawing small people to make the street lively."
+          "summary": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers."
         },
         "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes."
       },
@@ -748,15 +770,16 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 19,
+    "last_event_sequence": 21,
     "completed_chapters": [],
-    "last_transcript_sequence": 12,
+    "last_transcript_sequence": 14,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
       "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
       "CH000-PLAYER-0004-RETURN-WILSON-HOME",
-      "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW"
+      "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW",
+      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW"
     ],
     "story_revisions": [
       {
@@ -773,12 +796,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "last_player_action": "2, y 4 despues 7",
-    "message": "Las acciones 2 y 4 ya se resolvieron. La opción 7 era «acción libre», pero el usuario todavía no especificó su contenido. Jack espera en el taller ante el gadget y Aster."
+    "message": "Elena pide memoria portátil para su dibujo; el catálogo de nueve aparatos quedó indexado, la lista de 500+ sigue declarada/no cotejada y las sociedades y saldos personales continúan sin documentación.",
+    "last_player_action": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys"
   },
   "save": {
-    "last_verified_turn": 5,
-    "notes": "Turno 5: feedback gestual a Elena que mejora perspectiva; revisión de gadget: dos respuestas intermitentes de nueve, siete sin respuesta, sin datos nuevos. Jack en taller; acción libre pendiente."
+    "last_verified_turn": 6,
+    "notes": "Turno 6: índice CB-001..CB-009, red previa 500+ declarada sin fichas, fondos propios sin cifras verificables, shell companies declaradas sin registros, Elena solicita memoria; confirmación remota obligatoria."
   },
   "narrative_threads": [
     {
@@ -818,6 +841,12 @@
           "kind": "develop",
           "event_id": "EV-000017",
           "summary": "Desde el taller, Jack verificó dos respuestas intermitentes entre nueve registros históricos; otros siete quedaron inaccesibles en esa comprobación. No se obtuvieron datos nuevos y su persistencia futura sigue incierta.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000020",
+          "summary": "Jack registró individualmente nueve dispositivos de Café Bruma; dos responden a intervalos y siete no. La referencia de una red previa de 500+ carece de fichas auditables y no se considera verificada.",
           "visibility": "known"
         }
       ]
@@ -870,6 +899,23 @@
           "kind": "resolve",
           "event_id": "EV-000011",
           "summary": "Mara cobró el café y dulce de Jack en efectivo, anotó el pago y avanzó hacia el cierre manual del local.",
+          "visibility": "known"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000004",
+      "owner_actor_id": "PLAYER-001",
+      "question": "¿Qué cuentas personales y sociedades instrumentales posee Jack y cuáles son sus saldos documentados?",
+      "scope": "private",
+      "status": "open",
+      "origin_event_id": "EV-000020",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000020",
+          "summary": "Jack revisó reservas conocidas sin cifras actuales y declaró empresas instrumentales cuyos nombres y registros aún no están documentados.",
           "visibility": "known"
         }
       ]

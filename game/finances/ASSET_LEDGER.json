@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "owner_actor_id": "PLAYER-001",
+  "chapter_id": "CH-000",
+  "last_review_event_id": "EV-000020",
+  "personal_accounts": [],
+  "personal_reserves": {
+    "recognized_in_canon": true,
+    "qualitative_value": "Sufficient to buy a modest home",
+    "current_exact_balance": null,
+    "currency": null,
+    "statement_date": null,
+    "verified_realtime": false
+  },
+  "shell_companies": {
+    "owner_claims_existing": true,
+    "company_count": null,
+    "named_entity_records": [],
+    "documented_balances": [],
+    "owner_verification_status": "not documented",
+    "source_event_id": "EV-000020"
+  },
+  "third_party_readings": {
+    "count": 2,
+    "amount_display_strings": [
+      "4.280,16",
+      "93,47"
+    ],
+    "ownership": "not Jack's funds",
+    "source_event_id": "EV-000005"
+  },
+  "notes": "This ledger describes only the fictional protagonist. Owner declaration of 500+ devices and shell companies is noted but is not remote verification or proof of numeric balances."
+}

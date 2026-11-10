@@ -911,6 +911,155 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000020",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack checks already affected devices and asks to add the nine Café Bruma devices to a 500+ device list, verifies the nine, and reviews his own accounts and shell companies from the home workshop. He supplied no earlier device IDs, own balances or legal entity names.",
+      "outcome": "A persistent indexed registry records nine established Café Bruma device records (two intermittent responses, seven silent), while a separate owner-asserted legacy 500+ group remains unverified without individual records or deduplication. Jack's private reserves are qualitatively established but exact current personal balances remain unknown; his asserted shell-company holdings have no names or statements yet, so nothing financial is invented. Elena asks Jack if he has a spare memory device for school work.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "device_registry",
+          "before": null,
+          "after": {
+            "index_path": "game/equipment/DEVICE_REGISTRY.json",
+            "last_review_event_id": "EV-000020",
+            "legacy_label": "500+",
+            "legacy_claimed_minimum": 500,
+            "legacy_verified_records": 0,
+            "bruma_historical_records": 9,
+            "current_responses": 2,
+            "current_no_response": 7,
+            "current_infection_proven": 0,
+            "verified_total_history_with_records": 9,
+            "deduplication_complete": false
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "finances.asset_ledger_path",
+          "before": null,
+          "after": "game/finances/ASSET_LEDGER.json"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "finances.last_review_status",
+          "before": null,
+          "after": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
+          "after": "nueve fichas locales indexadas: dos respuestas intermitentes, siete sin respuesta; red declarada 500+ pendiente de cotejo"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+            "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+            "last_observation_event_id": "EV-000017",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+            "current_privileged_access_verified": "not verified from current responses",
+            "last_observation_event_id": "EV-000020",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false,
+            "last_catalogue_event_id": "EV-000020",
+            "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 82,
+          "after": 94
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000021",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Prepare her revised city illustration for tomorrow's school presentation and avoid losing the file.",
+      "outcome": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "She needs an external memory device to carry her artwork to school tomorrow.",
+          "source": "Elena prepared the file and asked Jack from the workshop doorway."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Añadir figuras humanas al fondo de la avenida y preparar la ilustración escolar para mostrársela mañana a la profesora.",
+          "after": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack."
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }

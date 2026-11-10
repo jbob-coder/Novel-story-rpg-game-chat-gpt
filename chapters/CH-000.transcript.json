@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 12,
+  "last_entry_sequence": 14,
   "entries": [
     {
       "id": "TXT-000001",
@@ -146,6 +146,29 @@
         "EV-000017",
         "EV-000018",
         "EV-000019"
+      ]
+    },
+    {
+      "id": "TXT-000013",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys",
+      "event_ids": [
+        "EV-000020"
+      ]
+    },
+    {
+      "id": "TXT-000014",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "El ventilador del ordenador baja de revoluciones y el taller queda en silencio, salvo por el tic desigual del reloj que Rosa sigue examinando al otro lado de la puerta.\n\nJack abre el archivo donde guarda el historial de sus aparatos. Sobre la pantalla aparece una carpeta nueva, titulada **500+**. Allí quiere reunir los dispositivos que considera parte de su vieja red y los nueve de Café Bruma.\n\nPero el número del título no basta para llenar la lista.\n\nDe la red anterior no aparecen fichas individuales que puedan cotejarse: ni fechas recientes, ni identificadores fiables, ni una comprobación de cuántos continúan afectados. El archivo conserva la referencia a esos quinientos y pico como un inventario pendiente de reconstruir, no como quinientas conexiones abiertas.\n\nLos nueve registros de Café Bruma sí tienen una historia concreta. Jack los separa bajo el mismo encabezado, cada uno con su número de expediente. Dos responden a ratos, como antes; los otros siete no devuelven nada en esta revisión. No aparecen nuevos titulares, saldos ni operaciones. El programa recuerda las conexiones que tuvo, pero no puede afirmar que mantenga hoy los mismos permisos.\n\nUna segunda ventana ocupa la mitad de la pantalla.\n\nLas reservas personales de Jack siguen siendo suficientes, según sus propios antecedentes, para comprar una casa modesta sin pedir ayuda. Sin embargo, los papeles guardados aquí no incluyen extractos actualizados ni una cifra exacta con la que comprobar el saldo de esta noche. Las cantidades **4.280,16** y **93,47**, obtenidas antes de dos teléfonos ajenos, quedan en un apartado separado. No son dinero suyo.\n\nEl archivo de sociedades muestra una situación parecida. Jack ha señalado que tiene empresas instrumentales, pero en este expediente todavía no constan sus nombres, titulares legales ni balances. Ninguna puede marcarse como revisada sin esos datos. La pantalla deja los campos vacíos en lugar de inventar cifras.\n\nUn golpe suave contra la puerta interrumpe el zumbido del equipo.\n\n—¿Jack? —pregunta Elena desde el pasillo—. ¿Tienes alguna memoria libre? No quiero que mañana la computadora de la escuela se coma mi dibujo.\n\nElena no entra. Más allá de su voz, Rosa protesta porque el despertador vuelve a marcar una hora imposible.\n\nEn el monitor quedan abiertas dos cosas distintas: nueve fichas nuevas y completas en su historial de origen, y una red antigua de **500+** cuyo contenido todavía necesita verificarse. Abajo, las cuentas y sociedades esperan documentos que les den nombres y cifras reales.",
+      "event_ids": [
+        "EV-000020",
+        "EV-000021"
       ]
     }
   ]

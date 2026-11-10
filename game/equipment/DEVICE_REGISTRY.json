@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "owner_actor_id": "PLAYER-001",
+  "chapter_id": "CH-000",
+  "created_at_event": "EV-000020",
+  "registry_kind": "fictional narrative only — no operational access or external identifiers",
+  "source_event_id": "EV-000020",
+  "location_id": "LOC-WILSON-WORKSHOP",
+  "nine_device_rows": [
+    {
+      "id": "CB-001",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "intermittent_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-002",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "intermittent_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-003",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-004",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-005",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-006",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-007",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-008",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    },
+    {
+      "id": "CB-009",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": false,
+      "source_event_id": "EV-000020"
+    }
+  ],
+  "legacy_group": {
+    "label": "500+",
+    "owner_declared_prior_network": true,
+    "owner_declared_minimum_count": 500,
+    "individually_verified_before_this_turn": 0,
+    "imported_historical_rows": 0,
+    "verification_status": "not_recoverable_from_prior_canonical_checkpoint",
+    "duplicate_overlap_with_nine": "unknown",
+    "note": "500+ is an owner-declared older category, not a verified count of currently affected devices. No 500 dummy rows are created."
+  },
+  "new_group": {
+    "label": "Café Bruma",
+    "records": 9,
+    "ids": [
+      "CB-001",
+      "CB-002",
+      "CB-003",
+      "CB-004",
+      "CB-005",
+      "CB-006",
+      "CB-007",
+      "CB-008",
+      "CB-009"
+    ],
+    "intermittent": 2,
+    "no_response": 7,
+    "verified_historical_at_cafe": 9,
+    "verified_active_virus_now": 0,
+    "notes": "No current proof that access remains active; two intermittent responses alone do not prove compromise."
+  },
+  "distinct_total_verified_historical": 9,
+  "total_network_size_confirmed": null
+}

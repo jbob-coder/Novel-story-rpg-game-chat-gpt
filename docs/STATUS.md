@@ -116,3 +116,8 @@ The latest played turn was revised, not replayed as a new turn: `REV-CH000-0001`
 ### Turno 3 preparado, lectura remota obligatoria
 
 Pago en efectivo de café/dulce, nueva fase ficticia de dispositivo con nueve accesos locales persistentes y sin alertas visibles, rastros propios limpiados sin prueba de eliminación de registros externos, límite térmico y cierre próximo de cafetería. Mara y Sora continúan decisiones propias; no se inventan transacciones bancarias. D-034 corrige la costumbre de repetir acciones del jugador. Esperar lectura final de los cinco archivos del commit antes de mostrar la escena como guardada.
+
+
+### Turno 6 — reconciliación de activos (pendiente verificación remota)
+
+Nuevo índice de equipos y finanzas ficticias. Se verificó que el checkpoint anterior tenía nueve registros históricos de Café Bruma (dos intermitentes, siete no disponibles) y **ningún registro canónico de 500+ dispositivos, cuentas concretas o empresas instrumentales**. Se documentó la nueva declaración del jugador sin elevarla a verificación. Nuevas rutas: `game/equipment/DEVICE_REGISTRY.json`, `game/finances/ASSET_LEDGER.json`, `game/finances/INDEX.md`; índices/inventario actualizados. La escena muestra a Elena pidiendo una memoria para su ilustración escolar. El commit/readback es obligatorio.
