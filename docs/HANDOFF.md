@@ -1,3 +1,13 @@
+# D-041 — CI real y aplicación atómica de cambios (2026-11-10)
+
+**Rama de trabajo:** `work/chat-narrative-foundation`; PR #2 en borrador. Los commits `3e887816` y `fca32dca` implantaron aplicación atómica por actor de un lote de cambios (una validación fallida no modifica el actor ni añade cambios al evento), mensajes explícitos para campos no admitidos y dos pruebas de regresión. También corrigieron una expectativa obsoleta: la siguiente escena se agrega al final de una transcripción que ya tenía 14 entradas, no al inicio.
+
+**Evidencia ejecutada:** GitHub Actions [narrative-qa run 42903181369](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42903181369) para `fca32dcaf88bd28f03cef7574e97257db80c3243`: Node **57/57**, Python **20/20**, y `python tools/validate_state.py` PASS. Los tres pasos del job finalizaron con éxito. Un primer run `42902977959` había fallado con 56/57 por aquella expectativa obsoleta; el segundo run demuestra la reparación. El flujo se limita a PR para no duplicar consumo de CI en cada push.
+
+**No se avanzó la historia.** El último checkpoint continúa en CH-000, Día −30, turno 6, EV-000021, TXT-000014. Los cinco archivos de partida fueron excluidos de los commits de implementación. La suite usa escenas sintéticas: no prueba todavía el guardado y recuperación remotos de un turno 7 auténtico. D-036, D-037, D-038 y D-040 siguen vigentes. **Pendiente:** comprobar correspondencia entre prosa y efectos declarados en un turno real elegido por el lector, con commit atómico y lectura de vuelta, sin adelantar decisiones de Jack.
+
+---
+
 # D-040 — avance técnico de continuidad (2026-11-10)
 
 **Hechos verificados:** el nuevo módulo `tools/state_changes.mjs` aplica cambios cualitativos con precondiciones de Jack y NPC y se encuentra integrado en `tools/turn_engine.mjs`. Incluye rutas y movimiento de objetos portados, inventarios, relaciones, condiciones, conocimientos, planes y registro de últimos actos NPC. Doce pruebas aisladas **se ejecutaron localmente con Node y pasaron**; las pruebas de integración se añadieron a `tests/turn_engine.test.mjs`, **sin ejecución completa verificada en checkout** debido a la falta de acceso de red de la terminal a GitHub. El código se guardó en la rama de trabajo mediante commits no forzados y readback remoto. El motor no interpreta automáticamente el texto narrado; deben prepararse los cambios materiales explícitos. Ver `docs/STATE_SCHEMA.md` D-040 y `docs/QA_SCENARIOS.md`.

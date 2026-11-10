@@ -1,3 +1,11 @@
+## D-041 — resultados ejecutados en GitHub Actions
+
+- Commit de código corregido: `fca32dcaf88bd28f03cef7574e97257db80c3243`, rama `work/chat-narrative-foundation`.
+- [Ejecución 42903181369](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42903181369): Node `57 passed / 0 failed`, Python `Ran 20 tests ... OK`, `validate_state.py` informó PASS. Todos los pasos del job finalizaron con éxito.
+- Regresión incorporada: un segundo cambio inválido en el mismo lote no debe dejar efectos parciales en el estado ni en el evento. Un lote válido registra ubicación y objetos portados con sus condiciones anteriores.
+- Se corrigió un test obsoleto que suponía que un nuevo texto de escena sustituía `TXT-000001`; debe añadirse al final sin tocar ninguna de las 14 entradas previas.
+- Estos resultados validan **pruebas sintéticas y checkpoint actual**, no un turno 7 real guardado y recuperado. La lectura editorial de prosa contra efectos tipados continúa siendo una puerta de calidad independiente.
+
 # Interactive novel continuity and narrative acceptance scenarios (D-036)
 
 These are planned end-to-end tests for real play. Passing the structural validator alone is **not** sufficient.
