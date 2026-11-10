@@ -4,7 +4,7 @@
 
 ## Recovery entry (every new session or after context loss)
 1. Confirm repository, branch and PR state. `main` is the approved destination, NOT automatically the latest playable save. The active work branch is `work/chat-narrative-foundation` until changed by an explicit verified decision.
-2. Read `game/SAVE_MANIFEST.json` first, then `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, `docs/PROGRESSION.md`, `docs/NARRATOR_RULES.md`, `docs/RECOVERY.md`, the current `chapters/CH-NNN.md` and its `.events.json`. Read `docs/HANDOFF.md` for the last checkpoint summary, but verify every important assertion from primary files.
+2. Read `game/SAVE_MANIFEST.json` first, then `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, `docs/PROGRESSION.md`, `docs/WORLD_BIBLE.md`, `docs/NARRATIVE_STANDARD.md`, `docs/NARRATOR_RULES.md`, `docs/RECOVERY.md`, the current `chapters/CH-NNN.md` and its `.events.json`. Read `chapters/CH-000.PREP.md` when the opening chapter is active. Read `docs/HANDOFF.md` for the last checkpoint summary, but verify every important assertion from primary files.
 3. Validate references, event sequence, timeline, character records, progression and manifest against the saved files. If anything conflicts, **stop narration at the last verified checkpoint** and report the inconsistency; do not invent lost turns or overwrite an uncertain save.
 4. Identify the player's last resolved action, exact open scene, pending player input, relevant NPC goals and knowledge. Only then resume narration.
 
