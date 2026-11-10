@@ -6,10 +6,6 @@ import {verifyConsequences,stageConsequences} from './consequences.mjs';
 function check(ok, message) {
   if (!ok) throw new Error(message);
 }
-function skillRank(xp) {
-  check(Number.isSafeInteger(xp) && xp >= 0, "Skill XP must be a nonnegative integer");
-  return [0, 3, 8, 15, 24, 35].reduce((rank, threshold, i) => xp >= threshold ? i : rank, 0);
-}
 function verifyNarrativeSnapshot(snapshot) {
   check(snapshot && typeof snapshot === "object", "Missing snapshot");
   const {state:s, manifest:m, events:e, chapter:c}=snapshot;
@@ -62,6 +58,9 @@ function stageNarrativeTurn(snapshot, turn) {
   check(typeof turn.outcome==="string" && turn.outcome.trim().length>0 && turn.outcome.length<=5000,"Resolved narration required");
   check(Number.isSafeInteger(turn.elapsed_days) && turn.elapsed_days>=0 && turn.elapsed_days<=365,"Elapsed days invalid");
   check((turn.offscreen??[]).length<=20, "Too many offscreen events");
+  // D-036: the interactive novel no longer awards XP; historical XP is read-only.
+  check(turn.awards==null || (Array.isArray(turn.awards) && turn.awards.length===0), "RPG XP awards disabled (D-036)");
+  check((turn.offscreen??[]).every(item=>item.awards==null || (Array.isArray(item.awards) && item.awards.length===0)), "RPG XP awards disabled (D-036)");
   const next=JSON.parse(JSON.stringify(snapshot));
   const {state:s,manifest:m,events:e}=next;
   s.history.completed_turn_keys??=[];
@@ -70,31 +69,19 @@ function stageNarrativeTurn(snapshot, turn) {
   check(!(s.time.day<0 && newDay>=0),"Crossing Day 0 requires explicit shockwave transition handling");
   const t=m.last_completed_turn+1;
   const logs=[];
-  function event(kind, actorId, intent, outcome, knownTo, awards) {
+  function event(kind, actorId, intent, outcome, knownTo) {
     const id=`EV-${String(e.events.length+1).padStart(6,"0")}`;
+    // Keep legacy field shape for validators and old event playback.
     const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
-    for(const award of awards??[]) {
-      check(award && typeof award.skill==="string" && /^[a-z][a-z0-9_]{1,40}$/.test(award.skill),"Skill identifier invalid");
-      check(award.amount===1||award.amount===2,"Skill award must be +1 or +2");
-      check(typeof award.reason==="string" && award.reason.trim().length>4, "XP needs a learning reason");
-      const actor=actorId===s.player.id?s.player:s.world.actors[actorId];
-      check(!!actor,"Unknown XP actor");
-      const entry=actor.progression.skills[award.skill]??{xp:0,last_progress_event_id:null};
-      const before=entry.xp;
-      entry.xp+=award.amount;entry.last_progress_event_id=id;
-      actor.progression.skills[award.skill]=entry;
-      actor.progression.lifetime_skill_xp+=award.amount;
-      rec.progression_awards.push({actor_id:actorId,skill:award.skill,amount:award.amount,reason:award.reason,before,after:entry.xp,rank_before:skillRank(before),rank_after:skillRank(entry.xp)});
-    }
     e.events.push(rec);logs.push(rec);
     return rec;
   }
-  event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id],turn.awards??[]);
+  event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
     const actor=s.world.actors[item.actor_id];
-    const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id],item.awards??[]);
+    const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id]);
     actor.last_resolved_action={event_id:record.id,day:newDay,summary:item.outcome};
     if(item.new_location_id!==undefined) {
       check(item.new_location_id in s.world.locations,"Unknown destination");
@@ -130,4 +117,4 @@ function stageNarrativeTurn(snapshot, turn) {
   verifyNarrativeSnapshot(next);
   return next;
 }
-export { skillRank, verifyNarrativeSnapshot, stageNarrativeTurn };
+export { verifyNarrativeSnapshot, stageNarrativeTurn };
