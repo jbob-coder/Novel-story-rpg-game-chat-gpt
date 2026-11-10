@@ -15,3 +15,18 @@ test('changing recorded value without an event is detected',()=>{let s=make(),e=
 test('repeated changes to one field in one event preserve the causal chain',()=>{let s=make(),e=add(s,'PLAYER-001',22);let usb={id:'USB',name:'Spare USB',location_id:'WORKSHOP',carried:true};applyStateChanges(s.state,e,[{field:'inventory_item',item_id:'USB',before:null,after:usb},{field:'inventory_item',item_id:'USB',before:usb,after:null}]);assert.equal(verifyStateChanges(s),true);});
 test('inter-event relationship updates are chained, with latest value verified',()=>{let s=make(),e=add(s,'PLAYER-001',22);applyStateChanges(s.state,e,[{field:'relationship',target_actor_id:'NPC-004',before:{bond:'familiar'},after:{bond:'closer'}}]);let e2=add(s,'PLAYER-001',23);applyStateChanges(s.state,e2,[{field:'relationship',target_actor_id:'NPC-004',before:{bond:'closer'},after:{bond:'trusted'}}]);assert.equal(verifyStateChanges(s),true);});
 test('inter-event false preconditions are rejected on readback',()=>{let s=make(),e=add(s,'PLAYER-001',22);applyStateChanges(s.state,e,[{field:'relationship',target_actor_id:'NPC-004',before:{bond:'familiar'},after:{bond:'closer'}}]);let e2=add(s,'PLAYER-001',23);applyStateChanges(s.state,e2,[{field:'relationship',target_actor_id:'NPC-004',before:{bond:'closer'},after:{bond:'trusted'}}]);e2.state_changes[0].before={bond:'familiar'};assert.throws(()=>verifyStateChanges(s),/history precondition/);});
+
+test('failed batch never partially changes state or event history',()=>{
+ const s=make(),e=add(s,'PLAYER-001',22),before=JSON.stringify(s.state);
+ assert.throws(()=>applyStateChanges(s.state,e,[{field:'conditions',before:[],after:['busy']},{field:'location_id',before:'STREET',after:'HOME'}]),/Stale actor location/);
+ assert.equal(JSON.stringify(s.state),before);
+ assert.deepEqual(e.state_changes,[]);
+});
+test('atomic successful batch records every preconditioned change',()=>{
+ const s=make(),e=add(s,'PLAYER-001',22);
+ applyStateChanges(s.state,e,[{field:'conditions',before:[],after:['focused']},{field:'location_id',before:'WORKSHOP',after:'HOME'}]);
+ assert.deepEqual(s.state.player.conditions,['focused']);
+ assert.equal(s.state.player.location_id,'HOME');
+ assert.equal(e.state_changes.length,3);
+ assert.equal(verifyStateChanges(s),true);
+});

@@ -14,7 +14,7 @@ const knownLocation = (state, id) => typeof id === 'string' && Object.hasOwn(sta
 const stringList = value => Array.isArray(value) && value.every(x => typeof x === 'string' && x.trim()) && new Set(value).size === value.length;
 const actorIds = state => new Set([state.player.id, ...Object.keys(state.world.actors)]);
 
-function applyStateChanges(state, record, changes = []) {
+function applyStateChangesUnchecked(state, record, changes = []) {
   requireFact(Array.isArray(changes) && changes.length <= 40, 'State changes must be a bounded array');
   const actorId = record.actor_ids[0], actor = actorAt(state, actorId);
   requireFact(actor && typeof record.id === 'string' && Array.isArray(record.state_changes), 'Missing event actor or change log');
@@ -77,9 +77,31 @@ function applyStateChanges(state, record, changes = []) {
       actor.independent_plan = change.after;
       record.state_changes.push({actor_id: actorId, field, before: change.before, after: change.after});
     } else {
-      throw new Error(`${String(field)}`);
+      throw new Error(`Unsupported state change: ${String(field)}`);
     }
   }
+  return state;
+}
+
+// Validate a batch on an isolated actor copy. A failed later change must not
+// leave earlier effects applied or append an incomplete causal event log.
+function applyStateChanges(state, record, changes = []) {
+  requireFact(Array.isArray(changes) && changes.length <= 40, 'State changes must be a bounded array');
+  requireFact(record && Array.isArray(record.actor_ids) && record.actor_ids.length === 1 &&
+    typeof record.id === 'string' && Array.isArray(record.state_changes), 'Missing event actor or change log');
+  const actorId = record.actor_ids[0];
+  const original = actorAt(state, actorId);
+  requireFact(original, 'Missing event actor or change log');
+  if (changes.length === 0) return state;
+  const draftActor = copy(original);
+  const draftState = actorId === state.player.id
+    ? {...state, player: draftActor}
+    : {...state, world: {...state.world, actors: {...state.world.actors, [actorId]: draftActor}}};
+  const draftRecord = {...record, state_changes: []};
+  applyStateChangesUnchecked(draftState, draftRecord, changes);
+  if (actorId === state.player.id) state.player = draftActor;
+  else state.world.actors[actorId] = draftActor;
+  record.state_changes.push(...draftRecord.state_changes);
   return state;
 }
 
