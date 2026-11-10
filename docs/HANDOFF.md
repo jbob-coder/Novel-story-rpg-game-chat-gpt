@@ -14,7 +14,7 @@ Cosmic shockwave arrives Day 0, affects humans/animals/plants/environment. Human
 ## Engineering work
 - Continuity documents and provisional progression rules are proposed on this working branch.
 - Check `game/SAVE_MANIFEST.json`, `game/STATE.json` and `chapters/CH-000.events.json` before playing.
-- Validate with `python tools/validate_state.py` on an available checkout; report actual execution results, not planned results.
+- **Verified:** 18 committed repository files read back; 14/14 direct consistency checks passed for initial state, chronology, chapter/event/manifest, progression and missing player input.\n- **Unverified:** The Python validator script has been committed but was not executed on a local checkout in this environment (GitHub access from container unavailable). No actual gameplay or interrupted-save recovery test has run.
 
 ## Unknown and unapproved
 Player details, starting city/year, initial cast, world geography, exact powers, XP balancing, skill rank thresholds, NPC characteristics and further lore. Numeric progression values are proposals, not approved canon.
