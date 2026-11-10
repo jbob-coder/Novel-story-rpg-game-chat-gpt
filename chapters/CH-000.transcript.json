@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 10,
+  "last_entry_sequence": 12,
   "entries": [
     {
       "id": "TXT-000001",
@@ -122,6 +122,30 @@
         "EV-000014",
         "EV-000015",
         "EV-000016"
+      ]
+    },
+    {
+      "id": "TXT-000011",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "role": "player",
+      "kind": "player_action",
+      "text": "2, y 4 despues 7",
+      "event_ids": [
+        "EV-000017"
+      ]
+    },
+    {
+      "id": "TXT-000012",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "—Son cajas —dictamina Elena antes de que Jack termine de mirar la pantalla—. Lo sabía.\n\nLa muchacha tiene una mano apoyada en el teclado y la otra cerca del lápiz digital, preparada para defender el dibujo. Los edificios se apiñan alrededor de una avenida que se estrecha hacia el fondo, pero la calle parece terminar contra una pared de ventanas.\n\nJack se acerca a observarlo. Señala la avenida y después el borde de dos fachadas: allí las líneas no acompañan la perspectiva del resto.\n\nElena entrecierra los ojos.\n\n—Espera… Ah. Vale. No es que estén demasiado juntos. Es que hice esos dos como si los viera de frente.\n\nRosa deja el despertador sobre un paño.\n\n—Pues a mí me gusta. Por lo menos las casas de ella tienen techo.\n\n—Abuela, eso no ayuda.\n\n—Estoy ayudando a su autoestima.\n\nElena prueba a inclinar uno de los edificios. La avenida gana profundidad; en la pantalla aparece, por fin, un espacio entre la calle y las ventanas del fondo. Su expresión cambia antes de que diga nada.\n\n—¡Eso! Ahora sí parece que puedes caminar por ahí. —Amplía el dibujo con el lápiz—. Aunque me falta gente. Si lo dejo vacío, parece una maqueta de inmobiliaria.\n\nNo espera una solución inmediata. Ya ha empezado a dibujar una figura diminuta junto a una parada de autobús.\n\n—Gracias —añade, más bajo—. Mañana quiero enseñárselo a la profesora antes de terminar los colores.\n\nRosa recupera el despertador. Le da un golpecito con la uña y escucha un tic irregular.\n\n—Cuando tengas un minuto me dices si este bicho está poseído o solo está mal ensamblado —comenta, sin apartar la atención de sus tornillos.\n\nDesde el pasillo llega el leve zumbido de la computadora del taller. Allí, Aster sigue rodeado de piezas, con un brazo todavía sin terminar y el chasis sujeto a un soporte provisional.\n\nLa pantalla de diagnóstico vuelve a mostrar los nueve registros de Café Bruma. Esta vez no aparecen como una fila uniforme. Siete se han quedado sin respuesta desde que Jack salió de Market Row. Otros dos siguen contestando de manera intermitente; no muestran saldos nuevos, nombres ni señales de que alguien haya abierto las aplicaciones que antes quedaron expuestas.\n\nUno de esos dos registros parpadea, desaparece durante un instante y vuelve. El otro conserva la misma marca de actividad, aunque el dato es demasiado breve para saber cuánto durará.\n\nEn el historial permanece también la constancia de que el gadget cerró su sesión local antes de regresar a casa. Lo ocurrido fuera del estuche —en los teléfonos ajenos y en los sistemas de Crosswater— sigue siendo algo que ese historial no puede contar por sí solo.\n\nA través de la puerta entreabierta se oye a Elena desde la cocina:\n\n—¡Abuela! ¡Ahora la calle tiene hasta una panadería!\n\n—Pues dibújame una que venda pan de verdad —responde Rosa.\n\nLa luz azulada del monitor cae sobre las piezas inmóviles de Aster. Dos registros siguen parpadeando en un rincón de la pantalla; los otros siete permanecen oscuros.",
+      "event_ids": [
+        "EV-000017",
+        "EV-000018",
+        "EV-000019"
       ]
     }
   ]

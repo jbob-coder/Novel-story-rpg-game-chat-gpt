@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000016"
+    "last_resolved_event_id": "EV-000019"
   },
   "time": {
     "day": -30,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "evening",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 65
+    "elapsed_minutes_since_opening_approx": 82
   },
   "player": {
     "initialized": true,
@@ -24,7 +24,7 @@
     "role": "gray-hat hacker",
     "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
-    "location_id": "LOC-WILSON-APARTMENT",
+    "location_id": "LOC-WILSON-WORKSHOP",
     "progression": {
       "attributes": {
         "strength": 2,
@@ -87,7 +87,7 @@
         "id": "ITEM-PHONE",
         "name": "Teléfono personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional",
         "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
@@ -97,7 +97,7 @@
         "id": "ITEM-VOICE-COLLAR",
         "name": "Collar sintetizador de voz",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional",
         "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
@@ -107,9 +107,9 @@
         "id": "ITEM-COMPACT-CASE",
         "name": "Estuche compacto de electrónica",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
-        "status": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose",
+        "status": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
         "description": "Gadget ficticio con nueve conexiones locales registradas durante la noche en Café Bruma. Jack completó la sesión y regresó a casa; persistencia futura y huellas externas desconocidas. No se describen métodos operativos.",
         "narrative_only": true
       },
@@ -179,7 +179,7 @@
         "id": "ITEM-WALLET",
         "name": "Cartera personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional; contiene efectivo para gastos corrientes",
         "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
@@ -190,7 +190,7 @@
     "opening_intent": {
       "status": "session_finished_returned_home",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": "Jack cerró la sesión activa y volvió a Railgarden. Se conservan nueve registros históricos de acceso, sin evidencia nueva de alcance o persistencia desde su casa. No hay transferencias bancarias.",
+      "outcome": "Tras revisar desde casa los nueve registros históricos del gadget, dos respondían intermitentemente y siete no; no hubo lecturas nuevas ni confirmación de que siguiera el acceso privilegiado. El taller sigue siendo un lugar seguro para investigación propia, sin nuevos actos adjudicados.",
       "device_placed": false,
       "information_acquired": true,
       "operational_details": "Not defined; keep narration nontechnical.",
@@ -234,8 +234,14 @@
         "active_session_finished": true,
         "completion_event_id": "EV-000013",
         "historical_local_sessions": 9,
-        "current_device_reachability": "unknown after Jack's departure",
-        "current_privileged_access_verified": "not reassessed after leaving the cafe"
+        "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+        "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+        "last_observation_event_id": "EV-000017",
+        "last_review_place": "LOC-WILSON-WORKSHOP",
+        "responding_intermitently": 2,
+        "no_response_current_check": 7,
+        "new_bank_balance_reads": 0,
+        "remote_logs_verified_clean": false
       }
     },
     "appearance": {
@@ -469,23 +475,26 @@
         "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
-        "independent_plan": "Mostrar a Jack una ilustración urbana y pedir opinión sobre legibilidad y perspectiva.",
+        "independent_plan": "Añadir figuras humanas al fondo de la avenida y preparar la ilustración escolar para mostrársela mañana a la profesora.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
           "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
-          "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar."
+          "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar.",
+          "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out. (source: Elena herself adjusted the digital illustration after Jack's gestural feedback; EV-000018)",
+          "Jack vio el dibujo y señaló un problema de perspectiva; pudo corregirlo sin que el hermano escribiera diálogo."
         ],
         "relationships": {
           "PLAYER-001": {
             "relation": "hermano mayor",
             "bond": "cercano pero a veces discrepante",
-            "knowledge_of_crimes": false
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
           }
         },
         "conditions": [],
         "resources": {
           "daily_life": "recursos normales, sin cifras fijadas",
-          "current_project": "Ilustración digital de una ciudad para presentación escolar, aún en progreso."
+          "current_project": "Ilustración digital urbana con perspectiva corregida y figuras de peatones en proceso; desea enseñarla mañana a su profesora."
         },
         "progression": {
           "attributes": null,
@@ -495,9 +504,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000016",
+          "event_id": "EV-000018",
           "day": -30,
-          "summary": "Elena works on a stylized city illustration, talks with Rosa and asks Jack whether the picture reads clearly as a city."
+          "summary": "Elena understands the perspective problem after Jack indicates the misaligned buildings; she corrects them and begins drawing small people to make the street lively."
         },
         "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes."
       },
@@ -525,7 +534,7 @@
         "conditions": [],
         "resources": {
           "daily_life": "recursos normales, sin cifras fijadas",
-          "current_repair": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta."
+          "current_repair": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
         },
         "progression": {
           "attributes": null,
@@ -535,9 +544,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000015",
+          "event_id": "EV-000019",
           "day": -30,
-          "summary": "Rosa sorts screws, sketches the alarm clock's mechanism and asks Jack to inspect why the clock gains seven minutes when closed."
+          "summary": "Rosa keeps working on the clock and makes a light joke about Elena's drawing, leaving the clock's mechanical issue unresolved."
         },
         "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
       },
@@ -739,14 +748,15 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 16,
+    "last_event_sequence": 19,
     "completed_chapters": [],
-    "last_transcript_sequence": 10,
+    "last_transcript_sequence": 12,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
       "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
-      "CH000-PLAYER-0004-RETURN-WILSON-HOME"
+      "CH000-PLAYER-0004-RETURN-WILSON-HOME",
+      "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW"
     ],
     "story_revisions": [
       {
@@ -762,13 +772,13 @@
   "pending": {
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
-    "location_id": "LOC-WILSON-APARTMENT",
-    "message": "Jack llegó a la vivienda familiar. Rosa tiene un despertador descompuesto; Elena muestra una ilustración de la ciudad. Aster sigue incompleto en el taller.",
-    "last_player_action": "Hacer gesto de no problema y continuo terminado lo mio y después regreso a casa de mi abuela"
+    "location_id": "LOC-WILSON-WORKSHOP",
+    "last_player_action": "2, y 4 despues 7",
+    "message": "Las acciones 2 y 4 ya se resolvieron. La opción 7 era «acción libre», pero el usuario todavía no especificó su contenido. Jack espera en el taller ante el gadget y Aster."
   },
   "save": {
-    "last_verified_turn": 4,
-    "notes": "CH-000 turno 4: Jack finaliza la sesión actual del gadget sin verificar su alcance futuro, abandona Café Bruma y llega a casa con Rosa y Elena. Aster permanece no operativo."
+    "last_verified_turn": 5,
+    "notes": "Turno 5: feedback gestual a Elena que mejora perspectiva; revisión de gadget: dos respuestas intermitentes de nueve, siete sin respuesta, sin datos nuevos. Jack en taller; acción libre pendiente."
   },
   "narrative_threads": [
     {
@@ -802,6 +812,12 @@
           "kind": "develop",
           "event_id": "EV-000013",
           "summary": "Jack finalizó su sesión activa, volvió a Railgarden y conservó la información de los nueve accesos registrados; su persistencia después de la salida no está comprobada.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000017",
+          "summary": "Desde el taller, Jack verificó dos respuestas intermitentes entre nueve registros históricos; otros siete quedaron inaccesibles en esa comprobación. No se obtuvieron datos nuevos y su persistencia futura sigue incierta.",
           "visibility": "known"
         }
       ]

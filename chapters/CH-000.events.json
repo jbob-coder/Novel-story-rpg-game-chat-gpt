@@ -735,6 +735,182 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000017",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack chooses to review Elena's digital city drawing, helping by visually indicating a perspective flaw without speaking new words; afterward he goes to his home workshop and examines which of the nine previously recorded device sessions remain reachable. The player then selects a free action category without specifying the next action.",
+      "outcome": "Elena improves perspective in her city drawing and independently continues adding people, preparing to show it to her teacher tomorrow. Jack checks the historical nine fictional device entries; only two respond intermittently from home, seven have no current response, and no new financial data or proof of remote cleanup arises. Jack remains in his workshop, waiting for the player's unspecified free action.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-WILSON-WORKSHOP"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 65,
+          "after": 82
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "unknown after Jack's departure",
+            "current_privileged_access_verified": "not reassessed after leaving the cafe"
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+            "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+            "last_observation_event_id": "EV-000017",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose",
+          "after": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000018",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Refine a school illustration and ask for useful feedback from her older brother.",
+      "outcome": "Elena understands the perspective problem after Jack indicates the misaligned buildings; she corrects them and begins drawing small people to make the street lively.",
+      "known_to": [
+        "NPC-004"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out.",
+          "source": "Elena herself adjusted the digital illustration after Jack's gestural feedback"
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "resources.current_project",
+          "before": "Ilustración digital de una ciudad para presentación escolar, aún en progreso.",
+          "after": "Ilustración digital urbana con perspectiva corregida y figuras de peatones en proceso; desea enseñarla mañana a su profesora."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "relationship.PLAYER-001.latest_shared_moment",
+          "before": null,
+          "after": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000019",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue examining a neighbor's alarm clock whose timing changes when the casing is closed.",
+      "outcome": "Rosa keeps working on the clock and makes a light joke about Elena's drawing, leaving the clock's mechanical issue unresolved.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "resources.current_repair",
+          "before": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta.",
+          "after": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }
