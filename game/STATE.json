@@ -593,16 +593,19 @@
   "history": {
     "last_event_sequence": 0,
     "completed_chapters": [],
-    "last_transcript_sequence": 1
+    "last_transcript_sequence": 2
   },
   "pending": {
     "type": "await_player_action",
-    "message": "La escena inicial de Crosswater fue presentada. Espera la próxima acción libre del jugador; las opciones solo son ejemplos.",
+    "active_scene_entry_id": "TXT-000002",
+    "previous_scene_entry_id": "TXT-000001",
+    "narrative_style": "novela interactiva urbana de suspense",
+    "message": "Segunda versión estilística de la apertura guardada. Las opciones son ejemplos; espera cualquier acción libre del jugador.",
     "last_player_action": null
   },
   "save": {
     "last_verified_turn": 0,
-    "notes": "Escena inicial TXT-000001 archivada íntegramente en CH-000, sin turno de jugador; verificación remota requerida."
+    "notes": "TXT-000002 apertura reformulada a estilo inmersivo; TXT-000001 conservada. Ningún turno de jugador completado."
   },
   "narrative_threads": []
 }

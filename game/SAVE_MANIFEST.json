@@ -8,7 +8,7 @@
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Escena CH-000 TXT-000001 registrada como apertura de turno 0; sin sucesos de jugador, experiencia ni eventos adjudicados.",
-  "last_transcript_sequence": 1,
-  "last_transcript_id": "TXT-000001"
+  "notes": "Escena TXT-000002 (estilo inmersivo) es la presentación activa; la versión TXT-000001 permanece en el archivo literal. No se resolvió ningún turno ni se cambió día/experiencia.",
+  "last_transcript_sequence": 2,
+  "last_transcript_id": "TXT-000002"
 }
