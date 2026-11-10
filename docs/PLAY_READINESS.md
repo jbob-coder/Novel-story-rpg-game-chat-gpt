@@ -1,3 +1,5 @@
+> **Actualización D-036/D-037 — 2026-11-10:** este informe de preparación fue una estimación **histórica** de la fase RPG, no una evaluación actual. El formato vigente es una novela interactiva SIN XP/atributos/niveles; la fila «Habilidades y progreso» ya no es aplicable. La partida se encuentra en CH-000, turno 6 (EV-000021), no en turno 0. La red activa 500+ anterior y las nueve incorporaciones de Café Bruma son canon de la ficción. Ver `docs/NARRATIVE_CONTRACT.md` y `game/SAVE_MANIFEST.json`. Los porcentajes debajo NO deben reutilizarse como estado actual.
+
 # Preparación de juego — estado verificable (2026-11-10)
 
 **Inicio de CH-000: ~88% preparado.**  
