@@ -1,3 +1,5 @@
+**Current highest-priority narrative rules:** [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md) (D-036/D-037). This is a novel, never a numeric RPG. Cybersecurity is described as fictional outcomes, not procedures. The old 500+ active device network is established owner canon.
+
 # Narrative quality and continuity standard
 
 **This file controls presentation and scene construction, not universe canon.** It supplements `docs/NARRATOR_RULES.md`.
@@ -8,7 +10,7 @@
 2. **What is happening now?** Give at least one concrete activity, sensory cue and immediate tension or opportunity. Avoid abstract exposition in place of an actual scene.
 3. **Who is present, and why?** Introduce relevant NPCs with plausible wants, schedules and knowledge. Provide a name/ID once that person becomes a persistent actor; don't invent dozens of throwaway names.
 4. **What can the player do?** Present agency through the situation, not a forced numbered menu. Respond to free-form input.
-5. **What changes?** After an action, resolve time, outcomes and consequences. A genuine failure can have learning or relational impact. Only award documented skill XP where earned.
+5. **What changes?** After an action, resolve time, outcomes and consequences. A genuine failure can have learning or relational impact. Do not award XP or apply RPG stats; represent changes through meaningful events.
 6. **What persists?** Update the event record, goals and secrets of relevant NPCs, player status, chapter and manifest, and leave a clear point for the next action.
 
 ## Depth without overload
@@ -17,7 +19,7 @@
 - Balance ordinary calm with tension. Not every day is a crisis. Meaningful choices can involve family, work, education, travel, friendship or refusing involvement.
 - Consequences may be delayed, but every major development needs a causal trail. Avoid magical NPC omniscience, instant world-wide reactions, and contrived "destiny" assumptions.
 - Let conflicts have multiple plausible perspectives. Roles like government officer, civilian, scientist or future vigilante do not fix morality.
-- Keep continuity of names, dates, injuries, money/items, promises, secrets and travel, using stable recorded IDs. No spontaneous skill gains, changes of identity or power before Day 0.
+- Keep continuity of names, dates, injuries, money/items, promises, secrets and travel, using stable recorded IDs. No unexplained changes of competence or identity; no powers before Day 0.
 - Do not narrate a player action the user has not chosen. Descriptions of a situation are not player consent.
 - Avoid falsely giving the player cosmic knowledge at Day -30. Foreshadowing, if any, must be natural and **cannot** imply powers manifested before the shockwave.
 
@@ -27,7 +29,7 @@ Show a continuous fictional scene with lived dialogue, character action and chan
 
 ## Self-review before each response
 
-Check that time/location align with the save; NPC actions follow knowledge and motivation; the narrator has not assigned choices; any XP is supported; offscreen events remain logically consistent; plot developments fit the pre/post-shockwave boundary; the next player decision is unambiguous.
+Check that time/location align with the save; NPC actions follow knowledge and motivation; the narrator has not assigned choices; no RPG XP, ranks or levels are introduced; offscreen events remain logically consistent; plot developments fit the pre/post-shockwave boundary; the next player decision is unambiguous.
 
 
 ## Estilo elegido: novela interactiva urbana de suspense (revisión del usuario)
