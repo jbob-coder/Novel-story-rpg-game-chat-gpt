@@ -1,3 +1,15 @@
+# Checkpoint actual y reglas — 2026-11-10 (D-036/D-037)
+
+**Estado autoritativo:** capítulo CH-000, último turno completo **6**, último evento **EV-000021**, última entrada de archivo **TXT-000014**, Jack en el taller de su casa; Elena espera una memoria para guardar su dibujo. Estos valores dependen de la verificación del manifest y archivos; no de las notas históricas inferiores. Esta actualización documental no juega el turno 7.
+
+**Decisión actual:** experiencia convertida a **novela interactiva SIN RPG**. Cualquier instrucción antigua de XP, atributo, rango, «misiones», menú o balance numérico queda obsoleta; datos legados congelados. Ver `docs/NARRATIVE_CONTRACT.md`, `docs/DECISIONS.md` D-036/D-037.
+
+**Canon corregido:** red anterior de **más de 500 dispositivos activos** ya construida por Jack en la ficción. Los nueve registros de Café Bruma son incorporaciones más recientes. Sus fondos privados y sociedades instrumentales existen desde antes; nombres/saldos exactos no definidos. No volver a presentarlos como meras hipótesis sin comprobar. Ciberseguridad solo en resultados y consecuencias narrativas, sin métodos.
+
+**Advertencia:** el resto de este archivo contiene **notas históricas que mencionan turno 0, turno 1 y RPG**. No usar esos párrafos como estado actual ni como normativa. Manifest, state, events, transcript y contrato D-036/D-037 prevalecen.
+
+---
+
 # Revisión de continuidad — Jack Wilson
 
 **Estado:** CH-000, Día −30, noche en Crosswater Transit Plaza, turno 0, eventos 0. Rama de trabajo: `work/chat-narrative-foundation`; PR #2 borrador.
