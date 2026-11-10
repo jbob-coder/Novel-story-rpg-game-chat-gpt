@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 0,
-  "entries": []
+  "last_entry_sequence": 1,
+  "entries": [
+    {
+      "id": "TXT-000001",
+      "chapter_id": "CH-000",
+      "turn": 0,
+      "role": "assistant",
+      "kind": "scene",
+      "text": "## Capítulo 0 — Treinta días antes\n\n*Meridian Bay · Plaza de Tránsito Crosswater · Día −30, noche*\n\nLas puertas de cristal del terminal se abren y se cierran sin descanso. El aire trae olor a sal desde el puerto, mezclado con café recién hecho y el calor de los autobuses detenidos. Sobre la plaza, los paneles luminosos anuncian retrasos; unos pasajeros consultan sus teléfonos y otros se apresuran hacia los andenes.\n\nJunto a la entrada, una supervisora con una placa que dice **L. Ortiz** coordina al personal mientras intenta resolver uno de esos retrasos. A pocos metros, un técnico revisa instalaciones de la estación. Un repartidor, con un paquete bajo el brazo, busca el camino hacia las tiendas de Market Row. Cada uno tiene asuntos propios; ninguno parece pendiente de Jack.\n\nJack Wilson, de veintiún años, está en la plaza con su teléfono, el collar que convierte sus mensajes escritos en voz y un estuche compacto de electrónica. Su intención de obtener información bancaria y personal mediante dispositivos remotos sigue siendo solo eso: una intención. No ha colocado ningún aparato ni conseguido datos. En Railgarden, su taller y el robot Aster —todavía incompleto— lo esperan.\n\nLa multitud continúa moviéndose. La noche no exige una decisión concreta, pero ofrece varias oportunidades.\n\n**¿Qué hace Jack?**\n\n1. Abrir el estuche e intentar poner en marcha su plan en la plaza.\n2. Permanecer al margen y observar cómo se desarrolla la actividad.\n3. Ir a Market Row, donde está el negocio de electrónica de Noah Vale.\n4. Regresar a Railgarden para continuar el trabajo en Aster.\n5. **Acción libre:** hacer cualquier otra cosa que decidas.",
+      "event_ids": [],
+      "source_key": "ch000-initial-scene-v1"
+    }
+  ]
 }

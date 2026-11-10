@@ -593,15 +593,15 @@
   "history": {
     "last_event_sequence": 0,
     "completed_chapters": [],
-    "last_transcript_sequence": 0
+    "last_transcript_sequence": 1
   },
   "pending": {
-    "type": "narrate_opening_without_advancing_turn",
-    "message": "Present Jack at Crosswater Transit Plaza on Day -30 in the evening. He has declared his plan, but do not assume a device was placed or any payment data captured. Narrate other people acting independently. Ask for Jack's next free-form action.",
+    "type": "await_player_action",
+    "message": "La escena inicial de Crosswater fue presentada. Espera la próxima acción libre del jugador; las opciones solo son ejemplos.",
     "last_player_action": null
   },
   "save": {
     "last_verified_turn": 0,
-    "notes": "Initial game-setup checkpoint. Player, opening place and relevant actors are established; no actions resolved, no XP earned during play, no events recorded."
+    "notes": "Escena inicial TXT-000001 archivada íntegramente en CH-000, sin turno de jugador; verificación remota requerida."
   }
 }

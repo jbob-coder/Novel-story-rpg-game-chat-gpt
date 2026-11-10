@@ -8,7 +8,7 @@
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Narrative archive initialized: no played scene, no player action, no narrator response. Verbatim archive required for future gameplay.",
-  "last_transcript_sequence": 0,
-  "last_transcript_id": null
+  "notes": "Escena CH-000 TXT-000001 registrada como apertura de turno 0; sin sucesos de jugador, experiencia ni eventos adjudicados.",
+  "last_transcript_sequence": 1,
+  "last_transcript_id": "TXT-000001"
 }
