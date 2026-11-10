@@ -1,5 +1,7 @@
 # Documentación — por dominios
 
+- [Contrato narrativo vigente (sin RPG)](NARRATIVE_CONTRACT.md)
+
 - [docs/00_start/INDEX.md](00_start/INDEX.md)
 - [docs/01_world/INDEX.md](01_world/INDEX.md)
 - [docs/02_characters/INDEX.md](02_characters/INDEX.md)
