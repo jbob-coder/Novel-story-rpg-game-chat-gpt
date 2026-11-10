@@ -27,3 +27,6 @@ The repository may be public, but outsiders cannot directly write without GitHub
 
 
 **Complete played story text:** `chapters/CH-000.transcript.json` holds literal, ordered player and narrator messages, while event and state records hold structured changes. No gameplay scene/turn is recorded yet. See `docs/FULL_NARRATION_ARCHIVE.md`.
+
+
+**Mapa por carpetas:** [índice maestro](INDEX.md), [docs por áreas](docs/INDEX.md), [capítulos](chapters/INDEX.md), [regla de guardado bloqueante](docs/SAVE_BLOCKING_PROTOCOL.md). No se mueve historia existente.

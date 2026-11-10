@@ -32,3 +32,8 @@ If GitHub Git Data API access permits, prepare all changed files including `game
 ## Literal transcript recovery gate
 
 Read `chapters/CH-NNN.transcript.json` for the current and any past played chapters. Verify exact sequential `TXT-` IDs and that `manifest.last_transcript_sequence`, `manifest.last_transcript_id`, and `state.history.last_transcript_sequence` match. Every played turn needs the player's full message and at least one entire assistant response. A transcript with missing entries or event links is not a coherent checkpoint. **Never reconstruct missing dialogue or paragraphs from summaries, chat memory or intuition**; report that exact words are unavailable. CH-000 currently has zero real turns, so its first transcript is legitimately empty.
+
+
+## HARD STOP PRIORITY — overrides permissive fallback (D-028)
+
+If ANY save step fails or an attempt is incomplete, **do not advance or display the next story scene**. Use the seven evidence-backed percentages in `docs/SAVE_BLOCKING_PROTOCOL.md`. Do not claim time-dependent progress. Show blocked percentage with exact cause and pending stage; stop for this response if necessary. On next user input `CONTINUAR GUARDADO`, retrieve the branch HEAD and artifacts and reconcile an unverified commit before completing or retrying. If the original full text was lost, ask user to recover it rather than guess. Never accept new story actions until five-file readback has finished at 100%. On unresolvable conflict, preserve the last coherent commit and report blockage.

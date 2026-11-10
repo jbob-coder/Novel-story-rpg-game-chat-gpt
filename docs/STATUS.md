@@ -66,3 +66,8 @@ Owner requires full original text of all actual gameplay. Initialized `chapters/
 ### Full narration QA evidence — 2026-11-10
 
 Performed dynamic execution of the exact JavaScript modules retrieved from GitHub: 19 initial checks passed; one intentionally re-used NPC destination in a second-turn scenario was rejected by the engine's navigation validation. Correcting the **test scenario** (not gameplay data) passed 9/9 further checks, including two consecutive hypothetical turns, four verbatim transcript entries, preserved line breaks, NPC progression, counters, JSON round-trip restore, and unchanged real turn-0 save. The Node CLI test suite was committed but has **not** been executed as a Node process in an actual checkout. A real chat turn and full five-file commit/read-back still require live gameplay. No invented transcript was added to the actual saved game.
+
+
+## D-028/D-029 — save lock and indices
+
+Added `tools/save_gate.mjs` to track seven independently evidenced save stages and prevent further story output until a committed remote five-file readback validates at 100%. On failure, show percentage and hold; next input resumes verification after refreshing branch HEAD. No background work. Added root + domain and chapter subfolder indexes, `docs/FILE_INVENTORY.json`, link-validation tests and `docs/FOLDER_POLICY.md` while preserving legacy/canonical paths. The story is still at Day −30, turn 0 and its transcript is empty.
