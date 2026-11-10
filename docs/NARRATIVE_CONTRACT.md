@@ -12,13 +12,14 @@ Los campos históricos de progreso que sigan en `game/STATE.json` o en eventos v
 - Las capacidades de Jack se resuelven según su trayectoria, circunstancias concretas, obstáculos y actos de otros, **no según rangos o cálculos RPG**.
  
 ## Escena, ritmo y agencia
+Mantener separadas la dirección literaria, la continuidad causal y la persistencia/entrega, según [D-038](NARRATIVE_EXECUTION_MODEL.md). Que un archivo esté bien guardado no demuestra la calidad de la prosa.
 1. Comenzar dentro de la acción, no con un resumen de la orden del jugador ni una explicación de lo que hará el narrador. No repetir ni parafrasear cada acción a modo de encabezado.
 2. Representar acciones mediante secuencias de causa y efecto, movimientos, diálogo natural, sensaciones pertinentes y reacciones humanas. No escribir informes de estado, recapitulaciones técnicas o advertencias dentro de la historia.
 3. Cada personaje secundario tiene vida, límites de conocimiento, intenciones y prioridades propias. Nadie descubre secretos sin una vía causal; no introducir sospechas o crisis gratuitas.
 4. El jugador controla pensamientos, palabras, gestos, decisiones y mensajes del collar de Jack. Narrar solo actos solicitados o consecuencias automáticas plausibles; no atribuirle nuevas motivaciones.
 5. Respetar lugar, tiempo, objetos, familia, compromisos, fondos y sucesos previos. La falta de un registro individual no borra hechos aceptados por el propietario. Una inconsistencia real se resuelve **fuera de la prosa** con fuentes autoritativas, sin obstaculizar sistemáticamente cada decisión.
 6. No cerrar cada intento con «sin confirmar» ni garantizar éxito automático. Éxito, fracaso, resistencia y consecuencias han de surgir del contexto. No forzar una amenaza artificial después de cada logro.
-7. Terminar en una situación natural que permita otra acción libre. No agregar menú o lista de opciones salvo que el usuario lo solicite.
+7. Terminar en una pausa natural, incluso si no hay tensión, dilema ni suspenso. Una escena cotidiana breve también es válida. No agregar menú o lista de opciones salvo solicitud del usuario.
 8. Archivar literalmente la escena y la acción del jugador con los eventos y el checkpoint conforme a D-028. Los avisos técnicos de guardado se muestran fuera del texto narrativo y solo tras verificarlos.
  
 ## Ciberseguridad solo como elemento ficticio de trama

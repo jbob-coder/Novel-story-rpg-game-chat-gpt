@@ -1,6 +1,7 @@
 # Documentación — por dominios
 
 - [Contrato narrativo vigente (sin RPG)](NARRATIVE_CONTRACT.md)
+- [Modelo narrativo operativo y revisión crítica (D-038)](NARRATIVE_EXECUTION_MODEL.md)
 
 - [docs/00_start/INDEX.md](00_start/INDEX.md)
 - [docs/01_world/INDEX.md](01_world/INDEX.md)
