@@ -1,13 +1,13 @@
 # Chapters, events and durable save protocol
 
-This is a ChatGPT-narrated interactive RPG. **GitHub files are game data, not a downloadable player interface.** Read `AGENTS.md` before each fresh session.
+This is a ChatGPT-narrated interactive novel (no RPG mechanics). **GitHub files are game data, not a downloadable player interface.** Read `AGENTS.md` before each fresh session.
 
 ## Authoritative records
 - `docs/CANON.md`: owner-approved world rules; `docs/DECISIONS.md`: approvals and superseded designs.
-- `docs/PROGRESSION.md`: proposed skills, attributes, advancement and powers rules.
-- `game/STATE.json`: current materialized world state and skill progress.
+- `docs/NARRATIVE_CONTRACT.md`: current novel narration, non-RPG consequences and fictional cybersecurity rules.
+- `game/STATE.json`: current materialized world state; old numeric fields are archival only.
 - `chapters/CH-NNN.md`: prose, setting, key events, active threads.
-- `chapters/CH-NNN.events.json`: numbered causal events and progression awards.
+- `chapters/CH-NNN.events.json`: numbered causal events (historic `progression_awards` arrays may persist empty for compatibility).
 - `game/SAVE_MANIFEST.json`: **last written completion marker** identifying the coherent turn, event and chapter.
 - `docs/HANDOFF.md`: orientation only, lower authority than event history or saved state.
 
@@ -15,7 +15,7 @@ This is a ChatGPT-narrated interactive RPG. **GitHub files are game data, not a 
 1. Read and validate latest manifest/checkpoint; locate chapter and player pending input.
 2. Narrate the current scene, receive the player's free-form input and resolve it without replacing their choice.
 3. Let relevant NPCs and factions pursue independent goals as in-fiction time passes. Track what each actor actually knows and record significant offscreen outcomes separately.
-4. Compute concrete changes to location/time, resources, injury, relationships, actor knowledge, chapter threads and skills/XP using `docs/PROGRESSION.md`.
+4. Compute concrete changes to location/time, resources, injury, relationships, actor knowledge, chapter threads without XP, attributes, ranks or other RPG mechanics.
 5. Create one or more monotonically increasing event IDs (e.g. `EV-000001`), with chapter, turn, in-world day, actor IDs, kind, original intent (if player), outcome, known-to, causal predecessors, explicit state_changes, progression_awards.
 6. Save event log and chapter, then state. Validate they match (see `docs/STATE_SCHEMA.md`); update the manifest **last** and fetch it back. Mark the turn saved only after all artifacts agree.
 7. Update concise handoff information with confirmed turn/event, unresolved threads and next scene. If it fails, do not invalidate an otherwise verified manifest; mark handoff stale and reconstruct later.
@@ -29,7 +29,7 @@ Chapters are meaningful story arcs, not one day apiece. Preserve chronology, cap
 - Opening is Day -30. Day 0 is the cosmic shockwave; no powers or ecological anomalies established from the wave may appear earlier.
 - Event IDs do not repeat, gameplay turn numbers never go backwards, and a checkpoint cannot claim events absent from its logs.
 - No character knows an event merely because the narrator knows it.
-- No skill ranks/XP are arbitrarily rewritten or granted without causal recorded evidence; powers and ordinary skills stay separate.
+- Do not award, calculate or use RPG XP/levels/ranks. Preserve legacy values frozen; learning, powers and limitations unfold through documented narrative events.
 - All story/player data committed to public GitHub must be intended fictional data.
 
 
@@ -57,4 +57,4 @@ Antes de confirmar cada turno, evaluar `turn.consequence_updates` contra eventos
 
 ## Explicit revision exception (D-033)
 
-The default transcript is append-only. **Only an owner's clear instruction to revisit a played outcome** authorizes replacing the active message of the latest turn. Prior wording and events must be copied intact into `chapters/revisions/REV-...` with parent commit evidence, references, and reason. The amended event/state/narration checkpoint is committed atomically and read back, with no extra player-action turn or XP. The owner used this exception for CH-000 turn 2. See `docs/STORY_REVISIONS.md`.
+The default transcript is append-only. **Only an owner's clear instruction to revisit a played outcome** authorizes replacing the active message of the latest turn. Prior wording and events must be copied intact into `chapters/revisions/REV-...` with parent commit evidence, references, and reason. The amended event/state/narration checkpoint is committed atomically and read back, with no extra player-action turn. The owner used this exception for CH-000 turn 2. See `docs/STORY_REVISIONS.md`.
