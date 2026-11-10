@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000021"
+    "last_resolved_event_id": "EV-000022"
   },
   "time": {
     "day": -30,
@@ -770,16 +770,17 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 21,
+    "last_event_sequence": 22,
     "completed_chapters": [],
-    "last_transcript_sequence": 14,
+    "last_transcript_sequence": 16,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
       "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
       "CH000-PLAYER-0004-RETURN-WILSON-HOME",
       "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW",
-      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW"
+      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
+      "D043-SYNTHETIC-REMOTE-QA-ONLY"
     ],
     "story_revisions": [
       {
@@ -796,12 +797,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Elena pide una memoria portátil para su dibujo. Jack está en el taller; su red activa previa supera los 500 dispositivos en el canon, y los nueve de Café Bruma son nuevas incorporaciones. Cuentas propias y sociedades instrumentales preexistentes; importes y nombres exactos aún no definidos. Continuar como novela interactiva, sin RPG.",
-    "last_player_action": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys"
+    "message": "D-043: partida sintética sin efecto sobre la novela.",
+    "last_player_action": "[QA D-043, PRUEBA NO CANÓNICA] Acción sintética para verificar la persistencia, sin decisión real del jugador."
   },
   "save": {
-    "last_verified_turn": 6,
-    "notes": "Corrección de continuidad autorizada por el propietario tras turno 6, sin turno o evento nuevo: formato novela interactiva sin RPG; red anterior activa de 500+ y nueve incorporaciones de Café Bruma. Historial, XP legado, eventos y transcripción intactos."
+    "last_verified_turn": 7,
+    "notes": "D-043: únicamente rama temporal QA; NO CANON y no es el guardado de la novela."
   },
   "narrative_threads": [
     {

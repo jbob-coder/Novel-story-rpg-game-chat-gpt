@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 14,
+  "last_entry_sequence": 16,
   "entries": [
     {
       "id": "TXT-000001",
@@ -169,6 +169,28 @@
       "event_ids": [
         "EV-000020",
         "EV-000021"
+      ]
+    },
+    {
+      "id": "TXT-000015",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "player",
+      "kind": "player_action",
+      "text": "[QA D-043, PRUEBA NO CANÓNICA] Acción sintética para verificar la persistencia, sin decisión real del jugador.",
+      "event_ids": [
+        "EV-000022"
+      ]
+    },
+    {
+      "id": "TXT-000016",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "[QA D-043 — NO CANÓNICO]\n\nEsta escena es exclusivamente una prueba de guardado. No representa una acción de Jack ni altera la historia auténtica.",
+      "event_ids": [
+        "EV-000022"
       ]
     }
   ]

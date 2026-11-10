@@ -1060,6 +1060,24 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000022",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Acción sintética de control de persistencia D-043, no canónica",
+      "outcome": "Verificación técnica de una continuación simulada en una rama QA aislada.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": []
     }
   ]
 }
