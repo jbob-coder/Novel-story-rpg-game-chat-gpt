@@ -31,7 +31,7 @@
         "endurance": 2,
         "intellect": 4,
         "perception": 4,
-        "willpower": 3,
+        "willpower": 5,
         "presence": 3
       },
       "skills": {
@@ -55,15 +55,15 @@
       "powers": [],
       "lifetime_skill_xp": 46,
       "milestones": [],
-      "baseline_note": "Punto de partida provisional por trasfondo (tecnología 15, investigación 8, electrónica 15, fabricación de gadgets 8). No es experiencia ganada durante una partida ni supone discapacidad social por TDAH o dificultades del habla. Valores ajustables antes de jugar."
+      "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida."
     },
     "knowledge": [],
     "relationships": {
       "NPC-004": {
-        "relation": "hermana",
-        "bond": "cercano pero con desacuerdos ocasionales",
-        "trust": "alto de base, no probado en juego",
-        "secret_sharing": "no conoce sus intenciones ilícitas ni toda su reserva económica",
+        "relation": "hermana menor de 17 años",
+        "bond": "cercano pero con desacuerdos normales",
+        "trust": "alto de base",
+        "secret_sharing": "desconoce los detalles de planes ilícitos y reservas personales de Jack salvo que el juego establezca lo contrario",
         "last_event_id": null
       },
       "NPC-005": {
@@ -164,13 +164,15 @@
       },
       {
         "id": "ITEM-ASTER",
-        "name": "Proyecto Aster",
-        "size": "grande",
+        "name": "Aster — robot mediano sin cabina",
+        "size": "mediano",
         "location_id": "LOC-WILSON-WORKSHOP",
         "carried": false,
         "status": "en construcción, incompleto y no operativo",
-        "description": "Gran dispositivo modular de trabajo y experimentación; arquitectura y propósito definitivo sin cerrar.",
-        "narrative_only": true
+        "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+        "narrative_only": true,
+        "functional_state": "incompleto",
+        "spec_ref": "game/ASTER_SPEC.md"
       }
     ],
     "conditions": [],
@@ -195,7 +197,9 @@
       "confirmed_traits": [
         "inteligente",
         "tiene TDAH",
-        "le cuesta expresarse oralmente con claridad"
+        "le cuesta expresarse oralmente con claridad",
+        "autocontrol excepcional",
+        "rasgos psicopáticos descritos por el propietario para el personaje ficticio"
       ],
       "designed_traits": [
         "curioso con la tecnología",
@@ -210,37 +214,59 @@
         "phone_item_id": "ITEM-PHONE",
         "speech_rule": "El narrador no decide lo que Jack escribe o dice; solo verbaliza por el collar una frase elegida por el jugador.",
         "fallback": "Puede mostrar texto o comunicarse por gestos si decide no utilizar el collar.",
-        "medical_cause_of_speech_difficulty": "no establecido"
+        "medical_cause_of_speech_difficulty": "secuelas relacionadas con el incendio de infancia; lesión anatómica exacta no determinada"
       },
       "adhd_portrayal": "TDAH es un rasgo del personaje; no implica una reducción automática de intelecto, juicio, habilidades ni éxito. Sus efectos concretos se establecerán a través de la interpretación del jugador.",
-      "self_management": "Suele usar notas y listas en el teléfono para organizar ideas y proyectos; esta costumbre es una interpretación propuesta, no una acción obligatoria."
+      "self_management": "Suele usar notas y listas en el teléfono para organizar ideas y proyectos; esta costumbre es una interpretación propuesta, no una acción obligatoria.",
+      "moral_psychology": {
+        "owner_description": "Master self-control, psicópata",
+        "interpretation": "frío, estratégico, autocontrol excepcional y moralidad instrumental; no implica diagnóstico clínico ni violencia inevitable",
+        "conduct": "prioriza beneficio propio y familiar, acepta poner a terceros en peligro cuando le conviene; prefiere no intervenir si no hay necesidad",
+        "player_agency": "cada acción, declaración y decisión es del jugador; no inventar violencia o traiciones por su perfil"
+      }
     },
     "personal_history": {
-      "status": "trasfondo escrito por el narrador por delegación del propietario; revisable antes del primer turno",
-      "origin": "Creció en Meridian Bay en un hogar de medios modestos. Aprendió primero a reparar objetos cotidianos y más tarde a programar y construir pequeños aparatos.",
-      "learning": "Su interés comenzó arreglando dispositivos desechados con apoyo de su abuela; amplió conocimientos de manera autodidacta mediante documentación, proyectos personales y trabajos ocasionales de reparación.",
-      "family_context": "Mantiene una relación estrecha, aunque no exenta de desacuerdos, con su hermana y su abuela. El hogar vive sin lujos, pero no carece de lo indispensable.",
-      "recent_life": "Ha construido una colección de aparatos pequeños y desarrolla un proyecto mayor que todavía no funciona por completo.",
+      "status": "Incendio y muerte de padres definidos por propietario; cronología, nombres y detalles ordinarios del pasado completados por narrador.",
+      "origin": "Jack creció en Meridian Bay. A los doce años sobrevivió a un incendio residencial en el que fallecieron sus padres Daniel e Isabel Wilson. El incendio dejó secuelas que dificultan hablar claramente. Elena, entonces de ocho años, sobrevivió. Rosa Wilson se ocupó de ambos tras la tragedia. La causa del fuego permanece desconocida.",
+      "learning": "Desde pequeño Jack reparaba aparatos con Rosa. Más tarde estudió de forma autodidacta programación y electrónica, construyó gadgets y participó en actividades de hacking de las que proceden sus ahorros.",
+      "family_context": "Su hermana Elena tiene 17 años, exactamente cuatro menos que Jack. Rosa los crio tras el incendio. Viven en un hogar modesto y sin necesidades básicas insatisfechas.",
+      "recent_life": "Vive discretamente, desarrolla gadgets y trabaja en Aster, un robot mediano sin cabina todavía sin completar.",
       "unknowns": [
-        "Procedencia exacta de sus reservas económicas",
-        "Historia de sus padres",
-        "Educación formal completa",
-        "Inicios y límites de sus actividades gray-hat"
-      ]
+        "Causa exacta del incendio",
+        "Detalles concretos de actividades de hacking pasadas",
+        "Año calendario exacto",
+        "Educación formal de Jack"
+      ],
+      "fire_incident": {
+        "backstory_id": "BIO-001",
+        "player_age_approx": 12,
+        "sister_age_approx": 8,
+        "parents": {
+          "father": "Daniel Wilson",
+          "mother": "Isabel Wilson",
+          "fate": "fallecieron después de un incendio residencial"
+        },
+        "player_outcome": "sobrevivió, con dificultades de voz persistentes relacionadas con el incendio",
+        "sister_outcome": "sobrevivió, otras lesiones no establecidas",
+        "guardian_after": "Rosa Wilson",
+        "fire_cause": "desconocida; no inventar incendio provocado ni conspiración"
+      }
     },
     "motivations": {
       "confirmed": [
         "obtener dinero",
         "explorar la tecnología",
-        "crear gadgets y herramientas"
+        "crear gadgets y herramientas",
+        "beneficio personal y familiar por encima de intereses ajenos",
+        "dispuesto a aceptar peligro para terceros si ofrece ventaja; pasivo si la intervención es innecesaria"
       ],
       "narrator_defined": [
         "terminar su gran proyecto",
         "mantener una vida privada poco llamativa",
         "proteger la estabilidad cotidiana de su familia"
       ],
-      "moral_alignment": "indeterminado por elección del jugador",
-      "ethical_boundaries": "no establecidos: sus decisiones concretas, incluso las ilegales, se juzgan por consecuencias y no por una etiqueta preasignada"
+      "moral_alignment": "Pragmático, instrumental y autocontrolado; no predeterminar actos ni identidad de héroe o villano.",
+      "ethical_boundaries": "La ventaja propia o familiar justifica para él exponer a otros al peligro, pero prefiere mantenerse pasivo sin motivo. Las decisiones concretas siempre pertenecen al jugador."
     },
     "finances": {
       "visible_standard_of_living": "modesto y discreto; cubre necesidades del hogar sin exhibir riqueza",
@@ -248,10 +274,10 @@
       "private_reserves": "suficientes para comprar una casa modesta si lo decidiera",
       "exact_amount": null,
       "currency": null,
-      "origin": "no definido, no inferir procedencia ilegal",
+      "origin": "Reservas obtenidas mediante actividades pasadas de hacking según el propietario. No están establecidos métodos, montos, clientes ni delitos específicos.",
       "spending_pattern": "evita compras ostentosas de vivienda por la atención que atraerían; invierte dinero en herramientas, componentes y proyectos",
       "family_awareness": "la familia conoce su interés por los aparatos; no se ha establecido cuánto saben sobre sus reservas",
-      "note": "El presupuesto cotidiano modesto y la reserva personal importante no se contradicen: Jack elige vivir discretamente."
+      "note": "Vive discretamente con lo necesario cubierto aunque posee reservas para comprar una casa; las obtuvo de hacking pasado y usa parte para gadgets. No inventar cifras."
     },
     "family_ids": [
       "NPC-004",
@@ -350,18 +376,19 @@
       "NPC-004": {
         "id": "NPC-004",
         "name": "Elena Wilson",
-        "age": 25,
-        "role": "hermana mayor de Jack; administrativa en un centro de salud comunitario",
+        "age": 17,
+        "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
         "location_id": "LOC-WILSON-APARTMENT",
-        "goal": "Avanzar su formación laboral y mantener su independencia sin descuidar los lazos familiares.",
-        "independent_plan": "Organizar sus turnos de trabajo y continuar un curso profesional.",
+        "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
+        "independent_plan": "Preparar una presentación escolar y practicar ilustración digital.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
-          "Jack fabrica dispositivos electrónicos y usa el taller familiar."
+          "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
+          "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar."
         ],
         "relationships": {
           "PLAYER-001": {
-            "relation": "hermano menor",
+            "relation": "hermano mayor",
             "bond": "cercano pero a veces discrepante",
             "knowledge_of_crimes": false
           }
@@ -378,7 +405,7 @@
           "milestones": []
         },
         "last_resolved_action": null,
-        "description": "Persona organizada y pragmática; no se limita a vigilar al protagonista."
+        "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes."
       },
       "NPC-005": {
         "id": "NPC-005",
@@ -391,7 +418,8 @@
         "knowledge": [
           "Jack construye gadgets.",
           "Jack usa un collar que reproduce lo que escribe para hablar.",
-          "Le enseñó reparaciones básicas cuando era niño."
+          "Le enseñó reparaciones básicas cuando era niño.",
+          "Sus hijos Daniel e Isabel Wilson murieron después de un incendio; Jack sufrió secuelas en la voz."
         ],
         "relationships": {
           "PLAYER-001": {
@@ -412,7 +440,7 @@
           "milestones": []
         },
         "last_resolved_action": null,
-        "description": "Experimentada, paciente y capaz de tomar decisiones propias."
+        "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
       },
       "NPC-006": {
         "id": "NPC-006",

@@ -48,3 +48,7 @@ Day -30 is the opening. Before Day 0, `shockwave_arrived=false`, `humans_with_po
 ## Extended opening character fields (2026-11-09)
 
 The player may have `appearance`, `personality` (including fictional assisted communication, ADHD portrayal), `personal_history`, `motivations`, `finances`, `family_ids`, `other_connections`, `home_location_id`, `workroom_location_id` and `inventory`. Inventory records contain stable item ID, name, physical size, location, carried status and completion state. **A stored home device is not a carried/installed device**. Nothing in this schema authorizes narrating the player's speech. Pre-existing skill XP is a baseline, not a progress event. Values such as exact bank balance or origin are null/unknown until established in play.
+
+
+## Background and Aster update
+Historical fire incident is `player.personal_history.fire_incident` and uses a `BIO-` identifier, not a played `EV-` sequence. `NPC-004` is 17, younger than Jack. `ITEM-ASTER` is `size=mediano`, `functional_state=incompleto`, `spec_ref=game/ASTER_SPEC.md`. All described systems are target specifications, not activated powers. The owner wrote «UMP resistant»; don't equate with EMP without explicit clarification.

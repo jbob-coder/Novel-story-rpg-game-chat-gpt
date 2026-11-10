@@ -52,3 +52,7 @@ Created Git commit `733433bc6b7b0da8f2163a6894e98a50f6028e1e` without moving any
 ## Player-profile expansion — owner instructions and delegated design (2026-11-09)
 
 Stored owner-provided ADHD, assisted phone-to-collar speech, money/technology/gadget motivations, sister and grandmother, discreet house-level savings with modest living standards, several small devices and large unfinished Project Aster. Narrator created physical description, family/background and three new persistent actor/place records; all explicitly labeled as delegated choices. Numeric skill balancing is provisional (46 baseline XP); not earned in play. No initial story event was generated, and the manifest setup revision advanced without changing the real turn number. `game/CHARACTER_JACK.md` is now the character's full reference.
+
+
+## Corrección de identidad/robot (10 noviembre 2026)
+Elena es **17**, hermana menor; corrige edad anterior 25. Ambos padres fallecieron en incendio vinculado a las dificultades de voz de Jack. Origen del ahorro: hacking pasado. Moralidad pragmática con autocontrol extremo y rasgos descritos como psicopáticos (personaje ficticio, no diagnóstico). Aster ahora es un robot mediano sin cabina, aún inoperativo, con requisitos documentados de vuelo, sensores, combate automático, pantalla 14K, resistencias y escape de emergencia. UMP no ha sido aclarado. No hay turnos ni eventos nuevos.

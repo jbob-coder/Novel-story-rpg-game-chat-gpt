@@ -34,3 +34,6 @@ Attributes/XP thresholds and caps; whether to introduce dice or hidden checks; l
 ## Opening character baseline (setup; not gameplay XP awards)
 
 Based on the owner's additional information that Jack designs many small gadgets and is building a large apparatus, a **provisional** baseline is technology 15 XP (rank 3), investigation 8 XP (rank 2), electronics 15 XP (rank 3), gadget_crafting 8 XP (rank 2): **total 46**. Starting attributes are in `game/STATE.json` and presence is 3/5, not penalized for using assisted speech or having ADHD. These numbers were inferred for initial balance, **not** explicitly selected by the owner and **not** earned from a resolved game event; `last_progress_event_id` is null for each entry. Preserve separate skill IDs and advance from event-supported learning, not repetitive actions. The system's derived overall level remains an unapproved, optional presentation mechanic.
+
+
+**Owner update:** Voluntad provisional 5/5 por autocontrol excepcional. No garantiza éxitos ni implica diagnóstico de personalidad. XP inicial permanece en 46, sin puntos ganados durante el juego. Aster no concede poderes ni experiencia mientras sigue sin funcionar.

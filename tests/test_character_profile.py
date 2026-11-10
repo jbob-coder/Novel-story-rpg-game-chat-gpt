@@ -22,7 +22,8 @@ class CharacterProfile(unittest.TestCase):
     def test_family_and_places(self):
         self.assertEqual(set(self.player['family_ids']),{'NPC-004','NPC-005'})
         actors=self.state['world']['actors']
-        self.assertEqual(actors['NPC-004']['role'].split(';')[0],'hermana mayor de Jack')
+        self.assertEqual(actors['NPC-004']['age'],17)
+        self.assertIn('hermana menor',actors['NPC-004']['role'])
         self.assertIn('abuela',actors['NPC-005']['role'])
         for a in actors.values():
             self.assertIn(a['location_id'],self.state['world']['locations'])
@@ -33,6 +34,8 @@ class CharacterProfile(unittest.TestCase):
         self.assertGreaterEqual(len([x for x in items.values() if x['size']=='pequeño']),6)
         self.assertFalse(items['ITEM-ASTER']['carried'])
         self.assertIn('incompleto',items['ITEM-ASTER']['status'])
+        self.assertEqual(items['ITEM-ASTER']['size'],'mediano')
+        self.assertEqual(items['ITEM-ASTER']['functional_state'],'incompleto')
         self.assertEqual(items['ITEM-VOICE-COLLAR']['carried'],True)
         self.assertFalse(self.player['opening_intent']['device_placed'])
     def test_progression_baseline_and_no_false_turn(self):
@@ -41,6 +44,7 @@ class CharacterProfile(unittest.TestCase):
         self.assertEqual(prog['lifetime_skill_xp'],46)
         self.assertTrue(all(v['last_progress_event_id'] is None for v in prog['skills'].values()))
         self.assertEqual(prog['attributes']['presence'],3)
+        self.assertEqual(prog['attributes']['willpower'],5)
         self.assertEqual(self.manifest['last_completed_turn'],0)
         self.assertEqual(self.manifest['last_event_sequence'],0)
         self.assertEqual(self.events['events'],[])

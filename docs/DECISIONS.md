@@ -22,6 +22,12 @@
 | D-018 | Approved resources | Jack has private reserves large enough to buy a house but avoids attention; spends on gadgets and tools; possesses many small gadgets and one large unfinished project. |
 | D-019 | Owner-delegated creative choices | Assistant chose physical appearance, past, names/ages/activities of family, contact NPC Noah, Railgarden home and large project name Aster; revise if owner wishes. |
 | D-020 | Provisional RPG balancing | Starting skills and attributes derived from character history; numbers remain tentative, with no earned turn XP. |
+| D-021 | Owner correction | Elena Wilson is **17** and Jack's younger sister by four years, not the previously invented older sister aged 25. |
+| D-022 | Owner-established backstory | Both parents died after a fire connected to Jack's difficulty speaking; named Daniel and Isabel by assistant under delegation. |
+| D-023 | Owner-established finances | Jack's reserves came from past hacking, amount and individual activities unspecified. |
+| D-024 | Owner-established morality/personality | Exceptional self-control, user-described psychopathic traits, self/family benefit first, may risk others, usually passive without advantage; not a medical diagnosis or automatic action. |
+| D-025 | Owner-established Aster concept | Medium cockpit-free robot planned for jetpack, automated combat, night/thermal vision, 14K display, heat/jamming/«UMP» resistance and abort/escape; unfinished and not operational. |
+| D-026 | Creative delegation | Assistant may fill remaining ordinary biographical details but must separate owner facts, plans, and actual story events. |
 
 ## Superseded implementation direction
 
