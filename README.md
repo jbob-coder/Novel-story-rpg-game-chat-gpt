@@ -7,13 +7,13 @@ Earth starts on Day -30, a month before a cosmic shockwave arrives on Day 0. Lat
 ## Resume safely
 **Start with [AGENTS.md](AGENTS.md).** Read the saved manifest, state, current chapter/event log and canon before any new narration. Never rely only on chat memory.
 
-- [World canon](docs/CANON.md) and [approved decisions](docs/DECISIONS.md)
-- [Narrator rules](docs/NARRATOR_RULES.md) and [NPC/world simulation](docs/NPC_RULES.md)
+- [World canon](docs/CANON.md), [approved decisions](docs/DECISIONS.md) and [world-building reference](docs/WORLD_BIBLE.md)
+- [Narrator rules](docs/NARRATOR_RULES.md), [narrative quality standard](docs/NARRATIVE_STANDARD.md) and [NPC/world simulation](docs/NPC_RULES.md)
 - [Skills and progression](docs/PROGRESSION.md) — provisional XP balancing
 - [Chapter and turn protocol](docs/CHAPTER_PROTOCOL.md) and [data schema](docs/STATE_SCHEMA.md)
 - [Context-loss recovery](docs/RECOVERY.md) and [handoff checkpoint](docs/HANDOFF.md)
 - [Implementation plan](docs/IMPLEMENTATION_PLAN.md), [QA scenarios](docs/QA_SCENARIOS.md) and [project status](docs/STATUS.md)
-- [Current manifest](game/SAVE_MANIFEST.json), [world state](game/STATE.json) and [opening chapter](chapters/CH-000.md)
+- [Current manifest](game/SAVE_MANIFEST.json), [world state](game/STATE.json) and [opening chapter](chapters/CH-000.md) and [chapter preparation](chapters/CH-000.PREP.md)
 
 ## Narration loop
 Read verified state → narrate → accept a free-form action → resolve player/NPC consequences and XP → record events and update chapter/state → verify completed save → resume. The world advances through **in-story time**, not while ChatGPT is inactive.
