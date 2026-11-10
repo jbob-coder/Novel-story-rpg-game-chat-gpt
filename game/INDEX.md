@@ -8,6 +8,7 @@
 - [game/saves/INDEX.md](saves/INDEX.md)
 - [Índice de cuentas y sociedades (estado ficcional)](finances/INDEX.md)
 - [Ficha de Jack Wilson](CHARACTER_JACK.md)
+- [Historial de hacking previo al capítulo: hechos y vacíos](JACK_HACKER_HISTORY.md)
 - [Aster — diseño y límites](ASTER_SPEC.md)
 - [game/STARTING_CAST.md](STARTING_CAST.md)
 - [game/STARTING_LOCATIONS.md](STARTING_LOCATIONS.md)

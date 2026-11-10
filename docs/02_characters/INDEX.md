@@ -1,6 +1,7 @@
 # 02 — Personajes y equipo
 
 - [Ficha de Jack Wilson](../../game/CHARACTER_JACK.md)
+- [Trayectoria tecnológica previa: experiencia confirmada, episodios no escritos](../../game/JACK_HACKER_HISTORY.md)
 - [Aster — diseño y límites](../../game/ASTER_SPEC.md)
 - [game/STARTING_CAST.md](../../game/STARTING_CAST.md)
 - [Estado autoritativo del mundo](../../game/STATE.json)
