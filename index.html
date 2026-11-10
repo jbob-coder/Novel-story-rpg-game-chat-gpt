@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101826">
+  <title>Living Superhuman World — Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <main>
+    <header><span class="eyebrow">Original narrative simulation · Early prototype</span>
+      <h1>Living Superhuman World</h1>
+      <p>Thirty ordinary days. One cosmic shockwave. A world that continues without you.</p>
+    </header>
+    <section aria-label="World state" class="panel">
+      <h2 id="day">Day −30</h2>
+      <p id="player"></p><p id="society"></p><p id="nature"></p>
+      <p class="hint" id="save-note">Progress is saved locally in this browser.</p>
+    </section>
+    <section class="panel" aria-label="Daily decisions">
+      <h2>Your day</h2><p>Choose an action to advance one day. Others act whether you intervene or not.</p>
+      <div class="actions" id="choices"></div>
+    </section>
+    <section class="panel" aria-label="Independent people">
+      <h2>People around you</h2><ul id="actors"></ul>
+    </section>
+    <section class="panel" aria-label="World history">
+      <h2>World events</h2><ol id="history" aria-live="polite"></ol>
+    </section>
+    <footer><button id="restart" class="secondary" type="button">Start a new world</button>
+      <p>Prototype mechanics are provisional. See <a href="docs/CANON.md">established canon</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>
