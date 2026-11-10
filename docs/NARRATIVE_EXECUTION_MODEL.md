@@ -35,3 +35,10 @@ El checkpoint consultado el 10 de noviembre de 2026 está en **CH-000, Día −3
 
 ## Prueba de la corrección
 Se considera aplicada cuando el contrato, la guía de escenas y el punto de entrada enlacen a este modelo, el cierre natural no imponga suspenso, los archivos modificados se recuperen idénticos y los cinco archivos canónicos de la historia sigan intactos. Una prueba real de calidad literaria requiere una nueva acción del lector.
+
+
+## Refuerzo técnico D-040: hechos que sobreviven a la escena
+
+Para cada efecto material que la narración describa, documentar un cambio verificable del actor correspondiente antes del guardado. La prosa, el evento y el estado deben coincidir. La lista de cambios no tiene que incluir cada gesto irrelevante; solo lo necesario para que el mundo recuerde posesiones, ubicación, vínculos, lesiones, conocimientos y planes. Los NPC no tienen obligación de actuar en cada escena. Véase el esquema de cambios en [STATE_SCHEMA.md](STATE_SCHEMA.md) y su implementación en [state_changes.mjs](../tools/state_changes.mjs).
+
+El módulo valida el estado **declarado**, no interpreta libremente toda la prosa. Una omisión del narrador sigue siendo posible; una lectura editorial antes de persistir es obligatoria. No confundir pruebas sintéticas locales con una prueba de guardado de una acción real.

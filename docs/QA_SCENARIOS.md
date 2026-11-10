@@ -31,3 +31,15 @@ By the D-036 checkpoint six story turns and event EV-000021 are recorded. The re
 17. **No RPG regression:** ensure the new turn engine rejects any `awards` for player or NPC; legacy progression numbers remain unchanged.
 18. **Canon continuity:** ensure the 500+ prior active fictional devices and nine new Café Bruma records are not repeatedly described as mere unverified proposals. No fictitious individual IDs or exact bank balances invented.
 19. **Cyber narration:** only depict fictional high-level events and their human consequences, not reproducible compromise, persistence or concealment steps.
+
+
+## D-040 — aceptación obligatoria antes de calificar el motor como estable
+
+20. **Cambio material del jugador:** mover a Jack del taller al apartamento actualiza su posición y todos los objetos que lleva, y registra cada cambio en EV-...; una escena quieta no altera lugares por defecto.
+21. **Transferencia de inventario:** si el lector decide entregar un objeto a Elena, registrar salida de Jack y recepción de Elena en eventos distintos del mismo turno, sin duplicar identificadores ni asumir que Jack tiene una memoria USB antes de verificarla en la ficción.
+22. **Relaciones y condiciones:** cambios positivos, negativos o neutros quedan justificados por acontecimientos; se detecta una discordancia entre el valor guardado y el evento.
+23. **Conocimiento aislado:** Elena no adquiere información técnica privada de Jack solo porque el narrador la conoce.
+24. **Precondiciones:** un lugar anterior incorrecto, ruta imposible, objeto duplicado, campo RPG o modificación sin permiso del actor produce error antes de guardar.
+25. **Continuidad entre varios cambios:** actualizaciones repetidas del mismo campo siguen el valor anterior inmediato, incluso al transferir objetos.
+26. **Regresión histórica:** los seis turnos originales, la red anterior de más de 500 dispositivos y los nueve de Café Bruma no cambian durante una revisión documental. No se reescribe su transcripción.
+27. **Ensayo real aún pendiente:** ejecutar suites Node y Python en checkout completo; preparar una acción libre real del lector, comparar la narración con efectos tipados, realizar commit atómico de cinco archivos y recuperar todo desde otra sesión. Solo entonces calificar la recuperación de un turno 7 como probada.

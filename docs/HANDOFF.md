@@ -1,3 +1,13 @@
+# D-040 — avance técnico de continuidad (2026-11-10)
+
+**Hechos verificados:** el nuevo módulo `tools/state_changes.mjs` aplica cambios cualitativos con precondiciones de Jack y NPC y se encuentra integrado en `tools/turn_engine.mjs`. Incluye rutas y movimiento de objetos portados, inventarios, relaciones, condiciones, conocimientos, planes y registro de últimos actos NPC. Doce pruebas aisladas **se ejecutaron localmente con Node y pasaron**; las pruebas de integración se añadieron a `tests/turn_engine.test.mjs`, **sin ejecución completa verificada en checkout** debido a la falta de acceso de red de la terminal a GitHub. El código se guardó en la rama de trabajo mediante commits no forzados y readback remoto. El motor no interpreta automáticamente el texto narrado; deben prepararse los cambios materiales explícitos. Ver `docs/STATE_SCHEMA.md` D-040 y `docs/QA_SCENARIOS.md`.
+
+**Checkpoint no jugado:** CH-000, Día −30, turno 6, EV-000021, TXT-000014. Jack sigue en el taller y Elena espera una respuesta sobre la memoria USB. El pasado tecnológico confirmado de Jack figura en `game/JACK_HACKER_HISTORY.md`. No iniciar turno 7 sin decisión del usuario ni afirmar que las suites completas pasaron.
+
+**Pendiente:** ejecutar pruebas de integración y Python sobre el mismo HEAD, luego ensayar guardado/recuperación de un turno real y revisar la correspondencia prosa/estado. No fusionar automáticamente en main.
+
+---
+
 # Revisión operativa D-038 — documentación sin avance narrativo
 
 **Alcance:** se registró la autocrítica y se separaron dirección literaria, resolución/continuidad causal y guardado/entrega. El cierre de cada escena no está obligado a crear suspenso. Un commit leído de vuelta prueba **persistencia**, no entrega visible al lector. Ante entrega incierta se recupera exactamente el mismo texto; no se crea un turno adicional. Ver [modelo operativo](NARRATIVE_EXECUTION_MODEL.md).
