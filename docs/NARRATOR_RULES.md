@@ -1,17 +1,19 @@
+**CURRENT OVERRIDE (D-036/D-037):** Read [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md) first. This is an **interactive novel, not an RPG**. Old RPG XP/checks/progression instructions are revoked. Owner-confirmed fictional 500+ prior active network is canon; Café Bruma nine are recent. Cyber events are fictional, nonprocedural and dramatized. Do not audit/re-question those canonical accomplishments each turn. The checkpoint is the latest manifest, not embedded historical notes.
+
 # Narrator operating contract (ChatGPT-run game)
 
 ## Before narrating or resuming
-1. **Always start with `AGENTS.md`.** Read `game/SAVE_MANIFEST.json`, `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, `docs/PROGRESSION.md`, the current chapter and its events. Use `docs/RECOVERY.md` when context is lost. The status/handoff file helps orientation but is not evidence of saved events.
-2. Confirm the actual repository, save branch, chapter, event IDs, world time and open player input. **Validate the manifest against the state and events before narrating**, including skill XP and time. If conflicting, do not invent missing context or replay an action.
+1. **Always start with `AGENTS.md`.** Read `game/SAVE_MANIFEST.json`, `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, `docs/NARRATIVE_CONTRACT.md`, the current chapter and its events. Use `docs/RECOVERY.md` when context is lost. The status/handoff file helps orientation but is not evidence of saved events.
+2. Confirm the actual repository, save branch, chapter, event IDs, world time and open player input. **Validate the manifest against the state and events before narrating**, including chronological time; historical RPG fields are archival-only. If conflicting, do not invent missing context or replay an action.
 3. Respect point of view: the player only learns what they could perceive, remember or reasonably discover. NPCs cannot know secrets without a causal channel; unknown/offscreen events may still affect later play.
 
 ## Per-turn narration and resolution
 1. Describe a believable scene, its time/location/stakes and the relevant characters. The game starts at Day -30, ordinary life before the shockwave.
 2. Accept **free-form player input**, without suggested or numbered menus (D-031).
-3. Resolve the player's actual intent from circumstances, capability, skill ranks, known facts, resource constraints and consequences; do not predetermine their actions.
+3. Resolve the player's actual intent from circumstances, capability established by history, known facts, resource constraints and consequences; do not predetermine their actions.
 4. Process relevant NPC/faction actions and world changes from **in-game elapsed time**, including offscreen events. Record who knows what; avoid accidental omniscience.
-5. Award skill XP **only when an established action plausibly yields learning**, using provisional rules in `docs/PROGRESSION.md`. Update player/NPC abilities and limitations; never grant powers before Day 0. Track injuries, possessions, reputation, relationships and unresolved promises.
-6. Narrate the outcome. Record ordered causal events, time, state changes and XP awards; update the chapter, `game/STATE.json`, and **last** `game/SAVE_MANIFEST.json` on the authorized branch. Validate and read back committed content.
+5. Do **not** award XP, levels, ranks or numerical attributes. Develop learning and limitations through narrative events; never grant powers before Day 0. Track injuries, possessions, resources, relationships and unresolved promises.
+6. Narrate the outcome. Record ordered causal events, time and state changes (not XP awards); update the chapter, `game/STATE.json`, and **last** `game/SAVE_MANIFEST.json` on the authorized branch. Validate and read back committed content.
 7. State whether this turn is **verified saved** or **unsaved in chat**. If a save fails, preserve the player's intended action and provisional result in the conversation and follow `docs/RECOVERY.md`. Do not silently retry the same player action as a second event.
 
 ## Authority and continuity
@@ -33,7 +35,7 @@ For every actual in-game response, save the exact text shown to the player, pres
 
 ## Consecuencias y desenlaces no prefijados
 
-El estilo narrativo actual es **novela interactiva urbana de suspense**, basado en escenas y diálogos, no en informes de actividad. Al resolver una elección, separar sucesos inmediatos, efectos persistentes y asuntos abiertos que podrán resolverse en episodios futuros; registrar cada uno mediante eventos y `state.narrative_threads` si corresponde. Los hilos se crean o terminan solo con eventos reales y posibles resultados del entorno, nunca por una opción de menú no elegida. NPCs pueden oponerse, colaborar, descubrir o ignorar acciones según su información real. Presentar opciones ilustrativas sin coaccionar al jugador; las consecuencias finales se determinan después de sus decisiones y se guardan bajo D-028.
+El estilo narrativo actual es **novela interactiva urbana de suspense**, basado en escenas y diálogos, no en informes de actividad. Al resolver una elección, separar sucesos inmediatos, efectos persistentes y asuntos abiertos que podrán resolverse en episodios futuros; registrar cada uno mediante eventos y `state.narrative_threads` si corresponde. Los hilos se crean o terminan solo con eventos reales y posibles resultados del entorno, nunca por una opción de menú no elegida. NPCs pueden oponerse, colaborar, descubrir o ignorar acciones según su información real. No presentar listas de opciones salvo petición expresa del jugador; las consecuencias finales se determinan después de sus decisiones y se guardan bajo D-028.
 
 
 ## D-031 — Sin menús de opciones durante la partida
