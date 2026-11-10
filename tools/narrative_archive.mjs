@@ -1,3 +1,4 @@
+import {assertMayAdvance} from './save_gate.mjs';
 // Complete game dialogue archiver; pure functions only, no repository network writes.
 function ensure(ok,msg){if(!ok)throw new Error(msg);}
 function checkFullNarration(snapshot){
@@ -42,8 +43,10 @@ function addFullEntry(snapshot,role,kind,turn,body,eventIds,sceneKey){
  snapshot.manifest.last_transcript_id=entry.id;
  return entry;
 }
-function stageNarratorScene(snapshot,sceneText,sceneKey){
+function stageNarratorScene(snapshot,sceneText,sceneKey,saveGuard){
  checkFullNarration(snapshot);
+ ensure(saveGuard && typeof saveGuard==='object' && Object.hasOwn(saveGuard,'previous_attempt'),'Save guard required before staging scene');
+ assertMayAdvance({checkpoint_valid:true,observed_head:saveGuard.observed_head,attempt:saveGuard.previous_attempt});
  ensure(typeof sceneKey==="string"&&sceneKey.length>=6,"Scene key required");
  ensure(!snapshot.transcript.entries.some(x=>x.source_key===sceneKey),"Scene already saved");
  const next=JSON.parse(JSON.stringify(snapshot));

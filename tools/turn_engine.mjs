@@ -1,4 +1,5 @@
 import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
+import {assertMayAdvance} from './save_gate.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -51,6 +52,9 @@ function verifyNarrativeSnapshot(snapshot) {
 function stageNarrativeTurn(snapshot, turn) {
   verifyNarrativeSnapshot(snapshot);
   check(turn && typeof turn==="object", "Turn missing");
+  check(turn.save_guard && typeof turn.save_guard === "object", "Save guard required before staging narrative action");
+  check(Object.hasOwn(turn.save_guard,"previous_attempt"), "Previous save attempt status required");
+  assertMayAdvance({checkpoint_valid:true,observed_head:turn.save_guard.observed_head,attempt:turn.save_guard.previous_attempt});
   check(typeof turn.key==="string" && /^[a-zA-Z0-9_-]{6,80}$/.test(turn.key),"Stable turn key required");
   check(typeof turn.intent==="string" && turn.intent.trim().length>0 && turn.intent.length<=3000,"Player input required");
   check(typeof turn.outcome==="string" && turn.outcome.trim().length>0 && turn.outcome.length<=5000,"Resolved narration required");

@@ -30,3 +30,6 @@ The repository may be public, but outsiders cannot directly write without GitHub
 
 
 **Mapa por carpetas:** [índice maestro](INDEX.md), [docs por áreas](docs/INDEX.md), [capítulos](chapters/INDEX.md), [regla de guardado bloqueante](docs/SAVE_BLOCKING_PROTOCOL.md). No se mueve historia existente.
+
+
+Guardado bloqueante: los dos puntos de entrada narrativos (escena inicial y turno) exigen validación del checkpoint y del estado del guardado anterior. Ver [protocolo de bloqueo](docs/SAVE_BLOCKING_PROTOCOL.md).

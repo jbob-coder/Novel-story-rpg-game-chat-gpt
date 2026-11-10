@@ -24,3 +24,8 @@ The staging module is intentionally scoped to the existing CH-000 chapter. A new
 ## Mandatory full-transcript save (five-file commit)
 
 The turn model now requires the full exact chat text: `player_text` and `narration_messages`. Short `intent`/`outcome` records remain event summaries only. To save a completed turn, commit transcript, event log, chapter, state, and manifest together and verify all five by read-back. For an opening narration before player action, call `stageNarratorScene` and save its snapshot without increasing turn/event counters. The full archive starts empty because no real game turn has occurred. Run `node --test tests/turn_engine.test.mjs` from a checkout. The scripted module cannot capture chat UI automatically: the narrator has to supply exactly the messages it delivers.
+
+
+## Implemented hard guard integration
+
+Both `stageNarrativeTurn` and `stageNarratorScene` now require `save_guard: { observed_head, previous_attempt }` for player turns, or a fourth `saveGuard` argument for opening scenes. `previous_attempt` must be explicitly `null` only when there is no pending/failed previous save after fresh checkpoint verification. A blocked or unverified attempt triggers `NARRATIVE LOCKED`, preventing staging. `observed_head` must come from the actual GitHub branch read. Tests using a synthetic SHA are unit-test-only. Never use a fake SHA for play.

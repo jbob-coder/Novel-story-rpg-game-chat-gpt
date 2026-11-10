@@ -32,3 +32,8 @@ Usar la respuesta disponible para dejar el estado técnico más fiel posible; el
 
 ## Integridad y privacidad
 El juego usa un repositorio público: guardar únicamente contenido ficticio destinado a publicación, no datos reales privados o credenciales. La narración íntegra se conserva en `chapters/CH-NNN.transcript.json`, su resumen causal en events, prosa en markdown y estado del mundo en JSON.
+
+
+## Enforcement in the narrative engine
+
+The narrative engine and opening-scene archiver **require a save guard argument**. They call `assertMayAdvance` before staging. A saved attempt with incomplete stages or a blocked status stops execution. For a clean new session with no pending attempts, `previous_attempt: null` is accepted **only after** a fresh GitHub checkpoint validation; the calling assistant must establish this fact rather than using `null` to bypass a failed save. The guard supplies the observed branch HEAD from GitHub. This guard cannot control arbitrary text typed outside the code: the assistant must also obey the narrative hard-stop protocol.

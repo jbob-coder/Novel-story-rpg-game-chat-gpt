@@ -71,3 +71,8 @@ Performed dynamic execution of the exact JavaScript modules retrieved from GitHu
 ## D-028/D-029 — save lock and indices
 
 Added `tools/save_gate.mjs` to track seven independently evidenced save stages and prevent further story output until a committed remote five-file readback validates at 100%. On failure, show percentage and hold; next input resumes verification after refreshing branch HEAD. No background work. Added root + domain and chapter subfolder indexes, `docs/FILE_INVENTORY.json`, link-validation tests and `docs/FOLDER_POLICY.md` while preserving legacy/canonical paths. The story is still at Day −30, turn 0 and its transcript is empty.
+
+
+## Save gate integrated with both story entry points
+
+The `stageNarrativeTurn` engine and `stageNarratorScene` archiver now import the hard gate and reject missing, blocked or unverified save attempts before staging new narrative output. Tests extended to cover missing guards and previous blocked saves. The caller must provide the real verified branch HEAD; a unit-test placeholder SHA is not evidence of a real save. No actual story state changed.
