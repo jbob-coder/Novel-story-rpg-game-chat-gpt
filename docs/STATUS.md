@@ -1,22 +1,26 @@
-# Project checkpoint
+# Project checkpoint — narrative foundation and continuity audit
 
-## Objective
-Deliver a **ChatGPT-run, chapter-based Living Superhuman World** using this repository as the authoritative canon, narrative history and saved state.
+## Goal
+ChatGPT-run Living Superhuman World with a durable, reconstructable chapter record, independent actor consequences, and an RPG skill/progression system.
 
-## Verified starting point (2026-11-09)
-- The repository default branch `main` contained only a one-line README when this work began.
-- PR #1 (`work/living-world-foundation`) is an open, unmerged browser-prototype proposal. That delivery format conflicts with the owner's corrected intent.
-- This branch is a separate documentation and state proposal. It is not the actual first played turn.
+## Verified starting point
+- PR #2 (`work/chat-narrative-foundation`) contains the **correct narrative model**, separate from the unmerged browser prototype in PR #1.
+- Chapter `CH-000` is opening at Day -30 and has **zero player actions and zero story events**.
+- Player identity, location, background and starting abilities are not defined.
+- `main` must not be assumed to contain the draft branch until a merge is explicitly verified.
 
-## Included in this proposal
-- Owner-approved lore and corrected chat-delivery decision.
-- Narrator rules, chapter persistence protocol, initial state, and CH-000 opening.
-- No web app, APK, browser runtime or mandatory download.
+## Documentation audit — deficiencies and remedy
+- **Context loss / wrong chapter:** add `AGENTS.md`, `docs/RECOVERY.md` and `docs/HANDOFF.md`.
+- **Unverified saves / duplicate actions:** add manifest-last protocol, structural validator and explicit coherent-checkpoint recovery procedure.
+- **Skills and progression missing:** add `docs/PROGRESSION.md` and player state progression data; actual numbers remain provisional.
+- **Offscreen knowledge and goals ambiguous:** add `docs/NPC_RULES.md` and `docs/STATE_SCHEMA.md`.
+- **Implementation plan scattered:** add `docs/IMPLEMENTATION_PLAN.md` with milestone acceptance criteria.
 
-## Verification / limits
-- Verify JSON syntax, chapter-state references and the GitHub writes before claiming this checkpoint is ready.
-- Interactive storytelling and actual persistent save/restore across turns still require a real player input and the ability to read/write repository records.
-- No narrative chapter has been completed; no NPCs, location or player identity have been invented as canon.
+## Verification
+After edits, fetch files from GitHub and run `python tools/validate_state.py` on a checkout if tools permit; record exact results. A passing structural validator does not certify creative narrative quality or future save/restore. Report any unavailable checks explicitly.
+
+## Still unresolved
+No live turn, independent actor event or long-duration continuity replay has yet occurred. Numeric XP thresholds, character creation rules, power growth, setting geography and starting cast require later design/playtesting. The assistant cannot do real-time game simulation when inactive.
 
 ## Next action
-Receive the player's first character/background input, read the saved checkpoint, narrate CH-000, resolve the input, and save the resulting chapter event and state to a reviewable branch when authorization/tool access permits.
+Validate this checkpoint, then begin character setup and CH-000. Save the first actual action as a causal event, derive any appropriate skill progress and verify the next manifest before continuing.
