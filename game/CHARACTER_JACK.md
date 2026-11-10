@@ -1,33 +1,30 @@
-# Jack Wilson — dossier vigente (CH-000, turno 0)
+# Jack Wilson — expediente vigente
+
+**Referencia principal del pasado tecnológico:** [JACK_HACKER_HISTORY.md](JACK_HACKER_HISTORY.md). **Punto de continuación:** siempre leer `game/SAVE_MANIFEST.json` y `game/STATE.json`. Las escenas históricas del capítulo no son instrucciones para reiniciar.
 
 ## Identidad y apariencia
-**Jack Wilson**, 21 años, hacker gray-hat de Meridian Bay, Tierra moderna alternativa. Diseño físico delegado: 1,78 m, delgado, pelo castaño oscuro ondulado, ojos avellana, ropa y mochila discretas, collar sintetizador de voz.
+Jack Wilson tiene 21 años y reside en Meridian Bay, Tierra moderna alternativa. Mide aproximadamente 1,78 metros, tiene complexión delgada, cabello castaño oscuro algo ondulado y ojos avellana. Viste de forma discreta y funcional. Lleva un collar sintetizador de voz bajo la mandíbula.
 
-## Personalidad, TDAH y voz
-Inteligente, **TDAH**, dificultades para hablar con claridad, **autocontrol excepcional**, rasgos psicopáticos como descripción narrativa del usuario (**no diagnóstico clínico**). Piensa de forma estratégica; busca beneficio propio y de su familia, acepta riesgos para terceros si son útiles, pero suele elegir pasividad sin ventaja clara. No ejecutar violencia ni diálogos sin decisión del jugador. Para hablar escribe texto en el teléfono y su collar pronuncia **solo** lo que escribió. No hay penalización automática a inteligencia o relaciones por TDAH/voz.
+## Personalidad y agencia
+Es inteligente, estratégico, interesado por la tecnología y de autocontrol excepcional. Prioriza sus intereses y los de su familia, y puede aceptar riesgos para terceros cuando ve una ventaja. El propietario describió rasgos psicopáticos **como características literarias, no como diagnóstico clínico ni violencia automática**. **Solo el lector controla sus decisiones, pensamientos, emociones, gestos y diálogos.**
 
-## Historia del incendio
-Aproximadamente cuando Jack tenía **12 años** y su hermana **Elena 8**, un incendio residencial causó la muerte de sus padres, **Daniel e Isabel Wilson**. Jack sobrevivió con secuelas en la voz relacionadas con el incendio. Elena sobrevivió, sin lesiones adicionales inventadas. La abuela **Rosa Wilson** cuidó de ambos después. La causa exacta del incendio sigue desconocida; no inventar conspiraciones.
+Tiene TDAH y dificultades para hablar con claridad, relacionadas con secuelas de un incendio infantil. Escribe en un teléfono lo que quiere comunicar y su collar reproduce **únicamente el texto elegido por el usuario**. Su TDAH y su voz no reducen automáticamente su competencia.
 
-Jack aprendió reparación de aparatos con Rosa y luego programación, electrónica y fabricación de gadgets de forma principalmente autodidacta.
+## Familia y primeros aprendizajes
+Cuando tenía unos doce años, un incendio residencial mató a Daniel e Isabel Wilson, sus padres. Jack y su hermana Elena sobrevivieron. Su abuela Rosa los crió. La causa del incendio no está fijada. Rosa le enseñó aspectos prácticos de reparación y él desarrolló sus competencias de forma mayormente autodidacta.
 
-## Familia y autonomía NPC
-- **Elena Wilson, 17 años**, hermana **menor** exactamente cuatro años, estudiante de secundaria interesada en ilustración digital (hobby delegado). Tiene su propio trabajo escolar, amistades e independencia.
-- **Rosa Wilson, 73**, abuela y cuidadora tras el incendio, participante en reparaciones vecinales.
-- **Noah Vale, 32**, contacto comercial de electrónica, no cómplice automático.
-- Lena, Sora y Darius son los tres NPC iniciales de la plaza, sin conocimiento de los planes ilícitos de Jack.
+**Elena Wilson:** hermana menor de 17 años, estudiante con interés en ilustración digital y vida propia. **Rosa Wilson:** abuela de 73 años, aficionada y experta en arreglos cotidianos. **Noah Vale:** contacto comercial de electrónica, no cómplice por defecto.
 
-## Dinero y motivaciones
-Sus ahorros **provienen de actividades de hacking anteriores**, según el propietario. Son suficientes para comprar una casa, aunque Jack elige vivir discretamente con Elena y Rosa sin lujos ni carencias. Prefiere gastar en componentes, herramientas y gadgets. No se han determinado cantidades, moneda, métodos ni delitos anteriores concretos. El dinero, la tecnología, proteger intereses familiares y construir aparatos motivan su conducta.
+## Experiencia tecnológica anterior: confirmada, sin inventar episodios
+**Jack ya era hacker antes de comenzar la novela**. Desde años atrás dispone de una red activa de **más de 500 dispositivos ficticios previamente comprometidos**. Los nueve aparatos de Café Bruma se sumaron después. La falta de historias escritas sobre cada actividad anterior **no convierte esos dispositivos en hipotéticos**, ni a Jack en principiante. Las fechas, objetivos, operaciones y nombres específicos siguen abiertos. Ver [historial anterior](JACK_HACKER_HISTORY.md).
 
-## Gadgets y Aster
-Al iniciar, lleva teléfono, collar y estuche compacto de electrónica sin configurar. En su taller hay herramientas, microdrón artesanal, sensores, pantalla de diagnóstico, equipo de prueba y **Aster**. Aster es un **robot mediano, sin cabina de piloto, todavía incompleto**. Requisitos previstos: jetpack, estructura flexible y resistente, combate automático, visión nocturna y térmica, display 14K, resistencia térmica, resistencia a jamming, «UMP resistant» (ambiguo; quizá EMP), y sistema de abort/escape de emergencia. **Nada de esto se considera verificado ni operativo hasta que suceda y se documente en juego.** Ver [ASTER_SPEC.md](ASTER_SPEC.md).
+## Recursos y proyectos
+Posee reservas privadas de origen tecnológico anterior, sociedades instrumentales y herramientas desde antes de CH-000. Sus cantidades, empresas y operaciones concretas no están definidas. La familia vive modestamente con gastos cubiertos; dispone de recursos suficientes para comprar una casa modesta.
 
-## Atributos y habilidades (propuesta no aprobada numéricamente)
-Voluntad 5/5 por autocontrol extremo; intelecto 4, percepción 4, presencia 3, fuerza 2, agilidad 3, resistencia 2. Habilidades iniciales: tecnología 15 XP, electrónica 15 XP, investigación 8 XP, fabricación de gadgets 8 XP = **46 XP de trasfondo**. No hay poderes antes del Día 0 ni XP de acción.
+Mantiene un taller con componentes, aparatos de diagnóstico, sensores, un microdrón y el proyecto **Aster**. Aster es un robot mediano sin cabina, **incompleto y no operativo**. Jetpack, movilidad autónoma, combate automático, visión nocturna/térmica, pantalla objetivo 14K, resistencia térmica e interferencias y retirada de emergencia son **planes**, no funciones construidas. «UMP resistant» es ambiguo; no asumir EMP.
 
-## Escena pendiente
-CH-000, Día −30, noche, Crosswater Transit Plaza. Jack ha declarado intención de preparar electrónica para obtener remotamente información bancaria/personal, pero **no se ha instalado ni conseguido nada**. El usuario decide la próxima acción. Turnos reales: 0; eventos: 0.
+## Reglas narrativas
+No RPG, XP, rangos ni estadísticas. No poderes antes del Día 0. No asignar acciones ni mensajes a Jack. No fabricar biografía delictiva retroactiva. Su trayectoria y recursos anteriores deben influir cualitativamente cuando sean relevantes, sin verificaciones artificiales repetidas.
 
-## Vacíos deliberados
-Causa exacta del incendio, casos concretos de hacking pasado, cifras de reserva, cronología civil exacta y funcionamiento probado de Aster. Mantenerlos como incógnitas, no inventar eventos retroactivos.
+## Último checkpoint conocido al documentar esta ficha
+CH-000, Día −30, noche, **seis turnos**. Jack está en su taller de Railgarden; Elena espera saber si puede prestarle una memoria USB para su ilustración escolar. Rosa continúa con el reloj y Aster sigue incompleto. **Este resumen no autoriza jugar el turno 7 y puede quedar obsoleto; manda el manifiesto actual.**
