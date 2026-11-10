@@ -12,7 +12,7 @@ Earth starts on Day -30, a month before a cosmic shockwave arrives on Day 0. Lat
 - [Skills and progression](docs/PROGRESSION.md) — provisional XP balancing
 - [Chapter and turn protocol](docs/CHAPTER_PROTOCOL.md) and [data schema](docs/STATE_SCHEMA.md)
 - [Context-loss recovery](docs/RECOVERY.md) and [handoff checkpoint](docs/HANDOFF.md)
-- [Implementation plan](docs/IMPLEMENTATION_PLAN.md) and [project status](docs/STATUS.md)
+- [Implementation plan](docs/IMPLEMENTATION_PLAN.md), [QA scenarios](docs/QA_SCENARIOS.md) and [project status](docs/STATUS.md)
 - [Current manifest](game/SAVE_MANIFEST.json), [world state](game/STATE.json) and [opening chapter](chapters/CH-000.md)
 
 ## Narration loop
