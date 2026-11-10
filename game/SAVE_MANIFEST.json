@@ -1,0 +1,11 @@
+{
+  "manifest_version": 1,
+  "game_id": "living-superhuman-world",
+  "chapter_id": "CH-000",
+  "last_completed_turn": 0,
+  "last_event_sequence": 0,
+  "last_event_id": null,
+  "state_schema_version": 2,
+  "status": "checkpoint",
+  "notes": "Initial foundation; CH-000 awaits character creation. Manifest is written last when saving turns."
+}
