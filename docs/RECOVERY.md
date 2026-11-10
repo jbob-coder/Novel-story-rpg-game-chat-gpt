@@ -44,3 +44,12 @@ Un commit con cinco archivos leídos idénticos demuestra persistencia remota pe
 ## D-036/D-037 override
 
 The active project is an **interactive novel**, not an RPG. Frozen legacy XP/attribute records must not drive results; update story capabilities qualitatively. Jack's owner-established active network of 500+ preexisting devices and nine later Café Bruma devices are fictional canon regardless of missing individual index rows. Do not treat outdated setup notes as live checkpoints. Apply [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md) during recovery.
+
+
+## D-042 — ensayo de recuperación integral sin avanzar la novela
+
+`tools/save_transaction.mjs` implementa la secuencia de cinco archivos mediante un adaptador remoto inyectado: recuperar HEAD y checkpoint, validar, construir **una** continuación, validar prosa/eventos/estado, crear un commit Git atómico, actualizar la rama con comprobación de HEAD y releer exactamente los cinco archivos. Solo el resultado `status=verified` al 100% autoriza entregar la escena.
+
+La transacción devuelve `status=blocked` con etapa y evidencia ante falla. `recoverFiveFileSave` utiliza **el mismo commit SHA y los mismos textos exactos**; nunca vuelve a ejecutar el generador de escena, ni crea un segundo turno. Si cambió el HEAD por otro escritor, falta el SHA o se perdió el texto, se detiene; no hace force-push ni inventa narración. El resultado bloqueado **debe conservarse externamente** para recuperación futura: la librería no guarda por sí sola un diario persistente ni se conecta a GitHub. El adaptador real debe efectuar un commit con un solo árbol de cinco archivos y un cambio de rama protegido.
+
+`tests/save_transaction.test.mjs` simula el repositorio, una caída después del ref, una caída entre commit/ref, conflictos, alteración de bytes y repetición. Es una prueba sintética, **no** un turno jugado, ni prueba una escritura real end-to-end en GitHub. El bloque D-028 sigue vigente si una escritura auténtica falla.

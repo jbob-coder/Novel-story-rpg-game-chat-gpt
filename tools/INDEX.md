@@ -4,6 +4,7 @@
 - [Motor de cambios causales de estado (D-040)](state_changes.mjs)
 - [tools/narrative_archive.mjs](narrative_archive.mjs)
 - [tools/save_gate.mjs](save_gate.mjs)
+- [Transacción de cinco archivos y recuperación (D-042)](save_transaction.mjs)
 - [tools/validate_state.py](validate_state.py)
 - [Bloqueo de narración y porcentaje de guardado](../docs/SAVE_BLOCKING_PROTOCOL.md)
 

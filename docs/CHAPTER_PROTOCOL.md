@@ -59,3 +59,6 @@ Antes de confirmar cada turno, evaluar `turn.consequence_updates` contra eventos
 ## Explicit revision exception (D-033)
 
 The default transcript is append-only. **Only an owner's clear instruction to revisit a played outcome** authorizes replacing the active message of the latest turn. Prior wording and events must be copied intact into `chapters/revisions/REV-...` with parent commit evidence, references, and reason. The amended event/state/narration checkpoint is committed atomically and read back, with no extra player-action turn. The owner used this exception for CH-000 turn 2. See `docs/STORY_REVISIONS.md`.
+
+
+**D-042:** Para ensayos sin actividad narrativa real, usar el adaptador simulado y la transacción de cinco archivos en `tools/save_transaction.mjs`; ejecutar `tests/save_transaction.test.mjs`. Nunca sustituir el commit remoto real o la lectura verificable por una simulación.
