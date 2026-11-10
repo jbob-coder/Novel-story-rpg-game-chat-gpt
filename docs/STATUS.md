@@ -47,3 +47,8 @@ Added a dependency-free, non-mutating narrative checkpoint staging and validatio
 ## Detached GitHub persistence rehearsal
 
 Created Git commit `733433bc6b7b0da8f2163a6894e98a50f6028e1e` without moving any branch ref. It contains one **synthetic** player event, one independent NPC event, skill XP change, chapter prose and a matching turn-1 manifest. Read back all **4** files using that commit SHA; exact bytes matched. Verified real working branch still points to `2743e565d2b6b78359275a0a5c47586e462b6d33` and `main` stayed unchanged. This was a persistence proof, **not** an actual player turn. An NPC event causality issue in the prototype staging module was subsequently fixed; chapter rollover and Day 0 transitions remain open.
+
+
+## Player-profile expansion — owner instructions and delegated design (2026-11-09)
+
+Stored owner-provided ADHD, assisted phone-to-collar speech, money/technology/gadget motivations, sister and grandmother, discreet house-level savings with modest living standards, several small devices and large unfinished Project Aster. Narrator created physical description, family/background and three new persistent actor/place records; all explicitly labeled as delegated choices. Numeric skill balancing is provisional (46 baseline XP); not earned in play. No initial story event was generated, and the manifest setup revision advanced without changing the real turn number. `game/CHARACTER_JACK.md` is now the character's full reference.

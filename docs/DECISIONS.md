@@ -16,6 +16,12 @@
 | D-012 | Owner delegated | Assistant selects initial region and start scene; chose Meridian Bay / Crosswater Transit Plaza (fictional). |
 | D-013 | Approved player setup | Jack Wilson, age 21, gray-hat hacker. |
 | D-014 | Declared in-game intent | At the transit plaza, Jack intends to use unspecified remote electronics for theft of payment and personal information. No result or device placement confirmed. |
+| D-015 | Approved player traits | Jack is intelligent, has ADHD, experiences difficulty speaking clearly; writes desired speech on a phone and wears a collar that voices it. |
+| D-016 | Approved motivation | Money, interest in technology, and making gadgets/tools matter to Jack. No predefined hero/villain label. |
+| D-017 | Approved home life | Jack has a sister and grandmother; family lives modestly with basic needs covered. |
+| D-018 | Approved resources | Jack has private reserves large enough to buy a house but avoids attention; spends on gadgets and tools; possesses many small gadgets and one large unfinished project. |
+| D-019 | Owner-delegated creative choices | Assistant chose physical appearance, past, names/ages/activities of family, contact NPC Noah, Railgarden home and large project name Aster; revise if owner wishes. |
+| D-020 | Provisional RPG balancing | Starting skills and attributes derived from character history; numbers remain tentative, with no earned turn XP. |
 
 ## Superseded implementation direction
 
@@ -23,4 +29,4 @@ The browser prototype in PR #1 was a mistaken interpretation of the delivery for
 
 ## Open decisions
 
-Player's additional background and relationships; date/year; further supporting cast; geography and institutions beyond Meridian Bay; the exact powers and ecological changes; exact attribute/skill/XP thresholds, global levels and resolution mechanics (numerical drafts in PROGRESSION.md are provisional). Leave unresolved until developed in the story or explicitly approved. Assistant suggestions are not approval.
+Any further relationship or biographical changes; date/year; additional supporting cast; geography and institutions beyond Meridian Bay; the exact powers and ecological changes; exact attribute/skill/XP thresholds, global levels and resolution mechanics (numerical drafts in PROGRESSION.md are provisional). Leave unresolved until developed in the story or explicitly approved. Assistant suggestions are not approval.

@@ -22,3 +22,16 @@ Crosswater Plaza connects to Crosswater Terminal, Market Row and Harbor Walk. Ma
 
 ## Before Day 0
 No superhuman activity, wave-caused transformation or omniscient knowledge of the distant shockwave. Normal local problems and independent lives should carry the opening story.
+
+
+## LOC-RAILGARDEN-RESIDENTIAL — Railgarden
+Barrio residencial de Meridian Bay, con edificios modestos y comercio cotidiano. Conecta con Market Row y el hogar Wilson.
+
+## LOC-WILSON-APARTMENT — Hogar de los Wilson
+Apartamento funcional compartido por Jack, Elena y Rosa. Su situación de propiedad o alquiler no está decidida. El hogar cubre sus necesidades normales y no exhibe las reservas privadas de Jack.
+
+## LOC-WILSON-WORKSHOP — Taller de Jack
+Espacio dentro de la vivienda para reparaciones, herramientas, gadgets y **Proyecto Aster**, que todavía está incompleto. No confundir sus dispositivos almacenados aquí con el estuche que lleva en la plaza.
+
+## Conexiones nuevas
+Market Row ↔ Railgarden ↔ hogar Wilson ↔ taller. No fijar kilómetros ni minutos de viaje sin una decisión posterior.

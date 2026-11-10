@@ -21,7 +21,7 @@
     "name": "Jack Wilson",
     "age": 21,
     "role": "gray-hat hacker",
-    "background": "Self-described gray-hat hacker; technical experience predates the story. Personal relationships, legal history, finances, and housing are not established.",
+    "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
     "location_id": "LOC-CROSSWATER-PLAZA",
     "progression": {
@@ -32,7 +32,7 @@
         "intellect": 4,
         "perception": 4,
         "willpower": 3,
-        "presence": 2
+        "presence": 3
       },
       "skills": {
         "technology": {
@@ -44,18 +44,135 @@
           "last_progress_event_id": null
         },
         "electronics": {
-          "xp": 3,
+          "xp": 15,
+          "last_progress_event_id": null
+        },
+        "gadget_crafting": {
+          "xp": 8,
           "last_progress_event_id": null
         }
       },
       "powers": [],
-      "lifetime_skill_xp": 26,
+      "lifetime_skill_xp": 46,
       "milestones": [],
-      "baseline_note": "Provisional starting XP inferred from background, not awards earned during play; no prior event IDs."
+      "baseline_note": "Punto de partida provisional por trasfondo (tecnología 15, investigación 8, electrónica 15, fabricación de gadgets 8). No es experiencia ganada durante una partida ni supone discapacidad social por TDAH o dificultades del habla. Valores ajustables antes de jugar."
     },
     "knowledge": [],
-    "relationships": {},
-    "inventory": [],
+    "relationships": {
+      "NPC-004": {
+        "relation": "hermana",
+        "bond": "cercano pero con desacuerdos ocasionales",
+        "trust": "alto de base, no probado en juego",
+        "secret_sharing": "no conoce sus intenciones ilícitas ni toda su reserva económica",
+        "last_event_id": null
+      },
+      "NPC-005": {
+        "relation": "abuela",
+        "bond": "afectuoso y de aprendizaje mutuo",
+        "trust": "alto de base, no probado en juego",
+        "secret_sharing": "conoce sus reparaciones, no se ha establecido conocimiento de delitos o finanzas completas",
+        "last_event_id": null
+      },
+      "NPC-006": {
+        "relation": "contacto técnico",
+        "bond": "amistad profesional y colaboración ocasional",
+        "trust": "moderado",
+        "secret_sharing": "solo conoce encargos normales de reparación, no planes ilícitos",
+        "last_event_id": null
+      }
+    },
+    "inventory": [
+      {
+        "id": "ITEM-PHONE",
+        "name": "Teléfono personal",
+        "size": "pequeño",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "carried": true,
+        "status": "funcional",
+        "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-VOICE-COLLAR",
+        "name": "Collar sintetizador de voz",
+        "size": "pequeño",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "carried": true,
+        "status": "funcional",
+        "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-COMPACT-CASE",
+        "name": "Estuche compacto de electrónica",
+        "size": "pequeño",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "carried": true,
+        "status": "sin configurar",
+        "description": "Contiene aparatos pequeños no especificados todavía; no se considera instalado ni operativo.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-TESTER",
+        "name": "Probador portátil de dispositivos",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Herramienta genérica de diagnóstico de sus prototipos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-MICRODRONE",
+        "name": "Microdrón artesanal",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "requiere mantenimiento",
+        "description": "Pequeño vehículo de exploración para proyectos personales; capacidades precisas aún abiertas.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-SENSOR",
+        "name": "Sensor ambiental compacto",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Dispositivo propio de experimentación con condiciones ambientales.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-DISPLAY",
+        "name": "Pantalla portátil de diagnóstico",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Interfaz pequeña de pruebas y seguimiento de prototipos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-MULTITOOL",
+        "name": "Herramientas de precisión",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Conjunto de piezas y herramientas de reparación y fabricación no especializadas en acciones ilegales.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-ASTER",
+        "name": "Proyecto Aster",
+        "size": "grande",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "en construcción, incompleto y no operativo",
+        "description": "Gran dispositivo modular de trabajo y experimentación; arquitectura y propósito definitivo sin cerrar.",
+        "narrative_only": true
+      }
+    ],
     "conditions": [],
     "opening_intent": {
       "status": "declared_unresolved",
@@ -64,7 +181,87 @@
       "device_placed": false,
       "information_acquired": false,
       "operational_details": "Not defined; keep narration nontechnical."
-    }
+    },
+    "appearance": {
+      "height_cm": 178,
+      "build": "delgado y de complexión media, acostumbrado a pasar horas trabajando con las manos",
+      "hair": "castaño oscuro, ligeramente ondulado y generalmente despeinado",
+      "eyes": "avellana",
+      "style": "ropa sobria y funcional: chaqueta oscura, camiseta sin marcas, pantalones cómodos y calzado resistente; mochila discreta para sus cosas",
+      "distinguishing_feature": "collar sintetizador de voz visible bajo la mandíbula",
+      "status": "selección creativa delegada por el propietario, ajustable antes de jugar"
+    },
+    "personality": {
+      "confirmed_traits": [
+        "inteligente",
+        "tiene TDAH",
+        "le cuesta expresarse oralmente con claridad"
+      ],
+      "designed_traits": [
+        "curioso con la tecnología",
+        "reservado con información sensible",
+        "ingenioso al desarrollar herramientas",
+        "protector de sus vínculos familiares",
+        "prefiere proyectos prácticos a ostentación"
+      ],
+      "communication": {
+        "method": "Escribe en su teléfono el mensaje que desea comunicar; su collar lo reproduce mediante voz sintética.",
+        "collar_device_id": "ITEM-VOICE-COLLAR",
+        "phone_item_id": "ITEM-PHONE",
+        "speech_rule": "El narrador no decide lo que Jack escribe o dice; solo verbaliza por el collar una frase elegida por el jugador.",
+        "fallback": "Puede mostrar texto o comunicarse por gestos si decide no utilizar el collar.",
+        "medical_cause_of_speech_difficulty": "no establecido"
+      },
+      "adhd_portrayal": "TDAH es un rasgo del personaje; no implica una reducción automática de intelecto, juicio, habilidades ni éxito. Sus efectos concretos se establecerán a través de la interpretación del jugador.",
+      "self_management": "Suele usar notas y listas en el teléfono para organizar ideas y proyectos; esta costumbre es una interpretación propuesta, no una acción obligatoria."
+    },
+    "personal_history": {
+      "status": "trasfondo escrito por el narrador por delegación del propietario; revisable antes del primer turno",
+      "origin": "Creció en Meridian Bay en un hogar de medios modestos. Aprendió primero a reparar objetos cotidianos y más tarde a programar y construir pequeños aparatos.",
+      "learning": "Su interés comenzó arreglando dispositivos desechados con apoyo de su abuela; amplió conocimientos de manera autodidacta mediante documentación, proyectos personales y trabajos ocasionales de reparación.",
+      "family_context": "Mantiene una relación estrecha, aunque no exenta de desacuerdos, con su hermana y su abuela. El hogar vive sin lujos, pero no carece de lo indispensable.",
+      "recent_life": "Ha construido una colección de aparatos pequeños y desarrolla un proyecto mayor que todavía no funciona por completo.",
+      "unknowns": [
+        "Procedencia exacta de sus reservas económicas",
+        "Historia de sus padres",
+        "Educación formal completa",
+        "Inicios y límites de sus actividades gray-hat"
+      ]
+    },
+    "motivations": {
+      "confirmed": [
+        "obtener dinero",
+        "explorar la tecnología",
+        "crear gadgets y herramientas"
+      ],
+      "narrator_defined": [
+        "terminar su gran proyecto",
+        "mantener una vida privada poco llamativa",
+        "proteger la estabilidad cotidiana de su familia"
+      ],
+      "moral_alignment": "indeterminado por elección del jugador",
+      "ethical_boundaries": "no establecidos: sus decisiones concretas, incluso las ilegales, se juzgan por consecuencias y no por una etiqueta preasignada"
+    },
+    "finances": {
+      "visible_standard_of_living": "modesto y discreto; cubre necesidades del hogar sin exhibir riqueza",
+      "household_needs": "alimentación, vivienda y gastos cotidianos cubiertos",
+      "private_reserves": "suficientes para comprar una casa modesta si lo decidiera",
+      "exact_amount": null,
+      "currency": null,
+      "origin": "no definido, no inferir procedencia ilegal",
+      "spending_pattern": "evita compras ostentosas de vivienda por la atención que atraerían; invierte dinero en herramientas, componentes y proyectos",
+      "family_awareness": "la familia conoce su interés por los aparatos; no se ha establecido cuánto saben sobre sus reservas",
+      "note": "El presupuesto cotidiano modesto y la reserva personal importante no se contradicen: Jack elige vivir discretamente."
+    },
+    "family_ids": [
+      "NPC-004",
+      "NPC-005"
+    ],
+    "other_connections": [
+      "NPC-006"
+    ],
+    "home_location_id": "LOC-WILSON-APARTMENT",
+    "workroom_location_id": "LOC-WILSON-WORKSHOP"
   },
   "world": {
     "setting": "Alternate modern Earth",
@@ -149,6 +346,106 @@
           "milestones": []
         },
         "last_resolved_action": null
+      },
+      "NPC-004": {
+        "id": "NPC-004",
+        "name": "Elena Wilson",
+        "age": 25,
+        "role": "hermana mayor de Jack; administrativa en un centro de salud comunitario",
+        "location_id": "LOC-WILSON-APARTMENT",
+        "goal": "Avanzar su formación laboral y mantener su independencia sin descuidar los lazos familiares.",
+        "independent_plan": "Organizar sus turnos de trabajo y continuar un curso profesional.",
+        "knowledge": [
+          "Jack utiliza el collar con el teléfono para comunicarse.",
+          "Jack fabrica dispositivos electrónicos y usa el taller familiar."
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "hermano menor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null,
+        "description": "Persona organizada y pragmática; no se limita a vigilar al protagonista."
+      },
+      "NPC-005": {
+        "id": "NPC-005",
+        "name": "Rosa Wilson",
+        "age": 73,
+        "role": "abuela de Jack; jubilada aficionada a arreglos domésticos",
+        "location_id": "LOC-WILSON-APARTMENT",
+        "goal": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
+        "independent_plan": "Preparar materiales para una reunión vecinal de reparaciones.",
+        "knowledge": [
+          "Jack construye gadgets.",
+          "Jack usa un collar que reproduce lo que escribe para hablar.",
+          "Le enseñó reparaciones básicas cuando era niño."
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "nieto",
+            "bond": "cariño y respeto",
+            "knowledge_of_crimes": false
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null,
+        "description": "Experimentada, paciente y capaz de tomar decisiones propias."
+      },
+      "NPC-006": {
+        "id": "NPC-006",
+        "name": "Noah Vale",
+        "age": 32,
+        "role": "dueño de un pequeño local de reparación y componentes",
+        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "goal": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
+        "independent_plan": "Revisar encargos pendientes y buscar repuestos generales.",
+        "knowledge": [
+          "Jack crea y repara aparatos.",
+          "Conoce a Jack por consultas y compras de materiales comunes."
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "contacto frecuente",
+            "bond": "interés profesional mutuo",
+            "knowledge_of_crimes": false
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null,
+        "description": "Contacta con Jack por proyectos técnicos sin conocer todos sus planes."
       }
     },
     "factions": {
@@ -177,7 +474,8 @@
         "connected_ids": [
           "LOC-CROSSWATER-PLAZA",
           "LOC-HARBOR-WALK",
-          "LOC-COMMERCIAL-DISTRICT"
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-RAILGARDEN-RESIDENTIAL"
         ]
       },
       "LOC-CROSSWATER-PLAZA": {
@@ -211,7 +509,8 @@
         "description": "Small shops, offices, food stalls, and side streets near the plaza.",
         "connected_ids": [
           "LOC-CROSSWATER-PLAZA",
-          "LOC-HARBOR-WALK"
+          "LOC-HARBOR-WALK",
+          "LOC-RAILGARDEN-RESIDENTIAL"
         ]
       },
       "LOC-HARBOR-WALK": {
@@ -224,6 +523,40 @@
           "LOC-CROSSWATER-PLAZA",
           "LOC-COMMERCIAL-DISTRICT"
         ]
+      },
+      "LOC-RAILGARDEN-RESIDENTIAL": {
+        "id": "LOC-RAILGARDEN-RESIDENTIAL",
+        "name": "Railgarden",
+        "type": "barrio residencial urbano",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Barrio de edificios modestos, tiendas pequeñas y transporte cotidiano; la familia Wilson vive aquí.",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-WILSON-APARTMENT"
+        ]
+      },
+      "LOC-WILSON-APARTMENT": {
+        "id": "LOC-WILSON-APARTMENT",
+        "name": "Hogar de los Wilson",
+        "type": "apartamento familiar",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Vivienda modesta y funcional compartida por Jack, Elena y Rosa; sus gastos esenciales están cubiertos.",
+        "connected_ids": [
+          "LOC-RAILGARDEN-RESIDENTIAL",
+          "LOC-WILSON-WORKSHOP"
+        ],
+        "ownership": "tipo de contrato y titularidad aún sin fijar"
+      },
+      "LOC-WILSON-WORKSHOP": {
+        "id": "LOC-WILSON-WORKSHOP",
+        "name": "Taller de Jack",
+        "type": "espacio de trabajo dentro del hogar",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Espacio doméstico adaptado para herramientas, aparatos pequeños y el Proyecto Aster incompleto.",
+        "connected_ids": [
+          "LOC-WILSON-APARTMENT"
+        ],
+        "ownership": "uso familiar; no propiedad independiente"
       }
     },
     "active_events": [],
