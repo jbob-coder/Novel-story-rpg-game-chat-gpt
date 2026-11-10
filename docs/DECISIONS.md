@@ -10,7 +10,7 @@
 | D-006 | Approved | The GitHub repository may be publicly viewed; unauthorized people must not edit it. |
 | D-007 | Approved | The game is narrated and run through ChatGPT conversation, not a downloaded browser application. |
 | D-008 | Approved | ChatGPT reads repository world and chapter records, narrates events, accepts the player's input, resolves consequences, then updates story and state when authorized tool access permits. |
-| D-009 | Approved | The RPG must include character skills and progression, not only narrative choices. |
+| D-009 | **Superseded by D-036** | Original requirement for RPG skills and progression; withdrawn at owner's request. |
 | D-010 | Approved | Project documentation must support resuming after context loss without inventing, duplicating or contradicting saved events. |
 | D-011 | Approved | Alternate modern Earth with fictionalized cities and institutions. |
 | D-012 | Owner delegated | Assistant selects initial region and start scene; chose Meridian Bay / Crosswater Transit Plaza (fictional). |
@@ -21,7 +21,7 @@
 | D-017 | Approved home life | Jack has a sister and grandmother; family lives modestly with basic needs covered. |
 | D-018 | Approved resources | Jack has private reserves large enough to buy a house but avoids attention; spends on gadgets and tools; possesses many small gadgets and one large unfinished project. |
 | D-019 | Owner-delegated creative choices | Assistant chose physical appearance, past, names/ages/activities of family, contact NPC Noah, Railgarden home and large project name Aster; revise if owner wishes. |
-| D-020 | Provisional RPG balancing | Starting skills and attributes derived from character history; numbers remain tentative, with no earned turn XP. |
+| D-020 | **Superseded by D-036** | Former provisional RPG balancing/skill attributes, now inert legacy metadata. |
 | D-021 | Owner correction | Elena Wilson is **17** and Jack's younger sister by four years, not the previously invented older sister aged 25. |
 | D-022 | Owner-established backstory | Both parents died after a fire connected to Jack's difficulty speaking; named Daniel and Isabel by assistant under delegation. |
 | D-023 | Owner-established finances | Jack's reserves came from past hacking, amount and individual activities unspecified. |
@@ -52,4 +52,7 @@ Any further relationship or biographical changes; date/year; additional supporti
 
 | D-034 | Owner conversation style feedback | The player asked not to echo or paraphrase the action in the assistant's introduction. In gameplay, narrate directly from the next moment and show external reactions rather than restating the player's commands. Keep full original player input only in the underlying transcript, not in the visible response. |
 
-| D-035 | Owner-declared fictional assets (pending specifics) | Player references an older device list of 500+ and existing shell companies while asking for account verification. Treat the 500+ count and shell-company existence as **owner assertions** with missing records; do not treat those as 500 verified compromised devices, invent identities, businesses, balances, or combine totals without deduplication. Index nine Café Bruma records separately. |
+| D-035 | **Clarified by D-037** | Earlier record treated the older 500+ device network as unverified; owner subsequently confirmed it is an **active established in-fiction network**. Individual identifiers and exact financial balances remain unspecified. |
+
+| D-036 | **Approved — current delivery** | Remove RPG mechanics entirely from active narration/adjudication: novela interactiva, no levels, XP, attributes, ranks, classes, dice or reward screens. Legacy XP data remains frozen only to preserve historic checkpoints. The D-036 narrative contract overrides D-009/D-020. See `docs/NARRATIVE_CONTRACT.md`. |
+| D-037 | **Approved — canon and cyber portrayal** | Jack has maintained an **active network of more than 500 devices** for years; the nine Café Bruma devices are later additions. Financial reserves and shell companies predate this chapter, exact numbers/names remain unspecified. Cyber operations are narrated solely as fictional facts and consequences, not reproducible intrusion or evasion methods. Do not re-audit accepted canon every turn. |
