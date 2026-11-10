@@ -1,32 +1,33 @@
-# Chapter, events and save protocol
+# Chapters, events and durable save protocol
 
-The repository is the durable game reference. The conversation is the live interface.
+This is a ChatGPT-narrated interactive RPG. **GitHub files are game data, not a downloadable player interface.** Read `AGENTS.md` before each fresh session.
 
-## File roles
-- `docs/CANON.md`: owner-approved universe facts.
-- `docs/DECISIONS.md`: approved or superseded design choices.
-- `game/STATE.json`: latest checkpoint after the last **verified saved** turn.
-- `chapters/CH-NNN.md`: prose record for a chapter, with status (opening, in progress, complete), setting, events and unresolved threads.
-- `chapters/CH-NNN.events.json`: structured, ordered events for that chapter once events occur.
-- `docs/STATUS.md`: verified work and recovery notes.
+## Authoritative records
+- `docs/CANON.md`: owner-approved world rules; `docs/DECISIONS.md`: approvals and superseded designs.
+- `docs/PROGRESSION.md`: proposed skills, attributes, advancement and powers rules.
+- `game/STATE.json`: current materialized world state and skill progress.
+- `chapters/CH-NNN.md`: prose, setting, key events, active threads.
+- `chapters/CH-NNN.events.json`: numbered causal events and progression awards.
+- `game/SAVE_MANIFEST.json`: **last written completion marker** identifying the coherent turn, event and chapter.
+- `docs/HANDOFF.md`: orientation only, lower authority than event history or saved state.
 
-## Event format (future turns)
+## Story turn protocol
+1. Read and validate latest manifest/checkpoint; locate chapter and player pending input.
+2. Narrate the current scene, receive the player's free-form input and resolve it without replacing their choice.
+3. Let relevant NPCs and factions pursue independent goals as in-fiction time passes. Track what each actor actually knows and record significant offscreen outcomes separately.
+4. Compute concrete changes to location/time, resources, injury, relationships, actor knowledge, chapter threads and skills/XP using `docs/PROGRESSION.md`.
+5. Create one or more monotonically increasing event IDs (e.g. `EV-000001`), with chapter, turn, in-world day, actor IDs, kind, original intent (if player), outcome, known-to, causal predecessors, explicit state_changes, progression_awards.
+6. Save event log and chapter, then state. Validate they match (see `docs/STATE_SCHEMA.md`); update the manifest **last** and fetch it back. Mark the turn saved only after all artifacts agree.
+7. Update concise handoff information with confirmed turn/event, unresolved threads and next scene. If it fails, do not invalidate an otherwise verified manifest; mark handoff stale and reconstruct later.
 
-Each event should contain a unique ID (e.g. `EV-000001`), chapter ID, in-world day, actor IDs, user intent or independently initiated action, observed outcome, state deltas and any causal parent event ID. Keep uncertain/offscreen reports labeled as such. Do not rely on a prose summary alone to reconstruct continuity.
+**Multi-file GitHub writes are not atomic.** On interruption, see `docs/RECOVERY.md`. A mismatching manifest/state/events combination is **not** a completed turn; recover from last known coherent commit rather than guessing or duplicating events.
 
-## Turn transaction
-1. Read the latest checkpoint and current chapter.
-2. Resolve the player's input and independent world activity.
-3. Check invariants: no superhuman before Day 0; no broken character/location references; no impossible inventory, knowledge or chronology jumps.
-4. Write an event record, update chapter prose and checkpoint on the working branch, and verify the saved files.
-5. Publish the narrative response and the actual save status.
+## Chapter boundaries
+Chapters are meaningful story arcs, not one day apiece. Preserve chronology, capabilities, inventory, relationships, secrets, NPC objectives and events across transitions. New chapter records must have stable IDs. Do not retcon past resolved events without explicitly recording a correction and reason.
 
-When these writes cannot be completed together, identify incomplete files and reconcile from the last known consistent checkpoint before the next turn. Do not treat an uncommitted chat response as a durable repository save.
-
-## Chapter transitions
-
-Chapters are narrative sequences rather than fixed daily ticks. End one when a meaningful arc closes; carry persistent NPC and world events into the next. Do not rewrite completed outcomes without an explicit correction/retcon record. Continue independent events across chapter boundaries.
-
-## Public repository caution
-
-Use fictional character and world state only. Never include private account data, credentials, or personal details from a user message unless they explicitly intend those facts to be public fictional material.
+## Minimum invariants
+- Opening is Day -30. Day 0 is the cosmic shockwave; no powers or ecological anomalies established from the wave may appear earlier.
+- Event IDs do not repeat, gameplay turn numbers never go backwards, and a checkpoint cannot claim events absent from its logs.
+- No character knows an event merely because the narrator knows it.
+- No skill ranks/XP are arbitrarily rewritten or granted without causal recorded evidence; powers and ordinary skills stay separate.
+- All story/player data committed to public GitHub must be intended fictional data.
