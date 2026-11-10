@@ -1,3 +1,5 @@
+**Override vigente D-036/D-037:** esta obra es una **novela interactiva**, no un RPG. No XP, niveles, atributos numéricos ni recompensas de progreso; las consecuencias y capacidades son cualitativas. Véase [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md).
+
 # Consecuencias, ramificaciones y desenlaces — modelo narrativo
 
 ## Regla del propietario
@@ -5,7 +7,7 @@
 
 ## Nuevo estilo de narración
 - **Novela interactiva de suspense urbano**, en tercera persona limitada, próxima a lo que Jack puede percibir. Prosa concreta, diálogo natural, ritmos distintos (momentos tranquilos y tensión), sin resúmenes mecánicos entre cada gesto.
-- **Mostrar antes que explicar:** una mirada, un silencio, un tren retrasado o el trabajo de alguien revelan tanto como la exposición. Las opciones pueden aparecer al cierre como sugerencias, no como un menú cerrado.
+- **Mostrar antes que explicar:** una mirada, un silencio, un tren retrasado o el trabajo de alguien revelan tanto como la exposición. No hay opciones ni menús al cierre salvo que el usuario los pida expresamente.
 - **Jack pertenece al jugador:** nunca escribir pensamientos internos obligatorios, mensajes que no haya tecleado, discursos en el collar ni acciones que no decidió. Narrar qué percibe, no imponer qué siente.
 - **Los NPC no existen para provocar misiones:** continúan sus objetivos según tiempo, conocimiento y recursos, y pueden actuar sin conocer el plan de Jack.
 
