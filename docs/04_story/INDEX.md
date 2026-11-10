@@ -1,5 +1,7 @@
 # 04 — Narración y capítulos
 
+- [Contrato vigente: novela interactiva sin RPG y ciberseguridad abstracta](../NARRATIVE_CONTRACT.md)
+
 - [chapters/INDEX.md](../../chapters/INDEX.md)
 - [chapters/CH-000/INDEX.md](../../chapters/CH-000/INDEX.md)
 - [docs/NARRATOR_RULES.md](../NARRATOR_RULES.md)
