@@ -15,3 +15,7 @@ python -m unittest discover -s tests
 ```
 
 The Node test suite uses only Node's built-in runner. The tests stage **hypothetical actions on in-memory copies** and intentionally verify a reload, tampering, duplicate-turn rejection, NPC isolation and XP accounting. They never overwrite `game/STATE.json` or record fictional progress as a real player turn. The Day 0 transition and long-term NPC planning remain unfinished mechanics.
+
+## Currently unsupported
+
+The staging module is intentionally scoped to the existing CH-000 chapter. A new chapter's event log and global event-sequence rollover are **not** implemented; do not use it across chapter boundaries yet. Crossing Day 0 also requires a separate explicit wave event. NPC actions are independently caused by default: their event `caused_by` is empty unless a narrator supplies a proven causal link in a future version. These limitations must be resolved before claiming unrestricted long-term play.

@@ -64,7 +64,7 @@ function stageNarrativeTurn(snapshot, turn) {
   const logs=[];
   function event(kind, actorId, intent, outcome, knownTo, awards) {
     const id=`EV-${String(e.events.length+1).padStart(6,"0")}`;
-    const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:logs.length?[logs[0].id]:[],state_changes:[],progression_awards:[]};
+    const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
     for(const award of awards??[]) {
       check(award && typeof award.skill==="string" && /^[a-z][a-z0-9_]{1,40}$/.test(award.skill),"Skill identifier invalid");
       check(award.amount===1||award.amount===2,"Skill award must be +1 or +2");

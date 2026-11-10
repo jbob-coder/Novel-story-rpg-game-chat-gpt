@@ -42,3 +42,8 @@ Jack's previously confirmed name, age, role, opening intent, original alternate-
 ## Narrative turn lifecycle quality gate (2026-11-09)
 
 Added a dependency-free, non-mutating narrative checkpoint staging and validation module, a Node test suite, and instructions on atomic four-file commits. Tested **19 cases** using the exact current GitHub starting state in the JavaScript execution environment: all passed, including two sequential hypothetical turns, knowledge isolation, XP, duplicate suppression, corrupt save detection, and reload. The hypothetical actions were **not** written as gameplay history. No real turn has occurred; actual Node CLI execution on a checkout is pending. The first time skip across Day 0 intentionally stops until an explicit cosmic-shockwave event handler is built.
+
+
+## Detached GitHub persistence rehearsal
+
+Created Git commit `733433bc6b7b0da8f2163a6894e98a50f6028e1e` without moving any branch ref. It contains one **synthetic** player event, one independent NPC event, skill XP change, chapter prose and a matching turn-1 manifest. Read back all **4** files using that commit SHA; exact bytes matched. Verified real working branch still points to `2743e565d2b6b78359275a0a5c47586e462b6d33` and `main` stayed unchanged. This was a persistence proof, **not** an actual player turn. An NPC event causality issue in the prototype staging module was subsequently fixed; chapter rollover and Day 0 transitions remain open.
