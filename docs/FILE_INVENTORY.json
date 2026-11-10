@@ -55,7 +55,8 @@
       "docs/CHAPTER_PROTOCOL.md",
       "docs/FULL_NARRATION_ARCHIVE.md",
       "docs/RECOVERY.md",
-      "docs/SAVE_BLOCKING_PROTOCOL.md"
+      "docs/SAVE_BLOCKING_PROTOCOL.md",
+      "docs/DECISION_OUTCOMES.md"
     ],
     "tracking": [
       "docs/STATUS.md",
@@ -70,7 +71,8 @@
       "tools/save_gate.mjs",
       "tools/turn_engine.mjs",
       "tools/narrative_archive.mjs",
-      "tools/validate_state.py"
+      "tools/validate_state.py",
+      "tools/consequences.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -79,7 +81,8 @@
       "tests/test_character_profile.py",
       "tests/test_starting_checkpoint.py",
       "tests/index_paths.test.mjs",
-      "tests/test_literal_archive_validator.py"
+      "tests/test_literal_archive_validator.py",
+      "tests/consequences.test.mjs"
     ]
   },
   "newChapterPaths": [

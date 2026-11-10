@@ -23,3 +23,8 @@ Chapter **CH-000**, Day **-30**, no resolved player turn; **Jack Wilson, 21, gra
 ## HARD STOP ON FAILED SAVE + FOLDER MAP (D-028)
 
 First read [root index](INDEX.md) and [indexed documentation](docs/INDEX.md) for navigation, **without bypassing the manifest-first recovery procedure**. Before any new in-game scene, check the last save is coherent; a failed/pending save BLOCKS all further narration. Use [save gate](docs/SAVE_BLOCKING_PROTOCOL.md) with evidence-based stages 10/25/45/60/75/85/100%; 100% requires verified remote literal readback of five files. If it fails, show `🚩 GUARDADO BLOQUEADO: NN% verificado`, observed cause and next step. Do not narrate another action or scene. When the response budget ends, give only the honest save status; **the next input `CONTINUAR GUARDADO` resumes verification**, not Jack's actions. No background execution; never invent previously unsaved original dialogue. Indices remain navigation-only, current canonical paths unchanged.
+
+
+## D-030 — estilo y desenlaces basados en decisiones
+
+La presentación vigente es novela interactiva urbana de suspense (escenas sensoriales y diálogo humano, evitando listados técnicos dentro de la escena). El usuario controla a Jack: no elegir sus frases ni acciones. Opciones al final son estrategias, siempre abiertas. Leer `docs/DECISION_OUTCOMES.md` y `state.narrative_threads`; un desenlace solo puede seguir eventos reales, con consecuencias inmediatas y diferidas, y debe persistir junto con texto íntegro. No asignar finales predeterminados a opciones sin seleccionar.

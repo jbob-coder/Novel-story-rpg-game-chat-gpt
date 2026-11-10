@@ -48,3 +48,8 @@ When returning to gameplay, pass `save_guard={observed_head: <actual GitHub ref 
 ## Auditoría final de D-028/D-029
 
 Índices: **18/18** recuperados desde GitHub; cero rutas relativas rotas y cero rutas canónicas faltantes. Integración de `save_gate.mjs` con turnos y escenas: **15/15** pruebas dinámicas satisfactorias en un entorno de JavaScript, incluida verificación del bloqueo a 85%, retención de textos y desbloqueo tras cinco archivos idénticos. El validador Python también revisa transcripciones, pero su suite CLI está pendiente. No ha ocurrido ningún turno real, no se han escrito eventos ni diálogos jugados. Para continuar desde bloqueo, esperar input `CONTINUAR GUARDADO`.
+
+
+## Nuevo estilo y desenlaces (D-030)
+
+El usuario pidió volver a intentar la narración con estilo inmersivo y desenlaces basados en decisiones. Se conserva apertura TXT-000001 intacta; en la próxima puesta en escena se puede añadir una revisión TXT-000002 como nueva **scene** de turno 0, sin jugar acción alguna. Reglas en `docs/DECISION_OUTCOMES.md`. Registro `state.narrative_threads=[]` porque **ningún acto elegido produjo aún un hilo**. `tools/consequences.mjs` integra cambios vinculados a eventos mediante `stageNarrativeTurn(... consequence_updates)`; no determinar desenlace antes de elección.

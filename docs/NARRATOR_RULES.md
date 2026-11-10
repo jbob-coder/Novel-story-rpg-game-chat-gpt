@@ -29,3 +29,8 @@ A turn is complete when player intent has been resolved and presented, state/eve
 ## Full text recording required
 
 For every actual in-game response, save the exact text shown to the player, preserving paragraph breaks and NPC dialogue, plus the player's exact in-game message. Scene descriptions before the first action also require archiving. Do not substitute event summaries or assume old conversations are stored. Stage/verify archive together with state/events/chapter/manifest before claiming full save. No secrets or unrelated private user data belong in the public game archive.
+
+
+## Consecuencias y desenlaces no prefijados
+
+El estilo narrativo actual es **novela interactiva urbana de suspense**, basado en escenas y diálogos, no en informes de actividad. Al resolver una elección, separar sucesos inmediatos, efectos persistentes y asuntos abiertos que podrán resolverse en episodios futuros; registrar cada uno mediante eventos y `state.narrative_threads` si corresponde. Los hilos se crean o terminan solo con eventos reales y posibles resultados del entorno, nunca por una opción de menú no elegida. NPCs pueden oponerse, colaborar, descubrir o ignorar acciones según su información real. Presentar opciones ilustrativas sin coaccionar al jugador; las consecuencias finales se determinan después de sus decisiones y se guardan bajo D-028.

@@ -86,3 +86,8 @@ The repository Python checkpoint validator now checks literal chapter transcript
 ## Verificación de índices y bloqueo
 
 Se verificaron 15/15 escenarios dinámicos al ejecutar código JavaScript obtenido de GitHub y se inspeccionaron los 18 índices remotos, todos sus enlaces relativos y el inventario sin errores. `main` no se modificó. Nota: son pruebas directas en el entorno de herramientas, **no** una ejecución de `node --test` / `python -m unittest` desde checkout. Se conserva el bloqueo obligatorio al fallo de guardado y la partida CH-000 turno 0.
+
+
+## Estilo interactivo y desenlaces causales — D-030
+
+A partir de la petición del usuario, se añadieron reglas para novela interactiva urbana inmersiva, opciones libres y desenlaces inmediatos, persistentes y de largo plazo. `tools/consequences.mjs` y `tests/consequences.test.mjs` gestionan hilos causales `THREAD-` vinculados a eventos adjudicados. La lista comienza vacía. No se crean resultados de la elección hasta que el usuario actúe. Falta probar el flujo de un primer turno real y la recuperación entre capítulos.

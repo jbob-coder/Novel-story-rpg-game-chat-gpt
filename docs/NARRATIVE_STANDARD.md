@@ -34,3 +34,8 @@ Use short status readouts only as useful; never reduce the story to a turn-based
 ## Self-review before each response
 
 Check that time/location align with the save; NPC actions follow knowledge and motivation; the narrator has not assigned choices; any XP is supported; offscreen events remain logically consistent; plot developments fit the pre/post-shockwave boundary; the next player decision is unambiguous.
+
+
+## Estilo elegido: novela interactiva urbana de suspense (revisión del usuario)
+
+Usar escenas inmersivas con ritmo variable, detalles sensoriales precisos, interacciones humanas naturales y tercera persona limitada desde Jack. Evitar encabezados técnicos y enumeraciones dentro de la narración; puede añadirse una lista breve de opciones al final como ayuda. No decidir gestos, mensajes o pensamientos internos de Jack; la voz del collar solo reproduce texto elegido por el jugador. Evitar repetición de exposiciones de ficha ya conocida. Seguir [registro de consecuencias y desenlaces](DECISION_OUTCOMES.md): toda elección puede crear oportunidades o tensiones, inmediata y demoradamente, según hechos y actores independientes. No prometer desenlaces ni revelar secretos.

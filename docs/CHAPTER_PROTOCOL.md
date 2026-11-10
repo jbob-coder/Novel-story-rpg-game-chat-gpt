@@ -48,3 +48,8 @@ A completed turn must stage and atomically commit **five artifacts** together: t
 ## Save-lock override (D-028)
 
 The assistant must not narrate additional consequences or a next scene after a failed/pending save. The `tools/save_gate.mjs` library models seven ordered evidence-backed stages and rejects declaring 100% before remote read-back of all five required files. Use `docs/SAVE_BLOCKING_PROTOCOL.md`; an explicit save-progress message may consume the whole response. Continue verification on the **next user input**, not in the background. The previous non-atomic manifest-last procedure is a fallback to inspect/recover, never permission to proceed without verified atomic five-file state. Root and section indexes are navigation only.
+
+
+## Hilos y desenlaces vinculados a decisiones
+
+Antes de confirmar cada turno, evaluar `turn.consequence_updates` contra eventos realmente producidos por ese mismo turno. Registrar asuntos abiertos con `THREAD-`, desarrollarlos con eventos posteriores, resolverlos con un evento comprobado; nunca inventar resoluciones por simple intención, opción sugerida o salto de tiempo. El evento sustenta el resultado, el hilo registra la continuidad y la transcripción contiene el texto narrativo íntegro. Véase `docs/DECISION_OUTCOMES.md`.

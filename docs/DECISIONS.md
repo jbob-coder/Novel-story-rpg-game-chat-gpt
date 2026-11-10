@@ -39,3 +39,6 @@ The browser prototype in PR #1 was a mistaken interpretation of the delivery for
 ## Open decisions
 
 Any further relationship or biographical changes; date/year; additional supporting cast; geography and institutions beyond Meridian Bay; the exact powers and ecological changes; exact attribute/skill/XP thresholds, global levels and resolution mechanics (numerical drafts in PROGRESSION.md are provisional). Leave unresolved until developed in the story or explicitly approved. Assistant suggestions are not approval.
+
+
+| D-030 | Approved at narrative direction | Use an immersive interactive urban-suspense novel style, grounded dialogue and meaningful player-led outcomes. Choices can trigger immediate, persistent and eventual consequences, without predetermined endings; do not speak/act for Jack. |

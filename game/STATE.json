@@ -603,5 +603,6 @@
   "save": {
     "last_verified_turn": 0,
     "notes": "Escena inicial TXT-000001 archivada íntegramente en CH-000, sin turno de jugador; verificación remota requerida."
-  }
+  },
+  "narrative_threads": []
 }

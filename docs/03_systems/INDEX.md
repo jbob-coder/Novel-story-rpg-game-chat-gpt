@@ -7,6 +7,9 @@
 - [tools/narrative_archive.mjs](../../tools/narrative_archive.mjs)
 - [Aster — diseño y límites](../../game/ASTER_SPEC.md)
 
+- [Motor de consecuencias persistentes](../../tools/consequences.mjs)
+- [Reglas de ramificaciones](../DECISION_OUTCOMES.md)
+
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.

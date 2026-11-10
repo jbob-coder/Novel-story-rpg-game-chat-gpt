@@ -7,6 +7,8 @@
 - [docs/FULL_NARRATION_ARCHIVE.md](../FULL_NARRATION_ARCHIVE.md)
 - [docs/CHAPTER_PROTOCOL.md](../CHAPTER_PROTOCOL.md)
 
+- [Desenlaces y consecuencias](../DECISION_OUTCOMES.md)
+
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
