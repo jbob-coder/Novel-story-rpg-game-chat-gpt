@@ -1,3 +1,15 @@
+# D-042 — simulación integral de guardado y recuperación (2026-11-10)
+
+**Último commit de implementación:** `f6a8b3ab8aa5526d31cfe78ced74a11187c141ce` en `work/chat-narrative-foundation`; PR #2 continúa abierta y en borrador, sin merge a `main`. Nuevo `tools/save_transaction.mjs` y `tests/save_transaction.test.mjs`; índices, inventario y protocolos actualizados.
+
+**Pruebas reales en GitHub Actions:** [run #42905805692](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42905805692) en este commit, **67/67 Node**, **20/20 Python**, `tools/validate_state.py` PASS. Los 10 escenarios nuevos utilizan un Git remoto **simulado en memoria**; nunca modificaron la historia. Casos: commit atómico de cinco archivos, interrupción tras ref, interrupción tras crear commit, protección CAS, cambios concurrentes, archivo alterado, SHA desconocido, recuperación idempotente, fuente incompleta y entrega literal idéntica.
+
+**Checkpoint conservado:** CH-000, Día −30, turno **6**, evento EV-000021 y transcripción TXT-000014. Los cinco archivos de partida mantienen los mismos blobs verificados antes de D-042. Jack continúa en el taller; Elena espera su respuesta sobre la memoria USB. No hay turno 7 ni decisiones nuevas de Jack.
+
+**Límites pendientes:** el módulo es un **orquestador por adaptador inyectado**, no un cliente GitHub autónomo. Una prueba con GitHub remoto y una acción real del lector con lectura de vuelta siguen sin hacerse. El estado temporal del intento bloqueado debe conservarse para recuperarlo; si desaparecen el commit SHA o el texto exacto, no recrear la acción. La validación de correspondencia entre prosa y cambios permanece editorial. Continúan pendientes las transiciones entre capítulos y el Día 0.
+
+---
+
 # D-041 — CI real y aplicación atómica de cambios (2026-11-10)
 
 **Rama de trabajo:** `work/chat-narrative-foundation`; PR #2 en borrador. Los commits `3e887816` y `fca32dca` implantaron aplicación atómica por actor de un lote de cambios (una validación fallida no modifica el actor ni añade cambios al evento), mensajes explícitos para campos no admitidos y dos pruebas de regresión. También corrigieron una expectativa obsoleta: la siguiente escena se agrega al final de una transcripción que ya tenía 14 entradas, no al inicio.

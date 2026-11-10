@@ -37,3 +37,10 @@ El juego usa un repositorio público: guardar únicamente contenido ficticio des
 ## Enforcement in the narrative engine
 
 The narrative engine and opening-scene archiver **require a save guard argument**. They call `assertMayAdvance` before staging. A saved attempt with incomplete stages or a blocked status stops execution. For a clean new session with no pending attempts, `previous_attempt: null` is accepted **only after** a fresh GitHub checkpoint validation; the calling assistant must establish this fact rather than using `null` to bypass a failed save. The guard supplies the observed branch HEAD from GitHub. This guard cannot control arbitrary text typed outside the code: the assistant must also obey the narrative hard-stop protocol.
+
+
+## D-042 — transacción y recuperación verificable
+
+La librería `tools/save_transaction.mjs` conecta mediante un adaptador inyectado la puerta D-028, el motor de turnos y las cinco lecturas remotas. El adaptador debe proporcionar `readHead`, `readFiles`, `createCommit` (un solo árbol con los cinco archivos) y `updateHead` (CAS, sin forzar). En ningún caso interpretar `status=blocked` como un guardado completo.
+
+`recoverFiveFileSave` solo confirma o enlaza **el commit conocido con el texto exacto almacenado**. Si falta el SHA/texto, cambió el HEAD o no coinciden bytes, se detiene. No crea otra resolución ni reescribe turnos. El intento devuelto `blocked` necesita conservación exterior; la librería no instala almacenamiento persistente ni ejecuta tareas en segundo plano. La prueba de `tests/save_transaction.test.mjs` utiliza una simulación, no reemplaza un commit real.

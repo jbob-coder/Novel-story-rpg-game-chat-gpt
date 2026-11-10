@@ -51,3 +51,12 @@ By the D-036 checkpoint six story turns and event EV-000021 are recorded. The re
 25. **Continuidad entre varios cambios:** actualizaciones repetidas del mismo campo siguen el valor anterior inmediato, incluso al transferir objetos.
 26. **Regresión histórica:** los seis turnos originales, la red anterior de más de 500 dispositivos y los nueve de Café Bruma no cambian durante una revisión documental. No se reescribe su transcripción.
 27. **Ensayo real aún pendiente:** ejecutar suites Node y Python en checkout completo; preparar una acción libre real del lector, comparar la narración con efectos tipados, realizar commit atómico de cinco archivos y recuperar todo desde otra sesión. Solo entonces calificar la recuperación de un turno 7 como probada.
+
+## D-042 — ensayo integral ejecutado, no un turno de la novela
+
+**Evidencia:** [GitHub Actions run #42905805692](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42905805692), commit `f6a8b3ab8aa5526d31cfe78ced74a11187c141ce`. **67 pruebas JS aprobadas, 20 Python aprobadas, validador estructural PASS**. Se agregaron **10 pruebas** con un remoto Git en memoria, sin escribir la partida ni ejecutar acciones de Jack.
+
+Cobertura: confirmación literal de cinco archivos, commit antes de actualizar ref, interrupción tras actualizar ref, recuperación desde el mismo commit sin volver a generar diálogo, CAS rechazado por carrera, datos corruptos, SHA ausente, ausencia de archivo fuente, recuperación repetida idempotente y preservación del turno 6.
+
+**No probado:** adaptador GitHub real con escritura atómica y readback en una acción auténtica, durabilidad externa del diario del intento bloqueado, y equivalencia literaria de escenas futuras. Distinguir estas ausencias de fallos de la suite. El sistema no sustituye la revisión editorial ni autoriza jugar el turno 7 sin entrada del lector.
+
