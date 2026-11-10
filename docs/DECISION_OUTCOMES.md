@@ -19,8 +19,8 @@
 
 **No se crean hilos por posibilidades o elecciones sugeridas antes de que Jack actúe.** El primer estado permanece con lista vacía, turno 0 y cero eventos. `stageNarrativeTurn` puede aceptar `consequence_updates` solo después de crear un evento y los integra en el checkpoint. No preasignar éxitos, finales, poderes o reputación.
 
-## Diseño de opciones sin revelar el futuro
-Al final de cada escena, ofrecer entre 3 y 5 opciones que representen **estrategias**, por ejemplo observar, actuar, negociar, retirarse o inventar otra. No prometer «esta opción te hará rico» ni revelar información oculta. Las decisiones pueden incluir riesgos explícitos cuando Jack los percibe, pero el resultado aparece únicamente después de elegirlo y guardar su resolución.
+## Libertad sin menú (D-031)
+Terminar en una situación real de la ficción, sin ofrecer opciones numeradas ni estrategias a elegir. Jack puede actuar libremente. No prometer resultados futuros ni asignar un desenlace sin un evento real.
 
 ## Registro completo
 La transcripción literal mantiene la escena y cada respuesta. El log de eventos guarda las causas y el estado guarda qué cambió. Antes de narrar un nuevo desenlace, recuperar hilos y eventos relacionados. La puerta D-028 bloquea el avance hasta verificar el commit y los cinco archivos. No reescribir transcript previos para acomodar decisiones nuevas.

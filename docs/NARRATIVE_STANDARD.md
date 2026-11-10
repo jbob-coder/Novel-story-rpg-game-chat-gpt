@@ -21,15 +21,9 @@
 - Do not narrate a player action the user has not chosen. Descriptions of a situation are not player consent.
 - Avoid falsely giving the player cosmic knowledge at Day -30. Foreshadowing, if any, must be natural and **cannot** imply powers manifested before the shockwave.
 
-## Suggested turn output (adaptive, not mandatory)
+## Playable output — dramatized prose, not a report
 
-**Scene:** prose, grounded sensory and character details.  
-**Consequences:** what changed or what the player can reasonably perceive.  
-**Optional quick status:** time/place, relevant status, progression changes.  
-**Your action?** invitation to free-form input.  
-**Save state:** verified saved turn or explicitly unsaved; omit technical noise during ordinary narration when a verified checkpoint is available.
-
-Use short status readouts only as useful; never reduce the story to a turn-based form.
+Show a continuous fictional scene with lived dialogue, character action and changing circumstances. **No visible Scene/Consequences/Status/Your action labels**, except a short, separate verified save confirmation. Never present option menus. [Mandatory editorial gate](SCENE_CRAFT.md) takes precedence over older examples.
 
 ## Self-review before each response
 
@@ -38,4 +32,7 @@ Check that time/location align with the save; NPC actions follow knowledge and m
 
 ## Estilo elegido: novela interactiva urbana de suspense (revisión del usuario)
 
-Usar escenas inmersivas con ritmo variable, detalles sensoriales precisos, interacciones humanas naturales y tercera persona limitada desde Jack. Evitar encabezados técnicos y enumeraciones dentro de la narración; puede añadirse una lista breve de opciones al final como ayuda. No decidir gestos, mensajes o pensamientos internos de Jack; la voz del collar solo reproduce texto elegido por el jugador. Evitar repetición de exposiciones de ficha ya conocida. Seguir [registro de consecuencias y desenlaces](DECISION_OUTCOMES.md): toda elección puede crear oportunidades o tensiones, inmediata y demoradamente, según hechos y actores independientes. No prometer desenlaces ni revelar secretos.
+Usar escenas inmersivas con ritmo variable, detalles sensoriales precisos, interacciones humanas naturales y tercera persona limitada desde Jack. Evitar encabezados técnicos y enumeraciones dentro de la narración; NO añadir menús de opciones (D-031). No decidir gestos, mensajes o pensamientos internos de Jack; la voz del collar solo reproduce texto elegido por el jugador. Evitar repetición de exposiciones de ficha ya conocida. Seguir [registro de consecuencias y desenlaces](DECISION_OUTCOMES.md): toda elección puede crear oportunidades o tensiones, inmediata y demoradamente, según hechos y actores independientes. No prometer desenlaces ni revelar secretos.
+
+
+**D-032 mandatory:** Apply [the five-point scene-quality gate](SCENE_CRAFT.md) before writing a turn to GitHub.

@@ -7,7 +7,7 @@
 
 ## Per-turn narration and resolution
 1. Describe a believable scene, its time/location/stakes and the relevant characters. The game starts at Day -30, ordinary life before the shockwave.
-2. Accept **free-form player input**; optional choices are examples, never restrictions.
+2. Accept **free-form player input**, without suggested or numbered menus (D-031).
 3. Resolve the player's actual intent from circumstances, capability, skill ranks, known facts, resource constraints and consequences; do not predetermine their actions.
 4. Process relevant NPC/faction actions and world changes from **in-game elapsed time**, including offscreen events. Record who knows what; avoid accidental omniscience.
 5. Award skill XP **only when an established action plausibly yields learning**, using provisional rules in `docs/PROGRESSION.md`. Update player/NPC abilities and limitations; never grant powers before Day 0. Track injuries, possessions, reputation, relationships and unresolved promises.
@@ -18,7 +18,7 @@
 - Approved universe canon is separate from actual story events, rumors, proposals and private NPC knowledge.
 - The current save checkpoint must be recoverable without prior chat history. Never claim a persistent update because it appeared in conversation.
 - No real-time background narrative happens between sessions; the world evolves as in-fiction time passes when turns are resolved.
-- If the tools needed to read/write are unavailable, continue only with clearly labeled unverified temporary state or stop at a safe checkpoint.
+- If the tools needed to read/write are unavailable, **stop at the last verified checkpoint** under D-028. Never advance an unsaved turn.
 - The public repository contains intentionally fictional world data only; no private user details or authentication data.
 - Do not merge PRs or modify `main` without approval.
 
@@ -39,3 +39,8 @@ El estilo narrativo actual es **novela interactiva urbana de suspense**, basado 
 ## D-031 — Sin menús de opciones durante la partida
 
 Tras la primera acción del jugador, no volver a presentar opciones numeradas, selecciones A/B/C o menús. Narrar únicamente la escena, consecuencias y oportunidades perceptibles; cerrar con una pregunta abierta solo si ayuda. El jugador escribe acciones libres y no necesita seleccionar de una lista. Esta preferencia sustituye las sugerencias de opciones en normas anteriores.
+
+
+## D-032 — MANDATORY DRAMATIZATION, NOT EVENT REPORTING
+
+The player explicitly rejected the first two turns' mechanical narrative. Apply [SCENE_CRAFT.md](SCENE_CRAFT.md) before every played turn. Use unfolding scenes, authentic dialogue, individual NPC goals and earned variability of outcomes. No debug-status prose, omniscient NPC explanations, repeated «inconclusive result» endings, or menus inside the story. Don't merely add adjectives to an after-action summary. Protect the player's control over Jack's words, feelings and decisions. The technical save confirmation is separate from fiction.

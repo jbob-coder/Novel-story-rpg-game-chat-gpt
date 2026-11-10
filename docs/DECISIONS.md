@@ -45,3 +45,5 @@ Any further relationship or biographical changes; date/year; additional supporti
 
 
 | D-031 | In-game narration controls | The owner requested that numbered choice menus be removed from subsequent narrative responses. Continue as free-form story only; prompts may ask an open question but must not show a selection list unless specifically re-requested. |
+
+| D-032 | Owner-requested narrative correction | Stop giving event reports dressed as storytelling. Dramatize moment-to-moment fictional scenes with distinctive NPC lives, varied justified outcomes, real dialogue and pacing; remove technical verdict boxes and menus; preserve the player's agency. Apply `docs/SCENE_CRAFT.md` editorial gate. No retroactive rewrite of saved turns without authorization. |

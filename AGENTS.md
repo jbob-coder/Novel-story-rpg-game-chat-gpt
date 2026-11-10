@@ -28,3 +28,8 @@ First read [root index](INDEX.md) and [indexed documentation](docs/INDEX.md) for
 ## D-030 — estilo y desenlaces basados en decisiones
 
 La presentación vigente es novela interactiva urbana de suspense (escenas sensoriales y diálogo humano, evitando listados técnicos dentro de la escena). El usuario controla a Jack: no elegir sus frases ni acciones. Opciones al final son estrategias, siempre abiertas. Leer `docs/DECISION_OUTCOMES.md` y `state.narrative_threads`; un desenlace solo puede seguir eventos reales, con consecuencias inmediatas y diferidas, y debe persistir junto con texto íntegro. No asignar finales predeterminados a opciones sin seleccionar.
+
+
+## Literary correction D-032 — higher priority than old narrative templates
+
+The player explicitly said the two played turns sound like event reporting, not narration, and wants the style replaced. **Read `docs/SCENE_CRAFT.md` and run its five-point editorial check before composing/saving the next turn.** No tech-summary narration, repeated negative results, flat NPCs, or option menus. **Don't invent Jack's decisions**. No gameplay advancement from this document-only commit; resume turn 2 at Café Bruma. D-028 saving lock remains mandatory.

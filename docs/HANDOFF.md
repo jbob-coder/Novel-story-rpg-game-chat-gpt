@@ -63,3 +63,8 @@ Jack intenta activar su gadget entre peatones de Crosswater para provocar interf
 ### CH-000 turno 2 — cafetería y segunda fase (sujeto a readback)
 
 Jack señala en el menú un café y dulce; la empleada entrega el pedido, pago todavía no establecido. Jack intenta segunda fase escalonada del gadget contra aparatos ajenos y revisa supuestos saldos; **no hay evidencia verificable de ejecución de virus, infecciones, cuentas comprometidas ni saldos bancarios obtenidos**. Resultado conservado como intento, no éxito. A su espalda Sora documenta una incidencia de carteles y Lena conserva registro técnico sin conocimiento del origen; Darius termina su entrega. Los dos hilos THREAD-000001/2 siguen abiertos. El equipo portátil se sincronizó con la localización de Jack (Café Bruma). **Sin opciones numeradas.** Si la lectura remota completa falla, el turno no puede darse por guardado.
+
+
+### D-032 editorial correction (no game advance)
+
+Player feedback: past prose sounded like a report, not a real story. Mandatory guide `docs/SCENE_CRAFT.md` now overrides old segmented scene/results templates and conflicting option-menu advice. On next player action, dramatize a genuine interaction with independent characters and plausible varied consequences. Keep CH-000 turn 2 exactly as saved; user did not authorize overwriting transcript. Café Bruma order delivered, payment not established, gadget second phase inconclusive.
