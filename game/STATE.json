@@ -56,7 +56,7 @@
       "powers": [],
       "lifetime_skill_xp": 48,
       "milestones": [],
-      "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida."
+      "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida. D-036: todos los campos XP/atributos/rangos son datos históricos congelados y no vuelven a utilizarse para resolver acciones o conceder recompensas."
     },
     "knowledge": [],
     "relationships": {
@@ -109,8 +109,8 @@
         "size": "pequeño",
         "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
-        "status": "nueve fichas locales indexadas: dos respuestas intermitentes, siete sin respuesta; red declarada 500+ pendiente de cotejo",
-        "description": "Gadget ficticio cuya actividad histórica en Café Bruma consta en nueve fichas del DEVICE_REGISTRY. Ningún dispositivo se declara comprometido en el presente sin evidencia; red heredada 500+ aún sin registros individuales.",
+        "status": "red preexistente de más de 500 dispositivos activos en la ficción; nueve fichas nuevas de Café Bruma (dos respuestas intermitentes, siete sin respuesta en última consulta)",
+        "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
         "narrative_only": true
       },
       {
@@ -796,12 +796,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Elena pide memoria portátil para su dibujo; el catálogo de nueve aparatos quedó indexado, la lista de 500+ sigue declarada/no cotejada y las sociedades y saldos personales continúan sin documentación.",
+    "message": "Elena pide una memoria portátil para su dibujo. Jack está en el taller; su red activa previa supera los 500 dispositivos en el canon, y los nueve de Café Bruma son nuevas incorporaciones. Cuentas propias y sociedades instrumentales preexistentes; importes y nombres exactos aún no definidos. Continuar como novela interactiva, sin RPG.",
     "last_player_action": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys"
   },
   "save": {
     "last_verified_turn": 6,
-    "notes": "Turno 6: índice CB-001..CB-009, red previa 500+ declarada sin fichas, fondos propios sin cifras verificables, shell companies declaradas sin registros, Elena solicita memoria; confirmación remota obligatoria."
+    "notes": "Corrección de continuidad autorizada por el propietario tras turno 6, sin turno o evento nuevo: formato novela interactiva sin RPG; red anterior activa de 500+ y nueve incorporaciones de Café Bruma. Historial, XP legado, eventos y transcripción intactos."
   },
   "narrative_threads": [
     {
