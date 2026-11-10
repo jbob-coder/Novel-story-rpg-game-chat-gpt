@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "game_id": "living-superhuman-world",
   "canonical_branch": "main",
   "saved_on_branch": "work/chat-narrative-foundation",
@@ -11,14 +11,26 @@
   "time": {
     "day": -30,
     "day_zero_event": "cosmic_shockwave",
-    "calendar_date": null
+    "calendar_date": null,
+    "time_of_day": null
   },
   "player": {
     "initialized": false,
     "id": null,
     "name": null,
     "location_id": null,
-    "background": null
+    "background": null,
+    "progression": {
+      "attributes": null,
+      "skills": {},
+      "powers": [],
+      "lifetime_skill_xp": 0,
+      "milestones": []
+    },
+    "knowledge": [],
+    "relationships": {},
+    "inventory": [],
+    "conditions": []
   },
   "world": {
     "shockwave_arrived": false,
@@ -28,7 +40,9 @@
     "environment_affected": false,
     "actors": {},
     "factions": {},
-    "locations": {}
+    "locations": {},
+    "active_events": [],
+    "secrets": {}
   },
   "history": {
     "last_event_sequence": 0,
@@ -36,10 +50,11 @@
   },
   "pending": {
     "type": "character_setup",
-    "message": "Describe your character and where their everyday life begins; partial details are fine."
+    "message": "Describe your character and where their everyday life begins; partial details are fine.",
+    "last_player_action": null
   },
   "save": {
     "last_verified_turn": 0,
-    "notes": "Initial design checkpoint only; no player turns have occurred."
+    "notes": "Initial v2 continuity and progression checkpoint. No player turn completed."
   }
 }
