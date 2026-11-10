@@ -172,6 +172,67 @@ def validate(root: Path) -> list[str]:
             if isinstance(record, dict) and record.get("last_progress_event_id") is not None:
                 expect(record["last_progress_event_id"] in {eid for _, eid in ids},
                        f"skill {key}: progression event not in history")
+
+    # Complete, literal chapter transcript and checkpoint counter verification.
+    if chapter_id:
+        archive = read_json(f"chapters/{chapter_id}.transcript.json")
+        if isinstance(archive, dict):
+            entries = archive.get("entries")
+            expect(archive.get("schema_version") == 1, "transcript: expected schema version 1")
+            expect(archive.get("chapter_id") == chapter_id, "transcript: wrong chapter")
+            expect(isinstance(entries, list), "transcript: entries must be list")
+            if isinstance(entries, list):
+                expect(archive.get("last_entry_sequence") == len(entries),
+                       "transcript: archive entry count mismatch")
+                expect(hist.get("last_transcript_sequence") == len(entries),
+                       "transcript: state entry count mismatch")
+                expect(manifest.get("last_transcript_sequence") == len(entries),
+                       "transcript: manifest entry count mismatch")
+                latest = entries[-1].get("id") if entries and isinstance(entries[-1], dict) else None
+                expect(manifest.get("last_transcript_id") == latest, "transcript: last ID mismatch")
+                valid_event_ids = {eid for _, eid in ids}
+                by_turn = {}
+                scene_keys = set()
+                for sequence, entry in enumerate(entries, 1):
+                    if not isinstance(entry, dict):
+                        problems.append("transcript: non-object entry")
+                        continue
+                    eid = entry.get("id")
+                    expect(eid == f"TXT-{sequence:06d}", f"transcript: invalid or duplicate ID {eid!r}")
+                    expect(entry.get("chapter_id") == chapter_id, f"transcript {eid}: wrong chapter")
+                    turn = entry.get("turn")
+                    expect(type(turn) is int and 0 <= turn <= save.get("last_verified_turn", -1),
+                           f"transcript {eid}: invalid turn")
+                    role = entry.get("role")
+                    kind = entry.get("kind")
+                    expect((role == "player" and kind == "player_action") or
+                           (role == "assistant" and kind in {"scene", "resolution"}),
+                           f"transcript {eid}: invalid role/kind")
+                    txt = entry.get("text")
+                    expect(isinstance(txt, str) and bool(txt.strip()), f"transcript {eid}: full text missing")
+                    links = entry.get("event_ids")
+                    expect(isinstance(links, list) and all(x in valid_event_ids for x in links),
+                           f"transcript {eid}: broken event links")
+                    if kind == "scene":
+                        key = entry.get("source_key")
+                        expect(isinstance(key, str) and len(key) >= 6 and key not in scene_keys,
+                               f"transcript {eid}: invalid/duplicate scene key")
+                        if isinstance(key, str):
+                            scene_keys.add(key)
+                    if turn == 0:
+                        expect(kind == "scene", f"transcript {eid}: gameplay in turn zero")
+                    if type(turn) is int:
+                        by_turn.setdefault(turn, []).append(entry)
+                for turn in range(1, save.get("last_verified_turn", 0) + 1):
+                    xs = by_turn.get(turn, [])
+                    player_inputs = [x for x in xs if x.get("role") == "player"]
+                    narrator_outputs = [x for x in xs if x.get("kind") == "resolution"]
+                    expect(len(player_inputs) == 1 and len(narrator_outputs) >= 1,
+                           f"transcript: completed turn {turn} missing full exchange")
+                    if player_inputs and narrator_outputs:
+                        expect(xs.index(player_inputs[0]) < xs.index(narrator_outputs[0]),
+                               f"transcript: turn {turn} out of order")
+
     return problems
 
 

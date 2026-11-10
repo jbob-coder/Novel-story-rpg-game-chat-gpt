@@ -76,3 +76,8 @@ Added `tools/save_gate.mjs` to track seven independently evidenced save stages a
 ## Save gate integrated with both story entry points
 
 The `stageNarrativeTurn` engine and `stageNarratorScene` archiver now import the hard gate and reject missing, blocked or unverified save attempts before staging new narrative output. Tests extended to cover missing guards and previous blocked saves. The caller must provide the real verified branch HEAD; a unit-test placeholder SHA is not evidence of a real save. No actual story state changed.
+
+
+## Python validator extended (D-028)
+
+The repository Python checkpoint validator now checks literal chapter transcript structure, entry/counter alignment, unique IDs, role/kind, event links and complete player+assistant text for played turns. A separate regression file tests a pristine checkpoint and intentionally corrupt archives. **These Python tests were committed but not executed locally in this environment** (GitHub cannot be cloned in the local runtime). The runtime JavaScript hard-save gate was tested separately.
