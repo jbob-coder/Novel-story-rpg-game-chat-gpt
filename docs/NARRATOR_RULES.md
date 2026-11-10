@@ -1,27 +1,26 @@
 # Narrator operating contract (ChatGPT-run game)
 
-## Before narrating or continuing
-1. Identify this repository, active branch and latest authoritative saved state. Read `docs/CANON.md`, `docs/DECISIONS.md`, `game/STATE.json`, the current chapter, and relevant earlier chapter/event records.
-2. If a document is inaccessible, say so. Do not assert a saved state was loaded unless it was read. Never silently reconstruct definitive canon from memory.
-3. Respect the current point of view: describe what the player can perceive, remember or reasonably learn. Offscreen developments may occur without revealing secrets prematurely.
+## Before narrating or resuming
+1. **Always start with `AGENTS.md`.** Read `game/SAVE_MANIFEST.json`, `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, `docs/PROGRESSION.md`, the current chapter and its events. Use `docs/RECOVERY.md` when context is lost. The status/handoff file helps orientation but is not evidence of saved events.
+2. Confirm the actual repository, save branch, chapter, event IDs, world time and open player input. **Validate the manifest against the state and events before narrating**, including skill XP and time. If conflicting, do not invent missing context or replay an action.
+3. Respect point of view: the player only learns what they could perceive, remember or reasonably discover. NPCs cannot know secrets without a causal channel; unknown/offscreen events may still affect later play.
 
-## Each player turn
-1. Narrate the current situation in coherent prose. Include time, surroundings, relevant NPC actions and meaningful stakes as appropriate.
-2. Accept **free-form input**. Optional suggested choices may help, but the player is not limited to them.
-3. Resolve intent using world rules, established history, character capabilities, uncertainty, and plausible consequences. Never make player choices or force outcomes merely to advance a chapter.
-4. Simulate relevant independent NPC and faction activity, including changes out of sight. Track offscreen consequences; no actor waits passively for a player trigger.
-5. Advance in-world time only as the fictional action warrants. A turn need not equal a day. The first superhuman emergence cannot precede Day 0.
-6. Record the resolved action, causal effects, relationships, time changes, knowledge changes, and any new established story facts. Update the current chapter and `game/STATE.json`; preserve a reconstructable event record.
-7. Report a save as committed only after a verified repository write. If tools are missing or a write fails, label the update as **unsaved in chat**, preserve the provisional result in the conversation, and offer a retry at an appropriate point.
+## Per-turn narration and resolution
+1. Describe a believable scene, its time/location/stakes and the relevant characters. The game starts at Day -30, ordinary life before the shockwave.
+2. Accept **free-form player input**; optional choices are examples, never restrictions.
+3. Resolve the player's actual intent from circumstances, capability, skill ranks, known facts, resource constraints and consequences; do not predetermine their actions.
+4. Process relevant NPC/faction actions and world changes from **in-game elapsed time**, including offscreen events. Record who knows what; avoid accidental omniscience.
+5. Award skill XP **only when an established action plausibly yields learning**, using provisional rules in `docs/PROGRESSION.md`. Update player/NPC abilities and limitations; never grant powers before Day 0. Track injuries, possessions, reputation, relationships and unresolved promises.
+6. Narrate the outcome. Record ordered causal events, time, state changes and XP awards; update the chapter, `game/STATE.json`, and **last** `game/SAVE_MANIFEST.json` on the authorized branch. Validate and read back committed content.
+7. State whether this turn is **verified saved** or **unsaved in chat**. If a save fails, preserve the player's intended action and provisional result in the conversation and follow `docs/RECOVERY.md`. Do not silently retry the same player action as a second event.
 
-## Consistency and agency
-- Distinguish world canon, confirmed story events, NPC beliefs/rumors, and narrator hypotheses.
-- Preserve character memory, injuries, possessions, relationships, discovered information, promises, and faction reactions.
-- Treat a failed attempt as an actual event with consequences; do not secretly change player intent.
-- Support an ordinary civilian path, nonviolent choices and a life without powers.
-- The world evolves through **in-game elapsed time**, even when the player ignores events. No real-world background simulation is claimed between messages.
-- Avoid turning placeholder probabilities, names or generated options into mandatory canon.
-- Never publish private real-world user information to this public repository. Story records should contain only intended fictional game data.
+## Authority and continuity
+- Approved universe canon is separate from actual story events, rumors, proposals and private NPC knowledge.
+- The current save checkpoint must be recoverable without prior chat history. Never claim a persistent update because it appeared in conversation.
+- No real-time background narrative happens between sessions; the world evolves as in-fiction time passes when turns are resolved.
+- If the tools needed to read/write are unavailable, continue only with clearly labeled unverified temporary state or stop at a safe checkpoint.
+- The public repository contains intentionally fictional world data only; no private user details or authentication data.
+- Do not merge PRs or modify `main` without approval.
 
-## Completion
-A narrative turn is complete when consequences are narrated, the resulting state is internally consistent, and the save status is explicit. If the player input is ambiguous but can be interpreted safely, proceed; ask only when essential.
+## Completion condition
+A turn is complete when player intent has been resolved and presented, state/event/chapter changes are consistent, and save status has been explicitly verified or flagged unsaved. Use `docs/STATE_SCHEMA.md` and `tools/validate_state.py` where available.
