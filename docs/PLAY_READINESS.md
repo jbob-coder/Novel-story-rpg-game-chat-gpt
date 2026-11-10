@@ -31,3 +31,8 @@
 
 ## Política de inicio
 Se puede comenzar el capítulo introductorio sin esperar una enciclopedia del mundo, pero no declarar que las mecánicas de una campaña larga o que Aster funciona. Antes de cruzar Día 0, completar su transición y validación. No avanzar ni simular turnos sin aportación del jugador.
+
+
+### Actualización de integridad tras el informe
+
+Se añadió el bloqueo explícito de guardado con porcentajes por evidencia, índices temáticos en subcarpetas y validación del archivo literal. La preparación global sigue siendo **una estimación**, no un porcentaje medido. Aún faltan pruebas CLI completas, un turno de juego auténtico recuperado entre chats, transición de capítulo y Día 0. No convertir este progreso de ingeniería en un evento de juego.

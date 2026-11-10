@@ -81,3 +81,8 @@ The `stageNarrativeTurn` engine and `stageNarratorScene` archiver now import the
 ## Python validator extended (D-028)
 
 The repository Python checkpoint validator now checks literal chapter transcript structure, entry/counter alignment, unique IDs, role/kind, event links and complete player+assistant text for played turns. A separate regression file tests a pristine checkpoint and intentionally corrupt archives. **These Python tests were committed but not executed locally in this environment** (GitHub cannot be cloned in the local runtime). The runtime JavaScript hard-save gate was tested separately.
+
+
+## Verificación de índices y bloqueo
+
+Se verificaron 15/15 escenarios dinámicos al ejecutar código JavaScript obtenido de GitHub y se inspeccionaron los 18 índices remotos, todos sus enlaces relativos y el inventario sin errores. `main` no se modificó. Nota: son pruebas directas en el entorno de herramientas, **no** una ejecución de `node --test` / `python -m unittest` desde checkout. Se conserva el bloqueo obligatorio al fallo de guardado y la partida CH-000 turno 0.

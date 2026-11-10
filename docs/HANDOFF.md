@@ -43,3 +43,8 @@ When returning to gameplay, pass `save_guard={observed_head: <actual GitHub ref 
 ## Independent validator
 
 `python tools/validate_state.py` now reads the full transcript, validates its sequence and links, and rejects an incomplete player/narrator turn. `tests/test_literal_archive_validator.py` contains corruption scenarios for a checkout run. Passing source-level JS checks does not prove Python tests were executed.
+
+
+## Auditoría final de D-028/D-029
+
+Índices: **18/18** recuperados desde GitHub; cero rutas relativas rotas y cero rutas canónicas faltantes. Integración de `save_gate.mjs` con turnos y escenas: **15/15** pruebas dinámicas satisfactorias en un entorno de JavaScript, incluida verificación del bloqueo a 85%, retención de textos y desbloqueo tras cinco archivos idénticos. El validador Python también revisa transcripciones, pero su suite CLI está pendiente. No ha ocurrido ningún turno real, no se han escrito eventos ni diálogos jugados. Para continuar desde bloqueo, esperar input `CONTINUAR GUARDADO`.

@@ -5,6 +5,8 @@
 - [tests/test_backstory_aster.py](test_backstory_aster.py)
 - [tests/test_character_profile.py](test_character_profile.py)
 - [tests/test_starting_checkpoint.py](test_starting_checkpoint.py)
+- [tests/index_paths.test.mjs](index_paths.test.mjs)
+- [tests/test_literal_archive_validator.py](test_literal_archive_validator.py)
 - [docs/QA_SCENARIOS.md](../docs/QA_SCENARIOS.md)
 - [docs/TURN_TESTING.md](../docs/TURN_TESTING.md)
 

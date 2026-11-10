@@ -15,3 +15,15 @@ These are planned end-to-end tests for real play. Passing the structural validat
 
 ## Known unverified
 No actual story events exist yet. Gameplay, NPC memory, multi-turn save-and-restore, interrupted writes and skill balance have not been playtested. Record actual test outputs and commits in the PR or status document, never label these scenarios passed in advance.
+
+
+## Guardado bloqueante y organización (D-028/D-029)
+
+11. **Falla remota al 10%:** tras recuperar el HEAD, falla GitHub. El asistente debe informar `🚩 GUARDADO BLOQUEADO — 10% verificado`, no narrar más y esperar `CONTINUAR GUARDADO`.
+12. **Commit antes de lectura 100%:** crear un commit y mover la rama no basta. Con cinco archivos sin lectura idéntica, el progreso máximo confirmado es 85% y la historia sigue bloqueada.
+13. **Contenido íntegro:** alteración de un carácter en `CH-000.transcript.json` debe impedir desbloquear; resúmenes/eventos no reemplazan texto literal.
+14. **Cambio de HEAD:** al reanudar, si otro agente avanzó la rama, detenerse y reconciliar; no hacer force push ni sobreescribir.
+15. **Respuesta agotada:** el mensaje puede consumir la respuesta completa para dar estado/porcentaje. Ningún trabajo continúa en segundo plano; el siguiente input reanuda la verificación, no un nuevo turno.
+16. **Índices sin enlaces rotos:** todos los 18 índices y sus referencias deben existir. El inventario debe conservar una sola ubicación canónica por recurso.
+
+**Ejecución:** 15 pruebas dinámicas del flujo de bloqueo y narración aprobaron en el entorno JavaScript de esta sesión; 18 índices fueron leídos desde GitHub sin enlaces rotos. Los tests de Python y Node como procesos CLI aún no han sido ejecutados en checkout.
