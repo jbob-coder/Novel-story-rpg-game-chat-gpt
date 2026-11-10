@@ -84,7 +84,8 @@
       "tools/validate_state.py",
       "tools/consequences.mjs",
       "tools/state_changes.mjs",
-      "tools/save_transaction.mjs"
+      "tools/save_transaction.mjs",
+      "tools/github_save_adapter.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -96,7 +97,8 @@
       "tests/test_literal_archive_validator.py",
       "tests/consequences.test.mjs",
       "tests/state_changes.test.mjs",
-      "tests/save_transaction.test.mjs"
+      "tests/save_transaction.test.mjs",
+      "tests/github_save_adapter.test.mjs"
     ]
   },
   "newChapterPaths": [

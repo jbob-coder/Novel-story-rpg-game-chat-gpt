@@ -1,3 +1,18 @@
+## D-043 — GitHub real, prueba aislada, y adaptador sin secretos (2026-11-10)
+
+**Crítica del enfoque previo:** hasta D-042 los tests solo usaban un Git simulado. No demostraban que GitHub conservaría un commit de cinco archivos después de interrumpirse el proceso, ni existía adaptador REST reutilizable. Tampoco el resultado de una suite técnica mide la calidad literaria de la escena.
+
+**Prueba REMOTA de recuperación completada:** rama **exclusiva de QA** `qa/story-save-recovery-d043-20261110`, creada desde `96b9d73b7945686cac4a9090d0a759d8ecd3d3d2`. Se preparó un turno **sintético/no canónico** en cinco archivos con commit `d637304e2665828e5c53cb76fd40e0e4a6ade7ec`; se detuvo el procedimiento después de crear el commit y **antes de mover la rama**, se verificaron remotamente sus cinco archivos por SHA, se reanudó en una operación diferente, se aplicó actualización no forzada con HEAD esperado y se leyó literalmente de nuevo la rama. **No se creó un segundo commit** ni se afectó la rama narrativa. Ese turno 7 de QA **no es una acción del propietario**, jamás usarlo como checkpoint de juego.
+
+**Implementación:** `tools/github_save_adapter.mjs` aporta las operaciones reales `readHead`, `readFiles`, `createCommit` y `updateHead` por API GitHub REST para `tools/save_transaction.mjs`, con credenciales externas y cinco blobs en un solo árbol. `tests/github_save_adapter.test.mjs` prueba lectura, escritura, errores HTTP, colisiones y recuperación con transporte HTTP simulado (sin usar ni exponer un token real). El adaptador **no se ejecutó directamente con token real** en la prueba remota: se verificaron las mismas primitivas Git mediante el conector autorizado. GitHub REST dispone de *read-then-update* y *non-force fast-forward*, pero **no de CAS atómico con expected SHA**. No prometer bloqueo perfecto ante carreras arbitrarias.
+
+**Evidencia de CI:** [GitHub Actions #42912600548](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42912600548) para `ca414ffe56d8faff9dae739046d3a5d4bb525c8e`: **75/75 JavaScript**, **20/20 Python** y `python tools/validate_state.py` PASS. El primer CI detectó identificadores falsos de longitud inválida y ruta `../repo` no rechazada; corregidos antes de aprobar. La continuidad narrativa todavía requiere revisión editorial y el próximo turno auténtico del lector no se ha jugado.
+
+**Canon protegido:** rama `work/chat-narrative-foundation` y PR #2 conservan **CH-000, Día −30, turno 6, EV-000021 y TXT-000014**. Los cinco blobs del checkpoint no se tocaron. Jack continúa en el taller con Elena esperando una respuesta sobre una USB. Mantener la PR en borrador; no fusionar ni reutilizar `qa/*` como fuente narrativa.
+
+
+---
+
 ## D-041 — resultados ejecutados en GitHub Actions
 
 - Commit de código corregido: `fca32dcaf88bd28f03cef7574e97257db80c3243`, rama `work/chat-narrative-foundation`.

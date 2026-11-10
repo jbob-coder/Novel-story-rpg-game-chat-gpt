@@ -42,3 +42,6 @@ Se considera aplicada cuando el contrato, la guía de escenas y el punto de entr
 Para cada efecto material que la narración describa, documentar un cambio verificable del actor correspondiente antes del guardado. La prosa, el evento y el estado deben coincidir. La lista de cambios no tiene que incluir cada gesto irrelevante; solo lo necesario para que el mundo recuerde posesiones, ubicación, vínculos, lesiones, conocimientos y planes. Los NPC no tienen obligación de actuar en cada escena. Véase el esquema de cambios en [STATE_SCHEMA.md](STATE_SCHEMA.md) y su implementación en [state_changes.mjs](../tools/state_changes.mjs).
 
 El módulo valida el estado **declarado**, no interpreta libremente toda la prosa. Una omisión del narrador sigue siendo posible; una lectura editorial antes de persistir es obligatoria. No confundir pruebas sintéticas locales con una prueba de guardado de una acción real.
+
+
+**D-043:** La capacidad GitHub remota se probó en una rama QA aislada mediante primitivas reales Git, y se añadió un adaptador REST testeado con transporte simulado. Esta evidencia mejora la confianza en recuperación pero no garantiza lectura visible en la interfaz, ni sustituye la revisión literaria ni autoriza un avance canónico.

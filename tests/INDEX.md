@@ -1,6 +1,7 @@
 # Pruebas y gates de calidad
 
 - [tests/save_gate.test.mjs](save_gate.test.mjs)
+- [Pruebas del adaptador HTTP GitHub (D-043)](github_save_adapter.test.mjs)
 - [Pruebas integrales de guardado y recuperación (D-042)](save_transaction.test.mjs)
 - [tests/turn_engine.test.mjs](turn_engine.test.mjs)
 - [Pruebas de efectos causales (D-040)](state_changes.test.mjs)

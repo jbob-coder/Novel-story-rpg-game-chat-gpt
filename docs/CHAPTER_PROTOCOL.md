@@ -62,3 +62,6 @@ The default transcript is append-only. **Only an owner's clear instruction to re
 
 
 **D-042:** Para ensayos sin actividad narrativa real, usar el adaptador simulado y la transacción de cinco archivos en `tools/save_transaction.mjs`; ejecutar `tests/save_transaction.test.mjs`. Nunca sustituir el commit remoto real o la lectura verificable por una simulación.
+
+
+**D-043:** El adaptador REST en `tools/github_save_adapter.mjs` permite completar las operaciones del módulo transaccional con un token suministrado externamente (nunca incluir credenciales en los archivos). La prueba GitHub sobre `qa/story-save-recovery-d043-20261110` verificó cinco archivos y recuperación tras commit interrumpido; su turno 7 es ficticio y NO CANÓNICO. La rama de novela sigue en turno 6.
