@@ -56,3 +56,8 @@ Stored owner-provided ADHD, assisted phone-to-collar speech, money/technology/ga
 
 ## Corrección de identidad/robot (10 noviembre 2026)
 Elena es **17**, hermana menor; corrige edad anterior 25. Ambos padres fallecieron en incendio vinculado a las dificultades de voz de Jack. Origen del ahorro: hacking pasado. Moralidad pragmática con autocontrol extremo y rasgos descritos como psicopáticos (personaje ficticio, no diagnóstico). Aster ahora es un robot mediano sin cabina, aún inoperativo, con requisitos documentados de vuelo, sensores, combate automático, pantalla 14K, resistencias y escape de emergencia. UMP no ha sido aclarado. No hay turnos ni eventos nuevos.
+
+
+## Full-text story archive
+
+Owner requires full original text of all actual gameplay. Initialized `chapters/CH-000.transcript.json` empty at turn 0, added `tools/narrative_archive.mjs`, and integrated exact-message requirements in `tools/turn_engine.mjs`. It now requires `player_text` and `narration_messages` and includes the narrator text in the chapter. Regression tests were extended; read-back and separate test execution still required. No player action was fabricated or performed, and the `main` branch remains unchanged.

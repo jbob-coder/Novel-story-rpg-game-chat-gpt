@@ -27,3 +27,8 @@ No real-time background simulation when the assistant is not running. Each new r
 ## Preferred atomic save path
 
 If GitHub Git Data API access permits, prepare all changed files including `game/SAVE_MANIFEST.json` in **one new Git tree and one commit**, then update the branch ref with an expected-head check (non-force). The branch ref update makes the complete snapshot visible atomically and is preferable to the older separate-Contents-API manifest-last method. If that API is unavailable, use the staged manifest-last fallback and strict recovery checks. Never claim either path was used without verifying the new commit and reading back authoritative files.
+
+
+## Literal transcript recovery gate
+
+Read `chapters/CH-NNN.transcript.json` for the current and any past played chapters. Verify exact sequential `TXT-` IDs and that `manifest.last_transcript_sequence`, `manifest.last_transcript_id`, and `state.history.last_transcript_sequence` match. Every played turn needs the player's full message and at least one entire assistant response. A transcript with missing entries or event links is not a coherent checkpoint. **Never reconstruct missing dialogue or paragraphs from summaries, chat memory or intuition**; report that exact words are unavailable. CH-000 currently has zero real turns, so its first transcript is legitimately empty.

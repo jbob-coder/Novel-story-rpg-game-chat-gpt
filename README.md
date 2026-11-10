@@ -24,3 +24,6 @@ For a local copy of the repository (only needed for development), run `python to
 **Initial story status:** CH-000, Day -30. Jack Wilson (21, gray-hat hacker) is at Crosswater Transit Plaza, Meridian Bay. The stated activity is not yet resolved; no completed turns. See `game/STARTING_CAST.md` and `game/STARTING_LOCATIONS.md`.
 
 The repository may be public, but outsiders cannot directly write without GitHub access. Work in reviewable branches; neither draft PR #2 nor the older browser prototype PR #1 is automatically merged into `main`.
+
+
+**Complete played story text:** `chapters/CH-000.transcript.json` holds literal, ordered player and narrator messages, while event and state records hold structured changes. No gameplay scene/turn is recorded yet. See `docs/FULL_NARRATION_ARCHIVE.md`.

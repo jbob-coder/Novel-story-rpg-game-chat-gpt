@@ -1,3 +1,4 @@
+import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -44,6 +45,7 @@ function verifyNarrativeSnapshot(snapshot) {
   if(s.time.day<0) {
     check(!s.world.shockwave_arrived && !s.world.humans_with_powers_observed && !s.world.animals_affected && !s.world.plants_affected && !s.world.environment_affected,"Wave effects before Day 0");
   }
+  checkFullNarration(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -114,6 +116,8 @@ function stageNarrativeTurn(snapshot, turn) {
   m.notes="Staged turn; only a verified Git commit makes this a durable save.";
   next.chapter+=`\n\n## Turn ${t} — Day ${newDay}\n\n**Jack's action:** ${turn.intent.replaceAll("\n"," ")}\n\n**Outcome:** ${turn.outcome.replaceAll("\n"," ")}\n`;
   for(const off of logs.slice(1)) next.chapter+=`\n**Independent event ${off.id} (${off.actor_ids[0]}):** ${off.outcome.replaceAll("\n"," ")}\n`;
+  appendFullTurn(next,turn.player_text,turn.narration_messages);
+  next.chapter += '\n\n### Texto íntegro narrado — turno ' + t + '\n\n' + turn.narration_messages.join('\n\n') + '\n';
   verifyNarrativeSnapshot(next);
   return next;
 }

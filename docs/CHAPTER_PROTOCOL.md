@@ -36,3 +36,10 @@ Chapters are meaningful story arcs, not one day apiece. Preserve chronology, cap
 ### Atomic commit option (preferred)
 
 The order described above is the fallback for individual file writes. Where available, prepare event log + prose + state + manifest together as a single tree/commit and move the working branch with an expected-head lease. This avoids observable mid-turn files; validate the staged contents and read back the completed commit. The setup checkpoint may update character/place metadata while retaining turn 0 and an empty event log: setup is **not** a played action.
+
+
+## Full narration preservation (owner decision D-027; supersedes summary-only practice)
+
+Every in-story scene, every actual player action and every full narrator response (including dialogues and formatting) must be stored **verbatim** and in order in `chapters/CH-NNN.transcript.json`. The structured `events.json` holds causes and effects, not the literal transcript. An opening scene shown before a player input is archived separately by `stageNarratorScene(...)` with a stable unique key and **does not count as a completed turn**. A real turn requires `turn.player_text` and `turn.narration_messages` (full, exact visible message text, not `intent`/`outcome` summaries); the engine rejects omitted content. The chapter Markdown also receives the full narrator text. Technical planning conversations do not belong in the fictional transcript.
+
+A completed turn must stage and atomically commit **five artifacts** together: transcript, events, chapter prose, state, and save manifest. Read all five back by commit SHA and check literal text and counters before saying the narration is saved. If GitHub is unavailable, label the scene **not saved**, do not silently truncate, and do not simulate recovery of lost words. `docs/FULL_NARRATION_ARCHIVE.md` contains detailed instructions. Earlier four-file language is outdated.

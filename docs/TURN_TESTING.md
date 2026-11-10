@@ -19,3 +19,8 @@ The Node test suite uses only Node's built-in runner. The tests stage **hypothet
 ## Currently unsupported
 
 The staging module is intentionally scoped to the existing CH-000 chapter. A new chapter's event log and global event-sequence rollover are **not** implemented; do not use it across chapter boundaries yet. Crossing Day 0 also requires a separate explicit wave event. NPC actions are independently caused by default: their event `caused_by` is empty unless a narrator supplies a proven causal link in a future version. These limitations must be resolved before claiming unrestricted long-term play.
+
+
+## Mandatory full-transcript save (five-file commit)
+
+The turn model now requires the full exact chat text: `player_text` and `narration_messages`. Short `intent`/`outcome` records remain event summaries only. To save a completed turn, commit transcript, event log, chapter, state, and manifest together and verify all five by read-back. For an opening narration before player action, call `stageNarratorScene` and save its snapshot without increasing turn/event counters. The full archive starts empty because no real game turn has occurred. Run `node --test tests/turn_engine.test.mjs` from a checkout. The scripted module cannot capture chat UI automatically: the narrator has to supply exactly the messages it delivers.

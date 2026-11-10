@@ -24,3 +24,8 @@
 
 ## Completion condition
 A turn is complete when player intent has been resolved and presented, state/event/chapter changes are consistent, and save status has been explicitly verified or flagged unsaved. Use `docs/STATE_SCHEMA.md` and `tools/validate_state.py` where available.
+
+
+## Full text recording required
+
+For every actual in-game response, save the exact text shown to the player, preserving paragraph breaks and NPC dialogue, plus the player's exact in-game message. Scene descriptions before the first action also require archiving. Do not substitute event summaries or assume old conversations are stored. Stage/verify archive together with state/events/chapter/manifest before claiming full save. No secrets or unrelated private user data belong in the public game archive.

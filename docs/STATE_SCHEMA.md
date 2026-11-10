@@ -52,3 +52,8 @@ The player may have `appearance`, `personality` (including fictional assisted co
 
 ## Background and Aster update
 Historical fire incident is `player.personal_history.fire_incident` and uses a `BIO-` identifier, not a played `EV-` sequence. `NPC-004` is 17, younger than Jack. `ITEM-ASTER` is `size=mediano`, `functional_state=incompleto`, `spec_ref=game/ASTER_SPEC.md`. All described systems are target specifications, not activated powers. The owner wrote «UMP resistant»; don't equate with EMP without explicit clarification.
+
+
+## Narrative transcript v1
+
+Each chapter uses `chapters/CH-NNN.transcript.json`, with `schema_version=1`, `chapter_id`, `last_entry_sequence`, and ordered `entries`. Each `TXT-000001` record contains `chapter_id`, `turn`, `role` (`player`/`assistant`), `kind` (`player_action`/`scene`/`resolution`), `text` (original literal full message), and `event_ids` (existing causal events). `scene` entries have a unique `source_key`. The `manifest.last_transcript_sequence`/`last_transcript_id` and `state.history.last_transcript_sequence` must equal the archive's count and latest ID. Existing state is turn 0 with an empty archive. Full-text archiving and turn save must use one Git commit; do not overwrite older entries silently.
