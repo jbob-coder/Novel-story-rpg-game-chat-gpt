@@ -34,4 +34,16 @@ class LiteralArchiveValidator(unittest.TestCase):
             x['last_entry_sequence']=1
         issues=self.run_modified(corrupt)
         self.assertTrue(any('transcript' in x for x in issues),issues)
+    def test_post_conversion_xp_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            destination=Path(tmp)/'repo'
+            shutil.copytree(ROOT,destination,ignore=shutil.ignore_patterns('.git','__pycache__'))
+            path=destination/'chapters/CH-000.events.json'
+            record=json.loads(path.read_text(encoding='utf-8'))
+            record['events'][-1]['turn']=7
+            record['events'][-1]['progression_awards']=[{'actor_id':'PLAYER-001','skill':'technology','amount':1}]
+            path.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
+            issues=validate(destination)
+            self.assertTrue(any('RPG XP awards forbidden' in issue for issue in issues),issues)
+
 if __name__=='__main__': unittest.main()

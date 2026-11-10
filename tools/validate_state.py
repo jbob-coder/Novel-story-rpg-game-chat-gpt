@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Validate a ChatGPT-run RPG checkpoint without third-party dependencies.
+"""Validate a ChatGPT-run interactive-novel checkpoint without third-party dependencies.
 
 Usage: python tools/validate_state.py [--root PATH]
-This checks structural continuity, NOT the creative truth of narrative prose.
+Legacy RPG data is archived, not active gameplay. This checks structural continuity only.
 """
 import argparse
 import json
@@ -11,6 +11,9 @@ from pathlib import Path
 
 SKILLS = {"strength", "agility", "endurance", "intellect", "perception", "willpower", "presence"}
 EVENT_ID = re.compile(r"^EV-(\d{6})$")
+
+
+LEGACY_RPG_LAST_TURN = 6  # D-036 was adopted after turn 6.
 
 
 def validate(root: Path) -> list[str]:
@@ -30,7 +33,7 @@ def validate(root: Path) -> list[str]:
 
     for required in (
         "AGENTS.md", "docs/CANON.md", "docs/DECISIONS.md",
-        "docs/NARRATOR_RULES.md", "docs/CHAPTER_PROTOCOL.md",
+        "docs/NARRATIVE_CONTRACT.md", "docs/NARRATOR_RULES.md", "docs/CHAPTER_PROTOCOL.md",
         "docs/PROGRESSION.md", "docs/STATE_SCHEMA.md",
         "docs/RECOVERY.md", "docs/NPC_RULES.md",
         "docs/IMPLEMENTATION_PLAN.md", "docs/HANDOFF.md",
@@ -158,6 +161,9 @@ def validate(root: Path) -> list[str]:
             expect(isinstance(e.get("outcome"), str), f"{eid}: outcome required")
             expect(isinstance(e.get("state_changes"), list), f"{eid}: state_changes must be list")
             expect(isinstance(e.get("progression_awards"), list), f"{eid}: progression_awards must be list")
+            if type(turn) is int and turn > LEGACY_RPG_LAST_TURN:
+                expect(e.get("progression_awards") == [],
+                       f"{eid}: RPG XP awards forbidden after novel conversion (D-036)")
 
     expect([seq for seq, _ in ids] == list(range(1, len(ids) + 1)),
            "event IDs must form unique, gap-free, increasing sequence")
@@ -246,7 +252,7 @@ def main() -> int:
         for msg in problems:
             print(f"- {msg}")
         return 1
-    print("PASS: checkpoint, chapter/event history, chronology and progression are structurally consistent")
+    print("PASS: checkpoint, chapter/event history, chronology and frozen legacy records are structurally consistent")
     return 0
 
 

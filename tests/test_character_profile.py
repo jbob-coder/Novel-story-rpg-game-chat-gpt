@@ -38,15 +38,12 @@ class CharacterProfile(unittest.TestCase):
         self.assertEqual(items['ITEM-ASTER']['functional_state'],'incompleto')
         self.assertEqual(items['ITEM-VOICE-COLLAR']['carried'],True)
         self.assertFalse(self.player['opening_intent']['device_placed'])
-    def test_progression_baseline_and_no_false_turn(self):
+    def test_legacy_xp_and_saved_story(self):
         prog=self.player['progression']
-        self.assertEqual(sum(v['xp'] for v in prog['skills'].values()),46)
-        self.assertEqual(prog['lifetime_skill_xp'],46)
-        self.assertTrue(all(v['last_progress_event_id'] is None for v in prog['skills'].values()))
-        self.assertEqual(prog['attributes']['presence'],3)
-        self.assertEqual(prog['attributes']['willpower'],5)
-        self.assertEqual(self.manifest['last_completed_turn'],0)
-        self.assertEqual(self.manifest['last_event_sequence'],0)
-        self.assertEqual(self.events['events'],[])
+        self.assertEqual(sum(v['xp'] for v in prog['skills'].values()),48)
+        self.assertEqual(prog['lifetime_skill_xp'],48)
+        self.assertGreaterEqual(self.manifest['last_completed_turn'],6)
+        self.assertEqual(self.manifest['last_event_sequence'],len(self.events['events']))
+        self.assertTrue(all(not e['progression_awards'] for e in self.events['events'] if e['turn']>6))
         self.assertEqual(prog['powers'],[])
 if __name__=='__main__':unittest.main()
