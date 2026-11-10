@@ -365,6 +365,188 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000010",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack asks Mara the amount by typing through his speech collar, pays cash, then privately persists in his fictional gadget operation to reach the locally detected devices, establish privileged persistent access and minimize evidence.",
+      "outcome": "Mara charges 7.80 in unspecified local currency, Jack pays with 10 cash and receives 2.20 change. His fiction-only device operation establishes privileged persistent access to nine locally detected devices, without visible alerts in the café; his own session traces are cleared but outside records are not guaranteed erased. The shift nears closing and Mara asks Jack to leave the section in five minutes.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order",
+          "before": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": null,
+            "amount": null,
+            "source_event_id": "EV-000005"
+          },
+          "after": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": true,
+            "amount": null,
+            "source_event_id": "EV-000005",
+            "price": 7.8,
+            "currency": null,
+            "payment_method": "cash",
+            "cash_tendered": 10,
+            "change_returned": 2.2,
+            "paid_event_id": "EV-000010"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET",
+          "before": null,
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-CAFE-BRUMA",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos",
+          "after": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "phase_two_partial_success",
+          "after": "phase_three_local_access_persistent"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": null,
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre."
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 24,
+          "after": 38
+        }
+      ],
+      "progression_awards": [
+        {
+          "actor_id": "PLAYER-001",
+          "skill": "technology",
+          "amount": 1,
+          "reason": "Jack managed his first sustained multi-device fictional gadget session and discovered its practical range and thermal limits.",
+          "before": 15,
+          "after": 16,
+          "rank_before": 3,
+          "rank_after": 3
+        }
+      ]
+    },
+    {
+      "id": "EV-000011",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Collect the money for Jack's order, keep manual record of sales and close Café Bruma on time.",
+      "outcome": "Mara accepts cash, returns the change and records the sale manually, then prepares to close the section in five minutes. She has not identified Jack's hidden device activities.",
+      "known_to": [
+        "NPC-007"
+      ],
+      "caused_by": [
+        "EV-000010"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "knowledge",
+          "fact": "Jack paid his café and pastry bill in cash and remained at the table as closing approached.",
+          "source": "Mara received Jack's payment and observed him in the café."
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.order",
+          "before": "café y dulce servidos; pago no completado",
+          "after": "café y pastelito cobrados en efectivo; recibido 10, cambio 2,20"
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.shift",
+          "before": "quedan unos veinte minutos",
+          "after": "cinco minutos antes del cierre de la zona de mesas"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000012",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish maintenance documentation for the public sign anomaly.",
+      "outcome": "Sora closes the immediate panel inspection as an equipment issue, retaining an ordinary maintenance note and no identification of Jack.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [
+        "EV-000002"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "The immediate Crosswater panel inspection is closed as an unresolved equipment problem without any suspect information.",
+          "source": "Sora completed a routine maintenance check on the public transit sign."
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 6,
+  "last_entry_sequence": 8,
   "entries": [
     {
       "id": "TXT-000001",
@@ -74,6 +74,30 @@
         "EV-000009"
       ],
       "revision_id": "REV-CH000-0001"
+    },
+    {
+      "id": "TXT-000007",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Estas haciendo echo de mensaje. Saco la cartera y le pregunto cuanto es, pago y después que se aleja continuo procesando los resto de los dispositivos hasta tenerlo todos también cree un backdoor y root en los dispositivos sin causar sospechas o alerta también limpia los rastros de los eventos",
+      "event_ids": [
+        "EV-000010"
+      ]
+    },
+    {
+      "id": "TXT-000008",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "—Siete ochenta —responde Mara.\n\nLa pregunta de Jack acaba de salir del pequeño altavoz de su collar, con esa voz artificial tan nítida que obliga a la camarera a levantar la mirada un instante. Pero no hace preguntas. Tiene una caja averiada, un compañero de mal humor y un cierre que se le está haciendo eterno.\n\nJack le entrega un billete de diez. Mara aparta el recibo defectuoso, busca cambio en una cajita bajo el mostrador y deja dos con veinte junto a la taza.\n\n—Gracias. Si luego te sale un cargo raro, ven a buscarme —dice, con una sonrisa torcida—. Aunque, por lo visto, esta máquina ya lleva ventaja.\n\nSe aleja con el dinero y un lápiz detrás de la oreja. En la barra, Iván le enseña el recibo anterior como si fuera una prueba en un juicio.\n\n—Mira la hora que puso.\n\n—No pienso discutir con una impresora —contesta ella.\n\nLas cucharillas chocan contra la loza. Alguien arrastra una silla. La gente continúa con sus conversaciones sin prestarle atención a la mesa del fondo.\n\nEn la pantalla de Jack permanecen los dos registros de la primera intrusión. Después aparece un tercero.\n\nY un cuarto.\n\nLas nuevas entradas no se presentan todas a la vez. Una figura gris pasa a blanco, otra tarda lo suficiente para que un cliente termine de beber y deje unas monedas en el plato. Una mujer cierra su portátil y se pone el abrigo. Su teléfono desaparece en el bolso, pero el punto correspondiente sigue encendido en el panel de Jack.\n\nCinco. Siete. Nueve.\n\nEl dispositivo marca **nueve accesos persistentes**: todos los aparatos que ha podido identificar y alcanzar dentro de esta zona del café. En ellos, el control privilegiado que buscaba figura activo. No significa que domine cada teléfono de Market Row ni que pueda alcanzar los que permanecen fuera de su campo, pero el trabajo de esta mesa ha dejado de ser una simple prueba.\n\nEl estuche se ha calentado bajo el borde de la chaqueta. El programa borra de su propio registro las marcas más evidentes de la sesión. En las mesas cercanas no suena ninguna alarma. Nadie reclama haber recibido un aviso. Eso no dice qué conservarán los sistemas ajenos ni cambia lo que haya quedado escrito en los informes de Crosswater.\n\n—Iván, por favor, la bolsa de basura. La de *dentro*, no la que dejaste junto a la puerta.\n\n—¿Y desde cuándo haces tú el cierre?\n\n—Desde que soy la única que quiere irse a casa.\n\nMara apaga una de las luces del mostrador. La cafetería parece más pequeña de pronto. El pastelito de guayaba continúa en el plato, junto al café. Afuera, el resplandor del terminal apenas se distingue entre los coches que pasan.\n\nLa mujer que había guardado el teléfono en el bolso cruza la puerta. En la pantalla de Jack, su punto sigue brillando.\n\nMara recoge las últimas tazas y se aproxima a la mesa.\n\n—Perdona. Cerramos en cinco minutos —dice, señalando las persianas a medio bajar—. No hace falta que corras con el café, pero sí voy a tener que apagar esta parte del local.\n\nSe queda un momento esperando, con tres tazas vacías apiladas en una mano.",
+      "event_ids": [
+        "EV-000010",
+        "EV-000011",
+        "EV-000012"
+      ]
     }
   ]
 }

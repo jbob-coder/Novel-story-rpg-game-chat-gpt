@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000009"
+    "last_resolved_event_id": "EV-000012"
   },
   "time": {
     "day": -30,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "evening",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 24
+    "elapsed_minutes_since_opening_approx": 38
   },
   "player": {
     "initialized": true,
@@ -37,8 +37,8 @@
       },
       "skills": {
         "technology": {
-          "xp": 15,
-          "last_progress_event_id": null
+          "xp": 16,
+          "last_progress_event_id": "EV-000010"
         },
         "investigation": {
           "xp": 8,
@@ -54,7 +54,7 @@
         }
       },
       "powers": [],
-      "lifetime_skill_xp": 47,
+      "lifetime_skill_xp": 48,
       "milestones": [],
       "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida."
     },
@@ -109,8 +109,8 @@
         "size": "pequeño",
         "location_id": "LOC-CAFE-BRUMA",
         "carried": true,
-        "status": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos",
-        "description": "Gadget experimental que produjo fallos previos en Crosswater y, en Café Bruma, acceso parcial de origen ilícito a dos dispositivos, con dos saldos mostrados. No consta movimiento de dinero ni acceso generalizado. Sin detalles de funcionamiento operativo.",
+        "status": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas",
+        "description": "Gadget ficticio de intrusión con alcance local limitado: nueve dispositivos detectados y accesibles con privilegios en Café Bruma, sin alertas perceptibles. Los registros de sesión propios fueron limpiados; no hay evidencia de borrado de otros sistemas. Sus capacidades son narrativas, sin mecanismos operativos descritos.",
         "narrative_only": true
       },
       {
@@ -174,13 +174,23 @@
         "narrative_only": true,
         "functional_state": "incompleto",
         "spec_ref": "game/ASTER_SPEC.md"
+      },
+      {
+        "id": "ITEM-WALLET",
+        "name": "Cartera personal",
+        "size": "pequeño",
+        "location_id": "LOC-CAFE-BRUMA",
+        "carried": true,
+        "status": "funcional; contiene efectivo para gastos corrientes",
+        "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+        "narrative_only": true
       }
     ],
     "conditions": [],
     "opening_intent": {
-      "status": "phase_two_partial_success",
+      "status": "phase_three_local_access_persistent",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": "La segunda fase se ejecutó parcialmente en dos dispositivos ajenos y mostró dos saldos bancarios sin titulares identificados, sin transferir dinero. La caja de Café Bruma experimentó una anomalía durante la escena.",
+      "outcome": "Jack conservó dos lecturas bancarias previas y obtuvo acceso privilegiado persistente a nueve aparatos detectados en el café. No se observan avisos visibles; no puede probarse borrado universal de evidencia ni acceso a todos los dispositivos de la ciudad.",
       "device_placed": false,
       "information_acquired": true,
       "operational_details": "Not defined; keep narration nontechnical.",
@@ -207,6 +217,20 @@
         "funds_transferred": false,
         "result": "Dos ejecuciones parciales observadas y dos lecturas de saldo; otros dispositivos y duración del acceso desconocidos.",
         "source_event_id": "EV-000005"
+      },
+      "phase_three": {
+        "attempted": true,
+        "completed_local_detected_set": true,
+        "locally_detected_devices": 9,
+        "privileged_persistent_access_count": 9,
+        "includes_previous_two": true,
+        "observed_security_alerts": 0,
+        "local_session_traces_cleared": true,
+        "other_system_logs_erased": "unverified",
+        "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+        "mechanical_method": "unspecified; fiction only",
+        "source_event_id": "EV-000010",
+        "observed_limit": "El estuche se calienta y el local se acerca al cierre."
       }
     },
     "appearance": {
@@ -321,9 +345,15 @@
       ],
       "ordered": true,
       "delivered": true,
-      "paid": null,
+      "paid": true,
       "amount": null,
-      "source_event_id": "EV-000005"
+      "source_event_id": "EV-000005",
+      "price": 7.8,
+      "currency": null,
+      "payment_method": "cash",
+      "cash_tendered": 10,
+      "change_returned": 2.2,
+      "paid_event_id": "EV-000010"
     }
   },
   "world": {
@@ -377,7 +407,8 @@
         "knowledge": [
           "Has a routine maintenance assignment in the plaza.",
           "One transit information sign displayed a brief visible anomaly during the evening rush. (source: Sora's own observation while inspecting the plaza; EV-000002)",
-          "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message. (source: Sora's own maintenance observations during shift; EV-000006)"
+          "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message. (source: Sora's own maintenance observations during shift; EV-000006)",
+          "The immediate Crosswater panel inspection is closed as an unresolved equipment problem without any suspect information. (source: Sora completed a routine maintenance check on the public transit sign.; EV-000012)"
         ],
         "relationships": {},
         "conditions": [],
@@ -392,9 +423,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000006",
+          "event_id": "EV-000012",
           "day": -30,
-          "summary": "Sora records further irregular public-sign behavior as a maintenance incident but has no evidence of who or what caused it."
+          "summary": "Sora closes the immediate panel inspection as an equipment issue, retaining an ordinary maintenance note and no identification of Jack."
         }
       },
       "NPC-003": {
@@ -535,18 +566,21 @@
         "role": "barista del turno de noche en Café Bruma",
         "location_id": "LOC-CAFE-BRUMA",
         "goal": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo.",
-        "independent_plan": "Servir los últimos pedidos, cuadrar el cierre y resolver un problema inesperado en la caja.",
+        "independent_plan": "Avisar del cierre de la sección, recoger las últimas tazas y cuadrar las ventas anotadas a mano.",
         "knowledge": [
           "Jack señaló café y pastelito en el menú.",
           "La caja registradora se bloqueó y produjo un recibo extraño durante el turno.",
-          "El café y el dulce de Jack fueron servidos y su pago sigue pendiente."
+          "El café y el dulce de Jack fueron servidos y su pago sigue pendiente.",
+          "Jack paid his café and pastry bill in cash and remained at the table as closing approached. (source: Mara received Jack's payment and observed him in the café.; EV-000011)",
+          "Jack abonó 7,80 en efectivo y recibió dos con veinte de cambio.",
+          "Se le avisó de que la sección cerraría en cinco minutos."
         ],
         "relationships": {},
         "conditions": [],
         "resources": {
-          "shift": "quedan unos veinte minutos",
-          "register": "intermitente, no registra correctamente el cobro de Jack",
-          "order": "café y dulce servidos; pago no completado"
+          "shift": "cinco minutos antes del cierre de la zona de mesas",
+          "register": "averiada, venta anotada manualmente",
+          "order": "café y pastelito cobrados en efectivo; recibido 10, cambio 2,20"
         },
         "progression": {
           "attributes": null,
@@ -556,9 +590,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000009",
+          "event_id": "EV-000011",
           "day": -30,
-          "summary": "Mara sirve café y dulce, ve fallar la caja y pregunta a Jack si puede pagar en efectivo."
+          "summary": "Mara accepts cash, returns the change and records the sale manually, then prepares to close the section in five minutes. She has not identified Jack's hidden device activities."
         },
         "description": "Práctica, irónica sin crueldad y cuidadosa con el servicio pese al cansancio de fin de turno. No conoce las actividades privadas de Jack."
       }
@@ -690,12 +724,13 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 9,
+    "last_event_sequence": 12,
     "completed_chapters": [],
-    "last_transcript_sequence": 6,
+    "last_transcript_sequence": 8,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
-      "CH000-TURN-0002-CAFE-SECOND-PHASE"
+      "CH000-TURN-0002-CAFE-SECOND-PHASE",
+      "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE"
     ],
     "story_revisions": [
       {
@@ -710,14 +745,14 @@
   },
   "pending": {
     "type": "await_player_action",
-    "location_id": "LOC-CAFE-BRUMA",
     "interaction_mode": "free_text_no_numbered_options",
-    "message": "Mara ha servido el café y el pastelito; la caja no funciona bien y pregunta si Jack puede pagar en efectivo. Dos saldos aparecieron en el gadget; no hay titulares completos ni fondos transferidos.",
-    "last_player_action": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  "
+    "location_id": "LOC-CAFE-BRUMA",
+    "message": "Mara solicita despejar la sección del café en cinco minutos; el pedido está pagado y Jack conserva acceso ficticio persistente a nueve dispositivos detectados, sin garantía sobre huellas externas.",
+    "last_player_action": "Estas haciendo echo de mensaje. Saco la cartera y le pregunto cuanto es, pago y después que se aleja continuo procesando los resto de los dispositivos hasta tenerlo todos también cree un backdoor y root en los dispositivos sin causar sospechas o alerta también limpia los rastros de los eventos"
   },
   "save": {
-    "last_verified_turn": 2,
-    "notes": "Revisión del turno 2 autorizada por el propietario: acceso parcial a dos dispositivos y dos saldos ficticios, interrupción de la caja; pago de café pendiente. No se ha jugado turno 3."
+    "last_verified_turn": 3,
+    "notes": "CH-000 turno 3: Jack paga 7,80 en efectivo, obtiene acceso persistente ficticio a nueve dispositivos locales sin aviso visible, limpia su propio log de sesión, registros externos desconocidos. Mara anuncia cierre inminente."
   },
   "narrative_threads": [
     {
@@ -740,6 +775,12 @@
           "event_id": "EV-000005",
           "summary": "En Café Bruma se lograron dos ejecuciones parciales y se vieron dos saldos de terceros; la duración del acceso y las consecuencias aún están por conocerse.",
           "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000010",
+          "summary": "Jack consiguió acceso persistente privilegiado a nueve aparatos detectables en el entorno del café, sin alertas visibles; el estuche se calentó y no pudo comprobar registros externos.",
+          "visibility": "known"
         }
       ]
     },
@@ -748,9 +789,9 @@
       "owner_actor_id": "NPC-002",
       "question": "¿Qué concluirá la revisión técnica de las anomalías en Crosswater?",
       "scope": "observable",
-      "status": "open",
+      "status": "resolved",
       "origin_event_id": "EV-000002",
-      "resolution_event_id": null,
+      "resolution_event_id": "EV-000012",
       "history": [
         {
           "kind": "open",
@@ -763,6 +804,12 @@
           "event_id": "EV-000006",
           "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
           "visibility": "hidden"
+        },
+        {
+          "kind": "resolve",
+          "event_id": "EV-000012",
+          "summary": "Sora cerró la inspección inmediata como incidencia de equipo y conservó una anotación ordinaria de mantenimiento sin identificar a Jack.",
+          "visibility": "hidden"
         }
       ]
     },
@@ -771,14 +818,20 @@
       "owner_actor_id": "NPC-007",
       "question": "¿Cómo resolverá Mara la avería de la caja y el pago pendiente antes de cerrar el café?",
       "scope": "observable",
-      "status": "open",
+      "status": "resolved",
       "origin_event_id": "EV-000009",
-      "resolution_event_id": null,
+      "resolution_event_id": "EV-000011",
       "history": [
         {
           "kind": "open",
           "event_id": "EV-000009",
           "summary": "Mara entregó el pedido, la caja falló y ofreció aceptar efectivo antes del cierre.",
+          "visibility": "known"
+        },
+        {
+          "kind": "resolve",
+          "event_id": "EV-000011",
+          "summary": "Mara cobró el café y dulce de Jack en efectivo, anotó el pago y avanzó hacia el cierre manual del local.",
           "visibility": "known"
         }
       ]
