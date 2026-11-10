@@ -6,14 +6,15 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": null
+    "last_resolved_event_id": "EV-000004"
   },
   "time": {
     "day": -30,
     "day_zero_event": "cosmic_shockwave",
     "calendar_date": null,
     "time_of_day": "evening",
-    "clock_time": null
+    "clock_time": null,
+    "elapsed_minutes_since_opening_approx": 15
   },
   "player": {
     "initialized": true,
@@ -23,7 +24,7 @@
     "role": "gray-hat hacker",
     "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
-    "location_id": "LOC-CROSSWATER-PLAZA",
+    "location_id": "LOC-CAFE-BRUMA",
     "progression": {
       "attributes": {
         "strength": 2,
@@ -44,8 +45,8 @@
           "last_progress_event_id": null
         },
         "electronics": {
-          "xp": 15,
-          "last_progress_event_id": null
+          "xp": 16,
+          "last_progress_event_id": "EV-000001"
         },
         "gadget_crafting": {
           "xp": 8,
@@ -53,7 +54,7 @@
         }
       },
       "powers": [],
-      "lifetime_skill_xp": 46,
+      "lifetime_skill_xp": 47,
       "milestones": [],
       "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida."
     },
@@ -108,8 +109,8 @@
         "size": "pequeño",
         "location_id": "LOC-CROSSWATER-PLAZA",
         "carried": true,
-        "status": "sin configurar",
-        "description": "Contiene aparatos pequeños no especificados todavía; no se considera instalado ni operativo.",
+        "status": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
+        "description": "El estuche contiene un dispositivo experimental que produjo una anomalía visible en Crosswater. Ninguna infección ni extracción de datos está confirmada. Sin funcionamiento operativo detallado.",
         "narrative_only": true
       },
       {
@@ -177,9 +178,9 @@
     ],
     "conditions": [],
     "opening_intent": {
-      "status": "declared_unresolved",
+      "status": "attempted_unconfirmed",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": null,
+      "outcome": "Interferencias y fallos visuales observados en la plaza; infección, acceso a datos y alcance completo no confirmados.",
       "device_placed": false,
       "information_acquired": false,
       "operational_details": "Not defined; keep narration nontechnical."
@@ -307,7 +308,8 @@
         "independent_plan": "Coordinate dispatch and platform staff before the next scheduled departure.",
         "knowledge": [
           "An evening route is running behind schedule.",
-          "Transit staff are handling routine operations."
+          "Transit staff are handling routine operations.",
+          "A Crosswater display suffered a reported brief anomaly. (source: Report from transit staff at Crosswater terminal; EV-000003)"
         ],
         "relationships": {},
         "conditions": [],
@@ -321,7 +323,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null
+        "last_resolved_action": {
+          "event_id": "EV-000003",
+          "day": -30,
+          "summary": "Lena continues arranging the delayed service and receives a routine notice of a display issue, without identifying the source."
+        }
       },
       "NPC-002": {
         "id": "NPC-002",
@@ -332,7 +338,8 @@
         "goal": "Complete an assigned inspection before the end of the shift.",
         "independent_plan": "Walk a routine service circuit and file maintenance notes.",
         "knowledge": [
-          "Has a routine maintenance assignment in the plaza."
+          "Has a routine maintenance assignment in the plaza.",
+          "One transit information sign displayed a brief visible anomaly during the evening rush. (source: Sora's own observation while inspecting the plaza; EV-000002)"
         ],
         "relationships": {},
         "conditions": [],
@@ -346,14 +353,18 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null
+        "last_resolved_action": {
+          "event_id": "EV-000002",
+          "day": -30,
+          "summary": "Sora notices the transit sign flickering and begins checking the public display failure without knowing Jack caused it."
+        }
       },
       "NPC-003": {
         "id": "NPC-003",
         "name": "Darius Flint",
         "age": 26,
         "role": "delivery courier",
-        "location_id": "LOC-CROSSWATER-PLAZA",
+        "location_id": "LOC-COMMERCIAL-DISTRICT",
         "goal": "Deliver a paid parcel on time and protect his income.",
         "independent_plan": "Navigate the evening transit crowd toward the commercial district.",
         "knowledge": [
@@ -371,7 +382,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null
+        "last_resolved_action": {
+          "event_id": "EV-000004",
+          "day": -30,
+          "summary": "Darius walks into the commercial district, still focused on completing the paid delivery."
+        }
       },
       "NPC-004": {
         "id": "NPC-004",
@@ -538,7 +553,8 @@
         "connected_ids": [
           "LOC-CROSSWATER-PLAZA",
           "LOC-HARBOR-WALK",
-          "LOC-RAILGARDEN-RESIDENTIAL"
+          "LOC-RAILGARDEN-RESIDENTIAL",
+          "LOC-CAFE-BRUMA"
         ]
       },
       "LOC-HARBOR-WALK": {
@@ -585,27 +601,75 @@
           "LOC-WILSON-APARTMENT"
         ],
         "ownership": "uso familiar; no propiedad independiente"
+      },
+      "LOC-CAFE-BRUMA": {
+        "id": "LOC-CAFE-BRUMA",
+        "name": "Café Bruma",
+        "type": "cafetería pública",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Pequeña cafetería de Market Row con mesas interiores, mostrador y acceso desde la calle.",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true
       }
     },
     "active_events": [],
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 0,
+    "last_event_sequence": 4,
     "completed_chapters": [],
-    "last_transcript_sequence": 2
+    "last_transcript_sequence": 4,
+    "completed_turn_keys": [
+      "CH000-PLAYER-0001-CROSSWATER-GLITCH"
+    ]
   },
   "pending": {
     "type": "await_player_action",
-    "active_scene_entry_id": "TXT-000002",
-    "previous_scene_entry_id": "TXT-000001",
-    "narrative_style": "novela interactiva urbana de suspense",
-    "message": "Segunda versión estilística de la apertura guardada. Las opciones son ejemplos; espera cualquier acción libre del jugador.",
-    "last_player_action": null
+    "location_id": "LOC-CAFE-BRUMA",
+    "message": "Jack está en Café Bruma. Una empleada pregunta si quiere algo; el registro del gadget es inconcluso. Sin menú de opciones.",
+    "last_player_action": "6 mira alrededor y busca un lugar donde mucha persona pasan entonces activar el gadget que esta en el estuche compacto de electrónica para causar interferencias con los dispositivos causando un glitch y forzando todo los dispositivos en la area de estar infectados con mi virus después paro en un cafetal para revisar los resultados. \n\nElimina  opciones para coger ahora delante y continúa ",
+    "interaction_mode": "free_text_no_numbered_options"
   },
   "save": {
-    "last_verified_turn": 0,
-    "notes": "TXT-000002 apertura reformulada a estilo inmersivo; TXT-000001 conservada. Ningún turno de jugador completado."
+    "last_verified_turn": 1,
+    "notes": "Turno 1: intento de interferencia en Crosswater, glitches observados, ninguna infección ni exfiltración confirmada; Jack está en Café Bruma. Cinco archivos requieren verificación remota."
   },
-  "narrative_threads": []
+  "narrative_threads": [
+    {
+      "id": "THREAD-000001",
+      "owner_actor_id": "PLAYER-001",
+      "question": "¿Produjo el gadget algún efecto duradero además de interferencias visibles?",
+      "scope": "private",
+      "status": "open",
+      "origin_event_id": "EV-000001",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000001",
+          "summary": "Jack vio fallos aislados, pero no confirmó infección, robo de datos o propagación general.",
+          "visibility": "known"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000002",
+      "owner_actor_id": "NPC-002",
+      "question": "¿Qué concluirá la revisión técnica de las anomalías en Crosswater?",
+      "scope": "observable",
+      "status": "open",
+      "origin_event_id": "EV-000002",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000002",
+          "summary": "Sora empezó a examinar el cartel fallido sin saber de las intenciones de Jack.",
+          "visibility": "hidden"
+        }
+      ]
+    }
+  ]
 }

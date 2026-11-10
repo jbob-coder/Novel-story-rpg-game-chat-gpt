@@ -42,3 +42,6 @@ Any further relationship or biographical changes; date/year; additional supporti
 
 
 | D-030 | Approved at narrative direction | Use an immersive interactive urban-suspense novel style, grounded dialogue and meaningful player-led outcomes. Choices can trigger immediate, persistent and eventual consequences, without predetermined endings; do not speak/act for Jack. |
+
+
+| D-031 | In-game narration controls | The owner requested that numbered choice menus be removed from subsequent narrative responses. Continue as free-form story only; prompts may ask an open question but must not show a selection list unless specifically re-requested. |

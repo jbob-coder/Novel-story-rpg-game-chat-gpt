@@ -53,3 +53,8 @@ When returning to gameplay, pass `save_guard={observed_head: <actual GitHub ref 
 ## Nuevo estilo y desenlaces (D-030)
 
 El usuario pidió volver a intentar la narración con estilo inmersivo y desenlaces basados en decisiones. Se conserva apertura TXT-000001 intacta; en la próxima puesta en escena se puede añadir una revisión TXT-000002 como nueva **scene** de turno 0, sin jugar acción alguna. Reglas en `docs/DECISION_OUTCOMES.md`. Registro `state.narrative_threads=[]` porque **ningún acto elegido produjo aún un hilo**. `tools/consequences.mjs` integra cambios vinculados a eventos mediante `stageNarrativeTurn(... consequence_updates)`; no determinar desenlace antes de elección.
+
+
+## Primer turno (sujeto a confirmación del commit)
+
+Jack intenta activar su gadget entre peatones de Crosswater para provocar interferencias y difundir un virus, luego acude al Café Bruma en Market Row. La narración presenta alteraciones visibles parciales, **ninguna infección ni información bancaria comprometida confirmada**, y una revisión técnica independiente iniciada por Sora. No adjudicar un contagio universal. Jack aprende una limitación del aparato (+1 electrónica propuesto y registrado en evento), está en el café y puede actuar libremente. D-031: **sin menú de opciones a partir de este momento**. Si el commit no se ha leído de vuelta y cotejado, este informe NO prueba guardado; bloquear historia hasta comprobar los cinco archivos.

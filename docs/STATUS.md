@@ -91,3 +91,8 @@ Se verificaron 15/15 escenarios dinámicos al ejecutar código JavaScript obteni
 ## Estilo interactivo y desenlaces causales — D-030
 
 A partir de la petición del usuario, se añadieron reglas para novela interactiva urbana inmersiva, opciones libres y desenlaces inmediatos, persistentes y de largo plazo. `tools/consequences.mjs` y `tests/consequences.test.mjs` gestionan hilos causales `THREAD-` vinculados a eventos adjudicados. La lista comienza vacía. No se crean resultados de la elección hasta que el usuario actúe. Falta probar el flujo de un primer turno real y la recuperación entre capítulos.
+
+
+## CH-000 turno 1 (guardado sujeto a lectura remota)
+
+Primer intento narrativo de activación de gadget en Crosswater con glitches observados pero infección no confirmada. Incluye NPC autónomos Sora/Lena/Darius, traslado a Café Bruma, dos hilos narrativos sin desenlace prefijado, +1 XP de electrónica por aprendizaje y texto completo jugador/narrador. Menús de opciones eliminados por D-031. Este informe no sustituye el read-back obligatorio de los cinco archivos.

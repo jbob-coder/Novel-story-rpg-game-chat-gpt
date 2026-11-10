@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 2,
+  "last_entry_sequence": 4,
   "entries": [
     {
       "id": "TXT-000001",
@@ -22,6 +22,31 @@
       "text": "## Capítulo 0 — Una noche cualquiera\n\n*Meridian Bay · Crosswater Transit Plaza · Día −30*\n\nEl panel de salidas cambia otra vez.\n\nUn pitido breve. Varias miradas al techo. Luego el rumor de siempre: pasos rápidos, ruedas de maletas sobre las juntas del suelo y el motor de un autobús que lleva demasiado tiempo detenido. Más allá de los edificios, las luces del puerto se estiran sobre el agua oscura.\n\n—No voy a darles una hora que todavía no tengo —responde una mujer junto a la entrada del terminal.\n\nEn su placa se lee **L. Ortiz**. Habla con firmeza, aunque los pasajeros que la rodean no parecen satisfechos. A unos metros, un técnico de mantenimiento revisa las instalaciones sin apartarse de su trabajo. Un repartidor intenta abrirse paso entre la gente, pendiente del paquete que lleva y del tiempo que pierde.\n\nNada de eso tiene que ver necesariamente con Jack. La ciudad sigue ocupada con sus propios problemas.\n\nJack Wilson está en la plaza. Lleva su teléfono, el collar que da voz a los mensajes que él decida escribir y un estuche compacto de electrónica. El objetivo que lo trajo hasta aquí aún no ha pasado de ser un plan. Sus aparatos siguen sin instalar; nadie ha perdido información por su causa.\n\nA su alrededor hay personas distraídas, trabajadores atentos a sus obligaciones y caminos que llevan a otras partes de Meridian Bay. Algunas decisiones podrían traer dinero. Otras, información, contactos o complicaciones. Ninguna garantiza nada.\n\nLa pantalla vuelve a emitir un aviso de retraso.\n\n**¿Qué hace Jack?**\n\n1. **Seguir con su plan:** examinar la situación y decidir si vale la pena intentar usar el equipo que lleva.\n2. **Observar primero:** estudiar el ambiente y las personas sin intervenir.\n3. **Acercarse al personal del terminal:** hablar con la supervisora o el técnico; tú decides qué escribe Jack en el teléfono.\n4. **Ir a Market Row:** visitar a Noah Vale, su contacto de electrónica.\n5. **Volver a Railgarden:** regresar al taller y continuar el proyecto Aster.\n6. **Otra acción:** cualquier cosa que quieras intentar, aunque no aparezca aquí.",
       "event_ids": [],
       "source_key": "ch000-opening-immersive-v2"
+    },
+    {
+      "id": "TXT-000003",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "role": "player",
+      "kind": "player_action",
+      "text": "6 mira alrededor y busca un lugar donde mucha persona pasan entonces activar el gadget que esta en el estuche compacto de electrónica para causar interferencias con los dispositivos causando un glitch y forzando todo los dispositivos en la area de estar infectados con mi virus después paro en un cafetal para revisar los resultados. \n\nElimina  opciones para coger ahora delante y continúa ",
+      "event_ids": [
+        "EV-000001"
+      ]
+    },
+    {
+      "id": "TXT-000004",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "### Capítulo 0 · El primer fallo\n\nLa corriente de gente se estrecha entre el acceso a los andenes y las tiendas. Los pasajeros que salen del terminal se cruzan con quienes intentan entrar; un hombre aparta una maleta del paso y una niña tira de la manga de su madre para no perderla entre los abrigos.\n\nEs el punto más concurrido de Crosswater.\n\nJack observa el movimiento y pone en marcha el pequeño dispositivo que lleva en el estuche. Durante unos segundos no ocurre nada visible.\n\nEntonces, el panel de salidas parpadea.\n\nLa hora de un tren se convierte en una línea de símbolos sin sentido y desaparece. Cerca de un quiosco, una mujer golpea dos veces la pantalla de su teléfono.\n\n—Ahora no… ¿qué le pasa? —murmura.\n\nOtro pasajero mira su móvil, desconcertado. Pero a su lado alguien sigue hablando por teléfono como si nada. La alteración es real; su alcance, no. Jack ha intentado propagar su virus a los aparatos de la zona, pero el efecto observado no demuestra que haya infectado ninguno, mucho menos todos.\n\nEl técnico de mantenimiento levanta la vista hacia el panel defectuoso. Deja a un lado su inspección rutinaria y se dirige a comprobarlo. Al fondo continúa la discusión por el retraso del transporte. Nadie señala a Jack ni parece conocer sus intenciones.\n\nJack se aleja hacia Market Row mientras el flujo de pasajeros sigue avanzando. Las fachadas de cristal dan paso a escaparates pequeños y mesas bajo toldos oscuros. En una esquina encuentra **Café Bruma**, una cafetería estrecha desde la que todavía se adivina el resplandor del terminal.\n\nDentro huele a café recién molido y pan caliente. Un ventilador hace vibrar suavemente las hojas de un periódico sobre la barra. Jack se instala en una mesa libre y revisa el registro de su gadget.\n\n**Activación: registrada. Anomalías cercanas: observadas. Dispositivos infectados: ninguno confirmado.**\n\nNo hay una lista fiable de aparatos comprometidos ni evidencia de que el programa haya permanecido en ellos. El ensayo ha provocado una interrupción visible, pero la parte más ambiciosa del plan sigue sin demostrarse.\n\nUna empleada se acerca con una carta entre las manos.\n\n—Buenas noches. ¿Te traigo algo?\n\nLa pantalla del teléfono sigue mostrando el resultado incompleto. Fuera, la ciudad continúa con su noche.",
+      "event_ids": [
+        "EV-000001",
+        "EV-000002",
+        "EV-000003",
+        "EV-000004"
+      ]
     }
   ]
 }

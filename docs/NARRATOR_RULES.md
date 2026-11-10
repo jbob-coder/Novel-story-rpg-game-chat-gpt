@@ -34,3 +34,8 @@ For every actual in-game response, save the exact text shown to the player, pres
 ## Consecuencias y desenlaces no prefijados
 
 El estilo narrativo actual es **novela interactiva urbana de suspense**, basado en escenas y diálogos, no en informes de actividad. Al resolver una elección, separar sucesos inmediatos, efectos persistentes y asuntos abiertos que podrán resolverse en episodios futuros; registrar cada uno mediante eventos y `state.narrative_threads` si corresponde. Los hilos se crean o terminan solo con eventos reales y posibles resultados del entorno, nunca por una opción de menú no elegida. NPCs pueden oponerse, colaborar, descubrir o ignorar acciones según su información real. Presentar opciones ilustrativas sin coaccionar al jugador; las consecuencias finales se determinan después de sus decisiones y se guardan bajo D-028.
+
+
+## D-031 — Sin menús de opciones durante la partida
+
+Tras la primera acción del jugador, no volver a presentar opciones numeradas, selecciones A/B/C o menús. Narrar únicamente la escena, consecuencias y oportunidades perceptibles; cerrar con una pregunta abierta solo si ayuda. El jugador escribe acciones libres y no necesita seleccionar de una lista. Esta preferencia sustituye las sugerencias de opciones en normas anteriores.

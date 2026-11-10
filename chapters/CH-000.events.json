@@ -1,5 +1,140 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "events": []
+  "events": [
+    {
+      "id": "EV-000001",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack chooses a crowded passage in Crosswater, activates a carried experimental gadget to try to disrupt and infect nearby devices, then leaves for a cafe in Market Row to inspect outcomes. He also requests no more numbered choices.",
+      "outcome": "An isolated burst of visible glitches affects public signage and some nearby phones; no device infection, data theft, or blanket compromise is confirmed. Jack reaches Café Bruma and reviews inconclusive device results while transit staff begin to check anomalies.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "route": [
+            "LOC-CROSSWATER-PLAZA",
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-CAFE-BRUMA"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "sin configurar",
+          "after": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "declared_unresolved",
+          "after": "attempted_unconfirmed"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": null,
+          "after": 15
+        }
+      ],
+      "progression_awards": [
+        {
+          "actor_id": "PLAYER-001",
+          "skill": "electronics",
+          "amount": 1,
+          "reason": "Jack learned from first-hand observation that the prototype causes visible instability but does not provide evidence of successful device infection.",
+          "before": 15,
+          "after": 16,
+          "rank_before": 3,
+          "rank_after": 3
+        }
+      ]
+    },
+    {
+      "id": "EV-000002",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue an ordinary inspection and inspect unexpected display anomalies.",
+      "outcome": "Sora notices the transit sign flickering and begins checking the public display failure without knowing Jack caused it.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "One transit information sign displayed a brief visible anomaly during the evening rush.",
+          "source": "Sora's own observation while inspecting the plaza"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000003",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-001"
+      ],
+      "kind": "independent_actor",
+      "intent": "Address the route delay while handling ordinary operations.",
+      "outcome": "Lena continues arranging the delayed service and receives a routine notice of a display issue, without identifying the source.",
+      "known_to": [
+        "NPC-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-001",
+          "field": "knowledge",
+          "fact": "A Crosswater display suffered a reported brief anomaly.",
+          "source": "Report from transit staff at Crosswater terminal"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000004",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Carry the paid parcel toward Market Row.",
+      "outcome": "Darius walks into the commercial district, still focused on completing the paid delivery.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-003",
+          "field": "location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-COMMERCIAL-DISTRICT"
+        }
+      ],
+      "progression_awards": []
+    }
+  ]
 }
