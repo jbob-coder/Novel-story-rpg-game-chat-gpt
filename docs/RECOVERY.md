@@ -22,3 +22,8 @@ Update `docs/HANDOFF.md` with date, branch, manifest turn/event ID, chapter/day,
 
 ## Limits
 No real-time background simulation when the assistant is not running. Each new response can advance in-game offscreen activity based on elapsed fictional time. A public repo must contain only intentionally public fictional story data.
+
+
+## Preferred atomic save path
+
+If GitHub Git Data API access permits, prepare all changed files including `game/SAVE_MANIFEST.json` in **one new Git tree and one commit**, then update the branch ref with an expected-head check (non-force). The branch ref update makes the complete snapshot visible atomically and is preferable to the older separate-Contents-API manifest-last method. If that API is unavailable, use the staged manifest-last fallback and strict recovery checks. Never claim either path was used without verifying the new commit and reading back authoritative files.

@@ -12,6 +12,10 @@
 | D-008 | Approved | ChatGPT reads repository world and chapter records, narrates events, accepts the player's input, resolves consequences, then updates story and state when authorized tool access permits. |
 | D-009 | Approved | The RPG must include character skills and progression, not only narrative choices. |
 | D-010 | Approved | Project documentation must support resuming after context loss without inventing, duplicating or contradicting saved events. |
+| D-011 | Approved | Alternate modern Earth with fictionalized cities and institutions. |
+| D-012 | Owner delegated | Assistant selects initial region and start scene; chose Meridian Bay / Crosswater Transit Plaza (fictional). |
+| D-013 | Approved player setup | Jack Wilson, age 21, gray-hat hacker. |
+| D-014 | Declared in-game intent | At the transit plaza, Jack intends to use unspecified remote electronics for theft of payment and personal information. No result or device placement confirmed. |
 
 ## Superseded implementation direction
 
@@ -19,4 +23,4 @@ The browser prototype in PR #1 was a mistaken interpretation of the delivery for
 
 ## Open decisions
 
-Player identity and location; character creation details; date/year; initial supporting cast; world geography and institutions; the exact powers and ecological changes; exact attribute/skill/XP thresholds, global levels and resolution mechanics (numerical drafts in PROGRESSION.md are provisional). Leave unresolved until developed in the story or explicitly approved. Assistant suggestions are not approval.
+Player's additional background and relationships; date/year; further supporting cast; geography and institutions beyond Meridian Bay; the exact powers and ecological changes; exact attribute/skill/XP thresholds, global levels and resolution mechanics (numerical drafts in PROGRESSION.md are provisional). Leave unresolved until developed in the story or explicitly approved. Assistant suggestions are not approval.

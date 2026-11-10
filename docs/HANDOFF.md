@@ -1,30 +1,24 @@
-# Verified handoff — foundation only
+# Verified handoff — opening setup recovered
 
-**Project:** ChatGPT-run Living Superhuman World  
-**Working branch:** `work/chat-narrative-foundation` (proposed in draft PR #2; `main` is not the playable save)  
-**Current scene:** `CH-000`, Day -30, pre-shockwave ordinary life  
-**Last completed gameplay turn:** 0  
-**Last event:** none  
-**Player character:** not yet defined  
-**Immediate player input needed:** Character identity/background/starting situation (partial answers accepted)
+**Branch:** `work/chat-narrative-foundation` (draft PR #2; `main` unchanged)  
+**Chapter/time:** CH-000, Day -30, evening; no exact clock time chosen  
+**Saved gameplay turns:** 0; last event: none  
+**Character:** PLAYER-001 Jack Wilson, 21, gray-hat hacker  
+**Place:** LOC-CROSSWATER-PLAZA, Crosswater Transit Plaza, Meridian Bay (alternate modern Earth)  
+**Pending player action:** Jack described intent to set up unspecified electronic equipment for remote theft of payment/personal information. No device placement, data acquisition or consequence was resolved.  
+**Next response:** Narrate a concrete, human-scale opening scene; don't ask for already provided identity/place; ask only for Jack's next free-form action.
 
-## Confirmed lore
-Cosmic shockwave arrives Day 0, affects humans/animals/plants/environment. Human awakenings immediate/delayed/never; no forced hero/villain labels. ChatGPT narrates and adjudicates; GitHub stores chapters and saves.
+## Independent actors, still at opening position
+- NPC-001 Lena Ortiz, transit supervisor, addressing service delay.
+- NPC-002 Sora Venn, maintenance technician, routine inspection.
+- NPC-003 Darius Flint, courier, delivery deadline.
+None knows Jack's intent or has taken a recorded action. Read state for exact locations, independent plans, and knowledge.
 
-## Engineering work
-- Continuity documents and provisional progression rules are proposed on this working branch.
-- Check `game/SAVE_MANIFEST.json`, `game/STATE.json` and `chapters/CH-000.events.json` before playing.
-- **Verified:** 18 committed repository files read back; 14/14 direct consistency checks passed for initial state, chronology, chapter/event/manifest, progression and missing player input.
-- **Unverified:** The Python validator script has been committed but was not executed on a local checkout in this environment (GitHub access from container unavailable). No actual gameplay or interrupted-save recovery test has run.
+## RPG
+Provisional opening stats: technology 15 XP, investigation 8 XP, electronics 3 XP, total 26; these are **background baseline**, not gameplay XP. No superhuman abilities, and no power can precede Day 0. Do not treat Jack as predetermined hero/villain.
 
-## Narration preparation
-- `docs/WORLD_BIBLE.md`: confirmed Earth shockwave timeline plus proposed ordinary-life social context and causal rules.
-- `docs/NARRATIVE_STANDARD.md`: scene-specific quality and continuity checks.
-- `chapters/CH-000.PREP.md`: adaptive, unplayed opening scene prep and examples; **nothing there is established story history**.
-- Resume by reading these after the saved manifest, primary state, current chapter and event records. Do not force the player into an example opening.
+## Continuity
+Start with `AGENTS.md`; read manifest, state, CH-000, events, canon and starting references. Character setup metadata is not a turn. The event log remains empty and manifest turn stays 0. No user-level details beyond intended fictional game information should be stored. The first actual action must be narrated, adjudicated, logged, and saved without duplication.
 
-## Unknown and unapproved
-Player details, starting city/year, initial cast, world geography, exact powers, XP balancing, skill rank thresholds, NPC characteristics and further lore. Numeric progression values are proposals, not approved canon.
-
-## Next action
-Resume CH-000 only after verifying manifest and state; accept user's character input. Narrate a scene, log the action and NPC/world consequences, update the checkpoint, then mark the save verified. Never claim story turns occurred before they have.
+## Pending validation / milestones
+Verify the new branch commit and read back files; test full gameplay turn and cold restart later. Do not claim NPC autonomy or cross-session replay is proven by a setup checkpoint.

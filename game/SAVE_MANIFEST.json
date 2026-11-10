@@ -7,5 +7,6 @@
   "last_event_id": null,
   "state_schema_version": 2,
   "status": "checkpoint",
-  "notes": "Initial coherent CH-000 state schema v2, progression empty, no player turns. Manifest written after foundation files."
+  "setup_revision": 1,
+  "notes": "Atomic setup checkpoint: Jack Wilson and Meridian Bay established. No completed story turns and no recorded outcomes."
 }

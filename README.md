@@ -21,6 +21,6 @@ Read verified state → narrate → accept a free-form action → resolve player
 ## Developer/QA validator
 For a local copy of the repository (only needed for development), run `python tools/validate_state.py` with Python 3. The validator checks checkpoint format and references, not whether prose is good or a scene was fairly adjudicated.
 
-**Initial story status:** CH-000, Day -30, no player-created character or completed turns.
+**Initial story status:** CH-000, Day -30. Jack Wilson (21, gray-hat hacker) is at Crosswater Transit Plaza, Meridian Bay. The stated activity is not yet resolved; no completed turns. See `game/STARTING_CAST.md` and `game/STARTING_LOCATIONS.md`.
 
 The repository may be public, but outsiders cannot directly write without GitHub access. Work in reviewable branches; neither draft PR #2 nor the older browser prototype PR #1 is automatically merged into `main`.

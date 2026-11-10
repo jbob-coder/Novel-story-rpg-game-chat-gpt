@@ -32,3 +32,8 @@ No live turn, independent actor event or long-duration continuity replay has yet
 
 ## Next action
 Validate this checkpoint, then begin character setup and CH-000. Save the first actual action as a causal event, derive any appropriate skill progress and verify the next manifest before continuing.
+
+
+## Opening-state repair — 2026-11-09 (owner authorized)
+
+Jack's previously confirmed name, age, role, opening intent, original alternate-Earth coastal city and transit plaza, and three supporting NPCs were moved into structured `game/STATE.json`, chapter and reference documents. The character profile contains **provisional** background skill values. No device placement, stolen data, gameplay turn, or independent NPC outcome is fabricated. An atomic Git commit is used for this checkpoint if the branch lease succeeds. Full turn execution and cold-resume remain future acceptance gates. Older statements above that the player or location are undefined are superseded by this repair section.

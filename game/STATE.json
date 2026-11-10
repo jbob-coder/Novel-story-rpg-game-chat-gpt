@@ -12,35 +12,220 @@
     "day": -30,
     "day_zero_event": "cosmic_shockwave",
     "calendar_date": null,
-    "time_of_day": null
+    "time_of_day": "evening",
+    "clock_time": null
   },
   "player": {
-    "initialized": false,
-    "id": null,
-    "name": null,
-    "location_id": null,
-    "background": null,
+    "initialized": true,
+    "id": "PLAYER-001",
+    "name": "Jack Wilson",
+    "age": 21,
+    "role": "gray-hat hacker",
+    "background": "Self-described gray-hat hacker; technical experience predates the story. Personal relationships, legal history, finances, and housing are not established.",
+    "background_origin": "owner-confirmed",
+    "location_id": "LOC-CROSSWATER-PLAZA",
     "progression": {
-      "attributes": null,
-      "skills": {},
+      "attributes": {
+        "strength": 2,
+        "agility": 3,
+        "endurance": 2,
+        "intellect": 4,
+        "perception": 4,
+        "willpower": 3,
+        "presence": 2
+      },
+      "skills": {
+        "technology": {
+          "xp": 15,
+          "last_progress_event_id": null
+        },
+        "investigation": {
+          "xp": 8,
+          "last_progress_event_id": null
+        },
+        "electronics": {
+          "xp": 3,
+          "last_progress_event_id": null
+        }
+      },
       "powers": [],
-      "lifetime_skill_xp": 0,
-      "milestones": []
+      "lifetime_skill_xp": 26,
+      "milestones": [],
+      "baseline_note": "Provisional starting XP inferred from background, not awards earned during play; no prior event IDs."
     },
     "knowledge": [],
     "relationships": {},
     "inventory": [],
-    "conditions": []
+    "conditions": [],
+    "opening_intent": {
+      "status": "declared_unresolved",
+      "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
+      "outcome": null,
+      "device_placed": false,
+      "information_acquired": false,
+      "operational_details": "Not defined; keep narration nontechnical."
+    }
   },
   "world": {
+    "setting": "Alternate modern Earth",
     "shockwave_arrived": false,
     "humans_with_powers_observed": false,
     "animals_affected": false,
     "plants_affected": false,
     "environment_affected": false,
-    "actors": {},
-    "factions": {},
-    "locations": {},
+    "actors": {
+      "NPC-001": {
+        "id": "NPC-001",
+        "name": "Lena Ortiz",
+        "age": 33,
+        "role": "transit operations supervisor",
+        "location_id": "LOC-TRANSIT-TERMINAL",
+        "goal": "Maintain safe, on-time evening transit while addressing a late service disruption.",
+        "independent_plan": "Coordinate dispatch and platform staff before the next scheduled departure.",
+        "knowledge": [
+          "An evening route is running behind schedule.",
+          "Transit staff are handling routine operations."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "work_authority": "transit operations only"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null
+      },
+      "NPC-002": {
+        "id": "NPC-002",
+        "name": "Sora Venn",
+        "age": 29,
+        "role": "station maintenance technician",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "goal": "Complete an assigned inspection before the end of the shift.",
+        "independent_plan": "Walk a routine service circuit and file maintenance notes.",
+        "knowledge": [
+          "Has a routine maintenance assignment in the plaza."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "work_order": "routine inspection"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null
+      },
+      "NPC-003": {
+        "id": "NPC-003",
+        "name": "Darius Flint",
+        "age": 26,
+        "role": "delivery courier",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "goal": "Deliver a paid parcel on time and protect his income.",
+        "independent_plan": "Navigate the evening transit crowd toward the commercial district.",
+        "knowledge": [
+          "He has a delivery deadline."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "parcel": "one unremarkable delivery, contents unspecified"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null
+      }
+    },
+    "factions": {
+      "ORG-MERIDIAN-TRANSIT": {
+        "id": "ORG-MERIDIAN-TRANSIT",
+        "name": "Meridian Transit Service",
+        "kind": "public transit organization",
+        "goal": "Provide safe and timely city transportation",
+        "resources": "limited evening operational staff",
+        "known_members": [
+          "NPC-001",
+          "NPC-002"
+        ],
+        "player_reputation": "unknown",
+        "independent_plan": "Resolve delays and routine maintenance without waiting for the player."
+      }
+    },
+    "locations": {
+      "CITY-MERIDIAN-BAY": {
+        "id": "CITY-MERIDIAN-BAY",
+        "name": "Meridian Bay",
+        "type": "coastal_city",
+        "setting": "Alternate modern Earth",
+        "description": "An original working harbor city with a commercial center, transit network, waterfront, and residential neighborhoods.",
+        "parent_id": null,
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-HARBOR-WALK",
+          "LOC-COMMERCIAL-DISTRICT"
+        ]
+      },
+      "LOC-CROSSWATER-PLAZA": {
+        "id": "LOC-CROSSWATER-PLAZA",
+        "name": "Crosswater Transit Plaza",
+        "type": "public_transit_plaza",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Well-lit plaza with pedestrian traffic, transit information boards, scattered shops, a glass station entrance, and a distant harbor view.",
+        "connected_ids": [
+          "LOC-TRANSIT-TERMINAL",
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-HARBOR-WALK"
+        ],
+        "public_area": true
+      },
+      "LOC-TRANSIT-TERMINAL": {
+        "id": "LOC-TRANSIT-TERMINAL",
+        "name": "Crosswater Terminal",
+        "type": "transit_terminal",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Central train and bus connections adjoining the plaza.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA"
+        ]
+      },
+      "LOC-COMMERCIAL-DISTRICT": {
+        "id": "LOC-COMMERCIAL-DISTRICT",
+        "name": "Market Row",
+        "type": "commercial_district",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Small shops, offices, food stalls, and side streets near the plaza.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-HARBOR-WALK"
+        ]
+      },
+      "LOC-HARBOR-WALK": {
+        "id": "LOC-HARBOR-WALK",
+        "name": "Harbor Walk",
+        "type": "waterfront_walk",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "A public pedestrian route leading from the transit area toward the waterfront.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-COMMERCIAL-DISTRICT"
+        ]
+      }
+    },
     "active_events": [],
     "secrets": {}
   },
@@ -49,12 +234,12 @@
     "completed_chapters": []
   },
   "pending": {
-    "type": "character_setup",
-    "message": "Describe your character and where their everyday life begins; partial details are fine.",
+    "type": "narrate_opening_without_advancing_turn",
+    "message": "Present Jack at Crosswater Transit Plaza on Day -30 in the evening. He has declared his plan, but do not assume a device was placed or any payment data captured. Narrate other people acting independently. Ask for Jack's next free-form action.",
     "last_player_action": null
   },
   "save": {
     "last_verified_turn": 0,
-    "notes": "Initial v2 continuity and progression checkpoint. No player turn completed."
+    "notes": "Initial game-setup checkpoint. Player, opening place and relevant actors are established; no actions resolved, no XP earned during play, no events recorded."
   }
 }

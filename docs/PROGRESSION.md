@@ -29,3 +29,8 @@ Use fiction, capabilities, circumstances, preparation, opposition and establishe
 
 ## Pending design decisions
 Attributes/XP thresholds and caps; whether to introduce dice or hidden checks; long-term skill specialization; how attributes change; training costs; power taxonomy and upgrades; whether a visible overall level is needed. Do not claim user approval of these numeric choices.
+
+
+## Opening character baseline (setup; not gameplay XP awards)
+
+Jack Wilson's self-described gray-hat hacking background supports a **provisional** starting baseline of technology 15 XP (rank 3), investigation 8 XP (rank 2), and electronics 3 XP (rank 1), total 26. The seven starting attributes appear in `game/STATE.json`. These were **inferred for play balance**, not explicitly selected by the owner and not earned through a resolved story turn. `last_progress_event_id` is null for baseline skills. Subsequent XP must be tied to event IDs and justified learning. The character may be revised before gameplay if the user wants a different capability profile.

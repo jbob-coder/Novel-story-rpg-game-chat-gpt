@@ -15,7 +15,7 @@ Do not narrate the cosmic event as a known fact to civilians before they could d
 
 ## B. Civilian society baseline — contextual inference, not newly approved canon
 
-At Day -30, treat Earth as a recognizable **ordinary society**: people need food, shelter, transport, health care, education, work, companionship and security. Their options vary by region and circumstance. The exact calendar year, technology availability, country and geography are **not chosen**; do not silently assign a world-wide rule based on one country.
+At Day -30, treat Earth as a recognizable **ordinary society**: people need food, shelter, transport, health care, education, work, companionship and security. Their options vary by region and circumstance. The specific calendar year and global political geography are **not chosen**; the opening setting, Meridian Bay, is an original modern coastal city. Do not silently assume the laws of a real country or a fixed worldwide date.
 
 The narrator may derive a local setting after the player selects (or implicitly establishes) a region. The following **functional roles** make a community coherent without requiring a locked city or cast:
 
@@ -61,6 +61,11 @@ After Day 0, possibilities broaden: a person hides a new ability; institutions d
 
 ## F. Boundaries and unresolved worldbuilding
 
-Not established: starting nation, town, year, map, politics, laws, languages, currencies, named characters or institutions, power taxonomy, biological rules, cosmic motives, organizations or future factions. These require owner choices or clearly documented reversible in-story establishment. Never copy another game's storyline.
+Still not established: nation, exact calendar year, worldwide map, politics, laws, languages, currencies, power taxonomy, biological rules, cosmic motives, or future factions. The **starting city, nearby places, three initial NPCs and transit institution** are now established in the fictional scenario; see the starting-cast and starting-locations records. These require owner choices or clearly documented reversible in-story establishment. Never copy another game's storyline.
 
 When a player provides only minimal background, choose a **small, ordinary, reversible local scene** consistent with what they said. State material setting assumptions, avoid forcing a personal biography or irreversible character trait, and save details *only when established through narration and user input*.
+
+
+## G. Established starting city and scene
+
+The story opens in **Meridian Bay**, an original port city on alternate modern Earth, at **Crosswater Transit Plaza** on Day -30 in the evening. The city is described in [starting locations](../game/STARTING_LOCATIONS.md). The player character and initial independent actors are in [starting cast](../game/STARTING_CAST.md). Any technological crime remains fictional narrative context without specific methods or a presumed success. **No story turn has yet been resolved.**

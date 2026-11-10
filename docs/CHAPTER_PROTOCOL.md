@@ -31,3 +31,8 @@ Chapters are meaningful story arcs, not one day apiece. Preserve chronology, cap
 - No character knows an event merely because the narrator knows it.
 - No skill ranks/XP are arbitrarily rewritten or granted without causal recorded evidence; powers and ordinary skills stay separate.
 - All story/player data committed to public GitHub must be intended fictional data.
+
+
+### Atomic commit option (preferred)
+
+The order described above is the fallback for individual file writes. Where available, prepare event log + prose + state + manifest together as a single tree/commit and move the working branch with an expected-head lease. This avoids observable mid-turn files; validate the staged contents and read back the completed commit. The setup checkpoint may update character/place metadata while retaining turn 0 and an empty event log: setup is **not** a played action.
