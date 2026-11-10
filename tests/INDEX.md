@@ -2,6 +2,7 @@
 
 - [tests/save_gate.test.mjs](save_gate.test.mjs)
 - [tests/turn_engine.test.mjs](turn_engine.test.mjs)
+- [Pruebas de efectos causales (D-040)](state_changes.test.mjs)
 - [tests/test_backstory_aster.py](test_backstory_aster.py)
 - [tests/test_character_profile.py](test_character_profile.py)
 - [tests/test_starting_checkpoint.py](test_starting_checkpoint.py)

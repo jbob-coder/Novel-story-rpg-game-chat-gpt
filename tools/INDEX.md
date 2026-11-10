@@ -1,6 +1,7 @@
 # Herramientas, validación y control
 
 - [tools/turn_engine.mjs](turn_engine.mjs)
+- [Motor de cambios causales de estado (D-040)](state_changes.mjs)
 - [tools/narrative_archive.mjs](narrative_archive.mjs)
 - [tools/save_gate.mjs](save_gate.mjs)
 - [tools/validate_state.py](validate_state.py)

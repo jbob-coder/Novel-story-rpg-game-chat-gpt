@@ -4,6 +4,7 @@
 - [docs/NPC_RULES.md](../NPC_RULES.md)
 - [docs/STATE_SCHEMA.md](../STATE_SCHEMA.md)
 - [tools/turn_engine.mjs](../../tools/turn_engine.mjs)
+- [Motor de cambios causales (D-040)](../../tools/state_changes.mjs)
 - [tools/narrative_archive.mjs](../../tools/narrative_archive.mjs)
 - [Aster — diseño y límites](../../game/ASTER_SPEC.md)
 

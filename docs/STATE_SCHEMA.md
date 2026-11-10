@@ -61,3 +61,23 @@ Each chapter uses `chapters/CH-NNN.transcript.json`, with `schema_version=1`, `c
 ## D-036 migration boundary: interactive novel, not RPG
 
 The schema v2 `player.progression` shape and historic event `progression_awards` fields are **read-only legacy compatibility**. They may remain to pass existing validators and reconstruct old saves, but must **never be incremented, used as skill checks or exposed as gameplay** after D-036. Abilities/learning are tracked through factual world events, character notes, inventory, relationships and narrative threads. Any later removal of these schema fields requires a separately tested migration across state, event logs, tools and manifest. Do not rewrite historical events. The authoritative narrator must read `docs/NARRATIVE_CONTRACT.md`.
+
+
+## D-040 — cambios cualitativos verificables desde el turno 7
+
+La prosa no actualiza automáticamente el estado. Toda modificación material de Jack debe declararse en **turn.changes**; para NPC, en **turn.offscreen[].changes**. Si no hubo cambios materiales, puede ser una lista vacía. Omitir un cambio narrado es un defecto de continuidad que ningún validador puede descubrir solo leyendo datos estructurados.
+
+Cada cambio se registra dentro del evento del actor con su valor anterior comprobable. Campos admitidos:
+
+- **location_id**: before, after y ruta opcional. La ruta solo utiliza lugares conocidos conectados y mueve también los objetos que el actor lleva.
+- **inventory_item**: item_id, before y after. Con before=null se incorpora un objeto; con after=null se elimina o cede. Un traspaso entre Jack y un NPC exige un evento de salida y otro de entrada en el mismo turno. Los identificadores de objetos son únicos.
+- **relationship**: target_actor_id, before, after. Se modifica solo la perspectiva de quien protagoniza el evento.
+- **conditions**: before y after, como listas cualitativas sin duplicados.
+- **knowledge**: fact y source; no se admiten conocimientos sin una fuente causal.
+- **independent_plan**: before y after, solo para NPC.
+
+El motor sigue admitiendo new_location_id y learned_fact en eventos NPC, pero los traduce al registro común. last_resolved_action también se registra. XP, niveles, rangos y progresión RPG no son mutaciones válidas.
+
+La función verifyStateChanges comprueba la unicidad de objetos, ubicación de objetos portados y concordancia entre los eventos posteriores al turno 6 y el estado final. Se ejecuta desde verifyNarrativeSnapshot junto a las comprobaciones previas. La validación Python existente es estructural y no sustituye esta verificación de Node. Los turnos 1–6 no se reescriben.
+
+**Límite:** la calidad literaria y la correspondencia entre la prosa y los cambios declarados siguen requiriendo revisión editorial. El sistema tampoco resuelve por sí solo el Día 0 o la transición entre capítulos.

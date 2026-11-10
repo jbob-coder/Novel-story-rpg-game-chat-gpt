@@ -82,7 +82,8 @@
       "tools/turn_engine.mjs",
       "tools/narrative_archive.mjs",
       "tools/validate_state.py",
-      "tools/consequences.mjs"
+      "tools/consequences.mjs",
+      "tools/state_changes.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -92,7 +93,8 @@
       "tests/test_starting_checkpoint.py",
       "tests/index_paths.test.mjs",
       "tests/test_literal_archive_validator.py",
-      "tests/consequences.test.mjs"
+      "tests/consequences.test.mjs",
+      "tests/state_changes.test.mjs"
     ]
   },
   "newChapterPaths": [

@@ -14,7 +14,7 @@ This is a ChatGPT-narrated interactive novel (no RPG mechanics). **GitHub files 
 ## Story turn protocol (D-038: separate writing, resolution, save and delivery)
 1. Verify the latest manifest, state, full transcript and event sequence at the working branch HEAD. Determine the *real* open scene; historical notes do not override it.
 2. Receive the player's **free-form action**. Do not decide Jack's words, movements, thoughts or feelings.
-3. Resolve only the chosen act and causally relevant NPC/offscreen changes in fictional time. Record knowledge, consequences, resources and meaningful relationships qualitatively: no XP or RPG stats.
+3. Resolve only the chosen act and causally relevant NPC/offscreen changes in fictional time. Record knowledge, consequences, resources and meaningful relationships qualitatively: no XP or RPG stats. Material effects must be declared in `turn.changes` or `turn.offscreen[].changes` with preconditions (D-040, `docs/STATE_SCHEMA.md`), and match the event log and saved state.
 4. **Compose and edit the complete visible scene** before writing: natural pacing and dialog, third-person limited, agency, continuity, no obligatory dramatic hinge. The literary gate and the schema validator are separate.
 5. Stage all **five** pieces together: chapter transcript containing exact user/narrator text, event log, chapter prose, state and manifest. Validate consistency and exact wording.
 6. Make an atomic Git tree/commit on the authorized branch with a checked HEAD; read back the five files by committed SHA. Never call an incomplete write a completed save. D-028 blocks play on an unverified save.
