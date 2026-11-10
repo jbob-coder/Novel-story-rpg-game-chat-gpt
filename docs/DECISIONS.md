@@ -28,6 +28,7 @@
 | D-024 | Owner-established morality/personality | Exceptional self-control, user-described psychopathic traits, self/family benefit first, may risk others, usually passive without advantage; not a medical diagnosis or automatic action. |
 | D-025 | Owner-established Aster concept | Medium cockpit-free robot planned for jetpack, automated combat, night/thermal vision, 14K display, heat/jamming/«UMP» resistance and abort/escape; unfinished and not operational. |
 | D-026 | Creative delegation | Assistant may fill remaining ordinary biographical details but must separate owner facts, plans, and actual story events. |
+| D-027 | Owner-approved full narration preservation | Save the exact complete visible story: player inputs, every narrator scene and resolution, dialogue and formatting, in a persistent chapter transcript. Summaries are not a substitute. Exclude planning chat and unapproved real personal data. |
 
 ## Superseded implementation direction
 

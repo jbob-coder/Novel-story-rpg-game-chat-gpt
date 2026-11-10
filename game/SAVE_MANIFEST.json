@@ -8,5 +8,7 @@
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Personaje actualizado: Elena 17 hermana menor, incendio y voz, ahorros por hacking pasado, moralidad autocontrolada y Aster robot mediano en construcción; 0 turnos, 0 eventos."
+  "notes": "Narrative archive initialized: no played scene, no player action, no narrator response. Verbatim archive required for future gameplay.",
+  "last_transcript_sequence": 0,
+  "last_transcript_id": null
 }

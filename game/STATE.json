@@ -592,7 +592,8 @@
   },
   "history": {
     "last_event_sequence": 0,
-    "completed_chapters": []
+    "completed_chapters": [],
+    "last_transcript_sequence": 0
   },
   "pending": {
     "type": "narrate_opening_without_advancing_turn",
