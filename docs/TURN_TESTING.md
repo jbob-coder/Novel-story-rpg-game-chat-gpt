@@ -1,10 +1,10 @@
 # Testable narrative turn staging and recovery
 
-This is a **ChatGPT-run** game; there is no separate application to download. The optional `tools/turn_engine.mjs` stages a proposed, narrated **fictional** turn as four in-memory artifacts: state, manifest, chapter event log, and chapter prose. The player speaks in chat. ChatGPT is still responsible for adjudicating outcomes and the narrator must not silently select the player's action.
+This is a **ChatGPT-run** game; there is no separate application to download. The optional `tools/turn_engine.mjs` stages a proposed, narrated **fictional** turn as five in-memory artifacts: literal chapter transcript, state, manifest, chapter event log and chapter prose. The player speaks in chat. ChatGPT is still responsible for adjudicating outcomes and the narrator must not silently select the player's action.
 
 The pure function `stageNarrativeTurn(snapshot, proposedTurn)` performs structural checks and rejects duplicate turn keys, invalid XP awards, fabricated/missing actor links, pre-shockwave powers and skipping across Day 0 without an explicit narrative transition. It does **not** perform remote writes; its output is a candidate, not a confirmed save.
 
-For a real player turn: load the exact branch checkpoint, decide the outcome with the player input, stage it, validate it, create a single Git tree containing the updated 4 artifacts, create one commit based on the observed branch HEAD, update that ref non-force with `expected_sha`, and read back all four files. Only then tell the player the turn was saved. If branch head changed, stop and reconcile; do not overwrite other work. Follow `docs/RECOVERY.md` for partial or interrupted writes. No completed in-game turn has yet been added to the actual save.
+For a real player turn: load the exact branch checkpoint, decide the outcome with the player input, stage it, validate it, create a single Git tree containing all five updated artifacts, create one commit based on the observed branch HEAD, update that ref non-force with `expected_sha`, and read back all five files. Only then tell the player the turn was saved. If branch head changed, stop and reconcile; do not overwrite other work. Follow `docs/RECOVERY.md` for partial or interrupted writes. By the 2026-11-10 checkpoint, six completed in-game turns have been archived. Use the actual manifest for current totals.
 
 Run from repository checkout:
 
@@ -23,7 +23,7 @@ The staging module is intentionally scoped to the existing CH-000 chapter. A new
 
 ## Mandatory full-transcript save (five-file commit)
 
-The turn model now requires the full exact chat text: `player_text` and `narration_messages`. Short `intent`/`outcome` records remain event summaries only. To save a completed turn, commit transcript, event log, chapter, state, and manifest together and verify all five by read-back. For an opening narration before player action, call `stageNarratorScene` and save its snapshot without increasing turn/event counters. The full archive starts empty because no real game turn has occurred. Run `node --test tests/turn_engine.test.mjs` from a checkout. The scripted module cannot capture chat UI automatically: the narrator has to supply exactly the messages it delivers.
+The turn model now requires the full exact chat text: `player_text` and `narration_messages`. Short `intent`/`outcome` records remain event summaries only. To save a completed turn, commit transcript, event log, chapter, state, and manifest together and verify all five by read-back. For an opening narration before player action, call `stageNarratorScene` and save its snapshot without increasing turn/event counters. The archive began empty but now contains fourteen entries through six played turns at the 2026-11-10 checkpoint. Run `node --test tests/turn_engine.test.mjs` from a checkout. The scripted module cannot capture chat UI automatically: the narrator has to supply exactly the messages it delivers.
 
 
 ## Implemented hard guard integration

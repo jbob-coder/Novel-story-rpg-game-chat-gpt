@@ -12,7 +12,7 @@
 ## STATE.json fields (required at present)
 `schema_version=2`, `game_id`, `chapter{id,status,last_resolved_event_id}`, `time{day,day_zero_event,calendar_date}`, `player{initialized,id,name,location_id,background,progression}`, `world{shockwave_arrived,humans_with_powers_observed,animals_affected,plants_affected,environment_affected,actors,factions,locations}`, `history{last_event_sequence,completed_chapters}`, `pending`, `save{last_verified_turn,notes}`. Keep the existing branch metadata for provenance.
 
-`player.progression={attributes:null|object,skills:{},powers:[],lifetime_skill_xp:0,milestones:[]}`. Before the player is created, attributes and identifiers remain null, skills and powers empty, XP zero. Once initialized, attribute IDs must be stable and values 1–5. A skill entry is `{xp: integer>=0, last_progress_event_id: null|string}`. Skill ranks and general level are **derived**, not stored.
+**Legacy schema, read-only since D-036:** `player.progression={attributes:null|object,skills:{},powers:[],lifetime_skill_xp:0,milestones:[]}` persists solely for backward compatibility with earlier checkpoints. Historical 1–5 attributes, skill XP and derived levels have **no active narrative authority**; do not display, calculate or increment them. Learning is expressed in qualitative story events; structural removal requires separately tested migration.
 
 For future actors in `world.actors`, store stable fictional IDs, location, goals, resources, known facts (with source and certainty), relationships, conditions and progression; do not fabricate missing NPC data. Keep **world truth**, **what the player knows**, and **what each NPC knows** separate; rumors must not be promoted to objective facts.
 
@@ -56,7 +56,7 @@ Historical fire incident is `player.personal_history.fire_incident` and uses a `
 
 ## Narrative transcript v1
 
-Each chapter uses `chapters/CH-NNN.transcript.json`, with `schema_version=1`, `chapter_id`, `last_entry_sequence`, and ordered `entries`. Each `TXT-000001` record contains `chapter_id`, `turn`, `role` (`player`/`assistant`), `kind` (`player_action`/`scene`/`resolution`), `text` (original literal full message), and `event_ids` (existing causal events). `scene` entries have a unique `source_key`. The `manifest.last_transcript_sequence`/`last_transcript_id` and `state.history.last_transcript_sequence` must equal the archive's count and latest ID. Existing state is turn 0 with an empty archive. Full-text archiving and turn save must use one Git commit; do not overwrite older entries silently.
+Each chapter uses `chapters/CH-NNN.transcript.json`, with `schema_version=1`, `chapter_id`, `last_entry_sequence`, and ordered `entries`. Each `TXT-000001` record contains `chapter_id`, `turn`, `role` (`player`/`assistant`), `kind` (`player_action`/`scene`/`resolution`), `text` (original literal full message), and `event_ids` (existing causal events). `scene` entries have a unique `source_key`. The `manifest.last_transcript_sequence`/`last_transcript_id` and `state.history.last_transcript_sequence` must equal the archive's count and latest ID. The opening setup once had turn 0 and an empty archive. At the 2026-11-10 checkpoint, CH-000 has six completed turns and fourteen transcript entries. Always inspect the current manifest. Full-text archiving and turn save must use one Git commit; do not overwrite older entries silently.
 
 ## D-036 migration boundary: interactive novel, not RPG
 

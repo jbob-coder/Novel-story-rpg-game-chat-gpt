@@ -19,7 +19,7 @@
 ## Registro de hilos narrativos
 `game/STATE.json.narrative_threads` contiene una lista de asuntos **abiertos por acciones realmente adjudicadas**, con `THREAD-000001`, actor responsable, pregunta pendiente, alcance, estado `open/resolved`, evento de origen, evento de resolución o `null`, e historial de eventos. `tools/consequences.mjs` valida y actualiza estas relaciones por turnos. Cada actualización incluye `event_id` del turno actual, `op` (`open/develop/resolve`), resumen real y visibilidad `hidden/known`; lo que un personaje no sabe NO se revela como información del jugador.
 
-**No se crean hilos por posibilidades o elecciones sugeridas antes de que Jack actúe.** El primer estado permanece con lista vacía, turno 0 y cero eventos. `stageNarrativeTurn` puede aceptar `consequence_updates` solo después de crear un evento y los integra en el checkpoint. No preasignar éxitos, finales, poderes o reputación.
+**No se crean hilos por posibilidades o elecciones sugeridas antes de que Jack actúe.** La afirmación histórica «turno 0, cero eventos» ya no describe el checkpoint actual. Revisar el manifiesto, los eventos y los hilos activos antes de adjudicar consecuencias. `stageNarrativeTurn` puede aceptar `consequence_updates` solo después de crear un evento y los integra en el checkpoint. No preasignar éxitos, finales, poderes o reputación.
 
 ## Libertad sin menú (D-031)
 Terminar en una situación real de la ficción, sin ofrecer opciones numeradas ni estrategias a elegir. Jack puede actuar libremente. No prometer resultados futuros ni asignar un desenlace sin un evento real.

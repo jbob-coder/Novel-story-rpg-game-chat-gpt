@@ -4,7 +4,7 @@
 
 ## Files
 - `chapters/CH-NNN.transcript.json`: exact ordered messages, stable `TXT-` IDs, roles, message kind and event references.
-- `chapters/CH-NNN.events.json`: event IDs, actor causal changes, XP, knowledge.
+- `chapters/CH-NNN.events.json`: event IDs, causal actor changes and knowledge; old XP fields are frozen archival data only.
 - `chapters/CH-NNN.md`: readable narrative chapter, including full visible narrator prose as turns complete.
 - `game/STATE.json` and `game/SAVE_MANIFEST.json`: current materialized state and saved text/event counters.
 
@@ -14,9 +14,9 @@ Compose the complete narrative prose before showing it. Stage it using `stageNar
 ## Player turn
 Read back latest coherent checkpoint. Receive the player's complete original message. Resolve only the stated action and plausible offscreen NPC/world changes. Stage with `stageNarrativeTurn(snapshot,{ key, intent, outcome, player_text, narration_messages, elapsed_days, ...})`. `intent/outcome` are **short technical event descriptions**, whereas `player_text` and `narration_messages` are the exact text of the actual visible exchange. Do not edit or truncate those literal strings.
 
-One atomic Git tree + commit must contain transcript, event log, chapter prose, state and manifest. Update the branch with a non-force expected-HEAD lease; fetch all five by committed SHA and check archive count, original wording, event references and state. Say **saved** only after successful read-back. If tools fail, label the response unsaved.
+One atomic Git tree + commit must contain transcript, event log, chapter prose, state and manifest. Update the branch with a non-force expected-HEAD lease; fetch all five by committed SHA and check archive count, original wording, event references and state. Say **saved** only after successful read-back. If tools fail, apply D-028 and report a blocked save; do not invent a completed scene. Persisted story text is not necessarily delivered in the chat interface: after an interrupted delivery, replay the exact saved narration without duplicating events (D-038).
 
 ## Recovery
 The archive is the authority for *what was said*; the events for *what happened*; the state for *what is true now*. Never invent forgotten words or replace missing text with plausible summaries. If exact original text was not saved, say it is unavailable and request the source if the player wants it restored verbatim.
 
-Current CH-000 begins with zero real turns and an empty transcript. Historic development conversations are not backfilled as story. Current staging module is scoped to CH-000; a separate per-chapter transcript must be created and validated when the game changes chapters.
+CH-000 originally began with zero turns, but the checkpoint reviewed on 2026-11-10 contains **six completed turns and fourteen literal transcript entries**. Development conversations are not backfilled as story. The current staging module is scoped to CH-000; a separate per-chapter transcript is required for a new chapter.
