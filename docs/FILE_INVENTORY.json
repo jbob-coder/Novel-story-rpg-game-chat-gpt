@@ -52,6 +52,7 @@
       "docs/WORLD_BIBLE.md"
     ],
     "rules": [
+      "docs/NARRATIVE_CONTRACT.md",
       "docs/NARRATOR_RULES.md",
       "docs/NARRATIVE_STANDARD.md",
       "docs/NPC_RULES.md",
