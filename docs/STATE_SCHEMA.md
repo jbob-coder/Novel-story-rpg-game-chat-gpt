@@ -57,3 +57,7 @@ Historical fire incident is `player.personal_history.fire_incident` and uses a `
 ## Narrative transcript v1
 
 Each chapter uses `chapters/CH-NNN.transcript.json`, with `schema_version=1`, `chapter_id`, `last_entry_sequence`, and ordered `entries`. Each `TXT-000001` record contains `chapter_id`, `turn`, `role` (`player`/`assistant`), `kind` (`player_action`/`scene`/`resolution`), `text` (original literal full message), and `event_ids` (existing causal events). `scene` entries have a unique `source_key`. The `manifest.last_transcript_sequence`/`last_transcript_id` and `state.history.last_transcript_sequence` must equal the archive's count and latest ID. Existing state is turn 0 with an empty archive. Full-text archiving and turn save must use one Git commit; do not overwrite older entries silently.
+
+## D-036 migration boundary: interactive novel, not RPG
+
+The schema v2 `player.progression` shape and historic event `progression_awards` fields are **read-only legacy compatibility**. They may remain to pass existing validators and reconstruct old saves, but must **never be incremented, used as skill checks or exposed as gameplay** after D-036. Abilities/learning are tracked through factual world events, character notes, inventory, relationships and narrative threads. Any later removal of these schema fields requires a separately tested migration across state, event logs, tools and manifest. Do not rewrite historical events. The authoritative narrator must read `docs/NARRATIVE_CONTRACT.md`.
