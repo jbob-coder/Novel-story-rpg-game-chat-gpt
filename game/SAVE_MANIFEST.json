@@ -2,13 +2,13 @@
   "manifest_version": 1,
   "game_id": "living-superhuman-world",
   "chapter_id": "CH-000",
-  "last_completed_turn": 1,
-  "last_event_sequence": 4,
-  "last_event_id": "EV-000004",
+  "last_completed_turn": 2,
+  "last_event_sequence": 8,
+  "last_event_id": "EV-000008",
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Turno 1 narrado íntegro y pendiente de lectura remota: interferencia observada, contagio no confirmado, café Market Row, menú de opciones desactivado.",
-  "last_transcript_sequence": 4,
-  "last_transcript_id": "TXT-000004"
+  "notes": "Turno 2 provisional, registrar pedido, nueva fase de gadget y sucesos NPC; no declarar guardado hasta lectura remota completa.",
+  "last_transcript_sequence": 6,
+  "last_transcript_id": "TXT-000006"
 }

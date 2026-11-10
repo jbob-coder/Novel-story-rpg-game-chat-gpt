@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000004"
+    "last_resolved_event_id": "EV-000008"
   },
   "time": {
     "day": -30,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "evening",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 15
+    "elapsed_minutes_since_opening_approx": 24
   },
   "player": {
     "initialized": true,
@@ -87,7 +87,7 @@
         "id": "ITEM-PHONE",
         "name": "Teléfono personal",
         "size": "pequeño",
-        "location_id": "LOC-CROSSWATER-PLAZA",
+        "location_id": "LOC-CAFE-BRUMA",
         "carried": true,
         "status": "funcional",
         "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
@@ -97,7 +97,7 @@
         "id": "ITEM-VOICE-COLLAR",
         "name": "Collar sintetizador de voz",
         "size": "pequeño",
-        "location_id": "LOC-CROSSWATER-PLAZA",
+        "location_id": "LOC-CAFE-BRUMA",
         "carried": true,
         "status": "funcional",
         "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
@@ -107,10 +107,10 @@
         "id": "ITEM-COMPACT-CASE",
         "name": "Estuche compacto de electrónica",
         "size": "pequeño",
-        "location_id": "LOC-CROSSWATER-PLAZA",
+        "location_id": "LOC-CAFE-BRUMA",
         "carried": true,
-        "status": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
-        "description": "El estuche contiene un dispositivo experimental que produjo una anomalía visible en Crosswater. Ninguna infección ni extracción de datos está confirmada. Sin funcionamiento operativo detallado.",
+        "status": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados",
+        "description": "Gadget experimental en el estuche, usado en dos intentos durante la noche. Ha producido fallos visibles y respuestas incompletas, pero no hay infección ni robo de datos confirmados.",
         "narrative_only": true
       },
       {
@@ -178,12 +178,21 @@
     ],
     "conditions": [],
     "opening_intent": {
-      "status": "attempted_unconfirmed",
+      "status": "phase_two_attempted_unverified",
       "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
-      "outcome": "Interferencias y fallos visuales observados en la plaza; infección, acceso a datos y alcance completo no confirmados.",
+      "outcome": "Segunda fase de ejecución escalonada intentada; respuestas incompletas sin infección confirmada, saldos bancarios ni datos extraídos.",
       "device_placed": false,
       "information_acquired": false,
-      "operational_details": "Not defined; keep narration nontechnical."
+      "operational_details": "Not defined; keep narration nontechnical.",
+      "phase_two": {
+        "attempted": true,
+        "staggered": true,
+        "unauthorized_execution_confirmed": false,
+        "confirmed_infected_devices": 0,
+        "verified_bank_balances": 0,
+        "result": "respuestas parciales sin evidencia suficiente de compromiso",
+        "source_event_id": "EV-000005"
+      }
     },
     "appearance": {
       "height_cm": 178,
@@ -288,7 +297,19 @@
       "NPC-006"
     ],
     "home_location_id": "LOC-WILSON-APARTMENT",
-    "workroom_location_id": "LOC-WILSON-WORKSHOP"
+    "workroom_location_id": "LOC-WILSON-WORKSHOP",
+    "cafe_order": {
+      "cafe_id": "LOC-CAFE-BRUMA",
+      "items": [
+        "café",
+        "dulce"
+      ],
+      "ordered": true,
+      "delivered": true,
+      "paid": null,
+      "amount": null,
+      "source_event_id": "EV-000005"
+    }
   },
   "world": {
     "setting": "Alternate modern Earth",
@@ -309,7 +330,8 @@
         "knowledge": [
           "An evening route is running behind schedule.",
           "Transit staff are handling routine operations.",
-          "A Crosswater display suffered a reported brief anomaly. (source: Report from transit staff at Crosswater terminal; EV-000003)"
+          "A Crosswater display suffered a reported brief anomaly. (source: Report from transit staff at Crosswater terminal; EV-000003)",
+          "The display malfunction is being tracked by maintenance separately from the train delay. (source: Internal transit maintenance communication; EV-000007)"
         ],
         "relationships": {},
         "conditions": [],
@@ -324,9 +346,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000003",
+          "event_id": "EV-000007",
           "day": -30,
-          "summary": "Lena continues arranging the delayed service and receives a routine notice of a display issue, without identifying the source."
+          "summary": "Lena asks transit operations to retain the maintenance report and continues prioritizing the delayed route; she does not suspect Jack."
         }
       },
       "NPC-002": {
@@ -339,7 +361,8 @@
         "independent_plan": "Walk a routine service circuit and file maintenance notes.",
         "knowledge": [
           "Has a routine maintenance assignment in the plaza.",
-          "One transit information sign displayed a brief visible anomaly during the evening rush. (source: Sora's own observation while inspecting the plaza; EV-000002)"
+          "One transit information sign displayed a brief visible anomaly during the evening rush. (source: Sora's own observation while inspecting the plaza; EV-000002)",
+          "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message. (source: Sora's own maintenance observations during shift; EV-000006)"
         ],
         "relationships": {},
         "conditions": [],
@@ -354,9 +377,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000002",
+          "event_id": "EV-000006",
           "day": -30,
-          "summary": "Sora notices the transit sign flickering and begins checking the public display failure without knowing Jack caused it."
+          "summary": "Sora records further irregular public-sign behavior as a maintenance incident but has no evidence of who or what caused it."
         }
       },
       "NPC-003": {
@@ -383,9 +406,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000004",
+          "event_id": "EV-000008",
           "day": -30,
-          "summary": "Darius walks into the commercial district, still focused on completing the paid delivery."
+          "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
         }
       },
       "NPC-004": {
@@ -618,23 +641,24 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 4,
+    "last_event_sequence": 8,
     "completed_chapters": [],
-    "last_transcript_sequence": 4,
+    "last_transcript_sequence": 6,
     "completed_turn_keys": [
-      "CH000-PLAYER-0001-CROSSWATER-GLITCH"
+      "CH000-PLAYER-0001-CROSSWATER-GLITCH",
+      "CH000-TURN-0002-CAFE-SECOND-PHASE"
     ]
   },
   "pending": {
     "type": "await_player_action",
     "location_id": "LOC-CAFE-BRUMA",
-    "message": "Jack está en Café Bruma. Una empleada pregunta si quiere algo; el registro del gadget es inconcluso. Sin menú de opciones.",
-    "last_player_action": "6 mira alrededor y busca un lugar donde mucha persona pasan entonces activar el gadget que esta en el estuche compacto de electrónica para causar interferencias con los dispositivos causando un glitch y forzando todo los dispositivos en la area de estar infectados con mi virus después paro en un cafetal para revisar los resultados. \n\nElimina  opciones para coger ahora delante y continúa ",
-    "interaction_mode": "free_text_no_numbered_options"
+    "interaction_mode": "free_text_no_numbered_options",
+    "message": "Jack ha pedido café y dulce y revisado la segunda fase. No hay saldos ni infecciones confirmadas. Está en Café Bruma.",
+    "last_player_action": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  "
   },
   "save": {
-    "last_verified_turn": 1,
-    "notes": "Turno 1: intento de interferencia en Crosswater, glitches observados, ninguna infección ni exfiltración confirmada; Jack está en Café Bruma. Cinco archivos requieren verificación remota."
+    "last_verified_turn": 2,
+    "notes": "CH-000 turno 2: pedido en Café Bruma y segunda fase intentada, sin compromiso o saldos confirmados; pendiente verificación remota de cinco archivos."
   },
   "narrative_threads": [
     {
@@ -650,6 +674,12 @@
           "kind": "open",
           "event_id": "EV-000001",
           "summary": "Jack vio fallos aislados, pero no confirmó infección, robo de datos o propagación general.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000005",
+          "summary": "La segunda fase produjo respuestas irregulares, sin infección confirmada ni saldos bancarios obtenidos.",
           "visibility": "known"
         }
       ]
@@ -667,6 +697,12 @@
           "kind": "open",
           "event_id": "EV-000002",
           "summary": "Sora empezó a examinar el cartel fallido sin saber de las intenciones de Jack.",
+          "visibility": "hidden"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000006",
+          "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
           "visibility": "hidden"
         }
       ]

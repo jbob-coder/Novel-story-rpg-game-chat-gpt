@@ -96,3 +96,8 @@ A partir de la petición del usuario, se añadieron reglas para novela interacti
 ## CH-000 turno 1 (guardado sujeto a lectura remota)
 
 Primer intento narrativo de activación de gadget en Crosswater con glitches observados pero infección no confirmada. Incluye NPC autónomos Sora/Lena/Darius, traslado a Café Bruma, dos hilos narrativos sin desenlace prefijado, +1 XP de electrónica por aprendizaje y texto completo jugador/narrador. Menús de opciones eliminados por D-031. Este informe no sustituye el read-back obligatorio de los cinco archivos.
+
+
+### CH-000 turno 2 preparado (lectura remota obligatoria)
+
+Pedido de café y dulce y segundo intento de ejecución intermitente del gadget: respuestas incompletas; ningún saldo bancario ni infección confirmado. NPC autónomos documentan fallos de mantenimiento, sin omnisciencia. Sin aumento de XP repetitivo, ubicación del equipo portátil corregida y texto de jugador/narrador archivado íntegro. El éxito de la escritura requiere verificación independiente de cinco archivos después del commit.

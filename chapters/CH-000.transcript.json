@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 4,
+  "last_entry_sequence": 6,
   "entries": [
     {
       "id": "TXT-000001",
@@ -46,6 +46,31 @@
         "EV-000002",
         "EV-000003",
         "EV-000004"
+      ]
+    },
+    {
+      "id": "TXT-000005",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  ",
+      "event_ids": [
+        "EV-000005"
+      ]
+    },
+    {
+      "id": "TXT-000006",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "### Capítulo 0 · El precio de una señal\n\nLa empleada sostiene la carta mientras espera. Jack la toma, recorre las ilustraciones y señala un café y uno de los dulces que aparecen junto a él.\n\n—Ahora mismo te lo traigo.\n\nLa mujer recoge la carta y vuelve detrás del mostrador. El ruido de la máquina de café se mezcla con las conversaciones de las mesas cercanas.\n\nCuando se aleja, Jack activa la segunda fase de su gadget.\n\nEsta vez no aparece un fallo general como el de Crosswater. La actividad llega a intervalos irregulares, separada por momentos en los que el registro permanece vacío. Un cliente frunce el ceño ante su teléfono; poco después, otro guarda el suyo sin mostrar ninguna molestia. Nadie mira hacia la mesa de Jack.\n\nEl dispositivo informa de algunas respuestas incompletas. Ninguna demuestra que el virus se haya ejecutado en un teléfono ajeno. La pantalla de resultados abre un apartado para consultar los saldos, pero los campos siguen vacíos.\n\n**Dispositivos comprometidos: sin confirmación.\nSaldos bancarios obtenidos: ninguno.**\n\nEl gadget ha registrado actividad; no ha probado el acceso que Jack buscaba. Tampoco ofrece una explicación fiable de por qué fallan unas respuestas y otras no.\n\n—Aquí tienes.\n\nLa empleada coloca el café y el dulce sobre la mesa. Antes de retirarse, mira un instante hacia el terminal que se distingue entre los edificios.\n\n—Parece que esta noche todo está dando problemas —comenta, y regresa al mostrador.\n\nEn Crosswater, los trabajadores siguen ocupados con las anomalías sin conocer su origen. En la cafetería nadie ha relacionado a Jack con ellas.\n\nEl café todavía desprende vapor. En la pantalla queda abierto un informe con varios intentos registrados y ninguna cifra que pueda verificarse.",
+      "event_ids": [
+        "EV-000005",
+        "EV-000006",
+        "EV-000007",
+        "EV-000008"
       ]
     }
   ]

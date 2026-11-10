@@ -135,6 +135,163 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000005",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack points to a coffee and pastry on the café menu. After the attendant leaves, he attempts a staggered second phase of his experimental gadget against nearby third-party devices, trying to force his virus to execute and to inspect financial balances.",
+      "outcome": "Coffee and pastry are delivered; the second-phase attempt shows sporadic inconclusive responses but no verified infection, unauthorized access or bank balance reading. Staff and patrons do not identify Jack as the cause of prior anomalies.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "attempted_unconfirmed",
+          "after": "phase_two_attempted_unverified"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_two",
+          "before": null,
+          "after": {
+            "attempted": true,
+            "staggered": true,
+            "unauthorized_execution_confirmed": false,
+            "confirmed_infected_devices": 0,
+            "verified_bank_balances": 0,
+            "result": "respuestas parciales sin evidencia suficiente de compromiso",
+            "source_event_id": "EV-000005"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
+          "after": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order",
+          "before": null,
+          "after": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": null,
+            "amount": null,
+            "source_event_id": "EV-000005"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 15,
+          "after": 24
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000006",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue the inspection of transit display glitches and document unusual recurrence.",
+      "outcome": "Sora records further irregular public-sign behavior as a maintenance incident but has no evidence of who or what caused it.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message.",
+          "source": "Sora's own maintenance observations during shift"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000007",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-001"
+      ],
+      "kind": "independent_actor",
+      "intent": "Coordinate route operations while receiving maintenance information.",
+      "outcome": "Lena asks transit operations to retain the maintenance report and continues prioritizing the delayed route; she does not suspect Jack.",
+      "known_to": [
+        "NPC-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-001",
+          "field": "knowledge",
+          "fact": "The display malfunction is being tracked by maintenance separately from the train delay.",
+          "source": "Internal transit maintenance communication"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000008",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish the paid delivery in Market Row.",
+      "outcome": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": []
     }
   ]
 }
