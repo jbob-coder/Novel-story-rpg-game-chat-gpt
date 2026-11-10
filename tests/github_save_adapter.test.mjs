@@ -14,6 +14,7 @@ const original=Object.fromEntries(paths.map(path=>[path,readFileSync(resolve(roo
 function response(data,status=200){return {ok:status>=200&&status<300,status,json:async()=>data};}
 function mockGitApi(){
  const oldBlobs=Object.fromEntries(paths.map((path,i)=>[String(i+1).repeat(40),original[path]]));
+ const testBlobSha=i=>['6','7','8','9','a'][i].repeat(40);
  const state={head:BASE,files:{...original},createdFiles:null,requests:[],patches:0,commits:0,
   rejectPatch:false,conflict:false,failReadback:false};
  const fetchImpl=async(url,opts)=>{
@@ -28,16 +29,16 @@ function mockGitApi(){
   }
   if(method==='GET'&&route.startsWith('/git/trees/')){
    const id=route.split('/').at(-1),source=id===TREE?oldBlobs:
-    id===NEWTREE?Object.fromEntries(paths.map((path,i)=>[String(i+6).repeat(40),state.createdFiles[path]])):null;
+    id===NEWTREE?Object.fromEntries(paths.map((path,i)=>[testBlobSha(i),state.createdFiles[path]])):null;
    if(source){
-    const items=paths.map((path,i)=>({path,type:'blob',sha:String(i+(id===TREE?1:6)).repeat(40)}));
+    const items=paths.map((path,i)=>({path,type:'blob',sha:id===TREE?String(i+1).repeat(40):testBlobSha(i)}));
     return response({truncated:false,tree:items});
    }
   }
   if(method==='GET'&&route.startsWith('/git/blobs/')){
    if(state.failReadback&&state.head===COMMIT)return response({message:'offline'},503);
    const id=route.split('/').at(-1),v=oldBlobs[id]??(state.createdFiles&&
-    Object.fromEntries(paths.map((path,i)=>[String(i+6).repeat(40),state.createdFiles[path]]))[id]);
+    Object.fromEntries(paths.map((path,i)=>[testBlobSha(i),state.createdFiles[path]]))[id]);
    if(typeof v==='string')return response({encoding:'base64',content:Buffer.from(v).toString('base64')});
   }
   if(method==='POST'&&route==='/git/trees'){

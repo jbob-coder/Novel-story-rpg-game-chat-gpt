@@ -15,7 +15,8 @@ function safeSha(value){
  return value;
 }
 const normRepo=value=>{
- insist(typeof value==='string'&&/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(value),'Expected owner/repo');
+ insist(typeof value==='string'&&/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(value)&&
+  value.split('/').every(part=>part!=='.'&&part!=='..'),'Expected owner/repo');
  return value;
 };
 function onlyFiveFiles(files){
