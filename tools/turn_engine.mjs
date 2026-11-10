@@ -1,6 +1,7 @@
 import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
+import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -45,6 +46,7 @@ function verifyNarrativeSnapshot(snapshot) {
   }
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
+  verifyStateChanges(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -76,27 +78,24 @@ function stageNarrativeTurn(snapshot, turn) {
     e.events.push(rec);logs.push(rec);
     return rec;
   }
-  event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
+  const playerEvent=event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
+  // D-040: every material player-side effect is an explicit, preconditioned event change.
+  applyStateChanges(s,playerEvent,turn.changes??[]);
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
     const actor=s.world.actors[item.actor_id];
     const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id]);
-    actor.last_resolved_action={event_id:record.id,day:newDay,summary:item.outcome};
-    if(item.new_location_id!==undefined) {
-      check(item.new_location_id in s.world.locations,"Unknown destination");
-      const origin=s.world.locations[actor.location_id];
-      check(origin.connected_ids.includes(item.new_location_id),"Nonadjacent travel needs explicit route handling");
-      record.state_changes.push({actor_id:item.actor_id,field:"location_id",before:actor.location_id,after:item.new_location_id});
-      actor.location_id=item.new_location_id;
-    }
-    // Knowledge is never leaked to other actors: this record belongs only to its author.
-    if(item.learned_fact!==undefined) {
-      check(typeof item.learned_fact==="string" && item.learned_fact.length>4, "Invalid knowledge");
-      check(typeof item.source==="string" && item.source.length>4,"Knowledge requires explicit source");
-      actor.knowledge.push(`${item.learned_fact} (source: ${item.source}; ${record.id})`);
-      record.state_changes.push({actor_id:item.actor_id,field:"knowledge",fact:item.learned_fact,source:item.source});
-    }
+    const before=actor.last_resolved_action==null?null:JSON.parse(JSON.stringify(actor.last_resolved_action));
+    const after={event_id:record.id,day:newDay,summary:item.outcome};
+    actor.last_resolved_action=after;
+    record.state_changes.push({actor_id:item.actor_id,field:"last_resolved_action",before,after});
+    const npcChanges=[];
+    if(item.new_location_id!==undefined) npcChanges.push({field:"location_id",before:actor.location_id,after:item.new_location_id});
+    if(item.learned_fact!==undefined) npcChanges.push({field:"knowledge",fact:item.learned_fact,source:item.source});
+    // Additional inventory, relationship, condition and plan effects are independently validated.
+    if(item.changes!==undefined) check(Array.isArray(item.changes),"NPC changes must be an array");
+    applyStateChanges(s,record,[...npcChanges,...(item.changes??[])]);
   }
   s.time.day=newDay;
   s.history.last_event_sequence=e.events.length;
@@ -104,7 +103,7 @@ function stageNarrativeTurn(snapshot, turn) {
   s.chapter.last_resolved_event_id=e.events.at(-1).id;
   s.save.last_verified_turn=t;
   s.save.notes="Candidate checkpoint: commit and read-back required before calling this turn verified.";
-  s.pending={type:"await_player_action",message:turn.next_prompt??"What does Jack do next?",last_player_action:turn.intent};
+  s.pending={...s.pending,type:"await_player_action",interaction_mode:"free_text_no_numbered_options",location_id:s.player.location_id,message:turn.next_prompt??"Jack awaits the next free-form action.",last_player_action:turn.player_text};
   m.last_completed_turn=t;m.last_event_sequence=e.events.length;m.last_event_id=e.events.at(-1).id;
   m.notes="Staged turn; only a verified Git commit makes this a durable save.";
   next.chapter+=`\n\n## Turn ${t} — Day ${newDay}\n\n**Jack's action:** ${turn.intent.replaceAll("\n"," ")}\n\n**Outcome:** ${turn.outcome.replaceAll("\n"," ")}\n`;
