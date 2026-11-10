@@ -37,3 +37,8 @@ Validate this checkpoint, then begin character setup and CH-000. Save the first 
 ## Opening-state repair — 2026-11-09 (owner authorized)
 
 Jack's previously confirmed name, age, role, opening intent, original alternate-Earth coastal city and transit plaza, and three supporting NPCs were moved into structured `game/STATE.json`, chapter and reference documents. The character profile contains **provisional** background skill values. No device placement, stolen data, gameplay turn, or independent NPC outcome is fabricated. An atomic Git commit is used for this checkpoint if the branch lease succeeds. Full turn execution and cold-resume remain future acceptance gates. Older statements above that the player or location are undefined are superseded by this repair section.
+
+
+## Narrative turn lifecycle quality gate (2026-11-09)
+
+Added a dependency-free, non-mutating narrative checkpoint staging and validation module, a Node test suite, and instructions on atomic four-file commits. Tested **19 cases** using the exact current GitHub starting state in the JavaScript execution environment: all passed, including two sequential hypothetical turns, knowledge isolation, XP, duplicate suppression, corrupt save detection, and reload. The hypothetical actions were **not** written as gameplay history. No real turn has occurred; actual Node CLI execution on a checkout is pending. The first time skip across Day 0 intentionally stops until an explicit cosmic-shockwave event handler is built.
