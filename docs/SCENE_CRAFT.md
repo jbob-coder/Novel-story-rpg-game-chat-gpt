@@ -1,3 +1,5 @@
+**Novel-first precedence:** [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md) supersedes RPG mechanics and outdated scene/checkpoint directions here. Jack's active network predating Café Bruma (500+) is established fictional history, not an unverified story premise.
+
 # SCENE CRAFT — Mandatory literary quality contract (D-032)
 
 The owner rejected the previous narration as **a report about what happened, rather than a story being experienced**. Fix that root problem. This document supersedes prior output templates in `docs/NARRATIVE_STANDARD.md` and any advice to present numbered choices.
@@ -18,8 +20,8 @@ Ask:
 2. Does another person want something and visibly act toward it?
 3. Does the player's choice have a distinctive, causally plausible effect?
 4. Have I avoided speaking, thinking or deciding for Jack and avoided hidden omniscience?
-5. Did I remove mechanical status prose, repetitive inconclusive conclusions and menus?
+5. Did I remove RPG stats, XP, mechanical status prose, repetitive inconclusive conclusions, unnecessary cybersecurity procedure detail and menus?
 
 If any answer is no, **rewrite before committing**. This is a quality gate, not a demand to add filler or florid adjectives. Keep each scene as long as the dramatic moment requires, not automatically the same fixed length.
 
-**Checkpoint for this correction:** CH-000, Day −30, Jack at Café Bruma, *real turn 2*. Café and pastry delivered, payment unspecified. Gadget second phase attempted; no bank balance or device infection currently confirmed. Sora and Lena are documenting transit anomalies without knowing Jack's involvement. This editorial change by itself is **not a game turn**.
+**Historical note only:** this policy originally accompanied a turn-2 Café Bruma correction; those scene details are **obsolete**. The current checkpoint MUST come from `game/SAVE_MANIFEST.json`, `game/STATE.json`, current chapter events and transcript. Never resume turn 2 from this file. The current policy is `docs/NARRATIVE_CONTRACT.md` (D-036/D-037).
