@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "game_id": "living-superhuman-world",
+  "canonical_branch": "main",
+  "saved_on_branch": "work/chat-narrative-foundation",
+  "chapter": {
+    "id": "CH-000",
+    "status": "opening",
+    "last_resolved_event_id": null
+  },
+  "time": {
+    "day": -30,
+    "day_zero_event": "cosmic_shockwave",
+    "calendar_date": null
+  },
+  "player": {
+    "initialized": false,
+    "id": null,
+    "name": null,
+    "location_id": null,
+    "background": null
+  },
+  "world": {
+    "shockwave_arrived": false,
+    "humans_with_powers_observed": false,
+    "animals_affected": false,
+    "plants_affected": false,
+    "environment_affected": false,
+    "actors": {},
+    "factions": {},
+    "locations": {}
+  },
+  "history": {
+    "last_event_sequence": 0,
+    "completed_chapters": []
+  },
+  "pending": {
+    "type": "character_setup",
+    "message": "Describe your character and where their everyday life begins; partial details are fine."
+  },
+  "save": {
+    "last_verified_turn": 0,
+    "notes": "Initial design checkpoint only; no player turns have occurred."
+  }
+}
