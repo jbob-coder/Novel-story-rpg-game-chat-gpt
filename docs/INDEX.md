@@ -16,3 +16,9 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+## Living World — diseño y pruebas (propuesta no canónica)
+- [Diseño inicial](LIVING_WORLD_DESIGN_PROPOSAL.md)
+- [Plan de QA](LIVING_WORLD_QA_PLAN.md)
+- [Rutinas: QA previo](LIVING_WORLD_ROUTINE_QA_20261110.md)
+- [Coordinador y diagnóstico: QA de integración](LIVING_WORLD_COORDINATOR_QA_20261110.md)
