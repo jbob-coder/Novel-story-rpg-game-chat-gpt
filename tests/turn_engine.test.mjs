@@ -34,12 +34,14 @@ test('blocked previous save prevents next player turn',()=>{const failed=blockSa
 test('blocked previous save prevents next opening scene',()=>{const failed=blockSave(startSave({source_head:'f'.repeat(40),chapter_id:'CH-000',turn:0}),'Network down');assert.throws(()=>stageNarratorScene(initial,'Scene','scene-test-blocked',{observed_head:'f'.repeat(40),previous_attempt:failed}),/NARRATIVE LOCKED/)});
 
 test('player movement updates carried inventory and records each effect',()=>{
- const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'location_id',before:'LOC-WILSON-WORKSHOP',after:'LOC-WILSON-APARTMENT'}]});
- assert.equal(x.state.player.location_id,'LOC-WILSON-APARTMENT');
- assert.ok(x.state.player.inventory.filter(item=>item.carried).every(item=>item.location_id==='LOC-WILSON-APARTMENT'));
+ const original=initial.state.player.location_id;
+ const destination=original==='LOC-WILSON-WORKSHOP'?'LOC-WILSON-APARTMENT':'LOC-WILSON-WORKSHOP';
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'location_id',before:original,after:destination}]});
+ assert.equal(x.state.player.location_id,destination);
+ assert.ok(x.state.player.inventory.filter(item=>item.carried).every(item=>item.location_id===destination));
  assert.ok(x.events.events.at(-1).state_changes.some(c=>c.field==='inventory_item'&&c.automatic_carry));
  assert.equal(verifyNarrativeSnapshot(x),true);
- assert.equal(initial.state.player.location_id,'LOC-WILSON-WORKSHOP');
+ assert.equal(initial.state.player.location_id,original);
 });
 test('NPC changes record relationship, plans and knowledge without RPG advancement',()=>{
  const current=initial.state.world.actors['NPC-004'];
@@ -51,10 +53,11 @@ test('NPC changes record relationship, plans and knowledge without RPG advanceme
  assert.equal(verifyNarrativeSnapshot(x),true);
 });
 test('invalid or stale state changes never modify the original save',()=>{
+ const original=initial.state.player.location_id;
  assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,changes:[{field:'location_id',before:'LOC-CROSSWATER-PLAZA',after:'LOC-WILSON-APARTMENT'}]}),/Stale actor location/);
  assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,changes:[{field:'progression',before:48,after:49}]}),/Unsupported state change/);
  assert.equal(initial.manifest.last_completed_turn,initial.state.save.last_verified_turn);
- assert.equal(initial.state.player.location_id,'LOC-WILSON-WORKSHOP');
+ assert.equal(initial.state.player.location_id,original);
 });
 test('a saved relationship differing from its event is rejected',()=>{
  const old=initial.state.player.relationships['NPC-004'];
