@@ -1,0 +1,25 @@
+name: Living World privacy regression QA
+on:
+  push:
+    branches:
+      - qa/living-world-private-chapter-20261110
+  workflow_dispatch:
+jobs:
+  all-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Node.js suites including offscreen privacy regression
+        run: node --test tests/*.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate saved checkpoint
+        run: python tools/validate_state.py
+      - name: Run Python unit tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
