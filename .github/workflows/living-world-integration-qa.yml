@@ -1,0 +1,27 @@
+name: Living World isolated integration QA
+on:
+  push:
+    branches:
+      - qa/living-world-integration-20261110
+  workflow_dispatch:
+jobs:
+  node-and-state:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run Living World integration tests
+        run: node --test tests/living_world_availability.test.mjs tests/living_world_routines.test.mjs tests/living_world_coordinator.test.mjs tests/living_world_diagnostics.test.mjs
+      - name: Run all Node test suites
+        run: node --test tests/*.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate saved state
+        run: python tools/validate_state.py
+      - name: Run Python unit tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
