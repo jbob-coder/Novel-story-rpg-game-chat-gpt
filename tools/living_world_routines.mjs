@@ -68,7 +68,7 @@ export function stageNPCResolution({state, actorId, eventId, turn, day, outcome,
   changes=[], disclosures=[]}={}) {
   if (!validActorId(actorId) || !actorAt(state,actorId)) throw new Error('Unknown NPC');
   if (typeof eventId !== 'string' || !/^EV-\d{6,}$/.test(eventId) ||
-      !Number.isInteger(turn) || turn < 1 || !Number.isInteger(oday) ||
+      !Number.isInteger(turn) || turn < 1 || !Number.isInteger(day) ||
         typeof outcome !== 'string' || outcome.trim().length < 5) throw new Error('Invalid event context');
   if (!Array.isArray(changes) || changes.length > 40 || !Array.isArray(disclosures)) throw new Error('Invalid event data');
   for (const change of changes) {
