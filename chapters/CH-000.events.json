@@ -1064,6 +1064,153 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000022",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack gives Elena a spare USB stick, looks at her, turns back to his workshop display, and checks the current status and balances shown for his personal and company accounts and the camera section.",
+      "outcome": "Elena receives a working USB. The private account panel presents two personal and two operational corporate account balances (newly observed in fiction), all with available status, while the Café Bruma third-party readings remain separate. One camera preview belonging to Jack's established earlier device network returns an ordinary stable image, without an identified location.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "libre y funcional",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "libre y funcional",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "after": null
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados.",
+          "source": "Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7",
+          "after": "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas.",
+          "source": "Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7",
+          "after": "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000023",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Elena takes the offered USB and prepares to save her illustration for school.",
+      "outcome": "Elena accepts the USB, thanks Jack and returns toward her computer. She can copy the drawing before school; she has not seen his private account or camera data.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000022"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000021",
+            "day": -30,
+            "summary": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers."
+          },
+          "after": {
+            "event_id": "EV-000023",
+            "day": -30,
+            "summary": "Elena receives a spare USB from Jack, thanks him, and returns to the computer to copy her illustration."
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "prestada a Elena para su ilustración escolar",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack.",
+          "after": "Guardar una copia de su ilustración en la memoria USB prestada por Jack y llevarla mañana a la escuela."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "relationship",
+          "target_actor_id": "PLAYER-001",
+          "before": {
+            "relation": "hermano mayor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
+          },
+          "after": {
+            "relation": "hermano mayor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Jack le prestó una memoria USB para su dibujo escolar (CH-000, turno 7)"
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio.",
+          "source": "Elena recibió la memoria directamente de Jack en la puerta del taller",
+          "after": "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio. (source: Elena recibió la memoria directamente de Jack en la puerta del taller; EV-000023)"
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }

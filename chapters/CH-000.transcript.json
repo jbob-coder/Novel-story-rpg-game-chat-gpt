@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 14,
+  "last_entry_sequence": 16,
   "entries": [
     {
       "id": "TXT-000001",
@@ -171,6 +171,29 @@
         "EV-000021"
       ],
       "revision_ref": "REV-CH000-0002"
+    },
+    {
+      "id": "TXT-000015",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara",
+      "event_ids": [
+        "EV-000022"
+      ]
+    },
+    {
+      "id": "TXT-000016",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "Elena sigue en la puerta cuando Jack abre un cajón del banco de trabajo. Entre adaptadores y cables enrollados hay una memoria USB de carcasa oscura. Se la entrega y levanta la mirada hacia ella.\n\n—Gracias —dice Elena, cerrando los dedos alrededor de la memoria—. Te la devuelvo mañana. O pasado, si la profesora decide secuestrarme el dibujo.\n\nDesde la cocina, Rosa interviene sin dejar de trabajar:\n\n—Que no se te pierda, muchacha. Las cosas pequeñas tienen una habilidad especial para desaparecer en esta casa.\n\n—Ya sé, abuela.\n\nElena se aparta de la puerta con la memoria en la mano. Sus pasos regresan hacia la mesa donde dejó la computadora.\n\nJack se vuelve hacia el monitor.\n\nLa pantalla privada conserva las distintas secciones de sus registros. Al abrir la de cuentas, las entradas se actualizan una tras otra. Las dos cuentas personales que aparecen en ese panel muestran **86.450,20** y **173.890,75**. Más abajo, dos cuentas operativas vinculadas a sus sociedades presentan **43.600,00** y **97.340,10**. Las cuatro figuran disponibles, sin avisos de bloqueo. Los nombres legales de las sociedades no aparecen en esta vista.\n\nEn una carpeta aparte permanecen los **4.280,16** y **93,47** vistos aquella noche en Café Bruma. Esos importes siguen perteneciendo a terceros; no se mezclan con sus reservas.\n\nLa siguiente sección agrupa cámaras. Una fuente de su vieja red —la que existía mucho antes de los nueve accesos nuevos— ofrece una vista previa estable. La imagen muestra un pasillo iluminado, una puerta cerrada y nada más. El panel no revela en esa miniatura dónde está instalada. Otras fuentes permanecen sin vista previa, y las siete entradas silenciosas de Café Bruma no aportan imágenes nuevas.\n\nDetrás de Jack, en algún lugar del apartamento, se oye el sonido familiar de una memoria conectándose a la computadora de Elena.\n\n—Ahora sí —dice ella, más para sí misma que para nadie.\n\nRosa responde con un golpecito del despertador sobre el paño.\n\n—Pues dile al dibujo que me arregle esto cuando termine.\n\nEl monitor sigue iluminando las piezas inmóviles de Aster. En una ventana quedan los saldos recién consultados; en la otra, la imagen tranquila del pasillo.",
+      "event_ids": [
+        "EV-000022",
+        "EV-000023"
+      ]
     }
   ]
 }

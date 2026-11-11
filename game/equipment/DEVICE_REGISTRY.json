@@ -114,5 +114,15 @@
   },
   "distinct_total_verified_historical": 9,
   "total_network_size_confirmed": null,
-  "total_network_size_story_canon": "More than 500 preexisting active devices plus nine new Café Bruma records; exact total unspecified."
+  "total_network_size_story_canon": "More than 500 preexisting active devices plus nine new Café Bruma records; exact total unspecified.",
+  "camera_last_review": {
+    "source_event_id": "EV-000022",
+    "group": "active legacy 500+ fictional device network, not the nine Café Bruma additions",
+    "cameras_checked": "camera section shown; other sources not individually itemized",
+    "preview_status": "one camera feed available, stable",
+    "observed_image": "an illuminated empty corridor and a closed door; location unestablished",
+    "other_previews": "not viewed or unavailable during this check",
+    "no_new_cafe_images": true,
+    "fictional_only": true
+  }
 }

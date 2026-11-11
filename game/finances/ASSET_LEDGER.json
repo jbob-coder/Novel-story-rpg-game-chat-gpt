@@ -2,23 +2,62 @@
   "schema_version": 1,
   "owner_actor_id": "PLAYER-001",
   "chapter_id": "CH-000",
-  "last_review_event_id": "EV-000020",
-  "personal_accounts": [],
+  "last_review_event_id": "EV-000022",
+  "personal_accounts": [
+    {
+      "id": "PERS-01",
+      "display_label": "Cuenta personal 01",
+      "status": "available",
+      "balance_display": "86.450,20",
+      "currency": null,
+      "source_event_id": "EV-000022",
+      "observed_in_fiction": true
+    },
+    {
+      "id": "PERS-02",
+      "display_label": "Cuenta personal 02",
+      "status": "available",
+      "balance_display": "173.890,75",
+      "currency": null,
+      "source_event_id": "EV-000022",
+      "observed_in_fiction": true
+    }
+  ],
   "personal_reserves": {
     "recognized_in_canon": true,
     "qualitative_value": "Sufficient to buy a modest home",
     "current_exact_balance": null,
     "currency": null,
     "statement_date": null,
-    "verified_realtime": false
+    "verified_realtime": false,
+    "note": "Two linked account balances were observed in CH-000 turn 7, but the complete aggregate reserve remains unquantified; no real-world banking verification is implied."
   },
   "shell_companies": {
     "owner_claims_existing": true,
     "company_count": null,
     "named_entity_records": [],
-    "documented_balances": [],
-    "owner_verification_status": "not documented",
-    "source_event_id": "EV-000020"
+    "documented_balances": [
+      {
+        "id": "SOC-ACCT-A",
+        "display_label": "Cuenta operativa societaria A (alias de pantalla; nombre legal no especificado)",
+        "status": "available",
+        "balance_display": "43.600,00",
+        "currency": null,
+        "source_event_id": "EV-000022",
+        "observed_in_fiction": true
+      },
+      {
+        "id": "SOC-ACCT-B",
+        "display_label": "Cuenta operativa societaria B (alias de pantalla; nombre legal no especificado)",
+        "status": "available",
+        "balance_display": "97.340,10",
+        "currency": null,
+        "source_event_id": "EV-000022",
+        "observed_in_fiction": true
+      }
+    ],
+    "owner_verification_status": "two operational accounts shown in fiction, legal company identities not yet specified",
+    "source_event_id": "EV-000022"
   },
   "third_party_readings": {
     "count": 2,
@@ -29,5 +68,5 @@
     "ownership": "not Jack's funds",
     "source_event_id": "EV-000005"
   },
-  "notes": "This ledger describes only the fictional protagonist. Owner declaration of 500+ devices and shell companies is noted but is not remote verification or proof of numeric balances."
+  "notes": "Fiction-only snapshot of accounts shown to Jack on CH-000 turn 7. Four visible account entries, legal business names and currency unspecified. Existing additional reserves and companies are not negated. Two Café Bruma third-party balances are separate and NOT Jack's funds."
 }

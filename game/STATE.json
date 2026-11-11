@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000021"
+    "last_resolved_event_id": "EV-000023"
   },
   "time": {
     "day": -30,
@@ -58,7 +58,10 @@
       "milestones": [],
       "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida. D-036: todos los campos XP/atributos/rangos son datos históricos congelados y no vuelven a utilizarse para resolver acciones o conceder recompensas."
     },
-    "knowledge": [],
+    "knowledge": [
+      "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)",
+      "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)"
+    ],
     "relationships": {
       "NPC-004": {
         "relation": "hermana menor de 17 años",
@@ -341,11 +344,11 @@
       "family_awareness": "la familia conoce su interés por los aparatos; no se ha establecido cuánto saben sobre sus reservas",
       "note": "Vive discretamente con lo necesario cubierto aunque posee reservas para comprar una casa; las obtuvo de hacking pasado y usa parte para gadgets. No inventar cifras.",
       "asset_ledger_path": "game/finances/ASSET_LEDGER.json",
-      "last_asset_review_event_id": "EV-000020",
+      "last_asset_review_event_id": "EV-000022",
       "shell_companies_declared": true,
       "shell_companies_verified_count": 0,
-      "personal_bank_accounts_verified_count": 0,
-      "last_review_status": "Private reserves and shell companies predate CH-000 and are confirmed in canon; current numeric balances, entity names and exact counts remain unspecified."
+      "personal_bank_accounts_verified_count": 2,
+      "last_review_status": "CH-000 turn 7: personal accounts PERS-01 86.450,20 and PERS-02 173.890,75; two operational society account displays 43.600,00 and 97.340,10, all available. No legal names or currency established. Other private reserves may exist."
     },
     "family_ids": [
       "NPC-004",
@@ -389,7 +392,8 @@
       "legacy_active_confirmed_in_fiction": true,
       "legacy_verification_status": "owner_confirmed_active_in_fiction",
       "legacy_itemized_records": 0,
-      "cafe_compromises_established_in_fiction": 9
+      "cafe_compromises_established_in_fiction": 9,
+      "last_camera_review_event_id": "EV-000022"
     }
   },
   "world": {
@@ -500,21 +504,22 @@
         "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
-        "independent_plan": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack.",
+        "independent_plan": "Guardar una copia de su ilustración en la memoria USB prestada por Jack y llevarla mañana a la escuela.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
           "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
           "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar.",
           "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out. (source: Elena herself adjusted the digital illustration after Jack's gestural feedback; EV-000018)",
           "Jack vio el dibujo y señaló un problema de perspectiva; pudo corregirlo sin que el hermano escribiera diálogo.",
-          "She needs an external memory device to carry her artwork to school tomorrow. (source: Elena prepared the file and asked Jack from the workshop doorway.; EV-000021)"
+          "She needs an external memory device to carry her artwork to school tomorrow. (source: Elena prepared the file and asked Jack from the workshop doorway.; EV-000021)",
+          "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio. (source: Elena recibió la memoria directamente de Jack en la puerta del taller; EV-000023)"
         ],
         "relationships": {
           "PLAYER-001": {
             "relation": "hermano mayor",
             "bond": "cercano pero a veces discrepante",
             "knowledge_of_crimes": false,
-            "latest_shared_moment": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
+            "latest_shared_moment": "Jack le prestó una memoria USB para su dibujo escolar (CH-000, turno 7)"
           }
         },
         "conditions": [],
@@ -530,11 +535,23 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000021",
+          "event_id": "EV-000023",
           "day": -30,
-          "summary": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers."
+          "summary": "Elena receives a spare USB from Jack, thanks him, and returns to the computer to copy her illustration."
         },
-        "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes."
+        "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes.",
+        "inventory": [
+          {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "prestada a Elena para su ilustración escolar",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        ]
       },
       "NPC-005": {
         "id": "NPC-005",
@@ -774,16 +791,17 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 21,
+    "last_event_sequence": 23,
     "completed_chapters": [],
-    "last_transcript_sequence": 14,
+    "last_transcript_sequence": 16,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
       "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
       "CH000-PLAYER-0004-RETURN-WILSON-HOME",
       "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW",
-      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW"
+      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
+      "CH000-TURN-0007-USB-FINANCIAL-CAMERA"
     ],
     "story_revisions": [
       {
@@ -808,12 +826,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Elena pide una memoria portátil para su dibujo. Jack está en el taller; su red activa previa supera los 500 dispositivos en el canon, y los nueve de Café Bruma son nuevas incorporaciones. Cuentas propias y sociedades instrumentales preexistentes; importes y nombres exactos aún no definidos. Continuar como novela interactiva, sin RPG.",
-    "last_player_action": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys"
+    "message": "Elena tiene la memoria USB y vuelve a su computadora; Jack permanece frente al monitor con saldos y vista previa de cámara. Aster sigue incompleto.",
+    "last_player_action": "Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara"
   },
   "save": {
-    "last_verified_turn": 6,
-    "notes": "Revisión literaria autorizada del turno 6, sin crear turno 7, con el texto original archivado como REV-CH000-0002. Canon: red activa 500+ anterior, nueve nuevas incorporaciones, finanzas y sociedades preexistentes."
+    "last_verified_turn": 7,
+    "notes": "CH-000 turn 7: spare USB handed to Elena, four fictional dashboard account balances observed, one legacy-network camera preview. Verbatim transcript and event/state stored together."
   },
   "narrative_threads": [
     {
@@ -928,6 +946,12 @@
           "kind": "open",
           "event_id": "EV-000020",
           "summary": "Jack revisó sus reservas y sociedades preexistentes, sin establecer cifras de cuentas, nombres de empresas ni balances detallados en esta escena.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000022",
+          "summary": "El panel de Jack muestra dos cuentas personales con saldos 86.450,20 y 173.890,75 y dos cuentas operativas societarias con 43.600,00 y 97.340,10; las cuatro disponibles. Los nombres legales, moneda y posibles otras cuentas no quedan establecidos.",
           "visibility": "known"
         }
       ]
