@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 16,
+  "last_entry_sequence": 18,
   "entries": [
     {
       "id": "TXT-000001",
@@ -193,6 +193,30 @@
       "event_ids": [
         "EV-000022",
         "EV-000023"
+      ]
+    },
+    {
+      "id": "TXT-000017",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Continue al próximo dia después de narrar como termina puedes decidir tu como termina",
+      "event_ids": [
+        "EV-000024"
+      ]
+    },
+    {
+      "id": "TXT-000018",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La imagen del pasillo permaneció tranquila en la pantalla. Una puerta cerrada, luz blanca, ningún movimiento que reclamara atención. En el apartamento, en cambio, el sonido de la computadora de Elena alternaba con los últimos comentarios de Rosa sobre el despertador.\n\n—Ya está copiado —se oyó decir a Elena desde la mesa—. Ahora sí puedo llevarlo mañana.\n\n—Pues déjalo junto a la mochila, que luego sales corriendo —contestó su abuela.\n\nElena replicó algo sobre que esta vez no se le olvidaría. Unos minutos después cerró la computadora. Rosa dejó las piezas del reloj sobre el paño, sin conseguir que dejara de adelantarse al encajar la tapa.\n\nLa casa fue apagándose poco a poco. Jack cerró las ventanas de su monitor y dejó el taller por esa noche. En la penumbra permanecieron el brazo inacabado de Aster, las herramientas y los proyectos que podían esperar hasta otro día.\n\n***\n\nPor la mañana, la claridad entraba por las persianas de Railgarden. Afuera pasaba un autobús; después, el ruido de una persiana metálica subiendo desde alguna tienda del barrio.\n\nEn la cocina olía a pan tostado. Rosa había vuelto a colocar el despertador abierto junto a su taza, sobre un trapo doblado para no rayar la mesa.\n\n—Siete minutos —murmuró, mirando la aguja—. Cerrado, se adelanta siete minutos. Abierto, se comporta como si nada. Qué carácter.\n\nElena llegó con la mochila al hombro. La memoria USB que Jack le había prestado estaba guardada en un bolsillo interior; el archivo de su ilustración ya tenía una copia. Se agachó para acomodarse un zapato y volvió a levantarse sujetando la correa de la mochila.\n\n—Hoy la enseño en clase. Si el proyector funciona, claro.\n\n—Y si no funciona, se la enseñas en tu computadora —respondió Rosa, apartando con cuidado un tornillo del borde de la mesa.\n\nJack apareció por el pasillo y entró en la cocina. Rosa desplazó hacia él el plato con las tostadas, sin interrumpir su examen del reloj.\n\n—Hay más, si quieres.\n\nElena miró un instante hacia su hermano.\n\n—Gracias otra vez por la memoria. La traigo de vuelta cuando termine.\n\nEn la calle continuaba el movimiento habitual de una mañana laborable. En el taller, Aster seguía incompleto y el monitor permanecía apagado. Elena dejó la mochila junto a la puerta mientras Rosa intentaba decidir cuál de los diminutos engranajes volvería a revisar primero.",
+      "event_ids": [
+        "EV-000024",
+        "EV-000025",
+        "EV-000026"
       ]
     }
   ]
