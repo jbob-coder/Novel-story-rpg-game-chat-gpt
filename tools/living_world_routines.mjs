@@ -93,4 +93,6 @@ export function stageNPCResolution({state, actorId, eventId, turn, day, outcome,
 // Facts are viewer-specific. Never expose a draft's full private event/outcome.
 export function visibleFacts(staged, viewerId) {
   if (!staged || !Array.isArray(staged.disclosures) || typeof viewerId !== 'string') return [];
-  return staged.disclosures.filter(d => Array.isArray(d.viewerIds) && d.viewerIds.eQÍÐ¡Ù¥ÝÉ%Ì¤¤(¹µÀ¡ôø¹Ð¤ì)ô
+  return staged.disclosures.filter(d => Array.isArray(d.viewerIds) && d.viewerIds.includes(viewerId))
+    .map(d => d.fact);
+}
