@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 18,
+  "last_entry_sequence": 20,
   "entries": [
     {
       "id": "TXT-000001",
@@ -217,6 +217,30 @@
         "EV-000024",
         "EV-000025",
         "EV-000026"
+      ]
+    },
+    {
+      "id": "TXT-000019",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo",
+      "event_ids": [
+        "EV-000027"
+      ]
+    },
+    {
+      "id": "TXT-000020",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La mochila seguía donde Elena la había dejado, junto a la puerta. Jack la levantó por una de las correas y se la puso en las manos.\n\n—¡Casi me voy sin ella! —Elena miró la mochila y luego a su hermano—. Gracias. Otra vez.\n\nSe la acomodó al hombro, palpó por fuera el bolsillo donde había guardado la memoria USB y se dirigió a la salida.\n\n—Nos vemos después de clase.\n\n—Mira bien antes de cruzar —le dijo Rosa desde la cocina.\n\n—¡Sí, abuela!\n\nLa puerta se cerró con un golpe suave. Por el pasillo comunitario se alejaron los pasos de Elena, mezclándose con las voces de otros vecinos que también salían a sus ocupaciones.\n\nJack regresó a la cocina. El despertador continuaba abierto sobre el paño, con su tapa a un lado. Rosa había dejado la taza cerca del fregadero y sostenía las diminutas piezas con unas pinzas.\n\n—Mira esto —dijo, moviendo la tapa hacia el reloj—. Mientras está abierto, bien. Lo cierro y empieza a ganarme minutos.\n\nEl problema estaba en el cierre. Una pestaña interior, ligeramente fuera de sitio, empujaba el pequeño mando de ajuste al encajar la carcasa. Cada vez que se cerraba, las agujas daban un salto hacia delante. El movimiento no nacía del mecanismo que medía el tiempo.\n\nJack corrigió el asiento de la pestaña, recolocó la pieza de sujeción y volvió a cerrar el reloj. Esta vez la aguja no saltó. Abrió la tapa y repitió la prueba; al cerrarla de nuevo, la hora se mantuvo.\n\nRosa acercó el despertador a la luz de la ventana.\n\n—Conque eras tú —le dijo a la tapa, como si esta pudiera ofenderse—. Y yo echándole la culpa a todo lo de adentro.\n\nLo comprobó una vez más antes de apartar las pinzas.\n\n—Ahora sí. Se lo puedo devolver al vecino sin que llegue siete minutos antes a todas partes.\n\nEl reloj quedó sobre el paño, funcionando con la carcasa cerrada.\n\nJack volvió al taller. Aster ocupaba el mismo espacio entre la mesa y el soporte de montaje, inmóvil, con parte de su estructura todavía expuesta. El brazo que había quedado a medio armar descansaba junto a una bandeja de tornillos, ejes y piezas articuladas.\n\nJack revisó la unión del hombro y comprobó cómo asentaban las piezas del codo antes de fijar el conjunto. El primer ajuste dejó el antebrazo demasiado cerca de una placa del torso; al moverlo con la mano, el borde rozó el metal. Aflojó el soporte, corrigió la alineación y volvió a asegurarlo.\n\nEsta vez el brazo pudo flexionarse y extenderse a mano sin rozar la carcasa. El peso quedó sostenido por la estructura del hombro y el codo conservó su recorrido. Los cables de los actuadores, todavía sin conectar, seguían sujetos a un lado para que no quedaran atrapados entre las articulaciones.\n\nDesde la cocina llegó la voz de Rosa:\n\n—¡Lo cerré otra vez y sigue marcando bien!\n\nEn el taller, el primer brazo de Aster ya estaba montado en el cuerpo. El robot no se encendió ni se movió por sí mismo: faltaban la conexión de los actuadores, el control y las pruebas bajo carga. Pero aquella pieza que había ocupado la mesa ahora formaba parte de la estructura.\n\nSobre el banco permanecían las herramientas de precisión, y junto al brazo instalado quedaban a la vista los puntos donde continuar el ensamblaje.",
+      "event_ids": [
+        "EV-000027",
+        "EV-000028",
+        "EV-000029"
       ]
     }
   ]

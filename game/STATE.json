@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000026"
+    "last_resolved_event_id": "EV-000029"
   },
   "time": {
     "day": -29,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "morning",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 814
+    "elapsed_minutes_since_opening_approx": 889
   },
   "player": {
     "initialized": true,
@@ -24,7 +24,7 @@
     "role": "gray-hat hacker",
     "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
-    "location_id": "LOC-WILSON-APARTMENT",
+    "location_id": "LOC-WILSON-WORKSHOP",
     "progression": {
       "attributes": {
         "strength": 2,
@@ -60,7 +60,8 @@
     },
     "knowledge": [
       "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)",
-      "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)"
+      "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)",
+      "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)"
     ],
     "relationships": {
       "NPC-004": {
@@ -90,7 +91,7 @@
         "id": "ITEM-PHONE",
         "name": "Teléfono personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional",
         "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
@@ -100,7 +101,7 @@
         "id": "ITEM-VOICE-COLLAR",
         "name": "Collar sintetizador de voz",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional",
         "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
@@ -110,7 +111,7 @@
         "id": "ITEM-COMPACT-CASE",
         "name": "Estuche compacto de electrónica",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
         "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
@@ -172,17 +173,31 @@
         "size": "mediano",
         "location_id": "LOC-WILSON-WORKSHOP",
         "carried": false,
-        "status": "en construcción, incompleto y no operativo",
+        "status": "En construcción: primer brazo montado mecánicamente y recorrido manual comprobado; actuadores sin conectar; no operativo",
         "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
         "narrative_only": true,
         "functional_state": "incompleto",
-        "spec_ref": "game/ASTER_SPEC.md"
+        "spec_ref": "game/ASTER_SPEC.md",
+        "assembly_progress": {
+          "first_arm": {
+            "mounted_to_torso": true,
+            "shoulder_joint": "Soporta el conjunto en montaje; revisión manual realizada",
+            "elbow_joint": "Movimiento pasivo de flexión/extensión comprobado sin rozamiento",
+            "manual_alignment": "alineación corregida y comprobada",
+            "actuator_wiring": "sin conectar",
+            "powered_motion": "sin probar",
+            "load_tests": "pendientes",
+            "source_event_id": "EV-000027",
+            "day": -29
+          },
+          "other_modules": "No se atribuyen nuevas funciones; robot aún no operativo"
+        }
       },
       {
         "id": "ITEM-WALLET",
         "name": "Cartera personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
         "status": "funcional; contiene efectivo para gastos corrientes",
         "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
@@ -502,9 +517,9 @@
         "name": "Elena Wilson",
         "age": 17,
         "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
-        "location_id": "LOC-WILSON-APARTMENT",
+        "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
         "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
-        "independent_plan": "Llevar a la clase la copia de la ilustración en la memoria USB prestada, enseñársela a la profesora y devolver la memoria después.",
+        "independent_plan": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase.",
         "knowledge": [
           "Jack utiliza el collar con el teléfono para comunicarse.",
           "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
@@ -536,9 +551,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000025",
+          "event_id": "EV-000028",
           "day": -29,
-          "summary": "Elena guardó una copia de su ilustración en la memoria USB, la colocó en la mochila y se preparó para salir a clase; continúa en casa."
+          "summary": "Elena recibe la mochila de Jack, confirma que lleva la USB con el dibujo y sale del apartamento camino de la escuela."
         },
         "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes.",
         "inventory": [
@@ -546,10 +561,20 @@
             "id": "ITEM-USB-SPARE-001",
             "name": "Memoria USB de repuesto",
             "size": "pequeño",
-            "location_id": "LOC-WILSON-APARTMENT",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
             "carried": true,
             "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
             "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
             "narrative_only": true
           }
         ]
@@ -561,7 +586,7 @@
         "role": "abuela de Jack; jubilada aficionada a arreglos domésticos",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
-        "independent_plan": "Examinar otra vez el despertador del vecino que se adelanta al cerrarse; mantener sus tareas habituales de la mañana.",
+        "independent_plan": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana.",
         "knowledge": [
           "Jack construye gadgets.",
           "Jack usa un collar que reproduce lo que escribe para hablar.",
@@ -578,7 +603,8 @@
         "conditions": [],
         "resources": {
           "daily_life": "recursos normales, sin cifras fijadas",
-          "current_repair": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
+          "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+          "last_repair_event_id": "EV-000029"
         },
         "progression": {
           "attributes": null,
@@ -588,9 +614,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000026",
+          "event_id": "EV-000029",
           "day": -29,
-          "summary": "Rosa prepara tostadas para la mañana y sigue examinando el despertador del vecino; la avería de siete minutos continúa sin resolver."
+          "summary": "Rosa observa que Jack arregló el problema de la tapa del despertador, comprueba varios cierres y deja el reloj listo para devolvérselo al vecino."
         },
         "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
       },
@@ -792,9 +818,9 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 26,
+    "last_event_sequence": 29,
     "completed_chapters": [],
-    "last_transcript_sequence": 18,
+    "last_transcript_sequence": 20,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
@@ -803,7 +829,8 @@
       "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW",
       "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
       "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
-      "CH000-TURN-0008-MORNING-TRANSITION"
+      "CH000-TURN-0008-MORNING-TRANSITION",
+      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM"
     ],
     "story_revisions": [
       {
@@ -827,13 +854,13 @@
   "pending": {
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
-    "location_id": "LOC-WILSON-APARTMENT",
-    "message": "Mañana del día -29: Jack está en la cocina del hogar Wilson; Elena con la mochila está por salir hacia la escuela, y Rosa continúa con el despertador. Esperar una acción libre del lector.",
-    "last_player_action": "Continue al próximo dia después de narrar como termina puedes decidir tu como termina"
+    "location_id": "LOC-WILSON-WORKSHOP",
+    "message": "Día -29, media mañana: Jack está en su taller junto a Aster, con el primer brazo montado manualmente pero sin actuadores conectados. Rosa tiene el reloj reparado; Elena salió hacia la escuela con su mochila y la USB. Esperar decisión libre del jugador.",
+    "last_player_action": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo"
   },
   "save": {
-    "last_verified_turn": 8,
-    "notes": "CH-000 turn 8: owner-authorized night ending and next morning; Elena prepared the school art USB, Rosa's clock still unresolved, Jack in household common area. Readback required."
+    "last_verified_turn": 9,
+    "notes": "CH-000 turn 9: Jack hands Elena her schoolbag, fixes Rosa's neighbor clock, and physically mounts Aster's first arm without powered operation; Elena heads toward school."
   },
   "narrative_threads": [
     {

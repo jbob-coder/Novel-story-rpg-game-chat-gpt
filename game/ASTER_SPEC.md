@@ -20,3 +20,8 @@ Jack diseña a Aster para ser flexible, resistente y capaz de actuar sin piloto 
 **Continuidad:** Aster no está listo para misiones. No puede volar, combatir ni sobrevivir a impactos por mero hecho de tener requisitos de diseño. Construir, probar y mejorar funciones consume tiempo, recursos y decisiones que deberán registrarse en eventos futuros. No hay cabina de piloto. No se fijaron armas, tácticas automáticas, diseños técnicos ni modos de causar daño.
 
 **Agencia:** El jugador elige los proyectos de Jack. El robot no puede actuar por cuenta propia hasta que se establezca su capacidad real, su autorización y sus límites dentro de la ficción.
+
+
+## Progreso realizado en escena — Día -29, turno 9 (EV-000027)
+
+Jack montó físicamente el **primer brazo** de Aster en la estructura del torso. Alineó el soporte del hombro y corrigió el roce del antebrazo contra una placa. El codo puede flexionarse y extenderse **manualmente** sin rozar la carcasa; el peso queda sostenido por el soporte montado. **Actuadores todavía desconectados**, sin movimiento motorizado, pruebas de carga, calibración de control ni navegación autónoma. El robot sigue **incompleto y no operativo**. No se especificó si el primer brazo es el derecho o el izquierdo. La verdad actual se conserva además en `game/STATE.json` (`ITEM-ASTER.assembly_progress`) y el cambio causal en `EV-000027`.

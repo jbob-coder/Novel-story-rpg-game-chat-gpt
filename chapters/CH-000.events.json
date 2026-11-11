@@ -1460,6 +1460,397 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000027",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack recoge la mochila, se la entrega a Elena, vuelve a la cocina, repara el despertador, regresa al taller, inspecciona Aster y monta su primer brazo.",
+      "outcome": "Jack entrega la mochila a Elena sin retirar la USB. En la cocina corrige una pestaña interior de la tapa del despertador que presionaba el ajuste de hora y comprueba varios cierres sin saltos de minutos. Regresa al taller, corrige una interferencia física del primer brazo de Aster y lo monta en el torso; hombro y codo se desplazan a mano, sin actuadores conectados ni operación autónoma.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "after": null
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-WILSON-WORKSHOP"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-PHONE",
+          "before": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-VOICE-COLLAR",
+          "before": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-COMPACT-CASE",
+          "before": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-WALLET",
+          "before": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ASTER",
+          "before": {
+            "id": "ITEM-ASTER",
+            "name": "Aster — robot mediano sin cabina",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": false,
+            "status": "en construcción, incompleto y no operativo",
+            "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+            "narrative_only": true,
+            "functional_state": "incompleto",
+            "spec_ref": "game/ASTER_SPEC.md"
+          },
+          "after": {
+            "id": "ITEM-ASTER",
+            "name": "Aster — robot mediano sin cabina",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": false,
+            "status": "En construcción: primer brazo montado mecánicamente y recorrido manual comprobado; actuadores sin conectar; no operativo",
+            "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+            "narrative_only": true,
+            "functional_state": "incompleto",
+            "spec_ref": "game/ASTER_SPEC.md",
+            "assembly_progress": {
+              "first_arm": {
+                "mounted_to_torso": true,
+                "shoulder_joint": "Soporta el conjunto en montaje; revisión manual realizada",
+                "elbow_joint": "Movimiento pasivo de flexión/extensión comprobado sin rozamiento",
+                "manual_alignment": "alineación corregida y comprobada",
+                "actuator_wiring": "sin conectar",
+                "powered_motion": "sin probar",
+                "load_tests": "pendientes",
+                "source_event_id": "EV-000027",
+                "day": -29
+              },
+              "other_modules": "No se atribuyen nuevas funciones; robot aún no operativo"
+            }
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces.",
+          "source": "Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29",
+          "after": "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000028",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Elena recoge su mochila de manos de Jack, se la acomoda y se marcha a su jornada escolar.",
+      "outcome": "Elena sale del hogar Wilson hacia Railgarden, de camino a la escuela, con su mochila y la USB de la ilustración. No se afirma que ya haya llegado al colegio.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001",
+        "NPC-005"
+      ],
+      "caused_by": [
+        "EV-000027"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000025",
+            "day": -29,
+            "summary": "Elena guardó una copia de su ilustración en la memoria USB, la colocó en la mochila y se preparó para salir a clase; continúa en casa."
+          },
+          "after": {
+            "event_id": "EV-000028",
+            "day": -29,
+            "summary": "Elena recibe la mochila de Jack, confirma que lleva la USB con el dibujo y sale del apartamento camino de la escuela."
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-RAILGARDEN-RESIDENTIAL",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-RAILGARDEN-RESIDENTIAL"
+          ]
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Llevar a la clase la copia de la ilustración en la memoria USB prestada, enseñársela a la profesora y devolver la memoria después.",
+          "after": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000029",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Rosa comprueba la reparación del reloj y organiza su devolución al vecino.",
+      "outcome": "Tras comprobar varias veces que al cerrar la carcasa ya no se adelantan las agujas, Rosa considera el despertador reparado y se dispone a devolverlo al vecino más tarde.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000027"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000026",
+            "day": -29,
+            "summary": "Rosa prepara tostadas para la mañana y sigue examinando el despertador del vecino; la avería de siete minutos continúa sin resolver."
+          },
+          "after": {
+            "event_id": "EV-000029",
+            "day": -29,
+            "summary": "Rosa observa que Jack arregló el problema de la tapa del despertador, comprueba varios cierres y deja el reloj listo para devolvérselo al vecino."
+          }
+        },
+        {
+          "actor_id": "NPC-005",
+          "field": "resources",
+          "before": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
+          },
+          "after": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029"
+          }
+        },
+        {
+          "actor_id": "NPC-005",
+          "field": "independent_plan",
+          "before": "Examinar otra vez el despertador del vecino que se adelanta al cerrarse; mantener sus tareas habituales de la mañana.",
+          "after": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana."
+        }
+      ],
+      "progression_awards": []
     }
   ]
 }
