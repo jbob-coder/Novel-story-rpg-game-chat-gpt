@@ -11,6 +11,8 @@ const source='a'.repeat(40),newCommit='b'.repeat(40),other='c'.repeat(40),branch
 function sourceFiles(){
  return Object.fromEntries(savePaths('CH-000').map(p=>[p,readFileSync(resolve(root,p),'utf8')]));
 }
+const baseline=decodeFiveFiles(sourceFiles(),'CH-000');
+const futureTurn=baseline.manifest.last_completed_turn+1;
 class FakeGit {
  constructor(){
   this.head=source;this.commits=new Map([[source,sourceFiles()]]);
@@ -40,7 +42,7 @@ const words='La luz permanece encendida.\n\n—¿La memoria?';
 let builds=0;
 const buildNext=({snapshot,observedHead})=>{
  builds++;
- return stageNarrativeTurn(snapshot,{key:'synthetic-save-turn-0007',save_guard:{observed_head:observedHead,previous_attempt:null},
+ return stageNarrativeTurn(snapshot,{key:'synthetic-save-future-turn',save_guard:{observed_head:observedHead,previous_attempt:null},
   intent:'Jack observa su mesa de trabajo.',outcome:'El taller sigue en calma.',
   player_text:'Jack observa el taller.',narration_messages:[words],elapsed_days:0,offscreen:[]});
 };
@@ -50,9 +52,11 @@ test('synthetic turn atomically commits all five and reads back exact prose',asy
  assert.equal(r.status,'verified');assert.equal(r.attempt.percent,100);assert.equal(g.created,1);assert.equal(g.updated,1);
  assert.equal(g.head,newCommit);assert.equal(builds,1);assert.deepEqual(r.narration_messages,[words]);
  const next=decodeFiveFiles(g.commits.get(newCommit),'CH-000');
- assert.equal(next.manifest.last_completed_turn,7);assert.equal(next.events.events.length,22);
- assert.equal(next.transcript.entries.length,16);assert.equal(next.transcript.entries.at(-1).text,words);
- assert.equal(decodeFiveFiles(g.commits.get(source),'CH-000').manifest.last_completed_turn,6);
+ assert.equal(next.manifest.last_completed_turn,futureTurn);
+ assert.equal(next.events.events.length,baseline.events.events.length+1);
+ assert.equal(next.transcript.entries.length,baseline.transcript.entries.length+2);
+ assert.equal(next.transcript.entries.at(-1).text,words);
+ assert.equal(decodeFiveFiles(g.commits.get(source),'CH-000').manifest.last_completed_turn,baseline.manifest.last_completed_turn);
 });
 test('readback interruption blocks at 85%; recovery verifies same commit without resimulation',async()=>{
  builds=0;const g=new FakeGit();g.failReadback=true;const x=await run(g);
@@ -90,7 +94,7 @@ test('repeat recovery of verified save never duplicates player action',async()=>
  const repeated=await recoverFiveFileSave({remote:g,blocked:saved});
  assert.equal(repeated.status,'verified');assert.equal(g.created,1);assert.equal(builds,1);
  const transcript=decodeFiveFiles(g.commits.get(g.head),'CH-000').transcript;
- assert.equal(transcript.entries.filter(e=>e.turn===7&&e.role==='player').length,1);
+ assert.equal(transcript.entries.filter(e=>e.turn===futureTurn&&e.role==='player').length,1);
 });
 test('missing source file blocks before committing anything',async()=>{
  const g=new FakeGit();delete g.commits.get(source)['chapters/CH-000.transcript.json'];
