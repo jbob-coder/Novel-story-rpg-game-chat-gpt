@@ -30,3 +30,20 @@ test('atomic successful batch records every preconditioned change',()=>{
  assert.equal(e.state_changes.length,3);
  assert.equal(verifyStateChanges(s),true);
 });
+
+test('NPC repair resources have a causal event and survive readback',()=>{
+ const s=make(),npc=s.state.world.actors['NPC-004'];npc.resources={current_repair:'Clock advances when case shuts'};
+ const e=add(s,'NPC-004',22);
+ applyStateChanges(s.state,e,[{field:'resources',before:{current_repair:'Clock advances when case shuts'},after:{current_repair:'Case corrected; clock holds time'}}]);
+ assert.equal(s.state.world.actors['NPC-004'].resources.current_repair,'Case corrected; clock holds time');
+ assert.equal(verifyStateChanges(s),true);
+ s.state.world.actors['NPC-004'].resources.current_repair='Unverified';
+ assert.throws(()=>verifyStateChanges(s),/Saved state differs from recorded resources/);
+});
+test('stale NPC repair change blocks the entire batch',()=>{
+ const s=make(),npc=s.state.world.actors['NPC-004'];npc.resources={current_repair:'Pending'};
+ const event=add(s,'NPC-004',22),before=JSON.stringify(npc);
+ assert.throws(()=>applyStateChanges(s.state,event,[{field:'independent_plan',before:'Finish drawing',after:'Repair'},{field:'resources',before:{current_repair:'Fixed'},after:{current_repair:'Completed'}}]),/Stale actor resources/);
+ assert.equal(JSON.stringify(s.state.world.actors['NPC-004']),before);
+ assert.equal(event.state_changes.length,0);
+});

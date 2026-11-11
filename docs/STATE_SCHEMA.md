@@ -81,3 +81,8 @@ El motor sigue admitiendo new_location_id y learned_fact en eventos NPC, pero lo
 La función verifyStateChanges comprueba la unicidad de objetos, ubicación de objetos portados y concordancia entre los eventos posteriores al turno 6 y el estado final. Se ejecuta desde verifyNarrativeSnapshot junto a las comprobaciones previas. La validación Python existente es estructural y no sustituye esta verificación de Node. Los turnos 1–6 no se reescriben.
 
 **Límite:** la calidad literaria y la correspondencia entre la prosa y los cambios declarados siguen requiriendo revisión editorial. El sistema tampoco resuelve por sí solo el Día 0 o la transición entre capítulos.
+
+
+## D-047 — recursos cualitativos causales
+
+El campo `resources` se puede actualizar en el evento del propio actor mediante objetos completos `before` y `after`; el motor comprueba precondiciones, valida la secuencia causal y rechaza discrepancias en el estado final. Esto permite registrar, por ejemplo, la resolución del reloj de Rosa sin tratar su reparación como un texto efímero. No afecta atributos RPG ni permite cambiar recursos de otro actor sin su propio evento. El estado de Aster se conserva como modificación del objeto `ITEM-ASTER` mediante `inventory_item`; lo ensamblado no implica funciones operativas no probadas.

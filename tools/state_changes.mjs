@@ -71,6 +71,13 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       requireFact(!actor.knowledge.includes(entry), 'Duplicate knowledge');
       actor.knowledge.push(entry);
       record.state_changes.push({actor_id: actorId, field, fact: change.fact, source: change.source, after: entry});
+    } else if (field === 'resources') {
+      requireFact(change.before && change.after && typeof change.before === 'object' &&
+        typeof change.after === 'object' && !Array.isArray(change.before) &&
+        !Array.isArray(change.after), 'Resources must be objects');
+      requireFact(equal(actor.resources ?? {}, change.before), 'Stale actor resources');
+      actor.resources = copy(change.after);
+      record.state_changes.push({actor_id: actorId, field, before: copy(change.before), after: copy(change.after)});
     } else if (field === 'independent_plan') {
       requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
@@ -122,7 +129,7 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources'].includes(field), 'Unknown tracked change field');
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
         continue;
