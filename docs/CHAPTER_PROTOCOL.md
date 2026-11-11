@@ -65,3 +65,6 @@ The default transcript is append-only. **Only an owner's clear instruction to re
 
 
 **D-043:** El adaptador REST en `tools/github_save_adapter.mjs` permite completar las operaciones del módulo transaccional con un token suministrado externamente (nunca incluir credenciales en los archivos). La prueba GitHub sobre `qa/story-save-recovery-d043-20261110` verificó cinco archivos y recuperación tras commit interrumpido; su turno 7 es ficticio y NO CANÓNICO. La rama de novela sigue en turno 6.
+
+## D-049: separación del capítulo visible y los eventos privados
+A partir de los siguientes turnos, el motor conserva el resultado completo de los actos de NPC en `*.events.json` y el estado causal pero **no** añade automáticamente ese resultado al Markdown del capítulo. El capítulo y la transcripción íntegra deben contener únicamente la escena que Jack puede percibir o saber justificadamente. Los eventos offscreen solo entran en el relato público cuando se produce una revelación causal explícita. El histórico se preserva literalmente y puede necesitar revisión de spoilers antes de compartir capítulos antiguos enteros. Regresión: `tests/turn_engine.test.mjs` y `tests/living_world_coordinator.test.mjs`; QA GitHub Actions `42953180071`.

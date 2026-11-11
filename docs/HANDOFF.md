@@ -1,3 +1,9 @@
+# Estado actual D-049 — Living World en rama narrativa; privacidad corregida (2026-11-10)
+
+El motor de narración fue corregido para no incluir automáticamente resultados privados de NPC en el texto del capítulo en **nuevos turnos**. GitHub Actions `42953180071`: Node **135/135**, Python **24/24**, validador **PASS**. Corrección `bcfd86fe5ca5cd8598d6e3e9969221c5697a98be` incorporada a `work/chat-narrative-foundation` en fast-forward sin tocar `main`. **La partida sigue CH-000 turno 9, EV-000029, TXT-000020**; verificar manifiesto al iniciar cualquier sesión. No activación automática, ni simulación en segundo plano. El turno 10 de `qa/living-world-integration-20261110` es sintético, nunca fuente narrativa. Documentación: `docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md`. Los registros anteriores debajo son históricos.
+
+---
+
 # Prioridad más reciente — D-048 Living World integrado sin activación automática (2026-11-10)
 
 Se incorporaron a la rama narrativa únicamente módulos, pruebas y documentos Living World mediante fast-forward seguro. **NO se avanzó la partida real**: CH-000, turno 9, Día -29 mañana, EV-000029, TXT-000020. Los cinco archivos de guardado conservan SHA originales. La rama `qa/living-world-integration-20261110` contiene turno 10 sintético/no canónico; PR #3 cerrada sin fusionar. Ejecutado previamente en QA: 133/133 Node, 24/24 Python, validador PASS, guardado remoto de cinco archivos y recuperación PASS. **Pendiente antes de activación:** corregir posible spoiler por eventos offscreen incluidos en Markdown del capítulo y probar su separación, luego usar diagnóstico en un turno futuro real con consentimiento de acción y cinco archivos verificados. Véase `docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md`. Documentos históricos abajo son orientativos, no reemplazan el manifiesto.

@@ -50,3 +50,7 @@ La rama narrativa `work/chat-narrative-foundation` incorporó mediante avance fa
 
 **Próximo paso:** (1) corregir y probar filtración offscreen del capítulo, (2) ensayar uso manual de diagnóstico privado con una acción libre real, (3) validar narración literaria y guardar cinco archivos idénticos de una única acción real. No hay autorización implícita para adelantar la trama.
 [Informe de QA final](docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md) y [guía de activación](docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md).
+
+## D-049 — se corrigió la filtración offscreen hacia el capítulo (2026-11-10)
+La observación D-048 sobre filtración del futuro `CH-000.md` ya tiene una corrección **validada para nuevos turnos**. `tools/turn_engine.mjs` deja de copiar resultados de NPC privados al Markdown legible; quedan en el registro de eventos y estado. Las pruebas nuevas de privacidad y la suite completa aprobaron **135/135 Node, 24/24 Python y validador PASS** en GitHub Actions `42953180071`. La corrección se incorporó a la rama narrativa mediante fast-forward protegido, **sin modificar los cinco archivos de guardado**. El sistema no se invoca automáticamente y no se adelantó la partida (turno 9). El histórico anterior no fue reescrito y puede tener spoilers si alguien solicita capítulo entero. Referencia: [revisión privacidad](docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md). La puerta final sigue siendo la resolución libre del próximo turno del usuario y su guardado verificado.
+

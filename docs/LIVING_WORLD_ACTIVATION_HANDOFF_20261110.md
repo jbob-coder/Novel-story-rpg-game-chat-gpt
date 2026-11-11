@@ -21,3 +21,6 @@
 - [ ] Usar el coordinador en un **turno real solicitado por el jugador**, con cinco artefactos y readback remoto, sin reescribir CH-000 pasado.
 
 **No activar de forma automática** ni prometer simulación en segundo plano. Hasta entonces, la narración tradicional y el save gate D-028 mantienen autoridad.
+
+## Actualización D-049: privacidad corregida (sustituye bloqueo de la fase anterior)
+Se corrigió la emisión de eventos independientes privados al capítulo para los turnos futuros, con dos pruebas de regresión nuevas y suite completa GitHub Actions `42953180071` (**135 Node, 24 Python, validador PASS**). El parche está en la rama narrativa, sin tocar guardado o capítulos jugados. Esta corrección NO borra datos históricos, NO habilita ejecución automática y NO juega turno 10. Detalles en [informe de privacidad](LIVING_WORLD_PRIVACY_FIX_QA_20261110.md).
