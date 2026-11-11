@@ -1,3 +1,13 @@
+# D-046 — CH-000 turno 8 guardado y recuperable (2026-11-10)
+
+**Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, **Día −29, mañana, turno 8, EV-000026 y TXT-000018**. El jugador escribió literalmente `Continue al próximo dia después de narrar como termina puedes decidir tu como termina` (TXT-000017), delegando cerrar la noche de forma cotidiana. El texto íntegro está en TXT-000018 y `chapters/CH-000.md`. La transición quedó guardada en el commit `96538834d2174ea221a419504dcecf77c2dcd936`, con lectura remota exacta de los cinco archivos.
+
+**Escena vigente:** Jack pasó del taller a la zona común/cocina de la casa (LOC-WILSON-APARTMENT); todos sus objetos portados cambiaron de ubicación en sus eventos. Elena aún está en casa, con la memoria ITEM-USB-SPARE-001 y una copia guardada de su ilustración, preparándose para ir a la escuela. Rosa hizo tostadas y mantiene pendiente el despertador que se adelanta siete minutos al cerrarse. Aster sigue incompleto; finanzas, cámara y red de Jack conservan el estado del turno 7. No hay anomalías del Día 0.
+
+**Pruebas:** El readback remoto del turno 8 verificó cinco archivos. El primer CI falló por dos supuestos obsoletos del lugar de Jack; el segundo tuvo 75 JS correctas y falló un test Python que exigía siempre el día -30. Ahora el test comprueba la regla temporal anterior al Día 0 en vez de fijar el día inicial. **Confirmar el CI del HEAD más reciente antes de declarar suites completas aprobadas.** No se ha iniciado turno 9 ni fusionado la PR #2.
+
+---
+
 # D-045 — CH-000 turno 7 guardado y verificado (2026-11-10)
 
 **Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, Día −30, noche, **turno 7, EV-000023, TXT-000016**. Acción literal del propietario en `TXT-000015`: «Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara». Escena literal en `TXT-000016` y `chapters/CH-000.md`. El turno se guardó en el commit `a9d3efd27b0225ec8a817accfe1684dc543740a6` con siete archivos atómicos y lectura remota completa.

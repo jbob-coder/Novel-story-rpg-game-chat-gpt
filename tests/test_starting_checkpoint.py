@@ -34,8 +34,12 @@ class CurrentCheckpoint(unittest.TestCase):
         self.assertEqual(archive['lifetime_skill_xp'],48)
         self.assertTrue(all(not e['progression_awards'] for e in self.events['events'] if e['turn']>6))
     def test_pre_shockwave(self):
-        self.assertEqual(self.state['time']['day'],-30)
-        self.assertFalse(self.state['world']['shockwave_arrived'])
-        self.assertEqual(self.state['player']['progression']['powers'],[])
+        day = self.state['time']['day']
+        self.assertGreaterEqual(day, -30)
+        if day < 0:
+            self.assertFalse(self.state['world']['shockwave_arrived'])
+            self.assertEqual(self.state['player']['progression']['powers'], [])
+        else:
+            self.assertTrue(self.state['world']['shockwave_arrived'])
 if __name__=='__main__':
     unittest.main()
