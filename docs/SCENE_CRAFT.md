@@ -14,6 +14,20 @@ The owner rejected the previous narration as **a report about what happened, rat
 - Respect player agency. Jack's typed messages, collar speech, inner feelings, choices and unrequested acts **belong to the player**. Describe the user's selected acts and external consequences only.
 - Preserve exact user and visible narrator text in the chapter transcript. Do not rewrite the first two historical turns silently. The next played turn must be staged, committed and read back under D-028 before presenting it.
 
+## D-048 — Extensión y profundidad adaptativas (preferencia del propietario, 2026-11-10)
+
+**Objetivo:** evitar que una orden con varias acciones relevantes se resuelva como una secuencia abreviada de resultados. La escena debe permitir que el lector experimente el tiempo, las interacciones y la resolución material de lo que pidió, sin inventar decisiones nuevas de Jack.
+
+**Referencias orientativas de extensión, no cuotas obligatorias:**
+- **Transición breve o respuesta sencilla:** alrededor de 250–500 palabras cuando el momento se resuelve naturalmente con poco desarrollo.
+- **Escena habitual con interacción o actividad significativa:** alrededor de 600–1.000 palabras.
+- **Turno con varias etapas distintas, personajes o procesos importantes:** alrededor de 900–1.400 palabras; separar los momentos con transiciones naturales y dedicar espacio proporcional a cada etapa relevante.
+- **Secuencia excepcionalmente compleja:** puede superar ese rango si la acción realmente exige más desarrollo o el lector pide una narración extensa. No extender automáticamente cada turno.
+
+**La prioridad es densidad dramática, no volumen.** Mostrar el desarrollo en vez de comprimirlo en «hizo A, reparó B y montó C». Usar acciones visibles, detalles físicos pertinentes, reacciones con motivación, obstáculos concretos y sus soluciones, diálogo cuando corresponda y consecuencias que queden claras sin informes. Dar más espacio a una tarea central, como ensamblar un componente, que a un gesto rutinario; no detallar tornillos o pasos repetitivos solo para alcanzar una cifra.
+
+**Controles:** no forzar NPC, diálogo, conflicto, suspenso, explicaciones técnicas operativas ni nuevos hechos para llenar espacio. Conservar la tercera persona limitada, la agencia exclusiva del jugador sobre Jack y todas las prohibiciones del contrato vigente. Si una escena queda claramente demasiado comprimida para la cantidad de acciones, revisarla **antes de guardarla**; si una escena breve ya está completa, no alargarla artificialmente. No aplicar retroactivamente este cambio a la transcripción ni a los eventos jugados; una revisión de un turno guardado exige autorización separada.
+
 ## Mandatory silent editorial review before saving a played turn
 Ask:
 1. Is there a scene the reader *experiences*, rather than just an explanation of events?
