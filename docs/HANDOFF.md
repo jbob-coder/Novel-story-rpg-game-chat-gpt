@@ -1,3 +1,13 @@
+# D-045 — CH-000 turno 7 guardado y verificado (2026-11-10)
+
+**Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, Día −30, noche, **turno 7, EV-000023, TXT-000016**. Acción literal del propietario en `TXT-000015`: «Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara». Escena literal en `TXT-000016` y `chapters/CH-000.md`. El turno se guardó en el commit `a9d3efd27b0225ec8a817accfe1684dc543740a6` con siete archivos atómicos y lectura remota completa.
+
+**Consecuencias:** Jack entrega `ITEM-USB-SPARE-001` a Elena; solo aparece en el inventario de `NPC-004` (ubicación hogar Wilson). La consulta en el monitor registra 2 saldos personales (86.450,20; 173.890,75), 2 cuentas societarias visibles (43.600,00; 97.340,10), estado disponible; no se asignaron nombres legales, moneda ni un importe agregado a todas sus reservas. Las dos lecturas ajenas de Café Bruma siguen separadas. La sección de cámaras muestra una vista estable, sin ubicación fijada, de una fuente de la red antigua 500+ activa. Referencias: `game/finances/ASSET_LEDGER.json`, `game/equipment/DEVICE_REGISTRY.json`, EV-000022/23. Rosa permanece con el reloj, Aster incompleto. **No se ha iniciado turno 8.**
+
+**Pruebas:** El primer CI falló por cinco expectativas antiguas con números fijos de turno 6, no por el contenido narrativo. Se cambiaron a comprobaciones relativas al manifest y se volvió a ejecutar: [GitHub Actions #42933007883](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42933007883) **75/75 JavaScript, 20/20 Python y validador de checkpoint PASS** (commit `5446bf64d06da1cfa641706a74af53c0a52a4e9b`). La PR #2 sigue abierta y sin merge. Resumir la escena no reemplaza la transcripción íntegra.
+
+---
+
 # D-044 — retry autorizado del turno 6, capítulo CH-000 (2026-11-10)
 
 El propietario pidió «Quiero que hagas un retry con el chapter 6»; el repo solo tiene CH-000 con seis turnos. Se rehízo la última escena sin avanzar el turno, conservando literalmente su entrada TXT-000013. La narración anterior, EV-000020/021 anteriores y campos previos del estado se archivaron en `chapters/revisions/REV-CH000-0002.json`. La versión vigente es TXT-000014 (revisada), una escena literaria que reconoce como hechos previos la red activa 500+ y los nueve accesos de Café Bruma, cuentas y empresas ya existentes. No hay cifras propias inventadas ni episodios retroactivos. Elena sigue esperando respuesta. Verificar MANIFEST, estado, eventos y transcripción en el HEAD actual antes de empezar otro turno; no usar QA D-043 como canon.

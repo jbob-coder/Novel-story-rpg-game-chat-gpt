@@ -27,4 +27,5 @@ Mantiene un taller con componentes, aparatos de diagnóstico, sensores, un micro
 No RPG, XP, rangos ni estadísticas. No poderes antes del Día 0. No asignar acciones ni mensajes a Jack. No fabricar biografía delictiva retroactiva. Su trayectoria y recursos anteriores deben influir cualitativamente cuando sean relevantes, sin verificaciones artificiales repetidas.
 
 ## Último checkpoint conocido al documentar esta ficha
-CH-000, Día −30, noche, **seis turnos**. Jack está en su taller de Railgarden; Elena espera saber si puede prestarle una memoria USB para su ilustración escolar. Rosa continúa con el reloj y Aster sigue incompleto. **Este resumen no autoriza jugar el turno 7 y puede quedar obsoleto; manda el manifiesto actual.**
+
+CH-000, Día −30, noche, **siete turnos**. Jack permanece frente al monitor de su taller en Railgarden. Entregó una memoria USB a Elena, que volvió a su computadora; revisó cuatro entradas de cuentas privadas y societarias (ver `game/finances/ASSET_LEDGER.json`) y una cámara de su red anterior (ver `game/equipment/DEVICE_REGISTRY.json`). Rosa continúa con el despertador; Aster sigue incompleto. **Este resumen no autoriza jugar el turno 8 y puede quedar obsoleto: siempre manda el manifiesto actual.**
