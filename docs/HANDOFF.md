@@ -1,3 +1,13 @@
+# D-047 — CH-000 turno 9 guardado y confirmado (2026-11-10)
+
+**Checkpoint:** rama `work/chat-narrative-foundation`, CH-000, Día −29, mañana; **turno 9, EV-000029, TXT-000020**. Entrada original de Jack en TXT-000019: `Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo`. La escena íntegra se conserva en TXT-000020 y `chapters/CH-000.md`.
+
+**Acciones y consecuencias:** Jack entrega la mochila a Elena y vuelve a la cocina. El defecto del despertador del vecino era una pestaña de la tapa que presionaba el control de ajuste; Jack lo corrige y Rosa verifica repetidamente que la hora no salta al cerrarlo (EV-000027/029, `NPC-005.resources`). Elena sale del apartamento con su mochila y la memoria USB de la ilustración, camino a la escuela pero **todavía no se ha narrado que llegó** (EV-000028, ubicación `LOC-RAILGARDEN-RESIDENTIAL`). Jack vuelve al taller y monta **mecánicamente el primer brazo de Aster** en el torso; sus articulaciones funcionan a mano tras corregir un roce. El cableado, los actuadores y las pruebas activas permanecen pendientes; Aster continúa incompleto y **no operativo**. Documento de diseño actualizado: `game/ASTER_SPEC.md`.
+
+**Persistencia:** commit de la escena `45d4d85a6b13bf4b26e80ac89cccc0d92af2ab12`, lectura GitHub de los cinco archivos canónicos y `game/ASTER_SPEC.md` con SHA idénticos a los contenidos preparados. El módulo `tools/state_changes.mjs` admite desde D-047 cambios de recursos cualitativos con before/after para que la reparación del reloj se conserve. El primer CI detectó una prueba con ubicación antigua de Elena; se corrigió para tomar la ubicación del checkpoint y se añadieron pruebas de regresión del turno 9. **Registrar el resultado de CI del nuevo HEAD, sin asumirlo por adelantado.** PR #2 sigue en borrador; main no se ha fusionado. **Turno 10 sin jugar.**
+
+---
+
 # D-046 — CH-000 turno 8 guardado y recuperable (2026-11-10)
 
 **Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, **Día −29, mañana, turno 8, EV-000026 y TXT-000018**. El jugador escribió literalmente `Continue al próximo dia después de narrar como termina puedes decidir tu como termina` (TXT-000017), delegando cerrar la noche de forma cotidiana. El texto íntegro está en TXT-000018 y `chapters/CH-000.md`. La transición quedó guardada en el commit `96538834d2174ea221a419504dcecf77c2dcd936`, con lectura remota exacta de los cinco archivos.

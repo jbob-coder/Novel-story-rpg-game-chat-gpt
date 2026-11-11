@@ -99,7 +99,8 @@
       "tests/consequences.test.mjs",
       "tests/state_changes.test.mjs",
       "tests/save_transaction.test.mjs",
-      "tests/github_save_adapter.test.mjs"
+      "tests/github_save_adapter.test.mjs",
+      "tests/test_turn9_consequences.py"
     ]
   },
   "newChapterPaths": [

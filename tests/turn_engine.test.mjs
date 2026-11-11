@@ -67,7 +67,7 @@ test('a saved relationship differing from its event is rejected',()=>{
 });
 test('material changes cannot create duplicate inventory ownership',()=>{
  const phone=initial.state.player.inventory.find(item=>item.id==='ITEM-PHONE');
- assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,offscreen:[{actor_id:'NPC-004',outcome:'Elena finds a phone.',changes:[{field:'inventory_item',item_id:'ITEM-PHONE',before:null,after:{...phone,location_id:'LOC-WILSON-APARTMENT'}}]}]}),/Duplicate inventory ID/);
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,offscreen:[{actor_id:'NPC-004',outcome:'Elena finds a phone.',changes:[{field:'inventory_item',item_id:'ITEM-PHONE',before:null,after:{...phone,location_id:initial.state.world.actors['NPC-004'].location_id}}]}]}),/Duplicate inventory ID/);
 });
 test('reloaded narrated turn retains precise original player message and its event effects',()=>{
  const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'conditions',before:[],after:['tired']}]});
