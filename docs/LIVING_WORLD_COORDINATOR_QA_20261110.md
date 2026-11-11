@@ -25,3 +25,6 @@
 4. Revisar el diff con el propietario antes de integrar en `work/chat-narrative-foundation`; no fusionar con `main` sin autorización expresa.
 
 **Estado:** componentes y pruebas guardados; comprobaciones V8 aprobadas; integración canónica, Node CI y validación GitHub remota pendientes. No declarar el sistema activo todavía.
+
+## Actualización: verificaciones finales completadas
+Las tres pruebas pendientes se ejecutaron después de este informe. **Node oficial: 56/56 focales y 133/133 suite completa; Python 24/24; validador PASS; GitHub remoto en QA y recuperación: PASS; escena sintética y privacidad: PASS.** Ver [informe final](LIVING_WORLD_FULL_VERIFICATION_20261110.md). **No se activó automáticamente en la novela ni se alteró el turno 9 real.**
