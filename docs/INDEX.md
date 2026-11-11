@@ -22,3 +22,5 @@
 - [Plan de QA](LIVING_WORLD_QA_PLAN.md)
 - [Rutinas: QA previo](LIVING_WORLD_ROUTINE_QA_20261110.md)
 - [Coordinador y diagnóstico: QA de integración](LIVING_WORLD_COORDINATOR_QA_20261110.md)
+
+- [Verificación final oficial: Node, GitHub remoto, ensayo narrativo](LIVING_WORLD_FULL_VERIFICATION_20261110.md)
