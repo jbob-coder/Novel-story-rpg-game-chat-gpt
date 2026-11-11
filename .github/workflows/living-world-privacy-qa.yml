@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - qa/living-world-private-chapter-20261110
+  pull_request:
+    branches:
+      - work/living-world-private-chapter-20261110
   workflow_dispatch:
 jobs:
   all-tests:
