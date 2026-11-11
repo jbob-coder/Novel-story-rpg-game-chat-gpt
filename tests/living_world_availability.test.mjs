@@ -1,0 +1,15 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {AVAILABILITY,LINKS,connected,shortestRoute,availability} from "../tools/living_world_availability.mjs";
+test("established connections are bidirectional",()=>{assert.equal(connected("LOC-RAILGARDEN-RESIDENTIAL","LOC-COMMERCIAL-DISTRICT"),true);assert.equal(connected("LOC-COMMERCIAL-DISTRICT","LOC-RAILGARDEN-RESIDENTIAL"),true)});
+test("unestablished direct link rejected",()=>assert.equal(connected("LOC-WILSON-WORKSHOP","LOC-CROSSWATER-PLAZA"),false));
+test("route uses only established links",()=>assert.deepEqual(shortestRoute("LOC-WILSON-WORKSHOP","LOC-TRANSIT-TERMINAL"),["LOC-WILSON-WORKSHOP","LOC-WILSON-APARTMENT","LOC-RAILGARDEN-RESIDENTIAL","LOC-COMMERCIAL-DISTRICT","LOC-CROSSWATER-PLAZA","LOC-TRANSIT-TERMINAL"]));
+test("unreachable destination",()=>assert.equal(shortestRoute("LOC-WILSON-WORKSHOP","LOC-UNKNOWN"),null));
+test("unspecified schedule remains unknown",()=>assert.equal(availability().status,AVAILABILITY.UNKNOWN));
+test("unconfirmed schedule cannot assert closed",()=>assert.equal(availability({schedule:{confirmed:false,days:{"1":[[540,1020]]}},day:1,minute:600}).status,AVAILABILITY.UNKNOWN));
+test("confirmed schedule evaluates open and closed",()=>{const schedule={confirmed:true,days:{"1":[[540,1020]]}};assert.equal(availability({schedule,day:1,minute:600}).status,AVAILABILITY.OPEN);assert.equal(availability({schedule,day:1,minute:1100}).status,AVAILABILITY.CLOSED)});
+test("missing weekday stays unknown",()=>assert.equal(availability({schedule:{confirmed:true,days:{"1":[]}},day:2,minute:600}).status,AVAILABILITY.UNKNOWN));
+test("confirmed exception overrides schedule",()=>assert.deepEqual(availability({exception:{confirmed:true,status:"closed"}}),{status:"closed",source:"confirmed_exception"}));
+test("unconfirmed exception does not override",()=>assert.equal(availability({exception:{confirmed:false,status:"closed"}}).status,AVAILABILITY.UNKNOWN));
+test("invalid intervals cannot establish availability",()=>assert.equal(availability({schedule:{confirmed:true,days:{"1":[[1000,500]]}},day:1,minute:600}).status,AVAILABILITY.UNKNOWN));
+test("invalid minute stays unknown",()=>assert.equal(availability({schedule:{confirmed:true,days:{"1":[]}},day:1,minute:1440}).status,AVAILABILITY.UNKNOWN));
