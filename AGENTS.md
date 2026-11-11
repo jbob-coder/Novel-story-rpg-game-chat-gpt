@@ -37,3 +37,16 @@ La presentación vigente es novela interactiva urbana de suspense (escenas senso
 ## Literary correction D-032 — higher priority than old narrative templates
 
 The player explicitly said the two played turns sound like event reporting, not narration, and wants the style replaced. **Read `docs/SCENE_CRAFT.md` and run its five-point editorial check before composing/saving the next turn.** No tech-summary narration, repeated negative results, flat NPCs, or option menus. **Don't invent Jack's decisions**. No gameplay advancement from the old document-only commit; its turn-2 Café Bruma checkpoint is historical and **not** a resumption instruction. D-028 saving lock remains mandatory.
+
+## Integración Living World — decisión de propietario delegada, 2026-11-10 (D-048)
+
+La rama narrativa `work/chat-narrative-foundation` incorporó mediante avance fast-forward desde `work/living-world-design-review-20261110` únicamente herramientas, pruebas e informes (17 rutas en la comparación; no se modificaron archivos canónicos del juego). `main` no se alteró. El checkpoint real sigue CH-000 turno 9, Día −29 mañana, EV-000029, TXT-000020. Referencia autoritativa: manifiesto/estado/eventos/transcripción actuales, no las notas viejas.
+
+**Estado de activación:** los módulos `tools/living_world_*.mjs` se encuentran en la rama narrativa, pero NO son un narrador externo, servicio de fondo o simulador autoejecutable. El narrador es ChatGPT. `living_world_diagnostics.mjs` es un asistente de análisis privado y solo sirve para preparar una escena; `living_world_coordinator.mjs` puede preparar cambios revisados en memoria y guardarlos con el protocolo existente, pero no se invoca automáticamente. No inventar movimientos o rutinas durante la inactividad. Toda acción debe venir del jugador; no generar ni guardar un turno 10 real sin ella.
+
+**QA completada:** GitHub Actions `42952186293`: Node 56/56 pruebas Living World y 133/133 suites completas, Python 24/24, validador PASS. GitHub Git Data API: commit sintético de cinco archivos en la rama `qa/living-world-integration-20261110` recuperado tras detenerse antes de mover la referencia; cinco blobs iguales al releer. Esa rama llegó al turno 10 **SINTÉTICO/NO CANÓNICO** y la PR QA #3 quedó cerrada sin fusionar. Nunca reanudar la novela ni fusionar esos archivos sintéticos.
+
+**Riesgo pendiente antes de activar offscreen:** `tools/turn_engine.mjs` añade resultados completos de NPC independientes al Markdown legible del capítulo aunque sean secretos; no enviar ese texto al jugador ni confundirlo con su punto de vista. Corregir la separación de información entre archivo privado y prosa visible, y probar la corrección, antes de activar automáticamente resolución offscreen. Otro límite: reloj exacto y día de semana no están establecidos; devolver `unknown` en vez de inventarlos. Mantener puerta D-028 de cinco archivos y lectura remota.
+
+**Próximo paso:** (1) corregir y probar filtración offscreen del capítulo, (2) ensayar uso manual de diagnóstico privado con una acción libre real, (3) validar narración literaria y guardar cinco archivos idénticos de una única acción real. No hay autorización implícita para adelantar la trama.
+[Informe de QA final](docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md) y [guía de activación](docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md).

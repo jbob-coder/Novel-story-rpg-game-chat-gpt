@@ -24,3 +24,4 @@
 - [Coordinador y diagnóstico: QA de integración](LIVING_WORLD_COORDINATOR_QA_20261110.md)
 
 - [Verificación final oficial: Node, GitHub remoto, ensayo narrativo](LIVING_WORLD_FULL_VERIFICATION_20261110.md)
+- [Living World: integración gradual, QA y puerta de activación](LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md)

@@ -1,3 +1,9 @@
+# Prioridad más reciente — D-048 Living World integrado sin activación automática (2026-11-10)
+
+Se incorporaron a la rama narrativa únicamente módulos, pruebas y documentos Living World mediante fast-forward seguro. **NO se avanzó la partida real**: CH-000, turno 9, Día -29 mañana, EV-000029, TXT-000020. Los cinco archivos de guardado conservan SHA originales. La rama `qa/living-world-integration-20261110` contiene turno 10 sintético/no canónico; PR #3 cerrada sin fusionar. Ejecutado previamente en QA: 133/133 Node, 24/24 Python, validador PASS, guardado remoto de cinco archivos y recuperación PASS. **Pendiente antes de activación:** corregir posible spoiler por eventos offscreen incluidos en Markdown del capítulo y probar su separación, luego usar diagnóstico en un turno futuro real con consentimiento de acción y cinco archivos verificados. Véase `docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md`. Documentos históricos abajo son orientativos, no reemplazan el manifiesto.
+
+---
+
 # D-047 — CH-000 turno 9 guardado y confirmado (2026-11-10)
 
 **Checkpoint:** rama `work/chat-narrative-foundation`, CH-000, Día −29, mañana; **turno 9, EV-000029, TXT-000020**. Entrada original de Jack en TXT-000019: `Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo`. La escena íntegra se conserva en TXT-000020 y `chapters/CH-000.md`.
