@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000029"
+    "last_resolved_event_id": "EV-000031"
   },
   "time": {
     "day": -29,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "morning",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 889
+    "elapsed_minutes_since_opening_approx": 904
   },
   "player": {
     "initialized": true,
@@ -586,7 +586,7 @@
         "role": "abuela de Jack; jubilada aficionada a arreglos domésticos",
         "location_id": "LOC-WILSON-APARTMENT",
         "goal": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
-        "independent_plan": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana.",
+        "independent_plan": "QA synthetic: prepare future delivery of repaired clock",
         "knowledge": [
           "Jack construye gadgets.",
           "Jack usa un collar que reproduce lo que escribe para hablar.",
@@ -614,9 +614,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000029",
+          "event_id": "EV-000031",
           "day": -29,
-          "summary": "Rosa observa que Jack arregló el problema de la tapa del despertador, comprueba varios cierres y deja el reloj listo para devolvérselo al vecino."
+          "summary": "Synthetic QA: Rosa sets aside the repaired clock for a future visit; there is no delivery."
         },
         "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
       },
@@ -818,9 +818,9 @@
     "secrets": {}
   },
   "history": {
-    "last_event_sequence": 29,
+    "last_event_sequence": 31,
     "completed_chapters": [],
-    "last_transcript_sequence": 20,
+    "last_transcript_sequence": 22,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
@@ -830,7 +830,8 @@
       "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
       "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
       "CH000-TURN-0008-MORNING-TRANSITION",
-      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM"
+      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM",
+      "QA-SYNTHETIC-LIVING-WORLD-20261110"
     ],
     "story_revisions": [
       {
@@ -855,12 +856,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Día -29, media mañana: Jack está en su taller junto a Aster, con el primer brazo montado manualmente pero sin actuadores conectados. Rosa tiene el reloj reparado; Elena salió hacia la escuela con su mochila y la USB. Esperar decisión libre del jugador.",
-    "last_player_action": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo"
+    "message": "Jack awaits the next free-form action.",
+    "last_player_action": "[PRUEBA SINTÉTICA; NO ES UNA ACCIÓN DEL USUARIO] Examinar la mesa de trabajo."
   },
   "save": {
-    "last_verified_turn": 9,
-    "notes": "CH-000 turn 9: Jack hands Elena her schoolbag, fixes Rosa's neighbor clock, and physically mounts Aster's first arm without powered operation; Elena heads toward school."
+    "last_verified_turn": 10,
+    "notes": "Candidate checkpoint: commit and read-back required before calling this turn verified."
   },
   "narrative_threads": [
     {

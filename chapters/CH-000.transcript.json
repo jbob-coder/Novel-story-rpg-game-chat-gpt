@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 20,
+  "last_entry_sequence": 22,
   "entries": [
     {
       "id": "TXT-000001",
@@ -241,6 +241,29 @@
         "EV-000027",
         "EV-000028",
         "EV-000029"
+      ]
+    },
+    {
+      "id": "TXT-000021",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "role": "player",
+      "kind": "player_action",
+      "text": "[PRUEBA SINTÉTICA; NO ES UNA ACCIÓN DEL USUARIO] Examinar la mesa de trabajo.",
+      "event_ids": [
+        "EV-000030"
+      ]
+    },
+    {
+      "id": "TXT-000022",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La claridad de la mañana llegaba hasta el banco de herramientas. El brazo de Aster seguía sujeto al torso, con los actuadores desconectados y algunas piezas aún por ordenar. El roce de un cajón llegó desde la cocina. Nada de aquel sonido permitía saber qué estaba haciendo Rosa.",
+      "event_ids": [
+        "EV-000030",
+        "EV-000031"
       ]
     }
   ]
