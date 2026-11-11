@@ -20,3 +20,10 @@
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
 
 - [Consecuencias narrativas del turno 9: mochila, reloj y Aster](test_turn9_consequences.py)
+
+## Living World (rama de revisión)
+- [Disponibilidad y rutas](living_world_availability.test.mjs)
+- [Rutinas autónomas](living_world_routines.test.mjs)
+- [Integración con acontecimientos y cinco archivos](living_world_coordinator.test.mjs)
+- [Diagnóstico y privacidad](living_world_diagnostics.test.mjs)
+- [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
