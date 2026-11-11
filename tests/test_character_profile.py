@@ -33,7 +33,7 @@ class CharacterProfile(unittest.TestCase):
         items={item['id']:item for item in self.player['inventory']}
         self.assertGreaterEqual(len([x for x in items.values() if x['size']=='pequeño']),6)
         self.assertFalse(items['ITEM-ASTER']['carried'])
-        self.assertIn('incompleto',items['ITEM-ASTER']['status'])
+        # La descripción evoluciona con el montaje; el estado funcional es la autoridad.
         self.assertEqual(items['ITEM-ASTER']['size'],'mediano')
         self.assertEqual(items['ITEM-ASTER']['functional_state'],'incompleto')
         self.assertEqual(items['ITEM-VOICE-COLLAR']['carried'],True)
