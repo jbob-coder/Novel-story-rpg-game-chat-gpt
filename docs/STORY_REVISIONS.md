@@ -19,3 +19,5 @@ A revision does **not** advance calendar time or create a new player turn. If ve
 - Historical canonical parent for the superseded version: `c21185335ffb51c26ef54c5fd9b36d51c40ca35d`.
 - Earlier version saved in [revision archive](../chapters/revisions/REV-CH000-0001.json).
 - New version: two fictional balance readings and a coffee-shop register incident with Mara Reyes. **Two turns remain played**; no third turn was created.
+
+- `REV-CH000-0002`: repetición autorizada de la **última escena jugada, turno 6**, con corrección literaria y del hecho ya confirmado de una red 500+ activa anterior. Original archivado en `chapters/revisions/REV-CH000-0002.json`. Turnos y eventos permanecen 6/21.

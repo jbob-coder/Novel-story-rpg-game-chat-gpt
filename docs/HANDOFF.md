@@ -1,3 +1,9 @@
+# D-044 — retry autorizado del turno 6, capítulo CH-000 (2026-11-10)
+
+El propietario pidió «Quiero que hagas un retry con el chapter 6»; el repo solo tiene CH-000 con seis turnos. Se rehízo la última escena sin avanzar el turno, conservando literalmente su entrada TXT-000013. La narración anterior, EV-000020/021 anteriores y campos previos del estado se archivaron en `chapters/revisions/REV-CH000-0002.json`. La versión vigente es TXT-000014 (revisada), una escena literaria que reconoce como hechos previos la red activa 500+ y los nueve accesos de Café Bruma, cuentas y empresas ya existentes. No hay cifras propias inventadas ni episodios retroactivos. Elena sigue esperando respuesta. Verificar MANIFEST, estado, eventos y transcripción en el HEAD actual antes de empezar otro turno; no usar QA D-043 como canon.
+
+---
+
 # ESTADO ACTUAL — D-043
 
 ## D-043 — GitHub real, prueba aislada, y adaptador sin secretos (2026-11-10)

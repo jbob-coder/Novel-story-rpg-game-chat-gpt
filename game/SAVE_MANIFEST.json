@@ -8,8 +8,8 @@
   "state_schema_version": 2,
   "status": "checkpoint",
   "setup_revision": 3,
-  "notes": "Turno 6 permanece vigente, sin nueva acción. D-036: novela interactiva, XP legado congelado; D-037: red previa de 500+ dispositivos activos confirmada como canon ficticio, nueve adiciones recientes de Café Bruma, reservas y sociedades preexistentes sin cifras exactas.",
+  "notes": "CH-000 turno 6 re-narrado por solicitud del propietario. Narración original y eventos anteriores archivados en REV-CH000-0002; seis turnos, 21 eventos y 14 transcripciones permanecen. D-036/D-037/D-039 vigentes.",
   "last_transcript_sequence": 14,
   "last_transcript_id": "TXT-000014",
-  "story_revision": 1
+  "story_revision": 2
 }

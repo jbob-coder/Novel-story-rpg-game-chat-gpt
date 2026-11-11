@@ -922,7 +922,7 @@
       ],
       "kind": "player_action",
       "intent": "Jack checks already affected devices and asks to add the nine Café Bruma devices to a 500+ device list, verifies the nine, and reviews his own accounts and shell companies from the home workshop. He supplied no earlier device IDs, own balances or legal entity names.",
-      "outcome": "A persistent indexed registry records nine established Café Bruma device records (two intermittent responses, seven silent), while a separate owner-asserted legacy 500+ group remains unverified without individual records or deduplication. Jack's private reserves are qualitatively established but exact current personal balances remain unknown; his asserted shell-company holdings have no names or statements yet, so nothing financial is invented. Elena asks Jack if he has a spare memory device for school work.",
+      "outcome": "Jack revisa su red preexistente de más de 500 dispositivos ficticios activos —establecida desde años antes— y organiza por separado los nueve accesos añadidos en Café Bruma. Dos de los nueve responden intermitentemente y siete no responden durante esta consulta, sin deshacer el historial de acceso. Sus reservas privadas y sociedades instrumentales ya existen; cantidades exactas, nombres y balances de empresas no están fijados. Elena pregunta por una memoria USB para su ilustración escolar.",
       "known_to": [
         "PLAYER-001"
       ],
@@ -941,9 +941,13 @@
             "bruma_historical_records": 9,
             "current_responses": 2,
             "current_no_response": 7,
-            "current_infection_proven": 0,
+            "current_infection_proven": 9,
             "verified_total_history_with_records": 9,
-            "deduplication_complete": false
+            "deduplication_complete": false,
+            "legacy_active_confirmed_in_fiction": true,
+            "legacy_verification_status": "owner_confirmed_active_in_fiction",
+            "legacy_itemized_records": 0,
+            "cafe_compromises_established_in_fiction": 9
           }
         },
         {
@@ -956,13 +960,13 @@
           "actor_id": "PLAYER-001",
           "field": "finances.last_review_status",
           "before": null,
-          "after": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available."
+          "after": "Private reserves and shell companies predate CH-000 and are confirmed in canon; current numeric balances, entity names and exact counts remain unspecified."
         },
         {
           "actor_id": "PLAYER-001",
           "field": "inventory.ITEM-COMPACT-CASE.status",
           "before": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
-          "after": "nueve fichas locales indexadas: dos respuestas intermitentes, siete sin respuesta; red declarada 500+ pendiente de cotejo"
+          "after": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)"
         },
         {
           "actor_id": "PLAYER-001",
@@ -1009,7 +1013,7 @@
             "completion_event_id": "EV-000013",
             "historical_local_sessions": 9,
             "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
-            "current_privileged_access_verified": "not verified from current responses",
+            "current_privileged_access_verified": "nine fictional persistent compromises established; present response only observed for two intermittently, seven silent",
             "last_observation_event_id": "EV-000020",
             "last_review_place": "LOC-WILSON-WORKSHOP",
             "responding_intermitently": 2,

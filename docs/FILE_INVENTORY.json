@@ -45,7 +45,8 @@
       "chapters/CH-000.transcript.json",
       "chapters/CH-000.PREP.md",
       "chapters/revisions/INDEX.md",
-      "chapters/revisions/REV-CH000-0001.json"
+      "chapters/revisions/REV-CH000-0001.json",
+      "chapters/revisions/REV-CH000-0002.json"
     ],
     "world": [
       "docs/CANON.md",

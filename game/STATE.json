@@ -109,7 +109,7 @@
         "size": "pequeño",
         "location_id": "LOC-WILSON-WORKSHOP",
         "carried": true,
-        "status": "red preexistente de más de 500 dispositivos activos en la ficción; nueve fichas nuevas de Café Bruma (dos respuestas intermitentes, siete sin respuesta en última consulta)",
+        "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
         "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
         "narrative_only": true
       },
@@ -235,7 +235,7 @@
         "completion_event_id": "EV-000013",
         "historical_local_sessions": 9,
         "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
-        "current_privileged_access_verified": "not verified from current responses",
+        "current_privileged_access_verified": "nine fictional persistent compromises established; present response only observed for two intermittently, seven silent",
         "last_observation_event_id": "EV-000020",
         "last_review_place": "LOC-WILSON-WORKSHOP",
         "responding_intermitently": 2,
@@ -345,7 +345,7 @@
       "shell_companies_declared": true,
       "shell_companies_verified_count": 0,
       "personal_bank_accounts_verified_count": 0,
-      "last_review_status": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available."
+      "last_review_status": "Private reserves and shell companies predate CH-000 and are confirmed in canon; current numeric balances, entity names and exact counts remain unspecified."
     },
     "family_ids": [
       "NPC-004",
@@ -383,9 +383,13 @@
       "bruma_historical_records": 9,
       "current_responses": 2,
       "current_no_response": 7,
-      "current_infection_proven": 0,
+      "current_infection_proven": 9,
       "verified_total_history_with_records": 9,
-      "deduplication_complete": false
+      "deduplication_complete": false,
+      "legacy_active_confirmed_in_fiction": true,
+      "legacy_verification_status": "owner_confirmed_active_in_fiction",
+      "legacy_itemized_records": 0,
+      "cafe_compromises_established_in_fiction": 9
     }
   },
   "world": {
@@ -789,6 +793,14 @@
         "replacement_entry_id": "TXT-000006",
         "audit_path": "chapters/revisions/REV-CH000-0001.json",
         "reason": "El propietario solicitó volver a resolver el turno 2 con diferente narración y resultado."
+      },
+      {
+        "id": "REV-CH000-0002",
+        "turn": 6,
+        "prior_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+        "replacement_entry_id": "TXT-000014",
+        "audit_path": "chapters/revisions/REV-CH000-0002.json",
+        "reason": "Owner-authorized retry of last completed turn; literary correction and alignment with established preexisting active network."
       }
     ]
   },
@@ -801,7 +813,7 @@
   },
   "save": {
     "last_verified_turn": 6,
-    "notes": "Corrección de continuidad autorizada por el propietario tras turno 6, sin turno o evento nuevo: formato novela interactiva sin RPG; red anterior activa de 500+ y nueve incorporaciones de Café Bruma. Historial, XP legado, eventos y transcripción intactos."
+    "notes": "Revisión literaria autorizada del turno 6, sin crear turno 7, con el texto original archivado como REV-CH000-0002. Canon: red activa 500+ anterior, nueve nuevas incorporaciones, finanzas y sociedades preexistentes."
   },
   "narrative_threads": [
     {
@@ -846,7 +858,7 @@
         {
           "kind": "develop",
           "event_id": "EV-000020",
-          "summary": "Jack registró individualmente nueve dispositivos de Café Bruma; dos responden a intervalos y siete no. La referencia de una red previa de 500+ carece de fichas auditables y no se considera verificada.",
+          "summary": "Jack organizó nueve accesos recientes de Café Bruma, de los cuales dos respondieron intermitentemente y siete permanecieron sin respuesta puntual. Su red anterior de más de 500 dispositivos activos ya existía y está confirmada por el propietario; no se han inventado identificadores individuales.",
           "visibility": "known"
         }
       ]
@@ -915,7 +927,7 @@
         {
           "kind": "open",
           "event_id": "EV-000020",
-          "summary": "Jack revisó reservas conocidas sin cifras actuales y declaró empresas instrumentales cuyos nombres y registros aún no están documentados.",
+          "summary": "Jack revisó sus reservas y sociedades preexistentes, sin establecer cifras de cuentas, nombres de empresas ni balances detallados en esta escena.",
           "visibility": "known"
         }
       ]
