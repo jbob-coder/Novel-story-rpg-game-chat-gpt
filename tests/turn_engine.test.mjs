@@ -77,3 +77,15 @@ test('reloaded narrated turn retains precise original player message and its eve
  assert.equal(recovered.events.events.at(-1).state_changes[0].field,'conditions');
  assert.equal(verifyNarrativeSnapshot(recovered),true);
 });
+
+test('offscreen NPC events are saved privately without chapter spoilers',()=>{
+ const privateOutcome='PRIVATE-NEIGHBOR-ROUTE-UNSHARED-002: Rosa changes a private plan.';
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[
+   {actor_id:'NPC-005',outcome:privateOutcome,changes:[]}
+ ],narration_messages:['El taller sigue silencioso.']});
+ assert.equal(x.events.events.at(-1).outcome,privateOutcome);
+ assert.equal(x.state.world.actors['NPC-005'].last_resolved_action.summary,privateOutcome);
+ assert.ok(!x.chapter.includes(privateOutcome),'Private offscreen event leaked through the chapter');
+ assert.ok(!x.transcript.entries.at(-1).text.includes(privateOutcome),'Narrator text leaked an offscreen event');
+ assert.equal(verifyNarrativeSnapshot(x),true);
+});

@@ -126,3 +126,12 @@ test('an unreviewed event cannot cause a remote write',async()=>{
  assert.equal(result.status,'blocked');
  assert.equal(created,0);
 });
+
+test('coordinated secret NPC resolution remains recorded without becoming visible chapter prose',()=>{
+ const privateOutcome='PRIVATE-NPC-OFFSCREEN-UNREVEALED-003: Rosa keeps an unshared schedule.';
+ const prepared=stage({npcResolutions:[{...resolved(),outcome:privateOutcome}]});
+ assert.equal(prepared.events.events.at(-1).outcome,privateOutcome);
+ assert.ok(!prepared.chapter.includes(privateOutcome));
+ assert.ok(!prepared.transcript.entries.at(-1).text.includes(privateOutcome));
+ assert.equal(verifyNarrativeSnapshot(prepared),true);
+});

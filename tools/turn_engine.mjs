@@ -107,7 +107,9 @@ function stageNarrativeTurn(snapshot, turn) {
   m.last_completed_turn=t;m.last_event_sequence=e.events.length;m.last_event_id=e.events.at(-1).id;
   m.notes="Staged turn; only a verified Git commit makes this a durable save.";
   next.chapter+=`\n\n## Turn ${t} — Day ${newDay}\n\n**Jack's action:** ${turn.intent.replaceAll("\n"," ")}\n\n**Outcome:** ${turn.outcome.replaceAll("\n"," ")}\n`;
-  for(const off of logs.slice(1)) next.chapter+=`\n**Independent event ${off.id} (${off.actor_ids[0]}):** ${off.outcome.replaceAll("\n"," ")}\n`;
+  // Offscreen outcomes are authoritative in the private event log and world state,
+  // NOT in the reader-facing chapter. Their disclosure requires a causal channel
+  // in turn.narration_messages; never reveal them via a technical chapter footer.
   // Consequences are factual open threads; updates must cite the current turn's event IDs.
   const withConsequences=stageConsequences(next,turn.consequence_updates??[]);
   next.state.narrative_threads=withConsequences.state.narrative_threads;
