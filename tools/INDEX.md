@@ -12,3 +12,10 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+## Living World (propuesta, no canon)
+- [Disponibilidad y conexiones](living_world_availability.mjs)
+- [Rutinas y borradores autónomos](living_world_routines.mjs)
+- [Coordinador de turnos revisados y guardado](living_world_coordinator.mjs)
+- [Diagnóstico privado y proyección visible para Jack](living_world_diagnostics.mjs)
+- [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
