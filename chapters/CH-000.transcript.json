@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "chapter_id": "CH-000",
+  "last_entry_sequence": 20,
+  "entries": [
+    {
+      "id": "TXT-000001",
+      "chapter_id": "CH-000",
+      "turn": 0,
+      "role": "assistant",
+      "kind": "scene",
+      "text": "## Capítulo 0 — Treinta días antes\n\n*Meridian Bay · Plaza de Tránsito Crosswater · Día −30, noche*\n\nLas puertas de cristal del terminal se abren y se cierran sin descanso. El aire trae olor a sal desde el puerto, mezclado con café recién hecho y el calor de los autobuses detenidos. Sobre la plaza, los paneles luminosos anuncian retrasos; unos pasajeros consultan sus teléfonos y otros se apresuran hacia los andenes.\n\nJunto a la entrada, una supervisora con una placa que dice **L. Ortiz** coordina al personal mientras intenta resolver uno de esos retrasos. A pocos metros, un técnico revisa instalaciones de la estación. Un repartidor, con un paquete bajo el brazo, busca el camino hacia las tiendas de Market Row. Cada uno tiene asuntos propios; ninguno parece pendiente de Jack.\n\nJack Wilson, de veintiún años, está en la plaza con su teléfono, el collar que convierte sus mensajes escritos en voz y un estuche compacto de electrónica. Su intención de obtener información bancaria y personal mediante dispositivos remotos sigue siendo solo eso: una intención. No ha colocado ningún aparato ni conseguido datos. En Railgarden, su taller y el robot Aster —todavía incompleto— lo esperan.\n\nLa multitud continúa moviéndose. La noche no exige una decisión concreta, pero ofrece varias oportunidades.\n\n**¿Qué hace Jack?**\n\n1. Abrir el estuche e intentar poner en marcha su plan en la plaza.\n2. Permanecer al margen y observar cómo se desarrolla la actividad.\n3. Ir a Market Row, donde está el negocio de electrónica de Noah Vale.\n4. Regresar a Railgarden para continuar el trabajo en Aster.\n5. **Acción libre:** hacer cualquier otra cosa que decidas.",
+      "event_ids": [],
+      "source_key": "ch000-initial-scene-v1"
+    },
+    {
+      "id": "TXT-000002",
+      "chapter_id": "CH-000",
+      "turn": 0,
+      "role": "assistant",
+      "kind": "scene",
+      "text": "## Capítulo 0 — Una noche cualquiera\n\n*Meridian Bay · Crosswater Transit Plaza · Día −30*\n\nEl panel de salidas cambia otra vez.\n\nUn pitido breve. Varias miradas al techo. Luego el rumor de siempre: pasos rápidos, ruedas de maletas sobre las juntas del suelo y el motor de un autobús que lleva demasiado tiempo detenido. Más allá de los edificios, las luces del puerto se estiran sobre el agua oscura.\n\n—No voy a darles una hora que todavía no tengo —responde una mujer junto a la entrada del terminal.\n\nEn su placa se lee **L. Ortiz**. Habla con firmeza, aunque los pasajeros que la rodean no parecen satisfechos. A unos metros, un técnico de mantenimiento revisa las instalaciones sin apartarse de su trabajo. Un repartidor intenta abrirse paso entre la gente, pendiente del paquete que lleva y del tiempo que pierde.\n\nNada de eso tiene que ver necesariamente con Jack. La ciudad sigue ocupada con sus propios problemas.\n\nJack Wilson está en la plaza. Lleva su teléfono, el collar que da voz a los mensajes que él decida escribir y un estuche compacto de electrónica. El objetivo que lo trajo hasta aquí aún no ha pasado de ser un plan. Sus aparatos siguen sin instalar; nadie ha perdido información por su causa.\n\nA su alrededor hay personas distraídas, trabajadores atentos a sus obligaciones y caminos que llevan a otras partes de Meridian Bay. Algunas decisiones podrían traer dinero. Otras, información, contactos o complicaciones. Ninguna garantiza nada.\n\nLa pantalla vuelve a emitir un aviso de retraso.\n\n**¿Qué hace Jack?**\n\n1. **Seguir con su plan:** examinar la situación y decidir si vale la pena intentar usar el equipo que lleva.\n2. **Observar primero:** estudiar el ambiente y las personas sin intervenir.\n3. **Acercarse al personal del terminal:** hablar con la supervisora o el técnico; tú decides qué escribe Jack en el teléfono.\n4. **Ir a Market Row:** visitar a Noah Vale, su contacto de electrónica.\n5. **Volver a Railgarden:** regresar al taller y continuar el proyecto Aster.\n6. **Otra acción:** cualquier cosa que quieras intentar, aunque no aparezca aquí.",
+      "event_ids": [],
+      "source_key": "ch000-opening-immersive-v2"
+    },
+    {
+      "id": "TXT-000003",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "role": "player",
+      "kind": "player_action",
+      "text": "6 mira alrededor y busca un lugar donde mucha persona pasan entonces activar el gadget que esta en el estuche compacto de electrónica para causar interferencias con los dispositivos causando un glitch y forzando todo los dispositivos en la area de estar infectados con mi virus después paro en un cafetal para revisar los resultados. \n\nElimina  opciones para coger ahora delante y continúa ",
+      "event_ids": [
+        "EV-000001"
+      ]
+    },
+    {
+      "id": "TXT-000004",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "### Capítulo 0 · El primer fallo\n\nLa corriente de gente se estrecha entre el acceso a los andenes y las tiendas. Los pasajeros que salen del terminal se cruzan con quienes intentan entrar; un hombre aparta una maleta del paso y una niña tira de la manga de su madre para no perderla entre los abrigos.\n\nEs el punto más concurrido de Crosswater.\n\nJack observa el movimiento y pone en marcha el pequeño dispositivo que lleva en el estuche. Durante unos segundos no ocurre nada visible.\n\nEntonces, el panel de salidas parpadea.\n\nLa hora de un tren se convierte en una línea de símbolos sin sentido y desaparece. Cerca de un quiosco, una mujer golpea dos veces la pantalla de su teléfono.\n\n—Ahora no… ¿qué le pasa? —murmura.\n\nOtro pasajero mira su móvil, desconcertado. Pero a su lado alguien sigue hablando por teléfono como si nada. La alteración es real; su alcance, no. Jack ha intentado propagar su virus a los aparatos de la zona, pero el efecto observado no demuestra que haya infectado ninguno, mucho menos todos.\n\nEl técnico de mantenimiento levanta la vista hacia el panel defectuoso. Deja a un lado su inspección rutinaria y se dirige a comprobarlo. Al fondo continúa la discusión por el retraso del transporte. Nadie señala a Jack ni parece conocer sus intenciones.\n\nJack se aleja hacia Market Row mientras el flujo de pasajeros sigue avanzando. Las fachadas de cristal dan paso a escaparates pequeños y mesas bajo toldos oscuros. En una esquina encuentra **Café Bruma**, una cafetería estrecha desde la que todavía se adivina el resplandor del terminal.\n\nDentro huele a café recién molido y pan caliente. Un ventilador hace vibrar suavemente las hojas de un periódico sobre la barra. Jack se instala en una mesa libre y revisa el registro de su gadget.\n\n**Activación: registrada. Anomalías cercanas: observadas. Dispositivos infectados: ninguno confirmado.**\n\nNo hay una lista fiable de aparatos comprometidos ni evidencia de que el programa haya permanecido en ellos. El ensayo ha provocado una interrupción visible, pero la parte más ambiciosa del plan sigue sin demostrarse.\n\nUna empleada se acerca con una carta entre las manos.\n\n—Buenas noches. ¿Te traigo algo?\n\nLa pantalla del teléfono sigue mostrando el resultado incompleto. Fuera, la ciudad continúa con su noche.",
+      "event_ids": [
+        "EV-000001",
+        "EV-000002",
+        "EV-000003",
+        "EV-000004"
+      ]
+    },
+    {
+      "id": "TXT-000005",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  ",
+      "event_ids": [
+        "EV-000005"
+      ]
+    },
+    {
+      "id": "TXT-000006",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "### Capítulo 0 — El precio de una señal\n\n—¿El de guayaba? —pregunta la muchacha, inclinando la carta para seguir el dedo de Jack—. Buena elección. Si esperas diez minutos, me toca decirte que se acabó.\n\nSe le escapa una sonrisa cansada. En la placa prendida al delantal pone **Mara**. Recoge la carta y esquiva una silla que un cliente ha dejado atravesada en el pasillo.\n\n—Un café y un dulce —le dice al compañero de la barra—. Y no me cierres la caja todavía.\n\n—Yo no he tocado la caja.\n\n—Pues entonces explícale tú por qué ayer me faltaban dos recibos.\n\nLa discusión no pasa de ahí. La cafetera resopla, alguien deja caer una cucharilla y Mara desaparece hacia la vitrina.\n\nJack espera a que se aleje para activar la segunda fase del aparato que lleva en el estuche.\n\nEn la mesa de la ventana, un hombre deja de deslizar el dedo por su teléfono. Lo mira de lado, como si pudiera encontrar el problema en el cristal, y vuelve a intentarlo. Al otro extremo del local, una mujer interrumpe una conversación para revisar la pantalla del suyo. Entre ambos incidentes transcurren varios segundos. El resto de la cafetería sigue igual.\n\nEn el teléfono de Jack, un registro nuevo desplaza a los anteriores.\n\nUna cifra: **4.280,16**.\n\nDebajo aparece otra, mucho menor: **93,47**.\n\nPor primera vez, las lecturas vienen acompañadas de la señal de ejecución que su propio programa estaba buscando. Dos dispositivos distintos. Dos saldos bancarios. Ningún nombre completo y ningún dinero transferido, pero ya no son simples parpadeos de pantalla. El segundo intento ha conseguido algo que el primero no.\n\n—¿Cómo que no has tocado nada?\n\nLa voz de Mara llega desde la barra.\n\nLa caja registradora emite un pitido agudo. El compañero levanta las manos, ofendido, mientras ella pulsa una vez el borde de la pantalla y espera. Sale un recibo sin que nadie haya terminado de pagar.\n\n—Fantástico —dice Mara, arrancando el papel—. Justo cuando me quedan veinte minutos de turno.\n\nEl hombre de la ventana guarda el teléfono en el bolsillo interior de la chaqueta. No mira hacia Jack. La mujer de la otra mesa, en cambio, vuelve a desbloquear el suyo y se queda inmóvil ante algo que aparece en la pantalla.\n\nMara regresa con una taza y un plato pequeño. Deja el pastelito junto al café, acomoda una servilleta debajo y mira otra vez hacia la caja.\n\n—Te lo traje antes de que lo devoraran los demás —dice—. Pero cobrarte va a ser otra historia.\n\nDesde la barra, su compañero insiste:\n\n—Mara, te juro que no fui yo.\n\n—Ya lo sé, Iván. Eso es lo peor.\n\nElla gira hacia Jack. Ni su expresión ni su voz sugieren que sospeche de él. Parece más preocupada por terminar el turno y por una máquina que no coopera.\n\n—¿Tienes efectivo? Si no, puedo apuntarlo mientras arreglan esto.\n\nEn la mesa, el café desprende vapor. En el teléfono permanecen las dos cifras que Jack consiguió extraer. Detrás de Mara, la impresora de recibos vuelve a ponerse en marcha sin que nadie la toque.",
+      "event_ids": [
+        "EV-000005",
+        "EV-000006",
+        "EV-000007",
+        "EV-000008",
+        "EV-000009"
+      ],
+      "revision_id": "REV-CH000-0001"
+    },
+    {
+      "id": "TXT-000007",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Estas haciendo echo de mensaje. Saco la cartera y le pregunto cuanto es, pago y después que se aleja continuo procesando los resto de los dispositivos hasta tenerlo todos también cree un backdoor y root en los dispositivos sin causar sospechas o alerta también limpia los rastros de los eventos",
+      "event_ids": [
+        "EV-000010"
+      ]
+    },
+    {
+      "id": "TXT-000008",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "—Siete ochenta —responde Mara.\n\nLa pregunta de Jack acaba de salir del pequeño altavoz de su collar, con esa voz artificial tan nítida que obliga a la camarera a levantar la mirada un instante. Pero no hace preguntas. Tiene una caja averiada, un compañero de mal humor y un cierre que se le está haciendo eterno.\n\nJack le entrega un billete de diez. Mara aparta el recibo defectuoso, busca cambio en una cajita bajo el mostrador y deja dos con veinte junto a la taza.\n\n—Gracias. Si luego te sale un cargo raro, ven a buscarme —dice, con una sonrisa torcida—. Aunque, por lo visto, esta máquina ya lleva ventaja.\n\nSe aleja con el dinero y un lápiz detrás de la oreja. En la barra, Iván le enseña el recibo anterior como si fuera una prueba en un juicio.\n\n—Mira la hora que puso.\n\n—No pienso discutir con una impresora —contesta ella.\n\nLas cucharillas chocan contra la loza. Alguien arrastra una silla. La gente continúa con sus conversaciones sin prestarle atención a la mesa del fondo.\n\nEn la pantalla de Jack permanecen los dos registros de la primera intrusión. Después aparece un tercero.\n\nY un cuarto.\n\nLas nuevas entradas no se presentan todas a la vez. Una figura gris pasa a blanco, otra tarda lo suficiente para que un cliente termine de beber y deje unas monedas en el plato. Una mujer cierra su portátil y se pone el abrigo. Su teléfono desaparece en el bolso, pero el punto correspondiente sigue encendido en el panel de Jack.\n\nCinco. Siete. Nueve.\n\nEl dispositivo marca **nueve accesos persistentes**: todos los aparatos que ha podido identificar y alcanzar dentro de esta zona del café. En ellos, el control privilegiado que buscaba figura activo. No significa que domine cada teléfono de Market Row ni que pueda alcanzar los que permanecen fuera de su campo, pero el trabajo de esta mesa ha dejado de ser una simple prueba.\n\nEl estuche se ha calentado bajo el borde de la chaqueta. El programa borra de su propio registro las marcas más evidentes de la sesión. En las mesas cercanas no suena ninguna alarma. Nadie reclama haber recibido un aviso. Eso no dice qué conservarán los sistemas ajenos ni cambia lo que haya quedado escrito en los informes de Crosswater.\n\n—Iván, por favor, la bolsa de basura. La de *dentro*, no la que dejaste junto a la puerta.\n\n—¿Y desde cuándo haces tú el cierre?\n\n—Desde que soy la única que quiere irse a casa.\n\nMara apaga una de las luces del mostrador. La cafetería parece más pequeña de pronto. El pastelito de guayaba continúa en el plato, junto al café. Afuera, el resplandor del terminal apenas se distingue entre los coches que pasan.\n\nLa mujer que había guardado el teléfono en el bolso cruza la puerta. En la pantalla de Jack, su punto sigue brillando.\n\nMara recoge las últimas tazas y se aproxima a la mesa.\n\n—Perdona. Cerramos en cinco minutos —dice, señalando las persianas a medio bajar—. No hace falta que corras con el café, pero sí voy a tener que apagar esta parte del local.\n\nSe queda un momento esperando, con tres tazas vacías apiladas en una mano.",
+      "event_ids": [
+        "EV-000010",
+        "EV-000011",
+        "EV-000012"
+      ]
+    },
+    {
+      "id": "TXT-000009",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Hacer gesto de no problema y continuo terminado lo mio y después regreso a casa de mi abuela",
+      "event_ids": [
+        "EV-000013"
+      ]
+    },
+    {
+      "id": "TXT-000010",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "Mara sigue junto a la mesa, sosteniendo las tazas. Jack le hace un gesto de que no hay problema.\n\n—Te lo agradezco —responde ella.\n\nEn la barra, Iván ha encontrado otra bolsa de basura y está intentando meterla en un cubo demasiado pequeño.\n\n—Esa tampoco es —le advierte Mara, ya de camino hacia él.\n\n—Entonces aquí tenemos una colección de bolsas equivocadas.\n\n—Tenemos una colección de cosas que no sabes dónde van.\n\nLa voz de ambos se pierde entre el chirrido de las persianas.\n\nEn la mesa, las últimas señales del estuche terminan de estabilizarse. Nueve conexiones habían quedado registradas durante la noche. El ciclo pendiente se cierra y el aparato deja de exigir atención; conserva lo obtenido, aunque no ofrece ninguna garantía sobre lo que seguirá accesible cuando sus dueños se marchen, apaguen los teléfonos o cambien de lugar.\n\nEl calor acumulado en el estuche tarda un poco más en disiparse.\n\nCuando Jack sale, Mara está bajando una de las luces y un cliente discute, con tono ceremonioso, si aún tiene derecho a terminar su café. Ella señala el reloj sin perder la paciencia.\n\nAfuera, Market Row ya no se parece a la calle de unas horas antes. Los escaparates oscuros reflejan los semáforos. Un camión de reparto espera con las luces de emergencia puestas mientras alguien cierra a mano la persiana de una tienda. Más adelante, los edificios de Railgarden sustituyen a las oficinas; en algunas ventanas hay televisores encendidos y en otras solo se ve el resplandor amarillento de las cocinas.\n\nLa puerta del apartamento de los Wilson cede con su habitual pequeño roce contra el marco.\n\n—Elena, si vuelves a poner eso encima de mis tornillos, mañana vas a tener una exposición hecha de arandelas.\n\nLa voz de Rosa llega desde la cocina.\n\n—Abuela, es *una lámina*. No pesa nada.\n\n—Eso mismo dijiste de la caja que me aplastó los alicates.\n\nSobre la mesa hay un reloj despertador abierto, dos platillos con piezas ordenadas y una libreta donde Rosa ha dibujado el interior del mecanismo con una precisión sorprendente. Lleva las gafas bajas, casi en la punta de la nariz.\n\nElena, sentada enfrente, tiene una computadora abierta y una ilustración a medio terminar: una calle llena de gente, vista desde arriba, con los edificios dibujados en perspectivas exageradas. Varias capas de color permanecen visibles en un lado de la pantalla.\n\nAl advertir que Jack ha llegado, Rosa alza la mirada.\n\n—Ah, ya estás aquí. Pensé que no te veríamos hasta mañana.\n\nNo le pide explicaciones. Vuelve a colocar un diminuto engranaje en el reloj y hace una mueca cuando la pieza se resiste.\n\n—A ver si tú entiendes por qué este condenado aparato adelanta siete minutos cuando lo cierro.\n\n—Porque lo amenazas —dice Elena, sin levantar la vista.\n\nRosa suelta una risa breve.\n\n—Y a ti te voy a adelantar la hora de dormir.\n\nLa hermana de Jack gira entonces la computadora hacia la puerta.\n\n—Oye, antes de que te encierres en tu taller… ¿esto parece una ciudad o un montón de cajas?\n\nLa puerta del taller está entreabierta. Detrás, entre herramientas y piezas aún sin ensamblar, permanece la silueta inmóvil de Aster.\n\nRosa espera con el reloj en una mano. Elena deja la pantalla orientada hacia Jack, esperando su opinión.",
+      "event_ids": [
+        "EV-000013",
+        "EV-000014",
+        "EV-000015",
+        "EV-000016"
+      ]
+    },
+    {
+      "id": "TXT-000011",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "role": "player",
+      "kind": "player_action",
+      "text": "2, y 4 despues 7",
+      "event_ids": [
+        "EV-000017"
+      ]
+    },
+    {
+      "id": "TXT-000012",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "—Son cajas —dictamina Elena antes de que Jack termine de mirar la pantalla—. Lo sabía.\n\nLa muchacha tiene una mano apoyada en el teclado y la otra cerca del lápiz digital, preparada para defender el dibujo. Los edificios se apiñan alrededor de una avenida que se estrecha hacia el fondo, pero la calle parece terminar contra una pared de ventanas.\n\nJack se acerca a observarlo. Señala la avenida y después el borde de dos fachadas: allí las líneas no acompañan la perspectiva del resto.\n\nElena entrecierra los ojos.\n\n—Espera… Ah. Vale. No es que estén demasiado juntos. Es que hice esos dos como si los viera de frente.\n\nRosa deja el despertador sobre un paño.\n\n—Pues a mí me gusta. Por lo menos las casas de ella tienen techo.\n\n—Abuela, eso no ayuda.\n\n—Estoy ayudando a su autoestima.\n\nElena prueba a inclinar uno de los edificios. La avenida gana profundidad; en la pantalla aparece, por fin, un espacio entre la calle y las ventanas del fondo. Su expresión cambia antes de que diga nada.\n\n—¡Eso! Ahora sí parece que puedes caminar por ahí. —Amplía el dibujo con el lápiz—. Aunque me falta gente. Si lo dejo vacío, parece una maqueta de inmobiliaria.\n\nNo espera una solución inmediata. Ya ha empezado a dibujar una figura diminuta junto a una parada de autobús.\n\n—Gracias —añade, más bajo—. Mañana quiero enseñárselo a la profesora antes de terminar los colores.\n\nRosa recupera el despertador. Le da un golpecito con la uña y escucha un tic irregular.\n\n—Cuando tengas un minuto me dices si este bicho está poseído o solo está mal ensamblado —comenta, sin apartar la atención de sus tornillos.\n\nDesde el pasillo llega el leve zumbido de la computadora del taller. Allí, Aster sigue rodeado de piezas, con un brazo todavía sin terminar y el chasis sujeto a un soporte provisional.\n\nLa pantalla de diagnóstico vuelve a mostrar los nueve registros de Café Bruma. Esta vez no aparecen como una fila uniforme. Siete se han quedado sin respuesta desde que Jack salió de Market Row. Otros dos siguen contestando de manera intermitente; no muestran saldos nuevos, nombres ni señales de que alguien haya abierto las aplicaciones que antes quedaron expuestas.\n\nUno de esos dos registros parpadea, desaparece durante un instante y vuelve. El otro conserva la misma marca de actividad, aunque el dato es demasiado breve para saber cuánto durará.\n\nEn el historial permanece también la constancia de que el gadget cerró su sesión local antes de regresar a casa. Lo ocurrido fuera del estuche —en los teléfonos ajenos y en los sistemas de Crosswater— sigue siendo algo que ese historial no puede contar por sí solo.\n\nA través de la puerta entreabierta se oye a Elena desde la cocina:\n\n—¡Abuela! ¡Ahora la calle tiene hasta una panadería!\n\n—Pues dibújame una que venda pan de verdad —responde Rosa.\n\nLa luz azulada del monitor cae sobre las piezas inmóviles de Aster. Dos registros siguen parpadeando en un rincón de la pantalla; los otros siete permanecen oscuros.",
+      "event_ids": [
+        "EV-000017",
+        "EV-000018",
+        "EV-000019"
+      ]
+    },
+    {
+      "id": "TXT-000013",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys",
+      "event_ids": [
+        "EV-000020"
+      ]
+    },
+    {
+      "id": "TXT-000014",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "El tic irregular del despertador llega desde la cocina, amortiguado por la puerta del taller. Sobre la mesa de Jack, la luz del monitor alcanza las herramientas dispersas y el brazo a medio ensamblar de Aster.\n\nLa primera ventana corresponde a su red antigua. Lleva años existiendo: más de quinientos dispositivos forman parte de ella desde mucho antes de aquella noche en Crosswater. Sigue activa. No es una colección de intentos recién descubiertos ni algo que Jack tenga que construir desde cero.\n\nA un lado queda el apartado de Café Bruma. Nueve incorporaciones recientes, distintas de las anteriores. Dos señales aparecen y desaparecen a intervalos; las otras siete no responden durante la consulta. Ese silencio no deshace los accesos establecidos en la cafetería, aunque tampoco permite saber qué están haciendo sus propietarios en este instante.\n\nUna notificación menor se retira de la esquina de la pantalla. No hay lecturas bancarias nuevas.\n\nJack pasa a sus registros financieros. Sus reservas y las sociedades que mantiene desde hace tiempo siguen siendo parte de su vida privada, lejos de las conversaciones cotidianas de la casa. Dispone de recursos suficientes para comprar una vivienda modesta, aunque ni las cifras exactas de sus cuentas ni los nombres de las empresas quedan establecidos en esta revisión.\n\nLos importes de **4.280,16** y **93,47** aparecen aparte, en el historial de Café Bruma. Son lecturas obtenidas de dispositivos ajenos, no dinero suyo.\n\nEn la cocina suena el roce de una silla.\n\n—Abuela, si cierro la computadora ahora, ¿tú crees que mañana se va a abrir el dibujo bien? —pregunta Elena.\n\n—Si lo guardaste, debería —responde Rosa—. Aunque este despertador también debería dar la hora.\n\n—Eso no me tranquiliza.\n\nUnos pasos se acercan por el pasillo. Elena se detiene en la puerta entreabierta del taller; desde allí apenas alcanza a ver las piezas de Aster y el resplandor de la pantalla, no los registros privados de Jack.\n\n—Oye, ¿tienes alguna memoria USB libre? Quiero llevar el dibujo a la escuela mañana. No me fío de depender de aquella computadora.\n\nDesde la cocina llega el golpecito de una herramienta contra la mesa.\n\n—Y si te sobra otra, me la prestas a mí para amenazar al reloj —añade Rosa.\n\n—Abuela...\n\n—Pues ya me dirás qué más se le puede hacer.\n\nElena mantiene una mano apoyada en el marco. Espera la respuesta de Jack mientras, detrás de ella, Rosa vuelve a probar el despertador.",
+      "event_ids": [
+        "EV-000020",
+        "EV-000021"
+      ],
+      "revision_ref": "REV-CH000-0002"
+    },
+    {
+      "id": "TXT-000015",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara",
+      "event_ids": [
+        "EV-000022"
+      ]
+    },
+    {
+      "id": "TXT-000016",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "Elena sigue en la puerta cuando Jack abre un cajón del banco de trabajo. Entre adaptadores y cables enrollados hay una memoria USB de carcasa oscura. Se la entrega y levanta la mirada hacia ella.\n\n—Gracias —dice Elena, cerrando los dedos alrededor de la memoria—. Te la devuelvo mañana. O pasado, si la profesora decide secuestrarme el dibujo.\n\nDesde la cocina, Rosa interviene sin dejar de trabajar:\n\n—Que no se te pierda, muchacha. Las cosas pequeñas tienen una habilidad especial para desaparecer en esta casa.\n\n—Ya sé, abuela.\n\nElena se aparta de la puerta con la memoria en la mano. Sus pasos regresan hacia la mesa donde dejó la computadora.\n\nJack se vuelve hacia el monitor.\n\nLa pantalla privada conserva las distintas secciones de sus registros. Al abrir la de cuentas, las entradas se actualizan una tras otra. Las dos cuentas personales que aparecen en ese panel muestran **86.450,20** y **173.890,75**. Más abajo, dos cuentas operativas vinculadas a sus sociedades presentan **43.600,00** y **97.340,10**. Las cuatro figuran disponibles, sin avisos de bloqueo. Los nombres legales de las sociedades no aparecen en esta vista.\n\nEn una carpeta aparte permanecen los **4.280,16** y **93,47** vistos aquella noche en Café Bruma. Esos importes siguen perteneciendo a terceros; no se mezclan con sus reservas.\n\nLa siguiente sección agrupa cámaras. Una fuente de su vieja red —la que existía mucho antes de los nueve accesos nuevos— ofrece una vista previa estable. La imagen muestra un pasillo iluminado, una puerta cerrada y nada más. El panel no revela en esa miniatura dónde está instalada. Otras fuentes permanecen sin vista previa, y las siete entradas silenciosas de Café Bruma no aportan imágenes nuevas.\n\nDetrás de Jack, en algún lugar del apartamento, se oye el sonido familiar de una memoria conectándose a la computadora de Elena.\n\n—Ahora sí —dice ella, más para sí misma que para nadie.\n\nRosa responde con un golpecito del despertador sobre el paño.\n\n—Pues dile al dibujo que me arregle esto cuando termine.\n\nEl monitor sigue iluminando las piezas inmóviles de Aster. En una ventana quedan los saldos recién consultados; en la otra, la imagen tranquila del pasillo.",
+      "event_ids": [
+        "EV-000022",
+        "EV-000023"
+      ]
+    },
+    {
+      "id": "TXT-000017",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Continue al próximo dia después de narrar como termina puedes decidir tu como termina",
+      "event_ids": [
+        "EV-000024"
+      ]
+    },
+    {
+      "id": "TXT-000018",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La imagen del pasillo permaneció tranquila en la pantalla. Una puerta cerrada, luz blanca, ningún movimiento que reclamara atención. En el apartamento, en cambio, el sonido de la computadora de Elena alternaba con los últimos comentarios de Rosa sobre el despertador.\n\n—Ya está copiado —se oyó decir a Elena desde la mesa—. Ahora sí puedo llevarlo mañana.\n\n—Pues déjalo junto a la mochila, que luego sales corriendo —contestó su abuela.\n\nElena replicó algo sobre que esta vez no se le olvidaría. Unos minutos después cerró la computadora. Rosa dejó las piezas del reloj sobre el paño, sin conseguir que dejara de adelantarse al encajar la tapa.\n\nLa casa fue apagándose poco a poco. Jack cerró las ventanas de su monitor y dejó el taller por esa noche. En la penumbra permanecieron el brazo inacabado de Aster, las herramientas y los proyectos que podían esperar hasta otro día.\n\n***\n\nPor la mañana, la claridad entraba por las persianas de Railgarden. Afuera pasaba un autobús; después, el ruido de una persiana metálica subiendo desde alguna tienda del barrio.\n\nEn la cocina olía a pan tostado. Rosa había vuelto a colocar el despertador abierto junto a su taza, sobre un trapo doblado para no rayar la mesa.\n\n—Siete minutos —murmuró, mirando la aguja—. Cerrado, se adelanta siete minutos. Abierto, se comporta como si nada. Qué carácter.\n\nElena llegó con la mochila al hombro. La memoria USB que Jack le había prestado estaba guardada en un bolsillo interior; el archivo de su ilustración ya tenía una copia. Se agachó para acomodarse un zapato y volvió a levantarse sujetando la correa de la mochila.\n\n—Hoy la enseño en clase. Si el proyector funciona, claro.\n\n—Y si no funciona, se la enseñas en tu computadora —respondió Rosa, apartando con cuidado un tornillo del borde de la mesa.\n\nJack apareció por el pasillo y entró en la cocina. Rosa desplazó hacia él el plato con las tostadas, sin interrumpir su examen del reloj.\n\n—Hay más, si quieres.\n\nElena miró un instante hacia su hermano.\n\n—Gracias otra vez por la memoria. La traigo de vuelta cuando termine.\n\nEn la calle continuaba el movimiento habitual de una mañana laborable. En el taller, Aster seguía incompleto y el monitor permanecía apagado. Elena dejó la mochila junto a la puerta mientras Rosa intentaba decidir cuál de los diminutos engranajes volvería a revisar primero.",
+      "event_ids": [
+        "EV-000024",
+        "EV-000025",
+        "EV-000026"
+      ]
+    },
+    {
+      "id": "TXT-000019",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo",
+      "event_ids": [
+        "EV-000027"
+      ]
+    },
+    {
+      "id": "TXT-000020",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La mochila seguía donde Elena la había dejado, junto a la puerta. Jack la levantó por una de las correas y se la puso en las manos.\n\n—¡Casi me voy sin ella! —Elena miró la mochila y luego a su hermano—. Gracias. Otra vez.\n\nSe la acomodó al hombro, palpó por fuera el bolsillo donde había guardado la memoria USB y se dirigió a la salida.\n\n—Nos vemos después de clase.\n\n—Mira bien antes de cruzar —le dijo Rosa desde la cocina.\n\n—¡Sí, abuela!\n\nLa puerta se cerró con un golpe suave. Por el pasillo comunitario se alejaron los pasos de Elena, mezclándose con las voces de otros vecinos que también salían a sus ocupaciones.\n\nJack regresó a la cocina. El despertador continuaba abierto sobre el paño, con su tapa a un lado. Rosa había dejado la taza cerca del fregadero y sostenía las diminutas piezas con unas pinzas.\n\n—Mira esto —dijo, moviendo la tapa hacia el reloj—. Mientras está abierto, bien. Lo cierro y empieza a ganarme minutos.\n\nEl problema estaba en el cierre. Una pestaña interior, ligeramente fuera de sitio, empujaba el pequeño mando de ajuste al encajar la carcasa. Cada vez que se cerraba, las agujas daban un salto hacia delante. El movimiento no nacía del mecanismo que medía el tiempo.\n\nJack corrigió el asiento de la pestaña, recolocó la pieza de sujeción y volvió a cerrar el reloj. Esta vez la aguja no saltó. Abrió la tapa y repitió la prueba; al cerrarla de nuevo, la hora se mantuvo.\n\nRosa acercó el despertador a la luz de la ventana.\n\n—Conque eras tú —le dijo a la tapa, como si esta pudiera ofenderse—. Y yo echándole la culpa a todo lo de adentro.\n\nLo comprobó una vez más antes de apartar las pinzas.\n\n—Ahora sí. Se lo puedo devolver al vecino sin que llegue siete minutos antes a todas partes.\n\nEl reloj quedó sobre el paño, funcionando con la carcasa cerrada.\n\nJack volvió al taller. Aster ocupaba el mismo espacio entre la mesa y el soporte de montaje, inmóvil, con parte de su estructura todavía expuesta. El brazo que había quedado a medio armar descansaba junto a una bandeja de tornillos, ejes y piezas articuladas.\n\nJack revisó la unión del hombro y comprobó cómo asentaban las piezas del codo antes de fijar el conjunto. El primer ajuste dejó el antebrazo demasiado cerca de una placa del torso; al moverlo con la mano, el borde rozó el metal. Aflojó el soporte, corrigió la alineación y volvió a asegurarlo.\n\nEsta vez el brazo pudo flexionarse y extenderse a mano sin rozar la carcasa. El peso quedó sostenido por la estructura del hombro y el codo conservó su recorrido. Los cables de los actuadores, todavía sin conectar, seguían sujetos a un lado para que no quedaran atrapados entre las articulaciones.\n\nDesde la cocina llegó la voz de Rosa:\n\n—¡Lo cerré otra vez y sigue marcando bien!\n\nEn el taller, el primer brazo de Aster ya estaba montado en el cuerpo. El robot no se encendió ni se movió por sí mismo: faltaban la conexión de los actuadores, el control y las pruebas bajo carga. Pero aquella pieza que había ocupado la mesa ahora formaba parte de la estructura.\n\nSobre el banco permanecían las herramientas de precisión, y junto al brazo instalado quedaban a la vista los puntos donde continuar el ensamblaje.",
+      "event_ids": [
+        "EV-000027",
+        "EV-000028",
+        "EV-000029"
+      ]
+    }
+  ]
+}

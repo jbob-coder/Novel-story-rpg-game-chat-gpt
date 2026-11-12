@@ -1,0 +1,989 @@
+{
+  "schema_version": 2,
+  "game_id": "living-superhuman-world",
+  "canonical_branch": "main",
+  "saved_on_branch": "work/chat-narrative-foundation",
+  "chapter": {
+    "id": "CH-000",
+    "status": "opening",
+    "last_resolved_event_id": "EV-000029"
+  },
+  "time": {
+    "day": -29,
+    "day_zero_event": "cosmic_shockwave",
+    "calendar_date": null,
+    "time_of_day": "morning",
+    "clock_time": null,
+    "elapsed_minutes_since_opening_approx": 889
+  },
+  "player": {
+    "initialized": true,
+    "id": "PLAYER-001",
+    "name": "Jack Wilson",
+    "age": 21,
+    "role": "gray-hat hacker",
+    "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
+    "background_origin": "owner-confirmed",
+    "location_id": "LOC-WILSON-WORKSHOP",
+    "progression": {
+      "attributes": {
+        "strength": 2,
+        "agility": 3,
+        "endurance": 2,
+        "intellect": 4,
+        "perception": 4,
+        "willpower": 5,
+        "presence": 3
+      },
+      "skills": {
+        "technology": {
+          "xp": 16,
+          "last_progress_event_id": "EV-000010"
+        },
+        "investigation": {
+          "xp": 8,
+          "last_progress_event_id": null
+        },
+        "electronics": {
+          "xp": 16,
+          "last_progress_event_id": "EV-000001"
+        },
+        "gadget_crafting": {
+          "xp": 8,
+          "last_progress_event_id": null
+        }
+      },
+      "powers": [],
+      "lifetime_skill_xp": 48,
+      "milestones": [],
+      "baseline_note": "46 XP de trasfondo (tecnología 15, investigación 8, electrónica 15, gadget_crafting 8); voluntad propuesta 5/5 por autocontrol, sin éxito garantizado. Ningún XP ganado en partida. D-036: todos los campos XP/atributos/rangos son datos históricos congelados y no vuelven a utilizarse para resolver acciones o conceder recompensas."
+    },
+    "knowledge": [
+      "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)",
+      "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)",
+      "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)"
+    ],
+    "relationships": {
+      "NPC-004": {
+        "relation": "hermana menor de 17 años",
+        "bond": "cercano pero con desacuerdos normales",
+        "trust": "alto de base",
+        "secret_sharing": "desconoce los detalles de planes ilícitos y reservas personales de Jack salvo que el juego establezca lo contrario",
+        "last_event_id": null
+      },
+      "NPC-005": {
+        "relation": "abuela",
+        "bond": "afectuoso y de aprendizaje mutuo",
+        "trust": "alto de base, no probado en juego",
+        "secret_sharing": "conoce sus reparaciones, no se ha establecido conocimiento de delitos o finanzas completas",
+        "last_event_id": null
+      },
+      "NPC-006": {
+        "relation": "contacto técnico",
+        "bond": "amistad profesional y colaboración ocasional",
+        "trust": "moderado",
+        "secret_sharing": "solo conoce encargos normales de reparación, no planes ilícitos",
+        "last_event_id": null
+      }
+    },
+    "inventory": [
+      {
+        "id": "ITEM-PHONE",
+        "name": "Teléfono personal",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": true,
+        "status": "funcional",
+        "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-VOICE-COLLAR",
+        "name": "Collar sintetizador de voz",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": true,
+        "status": "funcional",
+        "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-COMPACT-CASE",
+        "name": "Estuche compacto de electrónica",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": true,
+        "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+        "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-TESTER",
+        "name": "Probador portátil de dispositivos",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Herramienta genérica de diagnóstico de sus prototipos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-MICRODRONE",
+        "name": "Microdrón artesanal",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "requiere mantenimiento",
+        "description": "Pequeño vehículo de exploración para proyectos personales; capacidades precisas aún abiertas.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-SENSOR",
+        "name": "Sensor ambiental compacto",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Dispositivo propio de experimentación con condiciones ambientales.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-DISPLAY",
+        "name": "Pantalla portátil de diagnóstico",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Interfaz pequeña de pruebas y seguimiento de prototipos.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-MULTITOOL",
+        "name": "Herramientas de precisión",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "funcional",
+        "description": "Conjunto de piezas y herramientas de reparación y fabricación no especializadas en acciones ilegales.",
+        "narrative_only": true
+      },
+      {
+        "id": "ITEM-ASTER",
+        "name": "Aster — robot mediano sin cabina",
+        "size": "mediano",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": false,
+        "status": "En construcción: primer brazo montado mecánicamente y recorrido manual comprobado; actuadores sin conectar; no operativo",
+        "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+        "narrative_only": true,
+        "functional_state": "incompleto",
+        "spec_ref": "game/ASTER_SPEC.md",
+        "assembly_progress": {
+          "first_arm": {
+            "mounted_to_torso": true,
+            "shoulder_joint": "Soporta el conjunto en montaje; revisión manual realizada",
+            "elbow_joint": "Movimiento pasivo de flexión/extensión comprobado sin rozamiento",
+            "manual_alignment": "alineación corregida y comprobada",
+            "actuator_wiring": "sin conectar",
+            "powered_motion": "sin probar",
+            "load_tests": "pendientes",
+            "source_event_id": "EV-000027",
+            "day": -29
+          },
+          "other_modules": "No se atribuyen nuevas funciones; robot aún no operativo"
+        }
+      },
+      {
+        "id": "ITEM-WALLET",
+        "name": "Cartera personal",
+        "size": "pequeño",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "carried": true,
+        "status": "funcional; contiene efectivo para gastos corrientes",
+        "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+        "narrative_only": true
+      }
+    ],
+    "conditions": [],
+    "opening_intent": {
+      "status": "session_finished_returned_home",
+      "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
+      "outcome": "Tras revisar desde casa los nueve registros históricos del gadget, dos respondían intermitentemente y siete no; no hubo lecturas nuevas ni confirmación de que siguiera el acceso privilegiado. El taller sigue siendo un lugar seguro para investigación propia, sin nuevos actos adjudicados.",
+      "device_placed": false,
+      "information_acquired": true,
+      "operational_details": "Not defined; keep narration nontechnical.",
+      "phase_two": {
+        "attempted": true,
+        "staggered": true,
+        "unauthorized_execution_confirmed": true,
+        "confirmed_infected_devices": 2,
+        "verified_bank_balances": 2,
+        "observed_balances": [
+          {
+            "device_alias": "FUENTE-01",
+            "amount_display": "4.280,16",
+            "currency": null,
+            "account_holder_known": false
+          },
+          {
+            "device_alias": "FUENTE-02",
+            "amount_display": "93,47",
+            "currency": null,
+            "account_holder_known": false
+          }
+        ],
+        "funds_transferred": false,
+        "result": "Dos ejecuciones parciales observadas y dos lecturas de saldo; otros dispositivos y duración del acceso desconocidos.",
+        "source_event_id": "EV-000005"
+      },
+      "phase_three": {
+        "attempted": true,
+        "completed_local_detected_set": true,
+        "locally_detected_devices": 9,
+        "privileged_persistent_access_count": 9,
+        "includes_previous_two": true,
+        "observed_security_alerts": 0,
+        "local_session_traces_cleared": true,
+        "other_system_logs_erased": "unverified",
+        "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+        "mechanical_method": "unspecified; fiction only",
+        "source_event_id": "EV-000010",
+        "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+        "active_session_finished": true,
+        "completion_event_id": "EV-000013",
+        "historical_local_sessions": 9,
+        "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+        "current_privileged_access_verified": "nine fictional persistent compromises established; present response only observed for two intermittently, seven silent",
+        "last_observation_event_id": "EV-000020",
+        "last_review_place": "LOC-WILSON-WORKSHOP",
+        "responding_intermitently": 2,
+        "no_response_current_check": 7,
+        "new_bank_balance_reads": 0,
+        "remote_logs_verified_clean": false,
+        "last_catalogue_event_id": "EV-000020",
+        "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
+      }
+    },
+    "appearance": {
+      "height_cm": 178,
+      "build": "delgado y de complexión media, acostumbrado a pasar horas trabajando con las manos",
+      "hair": "castaño oscuro, ligeramente ondulado y generalmente despeinado",
+      "eyes": "avellana",
+      "style": "ropa sobria y funcional: chaqueta oscura, camiseta sin marcas, pantalones cómodos y calzado resistente; mochila discreta para sus cosas",
+      "distinguishing_feature": "collar sintetizador de voz visible bajo la mandíbula",
+      "status": "selección creativa delegada por el propietario, ajustable antes de jugar"
+    },
+    "personality": {
+      "confirmed_traits": [
+        "inteligente",
+        "tiene TDAH",
+        "le cuesta expresarse oralmente con claridad",
+        "autocontrol excepcional",
+        "rasgos psicopáticos descritos por el propietario para el personaje ficticio"
+      ],
+      "designed_traits": [
+        "curioso con la tecnología",
+        "reservado con información sensible",
+        "ingenioso al desarrollar herramientas",
+        "protector de sus vínculos familiares",
+        "prefiere proyectos prácticos a ostentación"
+      ],
+      "communication": {
+        "method": "Escribe en su teléfono el mensaje que desea comunicar; su collar lo reproduce mediante voz sintética.",
+        "collar_device_id": "ITEM-VOICE-COLLAR",
+        "phone_item_id": "ITEM-PHONE",
+        "speech_rule": "El narrador no decide lo que Jack escribe o dice; solo verbaliza por el collar una frase elegida por el jugador.",
+        "fallback": "Puede mostrar texto o comunicarse por gestos si decide no utilizar el collar.",
+        "medical_cause_of_speech_difficulty": "secuelas relacionadas con el incendio de infancia; lesión anatómica exacta no determinada"
+      },
+      "adhd_portrayal": "TDAH es un rasgo del personaje; no implica una reducción automática de intelecto, juicio, habilidades ni éxito. Sus efectos concretos se establecerán a través de la interpretación del jugador.",
+      "self_management": "Suele usar notas y listas en el teléfono para organizar ideas y proyectos; esta costumbre es una interpretación propuesta, no una acción obligatoria.",
+      "moral_psychology": {
+        "owner_description": "Master self-control, psicópata",
+        "interpretation": "frío, estratégico, autocontrol excepcional y moralidad instrumental; no implica diagnóstico clínico ni violencia inevitable",
+        "conduct": "prioriza beneficio propio y familiar, acepta poner a terceros en peligro cuando le conviene; prefiere no intervenir si no hay necesidad",
+        "player_agency": "cada acción, declaración y decisión es del jugador; no inventar violencia o traiciones por su perfil"
+      }
+    },
+    "personal_history": {
+      "status": "Incendio y muerte de padres definidos por propietario; cronología, nombres y detalles ordinarios del pasado completados por narrador.",
+      "origin": "Jack creció en Meridian Bay. A los doce años sobrevivió a un incendio residencial en el que fallecieron sus padres Daniel e Isabel Wilson. El incendio dejó secuelas que dificultan hablar claramente. Elena, entonces de ocho años, sobrevivió. Rosa Wilson se ocupó de ambos tras la tragedia. La causa del fuego permanece desconocida.",
+      "learning": "Desde pequeño Jack reparaba aparatos con Rosa. Más tarde estudió de forma autodidacta programación y electrónica, construyó gadgets y participó en actividades de hacking de las que proceden sus ahorros.",
+      "family_context": "Su hermana Elena tiene 17 años, exactamente cuatro menos que Jack. Rosa los crio tras el incendio. Viven en un hogar modesto y sin necesidades básicas insatisfechas.",
+      "recent_life": "Vive discretamente, desarrolla gadgets y trabaja en Aster, un robot mediano sin cabina todavía sin completar.",
+      "unknowns": [
+        "Causa exacta del incendio",
+        "Detalles concretos de actividades de hacking pasadas",
+        "Año calendario exacto",
+        "Educación formal de Jack"
+      ],
+      "fire_incident": {
+        "backstory_id": "BIO-001",
+        "player_age_approx": 12,
+        "sister_age_approx": 8,
+        "parents": {
+          "father": "Daniel Wilson",
+          "mother": "Isabel Wilson",
+          "fate": "fallecieron después de un incendio residencial"
+        },
+        "player_outcome": "sobrevivió, con dificultades de voz persistentes relacionadas con el incendio",
+        "sister_outcome": "sobrevivió, otras lesiones no establecidas",
+        "guardian_after": "Rosa Wilson",
+        "fire_cause": "desconocida; no inventar incendio provocado ni conspiración"
+      }
+    },
+    "motivations": {
+      "confirmed": [
+        "obtener dinero",
+        "explorar la tecnología",
+        "crear gadgets y herramientas",
+        "beneficio personal y familiar por encima de intereses ajenos",
+        "dispuesto a aceptar peligro para terceros si ofrece ventaja; pasivo si la intervención es innecesaria"
+      ],
+      "narrator_defined": [
+        "terminar su gran proyecto",
+        "mantener una vida privada poco llamativa",
+        "proteger la estabilidad cotidiana de su familia"
+      ],
+      "moral_alignment": "Pragmático, instrumental y autocontrolado; no predeterminar actos ni identidad de héroe o villano.",
+      "ethical_boundaries": "La ventaja propia o familiar justifica para él exponer a otros al peligro, pero prefiere mantenerse pasivo sin motivo. Las decisiones concretas siempre pertenecen al jugador."
+    },
+    "finances": {
+      "visible_standard_of_living": "modesto y discreto; cubre necesidades del hogar sin exhibir riqueza",
+      "household_needs": "alimentación, vivienda y gastos cotidianos cubiertos",
+      "private_reserves": "suficientes para comprar una casa modesta si lo decidiera",
+      "exact_amount": null,
+      "currency": null,
+      "origin": "Reservas obtenidas mediante actividades pasadas de hacking según el propietario. No están establecidos métodos, montos, clientes ni delitos específicos.",
+      "spending_pattern": "evita compras ostentosas de vivienda por la atención que atraerían; invierte dinero en herramientas, componentes y proyectos",
+      "family_awareness": "la familia conoce su interés por los aparatos; no se ha establecido cuánto saben sobre sus reservas",
+      "note": "Vive discretamente con lo necesario cubierto aunque posee reservas para comprar una casa; las obtuvo de hacking pasado y usa parte para gadgets. No inventar cifras.",
+      "asset_ledger_path": "game/finances/ASSET_LEDGER.json",
+      "last_asset_review_event_id": "EV-000022",
+      "shell_companies_declared": true,
+      "shell_companies_verified_count": 0,
+      "personal_bank_accounts_verified_count": 2,
+      "last_review_status": "CH-000 turn 7: personal accounts PERS-01 86.450,20 and PERS-02 173.890,75; two operational society account displays 43.600,00 and 97.340,10, all available. No legal names or currency established. Other private reserves may exist."
+    },
+    "family_ids": [
+      "NPC-004",
+      "NPC-005"
+    ],
+    "other_connections": [
+      "NPC-006"
+    ],
+    "home_location_id": "LOC-WILSON-APARTMENT",
+    "workroom_location_id": "LOC-WILSON-WORKSHOP",
+    "cafe_order": {
+      "cafe_id": "LOC-CAFE-BRUMA",
+      "items": [
+        "café",
+        "dulce"
+      ],
+      "ordered": true,
+      "delivered": true,
+      "paid": true,
+      "amount": null,
+      "source_event_id": "EV-000005",
+      "price": 7.8,
+      "currency": null,
+      "payment_method": "cash",
+      "cash_tendered": 10,
+      "change_returned": 2.2,
+      "paid_event_id": "EV-000010"
+    },
+    "device_registry": {
+      "index_path": "game/equipment/DEVICE_REGISTRY.json",
+      "last_review_event_id": "EV-000020",
+      "legacy_label": "500+",
+      "legacy_claimed_minimum": 500,
+      "legacy_verified_records": 0,
+      "bruma_historical_records": 9,
+      "current_responses": 2,
+      "current_no_response": 7,
+      "current_infection_proven": 9,
+      "verified_total_history_with_records": 9,
+      "deduplication_complete": false,
+      "legacy_active_confirmed_in_fiction": true,
+      "legacy_verification_status": "owner_confirmed_active_in_fiction",
+      "legacy_itemized_records": 0,
+      "cafe_compromises_established_in_fiction": 9,
+      "last_camera_review_event_id": "EV-000022"
+    }
+  },
+  "world": {
+    "setting": "Alternate modern Earth",
+    "shockwave_arrived": false,
+    "humans_with_powers_observed": false,
+    "animals_affected": false,
+    "plants_affected": false,
+    "environment_affected": false,
+    "actors": {
+      "NPC-001": {
+        "id": "NPC-001",
+        "name": "Lena Ortiz",
+        "age": 33,
+        "role": "transit operations supervisor",
+        "location_id": "LOC-TRANSIT-TERMINAL",
+        "goal": "Maintain safe, on-time evening transit while addressing a late service disruption.",
+        "independent_plan": "Coordinate dispatch and platform staff before the next scheduled departure.",
+        "knowledge": [
+          "An evening route is running behind schedule.",
+          "Transit staff are handling routine operations.",
+          "A Crosswater display suffered a reported brief anomaly. (source: Report from transit staff at Crosswater terminal; EV-000003)",
+          "The display malfunction is being tracked by maintenance separately from the train delay. (source: Internal transit maintenance communication; EV-000007)"
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "work_authority": "transit operations only"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000007",
+          "day": -30,
+          "summary": "Lena asks transit operations to retain the maintenance report and continues prioritizing the delayed route; she does not suspect Jack."
+        }
+      },
+      "NPC-002": {
+        "id": "NPC-002",
+        "name": "Sora Venn",
+        "age": 29,
+        "role": "station maintenance technician",
+        "location_id": "LOC-CROSSWATER-PLAZA",
+        "goal": "Complete an assigned inspection before the end of the shift.",
+        "independent_plan": "Walk a routine service circuit and file maintenance notes.",
+        "knowledge": [
+          "Has a routine maintenance assignment in the plaza.",
+          "One transit information sign displayed a brief visible anomaly during the evening rush. (source: Sora's own observation while inspecting the plaza; EV-000002)",
+          "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message. (source: Sora's own maintenance observations during shift; EV-000006)",
+          "The immediate Crosswater panel inspection is closed as an unresolved equipment problem without any suspect information. (source: Sora completed a routine maintenance check on the public transit sign.; EV-000012)"
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "work_order": "routine inspection"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000012",
+          "day": -30,
+          "summary": "Sora closes the immediate panel inspection as an equipment issue, retaining an ordinary maintenance note and no identification of Jack."
+        }
+      },
+      "NPC-003": {
+        "id": "NPC-003",
+        "name": "Darius Flint",
+        "age": 26,
+        "role": "delivery courier",
+        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "goal": "Deliver a paid parcel on time and protect his income.",
+        "independent_plan": "Navigate the evening transit crowd toward the commercial district.",
+        "knowledge": [
+          "He has a delivery deadline."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "parcel": "one unremarkable delivery, contents unspecified"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000008",
+          "day": -30,
+          "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
+        }
+      },
+      "NPC-004": {
+        "id": "NPC-004",
+        "name": "Elena Wilson",
+        "age": 17,
+        "role": "hermana menor de Jack; estudiante de secundaria interesada en ilustración digital",
+        "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+        "goal": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
+        "independent_plan": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase.",
+        "knowledge": [
+          "Jack utiliza el collar con el teléfono para comunicarse.",
+          "Jack fabrica dispositivos electrónicos y usa el taller familiar.",
+          "Daniel e Isabel Wilson fallecieron tras un incendio; Jack tuvo secuelas al hablar.",
+          "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out. (source: Elena herself adjusted the digital illustration after Jack's gestural feedback; EV-000018)",
+          "Jack vio el dibujo y señaló un problema de perspectiva; pudo corregirlo sin que el hermano escribiera diálogo.",
+          "She needs an external memory device to carry her artwork to school tomorrow. (source: Elena prepared the file and asked Jack from the workshop doorway.; EV-000021)",
+          "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio. (source: Elena recibió la memoria directamente de Jack en la puerta del taller; EV-000023)",
+          "Elena guardó una copia de su ilustración en la memoria USB prestada y la lleva preparada en su mochila. (source: Elena comprobó la copia en su propia computadora durante la noche y preparó la mochila por la mañana; EV-000025)"
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "hermano mayor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Jack le prestó una memoria USB para su dibujo escolar (CH-000, turno 7)"
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas",
+          "current_project": "Ilustración digital con perspectiva corregida; copia en memoria USB en la mochila para presentar en clase hoy."
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000028",
+          "day": -29,
+          "summary": "Elena recibe la mochila de Jack, confirma que lleva la USB con el dibujo y sale del apartamento camino de la escuela."
+        },
+        "description": "Tiene 17 años y es cuatro años menor que Jack. Conoce las dificultades de voz de su hermano tras el incendio; tiene autonomía y metas independientes.",
+        "inventory": [
+          {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          }
+        ]
+      },
+      "NPC-005": {
+        "id": "NPC-005",
+        "name": "Rosa Wilson",
+        "age": 73,
+        "role": "abuela de Jack; jubilada aficionada a arreglos domésticos",
+        "location_id": "LOC-WILSON-APARTMENT",
+        "goal": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
+        "independent_plan": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana.",
+        "knowledge": [
+          "Jack construye gadgets.",
+          "Jack usa un collar que reproduce lo que escribe para hablar.",
+          "Le enseñó reparaciones básicas cuando era niño.",
+          "Sus hijos Daniel e Isabel Wilson murieron después de un incendio; Jack sufrió secuelas en la voz."
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "nieto",
+            "bond": "cariño y respeto",
+            "knowledge_of_crimes": false
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas",
+          "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+          "last_repair_event_id": "EV-000029"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000029",
+          "day": -29,
+          "summary": "Rosa observa que Jack arregló el problema de la tapa del despertador, comprueba varios cierres y deja el reloj listo para devolvérselo al vecino."
+        },
+        "description": "Abuela y cuidadora de los dos hermanos desde el incendio; mantiene sus propias metas y aficiones."
+      },
+      "NPC-006": {
+        "id": "NPC-006",
+        "name": "Noah Vale",
+        "age": 32,
+        "role": "dueño de un pequeño local de reparación y componentes",
+        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "goal": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
+        "independent_plan": "Revisar encargos pendientes y buscar repuestos generales.",
+        "knowledge": [
+          "Jack crea y repara aparatos.",
+          "Conoce a Jack por consultas y compras de materiales comunes."
+        ],
+        "relationships": {
+          "PLAYER-001": {
+            "relation": "contacto frecuente",
+            "bond": "interés profesional mutuo",
+            "knowledge_of_crimes": false
+          }
+        },
+        "conditions": [],
+        "resources": {
+          "daily_life": "recursos normales, sin cifras fijadas"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": null,
+        "description": "Contacta con Jack por proyectos técnicos sin conocer todos sus planes."
+      },
+      "NPC-007": {
+        "id": "NPC-007",
+        "name": "Mara Reyes",
+        "age": 27,
+        "role": "barista del turno de noche en Café Bruma",
+        "location_id": "LOC-CAFE-BRUMA",
+        "goal": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo.",
+        "independent_plan": "Avisar del cierre de la sección, recoger las últimas tazas y cuadrar las ventas anotadas a mano.",
+        "knowledge": [
+          "Jack señaló café y pastelito en el menú.",
+          "La caja registradora se bloqueó y produjo un recibo extraño durante el turno.",
+          "El café y el dulce de Jack fueron servidos y su pago sigue pendiente.",
+          "Jack paid his café and pastry bill in cash and remained at the table as closing approached. (source: Mara received Jack's payment and observed him in the café.; EV-000011)",
+          "Jack abonó 7,80 en efectivo y recibió dos con veinte de cambio.",
+          "Se le avisó de que la sección cerraría en cinco minutos."
+        ],
+        "relationships": {},
+        "conditions": [],
+        "resources": {
+          "shift": "cierre de la zona de mesas en curso",
+          "register": "averiada, venta anotada manualmente",
+          "order": "café y pastelito cobrados en efectivo; recibido 10, cambio 2,20"
+        },
+        "progression": {
+          "attributes": null,
+          "skills": {},
+          "powers": [],
+          "lifetime_skill_xp": 0,
+          "milestones": []
+        },
+        "last_resolved_action": {
+          "event_id": "EV-000014",
+          "day": -30,
+          "summary": "Mara accepts Jack's gesture, returns to the counter and prepares to close the seating area, still unaware of his gadget use."
+        },
+        "description": "Práctica, irónica sin crueldad y cuidadosa con el servicio pese al cansancio de fin de turno. No conoce las actividades privadas de Jack."
+      }
+    },
+    "factions": {
+      "ORG-MERIDIAN-TRANSIT": {
+        "id": "ORG-MERIDIAN-TRANSIT",
+        "name": "Meridian Transit Service",
+        "kind": "public transit organization",
+        "goal": "Provide safe and timely city transportation",
+        "resources": "limited evening operational staff",
+        "known_members": [
+          "NPC-001",
+          "NPC-002"
+        ],
+        "player_reputation": "unknown",
+        "independent_plan": "Resolve delays and routine maintenance without waiting for the player."
+      }
+    },
+    "locations": {
+      "CITY-MERIDIAN-BAY": {
+        "id": "CITY-MERIDIAN-BAY",
+        "name": "Meridian Bay",
+        "type": "coastal_city",
+        "setting": "Alternate modern Earth",
+        "description": "An original working harbor city with a commercial center, transit network, waterfront, and residential neighborhoods.",
+        "parent_id": null,
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-HARBOR-WALK",
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-RAILGARDEN-RESIDENTIAL"
+        ]
+      },
+      "LOC-CROSSWATER-PLAZA": {
+        "id": "LOC-CROSSWATER-PLAZA",
+        "name": "Crosswater Transit Plaza",
+        "type": "public_transit_plaza",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Well-lit plaza with pedestrian traffic, transit information boards, scattered shops, a glass station entrance, and a distant harbor view.",
+        "connected_ids": [
+          "LOC-TRANSIT-TERMINAL",
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-HARBOR-WALK"
+        ],
+        "public_area": true
+      },
+      "LOC-TRANSIT-TERMINAL": {
+        "id": "LOC-TRANSIT-TERMINAL",
+        "name": "Crosswater Terminal",
+        "type": "transit_terminal",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Central train and bus connections adjoining the plaza.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA"
+        ]
+      },
+      "LOC-COMMERCIAL-DISTRICT": {
+        "id": "LOC-COMMERCIAL-DISTRICT",
+        "name": "Market Row",
+        "type": "commercial_district",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Small shops, offices, food stalls, and side streets near the plaza.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-HARBOR-WALK",
+          "LOC-RAILGARDEN-RESIDENTIAL",
+          "LOC-CAFE-BRUMA"
+        ]
+      },
+      "LOC-HARBOR-WALK": {
+        "id": "LOC-HARBOR-WALK",
+        "name": "Harbor Walk",
+        "type": "waterfront_walk",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "A public pedestrian route leading from the transit area toward the waterfront.",
+        "connected_ids": [
+          "LOC-CROSSWATER-PLAZA",
+          "LOC-COMMERCIAL-DISTRICT"
+        ]
+      },
+      "LOC-RAILGARDEN-RESIDENTIAL": {
+        "id": "LOC-RAILGARDEN-RESIDENTIAL",
+        "name": "Railgarden",
+        "type": "barrio residencial urbano",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Barrio de edificios modestos, tiendas pequeñas y transporte cotidiano; la familia Wilson vive aquí.",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT",
+          "LOC-WILSON-APARTMENT"
+        ]
+      },
+      "LOC-WILSON-APARTMENT": {
+        "id": "LOC-WILSON-APARTMENT",
+        "name": "Hogar de los Wilson",
+        "type": "apartamento familiar",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Vivienda modesta y funcional compartida por Jack, Elena y Rosa; sus gastos esenciales están cubiertos.",
+        "connected_ids": [
+          "LOC-RAILGARDEN-RESIDENTIAL",
+          "LOC-WILSON-WORKSHOP"
+        ],
+        "ownership": "tipo de contrato y titularidad aún sin fijar"
+      },
+      "LOC-WILSON-WORKSHOP": {
+        "id": "LOC-WILSON-WORKSHOP",
+        "name": "Taller de Jack",
+        "type": "espacio de trabajo dentro del hogar",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Espacio doméstico adaptado para herramientas, aparatos pequeños y el Proyecto Aster incompleto.",
+        "connected_ids": [
+          "LOC-WILSON-APARTMENT"
+        ],
+        "ownership": "uso familiar; no propiedad independiente"
+      },
+      "LOC-CAFE-BRUMA": {
+        "id": "LOC-CAFE-BRUMA",
+        "name": "Café Bruma",
+        "type": "cafetería pública",
+        "parent_id": "CITY-MERIDIAN-BAY",
+        "description": "Pequeña cafetería de Market Row con mesas interiores, mostrador y acceso desde la calle.",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true
+      }
+    },
+    "active_events": [],
+    "secrets": {}
+  },
+  "history": {
+    "last_event_sequence": 29,
+    "completed_chapters": [],
+    "last_transcript_sequence": 20,
+    "completed_turn_keys": [
+      "CH000-PLAYER-0001-CROSSWATER-GLITCH",
+      "CH000-TURN-0002-CAFE-SECOND-PHASE",
+      "CH000-PLAYER-0003-CAFE-CASH-DEVICE-PERSISTENCE",
+      "CH000-PLAYER-0004-RETURN-WILSON-HOME",
+      "CH000-TURN-0005-ELENA-ART-AND-GADGET-REVIEW",
+      "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
+      "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
+      "CH000-TURN-0008-MORNING-TRANSITION",
+      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM"
+    ],
+    "story_revisions": [
+      {
+        "id": "REV-CH000-0001",
+        "turn": 2,
+        "prior_commit": "1da4a6ce69938df59d45ca28087376edaf0ea094",
+        "replacement_entry_id": "TXT-000006",
+        "audit_path": "chapters/revisions/REV-CH000-0001.json",
+        "reason": "El propietario solicitó volver a resolver el turno 2 con diferente narración y resultado."
+      },
+      {
+        "id": "REV-CH000-0002",
+        "turn": 6,
+        "prior_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+        "replacement_entry_id": "TXT-000014",
+        "audit_path": "chapters/revisions/REV-CH000-0002.json",
+        "reason": "Owner-authorized retry of last completed turn; literary correction and alignment with established preexisting active network."
+      }
+    ]
+  },
+  "pending": {
+    "type": "await_player_action",
+    "interaction_mode": "free_text_no_numbered_options",
+    "location_id": "LOC-WILSON-WORKSHOP",
+    "message": "Día -29, media mañana: Jack está en su taller junto a Aster, con el primer brazo montado manualmente pero sin actuadores conectados. Rosa tiene el reloj reparado; Elena salió hacia la escuela con su mochila y la USB. Esperar decisión libre del jugador.",
+    "last_player_action": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo"
+  },
+  "save": {
+    "last_verified_turn": 9,
+    "notes": "CH-000 turn 9: Jack hands Elena her schoolbag, fixes Rosa's neighbor clock, and physically mounts Aster's first arm without powered operation; Elena heads toward school."
+  },
+  "narrative_threads": [
+    {
+      "id": "THREAD-000001",
+      "owner_actor_id": "PLAYER-001",
+      "question": "¿Produjo el gadget algún efecto duradero además de interferencias visibles?",
+      "scope": "private",
+      "status": "open",
+      "origin_event_id": "EV-000001",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000001",
+          "summary": "Jack vio fallos aislados, pero no confirmó infección, robo de datos o propagación general.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000005",
+          "summary": "En Café Bruma se lograron dos ejecuciones parciales y se vieron dos saldos de terceros; la duración del acceso y las consecuencias aún están por conocerse.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000010",
+          "summary": "Jack consiguió acceso persistente privilegiado a nueve aparatos detectables en el entorno del café, sin alertas visibles; el estuche se calentó y no pudo comprobar registros externos.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000013",
+          "summary": "Jack finalizó su sesión activa, volvió a Railgarden y conservó la información de los nueve accesos registrados; su persistencia después de la salida no está comprobada.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000017",
+          "summary": "Desde el taller, Jack verificó dos respuestas intermitentes entre nueve registros históricos; otros siete quedaron inaccesibles en esa comprobación. No se obtuvieron datos nuevos y su persistencia futura sigue incierta.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000020",
+          "summary": "Jack organizó nueve accesos recientes de Café Bruma, de los cuales dos respondieron intermitentemente y siete permanecieron sin respuesta puntual. Su red anterior de más de 500 dispositivos activos ya existía y está confirmada por el propietario; no se han inventado identificadores individuales.",
+          "visibility": "known"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000002",
+      "owner_actor_id": "NPC-002",
+      "question": "¿Qué concluirá la revisión técnica de las anomalías en Crosswater?",
+      "scope": "observable",
+      "status": "resolved",
+      "origin_event_id": "EV-000002",
+      "resolution_event_id": "EV-000012",
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000002",
+          "summary": "Sora empezó a examinar el cartel fallido sin saber de las intenciones de Jack.",
+          "visibility": "hidden"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000006",
+          "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
+          "visibility": "hidden"
+        },
+        {
+          "kind": "resolve",
+          "event_id": "EV-000012",
+          "summary": "Sora cerró la inspección inmediata como incidencia de equipo y conservó una anotación ordinaria de mantenimiento sin identificar a Jack.",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000003",
+      "owner_actor_id": "NPC-007",
+      "question": "¿Cómo resolverá Mara la avería de la caja y el pago pendiente antes de cerrar el café?",
+      "scope": "observable",
+      "status": "resolved",
+      "origin_event_id": "EV-000009",
+      "resolution_event_id": "EV-000011",
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000009",
+          "summary": "Mara entregó el pedido, la caja falló y ofreció aceptar efectivo antes del cierre.",
+          "visibility": "known"
+        },
+        {
+          "kind": "resolve",
+          "event_id": "EV-000011",
+          "summary": "Mara cobró el café y dulce de Jack en efectivo, anotó el pago y avanzó hacia el cierre manual del local.",
+          "visibility": "known"
+        }
+      ]
+    },
+    {
+      "id": "THREAD-000004",
+      "owner_actor_id": "PLAYER-001",
+      "question": "¿Qué cuentas personales y sociedades instrumentales posee Jack y cuáles son sus saldos documentados?",
+      "scope": "private",
+      "status": "open",
+      "origin_event_id": "EV-000020",
+      "resolution_event_id": null,
+      "history": [
+        {
+          "kind": "open",
+          "event_id": "EV-000020",
+          "summary": "Jack revisó sus reservas y sociedades preexistentes, sin establecer cifras de cuentas, nombres de empresas ni balances detallados en esta escena.",
+          "visibility": "known"
+        },
+        {
+          "kind": "develop",
+          "event_id": "EV-000022",
+          "summary": "El panel de Jack muestra dos cuentas personales con saldos 86.450,20 y 173.890,75 y dos cuentas operativas societarias con 43.600,00 y 97.340,10; las cuatro disponibles. Los nombres legales, moneda y posibles otras cuentas no quedan establecidos.",
+          "visibility": "known"
+        }
+      ]
+    }
+  ]
+}

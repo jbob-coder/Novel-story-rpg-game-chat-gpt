@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "authority": "Canonical paths remain at original location; indexes are navigation-only.",
+  "entrypoints": [
+    "AGENTS.md",
+    "INDEX.md",
+    "docs/INDEX.md"
+  ],
+  "indexes": [
+    "INDEX.md",
+    "docs/INDEX.md",
+    "docs/00_start/INDEX.md",
+    "docs/01_world/INDEX.md",
+    "docs/02_characters/INDEX.md",
+    "docs/03_systems/INDEX.md",
+    "docs/04_story/INDEX.md",
+    "docs/05_persistence/INDEX.md",
+    "docs/06_quality/INDEX.md",
+    "game/INDEX.md",
+    "game/characters/INDEX.md",
+    "game/world/INDEX.md",
+    "game/equipment/INDEX.md",
+    "game/saves/INDEX.md",
+    "chapters/INDEX.md",
+    "chapters/CH-000/INDEX.md",
+    "tools/INDEX.md",
+    "tests/INDEX.md",
+    "game/finances/INDEX.md"
+  ],
+  "canonical": {
+    "game": [
+      "game/STATE.json",
+      "game/SAVE_MANIFEST.json",
+      "game/CHARACTER_JACK.md",
+      "game/JACK_HACKER_HISTORY.md",
+      "game/ASTER_SPEC.md",
+      "game/STARTING_CAST.md",
+      "game/STARTING_LOCATIONS.md",
+      "game/equipment/DEVICE_REGISTRY.json",
+      "game/finances/ASSET_LEDGER.json"
+    ],
+    "story": [
+      "chapters/CH-000.md",
+      "chapters/CH-000.events.json",
+      "chapters/CH-000.transcript.json",
+      "chapters/CH-000.PREP.md",
+      "chapters/revisions/INDEX.md",
+      "chapters/revisions/REV-CH000-0001.json",
+      "chapters/revisions/REV-CH000-0002.json"
+    ],
+    "world": [
+      "docs/CANON.md",
+      "docs/DECISIONS.md",
+      "docs/WORLD_BIBLE.md"
+    ],
+    "rules": [
+      "docs/NARRATIVE_CONTRACT.md",
+      "docs/NARRATIVE_EXECUTION_MODEL.md",
+      "docs/NARRATOR_RULES.md",
+      "docs/NARRATIVE_STANDARD.md",
+      "docs/NPC_RULES.md",
+      "docs/PROGRESSION.md",
+      "docs/STATE_SCHEMA.md",
+      "docs/CHAPTER_PROTOCOL.md",
+      "docs/FULL_NARRATION_ARCHIVE.md",
+      "docs/RECOVERY.md",
+      "docs/SAVE_BLOCKING_PROTOCOL.md",
+      "docs/DECISION_OUTCOMES.md",
+      "docs/SCENE_CRAFT.md",
+      "docs/STORY_REVISIONS.md"
+    ],
+    "tracking": [
+      "docs/STATUS.md",
+      "docs/HANDOFF.md",
+      "docs/PLAY_READINESS.md",
+      "docs/IMPLEMENTATION_PLAN.md",
+      "docs/QA_SCENARIOS.md",
+      "docs/TURN_TESTING.md",
+      "docs/FOLDER_POLICY.md"
+    ],
+    "tools": [
+      "tools/save_gate.mjs",
+      "tools/turn_engine.mjs",
+      "tools/narrative_archive.mjs",
+      "tools/validate_state.py",
+      "tools/consequences.mjs",
+      "tools/state_changes.mjs",
+      "tools/save_transaction.mjs",
+      "tools/github_save_adapter.mjs"
+    ],
+    "tests": [
+      "tests/save_gate.test.mjs",
+      "tests/turn_engine.test.mjs",
+      "tests/test_backstory_aster.py",
+      "tests/test_character_profile.py",
+      "tests/test_starting_checkpoint.py",
+      "tests/index_paths.test.mjs",
+      "tests/test_literal_archive_validator.py",
+      "tests/consequences.test.mjs",
+      "tests/state_changes.test.mjs",
+      "tests/save_transaction.test.mjs",
+      "tests/github_save_adapter.test.mjs",
+      "tests/test_turn9_consequences.py"
+    ]
+  },
+  "newChapterPaths": [
+    "chapters/CH-NNN/INDEX.md",
+    "chapters/CH-NNN.md",
+    "chapters/CH-NNN.events.json",
+    "chapters/CH-NNN.transcript.json"
+  ],
+  "maintenance": "Update the relevant index, parent index, and this inventory whenever canonical files change. Keep filenames stable."
+}

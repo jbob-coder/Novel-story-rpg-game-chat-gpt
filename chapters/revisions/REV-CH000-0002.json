@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "id": "REV-CH000-0002",
+  "chapter_id": "CH-000",
+  "turn": 6,
+  "revision_reason": "El propietario pidió literalmente 'Quiero que hagas un retry con el chapter 6'. Se reescribe el último turno jugado con prosa más natural y se corrigen las afirmaciones antiguas incompatibles con el canon D-037/D-039, sin inventar acciones ni alterar el desenlace.",
+  "revision_scope": "Same in-fiction turn, narration/known canon correction. No new player turn, no new day, no change in established Café Bruma observations or Elena's request.",
+  "original_checkpoint_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+  "old_checkpoint_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+  "active_turn": 6,
+  "original_player_message_id": "TXT-000013",
+  "replacement_narrator_message_id": "TXT-000014",
+  "prior_checkpoint": {
+    "old_checkpoint_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+    "original_turn": 6,
+    "original_user_input": {
+      "id": "TXT-000013",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys",
+      "event_ids": [
+        "EV-000020"
+      ]
+    },
+    "original_narrator_message": {
+      "id": "TXT-000014",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "El ventilador del ordenador baja de revoluciones y el taller queda en silencio, salvo por el tic desigual del reloj que Rosa sigue examinando al otro lado de la puerta.\n\nJack abre el archivo donde guarda el historial de sus aparatos. Sobre la pantalla aparece una carpeta nueva, titulada **500+**. Allí quiere reunir los dispositivos que considera parte de su vieja red y los nueve de Café Bruma.\n\nPero el número del título no basta para llenar la lista.\n\nDe la red anterior no aparecen fichas individuales que puedan cotejarse: ni fechas recientes, ni identificadores fiables, ni una comprobación de cuántos continúan afectados. El archivo conserva la referencia a esos quinientos y pico como un inventario pendiente de reconstruir, no como quinientas conexiones abiertas.\n\nLos nueve registros de Café Bruma sí tienen una historia concreta. Jack los separa bajo el mismo encabezado, cada uno con su número de expediente. Dos responden a ratos, como antes; los otros siete no devuelven nada en esta revisión. No aparecen nuevos titulares, saldos ni operaciones. El programa recuerda las conexiones que tuvo, pero no puede afirmar que mantenga hoy los mismos permisos.\n\nUna segunda ventana ocupa la mitad de la pantalla.\n\nLas reservas personales de Jack siguen siendo suficientes, según sus propios antecedentes, para comprar una casa modesta sin pedir ayuda. Sin embargo, los papeles guardados aquí no incluyen extractos actualizados ni una cifra exacta con la que comprobar el saldo de esta noche. Las cantidades **4.280,16** y **93,47**, obtenidas antes de dos teléfonos ajenos, quedan en un apartado separado. No son dinero suyo.\n\nEl archivo de sociedades muestra una situación parecida. Jack ha señalado que tiene empresas instrumentales, pero en este expediente todavía no constan sus nombres, titulares legales ni balances. Ninguna puede marcarse como revisada sin esos datos. La pantalla deja los campos vacíos en lugar de inventar cifras.\n\nUn golpe suave contra la puerta interrumpe el zumbido del equipo.\n\n—¿Jack? —pregunta Elena desde el pasillo—. ¿Tienes alguna memoria libre? No quiero que mañana la computadora de la escuela se coma mi dibujo.\n\nElena no entra. Más allá de su voz, Rosa protesta porque el despertador vuelve a marcar una hora imposible.\n\nEn el monitor quedan abiertas dos cosas distintas: nueve fichas nuevas y completas en su historial de origen, y una red antigua de **500+** cuyo contenido todavía necesita verificarse. Abajo, las cuentas y sociedades esperan documentos que les den nombres y cifras reales.",
+      "event_ids": [
+        "EV-000020",
+        "EV-000021"
+      ]
+    },
+    "original_turn_events": [
+      {
+        "id": "EV-000020",
+        "chapter_id": "CH-000",
+        "turn": 6,
+        "day": -30,
+        "actor_ids": [
+          "PLAYER-001"
+        ],
+        "kind": "player_action",
+        "intent": "Jack checks already affected devices and asks to add the nine Café Bruma devices to a 500+ device list, verifies the nine, and reviews his own accounts and shell companies from the home workshop. He supplied no earlier device IDs, own balances or legal entity names.",
+        "outcome": "A persistent indexed registry records nine established Café Bruma device records (two intermittent responses, seven silent), while a separate owner-asserted legacy 500+ group remains unverified without individual records or deduplication. Jack's private reserves are qualitatively established but exact current personal balances remain unknown; his asserted shell-company holdings have no names or statements yet, so nothing financial is invented. Elena asks Jack if he has a spare memory device for school work.",
+        "known_to": [
+          "PLAYER-001"
+        ],
+        "caused_by": [],
+        "state_changes": [
+          {
+            "actor_id": "PLAYER-001",
+            "field": "device_registry",
+            "before": null,
+            "after": {
+              "index_path": "game/equipment/DEVICE_REGISTRY.json",
+              "last_review_event_id": "EV-000020",
+              "legacy_label": "500+",
+              "legacy_claimed_minimum": 500,
+              "legacy_verified_records": 0,
+              "bruma_historical_records": 9,
+              "current_responses": 2,
+              "current_no_response": 7,
+              "current_infection_proven": 0,
+              "verified_total_history_with_records": 9,
+              "deduplication_complete": false
+            }
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "finances.asset_ledger_path",
+            "before": null,
+            "after": "game/finances/ASSET_LEDGER.json"
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "finances.last_review_status",
+            "before": null,
+            "after": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available."
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "inventory.ITEM-COMPACT-CASE.status",
+            "before": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
+            "after": "nueve fichas locales indexadas: dos respuestas intermitentes, siete sin respuesta; red declarada 500+ pendiente de cotejo"
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "opening_intent.phase_three",
+            "before": {
+              "attempted": true,
+              "completed_local_detected_set": true,
+              "locally_detected_devices": 9,
+              "privileged_persistent_access_count": 9,
+              "includes_previous_two": true,
+              "observed_security_alerts": 0,
+              "local_session_traces_cleared": true,
+              "other_system_logs_erased": "unverified",
+              "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+              "mechanical_method": "unspecified; fiction only",
+              "source_event_id": "EV-000010",
+              "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+              "active_session_finished": true,
+              "completion_event_id": "EV-000013",
+              "historical_local_sessions": 9,
+              "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+              "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+              "last_observation_event_id": "EV-000017",
+              "last_review_place": "LOC-WILSON-WORKSHOP",
+              "responding_intermitently": 2,
+              "no_response_current_check": 7,
+              "new_bank_balance_reads": 0,
+              "remote_logs_verified_clean": false
+            },
+            "after": {
+              "attempted": true,
+              "completed_local_detected_set": true,
+              "locally_detected_devices": 9,
+              "privileged_persistent_access_count": 9,
+              "includes_previous_two": true,
+              "observed_security_alerts": 0,
+              "local_session_traces_cleared": true,
+              "other_system_logs_erased": "unverified",
+              "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+              "mechanical_method": "unspecified; fiction only",
+              "source_event_id": "EV-000010",
+              "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+              "active_session_finished": true,
+              "completion_event_id": "EV-000013",
+              "historical_local_sessions": 9,
+              "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+              "current_privileged_access_verified": "not verified from current responses",
+              "last_observation_event_id": "EV-000020",
+              "last_review_place": "LOC-WILSON-WORKSHOP",
+              "responding_intermitently": 2,
+              "no_response_current_check": 7,
+              "new_bank_balance_reads": 0,
+              "remote_logs_verified_clean": false,
+              "last_catalogue_event_id": "EV-000020",
+              "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
+            }
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "time.elapsed_minutes_since_opening_approx",
+            "before": 82,
+            "after": 94
+          }
+        ],
+        "progression_awards": []
+      },
+      {
+        "id": "EV-000021",
+        "chapter_id": "CH-000",
+        "turn": 6,
+        "day": -30,
+        "actor_ids": [
+          "NPC-004"
+        ],
+        "kind": "independent_actor",
+        "intent": "Prepare her revised city illustration for tomorrow's school presentation and avoid losing the file.",
+        "outcome": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers.",
+        "known_to": [
+          "NPC-004",
+          "PLAYER-001"
+        ],
+        "caused_by": [],
+        "state_changes": [
+          {
+            "actor_id": "NPC-004",
+            "field": "knowledge",
+            "fact": "She needs an external memory device to carry her artwork to school tomorrow.",
+            "source": "Elena prepared the file and asked Jack from the workshop doorway."
+          },
+          {
+            "actor_id": "NPC-004",
+            "field": "independent_plan",
+            "before": "Añadir figuras humanas al fondo de la avenida y preparar la ilustración escolar para mostrársela mañana a la profesora.",
+            "after": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack."
+          }
+        ],
+        "progression_awards": []
+      }
+    ],
+    "original_state_fields": {
+      "player_device_registry": {
+        "index_path": "game/equipment/DEVICE_REGISTRY.json",
+        "last_review_event_id": "EV-000020",
+        "legacy_label": "500+",
+        "legacy_claimed_minimum": 500,
+        "legacy_verified_records": 0,
+        "bruma_historical_records": 9,
+        "current_responses": 2,
+        "current_no_response": 7,
+        "current_infection_proven": 0,
+        "verified_total_history_with_records": 9,
+        "deduplication_complete": false
+      },
+      "player_finance_review": "Private reserves qualitatively supported; no statements, exact balances, shell entity names or account documents available.",
+      "player_compact_case_status": "red preexistente de más de 500 dispositivos activos en la ficción; nueve fichas nuevas de Café Bruma (dos respuestas intermitentes, siete sin respuesta en última consulta)",
+      "player_opening_intent_phase_three": {
+        "attempted": true,
+        "completed_local_detected_set": true,
+        "locally_detected_devices": 9,
+        "privileged_persistent_access_count": 9,
+        "includes_previous_two": true,
+        "observed_security_alerts": 0,
+        "local_session_traces_cleared": true,
+        "other_system_logs_erased": "unverified",
+        "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+        "mechanical_method": "unspecified; fiction only",
+        "source_event_id": "EV-000010",
+        "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+        "active_session_finished": true,
+        "completion_event_id": "EV-000013",
+        "historical_local_sessions": 9,
+        "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+        "current_privileged_access_verified": "not verified from current responses",
+        "last_observation_event_id": "EV-000020",
+        "last_review_place": "LOC-WILSON-WORKSHOP",
+        "responding_intermitently": 2,
+        "no_response_current_check": 7,
+        "new_bank_balance_reads": 0,
+        "remote_logs_verified_clean": false,
+        "last_catalogue_event_id": "EV-000020",
+        "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
+      },
+      "narrative_threads": [
+        {
+          "id": "THREAD-000001",
+          "owner_actor_id": "PLAYER-001",
+          "question": "¿Produjo el gadget algún efecto duradero además de interferencias visibles?",
+          "scope": "private",
+          "status": "open",
+          "origin_event_id": "EV-000001",
+          "resolution_event_id": null,
+          "history": [
+            {
+              "kind": "open",
+              "event_id": "EV-000001",
+              "summary": "Jack vio fallos aislados, pero no confirmó infección, robo de datos o propagación general.",
+              "visibility": "known"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000005",
+              "summary": "En Café Bruma se lograron dos ejecuciones parciales y se vieron dos saldos de terceros; la duración del acceso y las consecuencias aún están por conocerse.",
+              "visibility": "known"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000010",
+              "summary": "Jack consiguió acceso persistente privilegiado a nueve aparatos detectables en el entorno del café, sin alertas visibles; el estuche se calentó y no pudo comprobar registros externos.",
+              "visibility": "known"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000013",
+              "summary": "Jack finalizó su sesión activa, volvió a Railgarden y conservó la información de los nueve accesos registrados; su persistencia después de la salida no está comprobada.",
+              "visibility": "known"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000017",
+              "summary": "Desde el taller, Jack verificó dos respuestas intermitentes entre nueve registros históricos; otros siete quedaron inaccesibles en esa comprobación. No se obtuvieron datos nuevos y su persistencia futura sigue incierta.",
+              "visibility": "known"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000020",
+              "summary": "Jack organizó nueve accesos recientes de Café Bruma, de los cuales dos respondieron intermitentemente y siete permanecieron sin respuesta puntual. Su red anterior de más de 500 dispositivos activos ya existía y está confirmada por el propietario; no se han inventado identificadores individuales.",
+              "visibility": "known"
+            }
+          ]
+        },
+        {
+          "id": "THREAD-000002",
+          "owner_actor_id": "NPC-002",
+          "question": "¿Qué concluirá la revisión técnica de las anomalías en Crosswater?",
+          "scope": "observable",
+          "status": "resolved",
+          "origin_event_id": "EV-000002",
+          "resolution_event_id": "EV-000012",
+          "history": [
+            {
+              "kind": "open",
+              "event_id": "EV-000002",
+              "summary": "Sora empezó a examinar el cartel fallido sin saber de las intenciones de Jack.",
+              "visibility": "hidden"
+            },
+            {
+              "kind": "develop",
+              "event_id": "EV-000006",
+              "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
+              "visibility": "hidden"
+            },
+            {
+              "kind": "resolve",
+              "event_id": "EV-000012",
+              "summary": "Sora cerró la inspección inmediata como incidencia de equipo y conservó una anotación ordinaria de mantenimiento sin identificar a Jack.",
+              "visibility": "hidden"
+            }
+          ]
+        },
+        {
+          "id": "THREAD-000003",
+          "owner_actor_id": "NPC-007",
+          "question": "¿Cómo resolverá Mara la avería de la caja y el pago pendiente antes de cerrar el café?",
+          "scope": "observable",
+          "status": "resolved",
+          "origin_event_id": "EV-000009",
+          "resolution_event_id": "EV-000011",
+          "history": [
+            {
+              "kind": "open",
+              "event_id": "EV-000009",
+              "summary": "Mara entregó el pedido, la caja falló y ofreció aceptar efectivo antes del cierre.",
+              "visibility": "known"
+            },
+            {
+              "kind": "resolve",
+              "event_id": "EV-000011",
+              "summary": "Mara cobró el café y dulce de Jack en efectivo, anotó el pago y avanzó hacia el cierre manual del local.",
+              "visibility": "known"
+            }
+          ]
+        },
+        {
+          "id": "THREAD-000004",
+          "owner_actor_id": "PLAYER-001",
+          "question": "¿Qué cuentas personales y sociedades instrumentales posee Jack y cuáles son sus saldos documentados?",
+          "scope": "private",
+          "status": "open",
+          "origin_event_id": "EV-000020",
+          "resolution_event_id": null,
+          "history": [
+            {
+              "kind": "open",
+              "event_id": "EV-000020",
+              "summary": "Jack revisó sus reservas y sociedades preexistentes, sin establecer cifras de cuentas, nombres de empresas ni balances detallados en esta escena.",
+              "visibility": "known"
+            }
+          ]
+        }
+      ],
+      "save": {
+        "last_verified_turn": 6,
+        "notes": "Revisión literaria autorizada del turno 6, sin crear turno 7, con el texto original archivado como REV-CH000-0002. Canon: red activa 500+ anterior, nueve nuevas incorporaciones, finanzas y sociedades preexistentes."
+      },
+      "story_revisions": [
+        {
+          "id": "REV-CH000-0001",
+          "turn": 2,
+          "prior_commit": "1da4a6ce69938df59d45ca28087376edaf0ea094",
+          "replacement_entry_id": "TXT-000006",
+          "audit_path": "chapters/revisions/REV-CH000-0001.json",
+          "reason": "El propietario solicitó volver a resolver el turno 2 con diferente narración y resultado."
+        },
+        {
+          "id": "REV-CH000-0002",
+          "turn": 6,
+          "prior_commit": "e3f37af54e9f6bc517edd5e5595fe67bd55d5099",
+          "replacement_entry_id": "TXT-000014",
+          "audit_path": "chapters/revisions/REV-CH000-0002.json",
+          "reason": "Owner-authorized retry of last completed turn; literary correction and alignment with established preexisting active network."
+        }
+      ],
+      "time": {
+        "day": -30,
+        "day_zero_event": "cosmic_shockwave",
+        "calendar_date": null,
+        "time_of_day": "evening",
+        "clock_time": null,
+        "elapsed_minutes_since_opening_approx": 94
+      },
+      "pending": {
+        "type": "await_player_action",
+        "interaction_mode": "free_text_no_numbered_options",
+        "location_id": "LOC-WILSON-WORKSHOP",
+        "message": "Elena pide una memoria portátil para su dibujo. Jack está en el taller; su red activa previa supera los 500 dispositivos en el canon, y los nueve de Café Bruma son nuevas incorporaciones. Cuentas propias y sociedades instrumentales preexistentes; importes y nombres exactos aún no definidos. Continuar como novela interactiva, sin RPG.",
+        "last_player_action": "Verifica los que ya tiene el virus l añadirlos a la lista de dispositivos 500+ también verifica los 9 dispositivos nuevos también verifica mis cuestas y shell companys"
+      }
+    },
+    "original_chapter_section": "## Turn 6 — Day -30\n\n**Jack's action:** Jack checks already affected devices and asks to add the nine Café Bruma devices to a 500+ device list, verifies the nine, and reviews his own accounts and shell companies from the home workshop. He supplied no earlier device IDs, own balances or legal entity names.\n\n**Outcome:** A persistent indexed registry records nine established Café Bruma device records (two intermittent responses, seven silent), while a separate owner-asserted legacy 500+ group remains unverified without individual records or deduplication. Jack's private reserves are qualitatively established but exact current personal balances remain unknown; his asserted shell-company holdings have no names or statements yet, so nothing financial is invented. Elena asks Jack if he has a spare memory device for school work.\n\n**Independent event EV-000021 (NPC-004):** Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers.\n\n\n### Texto íntegro narrado — turno 6\n\nEl ventilador del ordenador baja de revoluciones y el taller queda en silencio, salvo por el tic desigual del reloj que Rosa sigue examinando al otro lado de la puerta.\n\nJack abre el archivo donde guarda el historial de sus aparatos. Sobre la pantalla aparece una carpeta nueva, titulada **500+**. Allí quiere reunir los dispositivos que considera parte de su vieja red y los nueve de Café Bruma.\n\nPero el número del título no basta para llenar la lista.\n\nDe la red anterior no aparecen fichas individuales que puedan cotejarse: ni fechas recientes, ni identificadores fiables, ni una comprobación de cuántos continúan afectados. El archivo conserva la referencia a esos quinientos y pico como un inventario pendiente de reconstruir, no como quinientas conexiones abiertas.\n\nLos nueve registros de Café Bruma sí tienen una historia concreta. Jack los separa bajo el mismo encabezado, cada uno con su número de expediente. Dos responden a ratos, como antes; los otros siete no devuelven nada en esta revisión. No aparecen nuevos titulares, saldos ni operaciones. El programa recuerda las conexiones que tuvo, pero no puede afirmar que mantenga hoy los mismos permisos.\n\nUna segunda ventana ocupa la mitad de la pantalla.\n\nLas reservas personales de Jack siguen siendo suficientes, según sus propios antecedentes, para comprar una casa modesta sin pedir ayuda. Sin embargo, los papeles guardados aquí no incluyen extractos actualizados ni una cifra exacta con la que comprobar el saldo de esta noche. Las cantidades **4.280,16** y **93,47**, obtenidas antes de dos teléfonos ajenos, quedan en un apartado separado. No son dinero suyo.\n\nEl archivo de sociedades muestra una situación parecida. Jack ha señalado que tiene empresas instrumentales, pero en este expediente todavía no constan sus nombres, titulares legales ni balances. Ninguna puede marcarse como revisada sin esos datos. La pantalla deja los campos vacíos en lugar de inventar cifras.\n\nUn golpe suave contra la puerta interrumpe el zumbido del equipo.\n\n—¿Jack? —pregunta Elena desde el pasillo—. ¿Tienes alguna memoria libre? No quiero que mañana la computadora de la escuela se coma mi dibujo.\n\nElena no entra. Más allá de su voz, Rosa protesta porque el despertador vuelve a marcar una hora imposible.\n\nEn el monitor quedan abiertas dos cosas distintas: nueve fichas nuevas y completas en su historial de origen, y una red antigua de **500+** cuyo contenido todavía necesita verificarse. Abajo, las cuentas y sociedades esperan documentos que les den nombres y cifras reales.\n",
+    "original_manifest": {
+      "manifest_version": 1,
+      "game_id": "living-superhuman-world",
+      "chapter_id": "CH-000",
+      "last_completed_turn": 6,
+      "last_event_sequence": 21,
+      "last_event_id": "EV-000021",
+      "state_schema_version": 2,
+      "status": "checkpoint",
+      "setup_revision": 3,
+      "notes": "Turno 6 permanece vigente, sin nueva acción. D-036: novela interactiva, XP legado congelado; D-037: red previa de 500+ dispositivos activos confirmada como canon ficticio, nueve adiciones recientes de Café Bruma, reservas y sociedades preexistentes sin cifras exactas.",
+      "last_transcript_sequence": 14,
+      "last_transcript_id": "TXT-000014",
+      "story_revision": 1
+    }
+  },
+  "replaced_without_adding_turn": true
+}

@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "id": "REV-CH000-0001",
+  "chapter_id": "CH-000",
+  "turn": 2,
+  "revision_reason": "Owner explicitly requested processing the same action again with changed narration and result.",
+  "original_checkpoint_commit": "1da4a6ce69938df59d45ca28087376edaf0ea094",
+  "active_turn": 2,
+  "original_player_message_id": "TXT-000005",
+  "replacement_narrator_message_id": "TXT-000006",
+  "prior_checkpoint": {
+    "old_checkpoint_commit": "1da4a6ce69938df59d45ca28087376edaf0ea094",
+    "original_turn": 2,
+    "original_user_input": {
+      "id": "TXT-000005",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Tomo la carta y le señaló un cafe con un dulce después que se va ella activo la segunda fase del hack forzado el run en algunos dispositivos sistemáticamente para que no todas pasen a la misma vez y verifico el balance de cada una  ",
+      "event_ids": [
+        "EV-000005"
+      ]
+    },
+    "original_narrator_message": {
+      "id": "TXT-000006",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "### Capítulo 0 · El precio de una señal\n\nLa empleada sostiene la carta mientras espera. Jack la toma, recorre las ilustraciones y señala un café y uno de los dulces que aparecen junto a él.\n\n—Ahora mismo te lo traigo.\n\nLa mujer recoge la carta y vuelve detrás del mostrador. El ruido de la máquina de café se mezcla con las conversaciones de las mesas cercanas.\n\nCuando se aleja, Jack activa la segunda fase de su gadget.\n\nEsta vez no aparece un fallo general como el de Crosswater. La actividad llega a intervalos irregulares, separada por momentos en los que el registro permanece vacío. Un cliente frunce el ceño ante su teléfono; poco después, otro guarda el suyo sin mostrar ninguna molestia. Nadie mira hacia la mesa de Jack.\n\nEl dispositivo informa de algunas respuestas incompletas. Ninguna demuestra que el virus se haya ejecutado en un teléfono ajeno. La pantalla de resultados abre un apartado para consultar los saldos, pero los campos siguen vacíos.\n\n**Dispositivos comprometidos: sin confirmación.\nSaldos bancarios obtenidos: ninguno.**\n\nEl gadget ha registrado actividad; no ha probado el acceso que Jack buscaba. Tampoco ofrece una explicación fiable de por qué fallan unas respuestas y otras no.\n\n—Aquí tienes.\n\nLa empleada coloca el café y el dulce sobre la mesa. Antes de retirarse, mira un instante hacia el terminal que se distingue entre los edificios.\n\n—Parece que esta noche todo está dando problemas —comenta, y regresa al mostrador.\n\nEn Crosswater, los trabajadores siguen ocupados con las anomalías sin conocer su origen. En la cafetería nadie ha relacionado a Jack con ellas.\n\nEl café todavía desprende vapor. En la pantalla queda abierto un informe con varios intentos registrados y ninguna cifra que pueda verificarse.",
+      "event_ids": [
+        "EV-000005",
+        "EV-000006",
+        "EV-000007",
+        "EV-000008"
+      ]
+    },
+    "original_turn_events": [
+      {
+        "id": "EV-000005",
+        "chapter_id": "CH-000",
+        "turn": 2,
+        "day": -30,
+        "actor_ids": [
+          "PLAYER-001"
+        ],
+        "kind": "player_action",
+        "intent": "Jack points to a coffee and pastry on the café menu. After the attendant leaves, he attempts a staggered second phase of his experimental gadget against nearby third-party devices, trying to force his virus to execute and to inspect financial balances.",
+        "outcome": "Coffee and pastry are delivered; the second-phase attempt shows sporadic inconclusive responses but no verified infection, unauthorized access or bank balance reading. Staff and patrons do not identify Jack as the cause of prior anomalies.",
+        "known_to": [
+          "PLAYER-001"
+        ],
+        "caused_by": [],
+        "state_changes": [
+          {
+            "actor_id": "PLAYER-001",
+            "field": "inventory.ITEM-PHONE.location_id",
+            "before": "LOC-CROSSWATER-PLAZA",
+            "after": "LOC-CAFE-BRUMA",
+            "reason": "Carried item location synchronized with player's prior documented move."
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+            "before": "LOC-CROSSWATER-PLAZA",
+            "after": "LOC-CAFE-BRUMA",
+            "reason": "Carried item location synchronized with player's prior documented move."
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "inventory.ITEM-COMPACT-CASE.location_id",
+            "before": "LOC-CROSSWATER-PLAZA",
+            "after": "LOC-CAFE-BRUMA",
+            "reason": "Carried item location synchronized with player's prior documented move."
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "opening_intent.status",
+            "before": "attempted_unconfirmed",
+            "after": "phase_two_attempted_unverified"
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "opening_intent.phase_two",
+            "before": null,
+            "after": {
+              "attempted": true,
+              "staggered": true,
+              "unauthorized_execution_confirmed": false,
+              "confirmed_infected_devices": 0,
+              "verified_bank_balances": 0,
+              "result": "respuestas parciales sin evidencia suficiente de compromiso",
+              "source_event_id": "EV-000005"
+            }
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "inventory.ITEM-COMPACT-CASE.status",
+            "before": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
+            "after": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados"
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "cafe_order",
+            "before": null,
+            "after": {
+              "cafe_id": "LOC-CAFE-BRUMA",
+              "items": [
+                "café",
+                "dulce"
+              ],
+              "ordered": true,
+              "delivered": true,
+              "paid": null,
+              "amount": null,
+              "source_event_id": "EV-000005"
+            }
+          },
+          {
+            "actor_id": "PLAYER-001",
+            "field": "time.elapsed_minutes_since_opening_approx",
+            "before": 15,
+            "after": 24
+          }
+        ],
+        "progression_awards": []
+      },
+      {
+        "id": "EV-000006",
+        "chapter_id": "CH-000",
+        "turn": 2,
+        "day": -30,
+        "actor_ids": [
+          "NPC-002"
+        ],
+        "kind": "independent_actor",
+        "intent": "Continue the inspection of transit display glitches and document unusual recurrence.",
+        "outcome": "Sora records further irregular public-sign behavior as a maintenance incident but has no evidence of who or what caused it.",
+        "known_to": [
+          "NPC-002"
+        ],
+        "caused_by": [],
+        "state_changes": [
+          {
+            "actor_id": "NPC-002",
+            "field": "knowledge",
+            "fact": "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message.",
+            "source": "Sora's own maintenance observations during shift"
+          }
+        ],
+        "progression_awards": []
+      },
+      {
+        "id": "EV-000007",
+        "chapter_id": "CH-000",
+        "turn": 2,
+        "day": -30,
+        "actor_ids": [
+          "NPC-001"
+        ],
+        "kind": "independent_actor",
+        "intent": "Coordinate route operations while receiving maintenance information.",
+        "outcome": "Lena asks transit operations to retain the maintenance report and continues prioritizing the delayed route; she does not suspect Jack.",
+        "known_to": [
+          "NPC-001"
+        ],
+        "caused_by": [],
+        "state_changes": [
+          {
+            "actor_id": "NPC-001",
+            "field": "knowledge",
+            "fact": "The display malfunction is being tracked by maintenance separately from the train delay.",
+            "source": "Internal transit maintenance communication"
+          }
+        ],
+        "progression_awards": []
+      },
+      {
+        "id": "EV-000008",
+        "chapter_id": "CH-000",
+        "turn": 2,
+        "day": -30,
+        "actor_ids": [
+          "NPC-003"
+        ],
+        "kind": "independent_actor",
+        "intent": "Finish the paid delivery in Market Row.",
+        "outcome": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work.",
+        "known_to": [
+          "NPC-003"
+        ],
+        "caused_by": [],
+        "state_changes": [],
+        "progression_awards": []
+      }
+    ],
+    "original_player_results": {
+      "opening_intent": {
+        "status": "phase_two_attempted_unverified",
+        "action": "Prepare or position unspecified electronic equipment in a transit area for the purpose of remotely obtaining commuters' debit-card and personal information.",
+        "outcome": "Segunda fase de ejecución escalonada intentada; respuestas incompletas sin infección confirmada, saldos bancarios ni datos extraídos.",
+        "device_placed": false,
+        "information_acquired": false,
+        "operational_details": "Not defined; keep narration nontechnical.",
+        "phase_two": {
+          "attempted": true,
+          "staggered": true,
+          "unauthorized_execution_confirmed": false,
+          "confirmed_infected_devices": 0,
+          "verified_bank_balances": 0,
+          "result": "respuestas parciales sin evidencia suficiente de compromiso",
+          "source_event_id": "EV-000005"
+        }
+      },
+      "device": {
+        "id": "ITEM-COMPACT-CASE",
+        "name": "Estuche compacto de electrónica",
+        "size": "pequeño",
+        "location_id": "LOC-CAFE-BRUMA",
+        "carried": true,
+        "status": "segunda fase intentada en Café Bruma; funcionamiento inconcluso, accesos no confirmados",
+        "description": "Gadget experimental en el estuche, usado en dos intentos durante la noche. Ha producido fallos visibles y respuestas incompletas, pero no hay infección ni robo de datos confirmados.",
+        "narrative_only": true
+      },
+      "cafe_order": {
+        "cafe_id": "LOC-CAFE-BRUMA",
+        "items": [
+          "café",
+          "dulce"
+        ],
+        "ordered": true,
+        "delivered": true,
+        "paid": null,
+        "amount": null,
+        "source_event_id": "EV-000005"
+      }
+    },
+    "original_threads": [
+      {
+        "id": "THREAD-000001",
+        "owner_actor_id": "PLAYER-001",
+        "question": "¿Produjo el gadget algún efecto duradero además de interferencias visibles?",
+        "scope": "private",
+        "status": "open",
+        "origin_event_id": "EV-000001",
+        "resolution_event_id": null,
+        "history": [
+          {
+            "kind": "open",
+            "event_id": "EV-000001",
+            "summary": "Jack vio fallos aislados, pero no confirmó infección, robo de datos o propagación general.",
+            "visibility": "known"
+          },
+          {
+            "kind": "develop",
+            "event_id": "EV-000005",
+            "summary": "La segunda fase produjo respuestas irregulares, sin infección confirmada ni saldos bancarios obtenidos.",
+            "visibility": "known"
+          }
+        ]
+      },
+      {
+        "id": "THREAD-000002",
+        "owner_actor_id": "NPC-002",
+        "question": "¿Qué concluirá la revisión técnica de las anomalías en Crosswater?",
+        "scope": "observable",
+        "status": "open",
+        "origin_event_id": "EV-000002",
+        "resolution_event_id": null,
+        "history": [
+          {
+            "kind": "open",
+            "event_id": "EV-000002",
+            "summary": "Sora empezó a examinar el cartel fallido sin saber de las intenciones de Jack.",
+            "visibility": "hidden"
+          },
+          {
+            "kind": "develop",
+            "event_id": "EV-000006",
+            "summary": "Sora registra una incidencia técnica para investigar anomalías, sin identificar al responsable.",
+            "visibility": "hidden"
+          }
+        ]
+      }
+    ],
+    "original_manifest": {
+      "last_completed_turn": 2,
+      "last_event_sequence": 8,
+      "last_transcript_sequence": 6
+    }
+  },
+  "replacement_summary": "Two actual partial device executions and two fictional bank balances observed; shift-worker Mara faces a register incident; no account names or transfers; cafe bill still unpaid.",
+  "new_result_from_event_id": "EV-000005",
+  "audit_notes": "Previous version remains historically accessible through full copied entry/events and the original Git commit; it is not a second player turn. Later continuity must follow the amended checkpoint."
+}
