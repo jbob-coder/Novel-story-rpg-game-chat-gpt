@@ -1,0 +1,12 @@
+{
+  "status": "blocked",
+  "branch": "qa/living-world-journal-smoke-20261112",
+  "sourceHead": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+  "commitHead": null,
+  "expectedFiles": null,
+  "attempt": {
+    "percent": 25,
+    "reason": "synthetic journal persistence QA only - no narrative save attempted"
+  },
+  "qa_only": true
+}
