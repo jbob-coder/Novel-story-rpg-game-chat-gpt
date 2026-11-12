@@ -64,8 +64,8 @@ export function stageLivingWorldTurn({snapshot,turn,observedHead,npcResolutions=
 
 // Only this transaction adapter writes a real story turn. A preview or staged
 // candidate is NEVER a completed save. Remote readback remains mandatory.
-export function saveLivingWorldTurn({remote,branch,chapterId,turn,npcResolutions=[]}={}){
-  return saveFiveFileTurn({remote,branch,chapterId,
+export function saveLivingWorldTurn({remote,branch,chapterId,turn,npcResolutions=[],journal=null}={}){
+  return saveFiveFileTurn({remote,branch,chapterId,journal,
     message:'Narrative turn with reviewed Living World activity',
     buildNext:({snapshot,observedHead})=>stageLivingWorldTurn({
       snapshot,observedHead,turn:copy(turn),npcResolutions:copy(npcResolutions)

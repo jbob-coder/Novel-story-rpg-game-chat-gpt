@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {saveFiveFileTurn,recoverFiveFileSave,decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
+import {saveFiveFileTurn,recoverFiveFileSave,recoverJournaledSave,decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
 import {stageNarrativeTurn} from '../tools/turn_engine.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const source='a'.repeat(40),newCommit='b'.repeat(40),other='c'.repeat(40),branch='work/chat-narrative-foundation';
@@ -110,4 +110,68 @@ test('silent transcript tampering blocks 100% even if manifest counters still ma
  const g=new FakeGit();g.corruptReadback=true;
  const x=await run(g);assert.equal(x.status,'blocked');assert.equal(x.attempt.percent,85);
  assert.match(x.reason,/Remote bytes differ/);assert.equal(g.head,newCommit);
+});
+
+class MemoryJournal {
+ constructor(){this.entries=new Map();this.writes=0;this.failFinal=false;}
+ async read(branch){const x=this.entries.get(branch);return x==null?null:structuredClone(x)}
+ async write(branch,value){
+  if(this.failFinal&&value.status==='verified')throw Error('Journal service offline');
+  this.entries.set(branch,structuredClone(value));this.writes++;
+ }
+}
+test('durable journal tracks checkpoint before commit and confirms exact final state',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ const r=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'verified');assert.equal(journal.writes,4);
+ const saved=await journal.read(branch);
+ assert.equal(saved.status,'verified');assert.equal(saved.expectedFiles,null);
+ assert.equal(saved.commitHead,newCommit);
+});
+test('fresh session refuses a second story turn while remote journal is blocked',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();g.failUpdate=true;
+ const first=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(first.status,'blocked');assert.equal(first.attempt.percent,75);
+ const second=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(second.status,'blocked');assert.match(second.reason,/Unresolved durable save attempt/);
+ assert.equal(g.created,1);
+ g.failUpdate=false;
+ const resumed=await recoverJournaledSave({remote:g,journal,branch});
+ assert.equal(resumed.status,'verified');
+ assert.equal((await journal.read(branch)).status,'verified');
+ assert.equal(g.created,1);
+});
+test('journal recovery after context loss returns same narrative without a new commit',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();g.failReadback=true;
+ const x=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(x.status,'blocked');assert.equal(g.head,newCommit);
+ g.failReadback=false;
+ const r=await recoverJournaledSave({remote:g,journal,branch});
+ assert.equal(r.status,'verified');assert.equal(r.attempt.percent,100);
+ assert.deepEqual(r.narration_messages,[words]);assert.equal(g.created,1);
+});
+test('journal write outage fails before the commit, never claiming progress',async()=>{
+ const g=new FakeGit();const journal={
+  async read(){return null},async write(){throw Error('Journal unavailable')}
+ };
+ const r=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');assert.equal(g.created,0);
+ assert.match(r.reason,/Journal unavailable/);
+});
+test('if journal finalization fails after remote readback, recovery must certify it',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();journal.failFinal=true;
+ const r=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');assert.equal(g.created,1);
+ journal.failFinal=false;
+ const recovered=await recoverJournaledSave({remote:g,journal,branch});
+ assert.equal(recovered.status,'verified');assert.equal(g.created,1);
+});
+test('journal with no detached commit SHA blocks recovery without re-authoring text',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ const staged={status:'blocked',branch,sourceHead:source,commitHead:null,expectedFiles:sourceFiles(),
+  attempt:{version:1,status:'blocked',source_head:source,chapter_id:'CH-000',turn:futureTurn,
+   completed:['read','validate','stage','preflight'],percent:60}};
+ await journal.write(branch,staged);
+ const r=await recoverJournaledSave({remote:g,journal,branch});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/Unknown commit/);assert.equal(g.created,0);
 });

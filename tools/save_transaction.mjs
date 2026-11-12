@@ -62,10 +62,16 @@ async function readExactCommit(remote,commitHead,expectedFiles,chapterId){
 // readHead(branch)->SHA; readFiles(SHA,paths)->{path:exactText};
 // createCommit({parentSha,files,message})->SHA, one Git tree with ALL five files;
 // updateHead({branch,expectedSha,newSha})->true only after non-force CAS.
-export async function saveFiveFileTurn({remote,branch,chapterId,buildNext,message='Save narrated turn'}){
+export async function saveFiveFileTurn({remote,branch,chapterId,buildNext,journal=null,message='Save narrated turn'}){
  let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null;
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
+  if(journal!==null){
+   check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
+   const previousAttempt=await journal.read(branch);
+   check(previousAttempt==null||previousAttempt.status==='verified',
+    'Unresolved durable save attempt: recover before a new turn');
+  }
   sourceHead=await remote.readHead(branch);
   check(sha(sourceHead),'Invalid remote source HEAD');
   const previous=decodeFiveFiles(await remote.readFiles(sourceHead,savePaths(chapterId)),chapterId);
@@ -80,17 +86,25 @@ export async function saveFiveFileTurn({remote,branch,chapterId,buildNext,messag
   expectedFiles=encodeFiveFiles(candidate);
   decodeFiveFiles(expectedFiles,chapterId);
   attempt=recordSaveStage(attempt,'preflight','Five candidate files and literal archive verified');
+  if(journal!==null) await journal.write(branch,
+   blockedResult(attempt,Error('Durable pre-commit save checkpoint'),expectedFiles,null,sourceHead,branch));
   check(await remote.readHead(branch)===sourceHead,'Concurrent branch change before commit');
   commitHead=await remote.createCommit({parentSha:sourceHead,files:expectedFiles,message});
   check(sha(commitHead),'Remote commit SHA missing');
   attempt=recordSaveStage(attempt,'commit','Created five-file commit: '+commitHead);
+  if(journal!==null) await journal.write(branch,
+   blockedResult(attempt,Error('Durable detached commit checkpoint'),expectedFiles,commitHead,sourceHead,branch));
   check(await remote.updateHead({branch,expectedSha:sourceHead,newSha:commitHead})===true,
    'Protected branch update rejected');
   attempt=recordSaveStage(attempt,'ref','Moved branch with expected source HEAD to '+commitHead);
+  if(journal!==null) await journal.write(branch,
+   blockedResult(attempt,Error('Durable branch update checkpoint'),expectedFiles,commitHead,sourceHead,branch));
   const head=await remote.readHead(branch);
   const fetched=await readExactCommit(remote,commitHead,expectedFiles,chapterId);
   attempt=confirmRemoteReadback(attempt,{branch_head:head,commit_head:commitHead,
    expected_files:expectedFiles,fetched_files:fetched});
+  if(journal!==null) await journal.write(branch,
+   {status:'verified',attempt,expectedFiles:null,commitHead,sourceHead,branch});
   return {status:'verified',attempt,expectedFiles,commitHead,sourceHead,branch,
    narration_messages:candidate.transcript.entries.filter(x=>x.turn===candidate.manifest.last_completed_turn&&x.kind==='resolution').map(x=>x.text)};
  }catch(error){return blockedResult(attempt,error,expectedFiles,commitHead,sourceHead,branch)}
@@ -128,4 +142,31 @@ export async function recoverFiveFileSave({remote,blocked}){
   return {status:'verified',attempt,expectedFiles,commitHead,sourceHead,branch,
    narration_messages:snapshot.transcript.entries.filter(x=>x.turn===snapshot.manifest.last_completed_turn&&x.kind==='resolution').map(x=>x.text)};
  }catch(error){return blockedResult(attempt,error,expectedFiles,commitHead,sourceHead,branch)}
+}
+
+// A new chat/session MUST read the independent durable journal before preparing
+// a new action. Recovery reuses the exact stored commit and literal text.
+// Lost staged files or commit SHA are fail-closed; never fabricate a turn.
+export async function recoverJournaledSave({remote,journal,branch}={}){
+ check(remote&&journal&&typeof journal.read==='function'&&
+  typeof journal.write==='function'&&typeof branch==='string','Durable journal required');
+ const stored=await journal.read(branch);
+ check(stored!=null,'No durable save attempt found');
+ check(stored.branch===branch,'Journal branch mismatch');
+ if(stored.status==='verified'){
+  check(sha(stored.commitHead) &&
+   await remote.readHead(branch)===stored.commitHead,'Verified journal disagrees with branch');
+  return {status:'verified',attempt:stored.attempt,commitHead:stored.commitHead,
+   sourceHead:stored.sourceHead,branch,reason:'Already verified; no new turn staged'};
+ }
+ check(stored.status==='blocked','Unexpected journal state');
+ // Never restage/author new prose during recovery.
+ const recovered=await recoverFiveFileSave({remote,blocked:stored});
+ if(recovered.status==='verified'){
+  try{await journal.write(branch,{status:'verified',attempt:recovered.attempt,
+   expectedFiles:null,commitHead:recovered.commitHead,sourceHead:recovered.sourceHead,branch});}
+  catch(error){return blockedResult(recovered.attempt,Error('Journal confirmation pending: '+error.message),
+   recovered.expectedFiles,recovered.commitHead,recovered.sourceHead,branch)}
+ }
+ return recovered;
 }
