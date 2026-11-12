@@ -3,10 +3,11 @@
 import {stageNPCResolution} from './living_world_routines.mjs';
 import {stageNarrativeTurn, verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {saveFiveFileTurn} from './save_transaction.mjs';
+import {validateTemporalAdvance} from './living_world_time.mjs';
 
 const ensure=(ok,message)=>{if(!ok)throw new Error(message)};
 const hasOwn=(obj,key)=>Object.prototype.hasOwnProperty.call(obj,key);
-const PERIODS=['morning','midday','afternoon','evening','night'];
+
 const copy=value=>JSON.parse(JSON.stringify(value));
 
 export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolutions=[]}={}){
@@ -40,13 +41,9 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
       outcome:staged.event.outcome,changes:staged.changeDrafts};
   });
   const {elapsed_minutes, next_time_of_day, ...canonicalTurn}=turn;
-  if(next_time_of_day!==undefined){
-    ensure(PERIODS.includes(next_time_of_day),'Unknown time-of-day label');
-    const previous=PERIODS.indexOf(snapshot.state.time.time_of_day);
-    const proposed=PERIODS.indexOf(next_time_of_day);
-    ensure(turn.elapsed_days>0 || previous<0 || proposed>=previous,
-      'Time of day cannot go backwards within the same narrative day');
-  }
+  validateTemporalAdvance({currentPeriod:snapshot.state.time.time_of_day,
+    elapsedDays:turn.elapsed_days,elapsedMinutes:elapsed_minutes,
+    nextPeriod:next_time_of_day??null});
   return {turn:{...canonicalTurn,save_guard:{observed_head:observedHead,previous_attempt:null},
     offscreen},elapsedMinutes:elapsed_minutes,nextTimeOfDay:next_time_of_day??null};
 }

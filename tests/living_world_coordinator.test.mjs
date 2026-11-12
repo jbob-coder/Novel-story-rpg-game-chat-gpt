@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {prepareLivingWorldTurn,stageLivingWorldTurn,saveLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
+import {validateTemporalAdvance} from '../tools/living_world_time.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {savePaths,decodeFiveFiles} from '../tools/save_transaction.mjs';
 
@@ -83,7 +84,7 @@ test('invalid narrative minutes are rejected without a saved turn',()=>{
 test('explicit time-of-day change cannot rewind the same day',()=>{
  assert.throws(()=>stage({turn:{...turn(),next_time_of_day:'night',elapsed_minutes:20,
     elapsed_days:0},npcResolutions:[resolved(),resolved()]}),/Multiple outcomes/);
- const t={...turn(),next_time_of_day:'night'};
+ const t={...turn(),elapsed_minutes:700,next_time_of_day:'night'};
  const after=stage({turn:t,npcResolutions:[]});
  assert.equal(after.state.time.time_of_day,'night');
  assert.throws(()=>stage({snapshot:after,turn:{...turn(),key:'lw-next-action-unique',next_time_of_day:'morning'},
@@ -134,4 +135,34 @@ test('coordinated secret NPC resolution remains recorded without becoming visibl
  assert.ok(!prepared.chapter.includes(privateOutcome));
  assert.ok(!prepared.transcript.entries.at(-1).text.includes(privateOutcome));
  assert.equal(verifyNarrativeSnapshot(prepared),true);
+});
+
+test('narrative minutes and day crossings cannot contradict each other',()=>{
+ for(const [elapsed_days,elapsed_minutes] of [[1,0],[0,1440],[0,1500],[3,60],[0,2880]])
+  assert.throws(()=>stage({turn:{...turn(),elapsed_days,elapsed_minutes},npcResolutions:[]}),
+   /Narrative days\/minutes disagree/);
+});
+test('legitimate short midnight crossing remains possible without inventing a clock',()=>{
+ const x=stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
+  next_time_of_day:'morning'},npcResolutions:[]});
+ assert.equal(x.state.time.day,baseline.state.time.day+1);
+ assert.equal(x.state.time.elapsed_minutes_since_opening_approx,
+  baseline.state.time.elapsed_minutes_since_opening_approx+20);
+});
+test('morning to night in twenty minutes is rejected, but later transition is possible',()=>{
+ assert.throws(()=>stage({turn:{...turn(),elapsed_minutes:20,
+  next_time_of_day:'night'},npcResolutions:[]}),/Insufficient narrative minutes/);
+ const x=stage({turn:{...turn(),elapsed_minutes:700,
+  next_time_of_day:'night'},npcResolutions:[]});
+ assert.equal(x.state.time.time_of_day,'night');
+});
+test('one day and exactly 1440 minutes is coherent, no weekdays are manufactured',()=>{
+ const x=stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:1440},npcResolutions:[]});
+ assert.equal(x.state.time.day,baseline.state.time.day+1);
+ assert.equal(x.state.time.calendar_date,null);
+ assert.equal(x.state.time.clock_time,null);
+});
+test('narrative time policy refuses noninteger input and accepts an unknown next period',()=>{
+ assert.throws(()=>validateTemporalAdvance({elapsedDays:0,elapsedMinutes:1.5}),/Invalid narrative minutes/);
+ assert.equal(validateTemporalAdvance({elapsedDays:0,elapsedMinutes:15}).nextPeriod,null);
 });
