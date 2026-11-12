@@ -31,14 +31,14 @@ const turn=(key)=>({
  narration_messages:['Light fills the workbench as a quiet interval passes.'],
  elapsed_days:0,elapsed_minutes:20
 });
-const resolve=(changes,outcome)=>({
+const reviewedNPC=(changes,outcome)=>({
  actor_id:'NPC-005',reviewed:true,resolved:true,
  causal_basis:'Rosa assesses the repaired clock and her future visit to the neighbor.',
  outcome:outcome??'Rosa considers when to return the clock; no delivery is claimed.',
  changes
 });
 const stage=(snapshot,key,changes)=>stageLivingWorldTurn({
- snapshot,turn:turn(key),observedHead:'a'.repeat(40),npcResolutions:[resolve(changes)]
+ snapshot,turn:turn(key),observedHead:'a'.repeat(40),npcResolutions:[reviewedNPC(changes)]
 });
 test('new obligation is an event-backed, pending task, not a retroactive completed action',()=>{
  const before=JSON.stringify(baseline);
