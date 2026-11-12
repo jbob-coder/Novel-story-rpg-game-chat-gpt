@@ -19,3 +19,7 @@
 - [Coordinador de turnos revisados y guardado](living_world_coordinator.mjs)
 - [Diagnóstico privado y proyección visible para Jack](living_world_diagnostics.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
+
+- [Obligaciones persistentes de NPC, aún no canónicas](living_world_obligations.mjs)
+- [Agendas civiles y selección privada de intenciones para NPC](living_world_agenda.mjs)
+- [Catálogo de servicios propuestos de Meridian Bay](meridian_bay_city.mjs)
