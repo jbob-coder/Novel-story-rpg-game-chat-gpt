@@ -47,7 +47,16 @@ function assertNextTurn(before,after){
 }
 function blockedResult(attempt,error,expectedFiles,commitHead,sourceHead,branch){
  const reason=String(error?.message??error);
- return {status:'blocked',reason,attempt:attempt?blockSave(attempt,reason):null,
+ // The five files may already be verified, while final journal persistence
+ // failed. The attempt must remain recoverable and externally unconfirmed.
+ // Restore the last durable stage (85%) instead of trying to block a 100%
+ // verified state, which save_gate correctly forbids.
+ const safeAttempt=attempt?.status==='verified'?{
+  ...attempt,status:'saving',percent:85,verified_head:null,
+  completed:attempt.completed.filter(x=>x!=='readback'),
+  evidence:Object.fromEntries(Object.entries(attempt.evidence).filter(([key])=>key!=='readback'))
+ }:attempt;
+ return {status:'blocked',reason,attempt:safeAttempt?blockSave(safeAttempt,reason):null,
   expectedFiles,commitHead,sourceHead,branch};
 }
 async function readExactCommit(remote,commitHead,expectedFiles,chapterId){
