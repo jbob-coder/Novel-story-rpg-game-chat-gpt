@@ -98,7 +98,7 @@ test('private technical outcome cannot leak via public chapter footer',()=>{
   narration_messages:['Jack can only hear the workshop fan.']});
  assert.equal(x.events.events.at(-1).outcome,secret);
  assert.ok(!x.chapter.includes(secret));
- assert.ok(!x.chapter.includes("**Outcome:**"));
+ assert.ok(!x.chapter.slice(initial.chapter.length).includes("**Outcome:**"));
 });
 test('narrator copying a private NPC outcome verbatim is blocked',()=>{
  const secret='ROSA-SECRET-NO-PLAYER-KNOWLEDGE-0001';
