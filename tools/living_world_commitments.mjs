@@ -10,10 +10,18 @@ export function selectRelevantNPCs({state,limit=3}={}){
  return Object.entries(actors).flatMap(([actorId,actor])=>{
   if(!validId(actorId)||typeof actor.independent_plan!=='string'||!actor.independent_plan.trim())return [];
   const route=worldRoute(state,player.location_id,actor.location_id);
-  if(!route)return [];
-  const hops=route.length-1;
+  const open=(actor.commitments??[]).filter(x=>x.status==='pending'||x.status==='blocked');
+  if(!route&&!open.length)return [];
+  const hops=route?route.length-1:null;
   const family=Array.isArray(player.family_ids)&&player.family_ids.includes(actorId);
-  const score=Math.max(0,100-20*hops)+(family?6:0);
+  // Deadlines and real blockers may outrank proximity; absence of a route
+  // never implies that a distant obligation stops existing.
+  const urgency=Math.max(0,...open.map(x=>
+    (x.due_day!==null&&x.due_day<state.time.day?180:
+      x.due_day===state.time.day?130:0)+
+    (x.status==='blocked'?60:0)+
+    (x.priority==='urgent'?30:x.priority==='important'?12:0)));
+  const score=(hops===null?0:Math.max(0,100-20*hops))+(family?6:0)+urgency;
   return [{actorId,hops,score}];
  }).sort((a,b)=>b.score-a.score||a.actorId.localeCompare(b.actorId))
   .slice(0,limit).map(({actorId})=>actorId);
@@ -28,6 +36,11 @@ export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,commitm
  requireFact(Array.isArray(commitments)&&commitments.length<=100,'Invalid commitments');
  if(elapsedMinutes===0)return [];
  const selected=new Set(actorIds),out=[],seen=new Set();
+ // The checked-in state is authoritative. Caller-supplied commitments remain
+ // optional synthetic planning input, never a substitute for persisted facts.
+ const saved=Object.entries(state.world.actors).flatMap(([id,actor])=>
+  (actor.commitments??[]).map(c=>({...c,actor_id:id,origin:'saved_checkpoint'})));
+ const all=[...saved,...commitments.map(c=>({...c,origin:'temporary_input'}))];
  for(const id of selected){
   const npc=state.world.actors[id];
   if(!npc||typeof npc.independent_plan!=='string'||!npc.independent_plan.trim())continue;
@@ -38,23 +51,24 @@ export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,commitm
    timing:proposal?.periods?.includes(period)?'suggested_period':'outside_suggested_period',
    requiresResolution:true,visibility:'narrator_private'});
  }
- for(const c of commitments){
+ for(const c of all){
   requireFact(c&&validId(c.actor_id)&&typeof c.id==='string'&&/^OBL-[A-Za-z0-9_-]{3,64}$/.test(c.id)
    &&typeof c.summary==='string'&&c.summary.trim().length>=4
-   &&['pending','resolved','cancelled'].includes(c.status)
+   &&['pending','blocked','resolved','cancelled'].includes(c.status)
    &&typeof c.source_event_id==='string'&&/^EV-\d{6,}$/.test(c.source_event_id)
    &&(c.due_day===null||Number.isSafeInteger(c.due_day)),
    'Commitment must have actor, source event, status and explicit/unknown due day');
   requireFact(!seen.has(c.id),'Duplicate commitment id');seen.add(c.id);
-  if(!selected.has(c.actor_id)||c.status!=='pending')continue;
-  let review='deadline_unknown';
-  if(c.due_day!==null)review=c.due_day<state.time.day?'overdue_review':
+  if(!selected.has(c.actor_id)||!['pending','blocked'].includes(c.status))continue;
+  let review=c.status==='blocked'?'blocked_review':'deadline_unknown';
+  if(c.status==='pending'&&c.due_day!==null)review=c.due_day<state.time.day?'overdue_review':
    c.due_day===state.time.day?'due_today_review':'upcoming';
   out.push({id:c.id,actorId:c.actor_id,kind:'explicit_commitment',
    summary:c.summary,sourceEventId:c.source_event_id,dueDay:c.due_day,
+   priority:c.priority??'normal',blockers:c.blockers??[],origin:c.origin,
    review,requiresResolution:true,visibility:'narrator_private'});
  }
- const order={overdue_review:0,due_today_review:1,deadline_unknown:2,upcoming:3};
+ const order={overdue_review:0,due_today_review:1,blocked_review:2,deadline_unknown:3,upcoming:4};
  return out.sort((a,b)=>(order[a.review]??4)-(order[b.review]??4)||
   a.actorId.localeCompare(b.actorId)||a.id.localeCompare(b.id));
 }
