@@ -42,3 +42,12 @@ Los cambios se realizan mediante `{field:'commitments',before:[...],after:[...]}
 - **Próxima tarea de autonomía:** planificador causal acotado que elija 0–N intenciones basadas en obligaciones persistidas, metas, recursos, obstáculos y tiempo, sin resultados deterministas injustificados; generar propuestas privadas y requerir adjudicación literaria antes de guardar.
 
 Estado de este documento: implementación en revisión; resultados de CI deben añadirse después de ejecutarse, no asumirse.
+
+## Evidencia verificada de QA
+GitHub Actions [run #43325927852](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43325927852) ejecutó contra el commit técnico `54132fd52b3238ff2e808656742cf48c83d998f3`:
+- **182/182** pruebas Node.js, **24/24** Python, **0 fallos**.
+- `python tools/validate_state.py`: **PASS**.
+- Comparación remota de las dos ramas: los cinco blobs canónicos de continuidad tienen SHA idénticos.
+- La ejecución de CI fue activada mediante una PR temporal en borrador con base `main` porque el workflow escucha solo PR hacia `main`; se retargetea a la rama narrativa para revisión. Ningún merge queda autorizado.
+
+Limitación: los tests sintetizan cambios de NPC y guardado; no prueban un journal autenticado en GitHub ni la calidad literaria de una escena auténtica.
