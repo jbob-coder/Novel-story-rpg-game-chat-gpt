@@ -12,12 +12,20 @@ const copy=x=>JSON.parse(JSON.stringify(x));
 // A destination null is intentional: an unknown school/customer is NOT a place.
 export const CIVILIAN_ROUTINES=Object.freeze([
  {id:'dispatch-review',actor:'NPC-001',label:'Revisar coordinación de salidas',destination:'LOC-TRANSIT-TERMINAL',resource:'work_authority',periods:['morning','afternoon','evening','night']},
+ {id:'passenger-coordination',actor:'NPC-001',label:'Considerar consultas y cambios de servicio',destination:'LOC-TRANSIT-TERMINAL',resource:'work_authority',periods:['morning','afternoon','evening','night']},
  {id:'maintenance-notes',actor:'NPC-002',label:'Revisar notas de inspección',destination:'LOC-CROSSWATER-PLAZA',resource:'work_order',periods:['morning','afternoon','evening']},
+ {id:'inspection-obstacles',actor:'NPC-002',label:'Evaluar impedimentos para completar el circuito',destination:'LOC-CROSSWATER-PLAZA',resource:'work_order',periods:['morning','afternoon','evening']},
  {id:'courier-plan',actor:'NPC-003',label:'Revisar ruta posible del paquete',destination:null,resource:'parcel',periods:['morning','afternoon','evening']},
+ {id:'parcel-obstacles',actor:'NPC-003',label:'Considerar obstáculos y margen de entrega',destination:null,resource:'parcel',periods:['morning','afternoon','evening']},
  {id:'school-preparation',actor:'NPC-004',label:'Organizar materiales del proyecto escolar',destination:null,resource:'current_project',periods:['morning','afternoon']},
+ {id:'school-journey',actor:'NPC-004',label:'Considerar el siguiente tramo del camino a la escuela',destination:null,resource:'current_project',periods:['morning','afternoon']},
+ {id:'creative-time',actor:'NPC-004',label:'Reservar tiempo personal para ilustración',destination:null,resource:'current_project',periods:['afternoon','evening']},
  {id:'clock-handover-plan',actor:'NPC-005',label:'Preparar una posible devolución del reloj',destination:null,resource:'current_repair',periods:['morning','afternoon']},
+ {id:'neighbor-coordination',actor:'NPC-005',label:'Valorar cuándo coordinar la devolución con el vecino',destination:null,resource:'current_repair',periods:['morning','afternoon','evening']},
  {id:'shop-orders',actor:'NPC-006',label:'Revisar los encargos y necesidades del negocio',destination:'LOC-COMMERCIAL-DISTRICT',resource:'daily_life',periods:['morning','afternoon','evening']},
- {id:'cashier-reconciliation',actor:'NPC-007',label:'Evaluar las anotaciones de caja',destination:'LOC-CAFE-BRUMA',resource:'register',periods:['evening','night']}
+ {id:'parts-sourcing',actor:'NPC-006',label:'Considerar opciones de suministro de repuestos',destination:null,resource:'daily_life',periods:['morning','afternoon','evening']},
+ {id:'cashier-reconciliation',actor:'NPC-007',label:'Evaluar las anotaciones de caja',destination:'LOC-CAFE-BRUMA',resource:'register',periods:['evening','night']},
+ {id:'cafe-close-review',actor:'NPC-007',label:'Revisar tareas pendientes de mesas y cierre',destination:'LOC-CAFE-BRUMA',resource:'shift',periods:['evening','night']}
 ]);
 const candidatesByActor=actorId=>CIVILIAN_ROUTINES.filter(x=>x.actor===actorId);
 const urgencyRank={overdue_review:0,due_today_review:1,blocked_review:2,deadline_unknown:3,upcoming:4};
