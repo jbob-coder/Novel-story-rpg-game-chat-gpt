@@ -5,8 +5,8 @@
   "commitHead": null,
   "expectedFiles": null,
   "attempt": {
-    "percent": 25,
-    "reason": "synthetic journal persistence QA only - no narrative save attempted"
+    "percent": 45,
+    "reason": "synthetic interruption/recovery marker - no player turn, no detached commit"
   },
   "qa_only": true
 }
