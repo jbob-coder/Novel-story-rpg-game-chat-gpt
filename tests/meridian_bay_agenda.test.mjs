@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {planNPCAgendas,previewNearbyNPCContacts,CIVILIAN_ROUTINES} from '../tools/living_world_agenda.mjs';
+import {planNPCAgendas,previewNearbyNPCContacts,CIVILIAN_ROUTINES,recommendNPCIntentReviews} from '../tools/living_world_agenda.mjs';
 import {inspectMeridianBay,proposalsForActor} from '../tools/meridian_bay_city.mjs';
 import {reviewNPCCommitments} from '../tools/living_world_commitments.mjs';
 import {inspectLivingWorld,playerVisibleDiagnostic} from '../tools/living_world_diagnostics.mjs';
@@ -131,4 +131,36 @@ test('invalid narrative time, actor IDs and fake city anchors fail closed',()=>{
  assert.throws(()=>planNPCAgendas({state,elapsedMinutes:20,limitPerActor:200}),/candidate limit/);
  assert.throws(()=>inspectMeridianBay({state,anchorId:'LOC-FAKE-SCHOOL'}),/Unknown city anchor/);
  assert.deepEqual(planNPCAgendas({state,elapsedMinutes:0}),[]);
+});
+
+test('one reviewable intention per relevant NPC, without forcing an out-of-period shift',()=>{
+ const before=JSON.stringify(state);
+ const choices=recommendNPCIntentReviews({state,elapsedMinutes:25});
+ assert.equal(new Set(choices.map(x=>x.actorId)).size,choices.length);
+ assert.ok(choices.some(x=>x.actorId==='NPC-004'));
+ assert.ok(!choices.some(x=>x.actorId==='NPC-007'));
+ assert.ok(choices.every(x=>x.status==='requires_causal_adjudication'&&
+   x.persisted===false&&x.mayDefer&&x.mayFail&&x.visibility==='narrator_private'));
+ assert.equal(JSON.stringify(state),before);
+});
+test('blocked obligation receives a review even when a prior shift is out of period',()=>{
+ const altered=structuredClone(state);
+ altered.world.actors['NPC-007'].commitments=[{
+  id:'OBL-CAFE_999',summary:'Reconcile recorded register discrepancy',
+  source_event_id:'EV-000029',last_change_event_id:'EV-000029',
+  due_day:null,status:'blocked',priority:'important',
+  blockers:['Previous sale record still requires checking'],
+  resolution:null,resolution_event_id:null
+ }];
+ const chosen=recommendNPCIntentReviews({state:altered,elapsedMinutes:30,actorIds:['NPC-007']});
+ assert.equal(chosen.length,1);
+ assert.equal(chosen[0].kind,'obligation');
+ assert.equal(chosen[0].candidateId,'agenda:OBL-CAFE_999');
+ assert.ok(chosen[0].mayDefer);
+});
+test('no fictional time advance means no NPC agenda selection',()=>{
+ assert.deepEqual(recommendNPCIntentReviews({state,elapsedMinutes:0}),[]);
+ const d=inspectLivingWorld({snapshot,actorIds:['NPC-003','NPC-006'],elapsedMinutes:20});
+ assert.ok(d.recommendedNPCIntents.length>0);
+ assert.equal('recommendedNPCIntents' in playerVisibleDiagnostic(d),false);
 });
