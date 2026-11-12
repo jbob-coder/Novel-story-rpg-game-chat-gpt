@@ -4,7 +4,7 @@ import {previewNPCRoutines} from './living_world_routines.mjs';
 import {availability} from './living_world_availability.mjs';
 import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
-import {planNPCAgendas,previewNearbyNPCContacts} from './living_world_agenda.mjs';
+import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
@@ -47,6 +47,8 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     causalAgenda:planNPCAgendas({state,actorIds:selected,elapsedMinutes,elapsedDays,nextPeriod,
       weekday,minute,schedules,exceptions}),
     possibleNPCContacts:previewNearbyNPCContacts({state,actorIds:selected}),
+    recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
+      elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
