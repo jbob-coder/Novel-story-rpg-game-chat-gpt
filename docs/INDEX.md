@@ -28,3 +28,5 @@
 - [Privacidad de eventos NPC: corrección y regresión oficial](LIVING_WORLD_PRIVACY_FIX_QA_20261110.md)
 
 - [Living World: horarios nocturnos, madrugada y rutas verificadas (D-050)](LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md)
+
+- [Living World D-052: tiempos, recuperación durable, NPC y privacidad](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md)

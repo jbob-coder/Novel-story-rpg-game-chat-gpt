@@ -1,3 +1,9 @@
+# D-052 — Reliability hardening, NPC triage, private chapter boundary (2026-11-12)
+
+**Latest confirmed infrastructure:** implemented on `work/chat-narrative-foundation`, tested on QA run [43320823776](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43320823776): **173/173 Node, 24/24 Python, checkpoint validator PASS**, including synthetic three-turn save/readback. Changes: narrative days/minutes bounds, separate-branch durable journal and recovery, default nearby-NPC agenda review, and no automatic technical `outcome` dump into future chapter prose. The new guard blocks canonical saving without journal. The journal branch `journal/living-world-save-attempts` exists but requires a runtime scoped token/configuration before real use; no real journal write has been run. **Story unchanged:** CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. No NPC progression while chat inactive. No change to `main`. Distinguish tested synthetic results from literary quality and real end-to-end delivery. [Implementation notes](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md).
+
+---
+
 # Estado actual D-050 — horarios nocturnos sin fabricar canon (2026-11-12)
 
 La rama `work/chat-narrative-foundation` incorporó `tools/living_world_availability.mjs` con soporte explícito de horarios nocturnos que cruzan medianoche y corrección de enlace confirmado Market Row ↔ Café Bruma. Evaluación conservadora: un día anterior sin horario documentado no permite declarar cerrado; si no existe día de semana/hora oficial la respuesta es `unknown`. No se asignaron horarios nuevos a negocios ni NPC.

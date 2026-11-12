@@ -37,4 +37,4 @@ Date: 2026-11-12. Development branch: `work/living-world-reliability-20261112`.
 4. Run editorial review of a full multi-stage literary scene with independent NPC consequences and knowledge boundary.
 5. Authoritative chapter transition and Day 0 shockwave tests remain separate outstanding work.
 
-**Current test outcome:** PENDING official GitHub Actions CI for this revision; see GitHub run before claiming pass.
+**Verified CI:** [GitHub Actions #43320823776](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43320823776): **173/173 Node tests**, **24/24 Python tests**, and **checkpoint validator PASS**. Includes a three-turn *synthetic, in-memory* scenario with five-file readback and no canonical story progress. Earlier QA runs found and led to fixing a journal-finalization failure and an assertion over historical chapter prose. There has not yet been a real token-backed GitHub journal transaction or authentic player turn through this coordinator.
