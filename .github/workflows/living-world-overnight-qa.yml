@@ -1,0 +1,25 @@
+name: Living World overnight-hours regression (QA only)
+on:
+  pull_request:
+    branches:
+      - work/living-world-overnight-availability-20261112
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: JavaScript suites
+        run: node --test tests/*.test.mjs
+      - name: Python suites
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Verify canonical checkpoint
+        run: python tools/validate_state.py
