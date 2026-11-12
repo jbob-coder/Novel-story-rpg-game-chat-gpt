@@ -106,10 +106,21 @@ function stageNarrativeTurn(snapshot, turn) {
   s.pending={...s.pending,type:"await_player_action",interaction_mode:"free_text_no_numbered_options",location_id:s.player.location_id,message:turn.next_prompt??"Jack awaits the next free-form action.",last_player_action:turn.player_text};
   m.last_completed_turn=t;m.last_event_sequence=e.events.length;m.last_event_id=e.events.at(-1).id;
   m.notes="Staged turn; only a verified Git commit makes this a durable save.";
-  next.chapter+=`\n\n## Turn ${t} — Day ${newDay}\n\n**Jack's action:** ${turn.intent.replaceAll("\n"," ")}\n\n**Outcome:** ${turn.outcome.replaceAll("\n"," ")}\n`;
+  // The public chapter contains only the literal narrated scene, not the
+  // resolution engine's technical intent/outcome, which may include private
+  // causal information. Events and world state retain full factual records.
+  next.chapter+=`\n\n## Turn ${t} — Day ${newDay}\n`;
   // Offscreen outcomes are authoritative in the private event log and world state,
   // NOT in the reader-facing chapter. Their disclosure requires a causal channel
   // in turn.narration_messages; never reveal them via a technical chapter footer.
+  // A private NPC outcome cannot be copied verbatim into reader-visible prose.
+  // Paraphrase/semantic disclosure still requires narrator editorial review;
+  // this check is only a mechanical guard against accidental exact leakage.
+  for(const item of turn.offscreen??[]) {
+    const secret=typeof item.outcome==='string'?item.outcome.trim():'';
+    if(secret.length>=12) check(!turn.narration_messages.some(message=>message.includes(secret)),
+     'Private NPC outcome leaked into visible narration');
+  }
   // Consequences are factual open threads; updates must cite the current turn's event IDs.
   const withConsequences=stageConsequences(next,turn.consequence_updates??[]);
   next.state.narrative_threads=withConsequences.state.narrative_threads;

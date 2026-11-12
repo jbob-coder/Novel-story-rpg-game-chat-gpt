@@ -166,3 +166,9 @@ test('narrative time policy refuses noninteger input and accepts an unknown next
  assert.throws(()=>validateTemporalAdvance({elapsedDays:0,elapsedMinutes:1.5}),/Invalid narrative minutes/);
  assert.equal(validateTemporalAdvance({elapsedDays:0,elapsedMinutes:15}).nextPeriod,null);
 });
+
+test('coordinator refuses a hidden Rosa outcome duplicated in visible narration',()=>{
+ const secret='PRIVATE-ROSA-NEIGHBOR-CONVERSATION-0001';
+ assert.throws(()=>stage({npcResolutions:[{...resolved(),outcome:secret}],
+  turn:{...turn(),narration_messages:['Jack knows: '+secret]}}),/Private NPC outcome leaked/);
+});

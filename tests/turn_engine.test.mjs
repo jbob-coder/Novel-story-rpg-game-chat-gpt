@@ -89,3 +89,20 @@ test('offscreen NPC events are saved privately without chapter spoilers',()=>{
  assert.ok(!x.transcript.entries.at(-1).text.includes(privateOutcome),'Narrator text leaked an offscreen event');
  assert.equal(verifyNarrativeSnapshot(x),true);
 });
+
+test('private technical outcome cannot leak via public chapter footer',()=>{
+ const secret='PRIVATE-ACTOR-DETAIL-UNKNOWABLE-0001';
+ const x=stageNarrativeTurn(initial,{...playerTurn,
+  outcome:'A quiet public moment. '+secret,
+  offscreen:[{actor_id:'NPC-005',outcome:secret}],
+  narration_messages:['Jack can only hear the workshop fan.']});
+ assert.equal(x.events.events.at(-1).outcome,secret);
+ assert.ok(!x.chapter.includes(secret));
+ assert.ok(!x.chapter.includes("**Outcome:**"));
+});
+test('narrator copying a private NPC outcome verbatim is blocked',()=>{
+ const secret='ROSA-SECRET-NO-PLAYER-KNOWLEDGE-0001';
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,
+  offscreen:[{actor_id:'NPC-005',outcome:secret}],
+  narration_messages:['Jack somehow learns: '+secret]}),/Private NPC outcome leaked/);
+});
