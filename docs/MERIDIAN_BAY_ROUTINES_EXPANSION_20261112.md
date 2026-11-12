@@ -57,3 +57,8 @@ Prioridad escogida: convertir metas y recursos **ya confirmados** en alternativa
 
 ## QA
 Comandos de aceptación: `node --test tests/*.test.mjs`, `python -m unittest discover -s tests -p 'test_*.py' -v`, `python tools/validate_state.py`. Registrar CI y comparación de SHA después de ejecutarlos, sin anticipar éxito.
+
+## Selección conservadora de intención (revisión adicional)
+`recommendNPCIntentReviews` elige como máximo **una intención candidata por NPC**. Primero considera obligaciones pendientes o bloqueadas; después, rutinas compatibles con el período narrativo sugerido, el acceso de ruta y la disponibilidad. Una clausura confirmada o una actividad fuera del período sugerido no produce una acción ordinaria forzada. Las obligaciones reales aún pueden necesitar revisión para reprogramarlas aunque no haya turno laboral. La salida es **privada, pendiente de adjudicación causal y no persistida**; incluye posibilidad de aplazamiento, fracaso o cambio de planes. `inspectLivingWorld` la expone como `recommendedNPCIntents` sin alterar `playerVisibleDiagnostic`.
+
+Esta es una priorización de intención, **no una simulación automática de resultados** ni una licencia para narrar conocimiento que Jack no tiene. El siguiente incremento deberá transformar decisiones revisadas en eventos con consecuencias, no repetir propuestas indefinidamente.
