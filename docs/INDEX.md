@@ -26,3 +26,5 @@
 - [Verificación final oficial: Node, GitHub remoto, ensayo narrativo](LIVING_WORLD_FULL_VERIFICATION_20261110.md)
 - [Living World: integración gradual, QA y puerta de activación](LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md)
 - [Privacidad de eventos NPC: corrección y regresión oficial](LIVING_WORLD_PRIVACY_FIX_QA_20261110.md)
+
+- [Living World: horarios nocturnos, madrugada y rutas verificadas (D-050)](LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md)

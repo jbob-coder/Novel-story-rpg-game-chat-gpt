@@ -1,3 +1,13 @@
+# Estado actual D-050 — horarios nocturnos sin fabricar canon (2026-11-12)
+
+La rama `work/chat-narrative-foundation` incorporó `tools/living_world_availability.mjs` con soporte explícito de horarios nocturnos que cruzan medianoche y corrección de enlace confirmado Market Row ↔ Café Bruma. Evaluación conservadora: un día anterior sin horario documentado no permite declarar cerrado; si no existe día de semana/hora oficial la respuesta es `unknown`. No se asignaron horarios nuevos a negocios ni NPC.
+
+QA oficial aislado: [run 43313742280](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43313742280) aprobó **143/143 Node**, **24/24 Python** y validador **PASS**. La PR QA #5 cerró sin fusionarse. Integración por fast-forward protegido: código y pruebas solamente, más informe; **cinco SHA narrativos iguales** a sus valores de D-049, por lo que el único checkpoint auténtico sigue siendo **CH-000, turno 9, día -29 mañana, EV-000029, TXT-000020**. `main` no se actualizó. Horarios actuales, reloj exacto y día de semana siguen sin establecerse; no hay turnos automáticos.
+
+**Siguiente tarea:** comprobar un turno real solo cuando el propietario elija una acción libre de Jack, y más adelante formalizar horarios específicos con evidencia narrativa. No utilizar ramas `qa/*` como canon. Véase [informe D-050](LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md).
+
+---
+
 # Estado actual D-049 — Living World en rama narrativa; privacidad corregida (2026-11-10)
 
 El motor de narración fue corregido para no incluir automáticamente resultados privados de NPC en el texto del capítulo en **nuevos turnos**. GitHub Actions `42953180071`: Node **135/135**, Python **24/24**, validador **PASS**. Corrección `bcfd86fe5ca5cd8598d6e3e9969221c5697a98be` incorporada a `work/chat-narrative-foundation` en fast-forward sin tocar `main`. **La partida sigue CH-000 turno 9, EV-000029, TXT-000020**; verificar manifiesto al iniciar cualquier sesión. No activación automática, ni simulación en segundo plano. El turno 10 de `qa/living-world-integration-20261110` es sintético, nunca fuente narrativa. Documentación: `docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md`. Los registros anteriores debajo son históricos.
