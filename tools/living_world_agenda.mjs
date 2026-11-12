@@ -109,3 +109,47 @@ export function previewNearbyNPCContacts({state,actorIds=null}={}){
  }
  return copy(links);
 }
+
+/**
+ * Choose at most one reviewable intent for each actor for the given interval.
+ * This is independent prioritization, NOT event resolution or an action.
+ * No routine is forced merely because time passed; out-of-period/confirmed
+ * closed routines are omitted unless a real obligation must be reconsidered.
+ */
+export function recommendNPCIntentReviews(options={}){
+ const state=options.state;
+ const candidates=planNPCAgendas({...options,limitPerActor:8});
+ const grouped=new Map();
+ for(const c of candidates){
+  if(!grouped.has(c.actorId))grouped.set(c.actorId,[]);
+  grouped.get(c.actorId).push(c);
+ }
+ const results=[];
+ for(const [actorId,items] of grouped){
+  const due=items.filter(x=>x.kind==='obligation')
+    .sort((a,b)=>(urgencyRank[a.review]??9)-(urgencyRank[b.review]??9)||
+      a.id.localeCompare(b.id));
+  const compatible=items.filter(x=>x.kind==='civilian_routine'&&
+    x.suggestedPeriod==='compatible'&&x.availability!=='closed'&&
+    x.feasibility!=='no_verified_route');
+  const chosen=due[0]??compatible[0];
+  if(!chosen)continue;
+  const actor=state.world.actors[actorId];
+  results.push(copy({
+   actorId,candidateId:chosen.id,kind:chosen.kind,objective:chosen.objective,
+   selectedBecause:chosen.kind==='obligation'?
+    'Recorded unresolved responsibility requires review':
+    'Recorded goal, resource and compatible proposed time window',
+   knownGoal:actor.goal,knownPlan:actor.independent_plan,
+   availability:chosen.availability,
+   blockers:chosen.blockers??[],
+   destinationId:chosen.destinationId??null,
+   timeOfReview:chosen.dayToReview,
+   competingAlternatives:items.filter(x=>x.id!==chosen.id).map(x=>x.id),
+   status:'requires_causal_adjudication',persisted:false,
+   mayDefer:true,mayFail:true,mayChangePlans:true,
+   visibility:'narrator_private'
+  }));
+ }
+ return results;
+}
