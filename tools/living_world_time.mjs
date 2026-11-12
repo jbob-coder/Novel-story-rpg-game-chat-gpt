@@ -1,32 +1,45 @@
-// Narrative time policy. No fabricated clock or weekday: validate only intervals
-// that are logically possible without an absolute wall-clock anchor.
-const PERIODS = Object.freeze(['morning','midday','afternoon','evening','night']);
-const START = Object.freeze({morning:360,midday:660,afternoon:780,evening:1020,night:1260});
-const END = Object.freeze({morning:660,midday:780,afternoon:1020,evening:1260,night:1440});
-const requireTime=(ok,message)=>{if(!ok)throw new Error(message)};
+// Coarse narrator-time windows, NOT a canonical exact hour or weekday.
+// Intervals are deliberately approximate policy windows (minutes since 00:00).
+// Unknown absolute dates remain unknown. No day may be advanced impossibly.
+const PERIODS=Object.freeze(['morning','midday','afternoon','evening','night']);
+const WINDOWS=Object.freeze({
+ morning:[[300,720]],    // broad early morning to noon
+ midday:[[720,840]],
+ afternoon:[[840,1080]],
+ evening:[[1080,1260]],
+ night:[[0,300],[1260,1440]] // pre-dawn or late night on that day
+});
+const requireTime=(ok,message)=>{if(!ok)throw Error(message)};
+const windowsFor=period=>WINDOWS[period]??[[0,1440]];
+// There must exist a legal start instant and end instant in their respective
+// periods with EXACTLY the supplied minute duration and calendar-day delta.
+// This is an existential consistency check, not an invented timestamp.
+function possibleInterval(currentPeriod,nextPeriod,elapsedDays,elapsedMinutes){
+ const offset=elapsedDays*1440;
+ return windowsFor(currentPeriod).some(([startMin,startMax])=>
+  windowsFor(nextPeriod).some(([endMin,endMax])=>{
+   const earliest=Math.max(startMin,offset+endMin-elapsedMinutes);
+   const latest=Math.min(startMax,offset+endMax-elapsedMinutes);
+   return earliest<latest;
+  }));
+}
 export function validateTemporalAdvance({currentPeriod,elapsedDays,elapsedMinutes,nextPeriod=null}={}){
  requireTime(Number.isSafeInteger(elapsedDays)&&elapsedDays>=0&&elapsedDays<=365,
   'Invalid narrative days');
  requireTime(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0&&elapsedMinutes<=525600,
   'Invalid narrative minutes');
- // Any interval of length M minutes crosses floor(M/1440) or ceil(M/1440)
- // midnights; this bound requires no exact starting hour.
  const minimum=Math.floor(elapsedMinutes/1440), maximum=Math.ceil(elapsedMinutes/1440);
  requireTime(elapsedDays>=minimum&&elapsedDays<=maximum,
   'Narrative days/minutes disagree');
- if(nextPeriod==null)return {elapsedDays,elapsedMinutes,nextPeriod:null};
- requireTime(PERIODS.includes(nextPeriod),'Unknown time-of-day label');
- const oldIndex=PERIODS.indexOf(currentPeriod),nextIndex=PERIODS.indexOf(nextPeriod);
- if(elapsedDays===0&&oldIndex>=0){
-  requireTime(nextIndex>=oldIndex,
+ if(nextPeriod!==null)requireTime(PERIODS.includes(nextPeriod),'Unknown time-of-day label');
+ // An unqualified reversal like night -> morning on the same narrative day
+ // is not silently accepted: its ambiguous pre-dawn interpretation would
+ // conflict with the existing chronological period-order contract.
+ if(elapsedDays===0&&PERIODS.includes(currentPeriod)&&nextPeriod!==null)
+  requireTime(PERIODS.indexOf(nextPeriod)>=PERIODS.indexOf(currentPeriod),
    'Time of day cannot go backwards within the same narrative day');
-  if(nextIndex>oldIndex){
-   // Approximate labeled windows establish only a lower bound; never assert an
-   // exact clock. Adjacent windows share a boundary and need no minimum.
-   const minimumElapsed=Math.max(0,START[nextPeriod]-END[currentPeriod]);
-   requireTime(elapsedMinutes>=minimumElapsed,
-    'Insufficient narrative minutes for time-of-day transition');
-  }
- }
+ requireTime(possibleInterval(currentPeriod,nextPeriod,elapsedDays,elapsedMinutes),
+  nextPeriod===null?'Impossible narrative day transition from current period':
+   'Insufficient narrative minutes for time-of-day transition');
  return {elapsedDays,elapsedMinutes,nextPeriod};
 }

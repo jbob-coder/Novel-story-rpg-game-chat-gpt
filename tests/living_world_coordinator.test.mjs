@@ -142,12 +142,23 @@ test('narrative minutes and day crossings cannot contradict each other',()=>{
   assert.throws(()=>stage({turn:{...turn(),elapsed_days,elapsed_minutes},npcResolutions:[]}),
    /Narrative days\/minutes disagree/);
 });
-test('legitimate short midnight crossing remains possible without inventing a clock',()=>{
- const x=stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
-  next_time_of_day:'morning'},npcResolutions:[]});
+test('short midnight crossing is possible only from a compatible night period',()=>{
+ const night=structuredClone(baseline);night.state.time.time_of_day='night';
+ const x=stage({snapshot:night,turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
+  next_time_of_day:'night'},npcResolutions:[]});
  assert.equal(x.state.time.day,baseline.state.time.day+1);
  assert.equal(x.state.time.elapsed_minutes_since_opening_approx,
   baseline.state.time.elapsed_minutes_since_opening_approx+20);
+});
+test('a recorded morning cannot jump to tomorrow in twenty minutes',()=>{
+ assert.throws(()=>stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
+  next_time_of_day:'morning'},npcResolutions:[]}),/Insufficient narrative minutes/);
+ assert.throws(()=>stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20},
+  npcResolutions:[]}),/Impossible narrative day transition/);
+});
+test('a morning cannot remain on the same calendar day for 1400 elapsed minutes',()=>{
+ assert.throws(()=>stage({turn:{...turn(),elapsed_days:0,elapsed_minutes:1400},
+  npcResolutions:[]}),/Impossible narrative day transition/);
 });
 test('morning to night in twenty minutes is rejected, but later transition is possible',()=>{
  assert.throws(()=>stage({turn:{...turn(),elapsed_minutes:20,
