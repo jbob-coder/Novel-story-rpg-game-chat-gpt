@@ -4,12 +4,14 @@ import {previewNPCRoutines} from './living_world_routines.mjs';
 import {availability} from './living_world_availability.mjs';
 import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
+import {planNPCAgendas,previewNearbyNPCContacts} from './living_world_agenda.mjs';
+import {inspectMeridianBay} from './meridian_bay_city.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
 
-export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=null,
-  weekday=null,minute=null,schedules={},exceptions={},commitments=[]}={}){
+export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,nextPeriod=null,
+  actorIds=null,weekday=null,minute=null,schedules={},exceptions={},commitments=[]}={}){
   verifyNarrativeSnapshot(snapshot);
   insist(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0 &&
     elapsedMinutes<=525600,'Invalid elapsed narrative minutes');
@@ -40,9 +42,15 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=null,
       id:x.id,ownerActorId:x.owner_actor_id,scope:x.scope,question:x.question
     })),
     proposedNPCActivities:candidates,
-    commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,commitments}),
+    commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,commitments,
+      targetDay:state.time.day+elapsedDays}),
+    causalAgenda:planNPCAgendas({state,actorIds:selected,elapsedMinutes,elapsedDays,nextPeriod,
+      weekday,minute,schedules,exceptions}),
+    possibleNPCContacts:previewNearbyNPCContacts({state,actorIds:selected}),
+    meridianBay:inspectMeridianBay({state}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
+      'City opportunity IDs are proposals, never routable established locations.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
       'No activity advances when the chat is inactive.']
   });
