@@ -1,0 +1,25 @@
+name: Living World full reliability QA v3
+on:
+  pull_request:
+    branches:
+      - work/living-world-reliability-20261112
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: JavaScript all modules and synthetic integration
+        run: node --test tests/*.test.mjs
+      - name: Python full suite
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Verify canonical checkpoint
+        run: python tools/validate_state.py
