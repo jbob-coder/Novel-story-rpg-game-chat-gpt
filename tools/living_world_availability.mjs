@@ -6,6 +6,7 @@ export const LINKS = Object.freeze([
   ["LOC-WILSON-APARTMENT","LOC-WILSON-WORKSHOP"],
   ["LOC-COMMERCIAL-DISTRICT","LOC-CROSSWATER-PLAZA"],
   ["LOC-COMMERCIAL-DISTRICT","LOC-HARBOR-WALK"],
+  ["LOC-COMMERCIAL-DISTRICT","LOC-CAFE-BRUMA"],
   ["LOC-CROSSWATER-PLAZA","LOC-HARBOR-WALK"],
   ["LOC-CROSSWATER-PLAZA","LOC-TRANSIT-TERMINAL"]
 ]);
@@ -30,15 +31,44 @@ export function shortestRoute(start,end,links=LINKS) {
   }
   return null;
 }
+// A confirmed weekday interval [start,end] uses minutes since that day's 00:00.
+// An end > 1440 explicitly extends into the NEXT day, at most 24 hours after
+// start. This avoids treating a reversed/typo interval as an overnight shift.
+// The previous weekday must be checked before asserting "closed" just after
+// midnight. A missing day is never silently treated as a closed day.
+const validIntervals = intervals => Array.isArray(intervals) && intervals.every(pair =>
+  Array.isArray(pair) && pair.length===2 &&
+  Number.isInteger(pair[0]) && Number.isInteger(pair[1]) &&
+  pair[0]>=0 && pair[0]<1440 &&
+  pair[1]>pair[0] && pair[1]<=pair[0]+1440
+);
+
 // Only an explicitly established exception or applicable confirmed schedule can
 // establish open/closed. A weekday is NOT the narrative Day -29.
 // Unknown calendar weekday or tentative schedule => unknown.
 export function availability({schedule=null, exception=null, weekday=null, minute=null}={}) {
-  if(exception && exception.confirmed===true && [AVAILABILITY.OPEN,AVAILABILITY.CLOSED].includes(exception.status)) return {status:exception.status,source:"confirmed_exception"};
-  if(!schedule || schedule.confirmed!==true || (!Number.isInteger(weekday) || weekday<0 || weekday>6) || !Number.isInteger(minute) || minute<0 || minute>=1440) return {status:AVAILABILITY.UNKNOWN,source:"insufficient_confirmed_data"};
-  const intervals=schedule.weekdays?.[String(weekday)];
-  if(!Array.isArray(intervals)) return {status:AVAILABILITY.UNKNOWN,source:"day_not_documented"};
-  const valid=intervals.every(interval=>Array.isArray(interval)&&interval.length===2&&Number.isInteger(interval[0])&&Number.isInteger(interval[1])&&interval[0]>=0&&interval[1]<=1440&&interval[0]<interval[1]);
-  if(!valid) return {status:AVAILABILITY.UNKNOWN,source:"invalid_schedule"};
-  return {status:intervals.some(([from,to])=>minute>=from&&minute<to)?AVAILABILITY.OPEN:AVAILABILITY.CLOSED,source:"confirmed_schedule"};
+  if(exception && exception.confirmed===true && [AVAILABILITY.OPEN,AVAILABILITY.CLOSED].includes(exception.status))
+    return {status:exception.status,source:"confirmed_exception"};
+  if(!schedule || schedule.confirmed!==true ||
+     !Number.isInteger(weekday) || weekday<0 || weekday>6 ||
+     !Number.isInteger(minute) || minute<0 || minute>=1440)
+    return {status:AVAILABILITY.UNKNOWN,source:"insufficient_confirmed_data"};
+
+  const today=schedule.weekdays?.[String(weekday)];
+  const yesterday=schedule.weekdays?.[String((weekday+6)%7)];
+  if((today!==undefined && !validIntervals(today)) ||
+     (yesterday!==undefined && !validIntervals(yesterday)))
+    return {status:AVAILABILITY.UNKNOWN,source:"invalid_schedule"};
+
+  const openedToday=Array.isArray(today) &&
+    today.some(([from,to])=>minute>=from && minute<Math.min(to,1440));
+  const carriedFromYesterday=Array.isArray(yesterday) &&
+    yesterday.some(([,to])=>to>1440 && minute<to-1440);
+  if(openedToday || carriedFromYesterday)
+    return {status:AVAILABILITY.OPEN,source:"confirmed_schedule"};
+  // Both days must be explicitly documented before a CLOSED conclusion.
+  // The prior day might contain an overnight shift ending late today.
+  if(!Array.isArray(today) || !Array.isArray(yesterday))
+    return {status:AVAILABILITY.UNKNOWN,source:"day_not_documented"};
+  return {status:AVAILABILITY.CLOSED,source:"confirmed_schedule"};
 }
