@@ -3,20 +3,22 @@
 import {previewNPCRoutines} from './living_world_routines.mjs';
 import {availability} from './living_world_availability.mjs';
 import {verifyNarrativeSnapshot} from './turn_engine.mjs';
+import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
 
-export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=[],
-  weekday=null,minute=null,schedules={},exceptions={}}={}){
+export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=null,
+  weekday=null,minute=null,schedules={},exceptions={},commitments=[]}={}){
   verifyNarrativeSnapshot(snapshot);
   insist(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0 &&
     elapsedMinutes<=525600,'Invalid elapsed narrative minutes');
-  insist(Array.isArray(actorIds)&&actorIds.length<=100 &&
-    actorIds.every(x=>typeof x==='string') && new Set(actorIds).size===actorIds.length,
+  insist(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100 &&
+    actorIds.every(x=>typeof x==='string') && new Set(actorIds).size===actorIds.length),
     'Actor selection must be unique IDs');
   const state=snapshot.state,manifest=snapshot.manifest;
-  const selected=actorIds.filter(id=>Object.hasOwn(state.world.actors,id));
+  const chosen=actorIds===null?selectRelevantNPCs({state}):actorIds;
+  const selected=chosen.filter(id=>Object.hasOwn(state.world.actors,id));
   const candidates=previewNPCRoutines({state,elapsedMinutes,actorIds:selected,
     weekday,minute,schedules,exceptions});
   const placeIds=Object.keys(state.world.locations);
@@ -37,7 +39,9 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=[],
     unresolvedThreads:(state.narrative_threads??[]).filter(x=>x.status==='open').map(x=>({
       id:x.id,ownerActorId:x.owner_actor_id,scope:x.scope,question:x.question
     })),
-    proposedNPCActivities:candidates,placeAvailability,
+    proposedNPCActivities:candidates,
+    commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,commitments}),
+    selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
       'No activity advances when the chat is inactive.']

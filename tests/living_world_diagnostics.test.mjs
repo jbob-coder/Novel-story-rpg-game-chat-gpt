@@ -57,3 +57,36 @@ test('invalid actor selections and time are rejected',()=>{
 test('player projection refuses unsupported/untrusted reports',()=>{
  assert.throws(()=>playerVisibleDiagnostic({classification:'some_other_kind'}),/Narrator diagnostic required/);
 });
+
+test('default diagnostic chooses relevant nearby NPCs without forcing any event',()=>{
+ const d=inspectLivingWorld({snapshot,elapsedMinutes:20});
+ assert.ok(d.selectedActorIds.length>0&&d.selectedActorIds.length<=3);
+ assert.ok(d.selectedActorIds.includes('NPC-005'));
+ assert.ok(d.commitmentReview.every(x=>x.requiresResolution&&x.visibility==='narrator_private'));
+ assert.equal('commitmentReview' in playerVisibleDiagnostic(d),false);
+});
+test('explicit empty selection preserves zero NPC suggestions',()=>{
+ const d=inspectLivingWorld({snapshot,elapsedMinutes:20,actorIds:[]});
+ assert.deepEqual(d.proposedNPCActivities,[]);
+ assert.deepEqual(d.commitmentReview,[]);
+});
+test('commitment audit never invents deadline or completion',()=>{
+ const d=inspectLivingWorld({snapshot,elapsedMinutes:30,actorIds:['NPC-004','NPC-005']});
+ assert.ok(d.commitmentReview.some(x=>x.actorId==='NPC-004'&&x.review==='deadline_unknown'));
+ assert.ok(d.commitmentReview.every(x=>x.kind==='existing_plan'));
+});
+test('an explicitly recorded deadline can be reviewed without declaring delivery',()=>{
+ const d=inspectLivingWorld({snapshot,elapsedMinutes:20,actorIds:['NPC-003'],commitments:[
+  {id:'OBL-DELIVERY_001',actor_id:'NPC-003',
+   summary:'Deliver parcel to contracted customer',
+   status:'pending',source_event_id:'EV-000001',due_day:-30}
+ ]});
+ const x=d.commitmentReview.find(x=>x.id==='OBL-DELIVERY_001');
+ assert.equal(x.review,'overdue_review');
+ assert.equal(x.requiresResolution,true);
+ assert.equal('commitmentReview' in playerVisibleDiagnostic(d),false);
+});
+test('zero narrative time yields no commitment activity',()=>{
+ const d=inspectLivingWorld({snapshot,elapsedMinutes:0});
+ assert.deepEqual(d.commitmentReview,[]);
+});
