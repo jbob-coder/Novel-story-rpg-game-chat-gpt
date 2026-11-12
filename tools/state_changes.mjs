@@ -1,4 +1,5 @@
 // D-040: typed, event-backed qualitative state changes. No numerical RPG progression.
+import {validateNPCCommitments,validateNPCCommitmentChange} from './living_world_obligations.mjs';
 const requireFact = (ok, message) => { if (!ok) throw new Error(message); };
 const copy = value => value == null ? value : JSON.parse(JSON.stringify(value));
 const equal = (a, b) => {
@@ -78,6 +79,13 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       requireFact(equal(actor.resources ?? {}, change.before), 'Stale actor resources');
       actor.resources = copy(change.after);
       record.state_changes.push({actor_id: actorId, field, before: copy(change.before), after: copy(change.after)});
+    } else if (field === 'commitments') {
+      requireFact(actorId !== state.player.id && Array.isArray(change.before) &&
+        Array.isArray(change.after), 'Only NPC commitments can change');
+      requireFact(equal(actor.commitments ?? [], change.before), 'Stale NPC commitments');
+      validateNPCCommitmentChange({before:change.before,after:change.after,eventId:record.id});
+      actor.commitments = copy(change.after);
+      record.state_changes.push({actor_id: actorId, field, before: copy(change.before), after: copy(change.after)});
     } else if (field === 'independent_plan') {
       requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
@@ -122,6 +130,16 @@ function verifyStateChanges(snapshot) {
       requireFact(!item.carried || item.location_id === actor.location_id, 'Carried item disagrees with actor location');
     }
   }
+  const validEventIds = new Set(snapshot.events.events.map(event=>event.id));
+  const commitmentIds = new Set();
+  for(const actor of Object.values(state.world.actors)){
+    if(actor.commitments === undefined)continue;
+    validateNPCCommitments(actor.commitments,{eventIds:validEventIds});
+    for(const obligation of actor.commitments){
+      requireFact(!commitmentIds.has(obligation.id),'Duplicate obligation id across NPCs');
+      commitmentIds.add(obligation.id);
+    }
+  }
   // Legacy events before D-040 are archived and not retroactively reinterpreted.
   for (const event of snapshot.events.events) {
     if (event.turn <= 6) continue;
@@ -129,7 +147,7 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments'].includes(field), 'Unknown tracked change field');
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
         continue;
