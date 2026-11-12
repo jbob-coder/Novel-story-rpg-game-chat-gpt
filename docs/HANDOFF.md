@@ -1,3 +1,9 @@
+# D-053 — intervalos temporales coherentes y QA (2026-11-12)
+
+La comprobación temporal anterior dejaba pasar una transición imposible: una mañana seguida de la siguiente mañana en 20 minutos. Corrección: no basta el límite `floor/ceil` sobre minutos; ahora hay que encontrar una ventana horaria posible dentro de las franjas narrativas. El estado real sigue sin hora exacta ni weekday. QA sintético aislado #43321955437: **175/175 Node, 24/24 Python, validador PASS**. Documentación: [ventanas temporales](LIVING_WORLD_TIME_WINDOW_QA_20261112.md). **No hay turno real 10 ni nuevo guardado de Jack.** Se mantienen el diario durable y el guardado bloqueado sin journal configurado de D-052.
+
+---
+
 # D-052 — Reliability hardening, NPC triage, private chapter boundary (2026-11-12)
 
 **Latest confirmed infrastructure:** implemented on `work/chat-narrative-foundation`, tested on QA run [43320823776](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43320823776): **173/173 Node, 24/24 Python, checkpoint validator PASS**, including synthetic three-turn save/readback. Changes: narrative days/minutes bounds, separate-branch durable journal and recovery, default nearby-NPC agenda review, and no automatic technical `outcome` dump into future chapter prose. The new guard blocks canonical saving without journal. The journal branch `journal/living-world-save-attempts` exists but requires a runtime scoped token/configuration before real use; no real journal write has been run. **Story unchanged:** CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. No NPC progression while chat inactive. No change to `main`. Distinguish tested synthetic results from literary quality and real end-to-end delivery. [Implementation notes](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md).
