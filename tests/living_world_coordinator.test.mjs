@@ -172,3 +172,13 @@ test('coordinator refuses a hidden Rosa outcome duplicated in visible narration'
  assert.throws(()=>stage({npcResolutions:[{...resolved(),outcome:secret}],
   turn:{...turn(),narration_messages:['Jack knows: '+secret]}}),/Private NPC outcome leaked/);
 });
+
+test('canonical story cannot advance through coordinator without durable journal',async()=>{
+ let remoteCalls=0;
+ const remote={async readHead(){remoteCalls++;return head}};
+ const result=await saveLivingWorldTurn({remote,
+  branch:'work/chat-narrative-foundation',chapterId:'CH-000',turn:turn()});
+ assert.equal(result.status,'blocked');
+ assert.match(result.reason,/Durable save journal required/);
+ assert.equal(remoteCalls,0);
+});

@@ -65,6 +65,11 @@ export function stageLivingWorldTurn({snapshot,turn,observedHead,npcResolutions=
 // Only this transaction adapter writes a real story turn. A preview or staged
 // candidate is NEVER a completed save. Remote readback remains mandatory.
 export function saveLivingWorldTurn({remote,branch,chapterId,turn,npcResolutions=[],journal=null}={}){
+  // Never run the authoritative narrative through an unjournaled save.
+  // If the separate GitHub journal is absent, stop before any remote mutation.
+  if(branch==='work/chat-narrative-foundation' && journal===null)
+    return Promise.resolve({status:'blocked',reason:'Durable save journal required for canonical story branch',
+      branch,attempt:null});
   return saveFiveFileTurn({remote,branch,chapterId,journal,
     message:'Narrative turn with reviewed Living World activity',
     buildNext:({snapshot,observedHead})=>stageLivingWorldTurn({
