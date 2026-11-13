@@ -2,6 +2,7 @@ import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
+import {validateDeferredNPCReviews} from './living_world_deferred.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -47,6 +48,7 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
   verifyStateChanges(snapshot);
+  validateDeferredNPCReviews(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
