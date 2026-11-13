@@ -11,7 +11,8 @@ export function selectRelevantNPCs({state,limit=3}={}){
   if(!validId(actorId)||typeof actor.independent_plan!=='string'||!actor.independent_plan.trim())return [];
   const route=worldRoute(state,player.location_id,actor.location_id);
   const open=(actor.commitments??[]).filter(x=>x.status==='pending'||x.status==='blocked');
-  if(!route&&!open.length)return [];
+  const needs=(actor.needs??[]).filter(x=>x.status==='active'||x.status==='blocked');
+  if(!route&&!open.length&&!needs.length)return [];
   const hops=route?route.length-1:null;
   const family=Array.isArray(player.family_ids)&&player.family_ids.includes(actorId);
   // Deadlines and real blockers may outrank proximity; absence of a route
@@ -21,7 +22,15 @@ export function selectRelevantNPCs({state,limit=3}={}){
       x.due_day===state.time.day?130:0)+
     (x.status==='blocked'?60:0)+
     (x.priority==='urgent'?30:x.priority==='important'?12:0)));
-  const score=(hops===null?0:Math.max(0,100-20*hops))+(family?6:0)+urgency;
+  // Explicit unresolved needs can demand review even away from Jack; this
+  // is a selection heuristic, not a narrative power/character statistic.
+  const needUrgency=Math.max(0,...needs.map(n=>
+    (n.due_day!==null&&n.due_day<state.time.day?170:
+      n.due_day===state.time.day?120:0)+
+    (n.status==='blocked'?75:0)+
+    (n.priority==='urgent'?40:n.priority==='important'?15:0)));
+  const score=(hops===null?0:Math.max(0,100-20*hops))+
+    (family?6:0)+urgency+needUrgency;
   return [{actorId,hops,score}];
  }).sort((a,b)=>b.score-a.score||a.actorId.localeCompare(b.actorId))
   .slice(0,limit).map(({actorId})=>actorId);
