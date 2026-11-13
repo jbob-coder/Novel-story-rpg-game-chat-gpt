@@ -84,8 +84,13 @@ test('three known service functions reuse existing workplaces, not new invented 
  assert.equal(Object.keys(state.world.locations).length,9);
  const proposed=inspectMeridianBay({state});
  assert.equal(proposed.areas.flatMap(a=>a.opportunities).length,18);
- assert.ok(proposed.areas.flatMap(a=>a.opportunities).every(x=>
-  x.status==='proposed_not_canon'&&x.locationId===null));
+ const catalog=proposed.areas.flatMap(a=>a.opportunities);
+ assert.equal(catalog.filter(x=>x.status==='prebuilt_world').length,6);
+ assert.equal(catalog.filter(x=>x.status==='proposed_not_canon').length,12);
+ assert.ok(catalog.filter(x=>x.status==='prebuilt_world').every(x=>
+  x.locationId?.startsWith('LOC-')&&x.openingHours===null));
+ assert.ok(catalog.filter(x=>x.status==='proposed_not_canon').every(x=>
+  x.locationId===null));
  assert.equal(JSON.stringify(baseline),before);
 });
 test('confirmed service exception is acknowledged, but missing schedule stays unknown',()=>{
