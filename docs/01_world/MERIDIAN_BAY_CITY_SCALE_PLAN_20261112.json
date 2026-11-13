@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-CITY-SCALE-PLAN-20261112-A",
+  "authority": "planning_hypothesis_not_saved_world_canon",
+  "created_for": "world_precedes_player_discovery",
+  "source_truth": {
+    "canonical_location_graph": "game/STATE.json",
+    "authored_locations": "game/MERIDIAN_BAY_PREBUILT.json",
+    "draft_reconciliation": "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json"
+  },
+  "scope": {
+    "city_id": "CITY-MERIDIAN-BAY",
+    "fictional_coastal_city": true,
+    "country": null,
+    "calendar_year": null,
+    "world_coordinates": null,
+    "municipal_boundary_surveyed": false,
+    "shoreline_surveyed": false,
+    "actual_city_area_km2": null,
+    "population": null
+  },
+  "planning_envelope": {
+    "width_units": 100,
+    "height_units": 80,
+    "reference_km_per_unit": 0.1,
+    "illustrative_width_km": 10,
+    "illustrative_height_km": 8,
+    "illustrative_bounding_rectangle_km2": 80,
+    "meaning": "A REVERSIBLE drafting canvas including uncharted land or water, NOT measured city footprint or municipal area.",
+    "measurement_accuracy": "illustrative_only",
+    "horizontal_direction": "toward_conceptual_inner_bay",
+    "vertical_direction": "toward_conceptual_inland",
+    "cardinal_orientation_confirmed": false,
+    "origin": {
+      "x": 0,
+      "y": 0
+    },
+    "georeferenced": false
+  },
+  "planning_regions": [
+    {
+      "id": "MB-REG-CORE",
+      "name": "Existing urban-core focus",
+      "box": {
+        "x_min": 40,
+        "y_min": 31,
+        "x_max": 75,
+        "y_max": 54
+      },
+      "status": "working_envelope_not_administrative_district",
+      "purpose": "Contains Railgarden, Market Row, Crosswater, waterfront and known family anchors; do not infer roads from box."
+    },
+    {
+      "id": "MB-REG-WEST",
+      "name": "Westward growth reserve",
+      "box": {
+        "x_min": 5,
+        "y_min": 18,
+        "x_max": 39,
+        "y_max": 72
+      },
+      "status": "unmapped_reserve_not_routable",
+      "purpose": "Space for future settlements, blocks and services without asserting what is here."
+    },
+    {
+      "id": "MB-REG-NORTH",
+      "name": "Northern inland reserve",
+      "box": {
+        "x_min": 40,
+        "y_min": 55,
+        "x_max": 94,
+        "y_max": 77
+      },
+      "status": "unmapped_reserve_not_routable",
+      "purpose": "Do not locate Elena's school here without evidence."
+    },
+    {
+      "id": "MB-REG-SOUTH",
+      "name": "Southern reserve",
+      "box": {
+        "x_min": 21,
+        "y_min": 4,
+        "x_max": 70,
+        "y_max": 30
+      },
+      "status": "unmapped_reserve_not_routable",
+      "purpose": "No named industrial or residential institutions established."
+    },
+    {
+      "id": "MB-REG-BAY",
+      "name": "Inner bay / outer waterfront study area",
+      "box": {
+        "x_min": 76,
+        "y_min": 20,
+        "x_max": 98,
+        "y_max": 54
+      },
+      "status": "unmapped_reserve_not_routable",
+      "purpose": "Possible water, port operations and shoreline; shore and access remain unresolved."
+    }
+  ],
+  "locations": [
+    {
+      "id": "LOC-WILSON-WORKSHOP",
+      "reference_xy_units": {
+        "x": 46.3,
+        "y": 44.5
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "interior_anchor",
+      "source": "checkpoint_location_anchor",
+      "note": "The workshop is inside Wilson residence; not a street or separate city block.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-WILSON-APARTMENT",
+      "reference_xy_units": {
+        "x": 46.3,
+        "y": 44.5
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "residential_building",
+      "source": "checkpoint_location_anchor",
+      "note": "Wilson household reference shares footprint with workshop.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "reference_xy_units": {
+        "x": 48,
+        "y": 44
+      },
+      "placement_uncertainty_units": 3,
+      "kind": "district_reference",
+      "source": "checkpoint_location_anchor",
+      "note": "Residential nucleus; not the boundary or center of every dwelling.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-COMMERCIAL-DISTRICT",
+      "reference_xy_units": {
+        "x": 58,
+        "y": 43
+      },
+      "placement_uncertainty_units": 3,
+      "kind": "district_reference",
+      "source": "checkpoint_location_anchor",
+      "note": "Market Row commercial nucleus; not its exact width.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-CAFE-BRUMA",
+      "reference_xy_units": {
+        "x": 58.8,
+        "y": 42
+      },
+      "placement_uncertainty_units": 1.5,
+      "kind": "existing_business",
+      "source": "checkpoint_location_anchor",
+      "note": "Known café within Market Row; exterior point only.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-CROSSWATER-PLAZA",
+      "reference_xy_units": {
+        "x": 65,
+        "y": 42
+      },
+      "placement_uncertainty_units": 2,
+      "kind": "public_space",
+      "source": "checkpoint_location_anchor",
+      "note": "Plaza adjacent to terminal and with views toward harbor.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-TRANSIT-TERMINAL",
+      "reference_xy_units": {
+        "x": 66,
+        "y": 42
+      },
+      "placement_uncertainty_units": 1.5,
+      "kind": "public_transport",
+      "source": "checkpoint_location_anchor",
+      "note": "Terminal adjacent to the plaza; no bus or rail track geometry.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-HARBOR-WALK",
+      "reference_xy_units": {
+        "x": 71,
+        "y": 37
+      },
+      "placement_uncertainty_units": 3,
+      "kind": "waterfront_walk",
+      "source": "checkpoint_location_anchor",
+      "note": "Public promenade oriented toward the inner bay; shore edge is not surveyed.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-MARKET-NOAH-REPAIR",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "reference_xy_units": {
+        "x": 58.6,
+        "y": 43.5
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Repair and parts storefront on Market Row.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-RAILGARDEN-ABARROTES",
+      "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "reference_xy_units": {
+        "x": 47.5,
+        "y": 44.6
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Daily groceries within the residential area.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-RAILGARDEN-CLINIC",
+      "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "reference_xy_units": {
+        "x": 49,
+        "y": 44.8
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Neighborhood health facility; availability unverified.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-MARKET-DELIVERY-POINT",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "reference_xy_units": {
+        "x": 57.6,
+        "y": 42.2
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Courier intake facing the commerce spine, not proof of Darius's delivery.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-MARKET-CULTURE-PASSAGE",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "reference_xy_units": {
+        "x": 59,
+        "y": 43.7
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Culture/creative passage, not the proposed trades passage.",
+      "physical_footprint_defined": false
+    },
+    {
+      "id": "LOC-MARKET-BUSINESS-OFFICES",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "reference_xy_units": {
+        "x": 58.3,
+        "y": 42.1
+      },
+      "placement_uncertainty_units": 1,
+      "kind": "prebuilt_public_site",
+      "source": "authored_prebuilt_catalog",
+      "note": "Services frontage, not individual company entrances.",
+      "physical_footprint_defined": false
+    }
+  ],
+  "rules": {
+    "existing_graph_is_authoritative": true,
+    "new_route_links_created": 0,
+    "all_coordinates_are_fictional": true,
+    "position_is_approximate_reference_not_GPS": true,
+    "coordinate_proximity_does_not_create_road": true,
+    "character_knowledge_separate_from_world_design": true,
+    "no_player_or_npc_movement": true,
+    "no_story_time_advance": true,
+    "no_opening_hours_or_street_addresses_inferred": true,
+    "waterfront_coastline_pending": true,
+    "remote_regions_not_yet_destinations": true,
+    "travel_time_from_rough_plan_not_canon": true,
+    "scale_may_be_revised_before_approval": true,
+    "focus_area_boxes_are_not_precise_district_boundaries": true,
+    "street_network_geometry_not_yet_mapped": true
+  },
+  "planned_next_step": "Detail named street corridor shapes after reviewing neighborhood footprints; map only road connections already confirmed.",
+  "focus_area_envelopes": [
+    {
+      "id": "MB-FOCUS-RAIL",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "box": {
+        "x_min": 43,
+        "x_max": 53,
+        "y_min": 37,
+        "y_max": 51
+      },
+      "rough_envelope_km": {
+        "width": 1,
+        "height": 1.4
+      },
+      "scope": "representative development study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-MARKET",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "box": {
+        "x_min": 54,
+        "x_max": 63,
+        "y_min": 38,
+        "y_max": 49
+      },
+      "rough_envelope_km": {
+        "width": 0.9,
+        "height": 1.1
+      },
+      "scope": "representative commercial corridor study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-CROSS",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "box": {
+        "x_min": 63,
+        "x_max": 69,
+        "y_min": 39,
+        "y_max": 45
+      },
+      "rough_envelope_km": {
+        "width": 0.6,
+        "height": 0.6
+      },
+      "scope": "public plaza and surrounding pedestrian study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-TERM",
+      "location_id": "LOC-TRANSIT-TERMINAL",
+      "box": {
+        "x_min": 66,
+        "x_max": 71,
+        "y_min": 40,
+        "y_max": 45
+      },
+      "rough_envelope_km": {
+        "width": 0.5,
+        "height": 0.5
+      },
+      "scope": "terminal interface and access study zone, not platforms",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-HARBOR",
+      "location_id": "LOC-HARBOR-WALK",
+      "box": {
+        "x_min": 68,
+        "x_max": 77,
+        "y_min": 32,
+        "y_max": 42
+      },
+      "rough_envelope_km": {
+        "width": 0.9,
+        "height": 1
+      },
+      "scope": "linear public waterfront study zone, not an industrial port boundary",
+      "boundary_confirmed": false
+    }
+  ]
+}
