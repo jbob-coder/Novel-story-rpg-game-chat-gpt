@@ -14,6 +14,16 @@ The owner rejected the previous narration as **a report about what happened, rat
 - Respect player agency. Jack's typed messages, collar speech, inner feelings, choices and unrequested acts **belong to the player**. Describe the user's selected acts and external consequences only.
 - Preserve exact user and visible narrator text in the chapter transcript. Do not rewrite the first two historical turns silently. The next played turn must be staged, committed and read back under D-028 before presenting it.
 
+## Aclaración 2026-11-12 — Desarrollo continuo de una acción, sin interrupciones artificiales
+
+Una acción del jugador puede justificar **varios compases de narración** y reacciones encadenadas: el comerciante busca una pieza, llega una llamada que debe atender, recuerda una entrega pendiente, propone una alternativa, y la situación cambia naturalmente. No cortar para pedir permiso después de cada gesto del NPC o transición ordinaria. Dramatizar el proceso y sus variaciones, no dar una lista de resultados ya resueltos.
+
+Preparar la escena con la información **ya existente** del lugar y de sus actores: personalidad cualitativa, objetivos, experiencias, relaciones, disponibilidad no supuesta, conocimientos, compromisos y contexto. No crear una tienda o persona establecida retroactivamente solo para justificar la respuesta; si el lugar no existe todavía, distinguir preparación editorial de hechos del mundo. Evitar «PNJ programado» y también «evento aleatorio obligatorio».
+
+Los secundarios pueden responder, continuar sus tareas, dialogar y tomar iniciativas propias durante la misma escena; Jack **no** recibe diálogos, pensamientos, emociones, asentimientos ni nuevas decisiones inventadas. El narrador puede completar desplazamientos y pasos rutinarios implicados por la orden, pero frena naturalmente si haría falta que Jack elija un precio, responda a una pregunta decisiva, revele algo, asuma riesgos o cambie su intención. La ausencia de opciones numeradas no impide detenerse ante una decisión real.
+
+Antes de finalizar, preguntar: ¿la acción recibió un desarrollo proporcional y una conclusión o pausa natural?, ¿los secundarios tuvieron causalidad y personalidad?, ¿el lector pudo intervenir en las decisiones sustanciales?, ¿el mundo persiste sin hechos fabricados y sin tiempo que transcurra entre mensajes? Registrar hechos y tiempo del turno solo después de resolver la escena y validarla. Ver [CONTINUOUS_SCENE_FLOW_20261112.md](CONTINUOUS_SCENE_FLOW_20261112.md).
+
 ## D-048 — Extensión y profundidad adaptativas (preferencia del propietario, 2026-11-10)
 
 **Objetivo:** evitar que una orden con varias acciones relevantes se resuelva como una secuencia abreviada de resultados. La escena debe permitir que el lector experimente el tiempo, las interacciones y la resolución material de lo que pidió, sin inventar decisiones nuevas de Jack.
