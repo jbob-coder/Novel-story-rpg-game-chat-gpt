@@ -86,3 +86,23 @@ La función verifyStateChanges comprueba la unicidad de objetos, ubicación de o
 ## D-047 — recursos cualitativos causales
 
 El campo `resources` se puede actualizar en el evento del propio actor mediante objetos completos `before` y `after`; el motor comprueba precondiciones, valida la secuencia causal y rechaza discrepancias en el estado final. Esto permite registrar, por ejemplo, la resolución del reloj de Rosa sin tratar su reparación como un texto efímero. No afecta atributos RPG ni permite cambiar recursos de otro actor sin su propio evento. El estado de Aster se conserva como modificación del objeto `ITEM-ASTER` mediante `inventory_item`; lo ensamblado no implica funciones operativas no probadas.
+
+## D-057 — encuentro social causal entre dos NPC (propuesta bajo revisión)
+Los eventos `independent_actor` pueden tener el campo **opcional**
+`social_context`, solo cuando una interacción directa y sus efectos han
+sido observados y revisados durante un turno narrativo auténtico.
+
+- `interaction_id`: ID `SOC-...` único a través de la historia.
+- `participant_ids`: dos `NPC-...` distintos, ordenados y presentes en el mundo.
+- `location_id`: lugar registrado para los dos participantes **al comenzar la interacción**; compartir un distrito no prueba una conversación.
+- `observation`: `{kind:"current_turn_observation",fact,causal_source,observer_actor_id,confirmed_by_reviewer:true}`, atribuido a uno de los participantes.
+- `transfer`: `null` o `{speaker_id,recipient_id,known_entry}`; el texto `known_entry` debe constar literalmente en el conocimiento preexistente del emisor.
+- Dos eventos del **mismo turno y día**, uno propio por NPC; el segundo incorpora en `caused_by` el ID del primero. Si hay transferencia, el evento del emisor precede al del receptor. Falta de pareja o enlace invalida el historial.
+- Las relaciones siguen como `world.actors[actor_id].relationships[other_id]`, conservando propiedades no revisadas. Cambian mediante `state_changes` en el evento **del propio actor**. Es posible un cambio unilateral.
+- La recepción de un mensaje crea un `knowledge` con `source` explícito y contenido prefijado como testimonio **no comprobado independientemente**, no una verdad omnisciente.
+
+El registro social es privado: se guarda en historial y estado, pero el capítulo
+y el transcript contienen solo texto narrado/compartido legítimamente con Jack.
+`verifySocialEventHistory` integra la verificación de grupos y procedencia en
+`verifyNarrativeSnapshot`. Las escenas sintéticas de QA jamás se usan como
+checkpoint canónico. El campo es opcional para compatibilidad con eventos previos.

@@ -2,6 +2,7 @@ import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
+import {verifySocialEventHistory} from './living_world_social.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -47,6 +48,7 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
   verifyStateChanges(snapshot);
+  verifySocialEventHistory(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -81,11 +83,20 @@ function stageNarrativeTurn(snapshot, turn) {
   const playerEvent=event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
   // D-040: every material player-side effect is an explicit, preconditioned event change.
   applyStateChanges(s,playerEvent,turn.changes??[]);
+  const firstSocialEvent=new Map();
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
     const actor=s.world.actors[item.actor_id];
     const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id]);
+    if(item.social_context!==undefined){
+      const id=item.social_context?.interaction_id;
+      check(typeof id==='string'&&id.startsWith('SOC-'),'Invalid social event context');
+      record.social_context=JSON.parse(JSON.stringify(item.social_context));
+      const previous=firstSocialEvent.get(id);
+      if(previous)record.caused_by.push(previous);
+      else firstSocialEvent.set(id,record.id);
+    }
     const before=actor.last_resolved_action==null?null:JSON.parse(JSON.stringify(actor.last_resolved_action));
     const after={event_id:record.id,day:newDay,summary:item.outcome};
     actor.last_resolved_action=after;
