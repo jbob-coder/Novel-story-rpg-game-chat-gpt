@@ -6,7 +6,7 @@ import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
-import {inspectSceneEstablishedPlaces} from './meridian_bay_locations.mjs';
+import {inspectSceneEstablishedPlaces,inspectPrebuiltMeridianBay} from './meridian_bay_locations.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
 import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
@@ -54,6 +54,7 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
+    prebuiltPublicPlaces:inspectPrebuiltMeridianBay({state,fromId:state.player.location_id}),
     observedPublicPlaces:inspectSceneEstablishedPlaces({state,fromId:state.player.location_id}),
     establishedServices:inspectEstablishedServices({state,actorIds:selected,
       weekday,minute,schedules,exceptions}),
@@ -65,7 +66,7 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
-      'City opportunity IDs are proposals, never routable established locations.',
+      'Prebuilt LOC places exist before discovery; only unresolved opportunity IDs are not routable.',
       'Existing service roles do not establish active hours or completed work.',
       'A causal assessment requires human review and a new scene observation before a world-changing result.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
