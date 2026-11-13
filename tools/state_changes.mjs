@@ -1,6 +1,7 @@
 // D-040: typed, event-backed qualitative state changes. No numerical RPG progression.
 import {validateNPCCommitments,validateNPCCommitmentChange} from './living_world_obligations.mjs';
 import {validateNPCNeeds,validateNPCNeedChange} from './living_world_needs.mjs';
+import {validateNPCServiceCases,validateNPCServiceCaseChange} from './meridian_bay_services.mjs';
 const requireFact = (ok, message) => { if (!ok) throw new Error(message); };
 const copy = value => value == null ? value : JSON.parse(JSON.stringify(value));
 const equal = (a, b) => {
@@ -94,6 +95,14 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       validateNPCNeedChange({before:change.before,after:change.after,eventId:record.id});
       actor.needs = copy(change.after);
       record.state_changes.push({actor_id: actorId,field,before:copy(change.before),after:copy(change.after)});
+    } else if (field === 'service_cases') {
+      requireFact(actorId !== state.player.id && Array.isArray(change.before)&&
+        Array.isArray(change.after),'Only NPC service cases may change');
+      requireFact(equal(actor.service_cases??[],change.before),'Stale NPC service cases');
+      validateNPCServiceCaseChange({before:change.before,after:change.after,
+        actorId,locations:state.world.locations,needs:actor.needs??[],eventId:record.id});
+      actor.service_cases=copy(change.after);
+      record.state_changes.push({actor_id:actorId,field,before:copy(change.before),after:copy(change.after)});
     } else if (field === 'independent_plan') {
       requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
@@ -157,6 +166,16 @@ function verifyStateChanges(snapshot) {
       needIds.add(need.id);
     }
   }
+  const serviceIds=new Set();
+  for(const [id,actor] of Object.entries(state.world.actors)){
+    if(actor.service_cases===undefined)continue;
+    validateNPCServiceCases(actor.service_cases,{actorId:id,
+      locations:state.world.locations,needs:actor.needs??[],eventIds:validEventIds});
+    for(const item of actor.service_cases){
+      requireFact(!serviceIds.has(item.id),'Duplicate service case ID across NPCs');
+      serviceIds.add(item.id);
+    }
+  }
   // Legacy events before D-040 are archived and not retroactively reinterpreted.
   for (const event of snapshot.events.events) {
     if (event.turn <= 6) continue;
@@ -164,7 +183,7 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','needs'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','needs','service_cases'].includes(field), 'Unknown tracked change field');
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
         continue;
