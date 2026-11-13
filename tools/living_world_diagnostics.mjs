@@ -8,6 +8,7 @@ import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from 
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
+import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -52,6 +53,10 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
+    establishedServices:inspectEstablishedServices({state,actorIds:selected,
+      weekday,minute,schedules,exceptions}),
+    serviceCaseReview:reviewServiceCases({state,actorIds:selected,
+      targetDay:state.time.day+elapsedDays}),
     qualitativeNeeds:reviewNPCNeeds({state,actorIds:selected,
       targetDay:state.time.day+elapsedDays}),
     causalDecisionAssessments:assessNPCDecisions({state,actorIds:selected,elapsedMinutes,
@@ -59,6 +64,7 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
       'City opportunity IDs are proposals, never routable established locations.',
+      'Existing service roles do not establish active hours or completed work.',
       'A causal assessment requires human review and a new scene observation before a world-changing result.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
       'No activity advances when the chat is inactive.']
