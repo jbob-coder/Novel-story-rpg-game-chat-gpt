@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "id": "MB-DISTRICT-BLUEPRINT-20261112",
+  "purpose": "world_preparation_before_player_visit",
+  "authority": "draft_design_not_in_canonical_checkpoint",
+  "source_files": [
+    "game/STATE.json",
+    "game/STARTING_LOCATIONS.md",
+    "game/STARTING_CAST.md",
+    "docs/01_world/MERIDIAN_BAY_ATLAS_BASIC_20261112.md"
+  ],
+  "geometry": "topological_only",
+  "coordinates": null,
+  "cardinal_directions_confirmed": false,
+  "new_canonical_locations": 0,
+  "scheduling_rule": "opening_hours_unknown",
+  "timing_rule": "travel_durations_not_established",
+  "city_anchor_id": "CITY-MERIDIAN-BAY",
+  "districts": [
+    {
+      "id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "concept": "barrio residencial con edificios modestos y comercio cotidiano",
+      "design_character": "Bloques habitados y puntos comunitarios; transición hacia Market Row.",
+      "confirmed_edges": [
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-WILSON-APARTMENT"
+      ],
+      "detail_priority": "high"
+    },
+    {
+      "id": "LOC-COMMERCIAL-DISTRICT",
+      "concept": "corredor de comercios, entregas y oficios",
+      "design_character": "Actividad de proveedores y repartidores; conexión urbana entre Railgarden, plaza y frente marítimo.",
+      "confirmed_edges": [
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-HARBOR-WALK",
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-CAFE-BRUMA"
+      ],
+      "detail_priority": "high"
+    },
+    {
+      "id": "LOC-CROSSWATER-PLAZA",
+      "concept": "espacio público de tránsito",
+      "design_character": "Paneles informativos, bancas, comercios de borde y entrada acristalada al terminal.",
+      "confirmed_edges": [
+        "LOC-TRANSIT-TERMINAL",
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-HARBOR-WALK"
+      ],
+      "detail_priority": "medium"
+    },
+    {
+      "id": "LOC-TRANSIT-TERMINAL",
+      "concept": "conexiones de autobús y tren",
+      "design_character": "Zona de transferencia con operación sujeta a servicio, personal y demoras reales.",
+      "confirmed_edges": [
+        "LOC-CROSSWATER-PLAZA"
+      ],
+      "detail_priority": "medium"
+    },
+    {
+      "id": "LOC-HARBOR-WALK",
+      "concept": "paseo público hacia el litoral",
+      "design_character": "Circulación peatonal y vistas de la actividad portuaria, sin presumir acceso a instalaciones industriales.",
+      "confirmed_edges": [
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "detail_priority": "medium"
+    },
+    {
+      "id": "LOC-WILSON-APARTMENT",
+      "concept": "vivienda compartida de Jack, Elena y Rosa",
+      "design_character": "Acceso doméstico a Railgarden y al espacio de trabajo de Jack; interior no rediseñado.",
+      "confirmed_edges": [
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-WILSON-WORKSHOP"
+      ],
+      "detail_priority": "existing_no_expansion"
+    },
+    {
+      "id": "LOC-WILSON-WORKSHOP",
+      "concept": "taller doméstico de Jack y proyecto Aster",
+      "design_character": "Conexión únicamente con el hogar, no salida directa a las calles.",
+      "confirmed_edges": [
+        "LOC-WILSON-APARTMENT"
+      ],
+      "detail_priority": "existing_no_expansion"
+    },
+    {
+      "id": "LOC-CAFE-BRUMA",
+      "concept": "cafetería establecida en Market Row",
+      "design_character": "Acceso desde Market Row; distribución interior ya narrada tiene precedencia.",
+      "confirmed_edges": [
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "detail_priority": "existing_no_expansion"
+    }
+  ],
+  "prepared_sites": [
+    {
+      "id": "MB-DES-RAIL-01",
+      "name": "Patio comunitario de Railgarden",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "kind": "public_space",
+      "role": "Punto de reunión cotidiana y acceso entre viviendas.",
+      "relative_placement": "En el tejido residencial; la dirección exacta no está fijada.",
+      "access": "public_proposed",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-RAIL-02",
+      "name": "Abarrotes de Railgarden",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "kind": "retail",
+      "role": "Compra de suministros domésticos, sin inventario ni precios establecidos.",
+      "relative_placement": "A escala barrial, antes de incorporarse al corredor comercial de Market Row.",
+      "access": "business_access_unknown",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-RAIL-03",
+      "name": "Punto de encuentro vecinal",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "kind": "community_service",
+      "role": "Actividades de barrio y posibles entregas vecinales.",
+      "relative_placement": "Dentro de Railgarden, sin dirección ni horario asignados.",
+      "access": "access_unknown",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-RAIL-04",
+      "name": "Corredor hacia la enseñanza",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "kind": "unmapped_access_reference",
+      "role": "Referencia futura para el recorrido de Elena hacia la escuela; no afirma el campus ni su llegada.",
+      "relative_placement": "Trayecto todavía sin conexión directa confirmada; no crear un LOC-ESCUELA.",
+      "access": "route_unknown",
+      "character_link": "NPC-004"
+    },
+    {
+      "id": "MB-DES-MARKET-01",
+      "name": "Local técnico de Noah Vale",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "kind": "repair_components_shop",
+      "role": "Propuesta de emplazamiento del negocio de reparación y componentes ya atribuido a Noah.",
+      "relative_placement": "En Market Row, pero la ubicación concreta y el nombre comercial siguen abiertos.",
+      "access": "business_access_unknown",
+      "character_link": "NPC-006"
+    },
+    {
+      "id": "MB-DES-MARKET-02",
+      "name": "Patio de entregas de Market Row",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "kind": "courier_handoff",
+      "role": "Posible destino de intercambio entre comercios y mensajeros, sin confirmar destinatarios.",
+      "relative_placement": "En el corredor de abastecimiento comercial; acceso de vehículos no detallado.",
+      "access": "access_unknown",
+      "character_link": "NPC-003"
+    },
+    {
+      "id": "MB-DES-MARKET-03",
+      "name": "Pasaje de oficios",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "kind": "workshops_retail",
+      "role": "Concentración propuesta de pequeños talleres y comercio relacionado.",
+      "relative_placement": "En Market Row, sin inventar fachadas, direcciones o conexión con Café Bruma.",
+      "access": "access_unknown",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-MARKET-04",
+      "name": "Zona de puestos de Market Row",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "kind": "retail_stalls",
+      "role": "Actividad de vendedores ya compatible con la descripción genérica de la zona.",
+      "relative_placement": "Junto al flujo peatonal/comercial; sin fijar qué puestos abren.",
+      "access": "business_access_unknown",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-CROSS-01",
+      "name": "Área de paneles de Crosswater",
+      "anchor_id": "LOC-CROSSWATER-PLAZA",
+      "kind": "existing_public_feature",
+      "role": "Paneles públicos de rutas establecidos en la plaza; subzona de referencia, no nueva instalación.",
+      "relative_placement": "Dentro de Crosswater Plaza, con el terminal contiguo.",
+      "access": "public_area_known",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-CROSS-02",
+      "name": "Borde de pequeños comercios de Crosswater",
+      "anchor_id": "LOC-CROSSWATER-PLAZA",
+      "kind": "existing_general_feature",
+      "role": "Agrupación de tiendas/puestos descritos previamente sin nombres individuales ni horarios.",
+      "relative_placement": "En el contorno peatonal de la plaza.",
+      "access": "individual_business_access_unknown",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-TERM-01",
+      "name": "Vestíbulo de transferencias",
+      "anchor_id": "LOC-TRANSIT-TERMINAL",
+      "kind": "terminal_subarea",
+      "role": "Área funcional propuesta para la conexión entre buses y trenes, no un andén específico.",
+      "relative_placement": "Dentro del terminal contiguo a Crosswater Plaza.",
+      "access": "transit_access_unknown",
+      "character_link": "NPC-001"
+    },
+    {
+      "id": "MB-DES-HARBOR-01",
+      "name": "Tramo de contemplación del puerto",
+      "anchor_id": "LOC-HARBOR-WALK",
+      "kind": "public_walkway_subarea",
+      "role": "Punto conceptual de vista al puerto activo sin acceso implícito a muelles industriales.",
+      "relative_placement": "Sobre el paseo público hacia el frente marítimo.",
+      "access": "public_proposed",
+      "character_link": null
+    },
+    {
+      "id": "MB-DES-HARBOR-02",
+      "name": "Cruce entre paseo y comercios",
+      "anchor_id": "LOC-HARBOR-WALK",
+      "kind": "transition_subarea",
+      "role": "Conexión peatonal ya representada por Harbor Walk ↔ Market Row, sin calle nueva.",
+      "relative_placement": "En la unión topológica con Market Row, sin coordenadas.",
+      "access": "public_proposed",
+      "character_link": null
+    }
+  ],
+  "construction_rules": {
+    "design_precedes_discovery": true,
+    "design_does_not_imply_player_knowledge": true,
+    "prepared_site_location_ids": null,
+    "prepared_sites_are_not_routable": true,
+    "actor_presence_not_implied": true,
+    "events_not_created": true,
+    "player_turn_not_advanced": true,
+    "no_intrusions_in_other_agent_branches": true,
+    "canon_integration_requires_review": true
+  }
+}
