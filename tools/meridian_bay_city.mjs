@@ -57,9 +57,12 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
     .map(o=>{
       const established=Object.values(state.world.locations).find(loc=>
         loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor&&
-        typeof loc.established_event_id==='string');
-      return {...o,status:established?'established_by_scene':'proposed_not_canon',
+        (typeof loc.established_event_id==='string'||
+         typeof loc.world_design_id==='string'));
+      const prebuilt=typeof established?.world_design_id==='string';
+      return {...o,status:prebuilt?'prebuilt_world':established?'established_by_scene':'proposed_not_canon',
         locationId:established?.id??null,
+        worldDesignId:established?.world_design_id??null,
         establishmentEventId:established?.established_event_id??null,
         openingHours:null,travelMinutes:null,
         verifiedAccessible:established?.access_status==='public_confirmed'&&
@@ -69,7 +72,8 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
   rules:['A proposal never becomes a location without a reviewed narrative event.',
    'Proposals do not imply a weekday, school address, opening hour or travel duration.',
    'A related actor may consider an opportunity; this is not proof of attendance or contact.',
-   'An observed public place is established by an archived event, but its hours, staff and inventory remain unknown.']
+   'A world-designed place already exists before any player visit; observation only changes what Jack knows.',
+   'Opening hours, staff presence and inventory remain unknown unless independently documented.']
  });
 }
 export function proposalsForActor({state,actorId}={}){
