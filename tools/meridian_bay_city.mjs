@@ -1,6 +1,9 @@
-// Meridian Bay service and encounter opportunities for the narrator.
-// Anchors are existing canonical locations. Proposed facilities are NOT new
-// LOC records, routable destinations, proven opening hours or story events.
+import {readFileSync} from 'node:fs';
+const PREBUILT=JSON.parse(readFileSync(
+ new URL('../game/MERIDIAN_BAY_PREBUILT.json',import.meta.url),'utf8'));
+// Meridian Bay districts and opportunities for the narrator.
+// Authored places exist before player observation; a pending opportunity is
+// NOT an established place. Schedules, NPC presence and inventories are unknown.
 const AREA_CATALOG=Object.freeze([
  {anchor:'LOC-RAILGARDEN-RESIDENTIAL',role:'residential',
   opportunities:[
@@ -48,19 +51,21 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
  const catalog=AREA_CATALOG.filter(a=>anchorId===null||a.anchor===anchorId)
  .filter(a=>Object.hasOwn(state.world.locations,a.anchor));
  return copy({
-  classification:'narrator_private_proposals',
+  classification:'narrator_private_world_and_proposals',
   areas:catalog.map(area=>({
    anchorId:area.anchor,confirmedName:state.world.locations[area.anchor].name,
    knownConnections:[...(state.world.locations[area.anchor].connected_ids??[])],
    role:area.role,
    opportunities:area.opportunities.filter(o=>actorId===null||o.relatedActors.includes(actorId))
     .map(o=>{
-      const established=Object.values(state.world.locations).find(loc=>
-        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor&&
-        (typeof loc.established_event_id==='string'||
-         typeof loc.world_design_id==='string'));
+      const existing=Object.values(state.world.locations).find(loc=>
+        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor);
+      const authored=PREBUILT.places.find(loc=>
+        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor);
+      const established=existing??authored;
       const prebuilt=typeof established?.world_design_id==='string';
-      return {...o,status:prebuilt?'prebuilt_world':established?'established_by_scene':'proposed_not_canon',
+      return {...o,status:prebuilt?'prebuilt_world':
+        established?'established_by_scene':'proposed_not_canon',
         locationId:established?.id??null,
         worldDesignId:established?.world_design_id??null,
         establishmentEventId:established?.established_event_id??null,
@@ -69,7 +74,7 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
           established?.public_area===true};
     })
   })),
-  rules:['A proposal never becomes a location without a reviewed narrative event.',
+  rules:['Authored places preexist player observation; a pending proposal has not been approved as a place.',
    'Proposals do not imply a weekday, school address, opening hour or travel duration.',
    'A related actor may consider an opportunity; this is not proof of attendance or contact.',
    'A world-designed place already exists before any player visit; observation only changes what Jack knows.',

@@ -88,18 +88,27 @@ test('same-location actors are only possible contacts; no conversation or knowle
  assert.equal(contacts[0].knowledgeShared,false);
  assert.equal(JSON.stringify(state),before);
 });
-test('catalog expands four districts and two established service anchors as PROPOSALS only',()=>{
- const city=inspectMeridianBay({state});
- assert.equal(city.classification,'narrator_private_proposals');
- assert.equal(city.areas.length,6);
- assert.equal(city.areas.flatMap(x=>x.opportunities).length,18);
- assert.ok(city.areas.every(a=>Object.hasOwn(state.world.locations,a.anchorId)));
- assert.ok(city.areas.every(a=>JSON.stringify(a.knownConnections)===
-   JSON.stringify(state.world.locations[a.anchorId].connected_ids)));
- assert.ok(city.areas.flatMap(a=>a.opportunities).every(o=>
-   o.status==='proposed_not_canon'&&o.locationId===null&&
-   o.openingHours===null&&o.travelMinutes===null&&o.verifiedAccessible===false));
- assert.equal(Object.keys(state.world.locations).length,9);
+test('catalog distinguishes six prebuilt places from unresolved district opportunities',()=>{
+  const city=inspectMeridianBay({state});
+  assert.equal(city.classification,'narrator_private_world_and_proposals');
+  assert.equal(city.areas.length,6);
+  const all=city.areas.flatMap(x=>x.opportunities);
+  assert.equal(all.length,18);
+  assert.ok(city.areas.every(a=>Object.hasOwn(state.world.locations,a.anchorId)));
+  assert.ok(city.areas.every(a=>JSON.stringify(a.knownConnections)===
+    JSON.stringify(state.world.locations[a.anchorId].connected_ids)));
+  const prebuilt=all.filter(o=>o.status==='prebuilt_world');
+  const pending=all.filter(o=>o.status==='proposed_not_canon');
+  assert.equal(prebuilt.length,6);
+  assert.equal(pending.length,12);
+  assert.ok(prebuilt.every(o=>o.locationId?.startsWith('LOC-')&&
+    o.worldDesignId==='MB-PREBUILT-20261112-V2'&&
+    o.openingHours===null&&o.travelMinutes===null&&
+    o.verifiedAccessible===true));
+  assert.ok(pending.every(o=>o.locationId===null&&o.openingHours===null&&
+    o.travelMinutes===null&&o.verifiedAccessible===false));
+  // No silent modification of the played checkpoint.
+  assert.equal(Object.keys(state.world.locations).length,9);
 });
 test('school and neighbor remain unlocated even when city opportunities are discoverable',()=>{
  const elena=proposalsForActor({state,actorId:'NPC-004'});

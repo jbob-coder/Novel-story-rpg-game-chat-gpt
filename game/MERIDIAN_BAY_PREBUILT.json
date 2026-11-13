@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "world_design_id": "MB-PREBUILT-20261112-V1",
+  "world_design_id": "MB-PREBUILT-20261112-V2",
   "authority": "owner_delegated_worldbuilding",
-  "editorial_status": "proposed_for_integration_not_saved_story",
+  "editorial_status": "approved_as_prebuilt_design_on_review_branch_not_added_to_saved_checkpoint",
   "purpose": "locations_preexist_player_discovery",
   "base_city": "CITY-MERIDIAN-BAY",
-  "details_policy": "exterior_and_public_function_only_interiors_on_visit",
+  "details_policy": "preauthored exterior role and access; interiors deferred until needed",
   "people_policy": "no_new_npcs_no_automatic_presence",
   "times_policy": "opening_hours_and_travel_minutes_unknown",
   "places": [
@@ -22,7 +22,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-MARKET-PARTS",
       "related_actor_id": "NPC-006",
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -39,9 +39,83 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-RAIL-FOOD",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
+      "opening_hours": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "LOC-RAILGARDEN-CLINIC",
+      "name": "Centro de atención de Railgarden",
+      "type": "community_health_center",
+      "description": "Centro sanitario de proximidad para consultas y cuidados ordinarios del barrio, con acceso para usuarios pero sin médicos, turnos ni servicios específicos asignados.",
+      "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "connected_ids": [
+        "LOC-RAILGARDEN-RESIDENTIAL"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-RAIL-CARE",
+      "related_actor_id": null,
+      "world_design_id": "MB-PREBUILT-20261112-V2",
+      "opening_hours": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "LOC-MARKET-DELIVERY-POINT",
+      "name": "Punto de recepción de Market Row",
+      "type": "commercial_delivery_hub",
+      "description": "Punto comercial para recepción, clasificación y retiro ordinario de paquetes; no demuestra que el destinatario de Darius ni una entrega concreta estén aquí.",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "connected_ids": [
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-MARKET-DELIVERY",
+      "related_actor_id": null,
+      "world_design_id": "MB-PREBUILT-20261112-V2",
+      "opening_hours": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "LOC-MARKET-CULTURE-PASSAGE",
+      "name": "Pasaje creativo de Market Row",
+      "type": "creative_commerce_passage",
+      "description": "Pasaje de comercio cultural y exhibiciones a pequeña escala; su actividad es posible sin implicar un evento, una tienda abierta ni la asistencia de Elena.",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "connected_ids": [
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-MARKET-COMMUNITY",
+      "related_actor_id": null,
+      "world_design_id": "MB-PREBUILT-20261112-V2",
+      "opening_hours": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "LOC-MARKET-BUSINESS-OFFICES",
+      "name": "Galería de servicios de Market Row",
+      "type": "commercial_services_arcade",
+      "description": "Frente de pequeños servicios y oficinas con entrada peatonal desde Market Row; no se asignan empresas concretas, personal ni horarios.",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "connected_ids": [
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-MARKET-SERVICES",
+      "related_actor_id": null,
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     }
-  ]
+  ],
+  "access_semantics": "public_confirmed means an identifiable public-facing access path exists, not that the business is open, staffed, stocked or currently safe.",
+  "story_progression_policy": "no automatic player travel, NPC meetings, purchases, or story time between user inputs",
+  "district_coverage": {
+    "LOC-RAILGARDEN-RESIDENTIAL": 2,
+    "LOC-COMMERCIAL-DISTRICT": 4
+  }
 }

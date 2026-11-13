@@ -163,3 +163,10 @@ si el trayecto respeta la conexión anclada. El checkpoint verifica los
 efectos y que las citas estén en la transcripción preservada del turno.
 Un registro sin evento, enlace o evidencia literal válida se rechaza.
 La ruta de verificación conserva compatibilidad con todos los turnos legados.
+
+
+## D-061 — lugares preexistentes; descubrimiento no crea el mundo (sustituye D-060)
+
+La regla D-060 que obligaba a crear `LOC-*` **dentro de un evento del jugador** queda sustituida por decisión explícita del propietario. La geografía se prepara y documenta **antes** de los movimientos de Jack en `game/MERIDIAN_BAY_PREBUILT.json` y está disponible para el narrador con `inspectPrebuiltMeridianBay`. Cada entrada tiene ID de lugar, barrio ancla, descripción, función, enlace existente, ID de diseño y oportunidad de origen. La preparación de una copia en memoria mediante `prepareMeridianBayWorld` es determinista, no mueve personajes ni tiempo, no produce eventos y no modifica el checkpoint original en el catálogo de consulta.
+
+`turn.location_discoveries` se mantiene como nombre de compatibilidad para **observaciones**, no adiciones geográficas. El motor exige que el destino **ya exista** y que la observación se sustente literalmente en la escena; emite un cambio `knowledge` del jugador, sin `world_location` ni `world_location_link`. Tales campos anteriores se rechazan en nuevos eventos. El estado de lugar **no es conocimiento automático del jugador**. Un local público puede estar cerrado, sin personal o sin artículos disponibles; no inventar horarios, destinos escolares ni encuentros. Esta enmienda no reescribe eventos históricos ni añade un turno real; nuevas ubicaciones de mundo se integran solo tras revisión separada del catálogo y verificación de la persistencia.

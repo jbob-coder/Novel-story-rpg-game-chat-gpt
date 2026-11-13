@@ -55,6 +55,10 @@ function catalogAgainstState(state){
 export function prepareMeridianBayWorld({state}={}){
  const places=catalogAgainstState(state);
  const draft=copy(state),locations=draft.world.locations;
+ requireFact(draft.world.prebuilt_design_id===undefined||
+  draft.world.prebuilt_design_id===authored.world_design_id,
+  'Saved world design version differs from its authored catalog');
+ draft.world.prebuilt_design_id=authored.world_design_id;
  for(const place of places){
   if(has(locations,place.id))
    requireFact(equal(locations[place.id],place),
@@ -185,6 +189,17 @@ export function verifyReviewedPlaceHistory(snapshot){
  // Legacy opening checkpoint has no authored locations yet, but when present
  // they must exactly match the approved source and have reciprocal links.
  const expected=new Map(authored.places.map(place=>[place.id,place]));
+ const anyDesigned=Object.values(locations).some(loc=>
+  loc?.world_design_id===authored.world_design_id);
+ if(anyDesigned||state.world.prebuilt_design_id!==undefined){
+  requireFact(state.world.prebuilt_design_id===authored.world_design_id,
+   'Missing or mismatched prebuilt world design version');
+  for(const place of authored.places){
+   requireFact(has(locations,place.id)&&equal(locations[place.id],place)&&
+    locations[place.parent_id]?.connected_ids?.includes(place.id),
+    'Incomplete prebuilt city catalog or district connection');
+  }
+ }
  for(const [id,loc] of Object.entries(locations)){
   if(!id.startsWith('LOC-')||id==='LOC-CROSSWATER-PLAZA'||
    id==='LOC-TRANSIT-TERMINAL'||id==='LOC-COMMERCIAL-DISTRICT'||
