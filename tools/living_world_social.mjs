@@ -154,9 +154,12 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
      typeof entry.after.bond==='string'&&entry.after.bond.trim().length>=4&&
      entry.after.latest_shared_moment===context.observation.fact&&
      (before===null?
-      typeof entry.after.relation==='string'&&entry.after.relation.trim().length>=4:
+      typeof entry.after.relation==='string'&&entry.after.relation.trim().length>=4&&
+       Object.keys(entry.after).every(k=>['relation','bond','latest_shared_moment'].includes(k)):
       Object.keys(before).every(key=>['bond','latest_shared_moment'].includes(key)||
        same(entry.after[key],before[key]))&&
+       Object.keys(entry.after).every(key=>Object.hasOwn(before,key)||
+        ['bond','latest_shared_moment'].includes(key))&&
        entry.after.relation===before.relation),
      'Social relationship update must preserve previous context and target partner');
    }
