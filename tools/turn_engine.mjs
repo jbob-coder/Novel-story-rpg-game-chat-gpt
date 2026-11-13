@@ -3,7 +3,7 @@ import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {verifySocialEventHistory} from './living_world_social.mjs';
-import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_locations.mjs';
+import {applyReviewedPlaceDiscovery,prepareMeridianBayWorld,verifyReviewedPlaceHistory} from './meridian_bay_locations.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -68,7 +68,11 @@ function stageNarrativeTurn(snapshot, turn) {
   check(turn.awards==null || (Array.isArray(turn.awards) && turn.awards.length===0), "RPG XP awards disabled (D-036)");
   check((turn.offscreen??[]).every(item=>item.awards==null || (Array.isArray(item.awards) && item.awards.length===0)), "RPG XP awards disabled (D-036)");
   const next=JSON.parse(JSON.stringify(snapshot));
-  const {state:s,manifest:m,events:e}=next;
+  const {manifest:m,events:e}=next;
+  // The authored city is loaded before resolving the player's action, not
+  // spawned by a visit. It does not itself advance time or log a player act.
+  next.state=prepareMeridianBayWorld({state:next.state});
+  const s=next.state;
   s.history.completed_turn_keys??=[];
   check(!s.history.completed_turn_keys.includes(turn.key),"Duplicate turn key: action already saved");
   const newDay=s.time.day+turn.elapsed_days;
@@ -83,9 +87,8 @@ function stageNarrativeTurn(snapshot, turn) {
     return rec;
   }
   const playerEvent=event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
-  // D-060: a new publicly visitable place must first be established in this
-  // exact narrated player scene. Then a separate actor-location effect may
-  // legally move Jack to it through the newly confirmed anchor edge.
+  // D-061: the map already exists independently of Jack. A narrated visit
+  // can confirm his knowledge of a place, never create that place or route.
   applyReviewedPlaceDiscovery({state:s,event:playerEvent,
     discoveries:turn.location_discoveries??[],
     narrationMessages:turn.narration_messages});
