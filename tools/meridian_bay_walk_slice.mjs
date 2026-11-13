@@ -25,14 +25,25 @@ const EDGE_HINTS = Object.freeze([
 ]);
 const edgeHint=(a,b)=>EDGE_HINTS.find(([x,y])=>(x===a&&y===b)||(x===b&&y===a));
 
-export function previewMeridianBayWalk({state,destinationId='LOC-CROSSWATER-PLAZA'}={}) {
+export function previewMeridianBayWalk({state,destinationId='LOC-CROSSWATER-PLAZA',waypoints=[]}={}) {
   if (!state?.world?.locations || !state?.world?.actors || !state?.player?.location_id)
     throw new Error('Saved world and player location required');
+  if (!Array.isArray(waypoints) || waypoints.length>8 ||
+      !waypoints.every(id=>typeof id==='string' && id.startsWith('LOC-')))
+    throw new Error('Invalid route waypoints');
   const originId=state.player.location_id;
-  const route=worldRoute(state,originId,destinationId);
-  if (!route) return {
+  // Ordered, caller-supplied waypoints constrain the preview, never Jack's actions.
+  // Stitch verified graph legs rather than assuming adjacency or teleportation.
+  const route=[originId];
+  let reachable=true;
+  for (const stopId of [...waypoints,destinationId]) {
+    const leg=worldRoute(state,route.at(-1),stopId);
+    if (!leg) {reachable=false;break;}
+    route.push(...leg.slice(1));
+  }
+  if (!reachable) return {
     classification:'narrator_private_proposal',status:'unreachable',
-    originId,destinationId,route:null,segments:[],estimatedWalkingMinutes:null,
+    originId,destinationId,waypoints:[...waypoints],route:null,segments:[],estimatedWalkingMinutes:null,
     activities:[],npcCandidates:[],requiresPlayerAction:true,actionCompleted:false
   };
   const segments=route.slice(1).map((to,i)=>{
@@ -59,7 +70,7 @@ export function previewMeridianBayWalk({state,destinationId='LOC-CROSSWATER-PLAZ
         requiresFreshObservation:true,encounterOccurred:false};
     });
   return {classification:'narrator_private_proposal',status:'route_available',
-    originId,destinationId,route,segments,estimatedWalkingMinutes,activities,npcCandidates,
+    originId,destinationId,waypoints:[...waypoints],route,segments,estimatedWalkingMinutes,activities,npcCandidates,
     requiresPlayerAction:true,actionCompleted:false,
     rules:['A preview never changes story time, position, relationships or save files.',
       'Only the reader chooses what Jack does; each completed action resolves in a saved turn.',
