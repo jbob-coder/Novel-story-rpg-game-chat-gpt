@@ -110,3 +110,17 @@ test('invalid or absent state cannot be treated as a verified city scale',()=>{
  assert.throws(()=>validateMeridianBayScalePlan({state:invalid}),
   /does not match the prepared location set|Saved city state|required|district anchor/);
 });
+
+test('five neighborhood study envelopes surround known hubs but are not boundaries',()=>{
+ const s=checkpoint(),p=inspectMeridianBayScale({state:s});
+ assert.equal(p.studyNeighborhoodEnvelopes.length,5);
+ const byId=Object.fromEntries(p.studyNeighborhoodEnvelopes.map(x=>[x.location_id,x]));
+ assert.equal(byId['LOC-RAILGARDEN-RESIDENTIAL'].rough_envelope_km.width,1.0);
+ assert.equal(byId['LOC-RAILGARDEN-RESIDENTIAL'].rough_envelope_km.height,1.4);
+ assert.equal(byId['LOC-COMMERCIAL-DISTRICT'].rough_envelope_km.width,0.9);
+ assert.equal(byId['LOC-COMMERCIAL-DISTRICT'].rough_envelope_km.height,1.1);
+ assert.ok(p.studyNeighborhoodEnvelopes.every(x=>x.boundary_confirmed===false));
+ assert.equal('LOC-WILSON-WORKSHOP' in byId,false);
+ assert.equal('LOC-SCHOOL-UNMAPPED' in byId,false);
+ assert.equal(validateMeridianBayScalePlan({state:s}),true);
+});
