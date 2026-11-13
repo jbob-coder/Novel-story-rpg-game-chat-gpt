@@ -102,7 +102,7 @@ test('catalog distinguishes six prebuilt places from unresolved district opportu
   assert.equal(prebuilt.length,6);
   assert.equal(pending.length,12);
   assert.ok(prebuilt.every(o=>o.locationId?.startsWith('LOC-')&&
-    o.worldDesignId==='MB-PREBUILT-20261112-V1'&&
+    o.worldDesignId==='MB-PREBUILT-20261112-V2'&&
     o.openingHours===null&&o.travelMinutes===null&&
     o.verifiedAccessible===true));
   assert.ok(pending.every(o=>o.locationId===null&&o.openingHours===null&&
