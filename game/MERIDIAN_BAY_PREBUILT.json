@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "world_design_id": "MB-PREBUILT-20261112-V1",
+  "world_design_id": "MB-PREBUILT-20261112-V2",
   "authority": "owner_delegated_worldbuilding",
   "editorial_status": "approved_as_prebuilt_design_on_review_branch_not_added_to_saved_checkpoint",
   "purpose": "locations_preexist_player_discovery",
@@ -22,7 +22,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-MARKET-PARTS",
       "related_actor_id": "NPC-006",
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -39,7 +39,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-RAIL-FOOD",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -56,7 +56,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-RAIL-CARE",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -73,7 +73,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-MARKET-DELIVERY",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -90,7 +90,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-MARKET-COMMUNITY",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     },
@@ -107,7 +107,7 @@
       "access_status": "public_confirmed",
       "origin_opportunity_id": "BAY-MARKET-SERVICES",
       "related_actor_id": null,
-      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "world_design_id": "MB-PREBUILT-20261112-V2",
       "opening_hours": null,
       "travel_minutes": null
     }
