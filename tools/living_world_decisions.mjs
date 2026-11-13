@@ -58,6 +58,8 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
    recordedPlan:actor.independent_plan,
    recordedConditions:copy(actor.conditions??[]),
    recordedResourceKeys:Object.keys(actor.resources??{}),
+   recordedResources:copy(actor.resources??{}),
+   recordedCommitments:copy(actor.commitments??[]),
    candidateId:candidate.id,
    currentDay:state.time.day,
    reviewDay:intent.timeOfReview
@@ -96,6 +98,8 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
    objective:intent.objective,kind:candidate.kind,
    obligationId:candidate.obligationId??null,
    source,blockingEvidence:blockers,unknowns:gaps,
+   reviewContext:copy({elapsedMinutes,elapsedDays,nextPeriod,weekday,minute,
+     schedules,exceptions}),
    alternatives,competition:alternatives.length>0?
     'Competing responsibilities require priority and time review':'none_selected',
    allowedConclusions:CONCLUSIONS.filter(x=>
@@ -131,6 +135,11 @@ export function draftReviewedNPCDecision({state,assessment,conclusion,
   JSON.stringify(assessment.source?.recordedResourceKeys)===JSON.stringify(Object.keys(actor.resources??{}))&&
   assessment.source?.currentDay===state.time.day,
   'Stale NPC decision assessment');
+ const current=assessNPCDecisions({state,actorIds:[assessment.actorId],
+   ...assessment.reviewContext,limit:8})
+   .find(x=>x.candidateId===assessment.candidateId);
+ requireFact(current&&JSON.stringify(current)===JSON.stringify(assessment),
+  'Assessment changed or cannot be reproduced from the current checkpoint');
  requireFact(Array.isArray(assessment.allowedConclusions)&&
   assessment.allowedConclusions.includes(conclusion),'Conclusion forbidden by saved constraints');
  requireFact(Array.isArray(observations)&&observations.length<=10&&
