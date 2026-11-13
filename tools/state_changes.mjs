@@ -183,7 +183,29 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','needs','service_cases'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','needs','service_cases','world_location','world_location_link'].includes(field), 'Unknown tracked change field');
+      if(field==='world_location'||field==='world_location_link'){
+        requireFact(event.kind==='player_action'&&change.actor_id===state.player.id,
+          'Only observed player-scene events can establish world places');
+        const placeId=field==='world_location'?change.location_id:change.anchor_id;
+        requireFact(typeof placeId==='string'&&Object.hasOwn(state.world.locations,placeId)&&
+          Object.hasOwn(change,'before')&&Object.hasOwn(change,'after'),
+          'World location effect requires an established place and before/after');
+        if(field==='world_location')
+          requireFact(change.before===null&&change.after?.id===placeId&&
+            change.after?.established_event_id===event.id,
+            'New place requires exact creation event');
+        else requireFact(Array.isArray(change.before)&&Array.isArray(change.after)&&
+          change.after.length===change.before.length+1&&
+          change.after.slice(0,-1).every((v,i)=>v===change.before[i]),
+          'World connection changes must append exactly one reviewed link');
+        const key=`WORLD|${field}|${placeId}`;
+        if(seen.has(key))
+          requireFact(equal(seen.get(key),change.before),
+            'World location history precondition mismatch');
+        seen.set(key,copy(change.after));
+        continue;
+      }
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
         continue;
@@ -197,7 +219,11 @@ function verifyStateChanges(snapshot) {
   for (const [key, expected] of seen) {
     const [actorId, field, extra] = key.split('|'), actor = actorAt(state, actorId);
     let actual;
-    if (field === 'inventory_item') actual = itemAt(actor, extra);
+    if (actorId === 'WORLD' && field === 'world_location')
+      actual = state.world.locations[extra]??null;
+    else if (actorId === 'WORLD' && field === 'world_location_link')
+      actual = state.world.locations[extra]?.connected_ids??null;
+    else if (field === 'inventory_item') actual = itemAt(actor, extra);
     else if (field === 'relationship') actual = actor.relationships?.[extra] ?? null;
     else actual = actor[field] ?? null;
     requireFact(equal(actual, expected), `Saved state differs from recorded ${field} effect`);

@@ -54,12 +54,22 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
    knownConnections:[...(state.world.locations[area.anchor].connected_ids??[])],
    role:area.role,
    opportunities:area.opportunities.filter(o=>actorId===null||o.relatedActors.includes(actorId))
-    .map(o=>({...o,status:'proposed_not_canon',locationId:null,
-      openingHours:null,travelMinutes:null,verifiedAccessible:false}))
+    .map(o=>{
+      const established=Object.values(state.world.locations).find(loc=>
+        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor&&
+        typeof loc.established_event_id==='string');
+      return {...o,status:established?'established_by_scene':'proposed_not_canon',
+        locationId:established?.id??null,
+        establishmentEventId:established?.established_event_id??null,
+        openingHours:null,travelMinutes:null,
+        verifiedAccessible:established?.access_status==='public_confirmed'&&
+          established?.public_area===true};
+    })
   })),
   rules:['A proposal never becomes a location without a reviewed narrative event.',
    'Proposals do not imply a weekday, school address, opening hour or travel duration.',
-   'A related actor may consider an opportunity; this is not proof of attendance or contact.']
+   'A related actor may consider an opportunity; this is not proof of attendance or contact.',
+   'An observed public place is established by an archived event, but its hours, staff and inventory remain unknown.']
  });
 }
 export function proposalsForActor({state,actorId}={}){
