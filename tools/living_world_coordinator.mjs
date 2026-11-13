@@ -4,6 +4,7 @@ import {stageNPCResolution} from './living_world_routines.mjs';
 import {stageNarrativeTurn, verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {saveFiveFileTurn} from './save_transaction.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
+import {consumedDeferredNPCReviews,planDeferredNPCReviews} from './living_world_deferred.mjs';
 
 const ensure=(ok,message)=>{if(!ok)throw new Error(message)};
 const hasOwn=(obj,key)=>Object.prototype.hasOwnProperty.call(obj,key);
@@ -22,6 +23,9 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
   ensure(Array.isArray(npcResolutions) && npcResolutions.length<=20,'Too many NPC resolutions');
   const nextTurn=snapshot.manifest.last_completed_turn+1;
   const nextDay=snapshot.state.time.day+turn.elapsed_days;
+  // A deferred NPC intent is eligible only after its source player turn.
+  // Any remaining intent is carried forward; it is never treated as a success.
+  consumedDeferredNPCReviews({snapshot,resolutions:npcResolutions,targetTurn:nextTurn});
   const seen=new Set();
   const offscreen=npcResolutions.map((resolved,i)=>{
     ensure(resolved && resolved.reviewed===true && resolved.resolved===true &&
@@ -38,7 +42,8 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
       changes:resolved.changes??[],disclosures:[]});
     ensure(staged.status==='staged_only','Unexpected routine resolution state');
     return {actor_id:resolved.actor_id,intent:resolved.causal_basis,
-      outcome:staged.event.outcome,changes:staged.changeDrafts};
+      outcome:staged.event.outcome,changes:staged.changeDrafts,
+      ...(resolved.queued_review_id?{queued_review_id:resolved.queued_review_id}:{})};
   });
   const {elapsed_minutes, next_time_of_day, ...canonicalTurn}=turn;
   validateTemporalAdvance({currentPeriod:snapshot.state.time.time_of_day,
@@ -58,6 +63,13 @@ export function stageLivingWorldTurn({snapshot,turn,observedHead,npcResolutions=
     candidate.state.time.elapsed_minutes_since_opening_approx=before+prepared.elapsedMinutes;
   }
   if(prepared.nextTimeOfDay!==null) candidate.state.time.time_of_day=prepared.nextTimeOfDay;
+  // The player's action was staged first. Queue future NPC consideration in
+  // the SAME five-file candidate; nothing executes until a later reviewed turn.
+  candidate.state.pending.npc_review_queue=planDeferredNPCReviews({
+    before:snapshot,after:candidate,elapsedDays:turn.elapsed_days,
+    elapsedMinutes:prepared.elapsedMinutes,nextPeriod:prepared.nextTimeOfDay,
+    resolutions:npcResolutions
+  });
   verifyNarrativeSnapshot(candidate);
   return candidate;
 }
