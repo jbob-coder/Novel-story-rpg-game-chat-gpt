@@ -114,6 +114,38 @@ export function applyReviewedPlaceDiscovery({state,event,discoveries=[],
  event.state_changes.push(...emitted);
  return copy(emitted);
 }
+// Read-only visited-place overview. Established access is not an opening-hour
+// guarantee and does not establish a shopkeeper, inventory, service or receipt.
+export function inspectSceneEstablishedPlaces({state,fromId=null}={}){
+ insist(state?.world?.locations,'Saved city state required');
+ insist(fromId===null||has(state.world.locations,fromId),
+  'Unknown route origin for visitable inspection');
+ const places=Object.values(state.world.locations)
+  .filter(loc=>loc?.established_event_id!==undefined);
+ return copy(places.map(loc=>({
+  locationId:loc.id,name:loc.name,anchorId:loc.parent_id,
+  publicAccessConfirmed:loc.public_area===true&&
+   loc.access_status==='public_confirmed',
+  evidenceEventId:loc.established_event_id,
+  opportunityId:loc.origin_opportunity_id,
+  openingHours:null,travelMinutes:null,
+  route:fromId===null?null:routeWithinSavedGraph(state,fromId,loc.id)
+ })));
+}
+function routeWithinSavedGraph(state,from,end){
+ if(!from?.startsWith('LOC-')||!end?.startsWith('LOC-'))return null;
+ const queue=[[from]],seen=new Set([from]);
+ for(let i=0;i<queue.length;i++){
+  const path=queue[i],last=path.at(-1);
+  if(last===end)return path;
+  for(const to of state.world.locations[last]?.connected_ids??[]){
+   if(!to?.startsWith('LOC-')||!has(state.world.locations,to)||seen.has(to))
+    continue;
+   seen.add(to);queue.push([...path,to]);
+  }
+ }
+ return null;
+}
 export function verifyReviewedPlaceHistory(snapshot){
  insist(snapshot?.state?.world?.locations&&snapshot?.events?.events&&
   snapshot?.transcript?.entries,'Complete saved scene and event record required');
