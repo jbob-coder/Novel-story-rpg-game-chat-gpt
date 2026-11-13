@@ -12,7 +12,9 @@ export function selectRelevantNPCs({state,limit=3}={}){
   const route=worldRoute(state,player.location_id,actor.location_id);
   const open=(actor.commitments??[]).filter(x=>x.status==='pending'||x.status==='blocked');
   const needs=(actor.needs??[]).filter(x=>x.status==='active'||x.status==='blocked');
-  if(!route&&!open.length&&!needs.length)return [];
+  const serviceCases=(actor.service_cases??[]).filter(x=>
+    x.status==='open'||x.status==='blocked');
+  if(!route&&!open.length&&!needs.length&&!serviceCases.length)return [];
   const hops=route?route.length-1:null;
   const family=Array.isArray(player.family_ids)&&player.family_ids.includes(actorId);
   // Deadlines and real blockers may outrank proximity; absence of a route
@@ -29,8 +31,13 @@ export function selectRelevantNPCs({state,limit=3}={}){
       n.due_day===state.time.day?120:0)+
     (n.status==='blocked'?75:0)+
     (n.priority==='urgent'?40:n.priority==='important'?15:0)));
+  const serviceUrgency=Math.max(0,...serviceCases.map(c=>
+    (c.due_day!==null&&c.due_day<state.time.day?170:
+      c.due_day===state.time.day?115:0)+
+    (c.status==='blocked'?70:0)+
+    (c.priority==='urgent'?35:c.priority==='important'?15:0)));
   const score=(hops===null?0:Math.max(0,100-20*hops))+
-    (family?6:0)+urgency+needUrgency;
+    (family?6:0)+urgency+needUrgency+serviceUrgency;
   return [{actorId,hops,score}];
  }).sort((a,b)=>b.score-a.score||a.actorId.localeCompare(b.actorId))
   .slice(0,limit).map(({actorId})=>actorId);
