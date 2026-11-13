@@ -35,3 +35,12 @@ Noah y Darius aparecen registrados ambos dentro de Market Row. Si en un futuro t
 
 ## Continuidad D-055
 Todo el trabajo se hace en incrementos entre mensajes. Porcentaje de progreso del alcance total de Meridian Bay debe ser **aproximado y sujeto a revisión**; ni la generación de planes ni la validación de código equivalen a una simulación narrativa continua.
+
+## Resultados confirmados de la entrega
+- [GitHub Actions #43341782362](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43341782362), commit técnico `fa9b196dc69df4b0a603270e8d659f40cc4a94e5`: **222/222 pruebas Node.js**, **24/24 Python**, **0 fallos**, validador del checkpoint **PASS**. Un commit posterior solo agregó el contrato de esquema a `docs/STATE_SCHEMA.md`, sin modificar el código verificado.
+- Comprobación de GitHub por SHA de blob: los cinco archivos originales de partida (`game/SAVE_MANIFEST.json`, `game/STATE.json`, `chapters/CH-000.md`, `chapters/CH-000.events.json`, `chapters/CH-000.transcript.json`) son idénticos en rama canónica, rama D-056 y esta rama.
+- [PR #13](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/13): **abierta, en borrador, sin fusionar**, con base correcta `work/meridian-bay-causal-decisions-20261112` tras activar CI mediante una base temporal `main`. Ocho rutas nuevas/modificadas, ninguna pertenece a los cinco archivos de partida.
+- No se modificó el checkpoint original: CH-000, turno auténtico 9, día −29 por la mañana.
+
+## Progreso aproximado y bloque pendiente
+Alcance total de desarrollo de Meridian Bay según D-055: **~40–50 %** en *ramas técnicas no fusionadas*, sujeto a auditoría e integración. El módulo de relaciones e información entre NPC tiene su contrato mínimo y pruebas integrales sintéticas, pero **no** significa que los NPC ya tengan emociones complejas o rutinas continuas. Siguen pendientes: necesidades y costes cualitativos durables, relaciones más complejas/conflictos, servicios y lugares canónicos incorporados por evidencia, y prueba completa del journal autenticado de guardado y recuperación. La próxima tarea recomendada es comenzar por necesidades/costes; no por generar centenares de NPC decorativos.
