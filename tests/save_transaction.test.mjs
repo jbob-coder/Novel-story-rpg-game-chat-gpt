@@ -175,3 +175,99 @@ test('journal with no detached commit SHA blocks recovery without re-authoring t
  const r=await recoverJournaledSave({remote:g,journal,branch});
  assert.equal(r.status,'blocked');assert.match(r.reason,/Unknown commit/);assert.equal(g.created,0);
 });
+
+// Recreate only durable Git/journal storage, discarding the save result and all
+// caller-held staged text. Recovery runs in a fresh session with zero writes.
+async function verifiedSession(messages=[words]){
+ const oldGit=new FakeGit(),oldJournal=new MemoryJournal();
+ const saved=await saveFiveFileTurn({remote:oldGit,journal:oldJournal,branch,
+  chapterId:'CH-000',buildNext:args=>{
+   const next=buildNext(args);
+   if(messages.length===1&&messages[0]===words)return next;
+   return stageNarrativeTurn(args.snapshot,{key:'synthetic-multiple-messages',
+    save_guard:{observed_head:args.observedHead,previous_attempt:null},
+    intent:'Jack observa su mesa.',outcome:'El taller sigue en calma.',
+    player_text:'Observar.',narration_messages:messages,elapsed_days:0,offscreen:[]});
+  }});
+ assert.equal(saved.status,'verified');
+ const remote=new FakeGit(),journal=new MemoryJournal(),reads=[];
+ remote.head=oldGit.head;remote.commits=structuredClone(oldGit.commits);
+ journal.entries=structuredClone(oldJournal.entries);
+ const readFiles=remote.readFiles.bind(remote);
+ remote.readFiles=async(sha,paths)=>{reads.push({sha,paths});return readFiles(sha,paths)};
+ return {remote,journal,reads};
+}
+function assertNoRecoveryWrites({remote,journal},buildCount){
+ assert.equal(remote.created,0);assert.equal(remote.updated,0);
+ assert.equal(journal.writes,0);assert.equal(builds,buildCount);
+}
+test('verified journal recovers multiple literal messages after delivery/context loss',async()=>{
+ const messages=['  —¿El café? ☕\n\nUna luz tenue.  ','\nUna segunda línea.\r\nÁrbol y cafe\u0301.\n'];
+ const fixture=await verifiedSession(messages),buildCount=builds;
+ const originalJournal=structuredClone(fixture.journal.entries);
+ const originalCommits=structuredClone(fixture.remote.commits);
+ const r=await recoverJournaledSave({...fixture,branch});
+ assert.equal(r.status,'verified');assert.equal(r.attempt.percent,100);
+ assert.deepEqual(r.narration_messages,messages);
+ assert.deepEqual(fixture.reads,[{sha:newCommit,paths:savePaths('CH-000')}]);
+ assertNoRecoveryWrites(fixture,buildCount);
+ assert.deepEqual(fixture.journal.entries,originalJournal);
+ assert.deepEqual(fixture.remote.commits,originalCommits);
+});
+test('verified journal recovery is repeatable without duplicate turns or regeneration',async()=>{
+ const fixture=await verifiedSession(),buildCount=builds;
+ const first=await recoverJournaledSave({...fixture,branch});
+ const second=await recoverJournaledSave({...fixture,branch});
+ assert.deepEqual(first,second);assert.deepEqual(second.narration_messages,[words]);
+ assert.equal(fixture.reads.length,2);assertNoRecoveryWrites(fixture,buildCount);
+ const snapshot=decodeFiveFiles(fixture.remote.commits.get(newCommit),'CH-000');
+ assert.equal(snapshot.transcript.entries.filter(x=>x.turn===futureTurn&&x.role==='player').length,1);
+});
+for(const [name,mutate,reason] of [
+ ['read outage',f=>{f.remote.failReadback=true},/readback outage/],
+ ['missing file',f=>{delete f.remote.commits.get(newCommit)['chapters/CH-000.events.json']},/Missing complete save file/],
+ ['invalid JSON',f=>{f.remote.corruptReadback=true},/JSON/],
+ ['inconsistent checkpoint',f=>{
+   const files=f.remote.commits.get(newCommit),manifest=JSON.parse(files['game/SAVE_MANIFEST.json']);
+   manifest.last_event_sequence++;
+   files['game/SAVE_MANIFEST.json']=JSON.stringify(manifest);
+  },/Sequence mismatch/],
+ ['missing chapter prose',f=>{f.remote.commits.get(newCommit)['chapters/CH-000.md']='Not the saved chapter.'},/literal turn narration/],
+ ['different turn',f=>{f.journal.entries.get(branch).attempt.turn++},/saved chapter\/turn/],
+ ['different chapter',f=>{
+   f.journal.entries.get(branch).attempt.chapter_id='CH-001';
+   const files=f.remote.commits.get(newCommit);
+   for(const path of savePaths('CH-000'))files[path.replace('CH-000','CH-001')]=files[path];
+  },/saved chapter\/turn/],
+ ['invalid chapter ID',f=>{f.journal.entries.get(branch).attempt.chapter_id='../other'},/Invalid chapter ID/],
+ ['invalid turn',f=>{f.journal.entries.get(branch).attempt.turn=0},/Invalid verified journal turn/],
+ ['journal branch mismatch',f=>{f.journal.entries.get(branch).branch='work/other'},/Journal branch mismatch/],
+ ['source identity mismatch',f=>{f.journal.entries.get(branch).sourceHead=other},/commit identity mismatch/],
+ ['verified commit mismatch',f=>{f.journal.entries.get(branch).attempt.verified_head=other},/commit identity mismatch/],
+ ['missing complete evidence',f=>{delete f.journal.entries.get(branch).attempt.evidence},/complete save evidence/],
+ ['changed branch',f=>{f.remote.head=other},/disagrees with branch/],
+ ['branch changed during read',f=>{
+   const read=f.remote.readFiles;
+   f.remote.readFiles=async(...args)=>{const files=await read(...args);f.remote.head=other;return files};
+  },/moved during recovery/]
+])test('verified journal blocks '+name+' without exposing or rewriting narration',async()=>{
+ const fixture=await verifiedSession(),buildCount=builds;
+ mutate(fixture);
+ const originalJournal=structuredClone(fixture.journal.entries);
+ const r=await recoverJournaledSave({...fixture,branch});
+ assert.equal(r.status,'blocked');assert.match(r.reason,reason);
+ assert.equal(Object.hasOwn(r,'narration_messages'),false);assert.equal(r.expectedFiles,null);
+ assert.ok(r.attempt===null||r.attempt.status==='blocked');
+ assert.deepEqual(fixture.journal.entries,originalJournal);
+ assertNoRecoveryWrites(fixture,buildCount);
+});
+test('journal unavailable or absent produces a blocked recovery result',async()=>{
+ const fixture=await verifiedSession(),buildCount=builds;
+ fixture.journal.entries.clear();
+ const absent=await recoverJournaledSave({...fixture,branch});
+ assert.equal(absent.status,'blocked');assert.match(absent.reason,/No durable save attempt/);
+ fixture.journal.read=async()=>{throw Error('Journal read unavailable')};
+ const unavailable=await recoverJournaledSave({...fixture,branch});
+ assert.equal(unavailable.status,'blocked');assert.match(unavailable.reason,/Journal read unavailable/);
+ assertNoRecoveryWrites(fixture,buildCount);
+});

@@ -1,5 +1,26 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Development review — 2026-11-13
+
+Branch `work/literal-recovery-contextual-time-20261113`, based on narrative
+commit `b096f84dca1ec4e01f1a2742a67ae41688bd11d6`, adds literal recovery after
+an interrupted presentation, effective-period validation and contextual travel
+estimates persisted in events. See [recovery](RECOVERY.md) and
+[the schema](STATE_SCHEMA.md) for the interfaces and limitations.
+
+Local validation: **211/211 Node tests, 24/24 Python tests and checkpoint
+validator PASS**. Synthetic integration exercises travel, five-file save and
+fresh-session literal recovery through in-memory adapters. This does not prove
+a live GitHub journal/runtime connection. The five narrative files remain
+byte-identical to the base commit: CH-000 turn 9, Day -29 morning. No real turn
+was played. `main` and the narrative branch are not changed by this review.
+
+The workflow now also checks PRs targeting the narrative branch. Integration
+requires review; no automatic merge is authorized. Concurrent journal writers
+and global NPC commitment review remain separate follow-up work. The sections
+below retain historical milestones and are not current checkpoint pointers;
+the project is now an interactive novel with frozen legacy RPG fields.
+
 ## Goal
 ChatGPT-run Living Superhuman World with a durable, reconstructable chapter record, independent actor consequences, and an RPG skill/progression system.
 

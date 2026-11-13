@@ -36,7 +36,9 @@ test('blocked previous save prevents next opening scene',()=>{const failed=block
 test('player movement updates carried inventory and records each effect',()=>{
  const original=initial.state.player.location_id;
  const destination=original==='LOC-WILSON-WORKSHOP'?'LOC-WILSON-APARTMENT':'LOC-WILSON-WORKSHOP';
- const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],changes:[{field:'location_id',before:original,after:destination}]});
+ const x=stageNarrativeTurn(initial,{...playerTurn,offscreen:[],elapsed_minutes:0,
+  changes:[{field:'location_id',before:original,after:destination,
+   travel:{mode:'walk',elapsed_minutes:0,basis:'Brief movement inside the Wilson home.'}}]});
  assert.equal(x.state.player.location_id,destination);
  assert.ok(x.state.player.inventory.filter(item=>item.carried).every(item=>item.location_id===destination));
  assert.ok(x.events.events.at(-1).state_changes.some(c=>c.field==='inventory_item'&&c.automatic_carry));

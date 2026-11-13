@@ -144,21 +144,54 @@ test('narrative minutes and day crossings cannot contradict each other',()=>{
 });
 test('short midnight crossing is possible only from a compatible night period',()=>{
  const night=structuredClone(baseline);night.state.time.time_of_day='night';
- const x=stage({snapshot:night,turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
-  next_time_of_day:'night'},npcResolutions:[]});
- assert.equal(x.state.time.day,baseline.state.time.day+1);
- assert.equal(x.state.time.elapsed_minutes_since_opening_approx,
-  baseline.state.time.elapsed_minutes_since_opening_approx+20);
+ for(const destination of [{},{next_time_of_day:'night'}]){
+  const x=stage({snapshot:night,turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
+   ...destination},npcResolutions:[]});
+  assert.equal(x.state.time.day,baseline.state.time.day+1);
+  assert.equal(x.state.time.time_of_day,'night');
+  assert.equal(x.state.time.elapsed_minutes_since_opening_approx,
+   baseline.state.time.elapsed_minutes_since_opening_approx+20);
+ }
 });
 test('a recorded morning cannot jump to tomorrow in twenty minutes',()=>{
  assert.throws(()=>stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20,
   next_time_of_day:'morning'},npcResolutions:[]}),/Insufficient narrative minutes/);
  assert.throws(()=>stage({turn:{...turn(),elapsed_days:1,elapsed_minutes:20},
-  npcResolutions:[]}),/Impossible narrative day transition/);
+  npcResolutions:[]}),/Insufficient narrative minutes/);
 });
 test('a morning cannot remain on the same calendar day for 1400 elapsed minutes',()=>{
  assert.throws(()=>stage({turn:{...turn(),elapsed_days:0,elapsed_minutes:1400},
-  npcResolutions:[]}),/Impossible narrative day transition/);
+  npcResolutions:[]}),/Insufficient narrative minutes/);
+});
+test('omitted or null destination cannot retain morning after 700 minutes',()=>{
+ const before=JSON.stringify(baseline);
+ for(const destination of [{},{next_time_of_day:null}])
+  assert.throws(()=>stage({turn:{...turn(),elapsed_minutes:700,...destination},
+   npcResolutions:[]}),/Insufficient narrative minutes/);
+ assert.equal(JSON.stringify(baseline),before);
+});
+test('a short wait may preserve morning without inventing a clock or date',()=>{
+ const x=stage({turn:{...turn(),elapsed_minutes:20},npcResolutions:[]});
+ assert.equal(x.state.time.time_of_day,'morning');
+ assert.equal(x.state.time.day,baseline.state.time.day);
+ assert.equal(x.state.time.clock_time,null);
+ assert.equal(x.state.time.calendar_date,null);
+ assert.equal(verifyNarrativeSnapshot(x),true);
+});
+test('an impossible retained period is blocked before any remote write',async()=>{
+ let created=0,updated=0;
+ const remote={
+  async readHead(){return head},
+  async readFiles(_sha,wanted){return Object.fromEntries(wanted.map(p=>[p,originals[p]]));},
+  async createCommit(){created++;return savedHead},
+  async updateHead(){updated++;return true}
+ };
+ const result=await saveLivingWorldTurn({remote,branch:'qa/temporal-regression',
+  chapterId:'CH-000',turn:{...turn(),elapsed_minutes:700}});
+ assert.equal(result.status,'blocked');
+ assert.match(result.reason,/Insufficient narrative minutes/);
+ assert.equal(created,0);
+ assert.equal(updated,0);
 });
 test('morning to night in twenty minutes is rejected, but later transition is possible',()=>{
  assert.throws(()=>stage({turn:{...turn(),elapsed_minutes:20,

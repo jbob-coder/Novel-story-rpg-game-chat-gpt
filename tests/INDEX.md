@@ -26,4 +26,5 @@
 - [Rutinas autónomas](living_world_routines.test.mjs)
 - [Integración con acontecimientos y cinco archivos](living_world_coordinator.test.mjs)
 - [Diagnóstico y privacidad](living_world_diagnostics.test.mjs)
+- [Trayectos contextuales, referencias y recuperación literal](living_world_travel.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)

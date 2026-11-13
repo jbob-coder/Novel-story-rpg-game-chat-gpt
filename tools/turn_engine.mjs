@@ -2,6 +2,7 @@ import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
+import {verifyTravelHistory} from './living_world_travel.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -47,6 +48,7 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
   verifyStateChanges(snapshot);
+  verifyTravelHistory(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -75,6 +77,8 @@ function stageNarrativeTurn(snapshot, turn) {
     const id=`EV-${String(e.events.length+1).padStart(6,"0")}`;
     // Keep legacy field shape for validators and old event playback.
     const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
+    rec.travel_policy_version=1;
+    if(turn.elapsed_minutes!==undefined) rec.turn_elapsed_minutes=turn.elapsed_minutes;
     e.events.push(rec);logs.push(rec);
     return rec;
   }
@@ -91,7 +95,8 @@ function stageNarrativeTurn(snapshot, turn) {
     actor.last_resolved_action=after;
     record.state_changes.push({actor_id:item.actor_id,field:"last_resolved_action",before,after});
     const npcChanges=[];
-    if(item.new_location_id!==undefined) npcChanges.push({field:"location_id",before:actor.location_id,after:item.new_location_id});
+    if(item.new_location_id!==undefined) npcChanges.push({field:"location_id",before:actor.location_id,
+      after:item.new_location_id,route:item.route,travel:item.travel});
     if(item.learned_fact!==undefined) npcChanges.push({field:"knowledge",fact:item.learned_fact,source:item.source});
     // Additional inventory, relationship, condition and plan effects are independently validated.
     if(item.changes!==undefined) check(Array.isArray(item.changes),"NPC changes must be an array");

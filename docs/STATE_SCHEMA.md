@@ -86,3 +86,35 @@ La función verifyStateChanges comprueba la unicidad de objetos, ubicación de o
 ## D-047 — recursos cualitativos causales
 
 El campo `resources` se puede actualizar en el evento del propio actor mediante objetos completos `before` y `after`; el motor comprueba precondiciones, valida la secuencia causal y rechaza discrepancias en el estado final. Esto permite registrar, por ejemplo, la resolución del reloj de Rosa sin tratar su reparación como un texto efímero. No afecta atributos RPG ni permite cambiar recursos de otro actor sin su propio evento. El estado de Aster se conserva como modificación del objeto `ITEM-ASTER` mediante `inventory_item`; lo ensamblado no implica funciones operativas no probadas.
+
+## Tiempo y trayectos contextuales (2026-11-13)
+
+El narrador estima el tiempo según acciones, conexiones del mapa, transporte y
+circunstancias. No calcular distancias a partir del número de conexiones ni
+convertir una estimación en horario exacto. Las ventanas temporales son controles
+de compatibilidad: al omitir `next_time_of_day`, el periodo conservado también
+debe ser compatible con `elapsed_minutes` y `elapsed_days`.
+
+Todo nuevo cambio `location_id` requiere `travel` con `mode`, `elapsed_minutes`
+(entero aproximado no negativo) y `basis` (fundamento contextual). La ruta sigue
+conexiones existentes; solo el movimiento directo hogar/taller Wilson puede
+redondearse a cero. No se introducen nuevos lugares ni distancias canónicas.
+
+Para la misma ruta ordenada y medio de transporte del mismo actor, consultar
+`latestTravelReference` y citar su `reference_event_id` si existe un antecedente
+con estimación en un turno anterior. Mantener la duración de referencia salvo
+una `variation_reason` explícita. El orden inverso, otro transporte o el viaje
+de otro actor no son automáticamente equivalentes. Los viajes históricos sin
+estimación permanecen intactos y no reciben duraciones inventadas.
+
+El motor marca eventos nuevos con `travel_policy_version: 1` y conserva
+`turn_elapsed_minutes` cuando se suministra. Un turno con desplazamientos exige
+ese presupuesto; los viajes sucesivos de cada actor deben caber en él. Los
+tiempos de actores distintos pueden transcurrir simultáneamente. El validador
+revisa también estas condiciones al releer el checkpoint. Los eventos anteriores
+sin marcador ni estimaciones siguen siendo válidos sin migración.
+
+La estimación y su contexto permanecen en el evento del actor, sujetos a sus
+límites de conocimiento. La verificación controla coherencia estructural, no
+demuestra por sí sola que una estimación sea realista: esa revisión contextual
+sigue correspondiendo al narrador antes de guardar.
