@@ -188,7 +188,12 @@ export function verifySocialEventHistory(snapshot){
    c.participant_ids.length===2&&c.participant_ids[0]<c.participant_ids[1]&&
    c.participant_ids.includes(event.actor_ids?.[0])&&
    Object.hasOwn(snapshot.state.world.locations,c.location_id)&&
-   observationValid(c.observation,c.participant_ids),
+   observationValid(c.observation,c.participant_ids)&&
+   (c.transfer===null||(c.transfer&&
+    c.participant_ids.includes(c.transfer.speaker_id)&&
+    c.participant_ids.includes(c.transfer.recipient_id)&&
+    c.transfer.speaker_id!==c.transfer.recipient_id&&
+    knownText(c.transfer.known_entry))),
    'Malformed saved social context');
   if(!grouped.has(c.interaction_id))grouped.set(c.interaction_id,[]);
   grouped.get(c.interaction_id).push(event);
@@ -210,6 +215,8 @@ export function verifySocialEventHistory(snapshot){
    const knowledge=social.filter(x=>x.field==='knowledge');
    const relations=social.filter(x=>x.field==='relationship'&&
     x.target_actor_id===partner);
+   ensure(relations.every(x=>x.after?.latest_shared_moment===c.observation.fact),
+    'Saved social relationship lost the reviewed encounter evidence');
    ensure(knowledge.length<2&&relations.length<2&&
     social.length===knowledge.length+relations.length,
     'Saved social effect has an unknown recipient or duplicate');
