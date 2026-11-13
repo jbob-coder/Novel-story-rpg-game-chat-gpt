@@ -38,3 +38,5 @@
 - [Meridian Bay: rutinas, opciones de vida social y expansión por zonas](MERIDIAN_BAY_ROUTINES_EXPANSION_20261112.md)
 
 - [Meridian Bay: puerta causal de decisiones NPC (D-056, implementación en revisión)](MERIDIAN_BAY_CAUSAL_DECISIONS_20261112.md)
+
+- [Meridian Bay D-057: relaciones causales entre NPC y conocimiento por testimonio](MERIDIAN_BAY_SOCIAL_RELATIONS_20261112.md)
