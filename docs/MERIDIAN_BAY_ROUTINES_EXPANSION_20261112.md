@@ -67,3 +67,16 @@ Esta es una priorización de intención, **no una simulación automática de res
 El flujo oficial de QA [#43328634421](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43328634421) se ejecutó tras añadir `recommendNPCIntentReviews` y sus tres pruebas de regresión, con **195/195 Node.js**, **24/24 Python**, **0 fallos** y validador del checkpoint **PASS**. Los cambios posteriores son exclusivamente documentos e índices.
 
 La PR de revisión [#11](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/11) permanece en borrador y dependiente de la rama D-054; el workflow escucha PR hacia `main`, así que se utilizó temporalmente esa base solo para QA y se restauró la base correcta. Ningún merge a `main`, ningún turno 10 y ninguna prueba de calidad literaria auténtica se reivindican.
+
+## Cadencia de desarrollo aprobada por el propietario — D-055
+
+El desarrollo de Meridian Bay **se hará por incrementos entre mensajes del chat**. No es necesario completar rutinas, relaciones, instituciones y expansión en una sola respuesta. Cada bloque debe dejar código o documentación verificables, pruebas pertinentes, alcance y pendientes. Si la actividad no se concluye, informar un porcentaje **aproximado** respecto al bloque de trabajo nombrado, con fundamento en criterios observables y sin presentarlo como una medición exacta. No estimar horas de ejecución futura ni afirmar trabajo en segundo plano: cada nueva sesión se reanuda con una nueva intervención del propietario.
+
+**Orden de incrementos sugerido (no son hechos de ficción):**
+1. Rutinas y candidatas de intención de NPC, pruebas de cronología y privacidad — implementadas en rama técnica, todavía sin integrar.
+2. Decisiones causales con necesidades, conflictos entre responsabilidades, límites de tiempo, recursos y resultados como éxito/fracaso — pendiente.
+3. Relaciones entre NPC con cambios solo por encuentros/comunicaciones fundados — pendiente.
+4. Servicios funcionales, ubicaciones visitables y tránsito entre barrios con la evidencia necesaria — pendiente.
+5. Ensayo sintético integral, revisión literaria, persistencia remota y validación de integración — pendiente.
+
+**Diferencia entre turnos:** un *mensaje futuro del propietario* puede reactivar desarrollo técnico. Un *turno ficticio de Jack* solo avanza cuando el jugador realiza una acción auténtica, y las actividades de NPC se resuelven dentro del intervalo narrativo justificado; no ocurren automáticamente mientras el chat está inactivo. El turno real 10 se preserva.
