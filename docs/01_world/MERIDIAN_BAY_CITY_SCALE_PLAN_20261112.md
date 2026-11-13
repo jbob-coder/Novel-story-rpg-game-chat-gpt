@@ -86,3 +86,13 @@ Este incremento registra una escala útil y revisable para la ciudad, cinco áre
 **Lo que todavía falta para llamar al mapa «completo»:** perímetro físico verdadero, descripción de los bordes geográficos, trazado de calles/puentes, jerarquía vial, dimensiones de manzanas, edificios de fondo, distribución de población, acceso escolar, infraestructura portuaria y expansión de servicios. La prioridad siguiente son **corredores caminables y manzanas de Railgarden y Market Row**, sin inventar la escuela de Elena ni recorridos secundarios no confirmados.
 
 Los archivos de `CH-000` deben permanecer idénticos a `work/chat-narrative-foundation`. Ningún cambio de la geometría de diseño puede reescribir la escena del turno 9 o activar Aster.
+
+## 8. Resultado técnico de esta fase (QA)
+
+- **Pruebas oficiales:** [GitHub Actions run 43363453625](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43363453625), SHA `e5e98928b2a90ca3ca28046629ecd14f7e68de76`: **281/281 JavaScript**, **24/24 Python**, validador del checkpoint **PASS**, cero fallos.
+- **Revisión de cambios:** cinco rutas nuevas o ampliadas de planificación cartográfica, sin escritura en la partida. Comparación GitHub frente a su rama padre `work/meridian-bay-prebuilt-routes-20261112`: 8 commits, 0 commits detrás al verificar.
+- **Guardado narrativo:** SHA de las cinco fuentes del turno 9 idénticos a `work/chat-narrative-foundation`, por readback de GitHub. Día −29 por la mañana, Jack en `LOC-WILSON-WORKSHOP`.
+- **Estimación de avance:** aproximadamente **35–45 % del plano dimensional preliminar**, no de la totalidad de Meridian Bay ni del mundo. Es un juicio de alcance: la escala y zonas de trabajo están definidas como hipótesis; faltan litoral, calles, manzanas y distribución de exteriores.
+- **Próxima tarea delimitada:** trazar corredores caminables verificables Railgarden–Market Row–Crosswater/Harbor, delimitar tipos de manzanas y reservar tramos sin inventar enlaces `LOC`. Después, revisar el límite costero y la extensión urbana general.
+
+El resultado sigue en PR borrador aislada; ninguna referencia espacial propuesta se convierte por sí misma en canon jugado.
