@@ -4,6 +4,7 @@
 import {planNPCAgendas,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {worldRoute} from './living_world_routines.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
+import {reviewServiceCases} from './meridian_bay_services.mjs';
 
 const requireFact=(ok,message)=>{if(!ok)throw Error(message)};
 const copy=x=>JSON.parse(JSON.stringify(x));
@@ -101,12 +102,21 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
    gaps.push({code:'needs_compete_for_attention',
     detail:'Existing recorded need may conflict with this task; resolve qualitatively'});
 
+  const serviceCases=reviewServiceCases({state,actorIds:[intent.actorId],
+   targetDay:intent.timeOfReview});
+  if(serviceCases.some(x=>x.review==='blocked'||x.review==='overdue'))
+   gaps.push({code:'service_work_competes_for_attention',
+    detail:'Recorded service case may require attention; do not auto-resolve'});
   results.push({
    classification:'narrator_private_causal_assessment',
    actorId:intent.actorId,candidateId:intent.candidateId,
    objective:intent.objective,kind:candidate.kind,
    obligationId:candidate.obligationId??null,
    source,blockingEvidence:blockers,unknowns:gaps,
+   competingServiceCases:serviceCases.map(c=>({
+    caseId:c.caseId,serviceId:c.serviceId,priority:c.priority,review:c.review,
+    blockers:c.blockers,linkedNeedId:c.linkedNeedId
+   })),
    competingNeeds:savedNeeds.map(n=>({
     needId:n.needId,domain:n.domain,summary:n.summary,priority:n.priority,
     review:n.review,resourceKeys:n.resourceKeys,blockedBy:n.blockers

@@ -127,3 +127,13 @@ verifica fechas, referencias a eventos, costes históricos y unicidad de
 identificadores en todos los NPC. La existencia de una necesidad no revela
 su contenido al protagonista y no constituye XP, nivel ni estadística RPG.
 El campo no aparece en el checkpoint original CH-000 turno 9.
+
+## D-059 — casos de servicios civiles sobre anclas canónicas
+
+`world.actors[NPC-ID].service_cases` es un campo **opcional** creado o actualizado solo por eventos propios del NPC. Los servicios son tres funciones ya existentes de Lena, Sora y Mara en los `LOC-*` de terminal, plaza Crosswater y Café Bruma; **no se crean ubicaciones nuevas**.
+
+Cada ficha conserva `id` (`CASE-...`), `service_id`, `location_id`, `resource_key`, `summary`, `priority`, `status` (open/blocked/resolved/cancelled), `blockers`, `due_day` o null, `linked_need_id` o null, `source_event_id`, `last_change_event_id`, `steps`, `resolution`, `resolution_event_id`. Cada paso guarda `{event_id,action,result,evidence}` y se añade **solo** mediante un nuevo evento revisado. El historial no se borra ni reescribe; la apertura no puede comenzar resuelta.
+
+Los `before/after` se validan de forma atómica por `state_changes.mjs`. El readback rechaza eventos desconocidos, servicios/actores/lugares inexistentes, repetición de IDs, condiciones injustificadas o cambios de identidad. Un caso abierto puede coexistir con horario desconocido; un caso cerrado no implica que la máquina, ruta o servicio físico esté arreglado o abierto.
+
+**Visibilidad:** los detalles privados de caso no se transfieren automáticamente al lector ni a Jack; su difusión exige observación o comunicación causal. Las pruebas sintéticas no afectan el checkpoint del turno 9.

@@ -29,3 +29,5 @@
 - [Encuentros sociales revisados: vínculos direccionales, información atribuida y doble evento](living_world_social.mjs)
 
 - [Necesidades y costes cualitativos persistentes de NPC con registro causal](living_world_needs.mjs)
+
+- [Tres servicios civiles de Meridian Bay con casos y pasos causales persistentes](meridian_bay_services.mjs)

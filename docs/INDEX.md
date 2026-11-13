@@ -42,3 +42,5 @@
 - [Meridian Bay D-057: relaciones causales entre NPC y conocimiento por testimonio](MERIDIAN_BAY_SOCIAL_RELATIONS_20261112.md)
 
 - [Meridian Bay D-058: necesidades, alternativas descartadas y costes observados](MERIDIAN_BAY_NEEDS_TRADEOFFS_20261112.md)
+
+- [Meridian Bay D-059: terminal, mantenimiento y caja con casos persistentes](MERIDIAN_BAY_SERVICES_20261112.md)
