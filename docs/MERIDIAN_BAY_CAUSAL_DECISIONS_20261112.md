@@ -41,3 +41,12 @@ Esta implementación añade una **puerta de adjudicación causal**; no es IA con
 - Próximo bloque técnico: **relaciones y consecuencias inter-NPC** que requieren comunicación y límites de conocimiento. Después: modelado de necesidades y costes cualitativos persistidos, servicios visitables basados en eventos y QA de recuperación.
 
 El porcentaje comunicado al propietario es aproximado y corresponde siempre a un alcance nominal, no es una promesa de ejecución en tiempo real.
+
+## CI oficial y preservación verificados
+- GitHub Actions [run #43339476274](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43339476274) sobre el commit técnico `9c1aca3972c6223371b4ba6cfb5695fb6a9ce7da`: **208/208 tests Node.js**, **24/24 Python**, **0 fallos** y `python tools/validate_state.py` **PASS**.
+- Comprobación GitHub sobre `work/chat-narrative-foundation`, rama D-055 y esta rama: los blobs SHA de `game/SAVE_MANIFEST.json`, `game/STATE.json`, `chapters/CH-000.md`, `chapters/CH-000.events.json` y `chapters/CH-000.transcript.json` son idénticos.
+- La [PR #12](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/12) está **en borrador** sobre `work/meridian-bay-causal-routines-20261112`; no está fusionada. La base temporal `main` solo se usó para activar QA, y después se retiró.
+- El turno canónico 10 sigue sin realizarse. El avance de relaciones, consecuencias cualitativas y evidencia persistente continúa pendiente.
+
+## Porcentaje aproximado de expansión (no medición exacta)
+Con alcance definido en D-055 (rutinas, adjudicación causal, relaciones, servicios y QA integral), el avance técnico propuesto en ramas de revisión se estima en **~30–40 %**. El bloque de restricciones y revisión causal es funcional y probado, pero no equivale a IA autónoma completa: faltan necesidad/coste persistentes, revisión de interacciones sociales, integración final y prueba real del journal. Cambiar esta cifra cuando nuevas pruebas o deficiencias lo justifiquen.
