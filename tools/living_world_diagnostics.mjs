@@ -6,6 +6,7 @@ import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
+import {inspectSceneEstablishedPlaces} from './meridian_bay_locations.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
 import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
@@ -53,6 +54,7 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
+    observedPublicPlaces:inspectSceneEstablishedPlaces({state,fromId:state.player.location_id}),
     establishedServices:inspectEstablishedServices({state,actorIds:selected,
       weekday,minute,schedules,exceptions}),
     serviceCaseReview:reviewServiceCases({state,actorIds:selected,
