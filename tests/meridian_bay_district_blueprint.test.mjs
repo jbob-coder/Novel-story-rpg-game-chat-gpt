@@ -75,3 +75,27 @@ test('loading map never alters real saved state or invents times or schedules',(
   assert.equal(m.construction_rules.canon_integration_requires_review,true);
   assert.equal(JSON.stringify(state),before);
 });
+
+test('each prepared reference identifies its actual evidence class',()=>{
+  const m=map();
+  const groups=Object.groupBy(m.prepared_sites,p=>p.evidence_class);
+  assert.equal(groups.proposed_site.length,9);
+  assert.equal(groups.existing_subfeature.length,2);
+  assert.equal(groups.existing_business_unmapped.length,1);
+  assert.equal(groups.unmapped_reference_not_site.length,1);
+  assert.ok(m.prepared_sites.every(p=>p.canonical_location_id===null));
+  assert.ok(m.prepared_sites.every(p=>p.design_extension_approved===false));
+  assert.ok(m.prepared_sites.every(p=>p.player_knowledge_status==='not_established'));
+  assert.ok(groups.proposed_site.every(p=>p.source==='design_only'));
+  assert.ok(groups.existing_subfeature.every(p=>p.source.startsWith('game/')));
+  assert.equal(groups.existing_business_unmapped[0].character_link,'NPC-006');
+  assert.equal(groups.unmapped_reference_not_site[0].character_link,'NPC-004');
+});
+test('preauthored locations do not require Jack to discover them before they exist',()=>{
+  const m=map();
+  assert.equal(m.metadata_review.draft_not_canon,true);
+  assert.match(m.metadata_review.promotion_policy,/independent of Jack visiting/);
+  assert.match(m.metadata_review.promotion_policy,/no unapproved design becomes canon/);
+  assert.equal(m.construction_rules.design_precedes_discovery,true);
+  assert.equal(m.construction_rules.actor_presence_not_implied,true);
+});
