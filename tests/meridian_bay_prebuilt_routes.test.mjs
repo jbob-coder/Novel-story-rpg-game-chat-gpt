@@ -22,6 +22,8 @@ const market='LOC-COMMERCIAL-DISTRICT';
 const noah='LOC-MARKET-NOAH-REPAIR';
 const grocery='LOC-RAILGARDEN-ABARROTES';
 const clinic='LOC-RAILGARDEN-CLINIC';
+const worldConnectionIds=id=>read('../game/MERIDIAN_BAY_PREBUILT.json').places
+ .filter(p=>p.parent_id===id).map(p=>p.id);
 
 test('narrator knows a route to prebuilt Noah shop before Jack observes it',()=>{
  const s=state(),before=JSON.stringify(s);
@@ -89,6 +91,12 @@ test('narrator-only diagnostics expose prebuilt places but player-safe projectio
  const d=inspectLivingWorld({snapshot:snap,actorIds:['NPC-006'],elapsedMinutes:20});
  assert.equal(d.prebuiltPublicPlaces.length,6);
  assert.equal(d.observedPublicPlaces.length,0);
+ assert.equal(Object.keys(d.placeAvailability).length,15);
+ assert.ok(d.placeAvailability[noah]);
+ assert.ok(d.placeAvailability[grocery]);
+ assert.deepEqual(d.meridianBay.areas.find(x=>
+  x.anchorId===market).knownConnections.slice(-4),
+  worldConnectionIds(market));
  assert.ok(d.prebuiltPublicPlaces.every(x=>x.preexistsPlayerObservation));
  assert.ok(d.prebuiltPublicPlaces.every(x=>x.route?.at(-1)===x.locationId));
  const safe=playerVisibleDiagnostic(d);
