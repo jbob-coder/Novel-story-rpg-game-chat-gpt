@@ -72,6 +72,29 @@ export function validateMeridianBayScalePlan({state}={}){
   check(region.status.includes('not_')||region.status==='working_envelope_not_administrative_district',
    'Unbuilt region cannot be treated as an approved playable district');
  }
+ check(Array.isArray(p.focus_area_envelopes)&&p.focus_area_envelopes.length===5,
+  'Known-neighborhood focus regions are missing');
+ const namedFocus=new Set();
+ for(const area of p.focus_area_envelopes){
+  check(!namedFocus.has(area.location_id)&&
+   owns(locations,area.location_id)&&area.boundary_confirmed===false,
+   'Focus area cannot become an invented district or confirmed boundary');
+  namedFocus.add(area.location_id);
+  const {x_min,x_max,y_min,y_max}=area.box;
+  const point=p.locations.find(loc=>loc.id===area.location_id).reference_xy_units;
+  check(point.x>=x_min&&point.x<=x_max&&
+   point.y>=y_min&&point.y<=y_max&&
+   x_min>=0&&y_min>=0&&x_max<=canvas.width_units&&y_max<=canvas.height_units&&
+   x_max>x_min&&y_max>y_min,'Neighborhood study box misses its actual map reference');
+  check(Math.abs((x_max-x_min)*canvas.reference_km_per_unit-
+   area.rough_envelope_km.width)<1e-8&&
+   Math.abs((y_max-y_min)*canvas.reference_km_per_unit-
+   area.rough_envelope_km.height)<1e-8,
+   'Focus area sketch size conflicts with planning scale');
+ }
+ check(p.rules.focus_area_boxes_are_not_precise_district_boundaries&&
+  p.rules.street_network_geometry_not_yet_mapped,
+  'Planning extents must not silently create geographic fact');
  for(const id of actualIds)
   for(const next of locations[id].connected_ids??[]){
    if(!next.startsWith('LOC-'))continue;
@@ -96,6 +119,7 @@ export function inspectMeridianBayScale({state}={}){
   context:PLAN.scope,
   districtReferences:PLAN.locations,
   unchartedRegions:PLAN.planning_regions,
+  studyNeighborhoodEnvelopes:PLAN.focus_area_envelopes,
   positionUncertainty:'illustrative reference points within conceptual districts; not addresses or road geometry',
   fictionTimeElapsed:false,
   playerMoved:false,
