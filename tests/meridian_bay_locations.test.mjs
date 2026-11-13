@@ -6,11 +6,13 @@ import {fileURLToPath} from 'node:url';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {worldRoute} from '../tools/living_world_routines.mjs';
-import {inspectSceneEstablishedPlaces,verifyReviewedPlaceHistory}
- from '../tools/meridian_bay_locations.mjs';
+import {inspectPrebuiltMeridianBay,prepareMeridianBayWorld,
+ applyReviewedPlaceDiscovery,inspectSceneEstablishedPlaces,
+ verifyReviewedPlaceHistory} from '../tools/meridian_bay_locations.mjs';
 import {inspectEstablishedServices} from '../tools/meridian_bay_services.mjs';
 import {inspectMeridianBay} from '../tools/meridian_bay_city.mjs';
-import {inspectLivingWorld,playerVisibleDiagnostic} from '../tools/living_world_diagnostics.mjs';
+import {inspectLivingWorld,playerVisibleDiagnostic}
+ from '../tools/living_world_diagnostics.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>readFileSync(resolve(root,p),'utf8');
@@ -21,225 +23,190 @@ const baseline={
  transcript:JSON.parse(read('chapters/CH-000.transcript.json')),
  chapter:read('chapters/CH-000.md')
 };
-const placeId='LOC-MARKET-SUPPLY-COUNTER-QA';
-const sceneQuote='Jack sees a small, independently operated repair supply counter along Market Row.';
-const accessQuote='A public entrance and a sign welcoming walk-in customers are visible from the street.';
-const discovery=()=>({
- id:placeId,opportunity_id:'BAY-MARKET-PARTS',
- anchor_id:'LOC-COMMERCIAL-DISTRICT',
- name:'Synthetic Market Row supply counter',
- type:'public_repair_supply_counter',
- description:'Synthetic, observed shop interior with a small visible display of ordinary repair supplies.',
- scene_quote:sceneQuote,access_quote:accessQuote,
- public_access_confirmed:true,reviewed:true
+const world=JSON.parse(read('game/MERIDIAN_BAY_PREBUILT.json'));
+const noah='LOC-MARKET-NOAH-REPAIR';
+const grocery='LOC-RAILGARDEN-ABARROTES';
+const routeToNoah=['LOC-WILSON-WORKSHOP','LOC-WILSON-APARTMENT',
+ 'LOC-RAILGARDEN-RESIDENTIAL','LOC-COMMERCIAL-DISTRICT',noah];
+const sceneQuote='Jack can see a repair-and-components shop on the Market Row pedestrian frontage.';
+const accessQuote='The shop has a public-facing door connecting directly to the Market Row sidewalk.';
+const observation=(id=noah)=>({
+ id,anchor_id:'LOC-COMMERCIAL-DISTRICT',
+ opportunity_id:'BAY-MARKET-PARTS',
+ reviewed:true,public_access_confirmed:true,
+ scene_quote:sceneQuote,access_quote:accessQuote
 });
-const playerRoute=['LOC-WILSON-WORKSHOP','LOC-WILSON-APARTMENT',
- 'LOC-RAILGARDEN-RESIDENTIAL','LOC-COMMERCIAL-DISTRICT',placeId];
-const sourceText=()=>[sceneQuote,accessQuote,
- 'Jack enters the public counter without assigning anyone a new shift.'].join(' ');
-const turn=(changes=[],discoveries=[discovery()],key='qa-public-place-001')=>({
- key,intent:'Jack heads toward a supply counter he actually observes in Market Row.',
- outcome:'Jack enters an observed public counter without making an unrecorded purchase.',
- player_text:'I walk toward Market Row, inspect the repair supplies and enter the public counter.',
- narration_messages:[sourceText()],
- elapsed_days:0,elapsed_minutes:60,
- location_discoveries:discoveries,
- changes
+const input=(changes=[],discoveries=[],key='qa-prebuilt-first-001')=>({
+ key,
+ intent:'Jack travels on his chosen route through existing Meridian Bay streets.',
+ outcome:'He checks public space without making a purchase or accepting an offer.',
+ player_text:'I visit an existing place only if I decide to walk there.',
+ narration_messages:[sceneQuote,accessQuote,
+  'Market Row continues its ordinary activity without inventing another character encounter.'],
+ elapsed_days:0,elapsed_minutes:30,changes,location_discoveries:discoveries
 });
-const playerMove=()=>({
- field:'location_id',before:baseline.state.player.location_id,
- after:placeId,route:playerRoute
-});
-const stage=(input=turn([playerMove()]),snapshot=baseline)=>
- stageLivingWorldTurn({snapshot,turn:input,observedHead:'a'.repeat(40),
-  npcResolutions:[]});
-test('canonical checkpoint has no unplayed additions; planned storefront is not a destination',()=>{
+const stage=(turn=input(),snapshot=baseline)=>
+ stageLivingWorldTurn({snapshot,turn,observedHead:'a'.repeat(40),npcResolutions:[]});
+
+test('authoritative checkpoint remains untouched at turn 9 while prebuilt sites already exist for narrator',()=>{
  const before=JSON.stringify(baseline);
- assert.deepEqual(inspectSceneEstablishedPlaces({state:baseline.state}),[]);
- assert.equal(worldRoute(baseline.state,'LOC-COMMERCIAL-DISTRICT',placeId),null);
- assert.equal(Object.keys(baseline.state.world.locations).length,9);
  assert.equal(baseline.manifest.last_completed_turn,9);
+ assert.equal(Object.keys(baseline.state.world.locations).length,9);
+ assert.equal(world.places.length,6);
+ const described=inspectPrebuiltMeridianBay({state:baseline.state,
+   fromId:'LOC-WILSON-WORKSHOP'});
+ assert.equal(described.length,6);
+ assert.ok(described.every(x=>x.preexistsPlayerObservation===true));
+ assert.ok(described.every(x=>x.route?.at(-1)===x.locationId));
+ assert.ok(described.every(x=>x.openingHours===null&&x.travelMinutes===null));
+ assert.equal(inspectSceneEstablishedPlaces({state:baseline.state}).length,0);
  assert.equal(JSON.stringify(baseline),before);
 });
-test('one observed public place is added and Jack can navigate by real existing links',()=>{
- const before=JSON.stringify(baseline);
- const candidate=stage();
- assert.equal(verifyNarrativeSnapshot(candidate),true);
- assert.equal(verifyReviewedPlaceHistory(candidate),true);
- assert.equal(candidate.manifest.last_completed_turn,10);
- const loc=candidate.state.world.locations[placeId];
- assert.equal(loc.established_event_id,'EV-000030');
- assert.equal(loc.parent_id,'LOC-COMMERCIAL-DISTRICT');
- assert.deepEqual(loc.connected_ids,['LOC-COMMERCIAL-DISTRICT']);
- assert.equal(loc.opening_hours,null);
- assert.equal(loc.travel_minutes,null);
- assert.equal(loc.access_status,'public_confirmed');
- assert.ok(candidate.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids.includes(placeId));
- assert.deepEqual(worldRoute(candidate.state,'LOC-WILSON-WORKSHOP',placeId),playerRoute);
- assert.deepEqual(worldRoute(candidate.state,placeId,'LOC-WILSON-APARTMENT'),
-  [placeId,'LOC-COMMERCIAL-DISTRICT','LOC-RAILGARDEN-RESIDENTIAL','LOC-WILSON-APARTMENT']);
- assert.equal(candidate.state.player.location_id,placeId);
- const events=candidate.events.events.at(-1).state_changes;
- assert.equal(events[0].field,'world_location');
- assert.equal(events[1].field,'world_location_link');
- assert.ok(events.some(x=>x.field==='location_id'&&x.after===placeId));
- assert.equal(JSON.stringify(baseline),before);
+test('world is preconstructed independently of any player turn, idempotently and without actor movement',()=>{
+ const before=JSON.stringify(baseline.state),s=prepareMeridianBayWorld({state:baseline.state});
+ assert.equal(Object.keys(s.world.locations).length,15);
+ assert.equal(prepareMeridianBayWorld({state:s}).world.locations[noah].name,
+  s.world.locations[noah].name);
+ assert.equal(s.player.location_id,'LOC-WILSON-WORKSHOP');
+ assert.deepEqual(Object.keys(s.world.actors),Object.keys(baseline.state.world.actors));
+ assert.equal(s.time.day,baseline.state.time.day);
+ assert.equal(JSON.stringify(baseline.state),before);
+ const names=new Set(),opportunities=new Set();
+ for(const p of world.places){
+  assert.ok(!names.has(p.id));names.add(p.id);
+  assert.ok(!opportunities.has(p.origin_opportunity_id));
+  opportunities.add(p.origin_opportunity_id);
+  assert.deepEqual(s.world.locations[p.id],p);
+  assert.deepEqual(p.connected_ids,[p.parent_id]);
+  assert.ok(s.world.locations[p.parent_id].connected_ids.includes(p.id));
+  assert.equal(p.opening_hours,null);
+  assert.equal(p.travel_minutes,null);
+ }
 });
-test('read-only list separates known public access from unknown open hours and staff',()=>{
- const next=stage();
- const places=inspectSceneEstablishedPlaces({state:next.state,
+test('city inspector identifies authored sites as already existing before Jack learns them',()=>{
+ const areas=inspectMeridianBay({state:baseline.state}).areas.flatMap(a=>a.opportunities);
+ const mapped=areas.filter(a=>a.status==='prebuilt_world');
+ assert.equal(mapped.length,6);
+ assert.deepEqual(new Set(mapped.map(x=>x.locationId)),
+  new Set(world.places.map(x=>x.id)));
+ assert.ok(mapped.every(x=>x.establishmentEventId===null&&x.verifiedAccessible===true));
+ assert.ok(areas.find(x=>x.id==='BAY-RAIL-SCHOOL').status==='proposed_not_canon');
+ assert.equal(baseline.state.world.locations[noah],undefined);
+});
+test('staging a real player action uses the already-authored map without creating it from that action',()=>{
+ const staged=stage();
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(verifyReviewedPlaceHistory(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,10);
+ assert.equal(Object.keys(staged.state.world.locations).length,15);
+ assert.ok(staged.events.events.at(-1).state_changes.every(c=>
+  c.field!=='world_location'&&c.field!=='world_location_link'));
+ assert.deepEqual(inspectSceneEstablishedPlaces({state:staged.state}),[]);
+ assert.equal(baseline.manifest.last_completed_turn,9);
+ assert.equal(baseline.state.world.locations[noah],undefined);
+});
+test('Jack may navigate existing sites by a legitimate saved route without discovering a new object',()=>{
+ const travel={field:'location_id',before:'LOC-WILSON-WORKSHOP',after:noah,
+  route:routeToNoah};
+ const next=stage(input([travel]));
+ assert.equal(verifyNarrativeSnapshot(next),true);
+ assert.equal(next.state.player.location_id,noah);
+ assert.deepEqual(worldRoute(next.state,'LOC-WILSON-WORKSHOP',noah),routeToNoah);
+ assert.deepEqual(worldRoute(next.state,noah,'LOC-WILSON-APARTMENT'),
+  [noah,'LOC-COMMERCIAL-DISTRICT','LOC-RAILGARDEN-RESIDENTIAL',
+   'LOC-WILSON-APARTMENT']);
+ assert.equal(next.events.events.at(-1).state_changes[0].field,'location_id');
+ assert.equal(inspectSceneEstablishedPlaces({state:next.state}).length,0);
+});
+test('a witnessed public entrance changes player knowledge, never world topology',()=>{
+ const next=stage(input([], [observation()]));
+ assert.equal(verifyNarrativeSnapshot(next),true);
+ assert.equal(verifyReviewedPlaceHistory(next),true);
+ assert.deepEqual(next.state.world.locations[noah],world.places[0]);
+ assert.equal(next.events.events.at(-1).state_changes.length,1);
+ assert.equal(next.events.events.at(-1).state_changes[0].field,'knowledge');
+ const seen=inspectSceneEstablishedPlaces({state:next.state,
   fromId:'LOC-WILSON-WORKSHOP'});
- assert.equal(places.length,1);
- assert.equal(places[0].publicAccessConfirmed,true);
- assert.equal(places[0].openingHours,null);
- assert.equal(places[0].travelMinutes,null);
- assert.equal(places[0].route.at(-1),placeId);
- assert.equal(places[0].evidenceEventId,'EV-000030');
- const services=inspectEstablishedServices({state:next.state});
- assert.equal(services.length,3);
- assert.ok(services.every(s=>s.serviceNow==='unknown'));
+ assert.equal(seen.length,1);
+ assert.equal(seen[0].locationId,noah);
+ assert.equal(seen[0].publicAccessConfirmed,true);
+ assert.equal(seen[0].openingHours,null);
+ assert.equal(seen[0].route.at(-1),noah);
+ const service=inspectEstablishedServices({state:next.state});
+ assert.equal(service.length,3);
+ assert.ok(service.every(x=>x.serviceNow==='unknown'));
 });
-test('cannot establish a place that was not literally observed in the new scene',()=>{
- const request=turn([]);
- request.narration_messages=['There is only a vague street visible through the window.'];
- assert.throws(()=>stage(request),/appear literally in the current narrated scene/);
- request.narration_messages=[sceneQuote];
- assert.throws(()=>stage(request),/appear literally in the current narrated scene/);
- request.narration_messages=[accessQuote];
- assert.throws(()=>stage(request),/appear literally in the current narrated scene/);
+test('no new place can spring into existence because prose describes a fictitious name',()=>{
+ const fake=observation('LOC-MARKET-NONEXISTENT');
+ assert.throws(()=>stage(input([], [fake])),/must already exist/);
+ const wrong=observation();
+ wrong.anchor_id='LOC-HARBOR-WALK';
+ assert.throws(()=>stage(input([], [wrong])),/different saved district/);
+ const other=observation();
+ other.opportunity_id='BAY-MARKET-DELIVERY';
+ assert.throws(()=>stage(input([], [other])),/disagrees with prebuilt place/);
+ assert.equal(Object.keys(baseline.state.world.locations).length,9);
 });
-test('private place, unknown access and unreviewed proposals never become visitable',()=>{
- const p=discovery();
- assert.throws(()=>stage(turn([],[{...p,reviewed:false}])),
-  /Narrator-reviewed public access confirmation required/);
- assert.throws(()=>stage(turn([],[{...p,public_access_confirmed:false}])),
-  /Narrator-reviewed public access confirmation required/);
- assert.throws(()=>stage(turn([],[{...p,access_quote:sceneQuote}])),
-  /must appear literally|distinct scene/);
- assert.equal(baseline.state.world.locations[placeId],undefined);
+test('unreviewed or unsupported place sightings do not reveal knowledge',()=>{
+ const notReviewed={...observation(),reviewed:false};
+ assert.throws(()=>stage(input([], [notReviewed])),/Narrator-reviewed/);
+ const noAccess={...observation(),public_access_confirmed:false};
+ assert.throws(()=>stage(input([], [noAccess])),/Narrator-reviewed/);
+ const missingQuote={...observation(),access_quote:'A different public facing entry seen at this time.'};
+ assert.throws(()=>stage(input([], [missingQuote])),/appear literally/);
+ const invalid={...observation(),id:'LOC-CAFE-BRUMA'};
+ assert.throws(()=>stage(input([], [invalid])),/must already exist/);
+ assert.throws(()=>stage(input([], [observation(),observation()],
+  'qa-prebuilt-duplicate')),/must already exist/);
 });
-test('no location may be added at the wrong anchor, with a fabricated proposal or duplicate ID',()=>{
- const p=discovery();
- assert.throws(()=>stage(turn([],[{...p,anchor_id:'LOC-RAILGARDEN-RESIDENTIAL'}])),
-  /not backed by an opportunity/);
- assert.throws(()=>stage(turn([],[{...p,opportunity_id:'BAY-INVALID-OPPORTUNITY'}])),
-  /not backed by an opportunity/);
- assert.throws(()=>stage(turn([],[{...p,id:'LOC-CAFE-BRUMA'}])),
-  /invalid, duplicate, or already in canon/);
- assert.throws(()=>stage(turn([],[p,p])),
-  /invalid, duplicate, or already in canon/);
-});
-test('a new place may be observed but actor movement still needs a connected, explicit route',()=>{
- const badMove={field:'location_id',before:'LOC-WILSON-WORKSHOP',
-  after:placeId,route:['LOC-WILSON-WORKSHOP',placeId]};
- assert.throws(()=>stage(turn([badMove])),/Nonadjacent travel without route/);
- const spotted=stage(turn([]));
- assert.equal(verifyNarrativeSnapshot(spotted),true);
- assert.equal(spotted.state.player.location_id,'LOC-WILSON-WORKSHOP');
- assert.deepEqual(worldRoute(spotted.state,'LOC-WILSON-WORKSHOP',placeId),playerRoute);
-});
-test('saved provenance rejects detached place records, rewritten transcript and missing link',()=>{
- const candidate=stage();
- const missing=structuredClone(candidate);
- missing.events.events.at(-1).state_changes.shift();
- assert.throws(()=>verifyReviewedPlaceHistory(missing),/Place evidence and anchor link/);
- const erased=structuredClone(candidate);
- erased.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids=
-  erased.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids.filter(x=>x!==placeId);
- assert.throws(()=>verifyReviewedPlaceHistory(erased),/missing reciprocal/);
- const narrated=structuredClone(candidate);
- for(const t of narrated.transcript.entries)
-  if(t.turn===10&&t.role==='assistant')t.text='A wholly different scene.';
- assert.throws(()=>verifyReviewedPlaceHistory(narrated),/not established in its saved narration/);
-});
-test('saved event rejects invented shortcut links, denied staff assumptions and rewritten evidence',()=>{
- const a=stage();
- const shortcut=structuredClone(a);
- shortcut.state.world.locations[placeId].connected_ids.push('LOC-HARBOR-WALK');
- assert.throws(()=>verifyReviewedPlaceHistory(shortcut),/confirmed public access and no shortcut/);
- const newUnstaged=structuredClone(a);
- newUnstaged.state.world.locations['LOC-FABRICATED-UNRECORDED']={
-  ...a.state.world.locations[placeId],id:'LOC-FABRICATED-UNRECORDED'
- };
- assert.throws(()=>verifyReviewedPlaceHistory(newUnstaged),
-  /multiple new places|Place evidence and anchor link|missing reciprocal|Orphaned/);
- const changed=structuredClone(a);
- changed.state.world.locations[placeId].scene_quote='A fictitious phrase not in the archived text.';
- assert.throws(()=>verifyReviewedPlaceHistory(changed),
-  /Place evidence and anchor link|not established in its saved narration/);
-});
-test('a future synthetic turn retains the location and its original event without copying private guesses',()=>{
- const first=stage();
- const continued=stage({
-  ...turn([],[],'qa-public-place-followup-002'),
-  intent:'Jack looks at ordinary merchandise without purchasing it.',
-  player_text:'I inspect the shelves and leave the objects in place.',
-  outcome:'The shop visit continues without a purchase.',
-  narration_messages:['Jack observes the existing shelves without a purchase.']
- },first);
- assert.equal(verifyNarrativeSnapshot(continued),true);
- assert.equal(continued.manifest.last_completed_turn,11);
- assert.equal(continued.state.world.locations[placeId].established_event_id,'EV-000030');
- assert.equal(continued.events.events.filter(e=>e.state_changes.some(
-  c=>c.field==='world_location')).length,1);
- assert.equal(baseline.state.world.locations[placeId],undefined);
-});
-test('same opportunity cannot spawn additional unrelated businesses in a later turn',()=>{
- const first=stage();
- const duplicate={...discovery(),id:'LOC-MARKET-SUPPLY-COUNTER-SECOND',
-  name:'Another synthetic counter'};
- assert.throws(()=>stage(turn([],[duplicate],'qa-duplicate-business-002'),first),
-  /already established in a prior turn/);
-});
-test('two different observed public opportunities can share one old anchor without overwriting links',()=>{
- const second={...discovery(),
-  id:'LOC-MARKET-CULTURE-DISPLAY-QA',
-  opportunity_id:'BAY-MARKET-COMMUNITY',
-  name:'Synthetic public cultural display',
-  type:'public_creative_display',
-  description:'An independently observed public display of ordinary artworks, without a fixed opening schedule.',
-  scene_quote:'Jack also sees a small public creative display along the Market Row sidewalk.',
-  access_quote:'A separate visible notice confirms anyone walking past may view the display.'};
- const request=turn([], [discovery(),second], 'qa-two-public-places-002');
- request.narration_messages=[sourceText(),second.scene_quote,second.access_quote];
- const snap=stage(request);
- assert.equal(verifyNarrativeSnapshot(snap),true);
- assert.equal(inspectSceneEstablishedPlaces({state:snap.state}).length,2);
- const ids=snap.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids;
- assert.deepEqual(ids.slice(-2),[placeId,second.id]);
- assert.deepEqual(worldRoute(snap.state,placeId,second.id),
-  [placeId,'LOC-COMMERCIAL-DISTRICT',second.id]);
-});
-test('a public place never creates a new autonomous NPC, known opening hour or current service case',()=>{
- const next=stage();
+test('routing cannot teleport Jack or assign activity to unrelated NPCs',()=>{
+ const before=JSON.stringify(baseline);
+ const shortcut={field:'location_id',before:'LOC-WILSON-WORKSHOP',after:noah,
+  route:['LOC-WILSON-WORKSHOP',noah]};
+ assert.throws(()=>stage(input([shortcut])),/Nonadjacent travel without route/);
+ const next=stage(input([{field:'location_id',before:'LOC-WILSON-WORKSHOP',
+  after:grocery,route:['LOC-WILSON-WORKSHOP','LOC-WILSON-APARTMENT',
+  'LOC-RAILGARDEN-RESIDENTIAL',grocery]}]));
+ assert.equal(verifyNarrativeSnapshot(next),true);
+ assert.equal(next.state.player.location_id,grocery);
  assert.deepEqual(Object.keys(next.state.world.actors),
   Object.keys(baseline.state.world.actors));
- assert.equal(next.state.world.locations[placeId].opening_hours,null);
- assert.equal(next.state.world.locations[placeId].travel_minutes,null);
- assert.ok(Object.values(next.state.world.actors).every(n=>
-  !n.service_cases||n.service_cases.length===0));
- assert.equal(baseline.manifest.last_completed_turn,9);
+ assert.equal(JSON.stringify(baseline),before);
 });
-
-test('opportunities are promoted to established only after event; other proposals stay untouched',()=>{
- const before=inspectMeridianBay({state:baseline.state,
-  anchorId:'LOC-COMMERCIAL-DISTRICT'}).areas[0].opportunities;
- assert.ok(before.every(o=>o.status==='proposed_not_canon'&&o.locationId===null));
- const saved=stage();
- const after=inspectMeridianBay({state:saved.state,
-  anchorId:'LOC-COMMERCIAL-DISTRICT'}).areas[0].opportunities;
- const established=after.find(o=>o.id==='BAY-MARKET-PARTS');
- assert.equal(established.status,'established_by_scene');
- assert.equal(established.locationId,placeId);
- assert.equal(established.establishmentEventId,'EV-000030');
- assert.equal(established.verifiedAccessible,true);
- assert.equal(established.openingHours,null);
- assert.ok(after.filter(o=>o.id!=='BAY-MARKET-PARTS').every(o=>
-  o.status==='proposed_not_canon'&&o.locationId===null));
- const diagnostic=inspectLivingWorld({snapshot:saved,actorIds:['NPC-006'],
+test('readback rejects changed authored places and unsupported world creation effects',()=>{
+ const snap=stage(input([], [observation()]));
+ const corrupted=structuredClone(snap);
+ corrupted.state.world.locations[noah].name='An unapproved renamed shop';
+ assert.throws(()=>verifyReviewedPlaceHistory(corrupted),/must preexist/);
+ const missing=structuredClone(snap);
+ missing.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids=
+  missing.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids
+   .filter(x=>x!==noah);
+ assert.throws(()=>verifyReviewedPlaceHistory(missing),/missing reciprocal/);
+ const invented=structuredClone(snap);
+ invented.events.events.at(-1).state_changes.push({
+  field:'world_location',actor_id:invented.state.player.id,
+  location_id:'LOC-IMPOSSIBLE',before:null,after:{id:'LOC-IMPOSSIBLE'}});
+ assert.throws(()=>verifyReviewedPlaceHistory(invented),/cannot create/);
+ const erased=structuredClone(snap);
+ erased.transcript.entries.forEach(x=>{
+  if(x.turn===10&&x.role==='assistant')x.text='There is no shop visible.';
+ });
+ assert.throws(()=>verifyReviewedPlaceHistory(erased),/source missing/);
+});
+test('a later separate player turn preserves the prebuilt map without multiplying destinations',()=>{
+ const first=stage();
+ const second=stage(input([], [observation()],'qa-prebuilt-followup-002'),first);
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ assert.equal(second.manifest.last_completed_turn,11);
+ assert.equal(Object.keys(second.state.world.locations).length,15);
+ assert.equal(new Set(Object.keys(second.state.world.locations)).size,15);
+ assert.equal(second.events.events.filter(e=>e.state_changes.some(c=>
+  c.field==='world_location')).length,0);
+ const diagnostic=inspectLivingWorld({snapshot:second,actorIds:['NPC-006'],
   elapsedMinutes:25});
  assert.equal(diagnostic.observedPublicPlaces.length,1);
- const playerSafe=playerVisibleDiagnostic(diagnostic);
- assert.equal('observedPublicPlaces' in playerSafe,false);
- assert.equal(JSON.stringify(baseline.state.world.locations).includes(placeId),false);
+ const safe=playerVisibleDiagnostic(diagnostic);
+ assert.equal('observedPublicPlaces' in safe,false);
+ assert.equal(JSON.stringify(baseline.state.world.locations).includes(noah),false);
 });
