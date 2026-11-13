@@ -44,3 +44,5 @@
 - [Meridian Bay D-058: necesidades, alternativas descartadas y costes observados](MERIDIAN_BAY_NEEDS_TRADEOFFS_20261112.md)
 
 - [Meridian Bay D-059: terminal, mantenimiento y caja con casos persistentes](MERIDIAN_BAY_SERVICES_20261112.md)
+
+- [Meridian Bay D-060: nuevos lugares visitables tras escenas verificadas](MERIDIAN_BAY_VISITABLES_20261112.md)
