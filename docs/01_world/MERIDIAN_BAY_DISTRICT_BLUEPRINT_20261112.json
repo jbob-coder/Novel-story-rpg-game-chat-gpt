@@ -107,7 +107,12 @@
       "role": "Punto de reunión cotidiana y acceso entre viviendas.",
       "relative_placement": "En el tejido residencial; la dirección exacta no está fijada.",
       "access": "public_proposed",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-RAIL-02",
@@ -117,7 +122,12 @@
       "role": "Compra de suministros domésticos, sin inventario ni precios establecidos.",
       "relative_placement": "A escala barrial, antes de incorporarse al corredor comercial de Market Row.",
       "access": "business_access_unknown",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-RAIL-03",
@@ -127,7 +137,12 @@
       "role": "Actividades de barrio y posibles entregas vecinales.",
       "relative_placement": "Dentro de Railgarden, sin dirección ni horario asignados.",
       "access": "access_unknown",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-RAIL-04",
@@ -137,7 +152,12 @@
       "role": "Referencia futura para el recorrido de Elena hacia la escuela; no afirma el campus ni su llegada.",
       "relative_placement": "Trayecto todavía sin conexión directa confirmada; no crear un LOC-ESCUELA.",
       "access": "route_unknown",
-      "character_link": "NPC-004"
+      "character_link": "NPC-004",
+      "evidence_class": "unmapped_reference_not_site",
+      "source": "existing_character_goal_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-MARKET-01",
@@ -147,7 +167,12 @@
       "role": "Propuesta de emplazamiento del negocio de reparación y componentes ya atribuido a Noah.",
       "relative_placement": "En Market Row, pero la ubicación concreta y el nombre comercial siguen abiertos.",
       "access": "business_access_unknown",
-      "character_link": "NPC-006"
+      "character_link": "NPC-006",
+      "evidence_class": "existing_business_unmapped",
+      "source": "game/STARTING_CAST.md:NPC-006",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-MARKET-02",
@@ -157,7 +182,12 @@
       "role": "Posible destino de intercambio entre comercios y mensajeros, sin confirmar destinatarios.",
       "relative_placement": "En el corredor de abastecimiento comercial; acceso de vehículos no detallado.",
       "access": "access_unknown",
-      "character_link": "NPC-003"
+      "character_link": "NPC-003",
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-MARKET-03",
@@ -167,7 +197,12 @@
       "role": "Concentración propuesta de pequeños talleres y comercio relacionado.",
       "relative_placement": "En Market Row, sin inventar fachadas, direcciones o conexión con Café Bruma.",
       "access": "access_unknown",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-MARKET-04",
@@ -177,7 +212,12 @@
       "role": "Actividad de vendedores ya compatible con la descripción genérica de la zona.",
       "relative_placement": "Junto al flujo peatonal/comercial; sin fijar qué puestos abren.",
       "access": "business_access_unknown",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-CROSS-01",
@@ -187,7 +227,12 @@
       "role": "Paneles públicos de rutas establecidos en la plaza; subzona de referencia, no nueva instalación.",
       "relative_placement": "Dentro de Crosswater Plaza, con el terminal contiguo.",
       "access": "public_area_known",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "existing_subfeature",
+      "source": "game/STATE.json:LOC-CROSSWATER-PLAZA",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-CROSS-02",
@@ -197,7 +242,12 @@
       "role": "Agrupación de tiendas/puestos descritos previamente sin nombres individuales ni horarios.",
       "relative_placement": "En el contorno peatonal de la plaza.",
       "access": "individual_business_access_unknown",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "existing_subfeature",
+      "source": "game/STARTING_LOCATIONS.md:LOC-CROSSWATER-PLAZA",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-TERM-01",
@@ -207,7 +257,12 @@
       "role": "Área funcional propuesta para la conexión entre buses y trenes, no un andén específico.",
       "relative_placement": "Dentro del terminal contiguo a Crosswater Plaza.",
       "access": "transit_access_unknown",
-      "character_link": "NPC-001"
+      "character_link": "NPC-001",
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-HARBOR-01",
@@ -217,7 +272,12 @@
       "role": "Punto conceptual de vista al puerto activo sin acceso implícito a muelles industriales.",
       "relative_placement": "Sobre el paseo público hacia el frente marítimo.",
       "access": "public_proposed",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     },
     {
       "id": "MB-DES-HARBOR-02",
@@ -227,7 +287,12 @@
       "role": "Conexión peatonal ya representada por Harbor Walk ↔ Market Row, sin calle nueva.",
       "relative_placement": "En la unión topológica con Market Row, sin coordenadas.",
       "access": "public_proposed",
-      "character_link": null
+      "character_link": null,
+      "evidence_class": "proposed_site",
+      "source": "design_only",
+      "canonical_location_id": null,
+      "approved_world_detail": false,
+      "player_knows_this_site": false
     }
   ],
   "construction_rules": {
@@ -240,5 +305,18 @@
     "player_turn_not_advanced": true,
     "no_intrusions_in_other_agent_branches": true,
     "canon_integration_requires_review": true
+  },
+  "metadata_review": {
+    "reviewed_for": "source_confidence_and_preexisting_world_design",
+    "review_date": "2026-11-12",
+    "review_result": "nine_proposed_sites_three_already_established_references_one_unmapped_school_route",
+    "draft_not_canon": true,
+    "classification_definitions": {
+      "proposed_site": "Hypothesis prepared before any visit; not an established business or routable address.",
+      "existing_subfeature": "Something described within an already established location, but not a separate address.",
+      "existing_business_unmapped": "Business already exists in supporting character canon; its individual door and schedule are unknown.",
+      "unmapped_reference_not_site": "Planning marker only; does not establish the school, route, or travel time."
+    },
+    "promotion_policy": "World approval can establish a pre-existing location independent of Jack visiting; later observation records only what Jack learns. Do not require player action to create world existence, but no unapproved design becomes canon."
   }
 }
