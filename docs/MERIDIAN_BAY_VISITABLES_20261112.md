@@ -40,3 +40,16 @@ Otro ensayo agrega hasta dos puntos públicos observados en el mismo turno, sin 
 
 ## QA formal
 Usar `node --test tests/*.test.mjs`, `python -m unittest discover -s tests -p 'test_*.py' -v` y `python tools/validate_state.py`. Registrar resultados de GitHub Actions **cuando realmente ocurran**, además de los SHA de los cinco archivos del guardado antes de afirmar preservación. La estimación porcentual del plan global será aproximada.
+
+## Verificación oficial y revisión de diseño
+- [GitHub Actions #43355724546](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43355724546), commit `496dc77e0348cde075ff11d52a96befbf2fdac49`: **262/262 pruebas Node.js**, **24/24 Python**, **0 fallos** y `python tools/validate_state.py` **PASS**.
+- En revisión se detectó que `inspectMeridianBay` continuaría marcando una ubicación recién establecida como oportunidad no canónica. Se añadió la transición dinámica `established_by_scene` solo si el `LOC-*` tiene `origin_opportunity_id`, evento de establecimiento y ancla concordante, dejando las demás oportunidades como propuestas. Se corrigió la comprobación de catálogo para permitir el readback de lugares ya establecidos; el fallo intermedio de CI quedó corregido y la suite se volvió a ejecutar con éxito.
+- Se añadió `observedPublicPlaces` al diagnóstico **privado** del narrador, con ruta verificada desde la ubicación actual de Jack. Esta información no se filtra automáticamente a `playerVisibleDiagnostic`.
+- Verificación de los cinco archivos de guardado por **SHA de blob** en las ramas `work/chat-narrative-foundation`, `work/meridian-bay-services-20261112` y `work/meridian-bay-visitables-20261112`: **todos idénticos**. No se alteraron manifiesto, estado, capítulo, eventos ni transcripción.
+- [PR #19](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/19): **abierta, borrador y sin fusionar**, base correcta `work/meridian-bay-services-20261112`. Se usó una base temporal `main` exclusivamente para activar el workflow que escucha PRs a esa base; fue restaurada al padre verdadero después de QA. Esta rama modifica únicamente diez archivos de herramientas, tests y documentación; ninguno pertenece al guardado canónico.
+- Hay otros trabajos paralelos en borrador sobre atlas/recorridos y flujo narrativo (PRs #16–18). No se sobrescribieron ni fusionaron. Reconciliar reglas de movilidad y decisiones con esas ramas antes de la integración final.
+
+## Informe incremental D-055
+**Progreso aproximado del plan técnico de Meridian Bay: ~65–70 %**, limitado a infraestructura propuesta y probada en ramas aisladas, no a contenido ya jugado. El escenario auténtico sigue en **CH-000 turno 9, día −29 por la mañana**. Los nuevos lugares del test son sintéticos, no forman parte del checkpoint. Faltan: rutas y condiciones de acceso privado con autorización causal, integración con el atlas paralelo, escenarios literarios realistas y el diario de guardado/recovery de GitHub probado con un commit remoto autenticado.
+
+**Siguiente bloque recomendado:** primero conciliar el sistema de rutas/atlas en PRs paralelas sin conflictos; después validar acceso público/restringido y prueba remota de journal. No ampliar por cantidad de negocios decorativos.
