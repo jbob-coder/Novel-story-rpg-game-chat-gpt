@@ -67,6 +67,7 @@ test('world is preconstructed independently of any player turn, idempotently and
  assert.equal(Object.keys(s.world.locations).length,15);
  assert.equal(prepareMeridianBayWorld({state:s}).world.locations[noah].name,
   s.world.locations[noah].name);
+ assert.equal(s.world.prebuilt_design_id,world.world_design_id);
  assert.equal(s.player.location_id,'LOC-WILSON-WORKSHOP');
  assert.deepEqual(Object.keys(s.world.actors),Object.keys(baseline.state.world.actors));
  assert.equal(s.time.day,baseline.state.time.day);
@@ -177,12 +178,12 @@ test('readback rejects changed authored places and unsupported world creation ef
  const snap=stage(input([], [observation()]));
  const corrupted=structuredClone(snap);
  corrupted.state.world.locations[noah].name='An unapproved renamed shop';
- assert.throws(()=>verifyReviewedPlaceHistory(corrupted),/must preexist/);
+ assert.throws(()=>verifyReviewedPlaceHistory(corrupted),/Incomplete prebuilt|must preexist/);
  const missing=structuredClone(snap);
  missing.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids=
   missing.state.world.locations['LOC-COMMERCIAL-DISTRICT'].connected_ids
    .filter(x=>x!==noah);
- assert.throws(()=>verifyReviewedPlaceHistory(missing),/missing reciprocal/);
+ assert.throws(()=>verifyReviewedPlaceHistory(missing),/Incomplete prebuilt|missing reciprocal/);
  const invented=structuredClone(snap);
  invented.events.events.at(-1).state_changes.push({
   field:'world_location',actor_id:invented.state.player.id,
@@ -209,4 +210,22 @@ test('a later separate player turn preserves the prebuilt map without multiplyin
  const safe=playerVisibleDiagnostic(diagnostic);
  assert.equal('observedPublicPlaces' in safe,false);
  assert.equal(JSON.stringify(baseline.state.world.locations).includes(noah),false);
+});
+
+test('world-design version and place membership cannot silently change after staging',()=>{
+ const snap=stage();
+ assert.equal(snap.state.world.prebuilt_design_id,world.world_design_id);
+ const withoutLocation=structuredClone(snap);
+ delete withoutLocation.state.world.locations[noah];
+ assert.throws(()=>verifyReviewedPlaceHistory(withoutLocation),
+  /Incomplete prebuilt city catalog/);
+ const withoutVersion=structuredClone(snap);
+ delete withoutVersion.state.world.prebuilt_design_id;
+ assert.throws(()=>verifyReviewedPlaceHistory(withoutVersion),
+  /Missing or mismatched prebuilt world design version/);
+ const mismatched=structuredClone(snap.state);
+ mismatched.world.prebuilt_design_id='MB-PREBUILT-OLDER-VERSION';
+ assert.throws(()=>prepareMeridianBayWorld({state:mismatched}),
+  /world design version differs/);
+ assert.equal(baseline.state.world.prebuilt_design_id,undefined);
 });
