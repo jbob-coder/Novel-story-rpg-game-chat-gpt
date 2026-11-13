@@ -111,8 +111,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-RAIL-02",
@@ -126,8 +126,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-RAIL-03",
@@ -141,8 +141,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-RAIL-04",
@@ -156,8 +156,8 @@
       "evidence_class": "unmapped_reference_not_site",
       "source": "existing_character_goal_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-MARKET-01",
@@ -171,8 +171,8 @@
       "evidence_class": "existing_business_unmapped",
       "source": "game/STARTING_CAST.md:NPC-006",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-MARKET-02",
@@ -186,8 +186,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-MARKET-03",
@@ -201,8 +201,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-MARKET-04",
@@ -216,8 +216,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-CROSS-01",
@@ -231,8 +231,8 @@
       "evidence_class": "existing_subfeature",
       "source": "game/STATE.json:LOC-CROSSWATER-PLAZA",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-CROSS-02",
@@ -246,8 +246,8 @@
       "evidence_class": "existing_subfeature",
       "source": "game/STARTING_LOCATIONS.md:LOC-CROSSWATER-PLAZA",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-TERM-01",
@@ -261,8 +261,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-HARBOR-01",
@@ -276,8 +276,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     },
     {
       "id": "MB-DES-HARBOR-02",
@@ -291,8 +291,8 @@
       "evidence_class": "proposed_site",
       "source": "design_only",
       "canonical_location_id": null,
-      "approved_world_detail": false,
-      "player_knows_this_site": false
+      "player_knowledge_status": "not_established",
+      "design_extension_approved": false
     }
   ],
   "construction_rules": {
