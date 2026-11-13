@@ -26,11 +26,15 @@ export function selectRelevantNPCs({state,limit=3}={}){
  }).sort((a,b)=>b.score-a.score||a.actorId.localeCompare(b.actorId))
   .slice(0,limit).map(({actorId})=>actorId);
 }
-export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,commitments=[]}={}){
+export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,commitments=[],targetDay=null}={}){
  requireFact(state?.world?.actors && state.time && Number.isSafeInteger(state.time.day),
   'Valid state required');
  requireFact(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0&&elapsedMinutes<=525600,
   'Invalid fictional time span');
+ requireFact(targetDay===null||(Number.isSafeInteger(targetDay)&&
+  targetDay>=state.time.day&&targetDay<=state.time.day+365),
+  'Invalid obligation review day');
+ const reviewDay=targetDay??state.time.day;
  requireFact(Array.isArray(actorIds)&&actorIds.length<=100&&
   new Set(actorIds).size===actorIds.length&&actorIds.every(validId),'Invalid NPC selection');
  requireFact(Array.isArray(commitments)&&commitments.length<=100,'Invalid commitments');
@@ -61,8 +65,8 @@ export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,commitm
   requireFact(!seen.has(c.id),'Duplicate commitment id');seen.add(c.id);
   if(!selected.has(c.actor_id)||!['pending','blocked'].includes(c.status))continue;
   let review=c.status==='blocked'?'blocked_review':'deadline_unknown';
-  if(c.status==='pending'&&c.due_day!==null)review=c.due_day<state.time.day?'overdue_review':
-   c.due_day===state.time.day?'due_today_review':'upcoming';
+  if(c.status==='pending'&&c.due_day!==null)review=c.due_day<reviewDay?'overdue_review':
+   c.due_day===reviewDay?'due_today_review':'upcoming';
   out.push({id:c.id,actorId:c.actor_id,kind:'explicit_commitment',
    summary:c.summary,sourceEventId:c.source_event_id,dueDay:c.due_day,
    priority:c.priority??'normal',blockers:c.blockers??[],origin:c.origin,

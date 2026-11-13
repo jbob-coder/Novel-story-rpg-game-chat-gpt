@@ -32,3 +32,7 @@
 - [Living World D-052: tiempos, recuperación durable, NPC y privacidad](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md)
 
 - [Living World D-053: intervalos temporales y pruebas oficiales](LIVING_WORLD_TIME_WINDOW_QA_20261112.md)
+
+- [D-054: obligaciones persistentes de NPC y prueba de regresión](LIVING_WORLD_OBLIGATIONS_IMPLEMENTATION_20261112.md)
+- [D-054: prueba remota aislada de journal](LIVING_WORLD_JOURNAL_REMOTE_SMOKE_20261112.md)
+- [Meridian Bay: rutinas, opciones de vida social y expansión por zonas](MERIDIAN_BAY_ROUTINES_EXPANSION_20261112.md)
