@@ -31,3 +31,5 @@
 - [Necesidades y costes cualitativos persistentes de NPC con registro causal](living_world_needs.mjs)
 
 - [Tres servicios civiles de Meridian Bay con casos y pasos causales persistentes](meridian_bay_services.mjs)
+
+- [Incorporación causal de lugares públicos observados y rutas de acceso](meridian_bay_locations.mjs)
