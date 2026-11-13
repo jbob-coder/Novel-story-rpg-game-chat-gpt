@@ -24,8 +24,7 @@ const shown=(messages,phrase)=>Array.isArray(messages)&&
 function isProposedAt(state,anchorId,opportunityId){
  const report=inspectMeridianBay({state,anchorId});
  return report.areas.some(a=>a.anchorId===anchorId &&
-  a.opportunities.some(o=>o.id===opportunityId&&
-   o.status==='proposed_not_canon'));
+  a.opportunities.some(o=>o.id===opportunityId));
 }
 function validateRecord(loc,state){
  insist(loc&&typeof loc==='object'&&!Array.isArray(loc)&&
