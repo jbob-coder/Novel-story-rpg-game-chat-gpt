@@ -46,3 +46,17 @@ Se ensaya un futuro turno donde Rosa expresa una nueva necesidad de organizar la
 - Próxima mejora: vincular necesidades con decisiones sociales adversas y planes de servicio reales de Meridian Bay; empezar solo por 2–3 lugares funcionales, con rutas y horarios cuando sean establecidos narrativamente.
 
 **Cadencia D-055:** entregar cambios completos por mensaje con porcentaje aproximado del plan global; no prometer ejecución en tiempo real ni narrar turnos de Jack sin su acción.
+
+## QA y verificación oficial — completados
+- [GitHub Actions #43345707526](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43345707526), commit de código y documentación `f533da589f02cf16f583722e091964343abc4e62`: **235/235 Node.js**, **24/24 Python**, **0 fallos** y `python tools/validate_state.py` **PASS**. Los 13 tests añadidos comprueban una cadena de tres turnos **sintéticos**, sin convertirla en canon.
+- Comparación de blobs GitHub entre la rama narrativa `work/chat-narrative-foundation`, D-057 y esta rama: **cinco archivos de partida byte-idénticos**. SHA: manifiesto `897ec2e77ece4f8edf506c7058552a5dd3cdb320`; estado `0320a93ebf4a944da97b65dffa6d281acce46d94`; capítulo `e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4`; eventos `1f40c724e44f70c9b45814dc11ff1f73262c5a5f`; transcripción `1350916ead7fb1f2f15fdd635dda42e69a0a3fed`.
+- [PR #14](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/14) está **abierta, en borrador y sin fusionar**, dependiente de `work/meridian-bay-social-relations-20261112`. Se usó `main` temporalmente solo para activar el workflow que escucha exclusivamente esa base, y se restauró la base correcta después.
+- No se inició el turno auténtico 10, no se insertaron nuevas necesidades en el `STATE.json` canónico, ni se modificó `main`.
+
+## Informe incremental de progreso (D-055)
+**Estimación aproximada del plan técnico de expansión de Meridian Bay: ~50–60 %**, no una medida precisa. Módulos propuestos y ensayados en ramas de revisión: compromisos NPC, rutinas, decisión causal, interacción social y necesidades/costes. Todavía no forman una simulación permanente jugable: faltan servicios físicos con ubicaciones confirmadas, comportamiento cualitativo multiagente de mayor alcance, ensayo narrativo editorial, integración de PR encadenadas y ejecución autenticada de guardado/journal real.
+
+## Observación crítica de QA
+El motor estructural puede verificar un evento, un ID y una anotación de coste, pero **no puede comprobar por sí mismo la veracidad literaria de una observación redactada por un narrador**. La API de bajo nivel acepta efectos revisados, por lo que el proceso editorial y la puerta de guardado siguen siendo indispensables. No se debe tratar `reviewed:true` como prueba automática de que un NPC actuó de verdad.
+
+**Próxima prioridad:** introducir dos o tres servicios urbanos concretos mediante eventos causales, dotarlos de acceso y funciones verificables y conectar esos servicios con las necesidades/obligaciones. No establecer horarios exactos ni direcciones por inferencia.
