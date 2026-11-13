@@ -1,3 +1,5 @@
+> **ENMIENDA D-061 (2026-11-12): DOCUMENTO HISTÓRICO.** El propietario rechazó el criterio D-060 de que Jack debe observar un establecimiento para que empiece a existir. La implementación de creación de `LOC-*` por escena se sustituyó en la rama de integración: los lugares se diseñan **antes**, en `game/MERIDIAN_BAY_PREBUILT.json`, y una escena observada solo registra **conocimiento**. La revisión activa y el QA se explican en [Meridian Bay preconstruido](01_world/MERIDIAN_BAY_PREBUILT_RAILMARKET_20261112.md). No usar las instrucciones antiguas de este archivo como regla vigente ni aplicarlas a la partida.
+
 # Meridian Bay — incorporación causal de lugares públicos visitables (D-060)
 Fecha de trabajo: 2026-11-12. Rama independiente `work/meridian-bay-visitables-20261112`.
 Punto de partida inspeccionado: `59bf58cf2668ce284e68f539217979902ce062b4` (PR #15).
