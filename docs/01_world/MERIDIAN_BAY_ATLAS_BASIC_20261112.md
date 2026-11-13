@@ -58,7 +58,7 @@ No hay coordenadas, distancias, horarios ni edificios detallados aprobados. Cuan
 - Market Row: repuestos, recepción de entregas, puestos y comercios.
 - Crosswater: información de pasajeros y mantenimiento del tránsito.
 - Harbor Walk: servicios del paseo y actividad portuaria.
-- Fuera de la ciudad: **alcance por decidir**, no crear pueblos ni regiones de oficio.
+- Fuera de la ciudad: permitir **menciones, noticias y rumores con procedencia**, sin mapear regiones todavía; desarrollar únicamente al volverse necesarias.
 
 No copiar automáticamente nombres, ubicaciones o servicios del borrador técnico de otro agente; integrar tras revisión cuando corresponda.
 
@@ -69,9 +69,23 @@ No copiar automáticamente nombres, ubicaciones o servicios del borrador técnic
 4. **Entrada a edificio:** recuperar cualquier descripción ya escrita; estimar planta y dimensiones de forma física plausible, coherente con usos y accesos. Definir interior solo entonces; no exigir un plano completo de edificios nunca visitados.
 5. **Persistencia:** un detalle propuesto se incorpora al mundo canónico **únicamente** mediante la revisión/autorización correspondiente y, si afecta a la narración, el protocolo de guardado de cinco archivos. La edición de este atlas no es una acción del personaje.
 
-## Dos preguntas pendientes que NO bloquean la base del atlas
-- **Alcance territorial:** ¿solo completar Meridian Bay o bosquejar también alrededores? Hasta respuesta, no ampliar fuera de la ciudad.
-- **Sentido de “tiempo”:** puede referirse al trayecto dentro de la ficción, o al esfuerzo de desarrollo para detallar una zona. Hasta respuesta, no fijar duraciones ni prometer trabajo en segundo plano.
+## Decisiones posteriores del propietario — prioridad y mundo exterior
+- **Primero Meridian Bay.** Desarrollar sus zonas principales hasta disponer de una ciudad comprensible, pero sin exigir que cada calle o edificio esté terminado antes de continuar una historia.
+- **El mundo existe más allá del mapa construido.** Es legítimo que personajes se refieran a otras ciudades, rutas, regiones o países, o que una noticia hable de sucesos exteriores, sin que dichos lugares tengan un mapa, interiores ni simulación local detallados.
+- **Referencias no equivalen a canon exhaustivo.** Una referencia exterior debe identificar su fuente y certeza: noticia publicada, testimonio, rumor o conocimiento de un personaje; no atribuir al narrador conocimiento omnisciente ni inventar titulares ya ocurridos. La noticia puede resultar cierta, incompleta o falsa. Si introduce un hecho importante, establecerlo narrativamente y registrarlo mediante el protocolo pertinente antes de tratarlo como historia.
+- **No generar regiones exteriores ahora por obligación.** Un lugar externo puede mantenerse como mención contextual, nombre provisional u oportunidad de expansión. Si la acción del jugador lo lleva allí, preparar en ese momento un mapa básico, conexión de viaje y accesos necesarios, sin requerir diseñar toda la región. No asumir que una ruta desconocida es instantánea ni que un lugar es inaccesible solo por faltar su plano.
+- **Fuentes y límites previos al Día 0.** Las noticias del exterior deben ser compatibles con sociedad normal antes de la onda cósmica; no adelantar poderes, información secreta ni conocimiento sobre la onda que ningún personaje tiene.
+- **Tiempo de viaje como plausibilidad, no cronómetro rígido.** Cuando una caminata o traslado se resuelva en la historia, dar una duración razonable y aproximada basándose en tipo de zona, transporte, ruta y circunstancias observadas. Evitar minutos/km exactos si faltan datos. Una duración narrativa establecida con evidencia pasa a ser referencia para futuros viajes comparables; puede variar con tráfico, desvíos o paradas. No mover a nadie mientras la conversación esté inactiva ni avanzar la historia por una actualización cartográfica.
+
+### Estados de desarrollo territorial
+| Estado | Representación | Regla |
+| --- | --- | --- |
+| **Visitado/guardado** | Lugar con ID y enlaces verificados | Consultar el estado y conservar sus hechos antes de ampliar. |
+| **Esquemático** | Barrio o zona con posición relativa y función | Orientación básica; sin interiores ni cronología fabricada. |
+| **Mencionado/no mapeado** | Lugar externo conocido por noticias, conversación o rumor | Registrar procedencia cuando resulte relevante; no generar plano completo. |
+| **Necesario para la siguiente escena** | Lugar al que el personaje realmente se dirige | Desarrollar por demanda accesos, ruta aproximada y detalles suficientes; después validar y persistir. |
+
+**Resultado editorial:** Meridian Bay es la primera prioridad cartográfica, **no el límite del universo narrativo**. Las noticias exteriores amplían la sensación de sociedad viva sin comprometer mapas o eventos que aún no se han establecido.
 
 ## Verificación y límites
 Revisión estática de fuente: **9 registros** (ciudad + 8 ubicaciones), **8 enlaces directos bidireccionales**. No se modifican `game/STATE.json`, `game/SAVE_MANIFEST.json`, capítulos, transcripciones, código ni rutas del motor. Orientación espacial propuesta **no es canon**. No se han corrido pruebas de software: este cambio es documentación aislada.
