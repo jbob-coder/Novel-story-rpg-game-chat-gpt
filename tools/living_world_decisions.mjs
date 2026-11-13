@@ -3,6 +3,7 @@
 // character, or writes the canonical five-file checkpoint.
 import {planNPCAgendas,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {worldRoute} from './living_world_routines.mjs';
+import {reviewNPCNeeds} from './living_world_needs.mjs';
 
 const requireFact=(ok,message)=>{if(!ok)throw Error(message)};
 const copy=x=>JSON.parse(JSON.stringify(x));
@@ -92,12 +93,24 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
   if(candidate.kind==='obligation'&&candidate.review==='overdue_review')
    gaps.push({code:'overdue_does_not_mean_failed',detail:'Deadline alone proves neither failure nor completion'});
   const alternatives=intent.competingAlternatives.filter(x=>byId.has(x));
+  const savedNeeds=reviewNPCNeeds({state,actorIds:[intent.actorId],
+   targetDay:intent.timeOfReview});
+  // Needs create tradeoff questions, never automatic illness, fatigue or cost.
+  // A separate observed actor event must record any actual cost.
+  if(savedNeeds.some(n=>n.priority==='urgent'||n.review==='blocked'))
+   gaps.push({code:'needs_compete_for_attention',
+    detail:'Existing recorded need may conflict with this task; resolve qualitatively'});
+
   results.push({
    classification:'narrator_private_causal_assessment',
    actorId:intent.actorId,candidateId:intent.candidateId,
    objective:intent.objective,kind:candidate.kind,
    obligationId:candidate.obligationId??null,
    source,blockingEvidence:blockers,unknowns:gaps,
+   competingNeeds:savedNeeds.map(n=>({
+    needId:n.needId,domain:n.domain,summary:n.summary,priority:n.priority,
+    review:n.review,resourceKeys:n.resourceKeys,blockedBy:n.blockers
+   })),
    reviewContext:copy({elapsedMinutes,elapsedDays,nextPeriod,weekday,minute,
      schedules,exceptions}),
    alternatives,competition:alternatives.length>0?
