@@ -35,7 +35,7 @@
       "x": 0,
       "y": 0
     },
-    "coordinates_are": false
+    "georeferenced": false
   },
   "planning_regions": [
     {
@@ -288,7 +288,91 @@
     "waterfront_coastline_pending": true,
     "remote_regions_not_yet_destinations": true,
     "travel_time_from_rough_plan_not_canon": true,
-    "scale_may_be_revised_before_approval": true
+    "scale_may_be_revised_before_approval": true,
+    "focus_area_boxes_are_not_precise_district_boundaries": true,
+    "street_network_geometry_not_yet_mapped": true
   },
-  "planned_next_step": "Detail named street corridor shapes after reviewing neighborhood footprints; map only road connections already confirmed."
+  "planned_next_step": "Detail named street corridor shapes after reviewing neighborhood footprints; map only road connections already confirmed.",
+  "focus_area_envelopes": [
+    {
+      "id": "MB-FOCUS-RAIL",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "box": {
+        "x_min": 43,
+        "x_max": 53,
+        "y_min": 37,
+        "y_max": 51
+      },
+      "rough_envelope_km": {
+        "width": 1,
+        "height": 1.4
+      },
+      "scope": "representative development study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-MARKET",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "box": {
+        "x_min": 54,
+        "x_max": 63,
+        "y_min": 38,
+        "y_max": 49
+      },
+      "rough_envelope_km": {
+        "width": 0.9,
+        "height": 1.1
+      },
+      "scope": "representative commercial corridor study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-CROSS",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "box": {
+        "x_min": 63,
+        "x_max": 69,
+        "y_min": 39,
+        "y_max": 45
+      },
+      "rough_envelope_km": {
+        "width": 0.6,
+        "height": 0.6
+      },
+      "scope": "public plaza and surrounding pedestrian study zone",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-TERM",
+      "location_id": "LOC-TRANSIT-TERMINAL",
+      "box": {
+        "x_min": 66,
+        "x_max": 71,
+        "y_min": 40,
+        "y_max": 45
+      },
+      "rough_envelope_km": {
+        "width": 0.5,
+        "height": 0.5
+      },
+      "scope": "terminal interface and access study zone, not platforms",
+      "boundary_confirmed": false
+    },
+    {
+      "id": "MB-FOCUS-HARBOR",
+      "location_id": "LOC-HARBOR-WALK",
+      "box": {
+        "x_min": 68,
+        "x_max": 77,
+        "y_min": 32,
+        "y_max": 42
+      },
+      "rough_envelope_km": {
+        "width": 0.9,
+        "height": 1
+      },
+      "scope": "linear public waterfront study zone, not an industrial port boundary",
+      "boundary_confirmed": false
+    }
+  ]
 }
