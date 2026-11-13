@@ -3,6 +3,7 @@ import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {verifySocialEventHistory} from './living_world_social.mjs';
+import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_locations.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -49,6 +50,7 @@ function verifyNarrativeSnapshot(snapshot) {
   checkFullNarration(snapshot);
   verifyStateChanges(snapshot);
   verifySocialEventHistory(snapshot);
+  verifyReviewedPlaceHistory(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -81,6 +83,12 @@ function stageNarrativeTurn(snapshot, turn) {
     return rec;
   }
   const playerEvent=event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
+  // D-060: a new publicly visitable place must first be established in this
+  // exact narrated player scene. Then a separate actor-location effect may
+  // legally move Jack to it through the newly confirmed anchor edge.
+  applyReviewedPlaceDiscovery({state:s,event:playerEvent,
+    discoveries:turn.location_discoveries??[],
+    narrationMessages:turn.narration_messages});
   // D-040: every material player-side effect is an explicit, preconditioned event change.
   applyStateChanges(s,playerEvent,turn.changes??[]);
   const firstSocialEvent=new Map();
