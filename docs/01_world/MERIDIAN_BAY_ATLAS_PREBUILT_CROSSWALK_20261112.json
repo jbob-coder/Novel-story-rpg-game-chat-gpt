@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "id": "MB-ATLAS-PREBUILT-CROSSWALK-20261112",
+  "authority": "integration_review_only_not_story_canon",
+  "atlas_source": {
+    "branch": "work/meridian-bay-district-blueprint-20261112",
+    "path": "docs/01_world/MERIDIAN_BAY_DISTRICT_BLUEPRINT_20261112.json",
+    "blob_sha": "f30efb2ef27469d3375d693db2f1b48849de4fac",
+    "draft_reference_count": 13
+  },
+  "prebuilt_source": {
+    "branch": "work/meridian-bay-prebuilt-routes-20261112",
+    "path": "game/MERIDIAN_BAY_PREBUILT.json",
+    "world_design_id": "MB-PREBUILT-20261112-V2",
+    "authored_location_count": 6
+  },
+  "location_policy": "Only same_site_in_prebuilt_design maps a draft identity to an authored world location; related_but_not_equivalent is NOT an alias or route.",
+  "draft_references": [
+    {
+      "draft_id": "MB-DES-RAIL-01",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Patio comunitario; no site in current prebuilt catalog."
+    },
+    {
+      "draft_id": "MB-DES-RAIL-02",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "evidence_class": "proposed_site",
+      "relationship": "same_site_in_prebuilt_design",
+      "prebuilt_location_id": "LOC-RAILGARDEN-ABARROTES",
+      "reason": "Same retail name and district; design identity reconciled, not a completed story visit."
+    },
+    {
+      "draft_id": "MB-DES-RAIL-03",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Neighborhood meeting spot remains a separate proposal."
+    },
+    {
+      "draft_id": "MB-DES-RAIL-04",
+      "anchor_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "evidence_class": "unmapped_reference_not_site",
+      "relationship": "unmapped_reference",
+      "prebuilt_location_id": null,
+      "reason": "Elena's school remains unmapped; no route or arrival confirmed."
+    },
+    {
+      "draft_id": "MB-DES-MARKET-01",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "evidence_class": "existing_business_unmapped",
+      "relationship": "same_site_in_prebuilt_design",
+      "prebuilt_location_id": "LOC-MARKET-NOAH-REPAIR",
+      "reason": "Noah's previously established repair/components business; shop location now authored in draft world."
+    },
+    {
+      "draft_id": "MB-DES-MARKET-02",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "evidence_class": "proposed_site",
+      "relationship": "related_but_not_equivalent",
+      "prebuilt_location_id": "LOC-MARKET-DELIVERY-POINT",
+      "reason": "Delivery courtyard and pickup counter may serve related functions, but identity is NOT established; retain both concepts."
+    },
+    {
+      "draft_id": "MB-DES-MARKET-03",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Craft-workshop passage is not automatically the cultural passage or service arcade."
+    },
+    {
+      "draft_id": "MB-DES-MARKET-04",
+      "anchor_id": "LOC-COMMERCIAL-DISTRICT",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Stall zone is not the prebuilt service arcade; no identity established."
+    },
+    {
+      "draft_id": "MB-DES-CROSS-01",
+      "anchor_id": "LOC-CROSSWATER-PLAZA",
+      "evidence_class": "existing_subfeature",
+      "relationship": "existing_feature_not_new_place",
+      "prebuilt_location_id": null,
+      "reason": "Route panels are already part of the existing plaza; no new LOC."
+    },
+    {
+      "draft_id": "MB-DES-CROSS-02",
+      "anchor_id": "LOC-CROSSWATER-PLAZA",
+      "evidence_class": "existing_subfeature",
+      "relationship": "existing_feature_not_new_place",
+      "prebuilt_location_id": null,
+      "reason": "Small businesses of the plaza are general descriptors, not specific prebuilt new addresses."
+    },
+    {
+      "draft_id": "MB-DES-TERM-01",
+      "anchor_id": "LOC-TRANSIT-TERMINAL",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Terminal transfer hall has not been promoted to a distinct LOC."
+    },
+    {
+      "draft_id": "MB-DES-HARBOR-01",
+      "anchor_id": "LOC-HARBOR-WALK",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Waterfront overlook remains a proposed subarea."
+    },
+    {
+      "draft_id": "MB-DES-HARBOR-02",
+      "anchor_id": "LOC-HARBOR-WALK",
+      "evidence_class": "proposed_site",
+      "relationship": "pending_unapproved",
+      "prebuilt_location_id": null,
+      "reason": "Crossing is already represented by original link; proposed subarea, not a new shortcut."
+    }
+  ],
+  "prebuilt_without_direct_draft_identity": [
+    "LOC-RAILGARDEN-CLINIC",
+    "LOC-MARKET-DELIVERY-POINT",
+    "LOC-MARKET-CULTURE-PASSAGE",
+    "LOC-MARKET-BUSINESS-OFFICES"
+  ],
+  "rules": {
+    "no_automatic_promotion_of_pending_sites": true,
+    "no_duplicate_location_creation": true,
+    "never_treat_related_concept_as_same_location": true,
+    "do_not_infer_player_knowledge": true,
+    "no_new_graph_edges_except_prebuilt_parent_links": true,
+    "no_scene_turn_or_time_effect": true
+  }
+}

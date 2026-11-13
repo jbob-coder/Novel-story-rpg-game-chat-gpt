@@ -16,3 +16,6 @@
 - [Catálogo estructurado de lugares anteriores a Jack](../../game/MERIDIAN_BAY_PREBUILT.json)
 
 **Autoridad:** son fichas de diseño de ciudad y no escenas vividas. No crear nuevos lugares como efecto secundario de `turn.location_discoveries`; el mapa confirmado inicial en el checkpoint sigue intacto hasta integración autorizada.
+
+- [Rutas narrativas y conciliación con el atlas de Meridian Bay](MERIDIAN_BAY_ROUTE_INTEGRATION_20261112.md)
+- [Conciliación estructurada de 13 fichas y 6 lugares preconstruidos](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)

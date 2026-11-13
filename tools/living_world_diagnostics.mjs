@@ -6,7 +6,7 @@ import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
-import {inspectSceneEstablishedPlaces} from './meridian_bay_locations.mjs';
+import {inspectSceneEstablishedPlaces,inspectPrebuiltMeridianBay,prepareMeridianBayWorld} from './meridian_bay_locations.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
 import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
@@ -27,7 +27,10 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
   const selected=chosen.filter(id=>Object.hasOwn(state.world.actors,id));
   const candidates=previewNPCRoutines({state,elapsedMinutes,actorIds:selected,
     weekday,minute,schedules,exceptions});
-  const placeIds=Object.keys(state.world.locations);
+  // Geography is pre-authored, even when a legacy turn-9 checkpoint predates
+  // its materialization. Inspect on a detached copy without advancing play.
+  const cityState=prepareMeridianBayWorld({state});
+  const placeIds=Object.keys(cityState.world.locations);
   const placeAvailability=Object.fromEntries(placeIds.map(id=>{
     const checked=availability({schedule:schedules[id],exception:exceptions[id],
       weekday,minute});
@@ -53,7 +56,8 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     possibleNPCContacts:previewNearbyNPCContacts({state,actorIds:selected}),
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
-    meridianBay:inspectMeridianBay({state}),
+    meridianBay:inspectMeridianBay({state:cityState}),
+    prebuiltPublicPlaces:inspectPrebuiltMeridianBay({state,fromId:state.player.location_id}),
     observedPublicPlaces:inspectSceneEstablishedPlaces({state,fromId:state.player.location_id}),
     establishedServices:inspectEstablishedServices({state,actorIds:selected,
       weekday,minute,schedules,exceptions}),
@@ -65,7 +69,7 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
-      'City opportunity IDs are proposals, never routable established locations.',
+      'Prebuilt LOC places exist before discovery; only unresolved opportunity IDs are not routable.',
       'Existing service roles do not establish active hours or completed work.',
       'A causal assessment requires human review and a new scene observation before a world-changing result.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
