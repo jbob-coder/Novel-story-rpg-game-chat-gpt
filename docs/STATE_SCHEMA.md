@@ -137,3 +137,29 @@ Cada ficha conserva `id` (`CASE-...`), `service_id`, `location_id`, `resource_ke
 Los `before/after` se validan de forma atómica por `state_changes.mjs`. El readback rechaza eventos desconocidos, servicios/actores/lugares inexistentes, repetición de IDs, condiciones injustificadas o cambios de identidad. Un caso abierto puede coexistir con horario desconocido; un caso cerrado no implica que la máquina, ruta o servicio físico esté arreglado o abierto.
 
 **Visibilidad:** los detalles privados de caso no se transfieren automáticamente al lector ni a Jack; su difusión exige observación o comunicación causal. Las pruebas sintéticas no afectan el checkpoint del turno 9.
+
+## D-060 — expansión de lugares observados dentro de un turno
+
+La incorporación de sitios públicos al grafo de `world.locations` requiere una
+`turn.location_discoveries` del evento `player_action` auténtico, revisada
+editorialmente. Cada entrada exige un `LOC-...` nuevo, oportunidad `BAY-...`
+existente del ancla `LOC-...` correcta, nombre, tipo, descripción y dos citas
+literales y distintas (`scene_quote`, `access_quote`) del texto narrado
+del **mismo turno**, más `reviewed:true` y `public_access_confirmed:true`.
+Máximo dos sitios en un turno; jamás promover propuestas por tiempo transcurrido.
+
+El nuevo lugar tiene `parent_id` del barrio ancla, `connected_ids` con
+**una única** entrada al barrio, `public_area:true`,
+`access_status:"public_confirmed"`, `origin_opportunity_id`,
+`established_event_id`, citas de origen y `opening_hours:null`,
+`travel_minutes:null`. No se crea un NPC ni se confirma que el establecimiento
+esté abierto. Una ubicación de acceso desconocido o restringido continúa como
+propuesta y no es automáticamente visitable.
+
+El evento del jugador incorpora `state_changes` con
+`field:"world_location"` y `field:"world_location_link"`, cada uno
+con `before`/`after`; luego puede registrar `location_id` del jugador
+si el trayecto respeta la conexión anclada. El checkpoint verifica los
+efectos y que las citas estén en la transcripción preservada del turno.
+Un registro sin evento, enlace o evidencia literal válida se rechaza.
+La ruta de verificación conserva compatibilidad con todos los turnos legados.
