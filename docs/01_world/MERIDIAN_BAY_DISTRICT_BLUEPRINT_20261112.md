@@ -24,11 +24,11 @@ El esquema anterior **no representa distancia, cardinales ni calles exactas**: e
 
 ## Capas de información
 1. **Ubicación establecida:** ocho `LOC-*` ya guardados más la ciudad. Sus nombres, funciones y enlaces se toman del checkpoint, no se duplican ni reemplazan.
-2. **Lugar preparado antes de la visita:** 13 fichas `MB-DES-*` que proponen funciones y posiciones relativas bajo una de las anclas existentes. Es información interna del diseño, **no aparece mágicamente cuando Jack llega**. La ficha puede existir antes de una escena y conservarse sin inventar que Jack la conoce. Su estado en este PR es *borrador*; requiere decisión de integración para pasar a diseño vinculante del mundo.
+2. **Referencia cartográfica preparada antes de la visita:** 13 fichas `MB-DES-*`, pero **no son 13 establecimientos nuevos**. Nueve son propuestas de sitios, dos desarrollan rasgos públicos ya descritos en Crosswater, una localiza conceptualmente el negocio ya establecido de Noah y otra recuerda que la escuela de Elena no está situada. Cada ficha declara su tipo de evidencia en `evidence_class`. Son referencias de diseño, no ubicaciones `LOC-*` confirmadas ni puntos automáticos de viaje; las nueve hipótesis requieren aprobación editorial antes de ser tratadas como preexistentes en el mundo.
 3. **Lugar conocido por Jack:** depende de su biografía, mensajes y observaciones guardadas, no del acceso del narrador a la ficha. Un lugar puede existir sin que Jack conozca su nombre ni localización.
 4. **Lugar visitado / hecho ocurrido:** requiere una escena auténtica, una acción válida y el registro del turno. La mera existencia en el diseño no confirma una compra, encuentro, horario, visita, escuela o reparación.
 
-Esta distinción importa para coordinar con la otra rama `work/meridian-bay-visitables-20261112`, que actualmente implementa creación de lugares visitables solo tras evidencia en escena. **No fusionar ese mecanismo como única vía de existencia del mundo sin resolver la diferencia entre lugar preconstruido y lugar observado.** La propuesta aquí no escribe en dicha rama.
+Esta distinción importa para coordinar con la otra rama `work/meridian-bay-visitables-20261112`, que actualmente implementa creación de lugares visitables solo tras evidencia en escena. **No fusionar ese mecanismo como única vía de existencia del mundo sin resolver la diferencia entre lugar preconstruido y lugar observado.** La propuesta aquí no escribe en dicha rama. La aprobación de una ubicación preautorizada establecería que existe sin requerir que Jack la descubra; conocerla, acceder o verla son hechos diferentes que deberán constar en el relato.
 
 ## Zonas que ya pueden diseñarse sin detallar cada puerta
 | Ancla existente | Diseño de tejido urbano y sitios preparados | Certeza |
@@ -40,7 +40,16 @@ Esta distinción importa para coordinar con la otra rama `work/meridian-bay-visi
 | Harbor Walk | Tramo de vista pública al puerto y unión con Market Row | 2 tramos propuestos; instalaciones industriales NO quedan abiertas |
 | Hogar Wilson / Taller Wilson / Café Bruma | Se conservan sus descripciones canónicas y conexiones; no se sobrescriben interiores ya narrados | Sin sitios nuevos en este incremento |
 
-**Total:** 13 fichas de diseño en cinco anclas geográficas y conservación sin cambios de tres anclas ya detalladas. Los textos propuestos, aunque escritos y recuperables, no tienen ID `LOC-*` ni aparecen en el mapa jugado hasta aprobación y compatibilidad técnica. Se pueden ajustar sin reescribir la historia.
+**Total auditado:** 13 referencias estructuradas en cinco anclas geográficas: **9 sitios solo propuestos**, **2 subrasgos públicos previamente descritos**, **1 negocio ya establecido pero sin puerta individual cartografiada (Noah)** y **1 recordatorio de ruta escolar no cartografiada**. Ninguna referencia introduce por sí sola un lugar `LOC-*` ni confirma interiores, disponibilidad, tráfico, diálogos o visitas. Hay cinco zonas con estas fichas y tres anclas conservadas sin nuevas fichas. Si se aprueba una propuesta, debe registrarse como geografía preexistente para el narrador, **sin necesitar que Jack la visite**; se requiere adaptación técnica del mecanismo de integración.
+
+
+## Hallazgos de la segunda revisión (2026-11-12)
+
+- **Problema de etiquetado corregido:** la versión inicial sugería que las 13 fichas eran nuevas localizaciones. El JSON ahora distingue lo ya descrito, el negocio previamente establecido, la ruta escolar desconocida y nueve instalaciones que solamente se proponen.
+- **Ausencia de certeza no equivale a negativa:** el JSON utiliza `player_knowledge_status: 'not_established'`. No se debe afirmar que Jack ignora un sitio solo porque la ficha del narrador no dice si lo conoce.
+- **No es todavía un mapa plenamente detallado o jugable:** no existen trece puertas aprobadas, medidas, horarios, accesos individuales o coordenadas. La construcción previa del mundo sigue siendo un trabajo editorial pendiente de integración. Los ocho enlaces del checkpoint sí están confirmados.
+- **Incompatibilidad funcional por resolver:** la rama de visitables del otro agente puede registrar nuevos `LOC-*` a partir de escenas observadas. Para cumplir la intención del propietario, también debe existir un proceso explícito de **aprobación de lugares preconstruidos** separado de la observación del personaje. No modificar ese código ni reescribir eventos del otro agente desde esta rama.
+- **Prioridad revisada:** antes de añadir más fichas sueltas, decidir cuáles de las nueve hipótesis se convierten en lugares estables del mundo, con acceso/función y ubicación relativa suficientes. No exigir interiores ni distancias exactas para diseñarlos.
 
 ## Cómo usarlo al narrar
 Ejemplo no canónico: Jack oye hablar del negocio de Noah en Market Row. La función de reparación y componentes de Noah **ya es parte de su ficha original**; el nombre comercial, fachada y local exacto siguen indefinidos. Una vez aprobada la ficha de mundo y situada una entrada pública, el narrador puede hablar del negocio antes de que Jack llegue. Jack no conoce por defecto su inventario, horario ni asuntos privados. Cuando él se desplaza, el recorrido utiliza conexiones verificadas; la duración sigue aproximada, sin fijar metros, minutos o interior por anticipado.
@@ -57,6 +66,6 @@ Con la escuela de Elena sucede algo distinto: solo se sabe que está en ruta hac
 **Interiores:** detallar al entrar o cuando sean necesarios para una acción, respetando todo lo ya establecido. Esta preparación no obliga a crear centenares de edificios, simuladores o NPC artificiales.
 
 ## Validación y dependencias
-Revisar la igualdad del mapa básico con `game/STATE.json`: 8 anclas `LOC-*`, 8 conexiones directas bidireccionales, 13 `MB-DES-*` únicos, sin nuevas conexiones ni horas o distancia exactas. Ejecutar `node --test tests/meridian_bay_district_blueprint.test.mjs` más las suites existentes en la rama. Comparar las cinco rutas de la partida con `work/chat-narrative-foundation` antes de integrar. El documento representa **diseño del mundo antes de visita**, no narración ni una decisión de Jack.
+Revisar la igualdad del mapa básico con `game/STATE.json`: 8 anclas `LOC-*`, 8 conexiones directas bidireccionales, 13 `MB-DES-*` únicos clasificados 9+2+1+1, sin nuevas conexiones ni horas o distancia exactas. Ejecutar `node --test tests/meridian_bay_district_blueprint.test.mjs` más las suites existentes en la rama. Comparar las cinco rutas de la partida con `work/chat-narrative-foundation` antes de integrar. El documento representa **diseño del mundo antes de visita**, no narración ni una decisión de Jack.
 
 **Revisión pendiente:** decidir la integración técnica con `tools/meridian_bay_locations.mjs` de otro agente sin perder ni sobrescribir sus cambios. No fusionar automáticamente con `main`.
