@@ -184,6 +184,7 @@ export function draftReviewedServiceStep({state,actorId,caseId:target,eventId:ev
  const npc=actorAt(state,actorId);
  const prior=(npc?.service_cases??[]).find(x=>x.id===target);
  check(prior,'Recorded service case required');
+ check(!closed(prior.status),'Closed service cases cannot reopen or be rewritten');
  authorize({state,actorId,serviceId:prior.service_id,observation,reviewed});
  check(eventId(ev),'Service action requires current event');
  const before=copy(npc.service_cases??[]);
