@@ -19,3 +19,9 @@
 
 - [Rutas narrativas y conciliación con el atlas de Meridian Bay](MERIDIAN_BAY_ROUTE_INTEGRATION_20261112.md)
 - [Conciliación estructurada de 13 fichas y 6 lugares preconstruidos](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
+
+## Plano urbano aproximado (escala todavía no aprobada)
+- [Escala, áreas de estudio y reglas de continuidad cartográfica](MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.md)
+- [Cuadrícula de planificación y coordenadas ficticias de 14 ubicaciones](MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json)
+
+**Precaución:** el lienzo ilustrativo de 10 × 8 km no representa superficie municipal, orientación cardinal, dirección real ni distancia exacta de caminata. Mantener como propuesta revisable hasta aprobación e integración.
