@@ -24,7 +24,8 @@ Si Jack decide dirigirse al negocio de Noah, el narrador consulta el catálogo p
 ## Estado de QA y próximos cambios
 - Pruebas de ruta: acceso a Railgarden y Market Row, paradas en orden, regreso por enlaces existentes, lugares desconocidos, privacidad y ausencia de movimientos automáticos.
 - Pruebas de conciliación: trece referencias exclusivas, dos identidades respaldadas por diseño, una asociación **no equivalente**, diez referencias pendientes/no nuevas, y ausencia de alteraciones de la partida.
-- Pruebas generales de Node, Python y validador: registrar el identificador del run oficial y los conteos finales cuando termine la ejecución de la rama actual.
+- **QA oficial comprobado:** [GitHub Actions run 43360570281](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43360570281), código `41506d3865402645279b97192ad8b2e6e59ec828`: **272/272 pruebas Node.js**, **24/24 Python**, validador del checkpoint **PASS**, **0 fallos**. Esta edición documental posterior no modifica el código sometido a la prueba.
+- **Integridad narrativa verificada:** los cinco blobs de `game/SAVE_MANIFEST.json`, `game/STATE.json`, `chapters/CH-000.md`, `chapters/CH-000.events.json` y `chapters/CH-000.transcript.json` coinciden uno a uno con la rama narrativa `work/chat-narrative-foundation`. Jack sigue en su taller, CH-000 turno 9, día −29 por la mañana.
 - **Pendiente:** la integración editorial final con PR #20, validación de nombres y accesos antes de su elevación a canon, y prueba auténtica del guardado de cinco archivos cuando el lector actúe. No fusionar automáticamente PR #20, #21, #22 ni las ramas de otros agentes.
 
 El checkpoint original del capítulo `CH-000` debe conservar exactamente los cinco blobs del turno 9. La preparación del mapa es un cambio de código/diseño **fuera del tiempo narrativo**, no actividad de los NPC mientras el chat está cerrado.
