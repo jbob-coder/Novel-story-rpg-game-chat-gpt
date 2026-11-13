@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "world_design_id": "MB-PREBUILT-20261112-V1",
+  "authority": "owner_delegated_worldbuilding",
+  "editorial_status": "proposed_for_integration_not_saved_story",
+  "purpose": "locations_preexist_player_discovery",
+  "base_city": "CITY-MERIDIAN-BAY",
+  "details_policy": "exterior_and_public_function_only_interiors_on_visit",
+  "people_policy": "no_new_npcs_no_automatic_presence",
+  "times_policy": "opening_hours_and_travel_minutes_unknown",
+  "places": [
+    {
+      "id": "LOC-MARKET-NOAH-REPAIR",
+      "name": "Local de reparación y componentes de Noah Vale",
+      "type": "repair_components_shop",
+      "description": "Negocio de reparación y componentes ya establecido para Noah Vale en Market Row; la fachada, disponibilidad e inventario específico siguen abiertos.",
+      "parent_id": "LOC-COMMERCIAL-DISTRICT",
+      "connected_ids": [
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-MARKET-PARTS",
+      "related_actor_id": "NPC-006",
+      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "opening_hours": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "LOC-RAILGARDEN-ABARROTES",
+      "name": "Abarrotes de Railgarden",
+      "type": "neighborhood_grocery",
+      "description": "Establecimiento de suministros cotidianos integrado en el barrio residencial de Railgarden, sin personal, productos ni horario individual fijados.",
+      "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "connected_ids": [
+        "LOC-RAILGARDEN-RESIDENTIAL"
+      ],
+      "public_area": true,
+      "access_status": "public_confirmed",
+      "origin_opportunity_id": "BAY-RAIL-FOOD",
+      "related_actor_id": null,
+      "world_design_id": "MB-PREBUILT-20261112-V1",
+      "opening_hours": null,
+      "travel_minutes": null
+    }
+  ]
+}
