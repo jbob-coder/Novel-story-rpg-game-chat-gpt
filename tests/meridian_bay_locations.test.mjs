@@ -9,6 +9,8 @@ import {worldRoute} from '../tools/living_world_routines.mjs';
 import {inspectSceneEstablishedPlaces,verifyReviewedPlaceHistory}
  from '../tools/meridian_bay_locations.mjs';
 import {inspectEstablishedServices} from '../tools/meridian_bay_services.mjs';
+import {inspectMeridianBay} from '../tools/meridian_bay_city.mjs';
+import {inspectLivingWorld,playerVisibleDiagnostic} from '../tools/living_world_diagnostics.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>readFileSync(resolve(root,p),'utf8');
@@ -217,4 +219,27 @@ test('a public place never creates a new autonomous NPC, known opening hour or c
  assert.ok(Object.values(next.state.world.actors).every(n=>
   !n.service_cases||n.service_cases.length===0));
  assert.equal(baseline.manifest.last_completed_turn,9);
+});
+
+test('opportunities are promoted to established only after event; other proposals stay untouched',()=>{
+ const before=inspectMeridianBay({state:baseline.state,
+  anchorId:'LOC-COMMERCIAL-DISTRICT'}).areas[0].opportunities;
+ assert.ok(before.every(o=>o.status==='proposed_not_canon'&&o.locationId===null));
+ const saved=stage();
+ const after=inspectMeridianBay({state:saved.state,
+  anchorId:'LOC-COMMERCIAL-DISTRICT'}).areas[0].opportunities;
+ const established=after.find(o=>o.id==='BAY-MARKET-PARTS');
+ assert.equal(established.status,'established_by_scene');
+ assert.equal(established.locationId,placeId);
+ assert.equal(established.establishmentEventId,'EV-000030');
+ assert.equal(established.verifiedAccessible,true);
+ assert.equal(established.openingHours,null);
+ assert.ok(after.filter(o=>o.id!=='BAY-MARKET-PARTS').every(o=>
+  o.status==='proposed_not_canon'&&o.locationId===null));
+ const diagnostic=inspectLivingWorld({snapshot:saved,actorIds:['NPC-006'],
+  elapsedMinutes:25});
+ assert.equal(diagnostic.observedPublicPlaces.length,1);
+ const playerSafe=playerVisibleDiagnostic(diagnostic);
+ assert.equal('observedPublicPlaces' in playerSafe,false);
+ assert.equal(JSON.stringify(baseline.state.world.locations).includes(placeId),false);
 });
