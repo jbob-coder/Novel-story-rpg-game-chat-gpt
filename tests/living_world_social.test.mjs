@@ -214,3 +214,32 @@ test('pure relationship/knowledge drafts never advance canonical time or alter c
  assert.equal(JSON.stringify(snapshot),before);
  assert.equal(snapshot.state.time.day,-29);
 });
+
+test('social trace persists across a second synthetic turn with no duplicate encounter',()=>{
+ const first=stage(draft());
+ const second=stageLivingWorldTurn({
+  snapshot:first,observedHead:'b'.repeat(40),npcResolutions:[],
+  turn:{...turn(),key:'synthetic-social-followup-002',
+   player_text:'I inspect the other tool.',
+   intent:'Jack reviews a second tool.',
+   narration_messages:['The workshop equipment remains in place.']}
+ });
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ assert.equal(verifySocialEventHistory(second),true);
+ assert.equal(second.manifest.last_completed_turn,11);
+ assert.equal(second.events.events.at(-1).kind,'player_action');
+ assert.equal(second.events.events.filter(x=>x.social_context?.interaction_id===
+  'SOC-MARKET-SYNTH-010').length,2);
+ assert.equal(snapshot.manifest.last_completed_turn,9);
+});
+test('historical readback detects tampered social participants and relationship evidence',()=>{
+ const candidate=stage(draft());
+ const altered=structuredClone(candidate);
+ altered.events.events.at(-1).social_context.transfer.speaker_id='NPC-001';
+ altered.events.events.at(-2).social_context.transfer.speaker_id='NPC-001';
+ assert.throws(()=>verifySocialEventHistory(altered),/Malformed saved social context/);
+ const badBond=structuredClone(candidate);
+ const bond=badBond.events.events.at(-2).state_changes.find(x=>x.field==='relationship');
+ bond.after.latest_shared_moment='An unrelated moment never reviewed.';
+ assert.throws(()=>verifySocialEventHistory(badBond),/lost the reviewed encounter evidence/);
+});
