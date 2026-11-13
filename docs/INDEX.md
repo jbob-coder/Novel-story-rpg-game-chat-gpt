@@ -40,3 +40,5 @@
 - [Meridian Bay: puerta causal de decisiones NPC (D-056, implementación en revisión)](MERIDIAN_BAY_CAUSAL_DECISIONS_20261112.md)
 
 - [Meridian Bay D-057: relaciones causales entre NPC y conocimiento por testimonio](MERIDIAN_BAY_SOCIAL_RELATIONS_20261112.md)
+
+- [Meridian Bay D-058: necesidades, alternativas descartadas y costes observados](MERIDIAN_BAY_NEEDS_TRADEOFFS_20261112.md)
