@@ -7,6 +7,7 @@ import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitment
 import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
+import {reviewNPCNeeds} from './living_world_needs.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -51,6 +52,8 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
+    qualitativeNeeds:reviewNPCNeeds({state,actorIds:selected,
+      targetDay:state.time.day+elapsedDays}),
     causalDecisionAssessments:assessNPCDecisions({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     selectedActorIds:selected,placeAvailability,

@@ -16,7 +16,7 @@ export const ROUTINE_PROPOSALS = Object.freeze([
 const copy = value => JSON.parse(JSON.stringify(value));
 const actorAt = (state, id) => state?.world?.actors?.[id];
 const validActorId = id => typeof id === 'string' && /^NPC-\d{3,}$/.test(id);
-const supportedChanges = new Set(['location_id','inventory_item','relationship','conditions','knowledge','resources','independent_plan','commitments']);
+const supportedChanges = new Set(['location_id','inventory_item','relationship','conditions','knowledge','resources','independent_plan','commitments','needs']);
 
 // Travel must follow actual saved location graph; CITY-* grouping is never a shortcut.
 // Directed adjacency matches tools/state_changes.mjs; unknown destination -> null.

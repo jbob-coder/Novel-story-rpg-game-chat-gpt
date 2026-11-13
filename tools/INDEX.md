@@ -27,3 +27,5 @@
 - [Revisión causal privada, obstáculos y evidencia para decisiones NPC](living_world_decisions.mjs)
 
 - [Encuentros sociales revisados: vínculos direccionales, información atribuida y doble evento](living_world_social.mjs)
+
+- [Necesidades y costes cualitativos persistentes de NPC con registro causal](living_world_needs.mjs)
