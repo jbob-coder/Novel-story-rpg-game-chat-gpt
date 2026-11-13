@@ -8,18 +8,19 @@ El usuario pidió **un mundo construido antes de explorarlo**. Este incremento c
 ## La forma general de la ciudad, sin inventar coordenadas
 El mapa existente permite navegar desde el hogar hacia un corredor de comercios, una plaza de transporte y un paseo junto al puerto. La orientación concreta y el tamaño de calles siguen abiertos.
 
-```text
- Taller Wilson
-       │
- Hogar Wilson
-       │
- Railgarden ───── Market Row ───── Crosswater Plaza ───── Terminal
-                       │  ╲             │
-                   Café Bruma ─ [sin enlace directo] 
-                       ╲   Harbor Walk ─╯
+```mermaid
+flowchart LR
+    TW["Taller Wilson"] --- W["Hogar Wilson"]
+    W --- R["Railgarden"]
+    R --- M["Market Row"]
+    M --- C["Crosswater Plaza"]
+    C --- T["Terminal"]
+    M --- B["Café Bruma"]
+    M --- H["Harbor Walk"]
+    H --- C
 ```
 
-El esquema anterior **no representa distancia, cardinales ni calles exactas**: el hogar solo enlaza Railgarden; Café Bruma enlaza **únicamente Market Row**; Harbor Walk enlaza Market Row y la plaza. La diagonal hacia Harbor Walk es solo una asociación visual, no un enlace de Café Bruma. Para evitar inferencias, **los ocho enlaces directos válidos son únicamente los `connected_ids` del checkpoint y del JSON**. El ID `CITY-MERIDIAN-BAY` agrupa el conjunto, pero no permite teleportación por sus `connected_ids` administrativos.
+El esquema anterior **no representa distancia, cardinales ni calles exactas**: el hogar solo enlaza Railgarden; Café Bruma enlaza **únicamente Market Row**; Harbor Walk enlaza Market Row y la plaza. Para evitar inferencias, **los ocho enlaces directos válidos son únicamente los `connected_ids` del checkpoint y del JSON**. El ID `CITY-MERIDIAN-BAY` agrupa el conjunto, pero no permite teleportación por sus `connected_ids` administrativos.
 
 ## Capas de información
 1. **Ubicación establecida:** ocho `LOC-*` ya guardados más la ciudad. Sus nombres, funciones y enlaces se toman del checkpoint, no se duplican ni reemplazan.
