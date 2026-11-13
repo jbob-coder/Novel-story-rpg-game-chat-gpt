@@ -117,3 +117,16 @@ test('read-only preview does not change established actors or the underlying mat
  assert.equal(JSON.stringify(prepared),before);
  assert.equal(s.world.locations[noah],undefined);
 });
+
+test('route preview at the origin does not invent a move or duration',()=>{
+ const original=state(),before=JSON.stringify(original);
+ const route=previewPrebuiltMeridianRoute({state:original,destinationId:home});
+ assert.equal(route.status,'route_available');
+ assert.deepEqual(route.route,[home]);
+ assert.deepEqual(route.segments,[]);
+ assert.equal(route.estimateMinutes,null);
+ assert.equal(route.characterMoved,false);
+ assert.equal(route.fictionalTimeAdvanced,false);
+ assert.equal(route.actionCompleted,false);
+ assert.equal(JSON.stringify(original),before);
+});
