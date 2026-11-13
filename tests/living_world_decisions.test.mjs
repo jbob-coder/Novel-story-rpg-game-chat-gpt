@@ -106,15 +106,11 @@ test('blocked obligations remain blocked until a separately documented causal ch
   observations:[observation('NPC-003')]
  }),/progress or completion across unresolved/);
 });
-test('confirmed closure prevents successful routine resolution even if a new fact is asserted',()=>{
- const a=assess('NPC-006',{exceptions:{
-  'NPC-006':{status:'closed',confirmed:true}
- }});
- assert.equal(a.blockingEvidence[0].code,'confirmed_unavailable');
- assert.equal(a.allowedConclusions.includes('completed'),false);
- assert.throws(()=>decision(a,'completed',{
-  observations:[observation('NPC-006')]
- }),/Conclusion forbidden/);
+test('confirmed closure prevents routine selection rather than fabricating work',()=>{
+ const assessments=assessNPCDecisions({state,actorIds:['NPC-006'],elapsedMinutes:25,
+  exceptions:{'NPC-006':{status:'closed',confirmed:true}}});
+ assert.deepEqual(assessments,[]);
+ assert.equal(state.world.actors['NPC-006'].location_id,'LOC-COMMERCIAL-DISTRICT');
 });
 test('competing tasks are visible only in private assessment, not resolved simultaneously',()=>{
  const a=assess('NPC-004');
