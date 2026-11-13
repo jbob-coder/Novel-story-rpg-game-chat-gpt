@@ -64,7 +64,7 @@ export function validateNPCNeeds(needs,{eventIds=null}={}){
    'Active needs cannot conceal blockers');
   check(eventId(n.source_event_id)&&eventId(n.last_change_event_id),
    'Need requires stable causal event IDs');
-  check(Array.isArray(n.tradeoffs)&&n.tradeoffs.length<=8,
+  check(Array.isArray(n.tradeoffs)&&n.tradeoffs.length<=32,
    'Need tradeoff history must be bounded');
   const tradeoffIds=new Set();
   for(const entry of n.tradeoffs){
@@ -142,6 +142,9 @@ export function draftReviewedNeedIntroduction({state,actorId,eventId:ev,need,
  observation,reviewed=false}={}){
  const actor=authorized(state,actorId,ev,reviewed,observation);
  check(need&&typeof need==='object','Explicit need facts required');
+ check(Array.isArray(need.resource_keys)&&need.resource_keys.every(k=>
+  Object.hasOwn(actor.resources??{},k)),
+  'New need resources must already exist in the recorded NPC state');
  const before=copy(actor.needs??[]);
  const created={...copy(need),source_event_id:ev,
   last_change_event_id:ev,tradeoffs:[],resolution:null,resolution_event_id:null};
