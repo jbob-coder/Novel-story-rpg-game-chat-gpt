@@ -6,6 +6,7 @@ import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 import {planNPCAgendas,previewNearbyNPCContacts,recommendNPCIntentReviews} from './living_world_agenda.mjs';
 import {inspectMeridianBay} from './meridian_bay_city.mjs';
+import {assessNPCDecisions} from './living_world_decisions.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -50,9 +51,12 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,next
     recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,elapsedMinutes,
       elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     meridianBay:inspectMeridianBay({state}),
+    causalDecisionAssessments:assessNPCDecisions({state,actorIds:selected,elapsedMinutes,
+      elapsedDays,nextPeriod,weekday,minute,schedules,exceptions}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
       'City opportunity IDs are proposals, never routable established locations.',
+      'A causal assessment requires human review and a new scene observation before a world-changing result.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',
       'No activity advances when the chat is inactive.']
   });

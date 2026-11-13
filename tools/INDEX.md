@@ -23,3 +23,5 @@
 - [Obligaciones persistentes de NPC, aún no canónicas](living_world_obligations.mjs)
 - [Agendas civiles y selección privada de intenciones para NPC](living_world_agenda.mjs)
 - [Catálogo de servicios propuestos de Meridian Bay](meridian_bay_city.mjs)
+
+- [Revisión causal privada, obstáculos y evidencia para decisiones NPC](living_world_decisions.mjs)
