@@ -1,6 +1,9 @@
-// Meridian Bay service and encounter opportunities for the narrator.
-// Anchors are existing canonical locations. Proposed facilities are NOT new
-// LOC records, routable destinations, proven opening hours or story events.
+import {readFileSync} from 'node:fs';
+const PREBUILT=JSON.parse(readFileSync(
+ new URL('../game/MERIDIAN_BAY_PREBUILT.json',import.meta.url),'utf8'));
+// Meridian Bay districts and opportunities for the narrator.
+// Authored places exist before player observation; a pending opportunity is
+// NOT an established place. Schedules, NPC presence and inventories are unknown.
 const AREA_CATALOG=Object.freeze([
  {anchor:'LOC-RAILGARDEN-RESIDENTIAL',role:'residential',
   opportunities:[
@@ -55,12 +58,14 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
    role:area.role,
    opportunities:area.opportunities.filter(o=>actorId===null||o.relatedActors.includes(actorId))
     .map(o=>{
-      const established=Object.values(state.world.locations).find(loc=>
-        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor&&
-        (typeof loc.established_event_id==='string'||
-         typeof loc.world_design_id==='string'));
+      const existing=Object.values(state.world.locations).find(loc=>
+        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor);
+      const authored=PREBUILT.places.find(loc=>
+        loc.origin_opportunity_id===o.id&&loc.parent_id===area.anchor);
+      const established=existing??authored;
       const prebuilt=typeof established?.world_design_id==='string';
-      return {...o,status:prebuilt?'prebuilt_world':established?'established_by_scene':'proposed_not_canon',
+      return {...o,status:prebuilt?'prebuilt_world':
+        established?'established_by_scene':'proposed_not_canon',
         locationId:established?.id??null,
         worldDesignId:established?.world_design_id??null,
         establishmentEventId:established?.established_event_id??null,
