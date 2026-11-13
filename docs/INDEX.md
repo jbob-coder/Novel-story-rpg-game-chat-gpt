@@ -36,3 +36,5 @@
 - [D-054: obligaciones persistentes de NPC y prueba de regresión](LIVING_WORLD_OBLIGATIONS_IMPLEMENTATION_20261112.md)
 - [D-054: prueba remota aislada de journal](LIVING_WORLD_JOURNAL_REMOTE_SMOKE_20261112.md)
 - [Meridian Bay: rutinas, opciones de vida social y expansión por zonas](MERIDIAN_BAY_ROUTINES_EXPANSION_20261112.md)
+
+- [Meridian Bay: puerta causal de decisiones NPC (D-056, implementación en revisión)](MERIDIAN_BAY_CAUSAL_DECISIONS_20261112.md)
