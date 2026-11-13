@@ -96,7 +96,9 @@ export function draftReviewedSocialContact({state,interactionId,participantIds,
  }
  ensure(ids.some(id=>changes[id].length>0),
   'A staged social interaction requires a recorded relation or knowledge consequence');
- const result=ids.map(id=>({
+ const eventOrder=context.transfer===null?ids:
+  [context.transfer.speaker_id,context.transfer.recipient_id];
+ const result=eventOrder.map(id=>({
   actor_id:id,reviewed:true,resolved:true,
   causal_basis:`Reviewed direct encounter ${context.interaction_id}: ${context.observation.causal_source}`,
   outcome:outcomes[id],changes:changes[id],disclosures:[],
@@ -194,6 +196,7 @@ export function verifySocialEventHistory(snapshot){
  for(const [id,events] of grouped){
   const c=events[0].social_context;
   ensure(events.length===2&&events.every(e=>same(e.social_context,c))&&
+   (c.transfer===null||events[0].actor_ids[0]===c.transfer.speaker_id)&&
    same(events.map(e=>e.actor_ids[0]).sort(),c.participant_ids)&&
    events[0].turn===events[1].turn&&events[0].day===events[1].day&&
    events[1].caused_by?.includes(events[0].id),
