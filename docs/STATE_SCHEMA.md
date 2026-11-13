@@ -106,3 +106,24 @@ y el transcript contienen solo texto narrado/compartido legítimamente con Jack.
 `verifySocialEventHistory` integra la verificación de grupos y procedencia en
 `verifyNarrativeSnapshot`. Las escenas sintéticas de QA jamás se usan como
 checkpoint canónico. El campo es opcional para compatibilidad con eventos previos.
+
+## D-058 — necesidades cualitativas y decisiones costosas de NPC
+Los NPC pueden incorporar **solo mediante eventos revisados** el campo opcional
+`world.actors[NPC-ID].needs`. Una necesidad concreta consta de:
+`id` (`NEED-...`), `domain`, `summary`, `priority`, `status`,
+`due_day` (o null), `blockers`, `resource_keys`,
+`source_event_id`, `last_change_event_id`, `tradeoffs`,
+`resolution` y `resolution_event_id`.
+
+Cada elemento `tradeoffs` contiene `event_id`, `decision`, `foregone`,
+`cost` y `evidence`, todos respaldados por una revisión causal atribuida
+al turno del NPC. No se generan consecuencias por transcurso de tiempo. Un
+nuevo problema requiere evento nuevo; necesidades cerradas no se reabren,
+se eliminan ni se reescriben.
+
+El cambio `field:"needs"` usa precondición `before`, valor `after` y
+se materializa **en el evento del actor**; la validación del checkpoint
+verifica fechas, referencias a eventos, costes históricos y unicidad de
+identificadores en todos los NPC. La existencia de una necesidad no revela
+su contenido al protagonista y no constituye XP, nivel ni estadística RPG.
+El campo no aparece en el checkpoint original CH-000 turno 9.
