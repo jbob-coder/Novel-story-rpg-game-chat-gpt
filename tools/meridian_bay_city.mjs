@@ -51,7 +51,7 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
  const catalog=AREA_CATALOG.filter(a=>anchorId===null||a.anchor===anchorId)
  .filter(a=>Object.hasOwn(state.world.locations,a.anchor));
  return copy({
-  classification:'narrator_private_proposals',
+  classification:'narrator_private_world_and_proposals',
   areas:catalog.map(area=>({
    anchorId:area.anchor,confirmedName:state.world.locations[area.anchor].name,
    knownConnections:[...(state.world.locations[area.anchor].connected_ids??[])],
@@ -74,7 +74,7 @@ export function inspectMeridianBay({state,anchorId=null,actorId=null}={}){
           established?.public_area===true};
     })
   })),
-  rules:['A proposal never becomes a location without a reviewed narrative event.',
+  rules:['Authored places preexist player observation; a pending proposal has not been approved as a place.',
    'Proposals do not imply a weekday, school address, opening hour or travel duration.',
    'A related actor may consider an opportunity; this is not proof of attendance or contact.',
    'A world-designed place already exists before any player visit; observation only changes what Jack knows.',
