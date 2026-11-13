@@ -1,4 +1,5 @@
 // D-040: typed, event-backed qualitative state changes. No numerical RPG progression.
+import {validateTravelEstimate} from './living_world_travel.mjs';
 const requireFact = (ok, message) => { if (!ok) throw new Error(message); };
 const copy = value => value == null ? value : JSON.parse(JSON.stringify(value));
 const equal = (a, b) => {
@@ -31,8 +32,10 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       const route = change.route ?? [before, after];
       requireFact(Array.isArray(route) && route.length >= 2 && route[0] === before && route.at(-1) === after, 'Invalid travel route');
       requireFact(route.every(loc => knownLocation(state, loc)) && route.slice(1).every((loc, i) => state.world.locations[route[i]].connected_ids.includes(loc)), 'Nonadjacent travel without route');
+      if(change.travel!==undefined) validateTravelEstimate({state,change:{...change,route}});
       actor.location_id = after;
-      record.state_changes.push({actor_id: actorId, field, before, after, route: copy(route)});
+      record.state_changes.push({actor_id: actorId, field, before, after, route: copy(route),
+        ...(change.travel!==undefined?{travel:copy(change.travel)}:{})});
       for (const item of actor.inventory ?? []) {
         if (!item.carried) continue;
         const oldItem = copy(item);

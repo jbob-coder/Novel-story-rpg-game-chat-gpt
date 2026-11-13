@@ -2,6 +2,23 @@
 
 A long game can exceed chat context, switch devices or lose tool access. **Conversation memory is not durable evidence.** Repository checkpoints are the recoverable source, but only after consistency checks.
 
+## Literal delivery recovery (2026-11-13)
+
+The canonical coordinator requires the separate durable journal described in
+`AGENTS.md`. Read it before preparing a new turn. If a save is already marked
+`verified` but its presentation was interrupted, call `recoverJournaledSave`:
+it rereads all five files at the recorded commit, validates the checkpoint and
+attempt identity, and checks the story branch before and after reading. Only a
+successful result supplies `narration_messages`, in their original order and
+literal text. Present those messages; do not regenerate the scene. This recovery
+path writes neither the story nor the journal and does not prove screen delivery.
+An unavailable file, inconsistent checkpoint/attempt or changed branch blocks
+presentation with an observed cause. Preserve the durable record for investigation.
+
+The older D-042 notes below describe the original unjournaled implementation,
+not an exemption from the current canonical journal requirement. A development
+test with simulated adapters is not evidence of a live remote save.
+
 ## Recovery workflow (required on resumption)
 1. Read `AGENTS.md`. Confirm repo, branch, open PRs and whether the desired save is still on that branch. Do **not** assume `main` includes a draft PR.
 2. Fetch `game/SAVE_MANIFEST.json`, `game/STATE.json`, the referenced chapter file and its event log, plus CANON and DECISIONS. Read `docs/NARRATIVE_CONTRACT.md`, `docs/NARRATOR_RULES.md`, `docs/STATE_SCHEMA.md` and `docs/HANDOFF.md` for relevant rules. A quick handoff is never sufficient by itself.

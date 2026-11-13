@@ -18,4 +18,5 @@
 - [Rutinas y borradores autónomos](living_world_routines.mjs)
 - [Coordinador de turnos revisados y guardado](living_world_coordinator.mjs)
 - [Diagnóstico privado y proyección visible para Jack](living_world_diagnostics.mjs)
+- [Estimaciones contextuales de viaje y presupuesto por actor](living_world_travel.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)

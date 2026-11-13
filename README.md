@@ -22,12 +22,12 @@ Read verified checkpoint → receive a free-form Jack action → resolve grounde
 ## Developer/QA validator
 For a local copy of the repository (only needed for development), run `python tools/validate_state.py` with Python 3. The validator checks checkpoint format and references, not whether prose is good or a scene was fairly adjudicated.
 
-**Current story checkpoint:** CH-000, Day -30, six completed turns, last event EV-000021. Jack is at the Wilson workshop and Elena is asking for a portable memory to save her illustration. Always verify current manifest, state, chapter, events and transcript before playing the next turn.
+**Current story checkpoint:** recover the chapter and turn identified by the [live manifest](game/SAVE_MANIFEST.json) on the authorized narrative branch. Verify its state, events and full transcript together before playing; this README is not a checkpoint pointer.
 
 The repository may be public, but outsiders cannot directly write without GitHub access. Work in reviewable branches; neither draft PR #2 nor the older browser prototype PR #1 is automatically merged into `main`.
 
 
-**Complete played story text:** `chapters/CH-000.transcript.json` holds literal, ordered player and narrator messages, while event and state records hold structured changes. Six turns are recorded at the current checkpoint. Use the manifest to verify future updates. See `docs/FULL_NARRATION_ARCHIVE.md`.
+**Complete played story text:** the chapter transcript identified by the manifest holds literal, ordered player and narrator messages, while event and state records hold structured changes. Use the manifest to verify the latest completed turn. See `docs/FULL_NARRATION_ARCHIVE.md`.
 
 
 **Mapa por carpetas:** [índice maestro](INDEX.md), [docs por áreas](docs/INDEX.md), [capítulos](chapters/INDEX.md), [regla de guardado bloqueante](docs/SAVE_BLOCKING_PROTOCOL.md). No se mueve historia existente.

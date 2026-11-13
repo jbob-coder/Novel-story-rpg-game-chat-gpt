@@ -8,6 +8,18 @@
 
 # Living Superhuman World — interactive-novel session entry point
 
+## Recovery and contextual-time implementation (2026-11-13)
+
+This checkout adds literal recovery from an already verified save journal and
+contextual travel validation. See [recovery](docs/RECOVERY.md) and
+[time/travel schema](docs/STATE_SCHEMA.md). Recover saved narration without
+regenerating it; new travel records need an approximate duration, context and
+any comparable prior-event reference. Do not infer distances from graph hops.
+Report evidence-backed progress outside the novel as specified in
+[the execution model](docs/NARRATIVE_EXECUTION_MODEL.md). These development
+changes do not play a turn, activate an unattended simulator or authorize a
+merge. The live manifest remains the narrative checkpoint authority.
+
 **Delivery:** This is a ChatGPT-run **interactive novel, not an RPG** and not a browser game. Player actions are free-form chat messages; the repository stores fictional canon, chapters, events and checkpoints.
 
 ## Recovery entry (every new session or after context loss)

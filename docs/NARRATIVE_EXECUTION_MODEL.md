@@ -17,6 +17,17 @@ Escribir en tercera persona limitada desde lo que Jack puede percibir o conocer.
 Recuperar el manifiesto, estado, eventos, capítulo y transcripción del HEAD vigente. Distinguir hechos reales en la ficción, conocimientos particulares, rumores y datos pendientes. Resolver únicamente lo que hizo Jack y los cambios secundarios justificados por el tiempo ficticio. Comprobar causalidad, autonomía de NPC, paso del tiempo, pertenencias, compromisos y límites del Día 0. No reabrir logros establecidos sin una causa narrativa real. No transformar cada escena en auditoría.
 
 ## C. Persistencia y entrega (fuera de la novela)
+
+**Progreso solicitado por el propietario (2026-11-13):** mostrar avisos breves
+en el chat cuando se complete una etapa comprobable, sin repetir el mensaje del
+jugador. Durante desarrollo, anunciar las etapas y expresar completadas/total
+y su porcentaje; no confundir planificación, implementación y validación.
+Durante un guardado, usar las etapas y evidencias de `save_gate.mjs`: el 100 %
+requiere lectura remota literal de los cinco archivos. Un porcentaje no estima
+tiempo restante ni demuestra entrega en pantalla. Los avisos van fuera de la
+escena y no implican trabajo durante la inactividad ni cambios en la interfaz
+nativa de ChatGPT.
+
 Preparar **antes** la respuesta literaria exacta. Revisar calidad y coherencia. Guardar en un único commit los cinco archivos: transcripción literal, eventos, prosa del capítulo, estado y manifiesto. Actualizar la rama autorizada sin forzar y con verificación del HEAD, recuperar los cinco archivos y comparar texto e identificadores. Si el guardado falla, detenerse conforme a D-028; no presentar nueva historia.
 
 **Diferenciar estados:** «guardado verificado» significa lectura remota idéntica; **no** significa «entregado al lector». No afirmar visualización sin confirmación fiable. Si el texto ya quedó guardado pero se interrumpió la presentación, recuperar y repetir **literalmente ese mismo turno**, sin escribir otra versión ni avanzar personajes. Si el usuario responde a la escena recibida, continuar normalmente sin pedir acuses rituales.

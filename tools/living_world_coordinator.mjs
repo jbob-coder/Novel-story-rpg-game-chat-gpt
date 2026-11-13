@@ -41,11 +41,14 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
       outcome:staged.event.outcome,changes:staged.changeDrafts};
   });
   const {elapsed_minutes, next_time_of_day, ...canonicalTurn}=turn;
+  // Omission preserves the saved period; validate that actual destination,
+  // rather than allowing any period and then silently retaining the old one.
+  const nextTimeOfDay=next_time_of_day??snapshot.state.time.time_of_day??null;
   validateTemporalAdvance({currentPeriod:snapshot.state.time.time_of_day,
     elapsedDays:turn.elapsed_days,elapsedMinutes:elapsed_minutes,
-    nextPeriod:next_time_of_day??null});
-  return {turn:{...canonicalTurn,save_guard:{observed_head:observedHead,previous_attempt:null},
-    offscreen},elapsedMinutes:elapsed_minutes,nextTimeOfDay:next_time_of_day??null};
+    nextPeriod:nextTimeOfDay});
+  return {turn:{...canonicalTurn,elapsed_minutes,save_guard:{observed_head:observedHead,previous_attempt:null},
+    offscreen},elapsedMinutes:elapsed_minutes,nextTimeOfDay};
 }
 
 export function stageLivingWorldTurn({snapshot,turn,observedHead,npcResolutions=[]}={}){
