@@ -73,3 +73,10 @@
 
 **Current task:** reconcile the first real code integration (obligations + agenda/decisions) on a new isolated implementation branch. Import tests, repair contracts, and run CI before adding the next dependent NPC subsystem. Preserve other agents' branches and do not claim merged world functionality before a combined QA run.  
 **This audit does not authorize or perform a story turn, merge, or private plot disclosure.**
+
+## QA-only seam tests in this audit branch
+
+- `tests/integration_npc_chapter_contract.test.mjs` verifies that empty, forward-compatible `needs`, `service_cases`, `commitments`, and `plans` collections survive a reviewed metadata-only chapter transition without any live story writes.
+- `tests/integration_multi_actor_plans.test.mjs` creates two independent **synthetic** NPC intentions and obligations in one staged turn (Rosa and Noah), checks event ownership, private diagnostics, and carryover across CH-000 → CH-001 without touching the real chapter.
+- These smoke tests exercise PR #25's embedded PR #10 obligations contract. They do **not** claim the independent PR #11–#15 agenda, social, needs, and service implementations have been merged or verified together.
+- CI is required after each additional test commit; do not label the new test validated until the run on that exact branch HEAD passes.
