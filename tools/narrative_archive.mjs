@@ -72,6 +72,7 @@ function appendFullTurn(snapshot,playerText,narrationMessages){
  ensure(typeof playerText==="string"&&playerText.trim().length>0,"Exact player message required");
  ensure(Array.isArray(narrationMessages)&&narrationMessages.length>0&&narrationMessages.every(x=>typeof x==="string"&&x.trim().length>0),"Exact narrator messages required");
  assertPlanNarrationPrivacy(snapshot.state,narrationMessages);
+ assertNeedNarrationPrivacy(snapshot.state,narrationMessages);
  const t=snapshot.manifest.last_completed_turn;
  ensure(t>0&&!allTranscriptEntries(snapshot).some(x=>x.turn===t&&x.role==="player"),"Already recorded player turn");
  const es=snapshot.events.events.filter(x=>x.turn===t),playerEvent=es.find(x=>x.kind==="player_action");
