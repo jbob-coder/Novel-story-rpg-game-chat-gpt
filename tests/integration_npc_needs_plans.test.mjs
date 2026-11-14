@@ -8,7 +8,8 @@ import {fileURLToPath} from 'node:url';
 import {savePaths,decodeFiveFiles,encodeFiveFiles} from '../tools/save_transaction.mjs';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
-import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
+import {verifyNarrativeSnapshot,stageNarrativeTurn} from '../tools/turn_engine.mjs';
+import {stageNarratorScene} from '../tools/narrative_archive.mjs';
 import {applyStateChanges} from '../tools/state_changes.mjs';
 import {draftReviewedNeedIntroduction,draftReviewedNeedTradeoff,reviewNPCNeeds} from '../tools/living_world_needs.mjs';
 import {evaluateNPCPlans} from '../tools/world_plans.mjs';
@@ -183,4 +184,18 @@ test('recovery validation rejects forged, duplicated or undocumented needs',()=>
     const copy=structuredClone(staged);corrupt(copy);
     assert.throws(()=>verifyNarrativeSnapshot(copy));
   }
+});
+
+test('both narration entry points reject direct leakage of private need metadata',()=>{
+  const staged=firstTurn();
+  const forbidden=staged.state.world.actors[rosa].needs[0].summary;
+  const guard={observed_head:sourceHead,previous_attempt:null};
+  const before=JSON.stringify(staged);
+  assert.throws(()=>stageNarratorScene(staged,forbidden,
+    'synthetic-private-need-intro',guard),/Private NPC need information leaked/);
+  const next=turn(staged,'forbidden');
+  assert.throws(()=>stageNarrativeTurn(staged,{
+    ...next,save_guard:guard,narration_messages:[forbidden]
+  }),/Private NPC need information leaked/);
+  assert.equal(JSON.stringify(staged),before);
 });
