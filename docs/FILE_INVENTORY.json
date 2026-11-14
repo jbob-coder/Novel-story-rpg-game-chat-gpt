@@ -86,7 +86,11 @@
       "tools/consequences.mjs",
       "tools/state_changes.mjs",
       "tools/save_transaction.mjs",
-      "tools/github_save_adapter.mjs"
+      "tools/github_save_adapter.mjs",
+      "tools/chapter_history.mjs",
+      "tools/chapter_management.mjs",
+      "tools/world_plans.mjs",
+      "tools/living_world_obligations.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -100,7 +104,12 @@
       "tests/state_changes.test.mjs",
       "tests/save_transaction.test.mjs",
       "tests/github_save_adapter.test.mjs",
-      "tests/test_turn9_consequences.py"
+      "tests/test_turn9_consequences.py",
+      "tests/chapter_management.test.mjs",
+      "tests/chapter_save_transaction.test.mjs",
+      "tests/test_multichapter_validator.py",
+      "tests/world_plans.test.mjs",
+      "tests/world_plan_pilot.test.mjs"
     ]
   },
   "newChapterPaths": [

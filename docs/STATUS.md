@@ -1,5 +1,34 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Chapter/conditional-plan pilot — 2026-11-14
+
+`work/chapter-plan-pilot-20261113` depends on PR #24 commit
+`73fd82757b7cdef4cc7ca931f7b1bbded0f431ca`; it does not merge that work into
+the narrative branch. The pilot implements chapter preparation, reviewed
+metadata-only transitions, immutable chapter archives and global EV/TXT history,
+plus event-backed NPC intentions referencing concrete obligations. Only the
+obligation validator is reused from PR #10; other stacked PRs remain separate.
+
+Synthetic integration: Rosa forms a private intention and obligation at home;
+a supply interruption blocks the plan; the same unfinished world survives
+CH-000 → CH-001; reviewed events resume and complete preparation; the kit's
+state and exact narrator text survive save/reload without a duplicate turn.
+No visit, delivery, new place, power or real plot secret is established.
+
+Validation: **257/257 Node tests, 37/37 Python tests and checkpoint validator
+PASS**. Tests cover two chapter boundaries, global identity, historical hashes,
+failed saves before/after ref updates, recovery without regeneration, stale plan
+assessments, unmet requirements, abandonment and privacy across direct narration
+entry points. All tests use memory or temporary directories. No new real
+chapter is written; the five narrative files remain identical to the base.
+
+Public storage is the owner's selected policy: secrecy is within the fiction,
+not GitHub access control. V1 uses NPC owners, not organization economies or ARC
+records; plan disclosure, revised definitions, broad city integration and Day 0
+remain future work. Literal leakage is checked mechanically; paraphrases and
+literary quality still require narrator review. No live journal connection is
+implied by these tests. `main` and `work/chat-narrative-foundation` stay unchanged.
+
 ## Development review — 2026-11-13
 
 Branch `work/literal-recovery-contextual-time-20261113`, based on narrative

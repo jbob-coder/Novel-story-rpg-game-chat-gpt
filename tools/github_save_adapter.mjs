@@ -74,6 +74,26 @@ export function createGitHubSaveAdapter({repository,token,fetchImpl=fetch,apiBas
   }));
   return Object.fromEntries(values);
  }
+ async function assertFilesAbsent(commitSha,paths){
+  safeSha(commitSha);
+  insist(Array.isArray(paths)&&paths.length>0&&new Set(paths).size===paths.length,
+   'Invalid requested files');
+  for(const path of paths)
+   insist(typeof path==='string'&&/^(?:chapters|game)\/[A-Za-z0-9_.\/-]+$/.test(path)&&
+    !path.includes('..')&&!path.includes('//')&&!path.includes('/./')&&!path.endsWith('/'),
+    'Invalid file path');
+  const commit=await request('GET','/git/commits/'+commitSha);
+  const treeSha=safeSha(commit?.tree?.sha);
+  const tree=await request('GET','/git/trees/'+treeSha+'?recursive=1');
+  insist(tree?.truncated===false&&Array.isArray(tree.tree),'GitHub tree missing or truncated');
+  // Check every tree entry, not just blobs: an existing directory at the target
+  // would also be overwritten. A non-directory ancestor makes it unavailable.
+  for(const path of paths)
+   insist(!tree.tree.some(entry=>entry.path===path||
+    (typeof entry.path==='string'&&path.startsWith(entry.path+'/')&&entry.type!=='tree')),
+    'Destination chapter path already exists: '+path);
+  return true;
+ }
  async function createCommit({parentSha,files,message}){
   const paths=onlyFiveFiles(files);
   insist(typeof message==='string'&&message.trim()&&message.length<500,
@@ -100,5 +120,5 @@ export function createGitHubSaveAdapter({repository,token,fetchImpl=fetch,apiBas
  }
  // GitHub REST uses a non-force fast-forward update, preceded by a HEAD read.
  // It has no native compare-and-swap field; this is NOT a universal atomic CAS.
- return {readHead,readFiles,createCommit,updateHead};
+ return {readHead,readFiles,assertFilesAbsent,createCommit,updateHead};
 }

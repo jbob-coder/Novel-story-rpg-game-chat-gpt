@@ -26,6 +26,47 @@ See [NARRATIVE_EXECUTION_MODEL.md](NARRATIVE_EXECUTION_MODEL.md) for the operati
 ## Chapter boundaries
 Chapters are meaningful story arcs, not one day apiece. Preserve chronology, capabilities, inventory, relationships, secrets, NPC objectives and events across transitions. New chapter records must have stable IDs. Do not retcon past resolved events without explicitly recording a correction and reason.
 
+### Synthetic chapter/plan pilot (2026-11-14)
+
+`stageChapterTransition` closes a played chapter only after an explicit reviewed
+reason and a prepared next-chapter planning record. It does not advance time,
+consume a player turn, author a scene or resolve any open situation. A calendar
+boundary or Day 0 does not call this operation automatically.
+
+The planning record describes identity/title, source commit, purpose, current
+time and constraints, existing location/NPC/thread/hidden-plan references,
+conditional possibilities and exit conditions. It is preparation, stored in
+`state.chapter.planning`, not played history or a script for Jack. This keeps
+it in the same five-file transaction rather than adding an independently saved
+authority. `CH-000.PREP.md` remains historical preparation; its old opening
+instructions do not replace the live checkpoint or current contract.
+
+Closed chapters keep their three original files byte-for-byte. Their descriptors
+in `state.history.completed_chapters` record global turn/event/transcript bounds,
+SHA-256 file hashes, closure reason and source commit. The next chapter starts
+with empty prose/events/transcript; global turn, EV and TXT counters continue.
+The transcript's `last_entry_sequence` is a global cursor even when its local
+entries are empty. Runtime snapshots attach `archives` for closed chapters;
+these are loaded from their original files and are not copied into the new
+chapter's files.
+
+`saveChapterTransition` requires a durable journal and verifies that destination
+chapter files do not already exist. It commits exactly the destination chapter's
+three files plus state and manifest, and reads back the complete history from
+the same commit. An interrupted transition recovers the same commit; its
+`narration_messages` is empty because the transition produces no scene. The
+next authentic action is still required to play a turn.
+
+The pilot is exercised only in memory/temporary test directories. No real CH-001
+or new planning record has been added to the story. Chapter folder indexes are
+navigation aids, not transaction authority; update them separately after a real
+verified transition, never use an index as proof that a chapter was saved.
+
+During a played scene, continue ordinary reactions needed to resolve the user's
+existing intention. Pause when Jack must make a meaningful new choice. This
+does not authorize inventing his dialogue, purchases or commitments. PR #18's
+broader narrative proposal remains separate and unmerged.
+
 ## Minimum invariants
 - Opening is Day -30. Day 0 is the cosmic shockwave; no powers or ecological anomalies established from the wave may appear earlier.
 - Event IDs do not repeat, gameplay turn numbers never go backwards, and a checkpoint cannot claim events absent from its logs.

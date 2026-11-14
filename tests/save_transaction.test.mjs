@@ -238,7 +238,7 @@ for(const [name,mutate,reason] of [
    f.journal.entries.get(branch).attempt.chapter_id='CH-001';
    const files=f.remote.commits.get(newCommit);
    for(const path of savePaths('CH-000'))files[path.replace('CH-000','CH-001')]=files[path];
-  },/saved chapter\/turn/],
+  },/saved chapter\/turn|Requested chapter differs from manifest/],
  ['invalid chapter ID',f=>{f.journal.entries.get(branch).attempt.chapter_id='../other'},/Invalid chapter ID/],
  ['invalid turn',f=>{f.journal.entries.get(branch).attempt.turn=0},/Invalid verified journal turn/],
  ['journal branch mismatch',f=>{f.journal.entries.get(branch).branch='work/other'},/Journal branch mismatch/],

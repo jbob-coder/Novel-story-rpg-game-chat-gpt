@@ -1,3 +1,4 @@
+import {allEvents} from './chapter_history.mjs';
 // Persistent, event-backed decision consequences for the chat-run story.
 // A thread is a causally supported open question, not a predetermined ending.
 function need(ok,message){if(!ok)throw new Error(message)}
@@ -5,7 +6,7 @@ const duplicate=x=>JSON.parse(JSON.stringify(x));
 function verifyConsequences(snapshot){
  const s=snapshot.state,e=snapshot.events;
  need(Array.isArray(s.narrative_threads),"Narrative thread ledger missing");
- const events=new Map(e.events.map(x=>[x.id,x]));
+ const events=new Map(allEvents(snapshot).map(x=>[x.id,x]));
  const actors=new Set([s.player.id,...Object.keys(s.world.actors)]);
  s.narrative_threads.forEach((x,index)=>{
   const id="THREAD-"+String(index+1).padStart(6,"0");
@@ -38,7 +39,7 @@ function stageConsequences(snapshot,updates=[]){
  need(Array.isArray(updates)&&updates.length<=12,"Too many consequence operations");
  const next=duplicate(snapshot);
  const records=next.state.narrative_threads;
- const events=new Map(next.events.events.map(e=>[e.id,e]));
+ const events=new Map(allEvents(next).map(e=>[e.id,e]));
  const currentTurn=next.manifest.last_completed_turn;
  for(const change of updates){
   need(change&&["open","develop","resolve"].includes(change.op),"Unknown consequence operation");
