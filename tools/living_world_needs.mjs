@@ -220,3 +220,21 @@ export function reviewNPCNeeds({state,actorIds=null,targetDay=null,limitPerActor
   counts.set(x.actorId,used+1);return true;
  }));
 }
+
+/**
+ * Conservative lexical privacy gate. Needs have no explicit knowledge/disclosure
+ * protocol yet, so their private metadata must not be copied verbatim into
+ * reader-visible prose. The editor must still check semantic paraphrases.
+ */
+export function assertNeedNarrationPrivacy(state,messages){
+ check(Array.isArray(messages)&&messages.every(x=>typeof x==='string'&&x.trim()),
+   'Narration messages required');
+ for(const actor of Object.values(state?.world?.actors??{}))for(const need of actor.needs??[]){
+  const privateText=[need.id,need.summary,...need.blockers,need.resolution,
+   ...need.tradeoffs.flatMap(x=>[x.decision,x.foregone,x.cost,x.evidence])]
+   .filter(x=>typeof x==='string'&&x.length>=8);
+  check(!privateText.some(secret=>messages.some(message=>message.includes(secret))),
+   'Private NPC need information leaked into visible narration');
+ }
+ return true;
+}
