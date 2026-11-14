@@ -4,11 +4,13 @@ import {previewNPCRoutines} from './living_world_routines.mjs';
 import {availability} from './living_world_availability.mjs';
 import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
+import {evaluateNPCPlans} from './world_plans.mjs';
+import {allEvents} from './chapter_history.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
 
-export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=null,
+export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,actorIds=null,
   weekday=null,minute=null,schedules={},exceptions={},commitments=[]}={}){
   verifyNarrativeSnapshot(snapshot);
   insist(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0 &&
@@ -40,6 +42,9 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,actorIds=null,
       id:x.id,ownerActorId:x.owner_actor_id,scope:x.scope,question:x.question
     })),
     proposedNPCActivities:candidates,
+    planReview:Object.entries(state.world.actors).filter(([,actor])=>actor.plans?.length)
+      .flatMap(([actorId])=>evaluateNPCPlans({state,actorId,elapsedMinutes,elapsedDays,
+        eventIds:new Set(allEvents(snapshot).map(event=>event.id))})),
     commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,commitments}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',

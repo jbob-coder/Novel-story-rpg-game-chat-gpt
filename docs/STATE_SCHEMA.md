@@ -1,6 +1,12 @@
 # Canonical data records (checkpoint schema v2)
 
 ## Source of truth and relationship graph
+
+**Multi-chapter extension:** chapter files remain local collections; turn and
+EV/TXT counters are global. `history.completed_chapters` stores immutable closed
+chapter descriptors. See [chapter boundaries](CHAPTER_PROTOCOL.md) for their
+hashes, preparation record and transition protocol. The existing CH-000 schema
+remains readable without migration.
 - `docs/CANON.md`: approved universe rules (not generated outcomes).
 - `docs/DECISIONS.md`: signed-off or superseded project decisions.
 - `chapters/CH-NNN.events.json`: ordered story events. Event `EV-000001` affects actor IDs and scene/location IDs, and causes state changes.
@@ -118,3 +124,43 @@ La estimación y su contexto permanecen en el evento del actor, sujetos a sus
 límites de conocimiento. La verificación controla coherencia estructural, no
 demuestra por sí sola que una estimación sea realista: esa revisión contextual
 sigue correspondiendo al narrador antes de guardar.
+
+## Conditional NPC plans and obligations — public-storage pilot
+
+NPCs may have optional `commitments` and `plans` arrays. Absence means no
+structured record has been established, not that the character lacks interests.
+Both fields change only through the owning NPC's causal event with complete
+`before`/`after` lists. Creation and later changes must cite the actual owning
+event; records cannot silently disappear. Validation includes all closed
+chapters, preserving evidence across chapter boundaries.
+
+`commitments` reuses the obligation validator from PR #10 commit
+`ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead`; the other draft modules and world
+catalogs were not merged. An OBL record tracks a concrete pending, blocked,
+resolved or cancelled responsibility and its evidence. A PLAN references an
+obligation when necessary instead of duplicating its completion state.
+
+Each PLAN has a globally unique ID, NPC owner, objective, motivation, earliest
+relative day or null, resource/location/obligation requirements, same-owner
+dependencies, risks, alternatives, knowledge recipients and source/change events.
+`actor_intent` is known only to its owner in this version. `author_proposal` is
+a nonexecuting possibility and supplies no fictional character knowledge.
+Statuses are proposed, active, blocked, completed and abandoned. Terminal
+states require a resolution and event reference and cannot be reopened.
+
+Evaluation is private and read-only. Positive authorized fictional time can
+make a plan eligible for review; neither a date nor fulfilled requirements
+complete it. The reviewed resolver rechecks conditions, rejects stale
+assessments, and returns a state-change draft containing attributed observations,
+reason and interval. Those observations persist in the event. Preparation,
+execution and persistence remain separate steps. Unavailable resources can
+block an action; later conditions can permit resumption. Changing the objective
+or requirement definition requires abandoning the old plan and authoring a
+separate replacement, preserving both histories.
+
+Storage is public by owner choice. Hidden information is hidden from Jack's
+narration and diagnostics, not from GitHub readers. There is no private storage
+integration and no real plot secret in the fixtures. The view projection and
+literal-copy guard do not replace editorial review for paraphrased spoilers.
+V1 does not implement disclosure, organizational resource allocation, ARC
+records or the cosmic-wave transition; existing Day 0 restrictions still apply.

@@ -3,6 +3,7 @@ import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {verifyTravelHistory} from './living_world_travel.mjs';
+import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
 // Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
@@ -16,13 +17,15 @@ function verifyNarrativeSnapshot(snapshot) {
   check(s.game_id===m.game_id && s.chapter.id===m.chapter_id && e.chapter_id===m.chapter_id, "Chapter/game IDs mismatch");
   check(s.save.last_verified_turn===m.last_completed_turn && Number.isSafeInteger(m.last_completed_turn), "Turn mismatch");
   check(s.history.last_event_sequence===m.last_event_sequence && Number.isSafeInteger(m.last_event_sequence), "Sequence mismatch");
-  check(Array.isArray(e.events) && e.events.length===m.last_event_sequence, "Event count mismatch");
+  check(Array.isArray(e.events), "Event collection missing");
+  const history=allEvents(snapshot);
+  check(history.length===m.last_event_sequence, "Event count mismatch");
+  verifyChapterHistory(snapshot);
   check(s.chapter.last_resolved_event_id===m.last_event_id, "Chapter latest event mismatch");
   const ids=new Set([s.player.id,...Object.keys(s.world.actors)]);
   let lastDay=-30, highestTurn=0;
-  e.events.forEach((event,i)=>{
+  history.forEach((event,i)=>{
     check(event.id===`EV-${String(i+1).padStart(6,"0")}`, "Duplicate or missing event ID");
-    check(event.chapter_id===m.chapter_id, "Event chapter mismatch");
     check(Number.isSafeInteger(event.turn) && event.turn>=1 && event.turn<=m.last_completed_turn && event.turn>=highestTurn,"Event turn invalid");
     check(Number.isSafeInteger(event.day) && event.day>=lastDay && event.day<=s.time.day,"Event chronology invalid");
     check(Array.isArray(event.actor_ids) && event.actor_ids.length>0 && event.actor_ids.every(id=>ids.has(id)), "Unknown actor");
@@ -30,7 +33,7 @@ function verifyNarrativeSnapshot(snapshot) {
     check(Array.isArray(event.state_changes) && Array.isArray(event.progression_awards), "Event changes missing");
     lastDay=event.day;highestTurn=event.turn;
   });
-  check(m.last_event_id === (e.events.at(-1)?.id??null), "Manifest latest event mismatch");
+  check(m.last_event_id === (history.at(-1)?.id??null), "Manifest latest event mismatch");
   const keys=s.history.completed_turn_keys??[];
   check(Array.isArray(keys) && keys.length===new Set(keys).size && keys.length===m.last_completed_turn, "Turn idempotency keys invalid");
   const groups=[s.player,...Object.values(s.world.actors)];
@@ -38,7 +41,7 @@ function verifyNarrativeSnapshot(snapshot) {
     check(a.location_id in s.world.locations, "Actor location missing");
     const prog=a.progression;
     check(prog && typeof prog.skills==="object" && Array.isArray(prog.powers),"Actor progression missing");
-    check(Object.values(prog.skills).every(x=>Number.isSafeInteger(x.xp) && x.xp>=0 && (x.last_progress_event_id==null || e.events.some(event=>event.id===x.last_progress_event_id))),"Invalid skill history");
+    check(Object.values(prog.skills).every(x=>Number.isSafeInteger(x.xp) && x.xp>=0 && (x.last_progress_event_id==null || history.some(event=>event.id===x.last_progress_event_id))),"Invalid skill history");
     check(Object.values(prog.skills).reduce((sum,x)=>sum+x.xp,0)===prog.lifetime_skill_xp,"Skill XP tally mismatch");
     if(s.time.day<0) check(prog.powers.length===0,"Powers before Day 0");
   }
@@ -74,7 +77,7 @@ function stageNarrativeTurn(snapshot, turn) {
   const t=m.last_completed_turn+1;
   const logs=[];
   function event(kind, actorId, intent, outcome, knownTo) {
-    const id=`EV-${String(e.events.length+1).padStart(6,"0")}`;
+    const id=`EV-${String(m.last_event_sequence+logs.length+1).padStart(6,"0")}`;
     // Keep legacy field shape for validators and old event playback.
     const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
     rec.travel_policy_version=1;
@@ -103,13 +106,13 @@ function stageNarrativeTurn(snapshot, turn) {
     applyStateChanges(s,record,[...npcChanges,...(item.changes??[])]);
   }
   s.time.day=newDay;
-  s.history.last_event_sequence=e.events.length;
+  s.history.last_event_sequence=m.last_event_sequence+logs.length;
   s.history.completed_turn_keys.push(turn.key);
   s.chapter.last_resolved_event_id=e.events.at(-1).id;
   s.save.last_verified_turn=t;
   s.save.notes="Candidate checkpoint: commit and read-back required before calling this turn verified.";
   s.pending={...s.pending,type:"await_player_action",interaction_mode:"free_text_no_numbered_options",location_id:s.player.location_id,message:turn.next_prompt??"Jack awaits the next free-form action.",last_player_action:turn.player_text};
-  m.last_completed_turn=t;m.last_event_sequence=e.events.length;m.last_event_id=e.events.at(-1).id;
+  m.last_completed_turn=t;m.last_event_sequence=s.history.last_event_sequence;m.last_event_id=e.events.at(-1).id;
   m.notes="Staged turn; only a verified Git commit makes this a durable save.";
   // The public chapter contains only the literal narrated scene, not the
   // resolution engine's technical intent/outcome, which may include private
@@ -131,6 +134,7 @@ function stageNarrativeTurn(snapshot, turn) {
   next.state.narrative_threads=withConsequences.state.narrative_threads;
   appendFullTurn(next,turn.player_text,turn.narration_messages);
   next.chapter += '\n\n### Texto íntegro narrado — turno ' + t + '\n\n' + turn.narration_messages.join('\n\n') + '\n';
+  delete next.sourceFiles; // A later transition must reload exact verified source bytes.
   verifyNarrativeSnapshot(next);
   return next;
 }

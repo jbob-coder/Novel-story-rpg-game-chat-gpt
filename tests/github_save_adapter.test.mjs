@@ -124,3 +124,52 @@ test('HTTP readback interruption recovers without generating a second commit',as
  assert.equal(restored.status,'verified',restored.reason);
  assert.equal(state.commits,1);assert.deepEqual(restored.narration_messages,[prose]);
 });
+
+function absenceAdapter(treeResult={truncated:false,tree:[]},commitResult={tree:{sha:TREE}}){
+ const requests=[];
+ const remote=createGitHubSaveAdapter({repository:'jbob-coder/Novel-story-rpg-game-chat-gpt',
+  token:'test-only-not-a-secret',apiBase:'http://mock.github.test',
+  fetchImpl:async(url,options)=>{
+   requests.push({url,method:options.method});
+   assert.equal(options.method,'GET');
+   if(url.endsWith('/git/commits/'+BASE))return response(commitResult);
+   if(url.endsWith('/git/trees/'+TREE+'?recursive=1'))return response(treeResult);
+   throw Error('Unexpected absence check request: '+url);
+  }});
+ return {remote,requests};
+}
+const nextChapterPaths=savePaths('CH-001').filter(path=>path.startsWith('chapters/'));
+test('chapter destination absence is verified against one immutable commit tree',async()=>{
+ const {remote,requests}=absenceAdapter({truncated:false,tree:[
+  {path:'chapters',type:'tree',sha:TREE},{path:'chapters/CH-000.md',type:'blob',sha:BASE}
+ ]});
+ assert.equal(await remote.assertFilesAbsent(BASE,nextChapterPaths),true);
+ assert.equal(requests.length,2);
+ assert.ok(requests[0].url.endsWith(BASE));
+});
+for(const type of ['blob','tree','commit'])test('existing '+type+' blocks a chapter destination',async()=>{
+ const {remote}=absenceAdapter({truncated:false,tree:[{path:nextChapterPaths[0],type,sha:BASE}]});
+ await assert.rejects(()=>remote.assertFilesAbsent(BASE,nextChapterPaths),/already exists/);
+});
+test('a file in the destination ancestor blocks chapter creation',async()=>{
+ const {remote}=absenceAdapter({truncated:false,tree:[{path:'chapters',type:'blob',sha:BASE}]});
+ await assert.rejects(()=>remote.assertFilesAbsent(BASE,nextChapterPaths),/already exists/);
+});
+for(const tree of [{truncated:true,tree:[]},{tree:[]},{truncated:false}])
+ test('incomplete tree cannot prove chapter destination absence '+JSON.stringify(tree),async()=>{
+  const {remote}=absenceAdapter(tree);
+  await assert.rejects(()=>remote.assertFilesAbsent(BASE,nextChapterPaths),/missing or truncated/);
+ });
+test('malformed commit tree SHA cannot prove absence',async()=>{
+ const {remote}=absenceAdapter(undefined,{tree:{sha:'bad'}});
+ await assert.rejects(()=>remote.assertFilesAbsent(BASE,nextChapterPaths),/40-digit Git SHA/);
+});
+test('invalid absence requests fail before any HTTP call',async()=>{
+ const {remote,requests}=absenceAdapter();
+ for(const paths of [[],['chapters/../CH-001.md'],['/chapters/CH-001.md'],
+  ['other/CH-001.md'],['chapters//CH-001.md'],['chapters/./CH-001.md'],
+  ['chapters/CH-001/'],['chapters/CH-001.md','chapters/CH-001.md'],[null]])
+  await assert.rejects(()=>remote.assertFilesAbsent(BASE,paths),/Invalid/);
+ await assert.rejects(()=>remote.assertFilesAbsent('bad',nextChapterPaths),/40-digit/);
+ assert.equal(requests.length,0);
+});

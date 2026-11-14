@@ -4,6 +4,20 @@ A long game can exceed chat context, switch devices or lose tool access. **Conve
 
 ## Literal delivery recovery (2026-11-13)
 
+**Multi-chapter recovery (2026-11-14):** `readCheckpoint` reads the active five
+files plus every declared closed chapter's three original files from the same
+immutable commit. Missing history, changed hashes, duplicate/reset global IDs
+or inconsistent evidence block recovery. `decodeFiveFiles` accepts this complete
+file set; `encodeFiveFiles` still emits only the five active files. Use the
+loader after a chapter transition instead of treating an active chapter alone
+as the complete history.
+
+Journal attempts now distinguish `turn` and `chapter_transition`, including
+source and destination chapter identity. A verified chapter transition returns
+no narration; it does not replay the previous chapter's last scene. Both blocked
+and verified recovery revalidate the historical files. See
+[chapter protocol](CHAPTER_PROTOCOL.md). Legacy turn journals remain supported.
+
 The canonical coordinator requires the separate durable journal described in
 `AGENTS.md`. Read it before preparing a new turn. If a save is already marked
 `verified` but its presentation was interrupted, call `recoverJournaledSave`:

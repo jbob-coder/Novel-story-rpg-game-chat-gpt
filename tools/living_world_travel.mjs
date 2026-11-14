@@ -1,3 +1,4 @@
+import {allEvents} from './chapter_history.mjs';
 // Contextual estimates supplied by the narrator, never distances inferred from
 // graph hops or canonical clock times. History remains the reference source.
 const insist=(ok,message)=>{if(!ok)throw Error(message)};
@@ -51,7 +52,7 @@ export function latestTravelReference({events=[],actorId,route,mode,beforeTurn=I
 }
 
 export function verifyTravelHistory(snapshot){
- const events=snapshot.events.events,byTurn=new Map();
+ const events=allEvents(snapshot),byTurn=new Map();
  for(const event of events){
   if(event.travel_policy_version!==undefined)
    insist(event.travel_policy_version===1,'Unknown travel policy version');

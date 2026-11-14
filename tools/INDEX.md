@@ -19,4 +19,8 @@
 - [Coordinador de turnos revisados y guardado](living_world_coordinator.mjs)
 - [Diagnóstico privado y proyección visible para Jack](living_world_diagnostics.mjs)
 - [Estimaciones contextuales de viaje y presupuesto por actor](living_world_travel.mjs)
+- [Historial global y archivos cerrados de capítulos](chapter_history.mjs)
+- [Preparación y transición revisada de capítulos](chapter_management.mjs)
+- [Planes condicionales de NPC y límites de información](world_plans.mjs)
+- [Obligaciones causales reutilizadas de PR #10](living_world_obligations.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)

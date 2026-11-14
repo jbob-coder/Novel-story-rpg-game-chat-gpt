@@ -8,6 +8,18 @@
 
 # Living Superhuman World — interactive-novel session entry point
 
+## Conditional-plan and chapter pilot (2026-11-14)
+
+This development checkout supports reviewed metadata-only chapter transitions,
+global EV/TXT history and optional event-backed NPC plans/obligations. Follow
+[chapter management](docs/CHAPTER_PROTOCOL.md), [plan/state schema](docs/STATE_SCHEMA.md)
+and [recovery](docs/RECOVERY.md). Plans are public files but narrator-private
+within the fiction; evaluate them only over authorized fictional intervals and
+persist reviewed observations with actual events. Dates do not force outcomes.
+Load closed chapter history as well as the active five files. The synthetic
+pilot does not establish any plan for Rosa, close CH-000 or play a real turn.
+PR #24 and this dependent work remain review branches until explicitly integrated.
+
 ## Recovery and contextual-time implementation (2026-11-13)
 
 This checkout adds literal recovery from an already verified save journal and
