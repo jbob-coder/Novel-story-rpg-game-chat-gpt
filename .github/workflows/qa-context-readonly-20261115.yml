@@ -1,0 +1,21 @@
+name: Isolated read-only context QA
+on:
+  push:
+    branches:
+      - qa/trigger-live-context-read-20261115
+permissions:
+  contents: read
+jobs:
+  context:
+    if: github.repository == 'jbob-coder/Novel-story-rpg-game-chat-gpt' && github.ref == 'refs/heads/qa/trigger-live-context-read-20261115'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify immutable context read against GitHub
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/qa_live_context_remote_read_20261115.mjs
