@@ -1,5 +1,10 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Verified context retrieval — 2026-11-15
+
+Independent context retrieval from draft PR #28 was ported without its stacked NPC-needs dependencies. Protected fast-forward integrated the read-only index and immutable remote loader at `3a623554948e1ac2f7e50d61a7b0e23e69907206`. CI [#43770852892](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43770852892) passed **290 Node, 37 Python, checkpoint validator**; the actual token-backed **read-only** runtime [#43771221345](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221345) passed and made zero canonical writes. [#43771221383](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221383) independently reran all tests successfully. Canonical journal gate returned `not_initialized`: read-only evidence access is permitted, **live narrative turn save is not authorized** until a working durable journal is available and verified. This is not RAG or a private-fact disclosure engine. PR #28 retains its separate NPC dependencies. Backup: `backup/narrative-before-verified-context-20261115`. Checkpoint remains CH-000 turn 9, EV-000029, TXT-000020; no Day 0. See [D-056 handoff](HANDOFF.md).
+
+
 ## Remote-runtime launch gate verified — 2026-11-15
 
 A GitHub-backed synthetic journaled turn has now been executed using the **actual Node.js runtime adapters** with a temporary GitHub Actions token on dedicated QA branches, not the canonical narrative branch. [Run #43767698159](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767698159) passed a deliberate interruption at 75%, durable blocked-journal readback, fresh-adapter replay of the original detached commit, protected QA ref update, five-file byte-exact readback, and read-only literal narration recovery. The journal ended `verified` at 100%. QA commit: `29d88759a37203a0278c0989f373f20e11ca22ed`. The workflow was archived read-only after the one-time test. This is **not** a real player turn, not evidence of user-visible delivery, and not proof of multi-writer atomic CAS.
