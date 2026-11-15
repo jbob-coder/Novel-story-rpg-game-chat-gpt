@@ -1,3 +1,17 @@
+# D-054 — reviewed launch integration and live journal-storage smoke (2026-11-15)
+
+**Authoritative branch:** `work/chat-narrative-foundation`. With owner approval, it was fast-forwarded from `b096f84dca1ec4e01f1a2742a67ae41688bd11d6` to `64927b30d9f888b3677bcdf8c33945f9f563cb79`, integrating the ordered commits from draft PRs #24, #25 and #29 without a merge commit. Backup: `backup/narrative-before-20261115-readiness-integration`. The default `main` branch was not touched.
+
+**Verified review:** PR #24 CI run 43385151634, PR #25 run 43597585341, and PR #29 run [43734406737](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43734406737) succeeded. PR #29 reports 272/272 Node and 37/37 Python tests plus checkpoint validation. No outstanding inline review threads were returned. The target branch was confirmed exactly identical to the #29 commit after the fast-forward.
+
+**Canon unchanged:** all five authoritative story-file Git blob SHAs matched on the original, integration and dedicated QA branch: transcript `1350916e`, events `1f40c724`, chapter `e4c11953`, state `0320a93e`, manifest `897ec2e7`. Save manifest is CH-000, turn 9, Day -29 morning, EV-000029 and TXT-000020. No turn 10, chapter transition, power awakening or offscreen event was authored. Never resume from QA branches.
+
+**Real journal storage smoke (not an end-to-end narrative save):** created dedicated `qa/narrative-five-file-journal-smoke-20261115` and `journal/qa-narrative-five-file-smoke-20261115`. On the dedicated journal, created a marked `qa_storage_smoke_only` record, read it back in blocked state, updated it using its fetched blob SHA, then read back verified state. GitHub journal commits: `8f066ba89df1a6434ef2c5a0d0a030ce5f00241b` and `8ab85f1ef765ee7a669568b784435ca75246e0fb`. QA story branch remained byte-identical to canon. This validates GitHub journal contents write/read/update/read through the authorized connector; it does **not** exercise `createGitHubSaveJournal` with a scoped token, full atomic five-file write, actual interrupted narrative replay or delivered narration. At the expected canonical journal path, no previous save-attempt record was found during this review.
+
+**Next gate:** configure a credential-scoped runtime journal adapter or verified connector-backed equivalent, then prove an isolated five-file atomic save with interruption and literal recovery using the actual runtime interfaces. Preserve conservative branch-head conflict handling. Only after that, accept the owner's next free-form Jack action as real turn 10, review literary quality and privacy, and save/read back before presenting. Day 0 remains separately blocked. No autonomous/background play.
+
+---
+
 # D-053 — intervalos temporales coherentes y QA (2026-11-12)
 
 La comprobación temporal anterior dejaba pasar una transición imposible: una mañana seguida de la siguiente mañana en 20 minutos. Corrección: no basta el límite `floor/ceil` sobre minutos; ahora hay que encontrar una ventana horaria posible dentro de las franjas narrativas. El estado real sigue sin hora exacta ni weekday. QA sintético aislado #43321955437: **175/175 Node, 24/24 Python, validador PASS**. Documentación: [ventanas temporales](LIVING_WORLD_TIME_WINDOW_QA_20261112.md). **No hay turno real 10 ni nuevo guardado de Jack.** Se mantienen el diario durable y el guardado bloqueado sin journal configurado de D-052.
