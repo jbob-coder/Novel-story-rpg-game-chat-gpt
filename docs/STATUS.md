@@ -6,7 +6,7 @@ With owner approval, the narrative branch was safely fast-forwarded through the 
 
 All five story-file blob SHAs remained unchanged after integration. The manifest still records CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. `main` was not updated. Reversible integration backup: `backup/narrative-before-20261115-readiness-integration`.
 
-Real GitHub journal **storage** was smoke-tested using a dedicated noncanonical QA journal (create → read blocked → update with SHA → read verified). The test did not exercise a token-backed Node journal adapter or a full journaled narrative transaction. Canonical journal runtime connection and interrupted literal recovery remain a launch gate. See [D-054 handoff](HANDOFF.md). No authentic next turn is authorized without an actual player action and verified save; Day 0 remains pending.
+Real GitHub journal storage and a detached **atomic five-file no-op checkpoint** were smoke-tested on separate QA branches: create/read/update/read of the journal, persist a detached five-file commit, durably record blocked status before moving the QA ref, update the QA ref without force, read back all five identical Git blobs and confirm the journal. QA commit: `debd0746a8b651074522d0bc4f894c441dfdfc2c`. The actual token-backed Node adapter, a new-turn authored-save transaction and literal narration delivery were **not** executed. Canonical journal runtime connection and recovery from a real interrupted narration still remain launch gates. See [D-054 handoff](HANDOFF.md). No authentic next turn is authorized without an actual player action and verified save; Day 0 remains pending.
 
 
 ## Persistent obligation review — 2026-11-15
