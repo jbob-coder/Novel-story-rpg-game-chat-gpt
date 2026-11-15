@@ -1,0 +1,21 @@
+name: Isolated live journal runtime QA
+on:
+  push:
+    branches:
+      - qa/trigger-live-journal-20261115
+permissions:
+  contents: write
+jobs:
+  isolated-remote-recovery:
+    if: github.repository == 'jbob-coder/Novel-story-rpg-game-chat-gpt' && github.ref == 'refs/heads/qa/trigger-live-journal-20261115'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute synthetic QA against live GitHub branches
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/qa_live_journal_remote_20261115.mjs
