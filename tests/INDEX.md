@@ -4,6 +4,8 @@
 - [Pruebas del adaptador HTTP GitHub (D-043)](github_save_adapter.test.mjs)
 - [Pruebas integrales de guardado y recuperación (D-042)](save_transaction.test.mjs)
 - [tests/turn_engine.test.mjs](turn_engine.test.mjs)
+- [Evidence-linked context pilot (from PR #28)](context_manager.test.mjs)
+- [Remote context and journal safety tests](verified_context_loader.test.mjs)
 - [Pruebas de efectos causales (D-040)](state_changes.test.mjs)
 - [tests/test_backstory_aster.py](test_backstory_aster.py)
 - [tests/test_character_profile.py](test_character_profile.py)
