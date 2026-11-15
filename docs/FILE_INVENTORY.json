@@ -67,7 +67,8 @@
       "docs/SAVE_BLOCKING_PROTOCOL.md",
       "docs/DECISION_OUTCOMES.md",
       "docs/SCENE_CRAFT.md",
-      "docs/STORY_REVISIONS.md"
+      "docs/STORY_REVISIONS.md",
+      "docs/05_persistence/CONTEXT_MANAGEMENT.md"
     ],
     "tracking": [
       "docs/STATUS.md",
@@ -90,7 +91,9 @@
       "tools/chapter_history.mjs",
       "tools/chapter_management.mjs",
       "tools/world_plans.mjs",
-      "tools/living_world_obligations.mjs"
+      "tools/living_world_obligations.mjs",
+      "tools/context_manager.mjs",
+      "tools/verified_context_loader.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -110,7 +113,9 @@
       "tests/test_multichapter_validator.py",
       "tests/world_plans.test.mjs",
       "tests/world_plan_pilot.test.mjs",
-      "tests/living_world_persistent_commitments.test.mjs"
+      "tests/living_world_persistent_commitments.test.mjs",
+      "tests/context_manager.test.mjs",
+      "tests/verified_context_loader.test.mjs"
     ]
   },
   "newChapterPaths": [
