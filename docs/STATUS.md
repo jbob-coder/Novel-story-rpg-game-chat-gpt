@@ -1,5 +1,14 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Current integration and QA status — 2026-11-15
+
+With owner approval, the narrative branch was safely fast-forwarded through the three development commits from PRs #24, #25 and #29: `b096f84d` → `73fd8275` → `c9448eea` → `64927b30`. It now contains literal narration recovery, contextual time/travel checks, event-backed NPC plans and chapter-history validation, and global persisted-obligation review. The last commit's GitHub Actions workflow [43734406737](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43734406737) succeeded (272 Node, 37 Python and checkpoint validation as reported in PR #29). These improvements are now integrated; older sections below reflect their former development-branch status.
+
+All five story-file blob SHAs remained unchanged after integration. The manifest still records CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. `main` was not updated. Reversible integration backup: `backup/narrative-before-20261115-readiness-integration`.
+
+Real GitHub journal **storage** was smoke-tested using a dedicated noncanonical QA journal (create → read blocked → update with SHA → read verified). The test did not exercise a token-backed Node journal adapter or a full journaled narrative transaction. Canonical journal runtime connection and interrupted literal recovery remain a launch gate. See [D-054 handoff](HANDOFF.md). No authentic next turn is authorized without an actual player action and verified save; Day 0 remains pending.
+
+
 ## Persistent obligation review — 2026-11-15
 
 `work/persistent-obligation-review-20261115` builds on PR #25 commit
