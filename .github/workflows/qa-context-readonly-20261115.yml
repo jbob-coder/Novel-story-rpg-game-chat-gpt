@@ -3,11 +3,14 @@ on:
   push:
     branches:
       - qa/trigger-live-context-read-20261115
+  pull_request:
+    branches:
+      - work/chat-narrative-foundation
 permissions:
   contents: read
 jobs:
   context:
-    if: github.repository == 'jbob-coder/Novel-story-rpg-game-chat-gpt' && github.ref == 'refs/heads/qa/trigger-live-context-read-20261115'
+    if: github.repository == 'jbob-coder/Novel-story-rpg-game-chat-gpt' && (github.ref == 'refs/heads/qa/trigger-live-context-read-20261115' || github.head_ref == 'qa/trigger-live-context-read-20261115')
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
