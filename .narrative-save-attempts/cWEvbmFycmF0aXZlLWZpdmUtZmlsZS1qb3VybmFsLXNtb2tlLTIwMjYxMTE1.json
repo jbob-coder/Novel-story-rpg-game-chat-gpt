@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "kind": "qa_storage_smoke_only",
+  "status": "blocked",
+  "branch": "qa/narrative-five-file-journal-smoke-20261115",
+  "journal_branch": "journal/qa-narrative-five-file-smoke-20261115",
+  "sourceHead": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+  "commitHead": null,
+  "expectedFiles": null,
+  "sha_256_of_five_story_files": null,
+  "story_blob_shas": {
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4",
+    "game/STATE.json": "0320a93ebf4a944da97b65dffa6d281acce46d94",
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320"
+  },
+  "attempt": {
+    "qa_only": true,
+    "narrative_turn_created": false,
+    "warning": "Not a canonical save attempt; validates GitHub journal storage only."
+  },
+  "notes": "Precheck verified byte-for-byte identical five canonical story files on isolated QA branch. No fiction or gameplay advance."
+}
