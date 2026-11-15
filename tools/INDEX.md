@@ -3,6 +3,7 @@
 - [tools/turn_engine.mjs](turn_engine.mjs)
 - [Motor de cambios causales de estado (D-040)](state_changes.mjs)
 - [tools/narrative_archive.mjs](narrative_archive.mjs)
+- [Gestor de contexto de solo lectura y referencias por evento](context_manager.mjs)
 - [tools/save_gate.mjs](save_gate.mjs)
 - [Adaptador real GitHub REST de cinco archivos (D-043)](github_save_adapter.mjs)
 - [Transacción de cinco archivos y recuperación (D-042)](save_transaction.mjs)
