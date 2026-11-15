@@ -1,24 +1,11 @@
-name: Isolated read-only context QA
+name: Read-only context QA (archived)
+# Passed run 43771221345; archived to avoid repeat CI charges.
 on:
-  push:
-    branches:
-      - qa/trigger-live-context-read-20261115
-  pull_request:
-    branches:
-      - work/chat-narrative-foundation
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  context:
-    if: github.repository == 'jbob-coder/Novel-story-rpg-game-chat-gpt' && (github.ref == 'refs/heads/qa/trigger-live-context-read-20261115' || github.head_ref == 'qa/trigger-live-context-read-20261115')
+  archived:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Verify immutable context read against GitHub
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: node tools/qa_live_context_remote_read_20261115.mjs
+      - run: echo 'QA read-only context verification completed on 2026-11-15'
