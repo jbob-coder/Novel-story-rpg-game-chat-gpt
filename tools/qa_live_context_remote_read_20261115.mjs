@@ -9,7 +9,10 @@ const repository='jbob-coder/Novel-story-rpg-game-chat-gpt';
 const storyBranch='work/chat-narrative-foundation';
 const token=process.env.GITHUB_TOKEN;
 assert.equal(process.env.GITHUB_REPOSITORY,repository);
-assert.equal(process.env.GITHUB_REF,'refs/heads/qa/trigger-live-context-read-20261115');
+assert.ok(process.env.GITHUB_REF==='refs/heads/qa/trigger-live-context-read-20261115'||
+ (process.env.GITHUB_EVENT_NAME==='pull_request'&&
+  process.env.GITHUB_HEAD_REF==='qa/trigger-live-context-read-20261115'),
+ 'Only the isolated QA branch may trigger this read-only run');
 assert.match(token??'',/^\S+$/,'A temporary GitHub Actions read token is required');
 
 const remote=createGitHubSaveAdapter({repository,token});
