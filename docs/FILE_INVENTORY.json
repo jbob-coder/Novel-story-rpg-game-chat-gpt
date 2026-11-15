@@ -109,7 +109,8 @@
       "tests/chapter_save_transaction.test.mjs",
       "tests/test_multichapter_validator.py",
       "tests/world_plans.test.mjs",
-      "tests/world_plan_pilot.test.mjs"
+      "tests/world_plan_pilot.test.mjs",
+      "tests/living_world_persistent_commitments.test.mjs"
     ]
   },
   "newChapterPaths": [

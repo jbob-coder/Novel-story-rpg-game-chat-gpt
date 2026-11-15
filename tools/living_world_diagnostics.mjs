@@ -6,6 +6,7 @@ import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitments.mjs';
 import {evaluateNPCPlans} from './world_plans.mjs';
 import {allEvents} from './chapter_history.mjs';
+import {validateTemporalAdvance} from './living_world_time.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -19,6 +20,10 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
     actorIds.every(x=>typeof x==='string') && new Set(actorIds).size===actorIds.length),
     'Actor selection must be unique IDs');
   const state=snapshot.state,manifest=snapshot.manifest;
+  // Review the whole authorized interval even when no actor has a saved plan.
+  // No endpoint period is asserted by this read-only diagnostic.
+  validateTemporalAdvance({currentPeriod:state.time.time_of_day,elapsedDays,elapsedMinutes});
+  const eventIds=new Set(allEvents(snapshot).map(event=>event.id));
   const chosen=actorIds===null?selectRelevantNPCs({state}):actorIds;
   const selected=chosen.filter(id=>Object.hasOwn(state.world.actors,id));
   const candidates=previewNPCRoutines({state,elapsedMinutes,actorIds:selected,
@@ -44,8 +49,9 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
     proposedNPCActivities:candidates,
     planReview:Object.entries(state.world.actors).filter(([,actor])=>actor.plans?.length)
       .flatMap(([actorId])=>evaluateNPCPlans({state,actorId,elapsedMinutes,elapsedDays,
-        eventIds:new Set(allEvents(snapshot).map(event=>event.id))})),
-    commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,commitments}),
+        eventIds})),
+    commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,elapsedDays,
+      commitments,eventIds}),
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',

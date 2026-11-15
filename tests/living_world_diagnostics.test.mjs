@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {inspectLivingWorld,playerVisibleDiagnostic} from '../tools/living_world_diagnostics.mjs';
+import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>readFileSync(resolve(root,p),'utf8');
@@ -89,4 +90,55 @@ test('an explicitly recorded deadline can be reviewed without declaring delivery
 test('zero narrative time yields no commitment activity',()=>{
  const d=inspectLivingWorld({snapshot,elapsedMinutes:0});
  assert.deepEqual(d.commitmentReview,[]);
+});
+
+test('diagnostic checks days and minutes even without saved NPC plans',()=>{
+ assert.throws(()=>inspectLivingWorld({snapshot,elapsedMinutes:20,elapsedDays:1,actorIds:[]}),
+  /Impossible narrative day transition/);
+ assert.throws(()=>inspectLivingWorld({snapshot,elapsedMinutes:0,elapsedDays:1}),/days\/minutes disagree/);
+ assert.throws(()=>inspectLivingWorld({snapshot,elapsedMinutes:20,elapsedDays:-1}),/Invalid narrative days/);
+ assert.doesNotThrow(()=>inspectLivingWorld({snapshot,elapsedMinutes:1440,elapsedDays:1,actorIds:[]}));
+});
+
+test('diagnostic rejects temporary obligations citing absent historical evidence',()=>{
+ const before=JSON.stringify(snapshot);
+ assert.throws(()=>inspectLivingWorld({snapshot,elapsedMinutes:20,actorIds:['NPC-003'],commitments:[
+  {id:'OBL-ABSENT-EVENT',actor_id:'NPC-003',summary:'SYNTHETIC private delivery.',
+   status:'pending',source_event_id:'EV-999999',due_day:-29}
+ ]}),/unknown event/i);
+ assert.equal(JSON.stringify(snapshot),before);
+});
+
+test('causal obligations from all owners survive bounded routine selection and owner-scoped IDs',()=>{
+ const owners=Object.keys(snapshot.state.world.actors);
+ assert.ok(owners.length>3);
+ const candidate=stageLivingWorldTurn({snapshot,observedHead:'a'.repeat(40),turn:{
+  key:'synthetic-obligations-all-owners',player_text:'SYNTHETIC authorized workshop interval.',
+  intent:'Synthetic passage of time.',outcome:'A quiet interval passes at the workbench.',
+  narration_messages:['SYNTHETIC: daylight falls across the workbench.'],
+  elapsed_days:0,elapsed_minutes:20
+ },npcResolutions:owners.map((actor_id,index)=>{
+  const event='EV-'+String(snapshot.manifest.last_event_sequence+index+2).padStart(6,'0');
+  return {actor_id,reviewed:true,resolved:true,causal_basis:'SYNTHETIC private obligation established by its owner.',
+   outcome:`SYNTHETIC ${actor_id} undertakes a private responsibility.`,changes:[{
+    field:'commitments',before:[],after:[{id:'OBL-SAME-LOCAL-ID',
+     summary:`SYNTHETIC private responsibility for ${actor_id}.`,source_event_id:event,
+     last_change_event_id:event,due_day:-30,status:'blocked',priority:'important',
+     blockers:['SYNTHETIC private missing material.'],resolution:null,resolution_event_id:null}]
+   }]};
+ })});
+ const before=JSON.stringify(candidate);
+ const report=inspectLivingWorld({snapshot:candidate,elapsedMinutes:20});
+ assert.ok(report.selectedActorIds.length<=3);
+ const obligations=report.commitmentReview.filter(item=>item.kind==='explicit_commitment');
+ assert.deepEqual(new Set(obligations.map(item=>item.actorId)),new Set(owners));
+ assert.ok(obligations.every(item=>item.review==='overdue_review'&&item.status==='blocked'));
+ for(const item of obligations){
+  const event=candidate.events.events.find(event=>event.id===item.sourceEventId);
+  assert.ok(event.actor_ids.includes(item.actorId));
+ }
+ const visible=JSON.stringify(playerVisibleDiagnostic(report));
+ assert.ok(!visible.includes('SYNTHETIC private'));
+ assert.ok(!visible.includes('OBL-SAME-LOCAL-ID'));
+ assert.equal(JSON.stringify(candidate),before);
 });

@@ -10,6 +10,12 @@
 
 ## Conditional-plan and chapter pilot (2026-11-14)
 
+The dependent obligation-review increment also loads every persisted open NPC
+obligation independently of routine proximity and checks deadlines across the
+authorized interval using global chapter evidence. See the existing
+[state schema](docs/STATE_SCHEMA.md) for selection and timing semantics.
+Private diagnostic reviews never mark an obligation completed or play a turn.
+
 This development checkout supports reviewed metadata-only chapter transitions,
 global EV/TXT history and optional event-backed NPC plans/obligations. Follow
 [chapter management](docs/CHAPTER_PROTOCOL.md), [plan/state schema](docs/STATE_SCHEMA.md)

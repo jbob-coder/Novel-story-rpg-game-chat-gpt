@@ -1,5 +1,32 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Persistent obligation review — 2026-11-15
+
+`work/persistent-obligation-review-20261115` builds on PR #25 commit
+`c9448eeaee555b3eb1474eec1832a0aa2991a1b2`. The diagnostic now reviews all
+persisted open obligations regardless of the three-NPC routine limit, distance,
+route or textual plan. It validates the authorized days/minutes interval and
+uses events from active and archived chapters. Deadlines crossed during an
+interval are flagged without completing tasks; blockage remains independently
+visible. Temporary hints cannot replace a saved obligation of the same owner.
+OBL IDs remain scoped to their owning NPC, matching the existing state model.
+
+Validation: **272/272 Node tests, 37/37 Python tests and checkpoint validator
+PASS**. The synthetic pilot saves an obligation, retrieves it after CH-000 →
+CH-001, reviews a crossed deadline using archived evidence, and removes it from
+pending reviews only after an explicitly recorded resolution and reload.
+Additional integration covers all seven NPC owners with the same local OBL ID,
+private blocked responsibilities and unchanged player knowledge. Unit coverage
+includes owners with unknown routes, absent textual plans, impossible intervals,
+zero-time inactivity and invalid references. Independent review caught and
+resolved a diagnostic uniqueness mismatch with the persistence validator.
+
+This reuses the obligation validator already taken from PR #10; PR #11/#12
+agendas and decisions remain separate. Reviews are private preparation, not
+automatic execution. Files under `game/` and `chapters/` remain unchanged;
+CH-000 turn 9 / Day -29 morning is still the live checkpoint. No merge or
+live narrative save is performed by this increment.
+
 ## Chapter/conditional-plan pilot — 2026-11-14
 
 `work/chapter-plan-pilot-20261113` depends on PR #24 commit

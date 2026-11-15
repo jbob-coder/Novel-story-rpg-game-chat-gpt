@@ -140,6 +140,27 @@ catalogs were not merged. An OBL record tracks a concrete pending, blocked,
 resolved or cancelled responsibility and its evidence. A PLAN references an
 obligation when necessary instead of duplicating its completion state.
 
+`inspectLivingWorld` reviews every persisted open obligation, including owners
+outside the nearby routine selection and owners without a route or a textual
+`independent_plan`. `actorIds` limits routine proposals and temporary hints;
+it does not suppress durable obligations. `reviewNPCCommitments` accepts
+`elapsedMinutes`, `elapsedDays` and the global event-ID set (active plus closed
+chapters). The diagnostic always supplies that set and validates the interval,
+even if there are no structured plans. Zero elapsed time produces no reviews.
+
+Reports distinguish `origin: saved_checkpoint` from `temporary_input`; temporary
+IDs cannot replace or duplicate a saved obligation of the same owner. OBL
+identity is scoped to its NPC; different owners may use the same ID. Date classifications are
+`overdue_review` (before the initial day), `due_today_review` (initial day),
+`due_within_interval` (after the initial day through the final day), `upcoming`
+and `deadline_unknown`. Status, priority and blockers remain separate from
+these classifications; a blocked task can also be overdue. The interval does
+not assert an exact deadline hour or final time-of-day. Routine timing refers
+to the initial period. Every result is private and unresolved: reviewing a due
+date neither completes a task nor changes a checkpoint. The player projection
+excludes this data; the narrator still resolves consequences through reviewed
+events and verified persistence.
+
 Each PLAN has a globally unique ID, NPC owner, objective, motivation, earliest
 relative day or null, resource/location/obligation requirements, same-owner
 dependencies, risks, alternatives, knowledge recipients and source/change events.

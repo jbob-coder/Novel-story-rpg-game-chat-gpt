@@ -26,6 +26,7 @@
 - [Rutinas autónomas](living_world_routines.test.mjs)
 - [Integración con acontecimientos y cinco archivos](living_world_coordinator.test.mjs)
 - [Diagnóstico y privacidad](living_world_diagnostics.test.mjs)
+- [Obligaciones persistidas, actores distantes y vencimientos](living_world_persistent_commitments.test.mjs)
 - [Trayectos contextuales, referencias y recuperación literal](living_world_travel.test.mjs)
 - [Capítulos e identificadores globales](chapter_management.test.mjs)
 - [Transición transaccional y recuperación interrumpida](chapter_save_transaction.test.mjs)

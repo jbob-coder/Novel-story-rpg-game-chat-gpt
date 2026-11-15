@@ -29,7 +29,7 @@ const plan=(eventId)=>({id:'PLAN-000001',kind:'actor_intent',owner_actor_id:acto
  alternatives:['Wait until supplies are available.'],source_event_id:eventId,
  last_change_event_id:eventId,resolution:null,resolution_event_id:null});
 const obligation=eventId=>({id:'OBL-PILOT-PREPARE',summary:'SYNTHETIC: prepare a repair kit at home.',
- source_event_id:eventId,due_day:null,status:'pending',priority:'normal',blockers:[],
+ source_event_id:eventId,due_day:-28,status:'pending',priority:'normal',blockers:[],
  last_change_event_id:eventId,resolution:null,resolution_event_id:null});
 
 function remoteFixture(){
@@ -86,6 +86,12 @@ test('private conditional plan survives interruption, chapter boundary, completi
   elapsedDays:0,eventIds:eventIds(current)}),[]);
  assert.equal(JSON.stringify(current),untouched);
  assert.equal(current.state.world.actors[actorId].plans[0].status,'proposed');
+ const savedReview=inspectLivingWorld({snapshot:current,elapsedMinutes:20,actorIds:[]});
+ assert.deepEqual(savedReview.proposedNPCActivities,[]);
+ assert.equal(savedReview.commitmentReview.length,1);
+ assert.equal(savedReview.commitmentReview[0].id,'OBL-PILOT-PREPARE');
+ assert.equal(savedReview.commitmentReview[0].origin,'saved_checkpoint');
+ assert.equal(JSON.stringify(current),untouched);
  // Every narration entry point enforces the same privacy boundary, including
  // direct transaction builders that do not pass through the coordinator.
  const guard={observed_head:f.head,previous_attempt:null};
@@ -133,6 +139,20 @@ test('private conditional plan survives interruption, chapter boundary, completi
  assert.equal(current.manifest.last_completed_turn,beforeTransition.manifest.last_completed_turn);
  assert.equal(current.manifest.chapter_id,'CH-001');
  for(const path of savePaths('CH-000').slice(0,3))assert.equal(f.commits.get(f.head)[path],closedFiles[path]);
+ // The obligation's source is now in an archived chapter. Diagnostics must
+ // retain that causal evidence even with no locally selected routine actors.
+ assert.equal(current.events.events.length,0);
+ const afterBoundary=JSON.stringify(current);
+ const persistedReview=inspectLivingWorld({snapshot:current,elapsedMinutes:1440,elapsedDays:1,actorIds:[]});
+ assert.equal(persistedReview.commitmentReview.length,1);
+ assert.equal(persistedReview.commitmentReview[0].sourceEventId,introduction);
+ assert.equal(persistedReview.commitmentReview[0].review,'due_within_interval');
+ assert.equal(persistedReview.commitmentReview[0].reviewedThroughDay,-28);
+ assert.equal(current.state.world.actors[actorId].commitments[0].status,'pending');
+ assert.equal(JSON.stringify(current),afterBoundary);
+ const visible=playerVisibleDiagnostic(persistedReview);
+ assert.equal('commitmentReview' in visible,false);
+ assert.ok(!JSON.stringify(visible).includes('SYNTHETIC: prepare a repair kit at home.'));
 
  const restored=structuredClone(current);
  restored.state.world.actors[actorId].resources.pilot_supply='ready';
@@ -162,6 +182,9 @@ test('private conditional plan survives interruption, chapter boundary, completi
  assert.equal(recovered.status,'verified',recovered.reason);
  assert.deepEqual(recovered.narration_messages,[current.transcript.entries.at(-1).text]);
  assert.deepEqual(f.writes,writes);
+ const reloaded=await f.snapshot();
+ assert.deepEqual(inspectLivingWorld({snapshot:reloaded,elapsedMinutes:20,actorIds:[]}).commitmentReview,[]);
+ assert.equal(reloaded.state.world.actors[actorId].commitments[0].status,'resolved');
  assert.equal(allEvents(current).length,current.manifest.last_event_sequence);
  assert.equal(allTranscriptEntries(current).length,current.manifest.last_transcript_sequence);
  assert.ok(allEvents(current).some(e=>e.state_changes.some(c=>c.field==='plans'&&c.review?.observations.length)));
