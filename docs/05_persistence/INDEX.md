@@ -5,6 +5,7 @@
 - [docs/FULL_NARRATION_ARCHIVE.md](../FULL_NARRATION_ARCHIVE.md)
 - [docs/CHAPTER_PROTOCOL.md](../CHAPTER_PROTOCOL.md)
 - [docs/STATE_SCHEMA.md](../STATE_SCHEMA.md)
+- [Gestión de contexto y referencias bajo demanda — prototipo](CONTEXT_MANAGEMENT.md)
 - [Manifest coherente del último checkpoint](../../game/SAVE_MANIFEST.json)
 - [Estado autoritativo del mundo](../../game/STATE.json)
 - [Transcripción completa y literal](../../chapters/CH-000.transcript.json)
