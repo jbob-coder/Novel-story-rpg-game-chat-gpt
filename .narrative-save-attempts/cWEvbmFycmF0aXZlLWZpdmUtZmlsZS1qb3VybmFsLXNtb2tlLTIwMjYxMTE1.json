@@ -1,7 +1,7 @@
 {
   "version": 1,
   "kind": "qa_storage_smoke_only",
-  "status": "blocked",
+  "status": "verified",
   "branch": "qa/narrative-five-file-journal-smoke-20261115",
   "journal_branch": "journal/qa-narrative-five-file-smoke-20261115",
   "sourceHead": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
@@ -19,10 +19,11 @@
     "qa_only": true,
     "narrative_turn_created": false,
     "warning": "Not a canonical save attempt; validates GitHub journal storage only.",
-    "storage_readback_verified": false,
+    "storage_readback_verified": true,
     "detached_commit_created": true,
     "qa_atomic_five_file_noop": true,
-    "ref_updated": false
+    "ref_updated": true,
+    "synthetic_noop_five_file_atomic_flow": true
   },
-  "notes": "QA detached 5-file Git tree/commit created; branch ref deliberately not moved yet. This is a synthetic no-op snapshot, NOT a narrative turn."
+  "notes": "QA-only GitHub Git Data atomic five-file no-op snapshot: detached tree+commit persisted; journal recorded blocked before ref update; isolated QA ref non-forced moved to same commit; five story blobs and manifest read back exactly; journal marked verified. NOT a new narrative turn, NOT token-backed Node adapter invocation, NOT actual narration recovery."
 }
