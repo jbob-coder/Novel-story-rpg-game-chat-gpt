@@ -1,5 +1,12 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Remote-runtime launch gate verified — 2026-11-15
+
+A GitHub-backed synthetic journaled turn has now been executed using the **actual Node.js runtime adapters** with a temporary GitHub Actions token on dedicated QA branches, not the canonical narrative branch. [Run #43767698159](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767698159) passed a deliberate interruption at 75%, durable blocked-journal readback, fresh-adapter replay of the original detached commit, protected QA ref update, five-file byte-exact readback, and read-only literal narration recovery. The journal ended `verified` at 100%. QA commit: `29d88759a37203a0278c0989f373f20e11ca22ed`. The workflow was archived read-only after the one-time test. This is **not** a real player turn, not evidence of user-visible delivery, and not proof of multi-writer atomic CAS.
+
+The new integrated HTTP-adapter regression tests from PR #30 passed [run #43767308282](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767308282), with **276 Node + 37 Python + checkpoint validator**. The authorized playable branch still has CH-000 turn 9, EV-000029 and TXT-000020. The remaining live-play gate is arranging per-turn ChatGPT runtime access to the authenticated adapter or an equivalent verified connector flow, then saving one actual owner-authored action before displaying its full narration. Do not advance gameplay without a player action. See [D-055 handoff](HANDOFF.md).
+
+
 ## Current integration and QA status — 2026-11-15
 
 With owner approval, the narrative branch was safely fast-forwarded through the three development commits from PRs #24, #25 and #29: `b096f84d` → `73fd8275` → `c9448eea` → `64927b30`. It now contains literal narration recovery, contextual time/travel checks, event-backed NPC plans and chapter-history validation, and global persisted-obligation review. The last commit's GitHub Actions workflow [43734406737](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43734406737) succeeded (272 Node, 37 Python and checkpoint validation as reported in PR #29). These improvements are now integrated; older sections below reflect their former development-branch status.
