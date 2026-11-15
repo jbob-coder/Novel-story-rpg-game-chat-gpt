@@ -60,8 +60,8 @@ export async function loadVerifiedContextPacket({remote,journal=null,branch,
   // still matches the saved journal commit. No guessed delivery or rerender.
   const historical=await remote.readFiles(journalBefore.commitHead,
    savePaths(snapshot.manifest.chapter_id));
-  for(const [path,value] of Object.entries(historical)){
-   insist(snapshot.sourceFiles[path]===value,
+  for(const path of savePaths(snapshot.manifest.chapter_id)){
+   insist(typeof historical?.[path]==='string'&&snapshot.sourceFiles[path]===historical[path],
     'Current checkpoint differs from last verified journal save: '+path);
   }
  }
