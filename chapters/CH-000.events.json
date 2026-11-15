@@ -1851,6 +1851,26 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000030",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Noncanonical observation for QA only.",
+      "outcome": "Noncanonical turn for transport and recovery validation.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 5
     }
   ]
 }
