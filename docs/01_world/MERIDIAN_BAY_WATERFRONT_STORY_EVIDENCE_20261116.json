@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "MB-WATERFRONT-STORY-EVIDENCE-CH000-20261116",
+  "status": "source_linked_review_only_not_new_canon",
+  "requirements": [
+    {
+      "id": "WATERFRONT-01",
+      "path": "game/STARTING_LOCATIONS.md",
+      "literal_fragments": [
+        "harbor visible between buildings",
+        "Crosswater Plaza connects to Crosswater Terminal, Market Row and Harbor Walk."
+      ],
+      "semantic": "Plaza view between buildings, and graph link from Crosswater Plaza to Harbor Walk."
+    },
+    {
+      "id": "WATERFRONT-02",
+      "path": "chapters/CH-000.transcript.json",
+      "literal_fragments": [
+        "Más allá de los edificios, las luces del puerto se estiran sobre el agua oscura."
+      ],
+      "semantic": "The city buildings do not fully eliminate perception of harbor lights over water from the Crosswater opening."
+    },
+    {
+      "id": "WATERFRONT-03",
+      "path": "game/STARTING_LOCATIONS.md",
+      "literal_fragments": [
+        "Public walkway toward the waterfront with views of industrial and passenger port activity."
+      ],
+      "semantic": "Harbor Walk is a pedestrian waterfront viewpoint; industrial passenger port areas are viewed, not established as publicly accessible."
+    },
+    {
+      "id": "WATERFRONT-04",
+      "path": "game/STARTING_LOCATIONS.md",
+      "literal_fragments": [
+        "Market Row also connects to Harbor Walk."
+      ],
+      "semantic": "Market Row–Harbor Walk is already a graph edge; keep it as source topology even though its physical geometry is not drafted in slice 3."
+    }
+  ],
+  "pending": "Visibility corridor, elevations, seawall/shoreline, pedestrian widths and accessible crossings require independent later definition; no full view simulation is claimed.",
+  "user_story_source_authoritative": true
+}
