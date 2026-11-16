@@ -14,6 +14,16 @@
 
 # Living Superhuman World — interactive-novel session entry point
 
+## Meridian Bay Phase 1 review — 2026-11-16
+
+This development branch selectively reconciles the six-location catalog and
+route/layout drafts with the current turn engine. Follow the
+[Phase 1 contract](docs/01_world/MERIDIAN_BAY_PHASE1.md): draft preparation,
+reviewed source-bound world admission, physical observation, actual visit and
+current availability are separate. Normal turns never silently import the
+catalog. Synthetic travel/save/chapter tests do not activate the design in the
+live checkpoint or authorize a merge or a new turn.
+
 ## Conditional-plan and chapter pilot (2026-11-14)
 
 The dependent obligation-review increment also loads every persisted open NPC

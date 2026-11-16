@@ -26,3 +26,8 @@
 - [Planes condicionales de NPC y límites de información](world_plans.mjs)
 - [Obligaciones causales reutilizadas de PR #10](living_world_obligations.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
+- [Catálogo y admisión explícita de Meridian Bay](meridian_bay_locations.mjs)
+- [Observaciones y visitas con evidencia histórica](meridian_bay_discovery.mjs)
+- [Integración de ciudad con turnos y guardado](meridian_bay_integration.mjs)
+- [Rutas de la ciudad y puntos intermedios](meridian_bay_prebuilt_routes.mjs)
+- [Canvas provisional de barrios y escala](meridian_bay_scale_plan.mjs)

@@ -92,6 +92,18 @@ test('zero narrative time yields no commitment activity',()=>{
  assert.deepEqual(d.commitmentReview,[]);
 });
 
+test('optional city context keeps proposed sites private and leaves the checkpoint untouched',()=>{
+ const before=JSON.stringify(snapshot);
+ const report=inspectLivingWorld({snapshot,includeCityDesign:true,elapsedMinutes:0});
+ assert.equal(report.cityDesign.locations.length,6);
+ assert.ok(report.cityDesign.locations.every(place=>!place.existsInSavedWorld));
+ assert.deepEqual(report.cityDesign.observedPlaces,[]);
+ const visible=JSON.stringify(playerVisibleDiagnostic(report));
+ assert.ok(!visible.includes('LOC-MARKET-NOAH-REPAIR'));
+ assert.ok(!visible.includes('cityDesign'));
+ assert.equal(JSON.stringify(snapshot),before);
+});
+
 test('diagnostic checks days and minutes even without saved NPC plans',()=>{
  assert.throws(()=>inspectLivingWorld({snapshot,elapsedMinutes:20,elapsedDays:1,actorIds:[]}),
   /Impossible narrative day transition/);

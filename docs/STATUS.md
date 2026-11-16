@@ -1,5 +1,31 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Meridian Bay Phase 1 review — 2026-11-16
+
+Branch `work/meridian-bay-phase1-20261116`, based on narrative commit
+`43a0e60013c69b1bf80abd36473264498d5363b7`, selectively reconciles PR #21's
+six-location catalog, PR #22's waypoint routing and PR #23's provisional layout.
+It preserves the current context, plan, obligation, time and recovery code.
+See [the integration contract and connection map](01_world/MERIDIAN_BAY_PHASE1.md).
+
+Design preparation is detached; explicit source-bound admission connects the
+six places to a future reviewed turn. Ordinary turns do not import them.
+Observations require physical position and exact event-linked prose; visits
+come from actual movement. Current opening/access is unknown, and actor presence
+or services are never inferred from a map entry. Evidence survives archived
+chapters. The 10 × 8 km drawing canvas remains a proposal, not city dimensions.
+
+The real checkpoint and every file under `game/` and `chapters/` are unchanged:
+CH-000 turn 9, Day -29 morning. This technical review does not activate the six
+sites in the narrative branch or merge the other draft NPC/service systems.
+The validated slice demonstrates admission, chosen travel, observation without
+entry, interruption/recovery, a later visit, and cross-chapter retrieval using
+synthetic in-memory scenes. Broad civilian event chains remain future work.
+
+Validation: **335/335 Node tests, 37/37 Python tests and checkpoint validator
+PASS**. This includes 45 additional city/diagnostic tests over the integrated
+baseline. All six catalog place records retain the source draft's exact values.
+
 ## Verified context retrieval — 2026-11-15
 
 Independent context retrieval from draft PR #28 was ported without its stacked NPC-needs dependencies. Protected fast-forward integrated the read-only index and immutable remote loader at `3a623554948e1ac2f7e50d61a7b0e23e69907206`. CI [#43770852892](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43770852892) passed **290 Node, 37 Python, checkpoint validator**; the actual token-backed **read-only** runtime [#43771221345](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221345) passed and made zero canonical writes. [#43771221383](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221383) independently reran all tests successfully. Canonical journal gate returned `not_initialized`: read-only evidence access is permitted, **live narrative turn save is not authorized** until a working durable journal is available and verified. This is not RAG or a private-fact disclosure engine. PR #28 retains its separate NPC dependencies. Backup: `backup/narrative-before-verified-context-20261115`. Checkpoint remains CH-000 turn 9, EV-000029, TXT-000020; no Day 0. See [D-056 handoff](HANDOFF.md).
