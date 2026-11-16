@@ -42,4 +42,6 @@
 - [Referencia cartográfica provisional](meridian_bay_city_scale.test.mjs)
 - [Red vial incremental: coherencia y no activación](meridian_bay_road_web.test.mjs)
 - [Detalle entre Railgarden y Market Row: cuatro subtramos](meridian_bay_rail_market_corridor.test.mjs)
+- [Segundo tramo: enlace plaza y terminal](meridian_bay_road_web_expansion.test.mjs)
+- [Detalle intermedio Market Row y Crosswater](meridian_bay_market_crosswater_corridor.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
