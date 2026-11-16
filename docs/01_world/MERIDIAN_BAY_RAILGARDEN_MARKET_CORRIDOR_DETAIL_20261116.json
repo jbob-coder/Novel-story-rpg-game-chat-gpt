@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-RAIL-MARKET-CORRIDOR-DETAIL-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_corridor_micro_map",
+  "story_role": "link_two_existing_district_anchors_then_detail_in_between_before_other_sections",
+  "source": {
+    "saved_graph": "game/STATE.json",
+    "prebuilt_city_design": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "source_city_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "inherited_first_slice": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+    "story_evidence": "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json"
+  },
+  "endpoints": {
+    "from_location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+    "to_location_id": "LOC-COMMERCIAL-DISTRICT",
+    "existing_world_graph_link": true,
+    "draft_parent_segment_id": "MB-WEB-002"
+  },
+  "coordinate_policy": {
+    "canvas": "fictional_100x80_study_grid",
+    "coordinates_are_reversible": true,
+    "true_cardinal_direction_known": false,
+    "endpoints_are_district_references_not_literal_junctions": true,
+    "coordinate_precision_is_illustrative": true,
+    "confirmed_street_centerline": false,
+    "surveyed_road_right_of_way": false,
+    "roadway_length_or_travel_minutes": null,
+    "named_roads_or_block_addresses_known": false
+  },
+  "nodes": [
+    {
+      "id": "MB-RM-N0",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "xy": {
+        "x": 48,
+        "y": 44
+      },
+      "name_provisional": "Railgarden neighborhood approach",
+      "narrative_land_use": "Established modest housing and small neighborhood commerce",
+      "junction_design": "candidate neighborhood connector; street intersection and crossing control unknown"
+    },
+    {
+      "id": "MB-RM-N1",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 50.1,
+        "y": 44
+      },
+      "name_provisional": "Railgarden outer edge",
+      "narrative_land_use": "Proposed gradual transition from residential frontage to mixed urban activity",
+      "junction_design": "corridor bend; no established side street or named intersection"
+    },
+    {
+      "id": "MB-RM-N2",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 52.5,
+        "y": 43.65
+      },
+      "name_provisional": "Mixed-use transition",
+      "narrative_land_use": "Proposed mixed frontage and delivery/service activity increasing toward commercial center",
+      "junction_design": "possible pedestrian priority point; geometry only, crossing existence unverified"
+    },
+    {
+      "id": "MB-RM-N3",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 55,
+        "y": 43.3
+      },
+      "name_provisional": "Market Row approach",
+      "narrative_land_use": "Proposed increase in store and service frontage, still outside the saved Market Row center",
+      "junction_design": "corridor bend, no extra physical shortcut or side street authorized"
+    },
+    {
+      "id": "MB-RM-N4",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "name_provisional": "Market Row district entrance reference",
+      "narrative_land_use": "Established shops, small offices, food stalls and ordinary deliveries",
+      "junction_design": "interface with Market Row local streets; specific lanes/access not yet placed"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-RM-L1",
+      "from": "MB-RM-N0",
+      "to": "MB-RM-N1",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "residential to mixed local frontage",
+      "pedestrian_edge": "conceptual sidewalk continuity on approach",
+      "buildings_zone": "MB-RM-B1",
+      "access_notes": "Wilson home and neighborhood shops connect via their existing district links; do not attach an invented individual entrance here",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-RM-L2",
+      "from": "MB-RM-N1",
+      "to": "MB-RM-N2",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "neighborhood-to-commerce transition",
+      "pedestrian_edge": "sidewalk continuity to be checked against junction access",
+      "buildings_zone": "MB-RM-B2",
+      "access_notes": "candidate small frontages, no adopted business/employee/entrance identity",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-RM-L3",
+      "from": "MB-RM-N2",
+      "to": "MB-RM-N3",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "service and mixed-commerce approach",
+      "pedestrian_edge": "conceptual pedestrian strip, service crossing not established",
+      "buildings_zone": "MB-RM-B3",
+      "access_notes": "delivery activity in broader Market Row does not establish a specific depot on this link",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-RM-L4",
+      "from": "MB-RM-N3",
+      "to": "MB-RM-N4",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "Market Row commercial frontage",
+      "pedestrian_edge": "retail-oriented walking approach",
+      "buildings_zone": "MB-RM-B4",
+      "access_notes": "connects to Market Row district; Noah's shop and Café Bruma remain separate frontage links, not assumed to stand on this corridor",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-RM-B1",
+      "link_id": "MB-RM-L1",
+      "relative_sides": {
+        "A": "existing Railgarden residential context with building entries not mapped",
+        "B": "small-neighborhood-commerce context, no new stores named"
+      },
+      "visual_character": "modest housing and small shops",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-RM-B2",
+      "link_id": "MB-RM-L2",
+      "relative_sides": {
+        "A": "candidate low-rise mixed frontage",
+        "B": "candidate ordinary local service frontage"
+      },
+      "visual_character": "transition from residential facades to varied storefronts",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-RM-B3",
+      "link_id": "MB-RM-L3",
+      "relative_sides": {
+        "A": "candidate service/commercial frontage",
+        "B": "candidate mixed shop and office frontage"
+      },
+      "visual_character": "more delivery and working-day commercial activity near Market Row",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-RM-B4",
+      "link_id": "MB-RM-L4",
+      "relative_sides": {
+        "A": "Market Row small-business approach",
+        "B": "Market Row office and retail approach"
+      },
+      "visual_character": "shop signs, offices, food vendors and delivery traffic only as general neighborhood texture",
+      "physical_building_footprints_confirmed": false
+    }
+  ],
+  "cross_section_review": {
+    "pedestrian_path_continuity": "candidate_across_all_four_links",
+    "continuity_verified_against_actual_footprints": false,
+    "accessible_crossings": "unknown",
+    "road_sides": "A/B relative only; cardinal orientation not established",
+    "lanes": "not_fixed",
+    "building_heights": "not_fixed",
+    "vehicle_access": "unknown",
+    "emergency_access": "unknown",
+    "site_access": "Existing district connection does not verify individual public opening hours."
+  },
+  "story_consistency": {
+    "return_sequence": [
+      "LOC-COMMERCIAL-DISTRICT",
+      "LOC-RAILGARDEN-RESIDENTIAL",
+      "LOC-WILSON-APARTMENT"
+    ],
+    "chapter_source": "chapters/CH-000.transcript.json",
+    "required_literal_fragment": "Más adelante, los edificios de Railgarden sustituyen a las oficinas",
+    "effect": "The conceptual frontage becomes increasingly residential toward Railgarden and increasingly commercial toward Market Row.",
+    "no_retroactive_player_route": true
+  },
+  "review_gate": {
+    "next_section_must_not_start_until_this_section_has": "verified original topology; node-to-parent-polyline match; connected intermediate links; reviewed land-use transitions; explicit unresolved geometry; passing test suite",
+    "geometry_may_be_selected_as_final_after_editorial_review": false,
+    "can_create_story_events": false,
+    "can_author_new_canonical_places": false,
+    "can_assign_npc_schedules": false,
+    "may_advance_time": false,
+    "may_promote_to_playable_navigation": false,
+    "next_candidate_section": "LOC-COMMERCIAL-DISTRICT → LOC-CROSSWATER-PLAZA (deferred until this corridor complete)"
+  }
+}
