@@ -10,9 +10,9 @@
 
 A player who walked from Crosswater Plaza toward Market Row already entered an area with shops and the corner Café Bruma. This was established in Chapter CH-000. The existing city graph confirms a direct Market Row ↔ Crosswater Plaza connection. This design fills the gap between those district reference points with **four sequential candidate segments**.
 
-<escape>
+```text
 Market Row ─ L1 ─ N1 ─ L2 ─ N2 ─ L3 ─ N3 ─ L4 ─ Crosswater Plaza
-</escape>
+```
 
 | Segment | Proposed urban character | Review limitations |
 | --- | --- | --- |
