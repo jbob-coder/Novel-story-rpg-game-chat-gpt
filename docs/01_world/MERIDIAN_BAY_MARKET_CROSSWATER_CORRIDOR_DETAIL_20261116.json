@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-CROSSWATER-CORRIDOR-DETAIL-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_corridor_micro_map",
+  "story_role": "complete_market_to_crosswater_in_between_before_any_harbor_extension",
+  "source": {
+    "saved_graph": "game/STATE.json",
+    "prebuilt_city_design": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "source_city_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "inherited_second_slice": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+    "story_evidence": "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json"
+  },
+  "endpoints": {
+    "from_location_id": "LOC-COMMERCIAL-DISTRICT",
+    "to_location_id": "LOC-CROSSWATER-PLAZA",
+    "existing_world_graph_link": true,
+    "draft_parent_segment_id": "MB-WEB-007"
+  },
+  "coordinate_policy": {
+    "canvas": "fictional_100x80_study_grid",
+    "coordinates_are_reversible": true,
+    "true_cardinal_direction_known": false,
+    "endpoints_are_district_references_not_literal_junctions": true,
+    "coordinate_precision_is_illustrative": true,
+    "confirmed_street_centerline": false,
+    "surveyed_road_right_of_way": false,
+    "roadway_length_or_travel_minutes": null,
+    "named_roads_or_block_addresses_known": false
+  },
+  "nodes": [
+    {
+      "id": "MB-MC-N0",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "name_provisional": "Market Row commercial approach",
+      "narrative_land_use": "Established small shops, offices, ordinary delivery traffic",
+      "junction_design": "District access point, storefront exit placements not yet fixed"
+    },
+    {
+      "id": "MB-MC-N1",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 59.8,
+        "y": 42.6
+      },
+      "name_provisional": "Commercial frontage transition",
+      "narrative_land_use": "Draft ordinary service fronts and a gradual reduction of dense storefronts",
+      "junction_design": "Candidate intersection turning point, no new street branch authorized"
+    },
+    {
+      "id": "MB-MC-N2",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 62.2,
+        "y": 42.3
+      },
+      "name_provisional": "Retail-to-plaza approach",
+      "narrative_land_use": "Draft pedestrian-oriented retail/service buildings and open sidewalk pockets",
+      "junction_design": "Candidate mid-block pedestrian connection, presence unverified"
+    },
+    {
+      "id": "MB-MC-N3",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 64,
+        "y": 42.1
+      },
+      "name_provisional": "Crosswater forecourt approach",
+      "narrative_land_use": "Draft lower-massing/public edge with possible visible station lighting",
+      "junction_design": "Preserve potential transmitted/reflected terminal glow toward Café Bruma; no line-of-sight proof"
+    },
+    {
+      "id": "MB-MC-N4",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "xy": {
+        "x": 65,
+        "y": 42
+      },
+      "name_provisional": "Crosswater Plaza edge",
+      "narrative_land_use": "Established pedestrian plaza with glass terminal nearby and scattered retail",
+      "junction_design": "Plaza access edge; exact crossing, curb height and bus circulation undetermined"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-MC-L1",
+      "from": "MB-MC-N0",
+      "to": "MB-MC-N1",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "ordinary commercial frontage",
+      "pedestrian_edge": "Market Row stores, offices, ordinary deliveries",
+      "buildings_zone": "MB-MC-B1",
+      "access_notes": "customer entrances on both sides remain possible, exact doors not assigned",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-MC-L2",
+      "from": "MB-MC-N1",
+      "to": "MB-MC-N2",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "mixed service-and-transit transition",
+      "pedestrian_edge": "shrinking commercial block intensity toward the plaza",
+      "buildings_zone": "MB-MC-B2",
+      "access_notes": "pedestrian approach reservation between shop fronts, no named bus stop",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-MC-L3",
+      "from": "MB-MC-N2",
+      "to": "MB-MC-N3",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "pedestrian corridor to plaza",
+      "pedestrian_edge": "possible open shopfront spacing and storefront setbacks",
+      "buildings_zone": "MB-MC-B3",
+      "access_notes": "keep an unobstructed-or-reflected terminal-light possibility without certifying a direct view",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-MC-L4",
+      "from": "MB-MC-N3",
+      "to": "MB-MC-N4",
+      "type": "single_continuous_candidate_corridor",
+      "street_character": "transit plaza interface",
+      "pedestrian_edge": "public forecourt and pedestrian movement with nearby glass transit entrance",
+      "buildings_zone": "MB-MC-B4",
+      "access_notes": "pedestrian-to-plaza access must not conflict with terminal operations; crossing layout pending",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-MC-B1",
+      "link_id": "MB-MC-L1",
+      "relative_sides": {
+        "A": "established small shop/office frontages; parcels not plotted",
+        "B": "candidate food vendors and service fronts; no permanent stalls assigned"
+      },
+      "visual_character": "Market Row stores, offices, ordinary deliveries",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-MC-B2",
+      "link_id": "MB-MC-L2",
+      "relative_sides": {
+        "A": "candidate light commercial frontage",
+        "B": "candidate mixed retail/service frontage with notional doors"
+      },
+      "visual_character": "shrinking commercial block intensity toward the plaza",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-MC-B3",
+      "link_id": "MB-MC-L3",
+      "relative_sides": {
+        "A": "candidate spaced shopfronts with possible open court",
+        "B": "candidate low-massing service frontage; preserve terminal-light perception possibilities"
+      },
+      "visual_character": "possible open shopfront spacing and storefront setbacks",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-MC-B4",
+      "link_id": "MB-MC-L4",
+      "relative_sides": {
+        "A": "public plaza-facing approach with potential gaps between facades",
+        "B": "transit-facing edge with glass terminal presence; no exact orientation proven"
+      },
+      "visual_character": "public forecourt and pedestrian movement with nearby glass transit entrance",
+      "physical_building_footprints_confirmed": false
+    }
+  ],
+  "cross_section_review": {
+    "pedestrian_path_continuity": "candidate_across_all_four_links",
+    "continuity_verified_against_actual_footprints": false,
+    "accessible_crossings": "unknown",
+    "road_sides": "A/B relative only; cardinal orientation not established",
+    "lanes": "not_fixed",
+    "building_heights": "not_fixed",
+    "vehicle_access": "unknown",
+    "emergency_access": "unknown",
+    "site_access": "A route exists in the story graph, but no individual business opening or transit timetable is implied."
+  },
+  "story_consistency": {
+    "arrival_sequence": [
+      "LOC-CROSSWATER-PLAZA",
+      "LOC-COMMERCIAL-DISTRICT",
+      "LOC-CAFE-BRUMA"
+    ],
+    "chapter_source": "chapters/CH-000.transcript.json",
+    "required_literal_fragments": [
+      "Jack se aleja hacia Market Row",
+      "En una esquina encuentra **Café Bruma**",
+      "resplandor del terminal"
+    ],
+    "effect": "Jack can arrive through Crosswater Plaza and find the café in Market Row; the terminal glow can still be perceived. This does not identify exact facade orientation or an uninterrupted optical line.",
+    "cafe_frontage_does_not_move": true,
+    "terminal_glow_must_remain_plausible": true,
+    "direct_sightline_verified": false,
+    "building_massing_surveyed": false,
+    "no_retroactive_player_route": true
+  },
+  "review_gate": {
+    "next_section_must_not_start_until_this_section_has": "existing source topology; exact proposed parent-polyline match; four contiguous in-between links; reviewed storefront transitions; preserved chapter light observation without pretending line-of-sight proof; passing test suite",
+    "geometry_may_be_selected_as_final_after_editorial_review": false,
+    "can_create_story_events": false,
+    "can_author_new_canonical_places": false,
+    "can_assign_npc_schedules": false,
+    "may_advance_time": false,
+    "may_promote_to_playable_navigation": false,
+    "next_candidate_section": "LOC-CROSSWATER-PLAZA → LOC-HARBOR-WALK (deferred until this corridor complete)"
+  }
+}
