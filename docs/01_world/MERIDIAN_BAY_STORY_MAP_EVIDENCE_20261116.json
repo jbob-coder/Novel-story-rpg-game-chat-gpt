@@ -61,7 +61,7 @@
       "level": "established_setting",
       "path_source": "game/STARTING_LOCATIONS.md",
       "required_evidence_fragments": [
-        "espacio de trabajo dentro del hogar",
+        "Espacio dentro de la vivienda",
         "Market Row ↔ Railgarden ↔ hogar Wilson ↔ taller."
       ],
       "route_ids": [
