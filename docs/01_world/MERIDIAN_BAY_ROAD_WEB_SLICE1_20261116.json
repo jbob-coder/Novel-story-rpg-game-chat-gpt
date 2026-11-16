@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-ROAD-WEB-SLICE1-20261116",
+  "authority": "proposed_street_geometry_not_saved_canon",
+  "status": "draft_review_only",
+  "project": "Living Superhuman World — Meridian Bay",
+  "origin": "LOC-RAILGARDEN-RESIDENTIAL",
+  "prerequisites": {
+    "phased_city_pr": "PR-33",
+    "base_city_plan": "MB-CITY-SCALE-PLAN-20261112-A",
+    "authored_catalog": "MB-PREBUILT-20261112-V2",
+    "graph_source": "existing and prepared location connections; no topology changes"
+  },
+  "interpretation": {
+    "coordinate_system": "fictional 100x80 planning canvas",
+    "reference_km_per_unit": 0.1,
+    "sketch_direction": "x increases toward conceptual inner bay; y increases toward conceptual inland; cardinal orientation NOT verified",
+    "edges_mean": "hypothetical pedestrian/road alignment between already linked place anchors, not new legal access or routing authority",
+    "road_names_and_addresses": "not established",
+    "road_lengths_and_travel_times": "illustrative only; no walking-minute or traffic prediction",
+    "road_safety_right_of_way": "not surveyed; crossings, obstructions, sidewalk widths and vehicle suitability unknown",
+    "playable_activation": "none"
+  },
+  "stages": [
+    {
+      "id": "MB-WEB-STAGE-A",
+      "name": "Railgarden to Market Row backbone",
+      "scope": "one confirmed district-to-district topology link with sketched corridor geometry",
+      "segment_ids": [
+        "MB-WEB-002"
+      ]
+    },
+    {
+      "id": "MB-WEB-STAGE-B",
+      "name": "Local web around the backbone",
+      "scope": "Wilson entrance, Railgarden grocery/clinic, Market Row Noah and Café Bruma frontages",
+      "segment_ids": [
+        "MB-WEB-001",
+        "MB-WEB-003",
+        "MB-WEB-004",
+        "MB-WEB-005",
+        "MB-WEB-006"
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "id": "MB-WEB-001",
+      "from_id": "LOC-WILSON-APARTMENT",
+      "to_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "connection_type": "building_frontage_to_neighborhood",
+      "candidate_mode": "pedestrian",
+      "via_xy_units": [
+        {
+          "x": 47.1,
+          "y": 44.35
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-002",
+      "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "to_id": "LOC-COMMERCIAL-DISTRICT",
+      "connection_type": "district_connector",
+      "candidate_mode": "shared_urban_corridor_unverified_vehicle_access",
+      "via_xy_units": [
+        {
+          "x": 50.1,
+          "y": 44
+        },
+        {
+          "x": 52.5,
+          "y": 43.65
+        },
+        {
+          "x": 55,
+          "y": 43.3
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-003",
+      "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "to_id": "LOC-RAILGARDEN-ABARROTES",
+      "connection_type": "neighborhood_grocery_frontage",
+      "candidate_mode": "pedestrian",
+      "via_xy_units": [
+        {
+          "x": 47.72,
+          "y": 44.15
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-004",
+      "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "to_id": "LOC-RAILGARDEN-CLINIC",
+      "connection_type": "health_center_frontage",
+      "candidate_mode": "pedestrian",
+      "via_xy_units": [
+        {
+          "x": 48.55,
+          "y": 44.28
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-005",
+      "from_id": "LOC-COMMERCIAL-DISTRICT",
+      "to_id": "LOC-MARKET-NOAH-REPAIR",
+      "connection_type": "repair_shop_frontage",
+      "candidate_mode": "pedestrian",
+      "via_xy_units": [
+        {
+          "x": 58.34,
+          "y": 43.25
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-006",
+      "from_id": "LOC-COMMERCIAL-DISTRICT",
+      "to_id": "LOC-CAFE-BRUMA",
+      "connection_type": "cafe_frontage",
+      "candidate_mode": "pedestrian",
+      "via_xy_units": [
+        {
+          "x": 58.3,
+          "y": 42.55
+        }
+      ],
+      "known_graph_connection": true,
+      "assumed_bidirectional": true,
+      "established_street_name": null,
+      "travel_minutes": null
+    }
+  ],
+  "connected_walk_examples": [
+    {
+      "from_id": "LOC-WILSON-APARTMENT",
+      "to_id": "LOC-CAFE-BRUMA",
+      "via_location_ids": [
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "status": "draft_only_no_character_movement"
+    },
+    {
+      "from_id": "LOC-RAILGARDEN-ABARROTES",
+      "to_id": "LOC-MARKET-NOAH-REPAIR",
+      "via_location_ids": [
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-COMMERCIAL-DISTRICT"
+      ],
+      "status": "draft_only_no_character_movement"
+    }
+  ],
+  "future_growth_queue": [
+    {
+      "origin": "LOC-COMMERCIAL-DISTRICT",
+      "candidate_neighbor": "LOC-CROSSWATER-PLAZA",
+      "gate": "inspect existing plaza/terminal access, obstacles and right of way before corridor design"
+    },
+    {
+      "origin": "LOC-CROSSWATER-PLAZA",
+      "candidate_neighbor": "LOC-HARBOR-WALK",
+      "gate": "shoreline/water obstacle and promenade access must be established"
+    },
+    {
+      "origin": "LOC-RAILGARDEN-RESIDENTIAL",
+      "candidate_neighbor": null,
+      "gate": "additional residential blocks only after their locations and road links have design authority"
+    },
+    {
+      "origin": null,
+      "candidate_neighbor": null,
+      "gate": "do not place Elena's school, new institutions, shorelines or unknown districts without source or deliberate authored review"
+    }
+  ],
+  "hard_limits": {
+    "no_new_location_ids": true,
+    "no_new_graph_links": true,
+    "no_unverified_shortcuts": true,
+    "no_story_actions": true,
+    "no_npc_movements": true,
+    "no_fictional_time_progress": true,
+    "no_canonical_world_write": true,
+    "no_automatic_player_discovery": true,
+    "no_verified_travel_minutes": true,
+    "no_real_city_size_or_cardinal_orientation_claim": true
+  }
+}
