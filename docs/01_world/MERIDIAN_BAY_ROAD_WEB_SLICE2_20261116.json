@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-ROAD-WEB-SLICE2-20261116",
+  "status": "draft_review_only",
+  "authority": "proposed_street_geometry_not_saved_canon",
+  "depends_on": "MB-ROAD-WEB-SLICE1-20261116",
+  "source_crosswalk": "MB-STORY-MAP-ALIGNMENT-CH000-20261116",
+  "growth_origin": "LOC-COMMERCIAL-DISTRICT",
+  "growth_destination": "LOC-CROSSWATER-PLAZA",
+  "story_constraints": {
+    "transit_plaza_opening": "Crosswater Transit Plaza has a glass terminal entrance with traffic and commercial frontage.",
+    "jack_travel": "Jack already traveled from Crosswater Plaza to Market Row and then Café Bruma.",
+    "cafe_terminal_glow": "The chapter describes terminal glow still perceptible from the Café Bruma corner.",
+    "visibility_result": "not_verified",
+    "visibility_preservation_rule": "Do not introduce new buildings or walls that would contradict the established perception of terminal light. A visual massing/sightline study is required before committing street widths, elevations, building heights, facades, and sight corridors.",
+    "open_physical_questions": [
+      "actual sidewalk/crossing positions",
+      "terminal-glow source and reflections",
+      "building heights along corridor",
+      "facing of Café Bruma",
+      "traffic access and walk times"
+    ]
+  },
+  "segments": [
+    {
+      "id": "MB-WEB-007",
+      "from_id": "LOC-COMMERCIAL-DISTRICT",
+      "to_id": "LOC-CROSSWATER-PLAZA",
+      "connection_type": "market_to_transit_plaza_district_corridor",
+      "draft_access_mode": "pedestrian_public_spine_not_surveyed",
+      "via_xy_units": [
+        {
+          "x": 59.8,
+          "y": 42.6
+        },
+        {
+          "x": 62.2,
+          "y": 42.3
+        },
+        {
+          "x": 64,
+          "y": 42.1
+        }
+      ],
+      "known_graph_connection": true,
+      "public_crossing_layout_verified": false,
+      "vehicle_access_verified": false,
+      "traffic_direction": null,
+      "street_name": null,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-WEB-008",
+      "from_id": "LOC-CROSSWATER-PLAZA",
+      "to_id": "LOC-TRANSIT-TERMINAL",
+      "connection_type": "plaza_to_terminal_entrance",
+      "draft_access_mode": "adjacent_pedestrian_frontage",
+      "via_xy_units": [],
+      "known_graph_connection": true,
+      "public_crossing_layout_verified": false,
+      "vehicle_access_verified": false,
+      "traffic_direction": null,
+      "street_name": null,
+      "travel_minutes": null
+    }
+  ],
+  "mapped_world_nodes_after_this_slice": 9,
+  "mapped_corridor_edges_after_this_slice": 8,
+  "routing": {
+    "canonical_route_graph_unchanged": true,
+    "anticipated_crosswater_to_home_ids": [
+      "LOC-CROSSWATER-PLAZA",
+      "LOC-COMMERCIAL-DISTRICT",
+      "LOC-RAILGARDEN-RESIDENTIAL",
+      "LOC-WILSON-APARTMENT"
+    ],
+    "anticipated_terminal_to_cafe_ids": [
+      "LOC-TRANSIT-TERMINAL",
+      "LOC-CROSSWATER-PLAZA",
+      "LOC-COMMERCIAL-DISTRICT",
+      "LOC-CAFE-BRUMA"
+    ],
+    "all_distances_unknown": true,
+    "actual_travel_not_performed": true
+  },
+  "future_growth_queue": [
+    {
+      "priority": 1,
+      "source": "LOC-CROSSWATER-PLAZA",
+      "candidate": "LOC-HARBOR-WALK",
+      "review": "Map the public waterfront approach without fixing harbor coastline or invented barriers."
+    },
+    {
+      "priority": 2,
+      "source": "LOC-COMMERCIAL-DISTRICT",
+      "candidate": "LOC-HARBOR-WALK",
+      "review": "Cross-check Market-to-Harbor direct path against plaza route before claiming both as streets."
+    },
+    {
+      "priority": 3,
+      "source": "LOC-COMMERCIAL-DISTRICT",
+      "candidate": null,
+      "review": "Add existing four Market Row draft establishments only after their frontages and surrounding streets are internally consistent."
+    }
+  ],
+  "invariants": {
+    "no_new_location_ids": true,
+    "no_new_location_graph_links": true,
+    "no_character_movement": true,
+    "no_elapsed_fiction_time": true,
+    "no_new_npc_activity": true,
+    "no_new_canonical_story": true,
+    "no_automatic_story_knowledge": true,
+    "no_verified_visual_line_of_sight": true,
+    "no_verified_roads_or_minutes": true
+  }
+}
