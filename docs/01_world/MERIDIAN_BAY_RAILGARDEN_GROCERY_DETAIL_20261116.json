@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-RAILGARDEN-GROCERY-APPROACH-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_shop_frontage_approach",
+  "scope": "Railgarden ↔ Abarrotes de Railgarden prebuilt neighborhood grocery frontage only, one known draft connection",
+  "sources": {
+    "saved_graph": "game/STATE.json",
+    "design_catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "road_web": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+    "city_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "previous_detail": "docs/01_world/MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL_20261116.json"
+  },
+  "endpoints": {
+    "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+    "to_id": "LOC-RAILGARDEN-ABARROTES",
+    "parent_segment": "MB-WEB-003",
+    "design_id": "MB-PREBUILT-20261112-V2",
+    "shop_status": "prebuilt_design_not_saved_story_location"
+  },
+  "nodes": [
+    {
+      "id": "MB-RG-N0",
+      "kind": "source_location_anchor",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "xy": {
+        "x": 48,
+        "y": 44
+      },
+      "name_provisional": "Railgarden neighborhood reference",
+      "land_use": "Established ordinary housing and daily commerce; not a specific street intersection",
+      "junction_note": "Residential district anchor; Wilson apartment and clinic remain separately connected in draft world."
+    },
+    {
+      "id": "MB-RG-N1",
+      "kind": "noncanonical_intermediate_frontage_marker",
+      "location_id": null,
+      "xy": {
+        "x": 47.72,
+        "y": 44.15
+      },
+      "name_provisional": "Neighborhood-side grocery approach",
+      "land_use": "Proposed modest housing-to-small-shop frontage transition without named additional businesses",
+      "junction_note": "Candidate pedestrian bend rather than new alley, road junction or verified crossing."
+    },
+    {
+      "id": "MB-RG-N2",
+      "kind": "draft_design_location_anchor",
+      "location_id": "LOC-RAILGARDEN-ABARROTES",
+      "xy": {
+        "x": 47.5,
+        "y": 44.6
+      },
+      "name_provisional": "Grocery public-facing design reference",
+      "land_use": "Preauthored neighborhood supplies storefront; exterior and operating status not physically surveyed",
+      "junction_note": "Public access in catalog is not proof open now, staffed now, stocked now, or of a measured door location."
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-RG-L1",
+      "from": "MB-RG-N0",
+      "to": "MB-RG-N1",
+      "type": "one_existing_draft_neighborhood_link",
+      "character": "Ordinary Railgarden residential side street and local walking approach",
+      "pedestrian_context": "Candidate neighborhood sidewalk continuity toward grocery frontage, exact crossing and pavement unknown",
+      "band_id": "MB-RG-B1",
+      "access_notes": "No invented shortcut via Wilson residence or through a private home; exact plot ownership unknown",
+      "approximate_minutes": null,
+      "traffic_flow": "unknown"
+    },
+    {
+      "id": "MB-RG-L2",
+      "from": "MB-RG-N1",
+      "to": "MB-RG-N2",
+      "type": "one_existing_draft_neighborhood_link",
+      "character": "Provisional public-facing grocery frontage",
+      "pedestrian_context": "Potential building entrance approach for daily supplies, precise door placement and level not established",
+      "band_id": "MB-RG-B2",
+      "access_notes": "Public access is a design-level fact, not evidence of current opening hours, inventory, staff, or NPC interactions",
+      "approximate_minutes": null,
+      "traffic_flow": "unknown"
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-RG-B1",
+      "link_id": "MB-RG-L1",
+      "sides": {
+        "A": "Modest Railgarden housing context with unspecified occupants and property lines",
+        "B": "Everyday neighborhood commercial background without newly named stores or public passages"
+      },
+      "footprints_verified": false
+    },
+    {
+      "id": "MB-RG-B2",
+      "link_id": "MB-RG-L2",
+      "sides": {
+        "A": "Prebuilt grocery frontage concept, exact window/door position unspecified",
+        "B": "Ordinary neighborhood building edge; no automatic food vendor, clinic or staff assignments"
+      },
+      "footprints_verified": false
+    }
+  ],
+  "site_semantics": {
+    "exists_in_catalog": true,
+    "requires_no_saved_world_admission_for_draft": true,
+    "existing_in_saved_checkpoint": false,
+    "public_entrance_in_design": true,
+    "open_now": "unknown",
+    "staff_now": "unknown",
+    "goods_available_now": "unknown",
+    "user_discovered": null,
+    "visit_recorded": false,
+    "npc_presence_inferred": false,
+    "travel_time_minutes": null
+  },
+  "spatial_policy": {
+    "reversible_canvas": true,
+    "source_parent_polyline_must_match": true,
+    "road_names_known": false,
+    "exact_door_or_sidewalk_certified": false,
+    "public_access_street_legality_verified": false,
+    "road_crossings_verified": false,
+    "home_workshop_as_street_vertex": false,
+    "clinic_here": false,
+    "elena_school_here": false,
+    "unreviewed_shortcuts_permitted": false
+  },
+  "review_gate": {
+    "no_canonical_save_writes": true,
+    "no_automatic_admission": true,
+    "no_story_actions": true,
+    "no_npc_movements": true,
+    "no_time_passage": true,
+    "no_discovery_or_visit_grant": true,
+    "must_have_two_contiguous_subsegments": true,
+    "must_verify_source_design_link": true,
+    "must_preserve_household_story_connection": true,
+    "next_section": "Railgarden → clinic exterior frontage, separately"
+  }
+}

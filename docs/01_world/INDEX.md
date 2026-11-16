@@ -16,6 +16,7 @@
 - [Detalle intermedio Crosswater Plaza → Harbor Walk — BORRADOR POR SECCIÓN](MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md)
 - [Detalle directo Market Row → Harbor Walk — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md)
 - [Detalle del hogar Wilson a Railgarden — BORRADOR POR SECCIÓN](MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL.md)
+- [Detalle Railgarden → abarrotes — BORRADOR POR SECCIÓN](MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL.md)
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.

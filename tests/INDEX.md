@@ -48,4 +48,5 @@
 - [Detalle de cuatro tramos Crosswater a Harbor Walk](meridian_bay_plaza_harbor_corridor.test.mjs)
 - [Detalle directo Market Row–Harbor Walk, separado de Crosswater](meridian_bay_market_harbor_corridor.test.mjs)
 - [Detalle del acceso del hogar Wilson a Railgarden](meridian_bay_wilson_railgarden_detail.test.mjs)
+- [Detalle Railgarden a abarrotes sin visita ni apertura automática](meridian_bay_railgarden_grocery_detail.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
