@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-BUSINESS-FRONTAGE-20261116-V1",
+  "status": "draft_unadmitted",
+  "intent": "Only the existing prepared Market Row → business-services offices frontage; develop the in-between first.",
+  "source": {
+    "saved_state": "game/STATE.json",
+    "prepared_catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "planning_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "previous_detailed_frontages": [
+      "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE_20261116.json"
+    ]
+  },
+  "endpoints": {
+    "from": "LOC-COMMERCIAL-DISTRICT",
+    "to": "LOC-MARKET-BUSINESS-OFFICES",
+    "prepared_parent_link": true,
+    "live_canonical_admission": false
+  },
+  "nodes": [
+    {
+      "id": "MB-MBO-N0",
+      "kind": "district_reference",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "context": "Market Row commercial district nucleus, not a precise intersection",
+      "junction": "Existing district anchor only; streets and legal crossings not established"
+    },
+    {
+      "id": "MB-MBO-N1",
+      "kind": "waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 58.04,
+        "y": 42.74
+      },
+      "context": "Candidate shop and office transition alongside the commerce spine",
+      "junction": "Street bend only, not a junction, side street or public gate"
+    },
+    {
+      "id": "MB-MBO-N2",
+      "kind": "waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 58.17,
+        "y": 42.42
+      },
+      "context": "Candidate pedestrian-facing service frontage before the office arcade",
+      "junction": "Office-facing approach with storefront entrances still unspecified"
+    },
+    {
+      "id": "MB-MBO-N3",
+      "kind": "unadmitted_prepared_site",
+      "location_id": "LOC-MARKET-BUSINESS-OFFICES",
+      "xy": {
+        "x": 58.3,
+        "y": 42.1
+      },
+      "context": "Prepared commercial services arcade; no specific companies or staff established",
+      "junction": "Prepared entry location reference only; exact door/arcade interior not designed"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-MBO-L1",
+      "from": "MB-MBO-N0",
+      "to": "MB-MBO-N1",
+      "band": "MB-MBO-B1",
+      "character": "Market Row mixed shops and offices",
+      "pedestrian_detail": "Candidate public-facing footway along a commercial district edge, not certified accessible",
+      "travel_minutes": null,
+      "crossing_verified": false
+    },
+    {
+      "id": "MB-MBO-L2",
+      "from": "MB-MBO-N1",
+      "to": "MB-MBO-N2",
+      "band": "MB-MBO-B2",
+      "character": "Small-service and office approach",
+      "pedestrian_detail": "Conceptual continuation of local walking frontage with no assumed building shortcut",
+      "travel_minutes": null,
+      "crossing_verified": false
+    },
+    {
+      "id": "MB-MBO-L3",
+      "from": "MB-MBO-N2",
+      "to": "MB-MBO-N3",
+      "band": "MB-MBO-B3",
+      "character": "Business-services arcade frontage",
+      "pedestrian_detail": "Last candidate publicly oriented walking approach; exact doors, hours and ramps unverified",
+      "travel_minutes": null,
+      "crossing_verified": false
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-MBO-B1",
+      "link": "MB-MBO-L1",
+      "side_a": "Existing Market Row mixed commerce in general, no individual tenant",
+      "side_b": "Candidate low-rise office and service frontage, parcels unverified",
+      "activity": "Workday customer movement could develop in future story turns only",
+      "physical_buildings_confirmed": false
+    },
+    {
+      "id": "MB-MBO-B2",
+      "link": "MB-MBO-L2",
+      "side_a": "Proposed service-shop façade without assigning a new named store",
+      "side_b": "Candidate business-office frontage, loading and staff access undefined",
+      "activity": "No named companies, booked appointments or invented contracts",
+      "physical_buildings_confirmed": false
+    },
+    {
+      "id": "MB-MBO-B3",
+      "link": "MB-MBO-L3",
+      "side_a": "Prepared arcade public-facing frontage, physical entrance unknown",
+      "side_b": "Candidate pedestrian margin along business-service frontage",
+      "activity": "Site might contain services in future, but no staff or opening is established",
+      "physical_buildings_confirmed": false
+    }
+  ],
+  "narrative_guards": {
+    "no_specific_businesses_or_tenants": true,
+    "no_employee_or_customer_appearances": true,
+    "no_verified_office_opening_or_hours": true,
+    "no_new_appointments_or_purchases": true,
+    "no_new_player_discovery": true,
+    "no_player_or_npc_movement": true,
+    "no_time_progress": true,
+    "no_canonical_location_admission": true,
+    "no_relocated_cafe_or_culture_passage": true
+  },
+  "map_guards": {
+    "no_unauthorized_shortcuts": true,
+    "all_prior_routes_preserved": true,
+    "all_three_links_contiguous": true,
+    "no_unregistered_strict_crossings": true,
+    "physical_access_not_verified": true,
+    "street_names_not_fixed": true,
+    "walking_minutes_unknown": true,
+    "building_footprints_unknown": true
+  },
+  "next_stage": "After targeted and full CI, audit the known seeded core for missing mapped frontages, link connectivity, crossings and unresolved story/physical issues. Do not label the full city complete."
+}
