@@ -44,4 +44,5 @@
 - [Detalle entre Railgarden y Market Row: cuatro subtramos](meridian_bay_rail_market_corridor.test.mjs)
 - [Segundo tramo: enlace plaza y terminal](meridian_bay_road_web_expansion.test.mjs)
 - [Detalle intermedio Market Row y Crosswater](meridian_bay_market_crosswater_corridor.test.mjs)
+- [Acceso de Crosswater Plaza al terminal](meridian_bay_plaza_terminal_detail.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
