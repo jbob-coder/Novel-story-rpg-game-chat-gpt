@@ -11,6 +11,7 @@
 - [docs/CHAPTER_PROTOCOL.md](../CHAPTER_PROTOCOL.md)
 
 - [Desenlaces y consecuencias](../DECISION_OUTCOMES.md)
+- [Future branching narrative plan — DEFERRED, NOT IMPLEMENTED](FUTURE_NARRATIVE_BRANCHING_PLAN.md)
 
 - [Protocolo de escenas vividas — revisión literaria](../SCENE_CRAFT.md)
 
