@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-DELIVERY-FRONTAGE-20261116-V1",
+  "status": "draft_not_playable_canon",
+  "route_kind": "one_prepared_establishment_frontage",
+  "scope": "Only Market Row commercial district to its preauthored public delivery receiving point; detail the short in-between approach before another establishment.",
+  "source": {
+    "saved_state": "game/STATE.json",
+    "prepared_catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "reference_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "prior_road_sections": "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json"
+  },
+  "endpoints": {
+    "from": "LOC-COMMERCIAL-DISTRICT",
+    "to": "LOC-MARKET-DELIVERY-POINT",
+    "parent_id": "LOC-COMMERCIAL-DISTRICT",
+    "existing_design_link": true,
+    "canonical_admission_required_for_live_travel": true
+  },
+  "provisional_geometry": {
+    "nodes": [
+      {
+        "id": "MB-MD-N0",
+        "kind": "district_reference",
+        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "xy": {
+          "x": 58,
+          "y": 43
+        },
+        "context": "Market Row district reference; commercial foot traffic and ordinary deliveries established generally",
+        "junction": "District reference, not a surveyed junction"
+      },
+      {
+        "id": "MB-MD-N1",
+        "kind": "draft_waypoint",
+        "location_id": null,
+        "xy": {
+          "x": 57.86,
+          "y": 42.75
+        },
+        "context": "Proposed transition from general commercial frontage to local delivery-access frontage",
+        "junction": "Unplaced turning geometry; no extra public cross-street asserted"
+      },
+      {
+        "id": "MB-MD-N2",
+        "kind": "draft_waypoint",
+        "location_id": null,
+        "xy": {
+          "x": 57.72,
+          "y": 42.45
+        },
+        "context": "Candidate pedestrian reception approach near other Market Row frontage",
+        "junction": "Potential shared walking frontage, no named shop or transit stop established"
+      },
+      {
+        "id": "MB-MD-N3",
+        "kind": "prepared_site_reference_not_admitted",
+        "location_id": "LOC-MARKET-DELIVERY-POINT",
+        "xy": {
+          "x": 57.6,
+          "y": 42.2
+        },
+        "context": "Prepared public parcel receiving/collection point; exact doors and hours unknown",
+        "junction": "Site reference only; no assumed delivery counter position or loading bay"
+      }
+    ],
+    "links": [
+      {
+        "id": "MB-MD-L1",
+        "from": "MB-MD-N0",
+        "to": "MB-MD-N1",
+        "frontage_band_id": "MB-MD-B1",
+        "role": "local commercial approach",
+        "pedestrian_context": "Conceptual continuous public-facing footway leading away from district reference",
+        "known_crossing": false,
+        "travel_minutes": null
+      },
+      {
+        "id": "MB-MD-L2",
+        "from": "MB-MD-N1",
+        "to": "MB-MD-N2",
+        "frontage_band_id": "MB-MD-B2",
+        "role": "near-delivery neighborhood frontage",
+        "pedestrian_context": "Conceptual short shared retail/service walking edge, without guaranteed accessible surface",
+        "known_crossing": false,
+        "travel_minutes": null
+      },
+      {
+        "id": "MB-MD-L3",
+        "from": "MB-MD-N2",
+        "to": "MB-MD-N3",
+        "frontage_band_id": "MB-MD-B3",
+        "role": "delivery-site approach",
+        "pedestrian_context": "Candidate last public-facing access to prepared receiving point; actual entrance unspecified",
+        "known_crossing": false,
+        "travel_minutes": null
+      }
+    ],
+    "frontage_bands": [
+      {
+        "id": "MB-MD-B1",
+        "link_id": "MB-MD-L1",
+        "side_a": "Existing Market Row ordinary shopfront character, individual plots unknown",
+        "side_b": "Candidate service frontage with pedestrian access not verified",
+        "activity": "No new Darius arrival or delivery event",
+        "building_positions_verified": false
+      },
+      {
+        "id": "MB-MD-B2",
+        "link_id": "MB-MD-L2",
+        "side_a": "Candidate small commercial façades with no named business assigned",
+        "side_b": "Candidate mixed service frontage with no public loading gate assumed",
+        "activity": "Background parcel activity is possible, not generated now",
+        "building_positions_verified": false
+      },
+      {
+        "id": "MB-MD-B3",
+        "link_id": "MB-MD-L3",
+        "side_a": "Prepared public collection site's general frontage, no counter or staffing committed",
+        "side_b": "Candidate pedestrian edge; private logistics/back-of-house access unknown",
+        "activity": "Package reception/collection is a design function, not confirmation of inventory or opening",
+        "building_positions_verified": false
+      }
+    ]
+  },
+  "narrative_constraints": {
+    "delivery_point_preexists_player_discovery_in_prepared_design": true,
+    "actor_darius_not_assigned_to_this_specific_site": true,
+    "no_real_parcel_recipient_or_delivery_claim": true,
+    "opening_hours_unknown": true,
+    "staffing_unknown": true,
+    "stock_unknown": true,
+    "customer_entry_street_unverified": true,
+    "public_site_cannot_be_assumed_open_now": true,
+    "neighbor_storefronts_not_relocated": true,
+    "played_ch000_unmodified": true
+  },
+  "verification": {
+    "all_intermediate_nodes_noncanonical": true,
+    "all_links_parent_to_site_only": true,
+    "existing_saved_graph_unchanged": true,
+    "no_geometry_crossings_with_prior_10_proposals": true,
+    "no_fake_travel_times": true,
+    "no_fake_road_names": true,
+    "no_player_or_npc_movements": true,
+    "no_player_knowledge_change": true,
+    "no_time_advance": true,
+    "no_store_admission_without_valid_journal": true,
+    "no_branch_merges": true,
+    "route_not_certified_accessible": true,
+    "next_section": "Market Row cultural passage frontage only after this delivery approach passes targeted and full CI."
+  }
+}
