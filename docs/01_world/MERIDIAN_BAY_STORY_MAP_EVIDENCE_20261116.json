@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "review_id": "MB-STORY-MAP-ALIGNMENT-CH000-20261116",
+  "status": "review_reference_not_new_canon",
+  "canonical_scene_source": "chapters/CH-000.transcript.json",
+  "starting_locations_source": "game/STARTING_LOCATIONS.md",
+  "graph_source": "game/STATE.json",
+  "planning_geometry_source": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+  "note": "Story events and canonical location graph outrank approximate coordinates and draft streets. This evidence file adds no events or new world facts.",
+  "spatial_assertions": [
+    {
+      "id": "STORY-01-CROSSWATER-TO-MARKET-CAFE",
+      "level": "played_story",
+      "path_source": "chapters/CH-000.transcript.json",
+      "required_evidence_fragments": [
+        "Jack se aleja hacia Market Row",
+        "En una esquina encuentra **Café Bruma**"
+      ],
+      "route_ids": [
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-CAFE-BRUMA"
+      ],
+      "semantic_requirement": "Café Bruma is a Market Row corner shop reached from Crosswater; preserve natural storefront access and district order without assuming exact streets."
+    },
+    {
+      "id": "STORY-02-CAFE-TERMINAL-GLOW",
+      "level": "played_story_visibility",
+      "path_source": "chapters/CH-000.transcript.json",
+      "required_evidence_fragments": [
+        "resplandor del terminal"
+      ],
+      "route_ids": [
+        "LOC-CAFE-BRUMA",
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-TRANSIT-TERMINAL"
+      ],
+      "semantic_requirement": "From the cafe's described corner, terminal light was perceptible. Future buildings must preserve a plausible light/sight corridor; this does not establish uninterrupted direct line-of-sight, facade orientation or a surveyed distance.",
+      "implementation_gate": "blocked_pending_street_geometry_and_building_height_review"
+    },
+    {
+      "id": "STORY-03-MARKET-THEN-RAILGARDEN-HOME",
+      "level": "played_story",
+      "path_source": "chapters/CH-000.transcript.json",
+      "required_evidence_fragments": [
+        "Afuera, Market Row ya no se parece a la calle",
+        "Más adelante, los edificios de Railgarden sustituyen a las oficinas",
+        "La puerta del apartamento de los Wilson"
+      ],
+      "route_ids": [
+        "LOC-CAFE-BRUMA",
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-WILSON-APARTMENT"
+      ],
+      "semantic_requirement": "Returning home leaves the Market Row shop/office area, enters Railgarden's residential buildings, then reaches the Wilson home."
+    },
+    {
+      "id": "STORY-04-WORKSHOP-IN-HOME",
+      "level": "established_setting",
+      "path_source": "game/STARTING_LOCATIONS.md",
+      "required_evidence_fragments": [
+        "Espacio dentro de la vivienda",
+        "Market Row ↔ Railgarden ↔ hogar Wilson ↔ taller."
+      ],
+      "route_ids": [
+        "LOC-RAILGARDEN-RESIDENTIAL",
+        "LOC-WILSON-APARTMENT",
+        "LOC-WILSON-WORKSHOP"
+      ],
+      "semantic_requirement": "The workshop is an interior of the home, not a separate intersection or exterior building."
+    },
+    {
+      "id": "STORY-05-TRANSIT-PLAZA-HARBOR-EXIST",
+      "level": "established_setting",
+      "path_source": "game/STARTING_LOCATIONS.md",
+      "required_evidence_fragments": [
+        "Crosswater Plaza connects to Crosswater Terminal, Market Row and Harbor Walk."
+      ],
+      "route_ids": [
+        "LOC-TRANSIT-TERMINAL",
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-HARBOR-WALK"
+      ],
+      "semantic_requirement": "Keep Crosswater Terminal adjoining the plaza and the public route from the plaza toward Harbor Walk. The waterfront outline itself remains unmapped."
+    },
+    {
+      "id": "STORY-06-ELENA-ILLUSTRATION-NOT-CITY-SURVEY",
+      "level": "played_story_non_geographic",
+      "path_source": "chapters/CH-000.transcript.json",
+      "required_evidence_fragments": [
+        "una ilustración a medio terminar",
+        "una calle llena de gente"
+      ],
+      "route_ids": [],
+      "semantic_requirement": "Elena's artwork is not evidence for the physical street layout of Meridian Bay. Never import its depicted road geometry as city canon."
+    }
+  ],
+  "draft_correspondence": {
+    "checked_segment_ids": [
+      "MB-WEB-001",
+      "MB-WEB-002",
+      "MB-WEB-003",
+      "MB-WEB-004",
+      "MB-WEB-005",
+      "MB-WEB-006"
+    ],
+    "confirmed_topological_correspondence": true,
+    "full_street_geometry_confirmed": false,
+    "terminal_glow_sightline_confirmed": false,
+    "newly_designed_building_positions_confirmed": false
+  },
+  "constraints": [
+    "Never move played scenes to fit an approximate map.",
+    "No new street addresses or travel minutes inferred from coordinates.",
+    "Future Market Row–Crosswater sketch must maintain the cafe terminal-light observation.",
+    "Noah's shop, Railgarden clinic and grocery are still unadmitted Phase 1 design, not past player visits.",
+    "The first road slice only maps Railgarden to Market Row and existing storefront edges; Crosswater street geometry is later.",
+    "Do not make Elena's school location or illustration geography canon.",
+    "Do not rewrite the saved chapter, events, transcript or player knowledge."
+  ]
+}
