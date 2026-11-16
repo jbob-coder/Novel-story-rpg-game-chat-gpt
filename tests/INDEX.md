@@ -47,4 +47,5 @@
 - [Detalle Crosswater–Harbor Walk: cuatro tramos y seguridad del relato](meridian_bay_cross_harbor_corridor.test.mjs)
 - [Detalle directo Market Row–Harbor Walk: cuatro tramos y consistencia de canon](meridian_bay_market_harbor_direct.test.mjs)
 - [Frente del punto de recepción de paquetes en Market Row](meridian_bay_market_delivery_frontage.test.mjs)
+- [Frente del pasaje cultural en Market Row](meridian_bay_market_culture_frontage.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
