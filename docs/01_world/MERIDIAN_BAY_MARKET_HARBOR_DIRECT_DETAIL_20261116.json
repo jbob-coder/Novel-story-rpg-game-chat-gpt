@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-HARBOR-DIRECT-DETAIL-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "task": "One existing direct Market Row ↔ Harbor Walk relationship, with its full in-between streetscape; do not replace Crosswater route.",
+  "source": {
+    "saved_graph": "game/STATE.json",
+    "setting": "game/STARTING_LOCATIONS.md",
+    "saved_chapter": "chapters/CH-000.transcript.json",
+    "canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "first_road_slice": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+    "second_road_slice": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+    "third_road_slice": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE3_20261116.json",
+    "required_predecessor_details": [
+      "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json"
+    ]
+  },
+  "connection": {
+    "from_location_id": "LOC-COMMERCIAL-DISTRICT",
+    "to_location_id": "LOC-HARBOR-WALK",
+    "saved_graph_edge_exists": true,
+    "direct_reference_not_through_crosswater": true,
+    "proposed_sketch_segment_id": "MB-WEB-010",
+    "route_on_planning_canvas_only": true,
+    "campus_and_port_access_not_inferred": true
+  },
+  "nodes": [
+    {
+      "id": "MB-MH-N0",
+      "type": "existing_district_reference",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "label": "Market Row reference",
+      "street_transition": "existing food stalls, commerce, small offices, deliveries",
+      "junction": "The originating district is an area; this point is not a precise intersection."
+    },
+    {
+      "id": "MB-MH-N1",
+      "type": "draft_route_waypoint",
+      "location_id": null,
+      "xy": {
+        "x": 60,
+        "y": 40.7
+      },
+      "label": "Commercial-edge transition",
+      "street_transition": "candidate lower-intensity shop and office frontages, ordinary service access",
+      "junction": "One continuous candidate route; no extra city street or traffic junction asserted."
+    },
+    {
+      "id": "MB-MH-N2",
+      "type": "draft_route_waypoint",
+      "location_id": null,
+      "xy": {
+        "x": 64,
+        "y": 38.1
+      },
+      "label": "Mixed public frontage",
+      "street_transition": "candidate small civic and mixed-use parcels; pedestrian access facing the same corridor",
+      "junction": "Bend is a drafting waypoint only; exact crossings and site boundaries unknown."
+    },
+    {
+      "id": "MB-MH-N3",
+      "type": "draft_route_waypoint",
+      "location_id": null,
+      "xy": {
+        "x": 68,
+        "y": 36.9
+      },
+      "label": "Waterfront-facing transition",
+      "street_transition": "candidate more open pedestrian frontage near the public waterfront approach",
+      "junction": "Shoreline, sloped paths, barriers and secure port boundaries still uncharted."
+    },
+    {
+      "id": "MB-MH-N4",
+      "type": "existing_district_reference",
+      "location_id": "LOC-HARBOR-WALK",
+      "xy": {
+        "x": 71,
+        "y": 37
+      },
+      "label": "Harbor Walk reference",
+      "street_transition": "established public promenade and views of industrial/passenger harbor activity",
+      "junction": "Promenade reference point, not a verified dock or restricted-area entrance."
+    }
+  ],
+  "route_links": [
+    {
+      "id": "MB-MH-L1",
+      "from": "MB-MH-N0",
+      "to": "MB-MH-N1",
+      "frontage_id": "MB-MH-F1",
+      "character": "Market Row shops and service approaches",
+      "pedestrian_design": "candidate continuous public-facing footway within the broad commercial district",
+      "unresolved": "individual door positions, sidewalk width, vehicle route and crossing controls",
+      "minutes": null,
+      "passable_verified": false
+    },
+    {
+      "id": "MB-MH-L2",
+      "from": "MB-MH-N1",
+      "to": "MB-MH-N2",
+      "frontage_id": "MB-MH-F2",
+      "character": "mixed shops, small service buildings and pedestrian frontage",
+      "pedestrian_design": "candidate shop-to-public-place transition without a private-building shortcut",
+      "unresolved": "property lines, service crossings, building heights and surface condition",
+      "minutes": null,
+      "passable_verified": false
+    },
+    {
+      "id": "MB-MH-L3",
+      "from": "MB-MH-N2",
+      "to": "MB-MH-N3",
+      "frontage_id": "MB-MH-F3",
+      "character": "urban-edge walking corridor trending to more open harbor views",
+      "pedestrian_design": "candidate main walking continuation with no new direct links into docks",
+      "unresolved": "view corridor, accessibility slopes, actual shoreline offset and port perimeter",
+      "minutes": null,
+      "passable_verified": false
+    },
+    {
+      "id": "MB-MH-L4",
+      "from": "MB-MH-N3",
+      "to": "MB-MH-N4",
+      "frontage_id": "MB-MH-F4",
+      "character": "public approach into Harbor Walk promenade",
+      "pedestrian_design": "candidate promenade connection, not permission to enter workboats or shipyard facilities",
+      "unresolved": "coastal barriers, promenade width, grade and access points",
+      "minutes": null,
+      "passable_verified": false
+    }
+  ],
+  "frontage_bands": [
+    {
+      "id": "MB-MH-F1",
+      "for_link": "MB-MH-L1",
+      "side_a": "Existing-market style small retail windows and offices, precise storefronts not assigned",
+      "side_b": "Candidate low-rise services and mixed shopfronts, no invented named occupants",
+      "scene_texture": "commercial sounds and delivery movement are possible but not a generated event",
+      "surveyed_building_footprints": false,
+      "harbor_entry_granted": false
+    },
+    {
+      "id": "MB-MH-F2",
+      "for_link": "MB-MH-L2",
+      "side_a": "Candidate mixed-use façades and small commercial frontage",
+      "side_b": "Candidate public-facing workday services and modest pedestrian space",
+      "scene_texture": "character shifts from dense commerce toward a broader public walk",
+      "surveyed_building_footprints": false,
+      "harbor_entry_granted": false
+    },
+    {
+      "id": "MB-MH-F3",
+      "for_link": "MB-MH-L3",
+      "side_a": "Candidate gradually open frontage or setback, not a fixed open harbor sightline",
+      "side_b": "Candidate civic or low-intensity shop edge with building height unresolved",
+      "scene_texture": "plausible waterfront ambience without creating a named pier or new shop",
+      "surveyed_building_footprints": false,
+      "harbor_entry_granted": false
+    },
+    {
+      "id": "MB-MH-F4",
+      "for_link": "MB-MH-L4",
+      "side_a": "Established Harbor Walk public-promenade character at the endpoint",
+      "side_b": "Proposed pedestrian buffer toward harbor; waterline and secure docks uncharted",
+      "scene_texture": "working harbor visible from public walkway; no guarantee of direct port access",
+      "surveyed_building_footprints": false,
+      "harbor_entry_granted": false
+    }
+  ],
+  "story_checks": [
+    {
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Market Row also connects to Harbor Walk.",
+      "meaning": "Keep a direct location adjacency independent of Crosswater Plaza; do not route the only possible access through the plaza."
+    },
+    {
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Small businesses, food vendors, offices and delivery traffic within walking distance",
+      "meaning": "Commercial-side texture follows established Market Row context without pinning individual businesses to this path."
+    },
+    {
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Public walkway toward the waterfront with views of industrial and passenger port activity.",
+      "meaning": "Harbor Walk remains publicly walkable at narrative level; port premises are not unlocked."
+    },
+    {
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "harbor visible between buildings",
+      "meaning": "Do not place a massing barrier that contradicts the separate Crosswater viewpoint."
+    },
+    {
+      "source": "chapters/CH-000.transcript.json",
+      "fragment": "Más allá de los edificios, las luces del puerto se estiran sobre el agua oscura.",
+      "meaning": "Port lights are established through the city; precise viewing rays are not established."
+    },
+    {
+      "source": "chapters/CH-000.transcript.json",
+      "fragment": "resplandor del terminal",
+      "meaning": "Do not inadvertently obstruct or rewrite Café Bruma terminal glow observation."
+    }
+  ],
+  "review": {
+    "four_contiguous_intermediate_spans": true,
+    "no_unregistered_strict_crossings_with_existing_drafts": true,
+    "previous_three_corridors_unchanged": true,
+    "official_story_graph_is_authority": true,
+    "no_named_streets_or_storefront_addresses": true,
+    "no_fixed_travel_times": true,
+    "no_verified_public_crossing_or_accessibility": true,
+    "no_fixed_coastline_or_building_heights": true,
+    "preserve_cafe_and_plaza_visibility_evidence": true,
+    "no_npc_presence_or_story_event": true,
+    "no_player_movement_or_time_change": true,
+    "no_canonical_state_changes": true,
+    "conceptual_distance_not_real_minutes": true,
+    "geometry_can_be_revised_during_full_city_review": true,
+    "next_stage": "Once this section passes tests, assess any remaining existing public location frontages and perform a separate citywide completeness/obstruction review, not automatic story promotion."
+  }
+}
