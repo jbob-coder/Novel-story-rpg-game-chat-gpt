@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-CROSS-HARBOR-CORRIDOR-DETAIL-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_corridor_micro_map",
+  "scope": "Crosswater Plaza to Harbor Walk only; detailed in-between",
+  "preceding_detail_ids": [
+    "MB-RAIL-MARKET-CORRIDOR-DETAIL-20261116-V1",
+    "MB-MARKET-CROSS-CORRIDOR-DETAIL-20261116-V1"
+  ],
+  "dependencies": {
+    "source_story": "chapters/CH-000.transcript.json",
+    "starting_locations": "game/STARTING_LOCATIONS.md",
+    "source_graph": "game/STATE.json",
+    "original_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "parent_outline": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE3_20261116.json",
+    "waterfront_evidence": "docs/01_world/MERIDIAN_BAY_WATERFRONT_STORY_EVIDENCE_20261116.json",
+    "prior_details": [
+      "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json"
+    ]
+  },
+  "endpoints": {
+    "from": "LOC-CROSSWATER-PLAZA",
+    "to": "LOC-HARBOR-WALK",
+    "parent_segment_id": "MB-WEB-009"
+  },
+  "layout_policy": {
+    "planning_nodes_are_not_locations": true,
+    "existing_connected_ids_unchanged": true,
+    "no_new_streets_or_shortcuts": true,
+    "bidirectional_pedestrian_candidate": true,
+    "real_shoreline_unknown": true,
+    "road_travel_minutes": null,
+    "accessibility_verified": false,
+    "vehicle_access_verified": false,
+    "water_crossing_verified": false,
+    "harbor_facility_access_verified": false,
+    "street_names_verified": false,
+    "buildings_and_heights_surveyed": false,
+    "no_automatic_player_knowledge": true,
+    "orientation_and_scale_provisional": true
+  },
+  "nodes": [
+    {
+      "id": "MB-CH-N0",
+      "kind": "existing_location_reference",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "xy": {
+        "x": 65,
+        "y": 42
+      },
+      "name": "Crosswater Plaza public-space reference",
+      "existing_story_context": "busy public plaza, glass-fronted terminal entrance, information boards and a harbor glimpse between buildings",
+      "proposed_junction_detail": "pedestrian plaza edge; actual exit direction and curb/crossing unknown"
+    },
+    {
+      "id": "MB-CH-N1",
+      "kind": "draft_waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "name": "Plaza-facing transition",
+      "existing_story_context": "candidate transition from transit-facing shops and passenger movement toward waterfront walking",
+      "proposed_junction_detail": "continuing corridor bend; no newly asserted side road or barrier"
+    },
+    {
+      "id": "MB-CH-N2",
+      "kind": "draft_waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 68.9,
+        "y": 39.15
+      },
+      "name": "Urban-to-waterfront transition",
+      "existing_story_context": "candidate less enclosed pedestrian frontage with a possible wider harbor view",
+      "proposed_junction_detail": "intermediate public walking connection; crossing widths, slopes and traffic controls unknown"
+    },
+    {
+      "id": "MB-CH-N3",
+      "kind": "draft_waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 70.1,
+        "y": 37.85
+      },
+      "name": "Waterfront approach",
+      "existing_story_context": "candidate transition toward open-air public promenade context; port activity visible but not necessarily accessible",
+      "proposed_junction_detail": "public path approach; shore-edge surface and barriers remain undefined"
+    },
+    {
+      "id": "MB-CH-N4",
+      "kind": "existing_location_reference",
+      "location_id": "LOC-HARBOR-WALK",
+      "xy": {
+        "x": 71,
+        "y": 37
+      },
+      "name": "Harbor Walk promenade reference",
+      "existing_story_context": "established public pedestrian waterfront route with views toward industrial and passenger port activity",
+      "proposed_junction_detail": "public promenade anchor; actual docks, entrances, seawall, and boat areas not mapped"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-CH-L1",
+      "from": "MB-CH-N0",
+      "to": "MB-CH-N1",
+      "band_id": "MB-CH-B1",
+      "street_character": "transit plaza to public walking approach",
+      "pedestrian_continuity": "provisional route from the plaza pedestrian edge",
+      "possible_npc_context": "passengers and local pedestrians may pass here in a future independently resolved story turn",
+      "crossing_type": "not_established",
+      "public_access_verified": false,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-CH-L2",
+      "from": "MB-CH-N1",
+      "to": "MB-CH-N2",
+      "band_id": "MB-CH-B2",
+      "street_character": "transition from city frontage toward harbor-facing public space",
+      "pedestrian_continuity": "candidate accessible path to be checked for obstacles and slopes",
+      "possible_npc_context": "ordinary residents and visitors, not named assigned NPCs",
+      "crossing_type": "not_established",
+      "public_access_verified": false,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-CH-L3",
+      "from": "MB-CH-N2",
+      "to": "MB-CH-N3",
+      "band_id": "MB-CH-B3",
+      "street_character": "open waterfront approach with changing visibility",
+      "pedestrian_continuity": "conceptual walk; no built coastal geometry or shoreline setback established",
+      "possible_npc_context": "pedestrian observation of the working harbor only as potential everyday texture",
+      "crossing_type": "not_established",
+      "public_access_verified": false,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-CH-L4",
+      "from": "MB-CH-N3",
+      "to": "MB-CH-N4",
+      "band_id": "MB-CH-B4",
+      "street_character": "arrival at existing public Harbor Walk promenade",
+      "pedestrian_continuity": "conceptual public walkway transition at the existing location anchor",
+      "possible_npc_context": "port activity may be visible without granting visitor access into controlled zones",
+      "crossing_type": "not_established",
+      "public_access_verified": false,
+      "travel_minutes": null
+    }
+  ],
+  "frontage_bands": [
+    {
+      "id": "MB-CH-B1",
+      "link_id": "MB-CH-L1",
+      "side_a": "established urban transit-shop context; doors and parcels not fixed",
+      "side_b": "candidate open plaza / storefront transition; no new business identities",
+      "general_view": "the plaza and terminal remain nearby; harbor perception through gaps is preserved",
+      "footprints_verified": false,
+      "water_access_granted": false
+    },
+    {
+      "id": "MB-CH-B2",
+      "link_id": "MB-CH-L2",
+      "side_a": "candidate mixed civic/commercial edge ending toward the waterfront",
+      "side_b": "candidate public urban space; no invented roads, seawall or dock entrances",
+      "general_view": "the walking environment may become visually less enclosed without proving any exact sightline",
+      "footprints_verified": false,
+      "water_access_granted": false
+    },
+    {
+      "id": "MB-CH-B3",
+      "link_id": "MB-CH-L3",
+      "side_a": "proposed open pedestrian transition toward the promenade",
+      "side_b": "unplaced harbor-facing frontage, shore setback undetermined",
+      "general_view": "plausible public view of waterfront and working port, without shipyard access",
+      "footprints_verified": false,
+      "water_access_granted": false
+    },
+    {
+      "id": "MB-CH-B4",
+      "link_id": "MB-CH-L4",
+      "side_a": "existing Harbor Walk public-path character",
+      "side_b": "proposed harbor-facing edge: docks and secure port perimeter remain uncharted",
+      "general_view": "industrial and passenger port activity may be observed, but not entered by default",
+      "footprints_verified": false,
+      "water_access_granted": false
+    }
+  ],
+  "source_requirements": [
+    {
+      "id": "STORY-PLAZA-HARBOR-VIEW",
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "harbor visible between buildings",
+      "rule": "Keep a plausible gap or indirect visual channel; do not claim a surveyed view ray."
+    },
+    {
+      "id": "STORY-PLAZA-WALK-LINK",
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Crosswater Plaza connects to Crosswater Terminal, Market Row and Harbor Walk.",
+      "rule": "This pedestrian connection is an existing location relationship, not a new shortcut."
+    },
+    {
+      "id": "STORY-WATERFRONT-VIEW",
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Public walkway toward the waterfront with views of industrial and passenger port activity.",
+      "rule": "Public walking/observation is supported; unrestricted port access is not."
+    },
+    {
+      "id": "STORY-HARBOR-LIGHTS",
+      "source": "chapters/CH-000.transcript.json",
+      "fragment": "Más allá de los edificios, las luces del puerto se estiran sobre el agua oscura.",
+      "rule": "Preserve the visible port light scene without fixing building heights or shoreline."
+    },
+    {
+      "id": "STORY-DIRECT-MARKET-WALK",
+      "source": "game/STARTING_LOCATIONS.md",
+      "fragment": "Market Row also connects to Harbor Walk.",
+      "rule": "Retain the separate known graph adjacency. Its geometry will be detailed in a later section; do not pretend this plaza path replaces it."
+    }
+  ],
+  "visibility_review": {
+    "reference": "Crosswater sees harbor through buildings and over the water",
+    "visibility_ray_verified": false,
+    "frontage_height_unknown": true,
+    "waterfront_outline_unknown": true,
+    "precise_coastline_known": false,
+    "do_not_introduce_buildings_blocking_existing_story_view": true,
+    "public_shipyard_dock_entry_approved": false
+  },
+  "review_gate": {
+    "detailed_section_must_match_parent_outline": true,
+    "preserve_market_harbor_direct_graph_edge": true,
+    "no_new_canon_locations": true,
+    "no_story_time_progress": true,
+    "no_player_or_npc_movement": true,
+    "no_named_ports_buildings_or_new_shops": true,
+    "next_candidate_section": "Market Row–Harbor Walk direct connection, only after this four-part corridor passes QA",
+    "full_city_route_review_only_after_sections": true
+  }
+}
