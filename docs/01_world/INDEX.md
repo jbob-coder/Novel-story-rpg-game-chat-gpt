@@ -14,6 +14,7 @@
 - [Detalle interior Market Row → Crosswater — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md)
 - [Detalle interior Crosswater Plaza → Harbor Walk — BORRADOR POR SECCIÓN](MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md)
 - [Detalle directo Market Row → Harbor Walk — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL.md)
+- [Detalle Market Row → punto de recepción de paquetes — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md)
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
