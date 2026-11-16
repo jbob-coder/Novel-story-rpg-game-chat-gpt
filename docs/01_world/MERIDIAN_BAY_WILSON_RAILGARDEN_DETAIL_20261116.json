@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-WILSON-RAILGARDEN-APPROACH-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_short_residential_approach",
+  "scope": "Complete only the in-between public/private interface between Wilson household reference and Railgarden residential-district reference.",
+  "source": {
+    "world_graph": "game/STATE.json",
+    "setting": "game/STARTING_LOCATIONS.md",
+    "saved_transcript": "chapters/CH-000.transcript.json",
+    "planning_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "road_web": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+    "parent_segment_id": "MB-WEB-001"
+  },
+  "endpoints": {
+    "from_location_id": "LOC-WILSON-APARTMENT",
+    "to_location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+    "existing_graph_link": true
+  },
+  "nodes": [
+    {
+      "id": "MB-WR-N0",
+      "xy": {
+        "x": 46.3,
+        "y": 44.5
+      },
+      "kind": "source_location_anchor",
+      "location_id": "LOC-WILSON-APARTMENT",
+      "name_provisional": "Wilson household reference",
+      "narrative_land_use": "Established family apartment in modest Railgarden residential buildings, exact floor and exterior entrance not set",
+      "junction_design": "Household reference marker, not a street intersection or a confirmed street-side apartment door"
+    },
+    {
+      "id": "MB-WR-N1",
+      "xy": {
+        "x": 47.1,
+        "y": 44.35
+      },
+      "kind": "noncanonical_building_to_neighborhood_marker",
+      "location_id": null,
+      "name_provisional": "Residential frontage transition",
+      "narrative_land_use": "Candidate shared approach from the residential building context toward neighborhood pedestrian activity",
+      "junction_design": "Candidate frontage/plaza edge; exact lobby, stairs, sidewalk, shared private access and crosswalk remain unresolved"
+    },
+    {
+      "id": "MB-WR-N2",
+      "xy": {
+        "x": 48,
+        "y": 44
+      },
+      "kind": "source_location_anchor",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "name_provisional": "Railgarden residential nucleus reference",
+      "narrative_land_use": "Established neighborhood with modest buildings, routine small shops and ordinary transit sounds",
+      "junction_design": "District reference anchor, not a named street crossing; neighborhood grocery and clinic have separate draft links"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-WR-L1",
+      "from": "MB-WR-N0",
+      "to": "MB-WR-N1",
+      "type": "single_continuous_candidate_residential_approach",
+      "street_character": "Household building frontage to neighborhood exterior context",
+      "pedestrian_edge": "Conceptual approach from home reference to shared residential frontage, not a surveyed apartment hallway",
+      "buildings_zone": "MB-WR-B1",
+      "access_notes": "No assumed street-facing apartment door, balcony access, entrance floor, lobby, staircase or building ownership; this sketch is not an architectural floor plan",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    },
+    {
+      "id": "MB-WR-L2",
+      "from": "MB-WR-N1",
+      "to": "MB-WR-N2",
+      "type": "single_continuous_candidate_residential_approach",
+      "street_character": "Modest housing and neighborhood walking context",
+      "pedestrian_edge": "Candidate public-approach continuity toward Railgarden district; curb cuts and crossings unknown",
+      "buildings_zone": "MB-WR-B2",
+      "access_notes": "Ordinary neighborhood commercial sounds are established but do not confirm grocery, health-center, school or bus-stop doors on this link",
+      "traffic_flow": "unknown",
+      "estimated_minutes": null
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-WR-B1",
+      "link_id": "MB-WR-L1",
+      "relative_sides": {
+        "A": "Established Wilson residence context; building footprint, lobby and stairs not plotted",
+        "B": "Candidate adjoining modest housing context, no additional named household or property established"
+      },
+      "visual_character": "Private household to public neighborhood transition",
+      "physical_building_footprints_confirmed": false
+    },
+    {
+      "id": "MB-WR-B2",
+      "link_id": "MB-WR-L2",
+      "relative_sides": {
+        "A": "Candidate modest apartment blocks and windows, no individual tenants or addresses",
+        "B": "Candidate ordinary neighborhood storefront context, distinct from separately designed grocery/clinic"
+      },
+      "visual_character": "Railgarden residential environment with everyday commerce",
+      "physical_building_footprints_confirmed": false
+    }
+  ],
+  "story_consistency": {
+    "saved_chapter_fragments": [
+      "Más adelante, los edificios de Railgarden sustituyen a las oficinas",
+      "La puerta del apartamento de los Wilson",
+      "Por la mañana, la claridad entraba por las persianas de Railgarden",
+      "Afuera pasaba un autobús"
+    ],
+    "starting_location_fragments": [
+      "Barrio residencial de Meridian Bay, con edificios modestos y comercio cotidiano.",
+      "Apartamento funcional compartido por Jack, Elena y Rosa.",
+      "Espacio dentro de la vivienda para reparaciones, herramientas, gadgets y **Proyecto Aster**",
+      "Market Row ↔ Railgarden ↔ hogar Wilson ↔ taller."
+    ],
+    "workshop_remains_inside_apartment": true,
+    "household_ownership_unresolved": true,
+    "elena_school_route_unverified": true,
+    "grocery_and_clinic_are_distinct_phase1_drafts": true,
+    "no_retroactive_jack_movement": true
+  },
+  "spatial_policy": {
+    "reference_grid_only": true,
+    "actual_cardinal_orientation_known": false,
+    "confirmed_building_footprint": false,
+    "building_floor_or_outside_door_set": false,
+    "certified_accessible_sidewalk": false,
+    "verified_crosswalk": false,
+    "verified_vehicle_access": false,
+    "verified_times_or_distances": false,
+    "original_graph_unchanged": true,
+    "original_parent_segment_unchanged": true,
+    "all_intermediate_nodes_not_world_locations": true
+  },
+  "review_gate": {
+    "only_one_graph_edge_detail": true,
+    "two_subsegments_and_bands_required": true,
+    "all_story_references_must_exist": true,
+    "missing_original_edge_fails_closed": true,
+    "no_admission_to_playable_state": true,
+    "no_chapter_or_journal_write": true,
+    "no_npc_schedules": true,
+    "no_player_or_npc_movement": true,
+    "no_time_advance": true,
+    "next_standalone_section": "Railgarden ↔ neighborhood grocery exterior link (MB-WEB-003), after QA"
+  }
+}
