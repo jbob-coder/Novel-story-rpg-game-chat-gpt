@@ -7,14 +7,64 @@ const roadPlan=JSON.parse(readFileSync(new URL(
  '../docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json',import.meta.url),'utf8'));
 const cityPlan=JSON.parse(readFileSync(new URL(
  '../docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json',import.meta.url),'utf8'));
+const storyMap=JSON.parse(readFileSync(new URL(
+ '../docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json',import.meta.url),'utf8'));
+const storySources=new Map([
+ ['chapters/CH-000.transcript.json',readFileSync(new URL(
+  '../chapters/CH-000.transcript.json',import.meta.url),'utf8')],
+ ['game/STARTING_LOCATIONS.md',readFileSync(new URL(
+  '../game/STARTING_LOCATIONS.md',import.meta.url),'utf8')]
+]);
 const check=(value,message)=>{if(!value)throw Error(message);};
 const clone=value=>structuredClone(value);
-const pointKey=p=>p.x+','+p.y;
 const finitePoint=p=>p!==null&&typeof p==='object'&&
  Number.isFinite(p.x)&&Number.isFinite(p.y);
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const refPositions=new Map(cityPlan.locations.map(p=>[p.id,p.reference_xy_units]));
 const locationPair=(a,b)=>[a,b].sort().join('|');
+
+export function validateMeridianBayStoryLayout({state}={}){
+ check(state?.world?.locations&&state.player?.location_id,
+  'Verified narrative state is required for story layout review');
+ const prepared=prepareMeridianBayWorld({state});
+ const places=prepared.world.locations;
+ check(storyMap.schema_version===1&&
+  storyMap.review_id==='MB-STORY-MAP-ALIGNMENT-CH000-20261116'&&
+  storyMap.status==='review_reference_not_new_canon'&&
+  Array.isArray(storyMap.spatial_assertions)&&
+  storyMap.spatial_assertions.length===6,
+  'Story map evidence declaration is missing or altered');
+ const names=new Set();
+ for(const x of storyMap.spatial_assertions){
+  check(!names.has(x.id),'Duplicate story alignment evidence');
+  names.add(x.id);
+  const source=storySources.get(x.path_source);
+  check(typeof source==='string'&&source.length>0&&
+   Array.isArray(x.required_evidence_fragments)&&
+   x.required_evidence_fragments.length>0&&
+   x.required_evidence_fragments.every(fragment=>
+    typeof fragment==='string'&&source.includes(fragment)),
+   'Story geography lacks original source evidence');
+  check(Array.isArray(x.route_ids)&&x.route_ids.every(id=>
+   typeof id==='string'&&Object.hasOwn(places,id)),
+   'Story route contains an unknown location');
+  for(let i=1;i<x.route_ids.length;i++){
+   const from=places[x.route_ids[i-1]],to=places[x.route_ids[i]];
+   check(from.connected_ids.includes(to.id),
+    'Story route contradicts saved location connections');
+  }
+ }
+ const cafe=storyMap.spatial_assertions.find(x=>x.id==='STORY-02-CAFE-TERMINAL-GLOW');
+ check(cafe?.implementation_gate==='blocked_pending_street_geometry_and_building_height_review'&&
+  storyMap.draft_correspondence.full_street_geometry_confirmed===false&&
+  storyMap.draft_correspondence.terminal_glow_sightline_confirmed===false,
+  'Do not claim a verified cafe-to-terminal sightline');
+ const segments=new Set(roadPlan.segments.map(x=>x.id));
+ check(storyMap.draft_correspondence.checked_segment_ids.length===segments.size&&
+  storyMap.draft_correspondence.checked_segment_ids.every(id=>segments.has(id)),
+  'Story review must account for all road-sketch segments');
+ return true;
+}
 
 export function validateMeridianBayRoadWeb({state}={}){
  check(state?.world?.locations&&state.player?.location_id,
@@ -96,6 +146,7 @@ export function validateMeridianBayRoadWeb({state}={}){
  check(roadPlan.future_growth_queue.every(x=>
   x.candidate_neighbor===null||!knownNodes.has(x.candidate_neighbor)),
   'Future growth is already counted as mapped in this slice');
+ validateMeridianBayStoryLayout({state});
  return true;
 }
 
