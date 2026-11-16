@@ -20,10 +20,27 @@ flowchart LR
   Rail === Market["Market Row"]
   Market --- Noah["Noah's repair shop"]
   Market --- Bruma["Café Bruma"]
-  Market -. "NEXT: NOT MAPPED IN THIS SLICE" .-> Crosswater["Crosswater Plaza"]
+  Market -. "EXISTING LINK; STREET SHAPE NEXT" .-> Crosswater["Crosswater Plaza"]
 ```
 
 The workshop is **inside** the Wilson residence and must not become a separate street intersection. The grocery, health center and Noah's shop are preauthored **draft** places; the café and residential/home anchors have existing story identities. The diagram is a **connectivity proposal**, not a measured aerial map.
+
+## Story-layout consistency review (CH-000)
+
+The [story evidence crosswalk](MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json)
+checks the actual **saved chapter transcript**, `game/STARTING_LOCATIONS.md`,
+and the `game/STATE.json` location graph, not an invented street grid.
+
+| Story source | Spatial fact that must survive | Current map-slice disposition |
+|---|---|---|
+| Jack's arrival and travel from Crosswater | From the transit plaza, Jack traveled toward Market Row and found Café Bruma on a corner | Existing Crosswater → Market Row → Café Bruma links are preserved. The Crosswater *street geometry* is still a later slice. |
+| Café Bruma chapter scene | The terminal's glow could still be perceived from the café area | **Open physical-layout constraint.** No certified clear sightline, building heights or facade direction exists. Do not build an obstructing high-rise here without reconciling the scene. |
+| Return to Wilson home | Market Row shopfronts and offices gave way to Railgarden homes, then the Wilson apartment | Railgarden ↔ Market Row and Wilson-home frontage match this progression. |
+| Family household | Jack's workshop is within the Wilson residence | Workshop is not an additional street intersection. |
+| Opening map | Crosswater Terminal adjoins the plaza and the plaza opens toward Harbor Walk | Links are preserved in saved topology, not yet drawn as final streets. |
+| Elena's city drawing | She made an illustration with a street and buildings | **Not a survey.** Its artistic perspective cannot be used as Meridian Bay road geometry. |
+
+**Review finding:** The proposed slice agrees with established **location order and connections**. It does **not** prove exact coordinates, sightlines or physical road feasibility. A finished full-city map must honor the existing transcript instead of silently rearranging the player's journey. Existing story evidence and saved graph have priority over this provisional plan.
 
 ## Work performed in this slice
 1. Use the existing city grid, reference anchors and the saved/Phase 1 link graph as constraints. Preserve all original location IDs and edges.
