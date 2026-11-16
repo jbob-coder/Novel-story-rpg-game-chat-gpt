@@ -16,6 +16,7 @@
 - [Detalle directo Market Row → Harbor Walk — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL.md)
 - [Detalle Market Row → punto de recepción de paquetes — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md)
 - [Detalle Market Row → pasaje cultural — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE.md)
+- [Detalle Market Row → galería de servicios — BORRADOR POR SECCIÓN](MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE.md)
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
