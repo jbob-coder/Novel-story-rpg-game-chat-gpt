@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-ROAD-WEB-SLICE3-20261116",
+  "authority": "proposed_street_geometry_not_saved_canon",
+  "status": "draft_review_only",
+  "depends_on": "MB-ROAD-WEB-SLICE2-20261116",
+  "growth_origin": "LOC-CROSSWATER-PLAZA",
+  "growth_destination": "LOC-HARBOR-WALK",
+  "source_evidence": "MB-WATERFRONT-STORY-EVIDENCE-CH000-20261116",
+  "scope": "One existing Crosswater Plaza–Harbor Walk graph link with a proposed pedestrian connector, not a port survey, coastline, or road construction.",
+  "segments": [
+    {
+      "id": "MB-WEB-009",
+      "from_id": "LOC-CROSSWATER-PLAZA",
+      "to_id": "LOC-HARBOR-WALK",
+      "connected_graph_edge_existing": true,
+      "draft_mode": "public_pedestrian_approach",
+      "via_xy_units": [
+        {
+          "x": 66.9,
+          "y": 40.6
+        },
+        {
+          "x": 68.9,
+          "y": 39.15
+        },
+        {
+          "x": 70.1,
+          "y": 37.85
+        }
+      ],
+      "known_distance_km": null,
+      "known_travel_minutes": null,
+      "verified_traffic_legal_access": false,
+      "verified_accessibility": false,
+      "verified_sidewalks": false,
+      "street_name": null,
+      "water_crossing_inferred": false,
+      "crossing_type": "unknown_not_asserted"
+    }
+  ],
+  "story_constraints": {
+    "harbor_visible_from_plaza": true,
+    "harbor_lights_visible_beyond_buildings": true,
+    "light_view_type": "perceptible_through_city_buildings_not_precise_line_of_sight",
+    "physical_visibility_verified": false,
+    "coastline_geometry_verified": false,
+    "terminal_and_market_layout_inherited": true,
+    "meaning": "The plaza must retain plausible views to the harbor between buildings; do not infer an exact viewpoint, road sightline, shoreline or port access from narrative wording."
+  },
+  "graph_policy": {
+    "saved_world_graph_is_authority": true,
+    "no_new_links": true,
+    "other_existing_market_harbor_edge": "LOC-COMMERCIAL-DISTRICT|LOC-HARBOR-WALK",
+    "other_existing_market_harbor_edge_status": "preserved_in_source_graph_not_drawn_in_slice3",
+    "street_geometry_may_not_be_used_to_falsely_block_story_route": true,
+    "draft_connectivity_only": true
+  },
+  "totals": {
+    "segments_after_slice": 9,
+    "mapped_anchors_after_slice": 10
+  },
+  "next_growth_queue": [
+    {
+      "source": "LOC-COMMERCIAL-DISTRICT",
+      "target": "LOC-HARBOR-WALK",
+      "proposed_stage": "slice4",
+      "review_required": "The saved direct link exists; reconcile with the coastal approach and the first three sketched corridors, avoiding unsurveyed shortcuts."
+    },
+    {
+      "source": null,
+      "target": null,
+      "proposed_stage": "later",
+      "review_required": "Before additional sites or road crossings, establish blocks, access constraints, business frontages and any new locations with explicit review."
+    }
+  ],
+  "invariants": {
+    "no_canonical_writes": true,
+    "no_player_action": true,
+    "no_npc_movement": true,
+    "no_offscreen_event": true,
+    "no_story_time_advance": true,
+    "no_new_travel_minutes": true,
+    "no_fake_city_scale": true,
+    "no_asserted_clear_sightline": true,
+    "no_port_access_invention": true,
+    "no_automatic_location_discovery": true
+  }
+}
