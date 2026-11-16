@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-CULTURE-FRONTAGE-20261116-V1",
+  "status": "unadmitted_prepared_site_street_draft",
+  "route_kind": "one_prepared_site_frontage",
+  "priority": "finish_one_link_and_its_intervening_spaces_before_next",
+  "dependencies": {
+    "saved_world": "game/STATE.json",
+    "prepared_catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "city_study_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "last_detailed_site": "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json",
+    "prior_city_road_sketches": [
+      "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE3_20261116.json",
+      "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json"
+    ]
+  },
+  "endpoints": {
+    "district_id": "LOC-COMMERCIAL-DISTRICT",
+    "prepared_site_id": "LOC-MARKET-CULTURE-PASSAGE",
+    "catalog_parent_id": "LOC-COMMERCIAL-DISTRICT",
+    "prepared_only_not_live_world": true,
+    "public_facade_in_catalog": true
+  },
+  "reference_only": {
+    "city_canvas": "provisional_100x80_city_grid_not_street_survey",
+    "physical_distance_not_verified": true,
+    "accessible_pedestrian_route_not_verified": true,
+    "opening_hours_not_verified": true,
+    "individual_plot_lines_not_verified": true,
+    "story_navigation_unmodified": true
+  },
+  "nodes": [
+    {
+      "id": "MB-MCULT-N0",
+      "kind": "existing_district_reference",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "name": "Market Row commercial core",
+      "context": "Known small shops, offices, food stalls and ordinary delivery activity",
+      "junction_detail": "District-center drawing anchor, not a surveyed road junction"
+    },
+    {
+      "id": "MB-MCULT-N1",
+      "kind": "draft_geometric_waypoint",
+      "location_id": null,
+      "xy": {
+        "x": 58.35,
+        "y": 43.38
+      },
+      "name": "Commercial frontage approach",
+      "context": "Candidate small commercial façades close to existing Market Row businesses",
+      "junction_detail": "Ordinary corner transition, no approved street crossing, new door, or shortcut"
+    },
+    {
+      "id": "MB-MCULT-N2",
+      "kind": "draft_geometric_waypoint",
+      "location_id": null,
+      "xy": {
+        "x": 58.68,
+        "y": 43.64
+      },
+      "name": "Culture-facing approach",
+      "context": "Candidate pedestrian-facing shopfront transition toward a small creative passage",
+      "junction_detail": "Nearby Noah shop remains separately linked; no shared entrance or unapproved intersection"
+    },
+    {
+      "id": "MB-MCULT-N3",
+      "kind": "prepared_site_reference_not_admitted",
+      "location_id": "LOC-MARKET-CULTURE-PASSAGE",
+      "xy": {
+        "x": 59,
+        "y": 43.7
+      },
+      "name": "Creative Passage prepared reference",
+      "context": "Preauthored small cultural commerce and display passage, no specific exhibition or occupants",
+      "junction_detail": "Arrival on conceptual public-facing frontage; exact entry and internal arcade are not designed"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-MCULT-L1",
+      "from": "MB-MCULT-N0",
+      "to": "MB-MCULT-N1",
+      "band_id": "MB-MCULT-B1",
+      "street_role": "market commercial frontage",
+      "pedestrian_detail": "Candidate on-grade public-facing approach; sidewalk widths, crossings and property edges undecided",
+      "existing_street_crossing_confirmed": false,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-MCULT-L2",
+      "from": "MB-MCULT-N1",
+      "to": "MB-MCULT-N2",
+      "band_id": "MB-MCULT-B2",
+      "street_role": "local retail/culture transition",
+      "pedestrian_detail": "Proposed continuous link past ordinary shops toward the passage without granting nearby shop doors",
+      "existing_street_crossing_confirmed": false,
+      "travel_minutes": null
+    },
+    {
+      "id": "MB-MCULT-L3",
+      "from": "MB-MCULT-N2",
+      "to": "MB-MCULT-N3",
+      "band_id": "MB-MCULT-B3",
+      "street_role": "creative passage frontage",
+      "pedestrian_detail": "Candidate final publicly oriented approach to the preauthored site; exact passage opening unresolved",
+      "existing_street_crossing_confirmed": false,
+      "travel_minutes": null
+    }
+  ],
+  "frontage_bands": [
+    {
+      "id": "MB-MCULT-B1",
+      "link_id": "MB-MCULT-L1",
+      "side_a": "Existing Market Row mixed shops/office character without assigning tenants",
+      "side_b": "Candidate pedestrian-facing small commercial façades without new known businesses",
+      "activity_scope": "Ambient shoppers possible only when narrative time legitimately advances",
+      "actual_buildings_confirmed": false
+    },
+    {
+      "id": "MB-MCULT-B2",
+      "link_id": "MB-MCULT-L2",
+      "side_a": "Proposed light cultural/shop display character, specific works not established",
+      "side_b": "Candidate ordinary retail/service frontage; Noah's separate shop address not moved",
+      "activity_scope": "Creative display is a site design possibility, not a scheduled show",
+      "actual_buildings_confirmed": false
+    },
+    {
+      "id": "MB-MCULT-B3",
+      "link_id": "MB-MCULT-L3",
+      "side_a": "Proposed entrance-facing display frontage, details of interior left unauthored",
+      "side_b": "Candidate walkway margin with existing nearby commercial context",
+      "activity_scope": "No gallery employees, crowd, performance or exhibition recorded",
+      "actual_buildings_confirmed": false
+    }
+  ],
+  "story_safety": {
+    "culture_passage_is_only_prepared_design": true,
+    "no_elena_visit_or_art_exhibition_established": true,
+    "no_specific_npc_or_customer_invented": true,
+    "no_event_or_hours_assumed": true,
+    "no_new_public_access_through_noah_shop": true,
+    "no_player_or_npc_movement": true,
+    "no_saved_chapter_or_time_change": true,
+    "no_player_knowledge_change": true,
+    "no_automatic_catalog_admission": true
+  },
+  "checks": {
+    "preserve_all_prior_detailed_corridors": true,
+    "preserve_delivery_frontage_without_relocation": true,
+    "only_existing_prepared_parent_edge": true,
+    "all_four_nodes_connected_by_exactly_three_spans": true,
+    "each_span_has_two_provisional_frontage_sides": true,
+    "avoid_strict_intersections_with_existing_sketches": true,
+    "no_claim_of_physical_route_accessibility": true,
+    "no_real_travel_minutes_or_street_names": true,
+    "saved_story_graph_authoritative": true
+  },
+  "next_section": "Market Row business offices frontage, only after targeted tests, full suite and checkpoint validation."
+}
