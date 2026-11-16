@@ -46,4 +46,5 @@
 - [Detalle intermedio Market Row y Crosswater](meridian_bay_market_crosswater_corridor.test.mjs)
 - [Acceso de Crosswater Plaza al terminal](meridian_bay_plaza_terminal_detail.test.mjs)
 - [Detalle de cuatro tramos Crosswater a Harbor Walk](meridian_bay_plaza_harbor_corridor.test.mjs)
+- [Detalle directo Market Row–Harbor Walk, separado de Crosswater](meridian_bay_market_harbor_corridor.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
