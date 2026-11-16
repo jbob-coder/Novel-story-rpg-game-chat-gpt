@@ -9,6 +9,7 @@
 - [Catálogo de seis lugares: diseño separado del checkpoint](MERIDIAN_BAY_PREBUILT_DESIGN.json)
 - [Referencia cartográfica provisional](MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json)
 - [Red vial incremental: primer tramo de Railgarden a Market Row — BORRADOR](MERIDIAN_BAY_ROAD_WEB_SLICE1.md)
+- [Detalle interior Railgarden → Market Row — BORRADOR POR SECCIÓN](MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md)
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
