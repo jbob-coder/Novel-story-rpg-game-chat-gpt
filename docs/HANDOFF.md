@@ -1,3 +1,9 @@
+## D-060 — Independent full-checkpoint and save-path audit (2026-11-17)
+
+[Full independent audit](06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md): historical chapter begins Day −30 at night; current CH-000 turn 9 remains Day −29 mid-morning in Jack's workshop, EV-000029 / TXT-000020. Rechecked original source hashes, full file inventory, JSON and Markdown links, A00–A17 coverage, 3 editable city fragments and unmerged draft ownership. Found and fixed journal verified-state validation, direct canonical-save bypass, improper docs-only recovery denial, chapter baseline bypass and missing durable journal write readbacks. The audited SHA stayed d37650eadf189ea3b58dbdf6966a2d2ceef816eb; PR #75 is a QA/change-only branch, no player turn. Earlier CI #44235374742 passed 315 Node / 44 Python / validator; verify PR final HEAD CI after documentation. Live direct-connector valid changed-turn test still unproven, main and canon protected.
+
+---
+
 ## D-058 QA supplement — no-op GitHub connector recovery PASS (2026-11-17)
 
 The actual in-chat GitHub connector wrote/read a QA-only blocked journal, persisted detached commit `124a8114c9cbd121adc1aea9c89f0cf1698c5d81`, resumed from that SHA after a deliberately separate tool interaction, moved only `qa/chatgpt-native-journal-transport-20261117` with expected-HEAD protection, and reread all five original canonical blobs byte-identically. QA marker `qa_transport_verified` is NOT a production save. Canonical HEAD and `ready` journal unchanged. Full evidence: [QA report](06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md). This removes uncertainty about basic connector Git-object/ref/journal access, but **does not** demonstrate an authored changed-story five-file turn or an in-chat Node coordinator. Next safe gate: a valid isolated changed-turn end-to-end rehearsal, and an actual player choice before canonical turn 10; never infer automatic background execution.

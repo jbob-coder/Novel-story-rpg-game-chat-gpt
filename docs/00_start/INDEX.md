@@ -20,3 +20,4 @@
 - [Exact 129-file Git blob reference snapshot](REPOSITORY_FILE_SNAPSHOT_2026-11-17.json)
 
 These records are source-linked developer observations, not new canon or a player turn.
+- [Full independent snapshot/journal recheck and corrections](../06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)

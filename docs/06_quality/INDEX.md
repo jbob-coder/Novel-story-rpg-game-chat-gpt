@@ -16,3 +16,4 @@
 
 - [Direct ChatGPT GitHub no-op connector transport proof and limits](CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md)
 - [Area completion and acceptance criteria](../00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
+- [Independent checkpoint, all-repo link/source and journal correctness audit (D-060)](REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
