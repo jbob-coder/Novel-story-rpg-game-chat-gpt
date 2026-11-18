@@ -8,8 +8,8 @@ const validRepo=s=>typeof s==='string'&&/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.tes
 const isSha=s=>typeof s==='string'&&/^[0-9a-f]{40}$/.test(s);
 const statuses=['ready','blocked','verified'];
 const validReady=value=>value?.status==='ready'&&isSha(value.baselineHead)&&
- /^CH-\\d{3}$/.test(value.chapterId)&&Number.isSafeInteger(value.turn)&&value.turn>=0&&
- /^EV-\\d{6}$/.test(value.lastEventId)&&/^TXT-\\d{6}$/.test(value.lastTranscriptId);
+ /^CH-\d{3}$/.test(value.chapterId)&&Number.isSafeInteger(value.turn)&&value.turn>=0&&
+ /^EV-\d{6}$/.test(value.lastEventId)&&/^TXT-\d{6}$/.test(value.lastTranscriptId);
 const prefixFor=branch=>'.narrative-save-attempts/'+Buffer.from(branch,'utf8').toString('base64url')+'.json';
 export function createGitHubSaveJournal({repository,token,journalBranch,fetchImpl=fetch,
  apiBase='https://api.github.com'}={}){
