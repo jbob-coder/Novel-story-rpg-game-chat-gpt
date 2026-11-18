@@ -1,6 +1,6 @@
 # D-060 — Independent verification of the full repository checkpoint
 
-**Audited local date:** November 17, 2026 (America/Puerto_Rico; GitHub reports activity on November 18 UTC).
+**Audit window:** began November 17, 2026 in Puerto Rico; final PR #75 commit was written November 18, 2026 at 00:14:40 AST (UTC−4), and final CI passed at 00:14:59 AST. The four-file historical checkpoint remains dated November 17.
 **Repository:** jbob-coder/Novel-story-rpg-game-chat-gpt.
 **Authoritative story branch at audit start:** work/chat-narrative-foundation.
 **Audited parent HEAD:** d37650eadf189ea3b58dbdf6966a2d2ceef816eb.
@@ -18,7 +18,7 @@ The saved outcome remains unchanged: Elena left towards school with backpack and
 ## 2. Independent structural checks and evidence
 
 - **Historical audit manifest:** 129 paths with original Git SHA1 blob IDs/sizes, recorded Git tree SHA, no duplicate paths. Original five story blob bytes matched the immutable audit SHA exactly.
-- **File inventory:** the integrated checkpoint branch had 133 tracked paths (129 original + 4 new checkpoint reports), all covered by docs/FILE_INVENTORY.json. This QA PR adds a test and this audit report; update the inventory and rerun on the final candidate HEAD.
+- **File inventory:** the integrated checkpoint branch had 133 tracked paths (129 original + 4 new checkpoint reports), all covered by docs/FILE_INVENTORY.json. PR #75 added the independent test and this report; the tracked inventory was updated and retested at the final candidate HEAD (135 paths, including both additions).
 - **Navigation:** the full tracked repository Markdown set was scanned for broken local file links (after excluding fenced code/inline code and external URL targets). None failed in the first independent CI run. External URLs and GitHub heading fragments are not separately verified by this check.
 - **JSON:** every tracked .json file parsed; all historical event/transcript/state/manifest consistency checks passed.
 - **Area board:** A00 through A17 are **18** development areas. The authoritative tree contains 22 mechanics implementation source files plus tools/INDEX.md, 29 test source files plus tests/INDEX.md, and one GitHub Actions workflow.
@@ -30,7 +30,7 @@ GitHub CI observed on this audit track:
 - [Initial full audit run #44233731915](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44233731915): **301 Node, 44 Python, canonical validator PASS**.
 - [Journal integrity and bypass regression run #44235076679](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44235076679): **313 Node, 44 Python, canonical validator PASS**.
 - [Journal readback regression run #44235374742](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44235374742): **315 Node, 44 Python, canonical validator PASS**.
-- A later future-chapter regression and this documentation require the **final PR CI** to confirm the final head; earlier green runs are not proof of untested later commits.
+- [Final PR #75 CI run #44235973810](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44235973810) on exact commit `9a760d25070a77ed1746bd2d69c0b06c9f6182be`: **315/315 Node, 45/45 Python, canonical validator PASS**. This verification completed on November 18, 2026 at 00:14:59 AST; the further date-precision edit is documentation-only and will receive its own CI.
 
 ## 3. Substantive code issues found and repaired on the audit branch
 
