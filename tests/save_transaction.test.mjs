@@ -391,3 +391,26 @@ for(const illegal of ['main','journal/living-world-save-attempts','backup/story'
   assert.equal(remote.created,0);assert.equal(remote.updated,0);
  });
 }
+
+test('journal write acknowledgment without durable readback cannot create a story commit',async()=>{
+ const remote=new FakeGit();
+ const journal={async read(){return null},async write(){return true}};
+ const r=await saveFiveFileTurn({remote,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');
+ assert.match(r.reason,/Durable journal readback differs/);
+ assert.equal(remote.created,0);assert.equal(remote.updated,0);
+ assert.equal(Object.hasOwn(r,'narration_messages'),false);
+});
+test('verified journal write requires readback before claiming deliverable narration',async()=>{
+ const remote=new FakeGit(),journal=new MemoryJournal();
+ const realRead=journal.read.bind(journal);
+ journal.read=async b=>{
+  const stored=await realRead(b);
+  return stored?.status==='verified'?null:stored;
+ };
+ const r=await saveFiveFileTurn({remote,journal,branch,chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');
+ assert.match(r.reason,/Durable journal readback differs/);
+ assert.equal(remote.created,1);assert.equal(remote.updated,1);
+ assert.equal(Object.hasOwn(r,'narration_messages'),false);
+});
