@@ -169,15 +169,18 @@ function assertTransition(before,after,chapterId){
  check(same(oldHistory,newHistory),'Transition changed nonchapter history');
 }
 async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,buildNext,
- journal=null,message='Save narrated turn',operation='turn'}){
+ journal=null,message='Save narrated turn',operation='turn',requireInitializedJournal=false}){
  let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null,readyBaseline=null;
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
   check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
-  if(operation==='chapter_transition')check(journal!==null,'Durable journal required for chapter transition');
+  if(operation==='chapter_transition'||requireInitializedJournal)
+   check(journal!==null,'Durable journal required for authoritative story branch');
   if(journal!==null){
    check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
    const previousAttempt=await journal.read(branch);
+   check(!requireInitializedJournal||previousAttempt!==null,
+    'Canonical durable journal not initialized: establish a verified ready baseline');
    check(previousAttempt==null||['ready','verified'].includes(previousAttempt.status),
     'Unresolved durable save attempt: recover before a new turn');
    if(previousAttempt?.status==='ready')readyBaseline=previousAttempt;
