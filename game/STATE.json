@@ -754,7 +754,11 @@
           "LOC-CROSSWATER-PLAZA",
           "LOC-HARBOR-WALK",
           "LOC-RAILGARDEN-RESIDENTIAL",
-          "LOC-CAFE-BRUMA"
+          "LOC-CAFE-BRUMA",
+          "LOC-MARKET-NOAH-REPAIR",
+          "LOC-MARKET-DELIVERY-POINT",
+          "LOC-MARKET-CULTURE-PASSAGE",
+          "LOC-MARKET-BUSINESS-OFFICES"
         ]
       },
       "LOC-HARBOR-WALK": {
@@ -776,7 +780,9 @@
         "description": "Barrio de edificios modestos, tiendas pequeñas y transporte cotidiano; la familia Wilson vive aquí.",
         "connected_ids": [
           "LOC-COMMERCIAL-DISTRICT",
-          "LOC-WILSON-APARTMENT"
+          "LOC-WILSON-APARTMENT",
+          "LOC-RAILGARDEN-ABARROTES",
+          "LOC-RAILGARDEN-CLINIC"
         ]
       },
       "LOC-WILSON-APARTMENT": {
@@ -812,10 +818,121 @@
           "LOC-COMMERCIAL-DISTRICT"
         ],
         "public_area": true
+      },
+      "LOC-MARKET-NOAH-REPAIR": {
+        "id": "LOC-MARKET-NOAH-REPAIR",
+        "name": "Local de reparación y componentes de Noah Vale",
+        "type": "repair_components_shop",
+        "description": "Negocio de reparación y componentes ya establecido para Noah Vale en Market Row; la fachada, disponibilidad e inventario específico siguen abiertos.",
+        "parent_id": "LOC-COMMERCIAL-DISTRICT",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-MARKET-PARTS",
+        "related_actor_id": "NPC-006",
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
+      },
+      "LOC-RAILGARDEN-ABARROTES": {
+        "id": "LOC-RAILGARDEN-ABARROTES",
+        "name": "Abarrotes de Railgarden",
+        "type": "neighborhood_grocery",
+        "description": "Establecimiento de suministros cotidianos integrado en el barrio residencial de Railgarden, sin personal, productos ni horario individual fijados.",
+        "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+        "connected_ids": [
+          "LOC-RAILGARDEN-RESIDENTIAL"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-RAIL-FOOD",
+        "related_actor_id": null,
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
+      },
+      "LOC-RAILGARDEN-CLINIC": {
+        "id": "LOC-RAILGARDEN-CLINIC",
+        "name": "Centro de atención de Railgarden",
+        "type": "community_health_center",
+        "description": "Centro sanitario de proximidad para consultas y cuidados ordinarios del barrio, con acceso para usuarios pero sin médicos, turnos ni servicios específicos asignados.",
+        "parent_id": "LOC-RAILGARDEN-RESIDENTIAL",
+        "connected_ids": [
+          "LOC-RAILGARDEN-RESIDENTIAL"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-RAIL-CARE",
+        "related_actor_id": null,
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
+      },
+      "LOC-MARKET-DELIVERY-POINT": {
+        "id": "LOC-MARKET-DELIVERY-POINT",
+        "name": "Punto de recepción de Market Row",
+        "type": "commercial_delivery_hub",
+        "description": "Punto comercial para recepción, clasificación y retiro ordinario de paquetes; no demuestra que el destinatario de Darius ni una entrega concreta estén aquí.",
+        "parent_id": "LOC-COMMERCIAL-DISTRICT",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-MARKET-DELIVERY",
+        "related_actor_id": null,
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
+      },
+      "LOC-MARKET-CULTURE-PASSAGE": {
+        "id": "LOC-MARKET-CULTURE-PASSAGE",
+        "name": "Pasaje creativo de Market Row",
+        "type": "creative_commerce_passage",
+        "description": "Pasaje de comercio cultural y exhibiciones a pequeña escala; su actividad es posible sin implicar un evento, una tienda abierta ni la asistencia de Elena.",
+        "parent_id": "LOC-COMMERCIAL-DISTRICT",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-MARKET-COMMUNITY",
+        "related_actor_id": null,
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
+      },
+      "LOC-MARKET-BUSINESS-OFFICES": {
+        "id": "LOC-MARKET-BUSINESS-OFFICES",
+        "name": "Galería de servicios de Market Row",
+        "type": "commercial_services_arcade",
+        "description": "Frente de pequeños servicios y oficinas con entrada peatonal desde Market Row; no se asignan empresas concretas, personal ni horarios.",
+        "parent_id": "LOC-COMMERCIAL-DISTRICT",
+        "connected_ids": [
+          "LOC-COMMERCIAL-DISTRICT"
+        ],
+        "public_area": true,
+        "access_status": "public_confirmed",
+        "origin_opportunity_id": "BAY-MARKET-SERVICES",
+        "related_actor_id": null,
+        "world_design_id": "MB-PREBUILT-20261112-V2",
+        "opening_hours": null,
+        "travel_minutes": null
       }
     },
     "active_events": [],
-    "secrets": {}
+    "secrets": {},
+    "prebuilt_design_id": "MB-PREBUILT-20261112-V2",
+    "prebuilt_design_review": {
+      "reviewed": true,
+      "design_id": "MB-PREBUILT-20261112-V2",
+      "source_commit": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+      "reason": "SYNTHETIC isolated verification of the owner-reviewed six-location design; no canonical story change.",
+      "effective_from_turn": 9,
+      "operation": "world_admission"
+    }
   },
   "history": {
     "last_event_sequence": 29,
