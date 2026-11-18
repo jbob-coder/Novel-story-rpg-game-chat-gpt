@@ -414,3 +414,50 @@ test('verified journal write requires readback before claiming deliverable narra
  assert.equal(remote.created,1);assert.equal(remote.updated,1);
  assert.equal(Object.hasOwn(r,'narration_messages'),false);
 });
+
+test('forged verified direct-recovery record cannot bypass Git readback',async()=>{
+ const g=new FakeGit();
+ const fake={status:'verified',branch,sourceHead:source,commitHead:newCommit,
+  expectedFiles:sourceFiles(),attempt:{status:'verified'}};
+ const r=await recoverFiveFileSave({remote:g,blocked:fake});
+ assert.equal(r.status,'blocked');
+ assert.match(r.reason,/Verified recovery lacks complete save evidence/);
+ assert.equal(g.created,0);assert.equal(g.updated,0);
+ assert.equal(Object.hasOwn(r,'narration_messages'),false);
+});
+test('direct recovery validates immutable bytes even when caller says verified',async()=>{
+ const g=new FakeGit(),saved=await run(g);
+ g.commits.get(newCommit)['chapters/CH-000.md']+='UNJOURNALED';
+ const r=await recoverFiveFileSave({remote:g,blocked:saved});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/Remote bytes differ/);
+ assert.equal(g.created,1);assert.equal(g.updated,1);
+ assert.equal(Object.hasOwn(r,'narration_messages'),false);
+});
+test('direct recovery rereads verified save and returns original literal text',async()=>{
+ const g=new FakeGit(),saved=await run(g);
+ const r=await recoverFiveFileSave({remote:g,blocked:saved});
+ assert.equal(r.status,'verified',r.reason);
+ assert.deepEqual(r.narration_messages,[words]);
+ assert.equal(g.created,1);assert.equal(g.updated,1);
+});
+test('direct canonical recovery requires the exact durable journal record',async()=>{
+ const g=new FakeGit();g.failUpdate=true;
+ const blocked=await run(g);
+ blocked.branch='work/chat-narrative-foundation';
+ const noJournal=await recoverFiveFileSave({remote:g,blocked});
+ assert.equal(noJournal.status,'blocked');
+ assert.match(noJournal.reason,/Durable journal required for canonical recovery/);
+ const otherJournal={async read(){return {...blocked,sourceHead:other}}};
+ const forged=await recoverFiveFileSave({remote:g,blocked,journal:otherJournal});
+ assert.equal(forged.status,'blocked');
+ assert.match(forged.reason,/Durable canonical recovery record differs/);
+ assert.equal(g.head,source);assert.equal(g.created,1);assert.equal(g.updated,1);
+});
+test('direct recovery refuses main and journal branches regardless of stored data',async()=>{
+ const g=new FakeGit(),saved=await run(g);
+ for(const bad of ['main','journal/living-world-save-attempts','backup/checkpoint']){
+  const r=await recoverFiveFileSave({remote:g,blocked:{...saved,branch:bad}});
+  assert.equal(r.status,'blocked');assert.match(r.reason,/Invalid narrative recovery target branch/);
+ }
+ assert.equal(g.created,1);assert.equal(g.updated,1);
+});
