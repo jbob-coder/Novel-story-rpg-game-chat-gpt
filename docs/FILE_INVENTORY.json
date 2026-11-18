@@ -68,7 +68,8 @@
       "docs/DECISION_OUTCOMES.md",
       "docs/SCENE_CRAFT.md",
       "docs/STORY_REVISIONS.md",
-      "docs/05_persistence/CONTEXT_MANAGEMENT.md"
+      "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+      "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md"
     ],
     "tracking": [
       "docs/STATUS.md",
@@ -93,7 +94,14 @@
       "tools/world_plans.mjs",
       "tools/living_world_obligations.mjs",
       "tools/context_manager.mjs",
-      "tools/verified_context_loader.mjs"
+      "tools/verified_context_loader.mjs",
+      "tools/meridian_bay_locations.mjs",
+      "tools/meridian_bay_discovery.mjs",
+      "tools/meridian_bay_integration.mjs",
+      "tools/meridian_bay_prebuilt_routes.mjs",
+      "tools/meridian_bay_scale_plan.mjs",
+      "tools/world_admission.mjs",
+      "tools/location_state.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -115,7 +123,16 @@
       "tests/world_plan_pilot.test.mjs",
       "tests/living_world_persistent_commitments.test.mjs",
       "tests/context_manager.test.mjs",
-      "tests/verified_context_loader.test.mjs"
+      "tests/verified_context_loader.test.mjs",
+      "tests/meridian_bay_foundation.test.mjs",
+      "tests/meridian_bay_discovery.test.mjs",
+      "tests/meridian_bay_integration.test.mjs",
+      "tests/meridian_bay_prebuilt_routes.test.mjs",
+      "tests/meridian_bay_city_scale.test.mjs",
+      "tests/world_admission.test.mjs",
+      "tests/location_state.test.mjs",
+      "tests/helpers/meridian_bay_fixture.mjs",
+      "tests/location_state_integration.test.mjs"
     ]
   },
   "newChapterPaths": [
@@ -177,6 +194,12 @@
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
       "tests/test_checkpoint_audit.py"
+    ],
+    "design_proposals": [
+      "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+      "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+      "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+      "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json"
     ]
   },
   "repository_checkpoints": [

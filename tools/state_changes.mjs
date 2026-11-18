@@ -3,6 +3,7 @@ import {validateTravelEstimate} from './living_world_travel.mjs';
 import {allEvents} from './chapter_history.mjs';
 import {validateNPCCommitments,validateNPCCommitmentChange} from './living_world_obligations.mjs';
 import {validateNPCPlans,validateNPCPlanChange} from './world_plans.mjs';
+import {applyLocationStateChange,verifyLocationStateHistory} from './location_state.mjs';
 const requireFact = (ok, message) => { if (!ok) throw new Error(message); };
 const copy = value => value == null ? value : JSON.parse(JSON.stringify(value));
 const equal = (a, b) => {
@@ -28,7 +29,9 @@ function applyStateChangesUnchecked(state, record, changes = []) {
     // Only the actor responsible for this event can have its state changed here.
     requireFact(change.actor_id === undefined || change.actor_id === actorId, 'Cross-actor effect requires its own event');
     const field = change.field;
-    if (field === 'location_id') {
+    if (field === 'location_state') {
+      applyLocationStateChange({state,event:record,change});
+    } else if (field === 'location_id') {
       const before = actor.location_id, after = change.after;
       requireFact(change.before === before, 'Stale actor location');
       requireFact(knownLocation(state, after), 'Unknown destination');
@@ -131,10 +134,16 @@ function applyStateChanges(state, record, changes = []) {
   const draftState = actorId === state.player.id
     ? {...state, player: draftActor}
     : {...state, world: {...state.world, actors: {...state.world.actors, [actorId]: draftActor}}};
+  // Location changes share the same atomic batch as actor effects, but must
+  // never mutate the original world through a shallow actor-only draft.
+  const changesLocations=changes.some(change=>change?.field==='location_state');
+  if(changesLocations)draftState.world={...draftState.world,
+    ...(state.world.location_states===undefined?{}:{location_states:copy(state.world.location_states)})};
   const draftRecord = {...record, state_changes: []};
   applyStateChangesUnchecked(draftState, draftRecord, changes);
   if (actorId === state.player.id) state.player = draftActor;
   else state.world.actors[actorId] = draftActor;
+  if(changesLocations)state.world.location_states=draftState.world.location_states;
   record.state_changes.push(...draftRecord.state_changes);
   return state;
 }
@@ -178,7 +187,10 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans'].includes(field), 'Unknown tracked change field');
+      // The world-level history is keyed by location rather than event actor;
+      // different people may cause consecutive changes to the same building.
+      if(field==='location_state')continue;
       if(field==='plans'){
         requireFact(change.actor_id!==state.player.id,'Only NPC plans may change');
         const previousIds=new Set(events.filter(e=>Number(e.id.slice(3))<Number(event.id.slice(3))).map(e=>e.id));
@@ -214,6 +226,7 @@ function verifyStateChanges(snapshot) {
     else actual = actor[field] ?? null;
     requireFact(equal(actual, expected), `Saved state differs from recorded ${field} effect`);
   }
+  verifyLocationStateHistory(snapshot);
   return true;
 }
 

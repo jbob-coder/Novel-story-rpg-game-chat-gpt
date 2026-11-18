@@ -7,13 +7,17 @@ import {selectRelevantNPCs,reviewNPCCommitments} from './living_world_commitment
 import {evaluateNPCPlans} from './world_plans.mjs';
 import {allEvents} from './chapter_history.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
+import {inspectPrebuiltMeridianBay} from './meridian_bay_locations.mjs';
+import {inspectSceneEstablishedPlaces} from './meridian_bay_discovery.mjs';
+import {locationAvailability} from './location_state.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
 
 export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,actorIds=null,
-  weekday=null,minute=null,schedules={},exceptions={},commitments=[]}={}){
+  weekday=null,minute=null,schedules={},exceptions={},commitments=[],includeCityDesign=false}={}){
   verifyNarrativeSnapshot(snapshot);
+  insist(typeof includeCityDesign==='boolean','City design selection must be boolean');
   insist(Number.isSafeInteger(elapsedMinutes)&&elapsedMinutes>=0 &&
     elapsedMinutes<=525600,'Invalid elapsed narrative minutes');
   insist(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100 &&
@@ -30,8 +34,9 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
     weekday,minute,schedules,exceptions});
   const placeIds=Object.keys(state.world.locations);
   const placeAvailability=Object.fromEntries(placeIds.map(id=>{
-    const checked=availability({schedule:schedules[id],exception:exceptions[id],
-      weekday,minute});
+    const checked=state.world.location_states?.[id]!==undefined?
+      locationAvailability({state,locationId:id,weekday,minute}):
+      availability({schedule:schedules[id],exception:exceptions[id],weekday,minute});
     return [id,checked];
   }));
   return copy({
@@ -52,6 +57,11 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
         eventIds})),
     commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,elapsedDays,
       commitments,eventIds}),
+    cityDesign:includeCityDesign?{
+      classification:'narrator_private_design_review',
+      locations:inspectPrebuiltMeridianBay({state,fromId:state.player.location_id,weekday,minute}),
+      observedPlaces:inspectSceneEstablishedPlaces({snapshot})
+    }:null,
     selectedActorIds:selected,placeAvailability,
     guardrails:['Proposals are not events.','Unknown schedules are not closed.',
       'Offscreen details require a justified disclosure before narrating them to Jack.',

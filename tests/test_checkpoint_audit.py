@@ -47,6 +47,53 @@ def git_blob_digest(data):
     return hashlib.sha1(f"blob {len(data)}\0".encode("ascii") + data).hexdigest()
 
 
+def original_turn_nine_state_bytes(data):
+    """Remove only the validated independent admission delta for this audit.
+
+    The dated source remains immutable. Worldbuilding may add the reviewed
+    catalog while turn nine is still current; it may not hide any other change
+    to that source behind an admission marker. The caller still compares the
+    reconstructed original with its pinned Git blob hash and byte count.
+    """
+    state = json.loads(data)
+    world = state["world"]
+    if "prebuilt_design_id" not in world:
+        return data
+    catalog = read_json("docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json")
+    review = world.get("prebuilt_design_review", {})
+
+    def require(ok, message):
+        if not ok:
+            raise AssertionError(message)
+
+    require(world["prebuilt_design_id"] == catalog["world_design_id"],
+            "Unexpected admitted catalog")
+    require(set(review) == {"reviewed", "design_id", "source_commit", "reason",
+                            "effective_from_turn", "operation"}
+            and review["reviewed"] is True
+            and review["design_id"] == catalog["world_design_id"]
+            and review["operation"] == "world_admission"
+            and type(review["effective_from_turn"]) is int
+            and review["effective_from_turn"] == 9
+            and isinstance(review["source_commit"], str)
+            and re.fullmatch(r"[0-9a-f]{40}", review["source_commit"])
+            and isinstance(review["reason"], str)
+            and len(review["reason"].strip()) >= 16,
+            "Invalid independent admission evidence")
+    require(len(catalog["places"]) == 6, "Expected six reviewed establishments")
+    for place in catalog["places"]:
+        require(world["locations"].get(place["id"]) == place,
+                "Admitted place differs from the reviewed catalog")
+        links = world["locations"][place["parent_id"]]["connected_ids"]
+        require(links.count(place["id"]) == 1,
+                "Missing or duplicated admission district link")
+        links.remove(place["id"])
+        del world["locations"][place["id"]]
+    del world["prebuilt_design_id"]
+    del world["prebuilt_design_review"]
+    return (json.dumps(state, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
+
 def prose_without_fenced_code(data):
     lines, inside, marker = [], False, ""
     for line in data.splitlines():
@@ -165,7 +212,11 @@ class RepositoryCheckpointAudit(unittest.TestCase):
             self.assertEqual(manifest["last_transcript_id"], "TXT-000020")
             self.assertEqual(len(state["world"]["actors"]), 7)
             self.assertEqual(len(state["world"]["factions"]), 1)
-            self.assertEqual(len(state["world"]["locations"]), 9)
+            # A separately journaled catalog admission does not consume turn
+            # ten. Validate its exact delta before checking original geography.
+            original_state = json.loads(original_turn_nine_state_bytes(
+                (json.dumps(state, ensure_ascii=False, indent=2) + "\n").encode("utf-8")))
+            self.assertEqual(len(original_state["world"]["locations"]), 9)
             self.assertFalse(state["world"]["shockwave_arrived"])
             self.assertEqual(state["history"]["completed_chapters"], [])
 
@@ -204,8 +255,58 @@ class RepositoryCheckpointAudit(unittest.TestCase):
         for path in paths:
             with self.subTest(path=path):
                 original = (ROOT / path).read_bytes()
+                if path == "game/STATE.json":
+                    original = original_turn_nine_state_bytes(original)
                 self.assertEqual(git_blob_digest(original), by_name[path]["blob_sha"])
                 self.assertEqual(len(original), by_name[path]["size_bytes"])
+
+    def synthetic_admitted_state(self):
+        # Work with a detached original baseline even after real admission.
+        manifest = read_json("game/SAVE_MANIFEST.json")
+        if (manifest["chapter_id"] != "CH-000" or manifest["last_completed_turn"] != 9
+                or manifest.get("story_revision", 0) != 2):
+            self.skipTest("Admission audit fixture is the historical turn-nine checkpoint")
+        state = json.loads(original_turn_nine_state_bytes(
+            (ROOT / "game/STATE.json").read_bytes()))
+        catalog = read_json("docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json")
+        world = state["world"]
+        for place in catalog["places"]:
+            world["locations"][place["id"]] = copy.deepcopy(place)
+            world["locations"][place["parent_id"]]["connected_ids"].append(place["id"])
+        world["prebuilt_design_id"] = catalog["world_design_id"]
+        world["prebuilt_design_review"] = {
+            "reviewed": True, "design_id": catalog["world_design_id"],
+            "source_commit": "a" * 40, "reason": "SYNTHETIC reviewed catalog admission.",
+            "effective_from_turn": 9, "operation": "world_admission",
+        }
+        return state
+
+    def assert_original_state_hash(self, state):
+        by_name = {r["path"]: r for r in read_json(SNAPSHOT_PATH)["git_blobs"]}
+        original = original_turn_nine_state_bytes(json.dumps(state).encode("utf-8"))
+        self.assertEqual(git_blob_digest(original), by_name["game/STATE.json"]["blob_sha"])
+        self.assertEqual(len(original), by_name["game/STATE.json"]["size_bytes"])
+
+    def test_independent_admission_keeps_original_checkpoint_auditable(self):
+        self.assert_original_state_hash(self.synthetic_admitted_state())
+
+    def test_admission_marker_cannot_hide_state_or_catalog_corruption(self):
+        mutations = {
+            "actor": lambda s: s["player"].update(location_id="LOC-CAFE-BRUMA"),
+            "time": lambda s: s["time"].update(day=-28),
+            "unrelated": lambda s: s["world"].update(unrelated_fact="SYNTHETIC forged fact"),
+            "place": lambda s: s["world"]["locations"]["LOC-MARKET-NOAH-REPAIR"].update(
+                description="SYNTHETIC changed catalog"),
+            "link": lambda s: s["world"]["locations"]["LOC-COMMERCIAL-DISTRICT"][
+                "connected_ids"].remove("LOC-MARKET-NOAH-REPAIR"),
+            "evidence": lambda s: s["world"]["prebuilt_design_review"].update(reviewed=False),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                state = self.synthetic_admitted_state()
+                mutate(state)
+                with self.assertRaises(AssertionError):
+                    self.assert_original_state_hash(state)
 
 
 if __name__ == "__main__":

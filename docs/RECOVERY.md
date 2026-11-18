@@ -12,11 +12,22 @@ file set; `encodeFiveFiles` still emits only the five active files. Use the
 loader after a chapter transition instead of treating an active chapter alone
 as the complete history.
 
-Journal attempts now distinguish `turn` and `chapter_transition`, including
-source and destination chapter identity. A verified chapter transition returns
-no narration; it does not replay the previous chapter's last scene. Both blocked
-and verified recovery revalidate the historical files. See
+Journal attempts distinguish `turn`, `chapter_transition` and `world_admission`,
+including source and destination chapter identity. A verified chapter transition
+or world admission returns no narration; neither replays the previous scene.
+Both blocked and verified recovery revalidate the historical files. See
 [chapter protocol](CHAPTER_PROTOCOL.md). Legacy turn journals remain supported.
+
+**Independent world admission:** `saveWorldAdmission` requires a durable journal
+and retains the existing chapter and completed turn. Only the reviewed catalog,
+district links and admission metadata may change in `STATE.json`; the transcript,
+events, chapter prose and manifest preserve their original bytes. Recovery reads
+the immutable source checkpoint as well as the admitted commit, checks that exact
+allowed difference before updating a detached branch ref, and returns
+`narration_messages: []`. It must not generate a turn or redisplay turn 9 merely
+because that turn number identifies the admission checkpoint. Repeated admission
+is rejected; recover its existing journaled operation. See
+[world admission and mutable locations](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md).
 
 The canonical coordinator requires the separate durable journal described in
 `AGENTS.md`. Read it before preparing a new turn. If a save is already marked

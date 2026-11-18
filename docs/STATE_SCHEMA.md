@@ -185,3 +185,36 @@ integration and no real plot secret in the fixtures. The view projection and
 literal-copy guard do not replace editorial review for paraphrased spoilers.
 V1 does not implement disclosure, organizational resource allocation, ARC
 records or the cosmic-wave transition; existing Day 0 restrictions still apply.
+
+## Independent world admission and mutable locations
+
+World-design admission is a `world_admission` journal operation, separate from
+played turns. `world.prebuilt_design_id` pins the admitted catalog, while
+`world.prebuilt_design_review` stores the reviewed design/source/reason,
+`operation: "world_admission"` and `effective_from_turn` equal to the existing
+completed turn. Admission preserves all actors, knowledge, time, chapter,
+history and manifest counters. It does not append an EV or TXT entry. The four
+non-state checkpoint files retain their original bytes.
+
+`world.locations` remains the immutable design. Optional
+`world.location_states[location_id]` holds exactly `operating_status`,
+`physical_condition`, `opening_hours`, `note` and `last_change_event_id`.
+Allowed operating states are `unknown`, `operating`, `temporarily_closed` and
+`permanently_closed`; physical states are `unknown`, `intact`, `damaged` and
+`under_repair`. `opening_hours` is null or a confirmed `weekdays` schedule using
+the existing availability interval convention. Missing state or hours establish
+no condition or schedule.
+
+An actor's causal event may record `field: "location_state"` with a saved
+`location_id`, exact `before` and complete `after`; the first `before` is null.
+The new record must cite that event. Validation replays per-location history
+across active and archived chapters and compares it with materialized state.
+Invalid location/actor identity, stale preconditions, unsupported fields,
+unrecorded state, and forged references are rejected. Actor and location effects
+share the existing atomic batch boundary.
+
+Private availability uses recorded closure before posted hours. Operating status
+alone does not prove open now; a schedule still needs established weekday/time.
+Neither this record nor a private diagnostic grants Jack knowledge of a change.
+See [the full operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md)
+for persistence, recovery, scope and interfaces.

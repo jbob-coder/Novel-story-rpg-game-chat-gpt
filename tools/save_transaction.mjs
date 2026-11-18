@@ -3,6 +3,7 @@
 import {verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {chapterFilePaths,allEvents,allTranscriptEntries} from './chapter_history.mjs';
 import {stageChapterTransition} from './chapter_management.mjs';
+import {stageWorldAdmission,assertWorldAdmission} from './world_admission.mjs';
 import {REQUIRED_SAVE_FILES,SAVE_PHASES,startSave,recordSaveStage,blockSave,resumeSave,confirmRemoteReadback} from './save_gate.mjs';
 const check=(ok,message)=>{if(!ok)throw new Error(message)};
 const sha=value=>typeof value==='string'&&/^[a-f0-9]{40}$/.test(value);
@@ -100,7 +101,8 @@ export async function assertVerifiedJournalCheckpoint({remote,record,branch,sour
   SAVE_PHASES.every(x=>typeof attempt.evidence?.[x.id]==='string'&&attempt.evidence[x.id].trim()),
   'Verified journal lacks complete save evidence');
  check(attempt.source_head===record.sourceHead&&attempt.verified_head===record.commitHead&&
-  Number.isSafeInteger(attempt.turn)&&attempt.turn>=1&&record.expectedFiles==null,
+  Number.isSafeInteger(attempt.turn)&&attempt.turn>=
+   (operationOf(attempt)==='world_admission'?0:1)&&record.expectedFiles==null,
   'Verified journal commit identity mismatch');
  operationOf(attempt);
  check(snapshot?.manifest?.chapter_id===attempt.chapter_id&&
@@ -112,6 +114,10 @@ export async function assertVerifiedJournalCheckpoint({remote,record,branch,sour
  for(const path of paths)
   check(typeof historical?.[path]==='string'&&snapshot.sourceFiles[path]===historical[path],
    'Current checkpoint differs from last verified journal save: '+path);
+ if(operationOf(attempt)==='world_admission'){
+  narrationFor(snapshot,attempt);
+  await assertAdmissionReadback(remote,snapshot,attempt,record.sourceHead);
+ }
  return true;
 }
 function assertNextTurn(before,after){
@@ -170,12 +176,21 @@ async function readExactCommit(remote,commitHead,expectedFiles,chapterId){
 // non-force update; GitHub REST does not offer an atomic compare-and-swap.
 function operationOf(attempt){
  const operation=attempt.operation??'turn';
- check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
+ check(['turn','chapter_transition','world_admission'].includes(operation),'Unknown save operation');
  return operation;
 }
 function narrationFor(snapshot,attempt){
  check(snapshot.manifest.chapter_id===attempt.chapter_id&&
   snapshot.manifest.last_completed_turn===attempt.turn,'Save attempt does not identify chapter/turn');
+ if(operationOf(attempt)==='world_admission'){
+  const review=snapshot.state.world.prebuilt_design_review;
+  check(attempt.source_chapter_id===attempt.chapter_id&&
+   review?.operation==='world_admission'&&review.source_commit===attempt.source_head&&
+   review.effective_from_turn===attempt.turn&&
+   snapshot.state.world.prebuilt_design_id===attempt.world_design_id,
+   'World admission checkpoint identity differs from save attempt');
+  return [];
+ }
  if(operationOf(attempt)==='chapter_transition'){
   const closed=snapshot.state.history.completed_chapters.at(-1);
   check(closed?.id===attempt.source_chapter_id&&closed.closed_from_commit===attempt.source_head&&
@@ -208,19 +223,37 @@ function assertTransition(before,after,chapterId){
  delete oldHistory.completed_chapters;delete newHistory.completed_chapters;
  check(same(oldHistory,newHistory),'Transition changed nonchapter history');
 }
+// Admission keeps four original blobs literally unchanged, including formatting.
+function admissionFiles(before,after){
+ const files=encodeFiveFiles(after);
+ for(const path of savePaths(before.manifest.chapter_id)){
+  if(path==='game/STATE.json')continue;
+  check(typeof before.sourceFiles?.[path]==='string',
+   'World admission requires exact source bytes: '+path);
+  files[path]=before.sourceFiles[path];
+ }
+ return files;
+}
+async function assertAdmissionReadback(remote,snapshot,attempt,sourceHead){
+ if(operationOf(attempt)!=='world_admission')return;
+ const source=await readCheckpoint({remote,commitSha:sourceHead,chapterId:attempt.source_chapter_id});
+ assertWorldAdmission(source,snapshot,sourceHead);
+ for(const path of savePaths(attempt.chapter_id))if(path!=='game/STATE.json')
+  check(source.sourceFiles[path]===snapshot.sourceFiles[path],
+   'World admission rewrote original bytes: '+path);
+}
 async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,buildNext,
  journal=null,message='Save narrated turn',operation='turn',requireInitializedJournal=false}){
  let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null,readyBaseline=null,previousAttempt=null;
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
-  check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
+  check(['turn','chapter_transition','world_admission'].includes(operation),'Unknown save operation');
   check(branch!=='main'&&!branch.startsWith('journal/')&&!branch.startsWith('backup/'),
    'Invalid narrative save target branch');
-  // A direct call to the lower-level transaction API must not bypass the
-  // canonical save gate merely because a coordinator wrapper was omitted.
+  // Direct transaction calls obey the same canonical journal gate as wrappers.
   const requireBaseline=requireInitializedJournal||branch==='work/chat-narrative-foundation';
-  if(operation==='chapter_transition'||requireBaseline)
-   check(journal!==null,'Durable journal required for authoritative story branch');
+  if(operation!=='turn'||requireBaseline)
+   check(journal!==null,'Durable journal required for authoritative story branch or metadata operation');
   if(journal!==null){
    check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
    previousAttempt=await journal.read(branch);
@@ -251,10 +284,16 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
   const candidate=await buildNext({snapshot:previous,observedHead:sourceHead});
   verifyNarrativeSnapshot(candidate);
   if(operation==='turn')assertNextTurn(previous,candidate);
-  else assertTransition(previous,candidate,targetChapterId);
+  else if(operation==='chapter_transition')assertTransition(previous,candidate,targetChapterId);
+  else{
+   assertWorldAdmission(previous,candidate,sourceHead);
+   attempt.world_design_id=candidate.state.world.prebuilt_design_id;
+  }
   attempt=recordSaveStage(attempt,'stage',operation==='turn'?
-   'Exactly one new turn staged without editing history':'Reviewed chapter transition staged without playing a turn');
-  expectedFiles=encodeFiveFiles(candidate);
+   'Exactly one new turn staged without editing history':operation==='chapter_transition'?
+   'Reviewed chapter transition staged without playing a turn':
+   'Reviewed world admission staged without moving actors, time or story counters');
+  expectedFiles=operation==='world_admission'?admissionFiles(previous,candidate):encodeFiveFiles(candidate);
   decodeFiveFiles({...archivedFiles(candidate),...expectedFiles},targetChapterId);
   attempt=recordSaveStage(attempt,'preflight','Five candidate files and complete literal history verified');
   if(journal!==null) await persistJournal(journal,branch,
@@ -271,10 +310,12 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
   if(journal!==null) await persistJournal(journal,branch,
    blockedResult(attempt,Error('Durable branch update checkpoint'),expectedFiles,commitHead,sourceHead,branch));
   const fetched=await readExactCommit(remote,commitHead,expectedFiles,targetChapterId);
+  const readback=decodeFiveFiles(fetched,targetChapterId);
+  await assertAdmissionReadback(remote,readback,attempt,sourceHead);
   const head=await remote.readHead(branch);
   attempt=confirmRemoteReadback(attempt,{branch_head:head,commit_head:commitHead,
    expected_files:expectedFiles,fetched_files:fetched});
-  const narration=narrationFor(decodeFiveFiles(fetched,targetChapterId),attempt);
+  const narration=narrationFor(readback,attempt);
   if(journal!==null) await persistJournal(journal,branch,
    {status:'verified',attempt,expectedFiles:null,commitHead,sourceHead,branch});
   return {status:'verified',attempt,expectedFiles,commitHead,sourceHead,branch,operation,
@@ -282,6 +323,11 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
  }catch(error){return blockedResult(attempt,error,expectedFiles,commitHead,sourceHead,branch)}
 }
 export function saveFiveFileTurn(options){return saveOperation({...options,operation:'turn'});}
+export function saveWorldAdmission({remote,branch,chapterId,designReview,journal=null}={}){
+ return saveOperation({remote,branch,chapterId,journal,operation:'world_admission',
+  message:'Admit reviewed world design without playing a turn',
+  buildNext:({snapshot,observedHead})=>stageWorldAdmission({snapshot,designReview,observedHead})});
+}
 export function saveChapterTransition({remote,branch,chapterId,nextPlan,reason,reviewed=false,journal=null}={}){
  return saveOperation({remote,branch,chapterId,targetChapterId:nextPlan?.chapter_id,journal,
   operation:'chapter_transition',requireInitializedJournal:branch==='work/chat-narrative-foundation',
@@ -320,7 +366,9 @@ export async function recoverFiveFileSave({remote,blocked,journal=null}={}){
    const head=await remote.readHead(branch);
    check(head===commitHead,'Verified recovery branch does not point at saved commit');
    const saved=await readExactCommit(remote,commitHead,expectedFiles,attempt.chapter_id);
-   const narration=narrationFor(decodeFiveFiles(saved,attempt.chapter_id),attempt);
+   const snapshot=decodeFiveFiles(saved,attempt.chapter_id);
+   const narration=narrationFor(snapshot,attempt);
+   await assertAdmissionReadback(remote,snapshot,attempt,sourceHead);
    check(await remote.readHead(branch)===head,
     'Remote branch moved during verified recovery');
    return {...blocked,narration_messages:narration};
@@ -340,6 +388,7 @@ export async function recoverFiveFileSave({remote,blocked,journal=null}={}){
   // commit authoritative. A corrupt journal must never move the story branch.
   const snapshot=decodeFiveFiles(fetched,chapterId);
   const narration=narrationFor(snapshot,attempt);
+  await assertAdmissionReadback(remote,snapshot,attempt,sourceHead);
   if(head===sourceHead){
    check(attempt.completed.length===5,'Cannot repair unknown commit stage');
    check(await remote.updateHead({branch,expectedSha:sourceHead,newSha:commitHead})===true,
@@ -385,7 +434,8 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
     'Verified journal lacks complete save evidence');
    check(sha(commitHead)&&sha(sourceHead)&&attempt.source_head===sourceHead&&
     attempt.verified_head===commitHead,'Verified journal commit identity mismatch');
-   check(Number.isSafeInteger(attempt.turn)&&attempt.turn>=1,'Invalid verified journal turn');
+   check(Number.isSafeInteger(attempt.turn)&&attempt.turn>=
+    (operationOf(attempt)==='world_admission'?0:1),'Invalid verified journal turn');
    savePaths(attempt.chapter_id);
    operationOf(attempt);
    verifiedAttempt=attempt;
@@ -401,7 +451,8 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
    check(await remote.readHead(branch)===currentHead,'Remote branch moved during recovery');
    return {status:'verified',attempt,commitHead,sourceHead,branch,
     operation:operationOf(attempt),narration_messages:narration,
-    reason:operationOf(attempt)==='chapter_transition'?'Chapter transition recovered; no scene generated':
+    reason:operationOf(attempt)==='world_admission'?'World admission recovered; no turn or scene generated':
+     operationOf(attempt)==='chapter_transition'?'Chapter transition recovered; no scene generated':
      'Saved narration recovered; no new turn staged'};
   }
   check(stored.status==='blocked','Unexpected journal state');

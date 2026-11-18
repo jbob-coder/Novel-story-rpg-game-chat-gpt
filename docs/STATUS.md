@@ -1,5 +1,57 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Independent admission and mutable places — 2026-11-18
+
+This increment addresses both findings from the owner's PR #33 review.
+`saveWorldAdmission` has its own journaled operation and literal recovery,
+without movement, fictional time, a player turn or generated narration. Only
+the admitted world design in STATE changes; the other four core files retain
+their exact bytes. Gameplay can use the city only after admission is saved.
+
+Mutable `world.location_states` records track operating status, physical
+condition and confirmed hours through actual causal events. Closing, damaging,
+repairing or reopening a business preserves its original design. Private
+availability reports do not grant Jack knowledge. Source-bound admission and
+cross-chapter event history are both validated; new-site effects cannot be
+backdated into a turn completed before independent admission.
+
+Code QA covers interrupted admission, exact recovery, changes across chapters,
+and the full suite against both unadmitted and admitted synthetic worlds.
+Runtime admission status comes from STATE and the durable journal, not the
+historical review summaries below. The same-turn design preserves CH-000 turn 9
+and its story while allowing its location count to change from eight to fourteen.
+See [the operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md).
+
+Validation before activation: **395/395 Node tests, 47/47 Python tests and
+checkpoint validator PASS**. The compatibility suite also runs against a
+temporary admitted-world checkpoint without modifying the live story files.
+
+## Meridian Bay Phase 1 review — 2026-11-16
+
+Branch `work/meridian-bay-phase1-20261116`, based on narrative commit
+`43a0e60013c69b1bf80abd36473264498d5363b7`, selectively reconciles PR #21's
+six-location catalog, PR #22's waypoint routing and PR #23's provisional layout.
+It preserves the current context, plan, obligation, time and recovery code.
+See [the integration contract and connection map](01_world/MERIDIAN_BAY_PHASE1.md).
+
+Design preparation is detached; explicit source-bound admission connects the
+six places to a future reviewed turn. Ordinary turns do not import them.
+Observations require physical position and exact event-linked prose; visits
+come from actual movement. Current opening/access is unknown, and actor presence
+or services are never inferred from a map entry. Evidence survives archived
+chapters. The 10 × 8 km drawing canvas remains a proposal, not city dimensions.
+
+The real checkpoint and every file under `game/` and `chapters/` are unchanged:
+CH-000 turn 9, Day -29 morning. This technical review does not activate the six
+sites in the narrative branch or merge the other draft NPC/service systems.
+The validated slice demonstrates admission, chosen travel, observation without
+entry, interruption/recovery, a later visit, and cross-chapter retrieval using
+synthetic in-memory scenes. Broad civilian event chains remain future work.
+
+Validation: **335/335 Node tests, 37/37 Python tests and checkpoint validator
+PASS**. This includes 45 additional city/diagnostic tests over the integrated
+baseline. All six catalog place records retain the source draft's exact values.
+
 ## D-061 — Repeat audit, direct verified recovery trust closed (2026-11-18)
 
 The second independent source review confirmed that the original CH-000 scene was Day −30 night, while current CH-000 turn 9 is Day −29 **mid-morning**, not evening. All five canonical blobs still match the initialized `ready` journal baseline. Found a real bypass where exported direct `recoverFiveFileSave` immediately accepted a caller-labeled verified result, without validating its remote bytes or commit; direct canonical recovery also lacked durable journal identity checks. Both now fail closed, with five new regression tests. [Audit report](06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md) and [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733): 320 Node, 45 Python, checkpoint validator PASS on the preceding code/test commit. Full valid changed-turn in-chat connector delivery still unverified. No fictional changes.

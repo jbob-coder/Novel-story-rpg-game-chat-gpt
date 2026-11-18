@@ -1,3 +1,4 @@
+
 **D-061 (2026-11-18) — SECOND INDEPENDENT AUDIT AND RECOVERY HARDENING:** Reconfirmed CH-000 turn 9 is Day −29 *mid-morning* (not evening), while CH-000 opening was Day −30 *night*. Rechecked the original five blob hashes against the ready GitHub journal; all matched. Found and fixed a direct recovery bypass that accepted a caller-supplied `verified` record without immutable reread, and required exact durable journal custody for direct canonical recovery. QA PR #77: [report](docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md), 320 Node and 45 Python tests passed in [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733). No story action, city draft admission, or change to main/journal. Continue with a valid changed-turn connector QA before declaring live saves complete.
 
 **D-060 (2026-11-17) — INDEPENDENT REPOSITORY RECHECK:** Exact Day −30 *night* opening and Day −29 *mid-morning* turn-9 checkpoint were verified against the literal transcript, STATE and manifest. The 129-file immutable snapshot, 18 area sections, map-draft status and file links were audited. Critical save-engine gaps (previous verified journal reconciliation, direct transaction bypass, docs-only recovery, journal write readbacks) were repaired and regression-tested on PR #75. See [independent audit](docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md). This engineering work did **not** change canonical story files, main or the save journal. A valid changed-turn direct-connector QA remains outstanding; do not auto-play turn 10.
@@ -25,6 +26,29 @@
 **HIGHEST PRIORITY — D-036/D-037/D-038:** Read [docs/NARRATIVE_CONTRACT.md](docs/NARRATIVE_CONTRACT.md), [docs/NARRATIVE_EXECUTION_MODEL.md](docs/NARRATIVE_EXECUTION_MODEL.md) and [game/JACK_HACKER_HISTORY.md](game/JACK_HACKER_HISTORY.md) before any narration. His pre-story hacker experience and 500+ active fictional devices are owner-confirmed; individual earlier operations have not been authored. Do not make him a novice or invent past incidents. Current format is **novela interactiva** (no RPG: no XP, levels, ranks, numeric stat checks, reward screens or fixed choice menus). Historical progression fields are frozen, not gameplay authority. Jack's pre-existing active 500+ network and nine recent Café Bruma additions are owner-confirmed fictional history. Describe cybersecurity only in abstract fictional events/results/consequences, never practical methods. This supersedes older RPG/checkpoint advice below.
 
 # Living Superhuman World — interactive-novel session entry point
+
+## Independent world admission and mutable places — 2026-11-17
+
+Use `saveWorldAdmission` with the durable journal to admit the reviewed city
+without consuming a player turn. Gameplay cannot install the catalog. Admission
+changes only world design data in STATE; the exact transcript, events, chapter,
+manifest, actor state and fictional time remain unchanged. Read the current
+STATE and journal to establish whether admission has occurred; older notes
+about draft-only locations or an uninitialized journal are historical.
+Later closures, hours and damage use event-backed `world.location_states`,
+not edits to the original catalog. An independent admission after turn 9 does
+not authorize adding effects to turn 9. See the
+[admission and mutable-state contract](docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md).
+
+## Meridian Bay Phase 1 review — 2026-11-16
+
+This development branch selectively reconciles the six-location catalog and
+route/layout drafts with the current turn engine. Follow the
+[Phase 1 contract](docs/01_world/MERIDIAN_BAY_PHASE1.md): draft preparation,
+reviewed source-bound world admission, physical observation, actual visit and
+current availability are separate. Normal turns never silently import the
+catalog. Synthetic travel/save/chapter tests do not activate the design in the
+live checkpoint or authorize a merge or a new turn.
 
 ## Conditional-plan and chapter pilot (2026-11-14)
 

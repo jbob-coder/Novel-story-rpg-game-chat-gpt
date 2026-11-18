@@ -35,6 +35,15 @@
 - [Validación Python de varios capítulos](test_multichapter_validator.py)
 - [Planes condicionales y obligaciones](world_plans.test.mjs)
 - [Piloto sintético completo de Rosa entre capítulos](world_plan_pilot.test.mjs)
+- [Catálogo y admisión de la ciudad](meridian_bay_foundation.test.mjs)
+- [Estado mutable entre capítulos y frontera de admisión](location_state_integration.test.mjs)
+- [Admisión independiente, journal y recuperación exacta](world_admission.test.mjs)
+- [Cambios causales y disponibilidad de lugares](location_state.test.mjs)
+- [Fixture sintético previo a la admisión, sin modificar el guardado real](helpers/meridian_bay_fixture.mjs)
+- [Descubrimientos físicos, visitas y evidencia](meridian_bay_discovery.test.mjs)
+- [Ciudad, viajes, guardado y continuidad entre capítulos](meridian_bay_integration.test.mjs)
+- [Rutas y puntos intermedios](meridian_bay_prebuilt_routes.test.mjs)
+- [Referencia cartográfica provisional](meridian_bay_city_scale.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
 
 ## Current source index supplement — audited November 17, 2026

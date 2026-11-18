@@ -2,9 +2,10 @@ import {checkFullNarration,appendFullTurn} from './narrative_archive.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
+import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_discovery.mjs';
 import {verifyTravelHistory} from './living_world_travel.mjs';
 import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
-// Pure, dependency-free, deterministic stage/check module for ChatGPT narrative saves.
+// Deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
 function check(ok, message) {
   if (!ok) throw new Error(message);
@@ -51,6 +52,7 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
   verifyStateChanges(snapshot);
+  verifyReviewedPlaceHistory(snapshot);
   verifyTravelHistory(snapshot);
   return true;
 }
@@ -88,6 +90,8 @@ function stageNarrativeTurn(snapshot, turn) {
   const playerEvent=event("player_action",s.player.id,turn.intent,turn.outcome,[s.player.id]);
   // D-040: every material player-side effect is an explicit, preconditioned event change.
   applyStateChanges(s,playerEvent,turn.changes??[]);
+  applyReviewedPlaceDiscovery({state:s,event:playerEvent,
+    discoveries:turn.location_discoveries??[],narrationMessages:turn.narration_messages});
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
