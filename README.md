@@ -36,3 +36,7 @@ The repository may be public, but outsiders cannot directly write without GitHub
 
 
 Guardado bloqueante: los dos puntos de entrada narrativos (escena inicial y turno) exigen validación del checkpoint y del estado del guardado anterior. Ver [protocolo de bloqueo](docs/SAVE_BLOCKING_PROTOCOL.md).
+
+## Current engineering state
+
+The [dated full repository checkpoint](docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md) and [mechanics/task board](docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md) give a complete architecture and area-by-area progress reference. These are *development notes*; the live story must always be read from the authorized Git HEAD and its game/SAVE_MANIFEST.json.
