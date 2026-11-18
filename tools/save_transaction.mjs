@@ -198,7 +198,7 @@ function assertTransition(before,after,chapterId){
 }
 async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,buildNext,
  journal=null,message='Save narrated turn',operation='turn',requireInitializedJournal=false}){
- let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null,readyBaseline=null;
+ let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null,readyBaseline=null,previousAttempt=null;
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
   check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
@@ -206,7 +206,7 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
    check(journal!==null,'Durable journal required for authoritative story branch');
   if(journal!==null){
    check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
-   const previousAttempt=await journal.read(branch);
+   previousAttempt=await journal.read(branch);
    check(!requireInitializedJournal||previousAttempt!==null,
     'Canonical durable journal not initialized: establish a verified ready baseline');
    check(previousAttempt==null||['ready','verified'].includes(previousAttempt.status),
