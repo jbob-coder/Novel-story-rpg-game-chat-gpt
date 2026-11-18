@@ -202,12 +202,17 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
   check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
-  if(operation==='chapter_transition'||requireInitializedJournal)
+  check(branch!=='main'&&!branch.startsWith('journal/')&&!branch.startsWith('backup/'),
+   'Invalid narrative save target branch');
+  // A direct call to the lower-level transaction API must not bypass the
+  // canonical save gate merely because a coordinator wrapper was omitted.
+  const requireBaseline=requireInitializedJournal||branch==='work/chat-narrative-foundation';
+  if(operation==='chapter_transition'||requireBaseline)
    check(journal!==null,'Durable journal required for authoritative story branch');
   if(journal!==null){
    check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
    previousAttempt=await journal.read(branch);
-   check(!requireInitializedJournal||previousAttempt!==null,
+   check(!requireBaseline||previousAttempt!==null,
     'Canonical durable journal not initialized: establish a verified ready baseline');
    check(previousAttempt==null||['ready','verified'].includes(previousAttempt.status),
     'Unresolved durable save attempt: recover before a new turn');
