@@ -7,6 +7,7 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {loadVerifiedContextPacket} from '../tools/verified_context_loader.mjs';
 import {savePaths} from '../tools/save_transaction.mjs';
+import {SAVE_PHASES} from '../tools/save_gate.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const branch='work/chat-narrative-foundation',HEAD='a'.repeat(40),SAVED='b'.repeat(40);
@@ -41,9 +42,12 @@ function fakeJournal(value){
  }}};
 }
 function verifiedRecord(){
- return {branch,status:'verified',commitHead:SAVED,attempt:{
-  status:'verified',percent:100,turn:9,chapter_id:'CH-000',
-  verified_head:SAVED,source_head:'0'.repeat(40)
+ const source='0'.repeat(40);
+ return {branch,status:'verified',commitHead:SAVED,sourceHead:source,expectedFiles:null,attempt:{
+  version:1,status:'verified',percent:100,turn:9,chapter_id:'CH-000',
+  verified_head:SAVED,source_head:source,
+  completed:SAVE_PHASES.map(phase=>phase.id),
+  evidence:Object.fromEntries(SAVE_PHASES.map(phase=>[phase.id,'verified QA evidence']))
  }};
 }
 test('loads complete source checkpoint by immutable SHA and returns only read-only references',async()=>{
