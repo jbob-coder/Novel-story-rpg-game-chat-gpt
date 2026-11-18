@@ -57,6 +57,28 @@ export async function readCheckpoint({remote,commitSha,chapterId}){
  check(sha(commitSha),'Invalid checkpoint commit SHA');
  return decodeFiveFiles(await readCheckpointFiles(remote,commitSha,chapterId),chapterId);
 }
+// A ready journal is evidence that the pre-journal story was inspected, NOT
+// evidence of a newly completed or delivered turn. A docs-only later commit
+// may be accepted only after every canonical story byte is compared.
+export async function assertReadyJournalBaseline({remote,record,branch,sourceHead,snapshot}){
+ check(record?.status==='ready'&&record.branch===branch&&sha(record.baselineHead),
+  'Invalid ready journal identity or baseline');
+ check(/^CH-\d{3}$/.test(record.chapterId)&&Number.isSafeInteger(record.turn)&&record.turn>=0,
+  'Malformed ready journal checkpoint');
+ check(/^EV-\d{6}$/.test(record.lastEventId)&&/^TXT-\d{6}$/.test(record.lastTranscriptId),
+  'Malformed ready journal event/transcript anchors');
+ check(sha(sourceHead)&&snapshot?.manifest?.chapter_id===record.chapterId&&
+  snapshot.manifest.last_completed_turn===record.turn&&
+  snapshot.manifest.last_event_id===record.lastEventId&&
+  snapshot.manifest.last_transcript_id===record.lastTranscriptId,
+  'Ready journal checkpoint differs from current story');
+ const original=sourceHead===record.baselineHead?snapshot:
+  await readCheckpoint({remote,commitSha:record.baselineHead,chapterId:record.chapterId});
+ for(const path of savePaths(record.chapterId))
+  check(snapshot.sourceFiles[path]===original.sourceFiles[path],
+   'Ready journal baseline differs from current canonical bytes: '+path);
+ return true;
+}
 function assertNextTurn(before,after){
  check(same(before.state.history.completed_chapters,after.state.history.completed_chapters)&&
   same(archivedFiles(before),archivedFiles(after)),'Closed chapter history rewritten');
@@ -148,7 +170,7 @@ function assertTransition(before,after,chapterId){
 }
 async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,buildNext,
  journal=null,message='Save narrated turn',operation='turn'}){
- let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null;
+ let attempt=null,expectedFiles=null,commitHead=null,sourceHead=null,readyBaseline=null;
  try{
   check(remote&&typeof buildNext==='function'&&typeof branch==='string'&&branch,'Save adapter/branch/builder required');
   check(['turn','chapter_transition'].includes(operation),'Unknown save operation');
@@ -156,12 +178,15 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
   if(journal!==null){
    check(typeof journal.read==='function'&&typeof journal.write==='function','Durable journal adapter required');
    const previousAttempt=await journal.read(branch);
-   check(previousAttempt==null||previousAttempt.status==='verified',
+   check(previousAttempt==null||['ready','verified'].includes(previousAttempt.status),
     'Unresolved durable save attempt: recover before a new turn');
+   if(previousAttempt?.status==='ready')readyBaseline=previousAttempt;
   }
   sourceHead=await remote.readHead(branch);
   check(sha(sourceHead),'Invalid remote source HEAD');
   const previous=await readCheckpoint({remote,commitSha:sourceHead,chapterId});
+  if(readyBaseline)await assertReadyJournalBaseline({
+   remote,record:readyBaseline,branch,sourceHead,snapshot:previous});
   attempt=startSave({source_head:sourceHead,chapter_id:targetChapterId,
    turn:previous.manifest.last_completed_turn+(operation==='turn'?1:0)});
   attempt.operation=operation;attempt.source_chapter_id=chapterId;
@@ -263,6 +288,14 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
   stored=await journal.read(branch);
   check(stored!=null,'No durable save attempt found');
   check(stored.branch===branch,'Journal branch mismatch');
+  if(stored.status==='ready'){
+   const head=await remote.readHead(branch);
+   const snapshot=await readCheckpoint({remote,commitSha:head,chapterId:stored.chapterId});
+   await assertReadyJournalBaseline({remote,record:stored,branch,sourceHead:head,snapshot});
+   check(await remote.readHead(branch)===head,'Remote branch moved during ready-journal inspection');
+   return {status:'ready',branch,sourceHead:head,attempt:null,narration_messages:[],
+    reason:'Verified baseline is ready; no new turn was created or recovered'};
+  }
   if(stored.status==='verified'){
    const {attempt,commitHead,sourceHead}=stored;
    check(attempt?.version===1&&attempt.status==='verified'&&attempt.percent===100&&
