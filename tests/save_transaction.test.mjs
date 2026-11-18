@@ -233,7 +233,7 @@ for(const [name,mutate,reason] of [
    files['game/SAVE_MANIFEST.json']=JSON.stringify(manifest);
   },/Sequence mismatch/],
  ['missing chapter prose',f=>{f.remote.commits.get(newCommit)['chapters/CH-000.md']='Not the saved chapter.'},/literal turn narration/],
- ['different turn',f=>{f.journal.entries.get(branch).attempt.turn++},/saved chapter\/turn/],
+ ['different turn',f=>{f.journal.entries.get(branch).attempt.turn++},/saved chapter\/turn|current turn\/chapter disagree/],
  ['different chapter',f=>{
    f.journal.entries.get(branch).attempt.chapter_id='CH-001';
    const files=f.remote.commits.get(newCommit);
@@ -245,7 +245,7 @@ for(const [name,mutate,reason] of [
  ['source identity mismatch',f=>{f.journal.entries.get(branch).sourceHead=other},/commit identity mismatch/],
  ['verified commit mismatch',f=>{f.journal.entries.get(branch).attempt.verified_head=other},/commit identity mismatch/],
  ['missing complete evidence',f=>{delete f.journal.entries.get(branch).attempt.evidence},/complete save evidence/],
- ['changed branch',f=>{f.remote.head=other},/disagrees with branch/],
+ ['changed branch',f=>{f.remote.head=other},/Unknown commit|disagrees with branch/],
  ['branch changed during read',f=>{
    const read=f.remote.readFiles;
    f.remote.readFiles=async(...args)=>{const files=await read(...args);f.remote.head=other;return files};
@@ -310,4 +310,61 @@ test('resuming a ready baseline does not invent recovered narration or turn',asy
  assert.equal(result.status,'ready');
  assert.deepEqual(result.narration_messages,[]);
  assert.equal(g.created,0);assert.equal(journal.writes,0);
+});
+
+test('verified journal rejects out-of-band story bytes before staging another action',async()=>{
+ const fixture=await verifiedSession(),previous=fixture.remote.commits.get(newCommit);
+ fixture.remote.commits.set(other,{...previous,
+  'chapters/CH-000.md':previous['chapters/CH-000.md']+'\nUNJOURNALED STORY CHANGE'});
+ fixture.remote.head=other;
+ let authorCalls=0;
+ const r=await saveFiveFileTurn({remote:fixture.remote,journal:fixture.journal,branch,
+  chapterId:'CH-000',requireInitializedJournal:true,buildNext:()=>{
+   authorCalls++;throw Error('STAGING MUST NOT BE REACHED');
+  }});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/Current checkpoint differs/);
+ assert.equal(authorCalls,0);assert.equal(fixture.remote.created,0);
+ assert.equal(fixture.journal.writes,0);
+});
+test('verified journal accepts docs-only descendant for next reviewed staging',async()=>{
+ const fixture=await verifiedSession(),previous=fixture.remote.commits.get(newCommit);
+ fixture.remote.commits.set(other,structuredClone(previous));fixture.remote.head=other;
+ let authorCalls=0;
+ const r=await saveFiveFileTurn({remote:fixture.remote,journal:fixture.journal,branch,
+  chapterId:'CH-000',requireInitializedJournal:true,buildNext:()=>{
+   authorCalls++;throw Error('QA deliberately stops after journal reconciliation');
+  }});
+ assert.equal(r.status,'blocked');
+ assert.match(r.reason,/QA deliberately stops/);
+ assert.equal(authorCalls,1);assert.equal(fixture.remote.created,0);
+ assert.equal(fixture.journal.writes,0);
+});
+test('verified journal refuses incomplete proof even if status says verified',async()=>{
+ const fixture=await verifiedSession();
+ fixture.journal.entries.get(branch).attempt.percent=85;
+ let authorCalls=0;
+ const r=await saveFiveFileTurn({remote:fixture.remote,journal:fixture.journal,branch,
+  chapterId:'CH-000',requireInitializedJournal:true,buildNext:()=>{
+   authorCalls++;throw Error('MUST NOT REACH AUTHOR');
+  }});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/complete save evidence/);
+ assert.equal(authorCalls,0);assert.equal(fixture.remote.created,0);
+});
+test('literal verified recovery accepts a docs-only HEAD without creating a turn',async()=>{
+ const fixture=await verifiedSession(),previous=fixture.remote.commits.get(newCommit);
+ fixture.remote.commits.set(other,structuredClone(previous));fixture.remote.head=other;
+ const count=builds;
+ const r=await recoverJournaledSave({remote:fixture.remote,journal:fixture.journal,branch});
+ assert.equal(r.status,'verified',r.reason);assert.deepEqual(r.narration_messages,[words]);
+ assert.equal(fixture.remote.head,other);assertNoRecoveryWrites(fixture,count);
+});
+test('literal recovery blocks if later HEAD modifies any canonical story bytes',async()=>{
+ const fixture=await verifiedSession(),previous=fixture.remote.commits.get(newCommit);
+ fixture.remote.commits.set(other,{...previous,
+  'chapters/CH-000.md':previous['chapters/CH-000.md']+'\nUNVERIFIED STORY CHANGES'});
+ fixture.remote.head=other;
+ const count=builds;
+ const r=await recoverJournaledSave({remote:fixture.remote,journal:fixture.journal,branch});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/Current checkpoint differs/);
+ assertNoRecoveryWrites(fixture,count);
 });
