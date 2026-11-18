@@ -30,3 +30,7 @@ Son **hipótesis de diseño**, no eventos históricos añadidos al canon. Se pue
 La escala y orientación cardinal **no están verificadas**; las coordenadas son solo para encajar piezas. **No se cambian** `game/`, `chapters/`, la partida, personajes ni tiempo narrativo. El dibujo SVG es una vista derivada del JSON; si se modifica la geometría se debe actualizar el dibujo.
 
 **Siguiente pieza:** prolongar la costa desde la costura (75.1,42), **sin generar todo Meridian Bay de golpe**.
+
+## Continuidad actualizada — 2026-11-17
+
+La [pieza costera 02](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md) continúa desde **(75.1,42)**. Esta rama corrige un borde de la zona portuaria que se internaba en el agua del borrador y curva la calle antigua para evitar que atraviese un edificio existente. Se regeneró el SVG desde el JSON para que no vuelva a desincronizarse. Las dos piezas siguen siendo revisables; no conforman el mapa completo de la ciudad.
