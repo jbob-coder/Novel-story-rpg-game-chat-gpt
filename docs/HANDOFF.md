@@ -1,3 +1,13 @@
+# D-058 — GitHub connector journal ready, story unchanged (2026-11-17)
+
+**Verified state:** authoritative branch `work/chat-narrative-foundation` integrated PR #71 (SHA `d1218c16f3b141816267b4daa33d8a9f8ef495b6`) via non-force expected-HEAD update after [CI #44228320512](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44228320512) passed Node, Python, canonical validator. New journal entry on `journal/living-world-save-attempts` is `status=ready`, blob `b7c9b4742d395020c43a7d646e33ba863ffcb387`, with baseline source `d1218c16...`, CH-000 turn 9, EV-000029, TXT-000020. An authenticated in-chat GitHub connector both created and reread it. Five canonical file blobs unchanged; `main` unchanged. This is storage/journal initialization, **not** a completed new turn or end-to-end connector save.
+
+**Risk and gating:** `ready` marks a verified existing pre-journal baseline. A blocked journal cannot be replaced with ready. Canonical turn saves require a journal and compare baseline identity/bytes (also after docs-only commits). No Node or Codex runtime was connected, no server/paid tool started, and no player event was manufactured. The Node token-backed isolated QA from D-055 is not equivalent to the ChatGPT connector end-to-end run. The still-required launch test is connector-native blocked→detached commit→protected story-ref update→five-file readback→verified→interruption recovery, on QA branches only. The next authentic CH-000 turn 10 requires an actual owner input and full verified save before showing narration.
+
+**Fast resume:** read [docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md](05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md), GitHub ref HEAD, journal status and manifest; use `tools/verified_context_loader.mjs` for a small evidence-linked packet; fetch original source IDs on demand. Keep prior work and NPC secrets intact; no alternative world-state authority or background simulation.
+
+---
+
 # D-056 — verified, evidence-linked context retrieval integrated (2026-11-15)
 
 **Active branch:** `work/chat-narrative-foundation`, context source integrated at `3a623554948e1ac2f7e50d61a7b0e23e69907206` by protected, non-forced fast-forward from `4c32b464a6b7dbd80600b25890641cb19185838a`. Reversible backup: `backup/narrative-before-verified-context-20261115`. No changes to `main`, `game/` or `chapters/`. **Canonical narrative remains CH-000, turn 9, Day -29 morning, EV-000029, TXT-000020.** No user action, NPC event or Day 0 transition was fabricated.
