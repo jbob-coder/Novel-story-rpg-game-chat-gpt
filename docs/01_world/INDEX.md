@@ -22,6 +22,7 @@
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
 - [Mapa físico por regiones: fragmento 01 de Harbor Walk y bahía](./MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md)
+- [Mapa físico por regiones: fragmento 02 y costura de la bahía](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
