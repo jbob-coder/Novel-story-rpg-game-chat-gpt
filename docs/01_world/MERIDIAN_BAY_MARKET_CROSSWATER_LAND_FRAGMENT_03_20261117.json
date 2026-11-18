@@ -597,9 +597,10 @@
       "mode": "existing_topology_sketch",
       "source": "existing_topology_provisional_geometry",
       "registered_as_new_story_link": false,
-      "traversable_in_saved_story": true,
+      "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": true
     },
     {
       "id": "MX-A-PLAZA-TERM",
@@ -621,9 +622,10 @@
       "mode": "existing_topology_sketch",
       "source": "existing_topology_provisional_geometry",
       "registered_as_new_story_link": false,
-      "traversable_in_saved_story": true,
+      "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": true
     },
     {
       "id": "MX-A-OLD-MARKET",
@@ -659,7 +661,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     },
     {
       "id": "MX-A-LATER-BYPASS",
@@ -699,7 +702,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     },
     {
       "id": "MX-A-OLD-SEAM",
@@ -731,7 +735,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     },
     {
       "id": "MX-A-BLOCKED",
@@ -755,7 +760,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     },
     {
       "id": "MX-A-BACKLANE",
@@ -783,7 +789,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     },
     {
       "id": "MX-A-TERMINAL-SERVICE",
@@ -807,7 +814,8 @@
       "registered_as_new_story_link": false,
       "traversable_in_saved_story": false,
       "established_street_name": null,
-      "verified_travel_minutes": null
+      "verified_travel_minutes": null,
+      "connection_known_in_saved_graph": false
     }
   ],
   "boundary_interfaces": [
