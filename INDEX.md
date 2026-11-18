@@ -24,3 +24,4 @@
 
 **This engineering snapshot is navigation, not the live story checkpoint.** Always confirm Git HEAD, journal, game/SAVE_MANIFEST.json and canonical five files first.
 - [Independent checkpoint correctness and journal integrity re-audit](docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
+- [D-061 second independent recheck and direct recovery integrity](docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md)

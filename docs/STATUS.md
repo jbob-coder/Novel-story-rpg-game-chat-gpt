@@ -1,5 +1,10 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## D-061 — Repeat audit, direct verified recovery trust closed (2026-11-18)
+
+The second independent source review confirmed that the original CH-000 scene was Day −30 night, while current CH-000 turn 9 is Day −29 **mid-morning**, not evening. All five canonical blobs still match the initialized `ready` journal baseline. Found a real bypass where exported direct `recoverFiveFileSave` immediately accepted a caller-labeled verified result, without validating its remote bytes or commit; direct canonical recovery also lacked durable journal identity checks. Both now fail closed, with five new regression tests. [Audit report](06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md) and [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733): 320 Node, 45 Python, checkpoint validator PASS on the preceding code/test commit. Full valid changed-turn in-chat connector delivery still unverified. No fictional changes.
+
+
 ## D-058 follow-up — connector write/ref/readback QA PASS
 
 The authenticated ChatGPT GitHub connector completed an isolated **no-op**
