@@ -21,6 +21,8 @@
 - [Cobertura por enlaces y definición de mayoría del mapa](MERIDIAN_BAY_ROUTE_COVERAGE_20261117.md)
 - [Correspondencia con propuestas del atlas](MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json)
 
+- [Mapa físico por regiones: fragmento 01 de Harbor Walk y bahía](./MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md)
+
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
