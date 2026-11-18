@@ -6,6 +6,10 @@ const validBranch=s=>typeof s==='string'&&/^[A-Za-z0-9][A-Za-z0-9/_-]*$/.test(s)
  !s.includes('..')&&!s.includes('//')&&!s.endsWith('/');
 const validRepo=s=>typeof s==='string'&&/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(s);
 const isSha=s=>typeof s==='string'&&/^[0-9a-f]{40}$/.test(s);
+const statuses=['ready','blocked','verified'];
+const validReady=value=>value?.status==='ready'&&isSha(value.baselineHead)&&
+ /^CH-\\d{3}$/.test(value.chapterId)&&Number.isSafeInteger(value.turn)&&value.turn>=0&&
+ /^EV-\\d{6}$/.test(value.lastEventId)&&/^TXT-\\d{6}$/.test(value.lastTranscriptId);
 const prefixFor=branch=>'.narrative-save-attempts/'+Buffer.from(branch,'utf8').toString('base64url')+'.json';
 export function createGitHubSaveJournal({repository,token,journalBranch,fetchImpl=fetch,
  apiBase='https://api.github.com'}={}){
@@ -35,16 +39,21 @@ export function createGitHubSaveJournal({repository,token,journalBranch,fetchImp
    'Malformed GitHub journal contents');
   const text=Buffer.from(entry.content.replace(/\s/g,''),'base64').toString('utf8');
   const value=JSON.parse(text);
-  insist(value?.branch===branch&&['blocked','verified'].includes(value.status),
+  insist(value?.branch===branch&&statuses.includes(value.status),
    'Journal identity/status mismatch');
+  insist(value.status!=='ready'||validReady(value),'Malformed ready baseline');
   return {sha:entry.sha,value};
  }
  return {
   async read(branch){return (await readRaw(branch)).value},
   async write(branch,value){
-   insist(value&&value.branch===branch&&['blocked','verified'].includes(value.status),
+   insist(value&&value.branch===branch&&statuses.includes(value.status),
     'Attempt/branch mismatch');
-   const {sha}=await readRaw(branch);
+   insist(value.status!=='ready'||validReady(value),'Malformed ready baseline');
+   const {sha,value:previous}=await readRaw(branch);
+   // A baseline is a one-time bootstrap, not an escape from a blocked save.
+   insist(value.status!=='ready'||previous===null,
+    'Cannot replace an initialized or blocked journal with a ready baseline');
    const path=prefixFor(branch);
    const payload={message:'chore: checkpoint narrative save attempt',
     branch:journalBranch,content:Buffer.from(JSON.stringify(value),'utf8').toString('base64'),
