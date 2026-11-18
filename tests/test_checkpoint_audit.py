@@ -3,11 +3,13 @@
 This does not create a story turn or modify canon. Historical audit metadata is
 immutable, while the active SAVE_MANIFEST may legitimately move after play.
 """
+import copy
 import hashlib
 import json
 import re
 import subprocess
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -166,6 +168,25 @@ class RepositoryCheckpointAudit(unittest.TestCase):
             self.assertEqual(len(state["world"]["locations"]), 9)
             self.assertFalse(state["world"]["shockwave_arrived"])
             self.assertEqual(state["history"]["completed_chapters"], [])
+
+    def test_future_chapter_does_not_invalidate_immutable_opening_night(self):
+        # A later CH-001 manifest must not be compared with the old CH-000
+        # event/transcript tail. The original opening remains historical truth.
+        original_read = read_json
+        state = copy.deepcopy(original_read("game/STATE.json"))
+        manifest = copy.deepcopy(original_read("game/SAVE_MANIFEST.json"))
+        state["chapter"]["id"] = "CH-001"
+        manifest["chapter_id"] = "CH-001"
+        manifest["last_completed_turn"] = 10
+        manifest["last_event_id"] = "EV-000030"
+        manifest["last_transcript_id"] = "TXT-000022"
+        overrides = {
+            "game/STATE.json": state,
+            "game/SAVE_MANIFEST.json": manifest,
+        }
+        with patch(__name__ + ".read_json",
+                   side_effect=lambda path: overrides.get(path, original_read(path))):
+            self.test_opening_night_and_current_morning_are_distinct()
 
     def test_original_story_blobs_match_source_snapshot_when_still_turn_nine(self):
         manifest = read_json("game/SAVE_MANIFEST.json")
