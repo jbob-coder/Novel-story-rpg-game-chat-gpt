@@ -676,8 +676,12 @@
           "y": 46.3
         },
         {
-          "x": 74,
-          "y": 45.8
+          "x": 73.45,
+          "y": 46.48
+        },
+        {
+          "x": 74.28,
+          "y": 46.35
         },
         {
           "x": 75.3,
@@ -732,8 +736,8 @@
           "y": 43.1
         },
         {
-          "x": 73.2,
-          "y": 43.42
+          "x": 72.62,
+          "y": 43.23
         }
       ],
       "mode": "service_restricted_unknown",
@@ -746,7 +750,7 @@
       "role": "calle junto a borde portuario con acceso no autorizado más allá",
       "points": [
         {
-          "x": 73.05,
+          "x": 74.15,
           "y": 45.62
         },
         {
@@ -901,5 +905,10 @@
     "no_georeferenced_shoreline": true,
     "no_claim_of_playable_region": true
   },
-  "next_piece": "Ampliar físicamente el borde urbano del lado de tierra desde el límite x=68; no reorganizar ni terminar la ciudad entera."
+  "next_piece": "Ampliar físicamente el borde urbano del lado de tierra desde el límite x=68; no reorganizar ni terminar la ciudad entera.",
+  "review_corrections": {
+    "road_footprint_crossings_resolved": true,
+    "historic_blocked_trace_overbuilding_intentional": true,
+    "comment": "Historic trace HN-A-TRACE is an abandoned alignment under a later parcel, never a traversable road."
+  }
 }
