@@ -26,3 +26,16 @@
 - [Planes condicionales de NPC y límites de información](world_plans.mjs)
 - [Obligaciones causales reutilizadas de PR #10](living_world_obligations.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
+
+## Current source index supplement — audited November 17, 2026
+
+These files already existed in the authoritative source and are listed here for discoverability; indexing them is not a change to story state.
+
+- [github_save_journal.mjs](github_save_journal.mjs) — Separate durable GitHub save-attempt journal (ready/blocked/verified).
+- [living_world_availability.mjs](living_world_availability.mjs) — Time-aware service availability and route proposal, unknown defaults.
+- [living_world_commitments.mjs](living_world_commitments.mjs) — Relevant NPC review and complete obligation deadline audit.
+- [living_world_coordinator.mjs](living_world_coordinator.mjs) — Reviewed NPC/player turn coordinator with journal gate.
+- [living_world_diagnostics.mjs](living_world_diagnostics.mjs) — Private/reader-safe Living World diagnostic projection.
+- [living_world_routines.mjs](living_world_routines.mjs) — Independent NPC routine proposals and causal staging.
+- [living_world_time.mjs](living_world_time.mjs) — Coarse in-fiction time window validation.
+- [living_world_travel.mjs](living_world_travel.mjs) — Evidence-based travel estimates and context chronology.
