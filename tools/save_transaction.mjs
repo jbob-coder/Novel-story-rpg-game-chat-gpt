@@ -8,6 +8,13 @@ const check=(ok,message)=>{if(!ok)throw new Error(message)};
 const sha=value=>typeof value==='string'&&/^[a-f0-9]{40}$/.test(value);
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const json=value=>JSON.stringify(value,null,2)+'\n';
+// GitHub's write acknowledgment is not an independent durable readback.
+// Verify the exact journal record at each stage before changing more story.
+async function persistJournal(journal,branch,record){
+ await journal.write(branch,record);
+ check(same(await journal.read(branch),record),
+  'Durable journal readback differs from the acknowledged record');
+}
 export function savePaths(chapterId){
  check(typeof chapterId==='string'&&/^CH-\d{3}$/.test(chapterId),'Invalid chapter ID');
  return REQUIRED_SAVE_FILES.map(path=>path.replace('CH-NNN',chapterId));
@@ -245,25 +252,25 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
   expectedFiles=encodeFiveFiles(candidate);
   decodeFiveFiles({...archivedFiles(candidate),...expectedFiles},targetChapterId);
   attempt=recordSaveStage(attempt,'preflight','Five candidate files and complete literal history verified');
-  if(journal!==null) await journal.write(branch,
+  if(journal!==null) await persistJournal(journal,branch,
    blockedResult(attempt,Error('Durable pre-commit save checkpoint'),expectedFiles,null,sourceHead,branch));
   check(await remote.readHead(branch)===sourceHead,'Concurrent branch change before commit');
   commitHead=await remote.createCommit({parentSha:sourceHead,files:expectedFiles,message});
   check(sha(commitHead),'Remote commit SHA missing');
   attempt=recordSaveStage(attempt,'commit','Created five-file commit: '+commitHead);
-  if(journal!==null) await journal.write(branch,
+  if(journal!==null) await persistJournal(journal,branch,
    blockedResult(attempt,Error('Durable detached commit checkpoint'),expectedFiles,commitHead,sourceHead,branch));
   check(await remote.updateHead({branch,expectedSha:sourceHead,newSha:commitHead})===true,
    'Protected branch update rejected');
   attempt=recordSaveStage(attempt,'ref','Moved branch with expected source HEAD to '+commitHead);
-  if(journal!==null) await journal.write(branch,
+  if(journal!==null) await persistJournal(journal,branch,
    blockedResult(attempt,Error('Durable branch update checkpoint'),expectedFiles,commitHead,sourceHead,branch));
   const fetched=await readExactCommit(remote,commitHead,expectedFiles,targetChapterId);
   const head=await remote.readHead(branch);
   attempt=confirmRemoteReadback(attempt,{branch_head:head,commit_head:commitHead,
    expected_files:expectedFiles,fetched_files:fetched});
   const narration=narrationFor(decodeFiveFiles(fetched,targetChapterId),attempt);
-  if(journal!==null) await journal.write(branch,
+  if(journal!==null) await persistJournal(journal,branch,
    {status:'verified',attempt,expectedFiles:null,commitHead,sourceHead,branch});
   return {status:'verified',attempt,expectedFiles,commitHead,sourceHead,branch,operation,
    narration_messages:narration};
@@ -366,7 +373,7 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
   // Never restage/author new prose during recovery.
   const recovered=await recoverFiveFileSave({remote,blocked:stored});
   if(recovered.status==='verified'){
-   try{await journal.write(branch,{status:'verified',attempt:recovered.attempt,
+   try{await persistJournal(journal,branch,{status:'verified',attempt:recovered.attempt,
     expectedFiles:null,commitHead:recovered.commitHead,sourceHead:recovered.sourceHead,branch});}
    catch(error){return blockedResult(recovered.attempt,Error('Journal confirmation pending: '+error.message),
     recovered.expectedFiles,recovered.commitHead,recovered.sourceHead,branch)}
