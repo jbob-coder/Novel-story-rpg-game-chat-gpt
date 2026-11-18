@@ -1,0 +1,847 @@
+{
+  "schema_version": 1,
+  "id": "MB-MARKET-CROSSWATER-LAND-FRAGMENT-03-20261117",
+  "status": "editable_fragment_not_saved_canon",
+  "region": "Terreno de enlace Market Row–Crosswater hacia los bordes antiguos de la bahía",
+  "study_box": {
+    "x_min": 58,
+    "x_max": 68.2,
+    "y_min": 42,
+    "y_max": 51,
+    "coordinate_system": "same_100x80_illustrative_city_canvas",
+    "cardinal_directions_approved": false
+  },
+  "neighbor_source": "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.json",
+  "region_type": "land_only_no_water_or_new_shoreline",
+  "source_existing_places": [
+    {
+      "id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "authority": "existing_saved_graph_anchor"
+    },
+    {
+      "id": "LOC-CROSSWATER-PLAZA",
+      "xy": {
+        "x": 65,
+        "y": 42
+      },
+      "authority": "existing_saved_graph_anchor"
+    },
+    {
+      "id": "LOC-TRANSIT-TERMINAL",
+      "xy": {
+        "x": 66,
+        "y": 42
+      },
+      "authority": "existing_saved_graph_anchor"
+    }
+  ],
+  "history_hypotheses": [
+    {
+      "layer": "older_market_streets",
+      "cause": "comercio del barrio y trazas parcelarias previas a la terminal",
+      "design_only": true
+    },
+    {
+      "layer": "transit_civic_expansion",
+      "cause": "plaza y terminal interrumpieron algunos accesos anteriores y aparecieron caminos posteriores",
+      "design_only": true
+    },
+    {
+      "layer": "later_access_and_reuse",
+      "cause": "la nueva avenida rodea talleres antiguos y conserva bolsillos de manzanas irregulares",
+      "design_only": true
+    }
+  ],
+  "land_use_patches": [
+    {
+      "id": "MX-Z-TRADE",
+      "kind": "comercio mixto tradicional sin fachada homogénea",
+      "polygon": [
+        {
+          "x": 58.15,
+          "y": 43.25
+        },
+        {
+          "x": 59.5,
+          "y": 43.05
+        },
+        {
+          "x": 60.8,
+          "y": 43.55
+        },
+        {
+          "x": 61.7,
+          "y": 44.75
+        },
+        {
+          "x": 60.5,
+          "y": 46.2
+        },
+        {
+          "x": 58.25,
+          "y": 46
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon"
+    },
+    {
+      "id": "MX-Z-REUSE",
+      "kind": "traseras de talleres y almacenes reutilizados",
+      "polygon": [
+        {
+          "x": 61.5,
+          "y": 43.65
+        },
+        {
+          "x": 63.35,
+          "y": 43.2
+        },
+        {
+          "x": 64.2,
+          "y": 44.75
+        },
+        {
+          "x": 63.4,
+          "y": 46.45
+        },
+        {
+          "x": 62.1,
+          "y": 46.85
+        },
+        {
+          "x": 61.3,
+          "y": 45.9
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon"
+    },
+    {
+      "id": "MX-Z-HOUSING",
+      "kind": "viviendas de varias épocas en tramas oblicuas",
+      "polygon": [
+        {
+          "x": 58.3,
+          "y": 46.5
+        },
+        {
+          "x": 60.8,
+          "y": 46.3
+        },
+        {
+          "x": 62.6,
+          "y": 47.6
+        },
+        {
+          "x": 62.4,
+          "y": 50.8
+        },
+        {
+          "x": 58.2,
+          "y": 50.7
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon"
+    },
+    {
+      "id": "MX-Z-TRANSIT",
+      "kind": "áreas de circulación y servicios alrededor de plaza y terminal",
+      "polygon": [
+        {
+          "x": 63.2,
+          "y": 42
+        },
+        {
+          "x": 67.6,
+          "y": 42
+        },
+        {
+          "x": 67.85,
+          "y": 43.2
+        },
+        {
+          "x": 67.2,
+          "y": 45
+        },
+        {
+          "x": 64.8,
+          "y": 45.4
+        },
+        {
+          "x": 63.2,
+          "y": 44.7
+        }
+      ],
+      "era": "transit_civic_expansion",
+      "status": "candidate_local_plan_not_saved_canon"
+    },
+    {
+      "id": "MX-Z-CONVERSION",
+      "kind": "terrenos readaptados cerca de calles de conexión",
+      "polygon": [
+        {
+          "x": 63.1,
+          "y": 45.2
+        },
+        {
+          "x": 65.2,
+          "y": 45.6
+        },
+        {
+          "x": 67.9,
+          "y": 45
+        },
+        {
+          "x": 68,
+          "y": 47.7
+        },
+        {
+          "x": 65.1,
+          "y": 48.25
+        },
+        {
+          "x": 62.8,
+          "y": 47.4
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon"
+    },
+    {
+      "id": "MX-Z-RECENT",
+      "kind": "mezcla de talleres posteriores y edificios en lotes no uniformes",
+      "polygon": [
+        {
+          "x": 62.7,
+          "y": 48
+        },
+        {
+          "x": 65.2,
+          "y": 47.8
+        },
+        {
+          "x": 68.1,
+          "y": 48.7
+        },
+        {
+          "x": 68.05,
+          "y": 50.7
+        },
+        {
+          "x": 63,
+          "y": 50.8
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon"
+    }
+  ],
+  "building_footprints": [
+    {
+      "id": "MX-B-01",
+      "kind": "comercio antiguo con patio",
+      "polygon": [
+        {
+          "x": 58.65,
+          "y": 43.43
+        },
+        {
+          "x": 59.41,
+          "y": 43.36
+        },
+        {
+          "x": 59.55,
+          "y": 44
+        },
+        {
+          "x": 58.78,
+          "y": 44.18
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-02",
+      "kind": "local pequeño de obra anterior",
+      "polygon": [
+        {
+          "x": 59.72,
+          "y": 43.46
+        },
+        {
+          "x": 60.39,
+          "y": 43.4
+        },
+        {
+          "x": 60.43,
+          "y": 43.96
+        },
+        {
+          "x": 59.83,
+          "y": 44.08
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-03",
+      "kind": "taller reorientado hacia vial secundario",
+      "polygon": [
+        {
+          "x": 60.85,
+          "y": 44.54
+        },
+        {
+          "x": 61.7,
+          "y": 44.45
+        },
+        {
+          "x": 61.81,
+          "y": 45.11
+        },
+        {
+          "x": 60.97,
+          "y": 45.23
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-04",
+      "kind": "patio de servicio rodeado por calle antigua",
+      "polygon": [
+        {
+          "x": 62.04,
+          "y": 45.25
+        },
+        {
+          "x": 62.77,
+          "y": 45.29
+        },
+        {
+          "x": 62.85,
+          "y": 45.78
+        },
+        {
+          "x": 62.17,
+          "y": 45.89
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-05",
+      "kind": "vivienda posterior sobre antigua vía cerrada",
+      "polygon": [
+        {
+          "x": 58.69,
+          "y": 46.52
+        },
+        {
+          "x": 59.56,
+          "y": 46.55
+        },
+        {
+          "x": 59.58,
+          "y": 47.3
+        },
+        {
+          "x": 58.78,
+          "y": 47.42
+        }
+      ],
+      "era": "transit_civic_expansion",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-06",
+      "kind": "residencias sobre parcelas antiguas",
+      "polygon": [
+        {
+          "x": 60.17,
+          "y": 47.43
+        },
+        {
+          "x": 61.08,
+          "y": 47.42
+        },
+        {
+          "x": 61.16,
+          "y": 48.05
+        },
+        {
+          "x": 60.24,
+          "y": 48.17
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-07",
+      "kind": "manzana residencial mixta",
+      "polygon": [
+        {
+          "x": 58.86,
+          "y": 48.8
+        },
+        {
+          "x": 59.93,
+          "y": 48.68
+        },
+        {
+          "x": 60.02,
+          "y": 49.43
+        },
+        {
+          "x": 59.04,
+          "y": 49.63
+        }
+      ],
+      "era": "older_market_streets",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-08",
+      "kind": "edificio al que termina una vía antigua",
+      "polygon": [
+        {
+          "x": 61.43,
+          "y": 49.15
+        },
+        {
+          "x": 62.35,
+          "y": 49.1
+        },
+        {
+          "x": 62.41,
+          "y": 49.88
+        },
+        {
+          "x": 61.53,
+          "y": 50.02
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-09",
+      "kind": "servicio de paso en manzana triangular",
+      "polygon": [
+        {
+          "x": 63.53,
+          "y": 43.45
+        },
+        {
+          "x": 64.34,
+          "y": 43.42
+        },
+        {
+          "x": 64.46,
+          "y": 44.02
+        },
+        {
+          "x": 63.62,
+          "y": 44.17
+        }
+      ],
+      "era": "transit_civic_expansion",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-10",
+      "kind": "bloque reformado junto al borde terminal",
+      "polygon": [
+        {
+          "x": 65.38,
+          "y": 43.67
+        },
+        {
+          "x": 66.29,
+          "y": 43.65
+        },
+        {
+          "x": 66.41,
+          "y": 44.19
+        },
+        {
+          "x": 65.51,
+          "y": 44.34
+        }
+      ],
+      "era": "transit_civic_expansion",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-11",
+      "kind": "lote mixto estrechado por avenida",
+      "polygon": [
+        {
+          "x": 64.03,
+          "y": 47.25
+        },
+        {
+          "x": 64.93,
+          "y": 47.29
+        },
+        {
+          "x": 64.97,
+          "y": 47.91
+        },
+        {
+          "x": 64.16,
+          "y": 47.92
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    },
+    {
+      "id": "MX-B-12",
+      "kind": "nave convertida en uso de barrio",
+      "polygon": [
+        {
+          "x": 66.01,
+          "y": 48.77
+        },
+        {
+          "x": 67.14,
+          "y": 48.68
+        },
+        {
+          "x": 67.23,
+          "y": 49.39
+        },
+        {
+          "x": 66.14,
+          "y": 49.47
+        }
+      ],
+      "era": "later_access_and_reuse",
+      "status": "candidate_local_plan_not_saved_canon",
+      "occupants_assigned": false,
+      "entrances_established": false,
+      "interiors_defined": false
+    }
+  ],
+  "street_alignments": [
+    {
+      "id": "MX-A-MARKET-PLAZA",
+      "role": "la conexión ya conocida Market Row → Crosswater, sin afirmar carriles ni distancias",
+      "points": [
+        {
+          "x": 58,
+          "y": 43
+        },
+        {
+          "x": 59.8,
+          "y": 42.6
+        },
+        {
+          "x": 62.2,
+          "y": 42.3
+        },
+        {
+          "x": 64,
+          "y": 42.1
+        },
+        {
+          "x": 65,
+          "y": 42
+        }
+      ],
+      "mode": "existing_topology_sketch",
+      "source": "existing_topology_provisional_geometry",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": true,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-PLAZA-TERM",
+      "role": "enlace ya conocido entre plaza y terminal",
+      "points": [
+        {
+          "x": 65,
+          "y": 42
+        },
+        {
+          "x": 65.5,
+          "y": 42
+        },
+        {
+          "x": 66,
+          "y": 42
+        }
+      ],
+      "mode": "existing_topology_sketch",
+      "source": "existing_topology_provisional_geometry",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": true,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-OLD-MARKET",
+      "role": "calle vieja sinuosa entre lotes y talleres de épocas distintas",
+      "points": [
+        {
+          "x": 58.3,
+          "y": 45.6
+        },
+        {
+          "x": 59.5,
+          "y": 46
+        },
+        {
+          "x": 61.5,
+          "y": 46.15
+        },
+        {
+          "x": 62.8,
+          "y": 46.35
+        },
+        {
+          "x": 64,
+          "y": 45.65
+        },
+        {
+          "x": 65.2,
+          "y": 45.9
+        }
+      ],
+      "mode": "candidate_street",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-LATER-BYPASS",
+      "role": "vía posterior encajada para rodear zona de edificios antiguos",
+      "points": [
+        {
+          "x": 60.8,
+          "y": 51
+        },
+        {
+          "x": 62.9,
+          "y": 50.5
+        },
+        {
+          "x": 63.15,
+          "y": 49.1
+        },
+        {
+          "x": 63.2,
+          "y": 46.6
+        },
+        {
+          "x": 64.4,
+          "y": 46.4
+        },
+        {
+          "x": 66.6,
+          "y": 46.5
+        },
+        {
+          "x": 68.2,
+          "y": 46.65
+        }
+      ],
+      "mode": "candidate_street",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-OLD-SEAM",
+      "role": "calle antigua que podría continuar en el fragmento costero adyacente",
+      "points": [
+        {
+          "x": 63.5,
+          "y": 45.15
+        },
+        {
+          "x": 64.6,
+          "y": 44.7
+        },
+        {
+          "x": 66,
+          "y": 44.65
+        },
+        {
+          "x": 67.2,
+          "y": 44.1
+        },
+        {
+          "x": 68.1,
+          "y": 43.8
+        }
+      ],
+      "mode": "candidate_street",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-BLOCKED",
+      "role": "vía corta abandonada por construcción posterior",
+      "points": [
+        {
+          "x": 59.2,
+          "y": 46.25
+        },
+        {
+          "x": 59.4,
+          "y": 47.1
+        },
+        {
+          "x": 59.8,
+          "y": 48.5
+        }
+      ],
+      "mode": "blocked_historic_trace",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-BACKLANE",
+      "role": "callejuela de servicios que no da acceso al interior de comercios por defecto",
+      "points": [
+        {
+          "x": 58.4,
+          "y": 44.65
+        },
+        {
+          "x": 59.2,
+          "y": 44.75
+        },
+        {
+          "x": 60.1,
+          "y": 45.6
+        },
+        {
+          "x": 60.6,
+          "y": 45.85
+        }
+      ],
+      "mode": "unknown_service_access",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    },
+    {
+      "id": "MX-A-TERMINAL-SERVICE",
+      "role": "vía candidata de apoyo al distrito de tránsito; sin vías férreas dibujadas",
+      "points": [
+        {
+          "x": 65.5,
+          "y": 42.7
+        },
+        {
+          "x": 66.1,
+          "y": 43.2
+        },
+        {
+          "x": 67.1,
+          "y": 43.5
+        }
+      ],
+      "mode": "restricted_unknown",
+      "source": "new_geometry_only",
+      "registered_as_new_story_link": false,
+      "traversable_in_saved_story": false,
+      "established_street_name": null,
+      "verified_travel_minutes": null
+    }
+  ],
+  "boundary_interfaces": [
+    {
+      "id": "MX-EAST-OLD",
+      "point": {
+        "x": 68.1,
+        "y": 43.8
+      },
+      "connects_to": "HN-A-OLD",
+      "source_fragment": "MB-HARBOR-COAST-FRAGMENT-02-20261117",
+      "transport_status": "candidate_not_saved_route"
+    },
+    {
+      "id": "MX-EAST-BYPASS",
+      "point": {
+        "x": 68.2,
+        "y": 46.65
+      },
+      "connects_to": "HN-A-NEW",
+      "source_fragment": "MB-HARBOR-COAST-FRAGMENT-02-20261117",
+      "transport_status": "candidate_not_saved_route"
+    }
+  ],
+  "preservation_rules": {
+    "first_2_routes_are_existing_saved_graph_edges_only": true,
+    "no_new_canonical_location_or_route": true,
+    "no_new_named_npc_or_business": true,
+    "school_not_located": true,
+    "terminal_train_track_geometry_not_surveyed": true,
+    "no_jack_movement_or_event": true,
+    "story_time_unchanged": true,
+    "provisional_land_use_and_buildings": true,
+    "no_claim_of_finished_urban_core": true
+  },
+  "next_region": "Continuar desde los costados hacia Railgarden/Market Row con empalmes revisados; no ensamblar toda la ciudad de una vez."
+}
