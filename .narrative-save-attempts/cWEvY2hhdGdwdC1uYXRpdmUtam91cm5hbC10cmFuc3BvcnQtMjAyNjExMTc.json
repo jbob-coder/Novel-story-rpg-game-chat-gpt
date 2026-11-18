@@ -1,5 +1,5 @@
 {
-  "status": "blocked",
+  "status": "qa_transport_verified",
   "branch": "qa/chatgpt-native-journal-transport-20261117",
   "qaOnly": true,
   "operation": "no-op connector transport (NOT a story turn)",
@@ -12,6 +12,13 @@
     "game/STATE.json": "0320a93ebf4a944da97b65dffa6d281acce46d94",
     "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320"
   },
-  "phase": "detached_commit_saved",
-  "note": "Synthetic QA only: test direct ChatGPT GitHub connector persistence, no narrative changes."
+  "phase": "connector_noop_readback_verified",
+  "note": "QA-only: five original blobs verified by direct ChatGPT GitHub connector; NOT a valid narrated turn or production journal save.",
+  "readbackBlobShas": {
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4",
+    "game/STATE.json": "0320a93ebf4a944da97b65dffa6d281acce46d94",
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320"
+  }
 }
