@@ -1,0 +1,798 @@
+{
+  "schema_version": 1,
+  "snapshot_label": "repository-architecture-and-development-checkpoint",
+  "as_of_local_date": "2026-11-17",
+  "as_of_timezone": "America/Puerto_Rico",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "authoritative_branch_at_capture": "work/chat-narrative-foundation",
+  "immutable_source_commit": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+  "immutable_source_tree": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+  "main_branch_at_capture": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+  "explanation": "Exact Git blob paths, SHA and sizes at immutable source commit. This metadata does NOT assert the current latest head, make a gameplay save, or promote unmerged work. A later documentation commit will not appear here; do not rewrite this snapshot to make it self-referential.",
+  "file_count": 129,
+  "counts_by_area": {
+    "root": 3,
+    "ci": 1,
+    "documentation": 48,
+    "game": 15,
+    "chapters": 9,
+    "mechanics": 23,
+    "tests": 30
+  },
+  "git_blobs": [
+    {
+      "path": ".github/workflows/narrative-qa.yml",
+      "blob_sha": "8217e9e4c838462cdf3f9a7a0d9e0920907051a5",
+      "size_bytes": 779,
+      "area": "ci"
+    },
+    {
+      "path": "AGENTS.md",
+      "blob_sha": "9f32ef1f4e7dd53ad9f85663e58e5cc13e533ab7",
+      "size_bytes": 20507,
+      "area": "root"
+    },
+    {
+      "path": "chapters/CH-000.events.json",
+      "blob_sha": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+      "size_bytes": 78498,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/CH-000.md",
+      "blob_sha": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4",
+      "size_bytes": 44165,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/CH-000.PREP.md",
+      "blob_sha": "79de0998ef70133bde449bb4f37ac1c438133ed0",
+      "size_bytes": 3877,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/CH-000.transcript.json",
+      "blob_sha": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+      "size_bytes": 35759,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/CH-000/INDEX.md",
+      "blob_sha": "1e5d9b0f41e2e6da32bd3233e9f46fc60b9330af",
+      "size_bytes": 790,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/INDEX.md",
+      "blob_sha": "168e68630e468dc6283e3da01b7102fd8c79b554",
+      "size_bytes": 756,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/revisions/INDEX.md",
+      "blob_sha": "a6b7c5077a12f3bab2d985f776f3de03035430b1",
+      "size_bytes": 627,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/revisions/REV-CH000-0001.json",
+      "blob_sha": "e6cf35b2d4e47eabddea8b944444921de21042f4",
+      "size_bytes": 13084,
+      "area": "chapters"
+    },
+    {
+      "path": "chapters/revisions/REV-CH000-0002.json",
+      "blob_sha": "82a3ec08c08c9c8515d6b3e891f85da36a9b16a6",
+      "size_bytes": 25862,
+      "area": "chapters"
+    },
+    {
+      "path": "docs/00_start/INDEX.md",
+      "blob_sha": "4fa4f253e2f8f188fc62eb10eac17f0b98531d42",
+      "size_bytes": 693,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/01_world/INDEX.md",
+      "blob_sha": "e8f78b15ba9de090c0296a6d1d837364c47ce9fb",
+      "size_bytes": 605,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/02_characters/INDEX.md",
+      "blob_sha": "b1f73c961a909faced40c569a51708816acd9e33",
+      "size_bytes": 922,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/03_systems/INDEX.md",
+      "blob_sha": "e914b552162eb6575d040d3aa0e11ac4021bc103",
+      "size_bytes": 881,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md",
+      "blob_sha": "ae024c2578462379a97fea725709d635d5e54eee",
+      "size_bytes": 7958,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/04_story/INDEX.md",
+      "blob_sha": "ea2240e585de6f31ce8cb22fd7a8fdce0381cef7",
+      "size_bytes": 1279,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md",
+      "blob_sha": "674a185b41453d271b12837a5e672849ba144b50",
+      "size_bytes": 5829,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+      "blob_sha": "bc85d6bfe13554151109e93905f789f2f876b8d9",
+      "size_bytes": 8514,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/05_persistence/INDEX.md",
+      "blob_sha": "265b81a6e53e2aa456f338a397f04a8134b656b6",
+      "size_bytes": 1012,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
+      "blob_sha": "25069f569f8c886e99e95f5a1dd1891eeccb0b80",
+      "size_bytes": 3241,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/06_quality/INDEX.md",
+      "blob_sha": "4fa454f65458e39c28aefad9a545dd0f7f4f95c7",
+      "size_bytes": 704,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/CANON.md",
+      "blob_sha": "fbf325a2377822e2f286ce247dc207888fb0ff8c",
+      "size_bytes": 2871,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/CHAPTER_PROTOCOL.md",
+      "blob_sha": "e2619e8a0643c620d88852153b6dc12f49c18d36",
+      "size_bytes": 11464,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/DECISION_OUTCOMES.md",
+      "blob_sha": "4ede8f4a91474890b9bac25d6e36617a08971426",
+      "size_bytes": 4183,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "blob_sha": "49820a45e3b5b1593067af6162f6f39f95759933",
+      "size_bytes": 11523,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/FILE_INVENTORY.json",
+      "blob_sha": "72bf2c092701a3e52c8af988bbe71ecf392df35e",
+      "size_bytes": 3931,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/FOLDER_POLICY.md",
+      "blob_sha": "6c66de7ea26d06e5fa18a1f4bca2001182d7e9e6",
+      "size_bytes": 2250,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/FULL_NARRATION_ARCHIVE.md",
+      "blob_sha": "282b44cbb95a44cd181ef31f701b9663f1cfe7b2",
+      "size_bytes": 3103,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "blob_sha": "3d0c8df8da27b9b6520dc18e933f6f0d8c0cb9ba",
+      "size_bytes": 44830,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "blob_sha": "171bb7e652cf683335b173f57b43294627a142d1",
+      "size_bytes": 2404,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "blob_sha": "278e561d12c2e5d8cb6517ac5a17cf1928a808b9",
+      "size_bytes": 1993,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
+      "blob_sha": "f03dcfdfdc6368f27979157240aebe5a5ce464de",
+      "size_bytes": 4114,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md",
+      "blob_sha": "82adc97e1611c5fc463513fd8631ca8560697d49",
+      "size_bytes": 4268,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_DESIGN_PROPOSAL.md",
+      "blob_sha": "dac2860284b097c9ec80ac35722412725b376fd4",
+      "size_bytes": 4629,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md",
+      "blob_sha": "2f50edd0387b573f45a786ec4a96fb2f59529e79",
+      "size_bytes": 5067,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md",
+      "blob_sha": "aef525c1feae9b6baee40608f3bcc36c1d1c025e",
+      "size_bytes": 2556,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md",
+      "blob_sha": "4a62572e2c2ed78897b5028698cc638c5b64f285",
+      "size_bytes": 2517,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_QA_PLAN.md",
+      "blob_sha": "7197f3875a1bca6eabbe0fa405fe01fd676ab168",
+      "size_bytes": 2585,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md",
+      "blob_sha": "ac11da5007f868ca3af6f095144146f370ca3451",
+      "size_bytes": 5924,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_ROUTINE_QA_20261110.md",
+      "blob_sha": "263a559112f5c50db90d2006f87de2f3560178b7",
+      "size_bytes": 2204,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_TEST_RESULTS_20261110.md",
+      "blob_sha": "9b0fac635065143d335de4f096d8f17b9afbd899",
+      "size_bytes": 2165,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md",
+      "blob_sha": "b7e314c557837e7dcb0b4aa77d03521e310f2464",
+      "size_bytes": 1847,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/NARRATIVE_CONTRACT.md",
+      "blob_sha": "d433c00dfdb3428263c51fbeda91f7f0d1fc6a5e",
+      "size_bytes": 6500,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/NARRATIVE_EXECUTION_MODEL.md",
+      "blob_sha": "9f60621a17974ea849666997e5b3afcbe510ba50",
+      "size_bytes": 6447,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/NARRATIVE_STANDARD.md",
+      "blob_sha": "54df05552d012b9c8dc28ffd1d8d105a7a7eb677",
+      "size_bytes": 4290,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/NARRATOR_RULES.md",
+      "blob_sha": "49046b49424fdc58cba2715c6fd7ce9202cdf880",
+      "size_bytes": 6115,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/NPC_RULES.md",
+      "blob_sha": "17f073cd7a2622e8887c44ea38458b6e4ad1be5e",
+      "size_bytes": 1957,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/PLAY_READINESS.md",
+      "blob_sha": "671a2f8b51c98a5ada03967e71e2f70cb3d068b0",
+      "size_bytes": 4279,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/PROGRESSION.md",
+      "blob_sha": "de5710b0344b0ea492d7930221057a6cf23b5a65",
+      "size_bytes": 974,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/QA_SCENARIOS.md",
+      "blob_sha": "7fb9cd391fd5ed2f80258a96883616d6d5d3b5fe",
+      "size_bytes": 10865,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/RECOVERY.md",
+      "blob_sha": "0c2e508d3bda853328f42c9f198db02b0a9c29ec",
+      "size_bytes": 12655,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/SAVE_BLOCKING_PROTOCOL.md",
+      "blob_sha": "df0057d823d81ba1e415d9f546931d775bda8fca",
+      "size_bytes": 5202,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/SCENE_CRAFT.md",
+      "blob_sha": "e67a49654b7f11e71c14207fb2804076721a611e",
+      "size_bytes": 6298,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/STATE_SCHEMA.md",
+      "blob_sha": "28ffb4f81562466a2342d9615c99c2ddff0922c4",
+      "size_bytes": 15337,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "blob_sha": "c2766693480d7cdf72d80d662d04bb1b84730369",
+      "size_bytes": 25649,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/STORY_REVISIONS.md",
+      "blob_sha": "df069d345203cac5a17f5944b49042918fe7cce8",
+      "size_bytes": 2723,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/TURN_TESTING.md",
+      "blob_sha": "84bf0b7eb843853f616d0812b5c20b9cfdf46afd",
+      "size_bytes": 3848,
+      "area": "documentation"
+    },
+    {
+      "path": "docs/WORLD_BIBLE.md",
+      "blob_sha": "32df6493fdb8e34caea1272593d57035a09befd4",
+      "size_bytes": 7162,
+      "area": "documentation"
+    },
+    {
+      "path": "game/ASTER_SPEC.md",
+      "blob_sha": "1d77b82a31da781348174819517beb942b466f8e",
+      "size_bytes": 2528,
+      "area": "game"
+    },
+    {
+      "path": "game/CHARACTER_JACK.md",
+      "blob_sha": "823dd2a0b1142f897fa872a245a04c9749b2557e",
+      "size_bytes": 4348,
+      "area": "game"
+    },
+    {
+      "path": "game/characters/INDEX.md",
+      "blob_sha": "6ca23e96086e7e64c4e3999f3c8aef08b697a03a",
+      "size_bytes": 614,
+      "area": "game"
+    },
+    {
+      "path": "game/equipment/DEVICE_REGISTRY.json",
+      "blob_sha": "b7d35583916c94d46438bb43b541fad479fe7af1",
+      "size_bytes": 4694,
+      "area": "game"
+    },
+    {
+      "path": "game/equipment/INDEX.md",
+      "blob_sha": "7dd399db3fce60a2d42c9c6f0111f05678f61336",
+      "size_bytes": 645,
+      "area": "game"
+    },
+    {
+      "path": "game/finances/ASSET_LEDGER.json",
+      "blob_sha": "65abd22f0093bde70c07be93b449952112f1c2b1",
+      "size_bytes": 2508,
+      "area": "game"
+    },
+    {
+      "path": "game/finances/INDEX.md",
+      "blob_sha": "95446d3ddc383fa80473c620944dd9f14d5ec0f0",
+      "size_bytes": 537,
+      "area": "game"
+    },
+    {
+      "path": "game/INDEX.md",
+      "blob_sha": "570a228d38d77bf2dd827f29c6430cc9cfa4b66a",
+      "size_bytes": 1018,
+      "area": "game"
+    },
+    {
+      "path": "game/JACK_HACKER_HISTORY.md",
+      "blob_sha": "b3ca58f47f8924309e1b6ea259439b48055272b9",
+      "size_bytes": 2992,
+      "area": "game"
+    },
+    {
+      "path": "game/SAVE_MANIFEST.json",
+      "blob_sha": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+      "size_bytes": 549,
+      "area": "game"
+    },
+    {
+      "path": "game/saves/INDEX.md",
+      "blob_sha": "cde946f4629a911c0778daa7e5eee49a2bec50dc",
+      "size_bytes": 677,
+      "area": "game"
+    },
+    {
+      "path": "game/STARTING_CAST.md",
+      "blob_sha": "c0a7dcb17f2229995c2c31a47ab8f9727dd8ac29",
+      "size_bytes": 4542,
+      "area": "game"
+    },
+    {
+      "path": "game/STARTING_LOCATIONS.md",
+      "blob_sha": "0c1717e8f63d86e95e1aed431927f5a092c5b061",
+      "size_bytes": 2643,
+      "area": "game"
+    },
+    {
+      "path": "game/STATE.json",
+      "blob_sha": "0320a93ebf4a944da97b65dffa6d281acce46d94",
+      "size_bytes": 46544,
+      "area": "game"
+    },
+    {
+      "path": "game/world/INDEX.md",
+      "blob_sha": "0a5e5f45aebc38009c17fa019ec6853d50ee54b3",
+      "size_bytes": 631,
+      "area": "game"
+    },
+    {
+      "path": "INDEX.md",
+      "blob_sha": "62052e1594fdde66d568d962829c1ebf4c13225e",
+      "size_bytes": 837,
+      "area": "root"
+    },
+    {
+      "path": "README.md",
+      "blob_sha": "e69f732fa784bfe0734605fb3b6c4e387c060d69",
+      "size_bytes": 4326,
+      "area": "root"
+    },
+    {
+      "path": "tests/chapter_management.test.mjs",
+      "blob_sha": "e7de2432f57d2fa2c9869cd4f24686eec4da61a4",
+      "size_bytes": 9356,
+      "area": "tests"
+    },
+    {
+      "path": "tests/chapter_save_transaction.test.mjs",
+      "blob_sha": "527c80417bffbc9ede8f2628ab1e409b9a00821b",
+      "size_bytes": 9690,
+      "area": "tests"
+    },
+    {
+      "path": "tests/consequences.test.mjs",
+      "blob_sha": "052fb40685fe301238b74c1caf328a8a8fdc8c0b",
+      "size_bytes": 2848,
+      "area": "tests"
+    },
+    {
+      "path": "tests/context_manager.test.mjs",
+      "blob_sha": "629c4ecb070336fc506547ff3d3d7a89ada7e5c2",
+      "size_bytes": 4663,
+      "area": "tests"
+    },
+    {
+      "path": "tests/github_journaled_http_integration.test.mjs",
+      "blob_sha": "ca58ff4a7b85f9a16ace5c6ae57d888052a5e5c4",
+      "size_bytes": 8803,
+      "area": "tests"
+    },
+    {
+      "path": "tests/github_save_adapter.test.mjs",
+      "blob_sha": "4ea77346197084b46f1854459b9e633f8b7c420e",
+      "size_bytes": 10202,
+      "area": "tests"
+    },
+    {
+      "path": "tests/github_save_journal.test.mjs",
+      "blob_sha": "4299429599895b75842b80cead57793ba1e9b180",
+      "size_bytes": 4393,
+      "area": "tests"
+    },
+    {
+      "path": "tests/index_paths.test.mjs",
+      "blob_sha": "25eec86292b82c52cde4df6c61bbac06925eb81c",
+      "size_bytes": 1192,
+      "area": "tests"
+    },
+    {
+      "path": "tests/INDEX.md",
+      "blob_sha": "b060aca083047ee933cea953837de43550908b16",
+      "size_bytes": 2408,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_availability.test.mjs",
+      "blob_sha": "b393cb801674ac7195d062e2c9da12b8a28b295e",
+      "size_bytes": 5874,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_commitments.test.mjs",
+      "blob_sha": "98289f0aac1f352964c9827a5164b542611963c4",
+      "size_bytes": 1937,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_coordinator.test.mjs",
+      "blob_sha": "41456167eda6464deed7a9b6e0855d75a0fdf00f",
+      "size_bytes": 12380,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_diagnostics.test.mjs",
+      "blob_sha": "72b82c41071b8b5ef5567f1fe3aa85e00617498e",
+      "size_bytes": 8106,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_integrated_rehearsal.test.mjs",
+      "blob_sha": "c2b6099c7d02c268e2179bc095ea0e680d824aa3",
+      "size_bytes": 3963,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_persistent_commitments.test.mjs",
+      "blob_sha": "f0c677af4ecd8d5eb7ba52d9a1822a65f71fdb63",
+      "size_bytes": 7738,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_routines.test.mjs",
+      "blob_sha": "0f2d1b8a89e1adf65484e9501506c8297ccca529",
+      "size_bytes": 6485,
+      "area": "tests"
+    },
+    {
+      "path": "tests/living_world_travel.test.mjs",
+      "blob_sha": "95541f83de32721caeb3787fe7bf7402912766a7",
+      "size_bytes": 11252,
+      "area": "tests"
+    },
+    {
+      "path": "tests/save_gate.test.mjs",
+      "blob_sha": "a2c2e10117e6f31a2bc367db653df4905674fe07",
+      "size_bytes": 3221,
+      "area": "tests"
+    },
+    {
+      "path": "tests/save_transaction.test.mjs",
+      "blob_sha": "551bfd19c758ac9ec72f107f9274a990ddde93ad",
+      "size_bytes": 19182,
+      "area": "tests"
+    },
+    {
+      "path": "tests/state_changes.test.mjs",
+      "blob_sha": "818b6da54d41b9e9d40d8600ccf11c9a3e6df4b8",
+      "size_bytes": 7720,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_backstory_aster.py",
+      "blob_sha": "efdc16601dc90c68b6532982aa9ed5d9e8d5ab7d",
+      "size_bytes": 1932,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_character_profile.py",
+      "blob_sha": "9302f21251f57613eec6a2134f1cfefea97d3023",
+      "size_bytes": 3036,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_literal_archive_validator.py",
+      "blob_sha": "a1a5852d743e5b45d9267737c43481d67308950b",
+      "size_bytes": 2662,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_multichapter_validator.py",
+      "blob_sha": "431eb86b8ec2d5ec1bf2af2547fa7102712d0819",
+      "size_bytes": 11494,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_starting_checkpoint.py",
+      "blob_sha": "50c3b51e5730fe83fe6dd969bb42f8c3995b72b8",
+      "size_bytes": 2596,
+      "area": "tests"
+    },
+    {
+      "path": "tests/test_turn9_consequences.py",
+      "blob_sha": "52f1647d5f1d831ec6ecd4557cdd83ec24bc2e35",
+      "size_bytes": 2918,
+      "area": "tests"
+    },
+    {
+      "path": "tests/turn_engine.test.mjs",
+      "blob_sha": "11fa48a4b4fce0584a67d96f399139a1fb26429c",
+      "size_bytes": 12136,
+      "area": "tests"
+    },
+    {
+      "path": "tests/verified_context_loader.test.mjs",
+      "blob_sha": "5441c9f2f8662268cadbe0dfd37bc3aeb86dfc1f",
+      "size_bytes": 7593,
+      "area": "tests"
+    },
+    {
+      "path": "tests/world_plan_pilot.test.mjs",
+      "blob_sha": "b5e989b63b4bd58d2dd7e71e30a34e0649bf649f",
+      "size_bytes": 13586,
+      "area": "tests"
+    },
+    {
+      "path": "tests/world_plans.test.mjs",
+      "blob_sha": "cc21cf44a8711f98f8c93910e02ecfc5036b78ff",
+      "size_bytes": 8976,
+      "area": "tests"
+    },
+    {
+      "path": "tools/chapter_history.mjs",
+      "blob_sha": "66f580009c16570ce95bf957b3161a0b300495f2",
+      "size_bytes": 5338,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/chapter_management.mjs",
+      "blob_sha": "a6bacb67bea101a34ea1e628f1cc45a24f741807",
+      "size_bytes": 5685,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/consequences.mjs",
+      "blob_sha": "561e5cbd011496b42746311ad7556640ada5752a",
+      "size_bytes": 4363,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/context_manager.mjs",
+      "blob_sha": "7bbeb2f9b30aad51983d54cf6f03436a7b0aa33d",
+      "size_bytes": 7304,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/github_save_adapter.mjs",
+      "blob_sha": "80db35ba184a1f894f3c625f784b9840f74b16ab",
+      "size_bytes": 6441,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/github_save_journal.mjs",
+      "blob_sha": "41e5aec9120d9ac0ca1db0a7e0a131e0d1c8d511",
+      "size_bytes": 3807,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/INDEX.md",
+      "blob_sha": "6084ea874a16fdbe4668520a424a21c5ce742c5e",
+      "size_bytes": 1830,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_availability.mjs",
+      "blob_sha": "45a531c8d321569a317fd03849117d94b3a69b44",
+      "size_bytes": 3876,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_commitments.mjs",
+      "blob_sha": "5d46592a3dacd37aa159eff0a9de53e650d78e80",
+      "size_bytes": 6002,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_coordinator.mjs",
+      "blob_sha": "723bc9e2e9b1e905f4f80168ae31394cd3324373",
+      "size_bytes": 5233,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_diagnostics.mjs",
+      "blob_sha": "52578cae407609077148d90d0dd8fd6d5333b2ed",
+      "size_bytes": 3859,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_obligations.mjs",
+      "blob_sha": "007ab532d5e5aaf98dad4bc585c6c59f41162b2e",
+      "size_bytes": 4228,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_routines.mjs",
+      "blob_sha": "87e9819015aab37689d22a23a53a343aaaffd6be",
+      "size_bytes": 6192,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_time.mjs",
+      "blob_sha": "66fe3c72d37c89d44d5239dea53f843348fb5e87",
+      "size_bytes": 2606,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/living_world_travel.mjs",
+      "blob_sha": "1e9e9b760dbd7d645cae6b417a99056e2c538b29",
+      "size_bytes": 4384,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/narrative_archive.mjs",
+      "blob_sha": "5c28d8fd0ddc5923a333f4446423a4584fc044a0",
+      "size_bytes": 5378,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/save_gate.mjs",
+      "blob_sha": "4dc25d9f7f054c227f959eb7bd366d8a9d012c8e",
+      "size_bytes": 5659,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/save_transaction.mjs",
+      "blob_sha": "3d0191f4d24fc6deec94f59d8f3e9ecd00cdbed7",
+      "size_bytes": 22131,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/state_changes.mjs",
+      "blob_sha": "6109d7eb5e794569287a95c1d874fbe977b16835",
+      "size_bytes": 14561,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/turn_engine.mjs",
+      "blob_sha": "947e6b93a87ad0abd753c22ac4243e8046a484f1",
+      "size_bytes": 10351,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/validate_state.py",
+      "blob_sha": "b1ee9e6547928bdd35fdad2bdcd3c6c0f1647956",
+      "size_bytes": 19460,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/verified_context_loader.mjs",
+      "blob_sha": "58ac037f53cf106bf519872b5d326d25ca6fec97",
+      "size_bytes": 4569,
+      "area": "mechanics"
+    },
+    {
+      "path": "tools/world_plans.mjs",
+      "blob_sha": "59c04b1af5b8a327ee8d21ce82bd4a7fadcb90e8",
+      "size_bytes": 14723,
+      "area": "mechanics"
+    }
+  ]
+}
