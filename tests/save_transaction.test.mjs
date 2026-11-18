@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {saveFiveFileTurn,recoverFiveFileSave,recoverJournaledSave,decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
 import {stageNarrativeTurn} from '../tools/turn_engine.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
-const source='a'.repeat(40),newCommit='b'.repeat(40),other='c'.repeat(40),branch='work/chat-narrative-foundation';
+const source='a'.repeat(40),newCommit='b'.repeat(40),other='c'.repeat(40),branch='qa/synthetic-save-transaction';
 function sourceFiles(){
  return Object.fromEntries(savePaths('CH-000').map(p=>[p,readFileSync(resolve(root,p),'utf8')]));
 }
@@ -368,3 +368,26 @@ test('literal recovery blocks if later HEAD modifies any canonical story bytes',
  assert.equal(r.status,'blocked');assert.match(r.reason,/Current checkpoint differs/);
  assertNoRecoveryWrites(fixture,count);
 });
+
+test('low-level API cannot save canonical branch without journal',async()=>{
+ const remote=new FakeGit();
+ const r=await saveFiveFileTurn({remote,branch:'work/chat-narrative-foundation',
+  chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/Durable journal required/);
+ assert.equal(remote.created,0);assert.equal(remote.updated,0);
+});
+test('low-level API cannot save canonical branch with an empty journal',async()=>{
+ const remote=new FakeGit(),journal=new MemoryJournal();
+ const r=await saveFiveFileTurn({remote,journal,branch:'work/chat-narrative-foundation',
+  chapterId:'CH-000',buildNext});
+ assert.equal(r.status,'blocked');assert.match(r.reason,/journal not initialized/);
+ assert.equal(remote.created,0);assert.equal(remote.updated,0);assert.equal(journal.writes,0);
+});
+for(const illegal of ['main','journal/living-world-save-attempts','backup/story']){
+ test('low-level API rejects prohibited save target '+illegal,async()=>{
+  const remote=new FakeGit();
+  const r=await saveFiveFileTurn({remote,branch:illegal,chapterId:'CH-000',buildNext});
+  assert.equal(r.status,'blocked');assert.match(r.reason,/Invalid narrative save target/);
+  assert.equal(remote.created,0);assert.equal(remote.updated,0);
+ });
+}
