@@ -142,12 +142,17 @@ function blockedResult(attempt,error,expectedFiles,commitHead,sourceHead,branch)
  // failed. The attempt must remain recoverable and externally unconfirmed.
  // Restore the last durable stage (85%) instead of trying to block a 100%
  // verified state, which save_gate correctly forbids.
- const safeAttempt=attempt?.status==='verified'?{
+ const canDowngrade=attempt?.status==='verified'&&
+  Array.isArray(attempt.completed)&&attempt.evidence&&typeof attempt.evidence==='object';
+ const safeAttempt=attempt?.status==='verified'?(canDowngrade?{
   ...attempt,status:'saving',percent:85,verified_head:null,
   completed:attempt.completed.filter(x=>x!=='readback'),
   evidence:Object.fromEntries(Object.entries(attempt.evidence).filter(([key])=>key!=='readback'))
- }:attempt;
- return {status:'blocked',reason,attempt:safeAttempt?blockSave(safeAttempt,reason):null,
+ }:null):attempt;
+ let recoverableAttempt=null;
+ try{if(safeAttempt)recoverableAttempt=blockSave(safeAttempt,reason)}
+ catch{recoverableAttempt=null}
+ return {status:'blocked',reason,attempt:recoverableAttempt,
   expectedFiles,commitHead,sourceHead,branch};
 }
 async function readExactCommit(remote,commitHead,expectedFiles,chapterId){
