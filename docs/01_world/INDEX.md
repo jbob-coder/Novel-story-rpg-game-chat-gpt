@@ -23,6 +23,7 @@
 
 - [Mapa físico por regiones: fragmento 01 de Harbor Walk y bahía](./MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md)
 - [Mapa físico por regiones: fragmento 02 y costura de la bahía](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md)
+- [Mapa físico por regiones: fragmento 03 Market Row–Crosswater](MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.md)
 
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
