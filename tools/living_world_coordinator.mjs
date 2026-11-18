@@ -74,6 +74,7 @@ export function saveLivingWorldTurn({remote,branch,chapterId,turn,npcResolutions
     return Promise.resolve({status:'blocked',reason:'Durable save journal required for canonical story branch',
       branch,attempt:null});
   return saveFiveFileTurn({remote,branch,chapterId,journal,
+    requireInitializedJournal:branch==='work/chat-narrative-foundation',
     message:'Narrative turn with reviewed Living World activity',
     buildNext:({snapshot,observedHead})=>stageLivingWorldTurn({
       snapshot,observedHead,turn:copy(turn),npcResolutions:copy(npcResolutions)
