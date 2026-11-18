@@ -51,3 +51,6 @@
 - [Detalle Railgarden a abarrotes sin visita ni apertura automática](meridian_bay_railgarden_grocery_detail.test.mjs)
 - [Detalle Railgarden al centro de salud sin personal ni servicio ficticio](meridian_bay_railgarden_clinic_detail.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
+
+- [Mapas costeros: empalmes, geometría, edificios y render SVG](meridian_bay_coastal_blueprints.test.mjs)
+- [Mapas costeros: SVG válido e independencia de partida](test_meridian_bay_coastal_svg.py)
