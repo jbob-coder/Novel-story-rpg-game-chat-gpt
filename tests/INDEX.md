@@ -36,3 +36,17 @@
 - [Planes condicionales y obligaciones](world_plans.test.mjs)
 - [Piloto sintético completo de Rosa entre capítulos](world_plan_pilot.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
+
+## Current source index supplement — audited November 17, 2026
+
+These files already existed in the authoritative source and are listed here for discoverability; indexing them is not a change to story state.
+
+- [github_journaled_http_integration.test.mjs](github_journaled_http_integration.test.mjs) — Combined mocked REST adapters and interrupted journaled save.
+- [github_save_journal.test.mjs](github_save_journal.test.mjs) — Journal states, remote failures and ready baseline.
+- [living_world_availability.test.mjs](living_world_availability.test.mjs) — Schedules, overnight windows and unknown availability.
+- [living_world_commitments.test.mjs](living_world_commitments.test.mjs) — NPC review timing and context constraints.
+- [living_world_coordinator.test.mjs](living_world_coordinator.test.mjs) — Reviewed NPC turn staging and journal save blocking.
+- [living_world_diagnostics.test.mjs](living_world_diagnostics.test.mjs) — Private versus reader-safe review.
+- [living_world_integrated_rehearsal.test.mjs](living_world_integrated_rehearsal.test.mjs) — In-memory multi-turn NPC/scene rehearsal.
+- [living_world_routines.test.mjs](living_world_routines.test.mjs) — NPC route/goal routine proposals.
+- [living_world_travel.test.mjs](living_world_travel.test.mjs) — Route, elapsed time and chronology guards.
