@@ -32,3 +32,9 @@
 - [Living World D-052: tiempos, recuperación durable, NPC y privacidad](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md)
 
 - [Living World D-053: intervalos temporales y pruebas oficiales](LIVING_WORLD_TIME_WINDOW_QA_20261112.md)
+
+## Verified engineering snapshot — November 17, 2026
+
+- [Full repository checkpoint and rules](00_start/REPOSITORY_CHECKPOINT_2026-11-17.md)
+- [Area task and mechanics board](00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
+- [Meridian Bay draft PR/dependency map](00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md)
