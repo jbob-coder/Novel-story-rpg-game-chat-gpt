@@ -79,6 +79,34 @@ export async function assertReadyJournalBaseline({remote,record,branch,sourceHea
    'Ready journal baseline differs from current canonical bytes: '+path);
  return true;
 }
+// A preceding verified journal record must authorize the current saved story,
+// not merely contain the word "verified". A documentation-only descendant is
+// safe when every active canonical save byte remains identical to the journal
+// commit. This check is read-only and does not attest UI delivery.
+export async function assertVerifiedJournalCheckpoint({remote,record,branch,sourceHead,snapshot}){
+ check(record?.status==='verified'&&record.branch===branch&&
+  sha(record.commitHead)&&sha(record.sourceHead)&&sha(sourceHead),
+  'Invalid verified journal identity');
+ const attempt=record.attempt;
+ check(attempt?.version===1&&attempt.status==='verified'&&attempt.percent===100&&
+  same(attempt.completed,SAVE_PHASES.map(x=>x.id))&&
+  SAVE_PHASES.every(x=>typeof attempt.evidence?.[x.id]==='string'&&attempt.evidence[x.id].trim()),
+  'Verified journal lacks complete save evidence');
+ check(attempt.source_head===record.sourceHead&&attempt.verified_head===record.commitHead&&
+  Number.isSafeInteger(attempt.turn)&&attempt.turn>=1&&record.expectedFiles==null,
+  'Verified journal commit identity mismatch');
+ operationOf(attempt);
+ check(snapshot?.manifest?.chapter_id===attempt.chapter_id&&
+  snapshot.manifest.last_completed_turn===attempt.turn,
+  'Verified journal and current turn/chapter disagree');
+ const paths=savePaths(attempt.chapter_id);
+ const historical=sourceHead===record.commitHead?snapshot.sourceFiles:
+  await remote.readFiles(record.commitHead,paths);
+ for(const path of paths)
+  check(typeof historical?.[path]==='string'&&snapshot.sourceFiles[path]===historical[path],
+   'Current checkpoint differs from last verified journal save: '+path);
+ return true;
+}
 function assertNextTurn(before,after){
  check(same(before.state.history.completed_chapters,after.state.history.completed_chapters)&&
   same(archivedFiles(before),archivedFiles(after)),'Closed chapter history rewritten');
@@ -190,6 +218,8 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
   const previous=await readCheckpoint({remote,commitSha:sourceHead,chapterId});
   if(readyBaseline)await assertReadyJournalBaseline({
    remote,record:readyBaseline,branch,sourceHead,snapshot:previous});
+  if(previousAttempt?.status==='verified')await assertVerifiedJournalCheckpoint({
+   remote,record:previousAttempt,branch,sourceHead,snapshot:previous});
   attempt=startSave({source_head:sourceHead,chapter_id:targetChapterId,
    turn:previous.manifest.last_completed_turn+(operation==='turn'?1:0)});
   attempt.operation=operation;attempt.source_chapter_id=chapterId;
@@ -237,7 +267,8 @@ async function saveOperation({remote,branch,chapterId,targetChapterId=chapterId,
 export function saveFiveFileTurn(options){return saveOperation({...options,operation:'turn'});}
 export function saveChapterTransition({remote,branch,chapterId,nextPlan,reason,reviewed=false,journal=null}={}){
  return saveOperation({remote,branch,chapterId,targetChapterId:nextPlan?.chapter_id,journal,
-  operation:'chapter_transition',message:'Save reviewed chapter transition without playing a turn',
+  operation:'chapter_transition',requireInitializedJournal:branch==='work/chat-narrative-foundation',
+  message:'Save reviewed chapter transition without playing a turn',
   buildNext:({snapshot,observedHead})=>stageChapterTransition({snapshot,nextPlan,reason,reviewed,observedHead})});
 }
 // No restaging, rewriting or creating a second commit during recovery.
@@ -311,15 +342,16 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
    savePaths(attempt.chapter_id);
    operationOf(attempt);
    verifiedAttempt=attempt;
-   check(await remote.readHead(branch)===commitHead,'Verified journal disagrees with branch');
-   // A completed save does not prove delivery. A fresh session must recover
-   // the original text from the immutable commit, never restage the scene.
-   const snapshot=await readCheckpoint({remote,commitSha:commitHead,chapterId:attempt.chapter_id});
-   check(snapshot.manifest.chapter_id===attempt.chapter_id&&
-    snapshot.manifest.last_completed_turn===attempt.turn,
-    'Verified journal does not identify the saved chapter/turn');
+   // Documentation-only commits may follow a saved turn. Recover literal
+   // narration only when their five canonical files still exactly match the
+   // verified journal commit; never assume a moved branch implies a new turn.
+   const currentHead=await remote.readHead(branch);
+   check(sha(currentHead),'Remote branch has no valid commit');
+   const snapshot=await readCheckpoint({remote,commitSha:currentHead,chapterId:attempt.chapter_id});
+   await assertVerifiedJournalCheckpoint({
+    remote,record:stored,branch,sourceHead:currentHead,snapshot});
    const narration=narrationFor(snapshot,attempt);
-   check(await remote.readHead(branch)===commitHead,'Remote branch moved during recovery');
+   check(await remote.readHead(branch)===currentHead,'Remote branch moved during recovery');
    return {status:'verified',attempt,commitHead,sourceHead,branch,
     operation:operationOf(attempt),narration_messages:narration,
     reason:operationOf(attempt)==='chapter_transition'?'Chapter transition recovered; no scene generated':
