@@ -6,7 +6,7 @@
   "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
   "authoritative_branch_at_capture": "work/chat-narrative-foundation",
   "immutable_source_commit": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
-  "immutable_source_tree": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+  "immutable_source_tree": "d1c349959e58858e11383543ab2278ba16ad275b",
   "main_branch_at_capture": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
   "explanation": "Exact Git blob paths, SHA and sizes at immutable source commit. This metadata does NOT assert the current latest head, make a gameplay save, or promote unmerged work. A later documentation commit will not appear here; do not rewrite this snapshot to make it self-referential.",
   "file_count": 129,
