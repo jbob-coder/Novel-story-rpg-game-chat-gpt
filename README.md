@@ -7,6 +7,8 @@ Earth starts on Day -30, a month before a cosmic shockwave arrives on Day 0. Lat
 ## Resume safely
 **Start with [AGENTS.md](AGENTS.md).** Read the saved manifest, state, current chapter/event log and canon before any new narration. Never rely only on chat memory.
 
+**GitHub-only fast resumption:** [No-server ChatGPT connector journal and bounded context protocol](docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md). The canonical journal is initialized as `ready` for the existing turn 9, not a new verified turn. No Codex, custom MCP or duplicate world-state database is required. This does not authorize an unrequested story turn or bypass the verified five-file save.
+
 - [World canon](docs/CANON.md), [approved decisions](docs/DECISIONS.md) and [world-building reference](docs/WORLD_BIBLE.md)
 - [Narrator rules](docs/NARRATOR_RULES.md), [narrative quality standard](docs/NARRATIVE_STANDARD.md) and [NPC/world simulation](docs/NPC_RULES.md)
 - [Contrato narrativo actual](docs/NARRATIVE_CONTRACT.md) — novela interactiva, continuidad y ciberseguridad no operativa
