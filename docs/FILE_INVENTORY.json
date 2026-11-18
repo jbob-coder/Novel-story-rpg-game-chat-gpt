@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "authority": "Canonical paths remain at original location; indexes are navigation-only.",
   "entrypoints": [
     "AGENTS.md",
@@ -124,5 +124,62 @@
     "chapters/CH-NNN.events.json",
     "chapters/CH-NNN.transcript.json"
   ],
-  "maintenance": "Update the relevant index, parent index, and this inventory whenever canonical files change. Keep filenames stable."
+  "maintenance": "Maintain original canonical paths. Enumerate tracked files through entrypoints/indexes/canonical/supplemental/repository_checkpoints. Root entrypoints can also appear in indexes for navigation; otherwise avoid duplicate resource authority. Update the reviewed repository scan when it changes; do not mutate historical source-commit snapshots.",
+  "repository_scan": {
+    "source_branch": "work/chat-narrative-foundation",
+    "source_commit": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+    "source_file_count": 129,
+    "as_of_local_date": "2026-11-17",
+    "note": "This is repository metadata, not an in-game save. Four new dated checkpoint reports were added after the fixed source commit."
+  },
+  "supplemental": {
+    "infrastructure": [
+      ".github/workflows/narrative-qa.yml",
+      "README.md",
+      "docs/FILE_INVENTORY.json"
+    ],
+    "supporting_docs": [
+      "docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md",
+      "docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md",
+      "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
+      "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
+      "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md",
+      "docs/LIVING_WORLD_DESIGN_PROPOSAL.md",
+      "docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md",
+      "docs/LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md",
+      "docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md",
+      "docs/LIVING_WORLD_QA_PLAN.md",
+      "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md",
+      "docs/LIVING_WORLD_ROUTINE_QA_20261110.md",
+      "docs/LIVING_WORLD_TEST_RESULTS_20261110.md",
+      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+    ],
+    "additional_active_modules": [
+      "tools/github_save_journal.mjs",
+      "tools/living_world_availability.mjs",
+      "tools/living_world_commitments.mjs",
+      "tools/living_world_coordinator.mjs",
+      "tools/living_world_diagnostics.mjs",
+      "tools/living_world_routines.mjs",
+      "tools/living_world_time.mjs",
+      "tools/living_world_travel.mjs"
+    ],
+    "additional_test_suites": [
+      "tests/github_journaled_http_integration.test.mjs",
+      "tests/github_save_journal.test.mjs",
+      "tests/living_world_availability.test.mjs",
+      "tests/living_world_commitments.test.mjs",
+      "tests/living_world_coordinator.test.mjs",
+      "tests/living_world_diagnostics.test.mjs",
+      "tests/living_world_integrated_rehearsal.test.mjs",
+      "tests/living_world_routines.test.mjs",
+      "tests/living_world_travel.test.mjs"
+    ]
+  },
+  "repository_checkpoints": [
+    "docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md",
+    "docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md",
+    "docs/00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md",
+    "docs/00_start/REPOSITORY_FILE_SNAPSHOT_2026-11-17.json"
+  ]
 }
