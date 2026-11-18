@@ -1,6 +1,6 @@
 // Verified, read-only context retrieval from one immutable GitHub checkpoint.
 // No narration, journal writes, branch changes, or in-game time advances.
-import {readCheckpoint,savePaths,assertReadyJournalBaseline} from './save_transaction.mjs';
+import {readCheckpoint,assertReadyJournalBaseline,assertVerifiedJournalCheckpoint} from './save_transaction.mjs';
 import {buildContextPacket} from './context_manager.mjs';
 
 const insist=(ok,message)=>{if(!ok)throw Error(message)};
@@ -55,19 +55,9 @@ export async function loadVerifiedContextPacket({remote,journal=null,branch,
 
  if(journalGate==='ready_baseline')
   await assertReadyJournalBaseline({remote,record:journalBefore,branch,sourceHead:head,snapshot});
- if(journalGate==='verified_previous_attempt'){
-  insist(journalBefore.attempt.turn===snapshot.manifest.last_completed_turn&&
-   journalBefore.attempt.chapter_id===snapshot.manifest.chapter_id,
-   'Verified journal and current turn/chapter disagree');
-  // A later docs-only commit is allowed only if every canonical story byte
-  // still matches the saved journal commit. No guessed delivery or rerender.
-  const historical=await remote.readFiles(journalBefore.commitHead,
-   savePaths(snapshot.manifest.chapter_id));
-  for(const path of savePaths(snapshot.manifest.chapter_id)){
-   insist(typeof historical?.[path]==='string'&&snapshot.sourceFiles[path]===historical[path],
-    'Current checkpoint differs from last verified journal save: '+path);
-  }
- }
+ if(journalGate==='verified_previous_attempt')
+  await assertVerifiedJournalCheckpoint({
+   remote,record:journalBefore,branch,sourceHead:head,snapshot});
  const packet=buildContextPacket({snapshot,audience,query,maxReferences,
   maxPreviewCharacters,sourceCommit:head});
  insist(await remote.readHead(branch)===head,
