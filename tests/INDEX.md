@@ -54,3 +54,5 @@
 
 - [Mapas costeros: empalmes, geometría, edificios y render SVG](meridian_bay_coastal_blueprints.test.mjs)
 - [Mapas costeros: SVG válido e independencia de partida](test_meridian_bay_coastal_svg.py)
+- [Plano terrestre 03: geometría, empalmes y traza histórica](meridian_bay_land_region_blueprint.test.mjs)
+- [Plano terrestre 03: SVG XML y no navegación falsa](test_meridian_bay_land_region_svg.py)

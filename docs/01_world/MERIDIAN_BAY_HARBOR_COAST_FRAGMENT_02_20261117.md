@@ -34,3 +34,7 @@ Las siete trazas de esta nueva lámina son **geometría hipotética**, no vías 
 Los SVG se derivan mediante `tools/meridian_bay_coastal_blueprints.mjs` a partir de los dos JSON. `--check` verifica continuidad, geometría terrestre, huellas y correspondencia exacta de la representación; `--render` regenera ambas láminas. **No se escriben archivos `game/` ni `chapters/`.**
 
 **Siguiente paso:** construir el fragmento terrestre que se empalma desde x=68; solo entonces estudiar conexiones, obstáculos y circulación entre los barrios antiguos y el litoral.
+
+## Pieza terrestre vecina construida
+
+El [fragmento 03 de Market Row–Crosswater](MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.md) desarrolla el terreno hacia x decreciente. Conecta geométricamente dos carreteras **candidatas** en **(68.1,43.8)** y **(68.2,46.65)**, sin convertirlas en rutas canónicas ni alterar la ribera propuesta. Se conservan los tres planos separados para ensamblaje regional.
