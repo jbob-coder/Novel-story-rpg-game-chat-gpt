@@ -149,3 +149,26 @@ test('changed source chapter identity prevents detached transition recovery from
  assert.equal(result.status,'blocked');assert.match(result.reason,/Transition checkpoint/);
  assert.equal(remote.head,source);assert.equal(remote.updates,updates);
 });
+
+test('authoritative chapter transition refuses a journal that has no baseline',async()=>{
+ const remote=new Remote(),journal=new Journal();
+ const r=await saveChapterTransition({remote,journal,branch:'work/chat-narrative-foundation',
+  chapterId:'CH-000',nextPlan:plan('CH-001',source),
+  reason:'Reviewed synthetic boundary.',reviewed:true});
+ assert.equal(r.status,'blocked');
+ assert.match(r.reason,/journal not initialized/);
+ assert.equal(remote.created,0);assert.equal(journal.writes,0);
+});
+test('authoritative chapter transition accepts exact previously verified ready baseline',async()=>{
+ const remote=new Remote(),journal=new Journal();
+ journal.entry={status:'ready',branch:'work/chat-narrative-foundation',
+  baselineHead:source,chapterId:'CH-000',turn:9,
+  lastEventId:'EV-000029',lastTranscriptId:'TXT-000020'};
+ const r=await saveChapterTransition({remote,journal,branch:'work/chat-narrative-foundation',
+  chapterId:'CH-000',nextPlan:plan('CH-001',source),
+  reason:'Reviewed synthetic boundary.',reviewed:true});
+ assert.equal(r.status,'verified',r.reason);
+ assert.equal(remote.created,1);assert.equal(remote.updates,1);
+ assert.equal(journal.entry.status,'verified');
+ assert.equal(journal.entry.attempt.chapter_id,'CH-001');
+});
