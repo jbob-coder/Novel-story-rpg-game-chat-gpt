@@ -14,3 +14,8 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+## Direct GitHub-only persistence
+
+- [ChatGPT connector-native, no-server journal and five-file save protocol](CHATGPT_GITHUB_NATIVE_SAVE.md)
+- [Dated repository persistence checkpoint](../00_start/REPOSITORY_CHECKPOINT_2026-11-17.md)
