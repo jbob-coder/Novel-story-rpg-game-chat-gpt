@@ -1,3 +1,9 @@
+## D-058 QA supplement — no-op GitHub connector recovery PASS (2026-11-17)
+
+The actual in-chat GitHub connector wrote/read a QA-only blocked journal, persisted detached commit `124a8114c9cbd121adc1aea9c89f0cf1698c5d81`, resumed from that SHA after a deliberately separate tool interaction, moved only `qa/chatgpt-native-journal-transport-20261117` with expected-HEAD protection, and reread all five original canonical blobs byte-identically. QA marker `qa_transport_verified` is NOT a production save. Canonical HEAD and `ready` journal unchanged. Full evidence: [QA report](06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md). This removes uncertainty about basic connector Git-object/ref/journal access, but **does not** demonstrate an authored changed-story five-file turn or an in-chat Node coordinator. Next safe gate: a valid isolated changed-turn end-to-end rehearsal, and an actual player choice before canonical turn 10; never infer automatic background execution.
+
+---
+
 # D-058 — GitHub connector journal ready, story unchanged (2026-11-17)
 
 **Verified state:** authoritative branch `work/chat-narrative-foundation` integrated PR #71 (SHA `d1218c16f3b141816267b4daa33d8a9f8ef495b6`) via non-force expected-HEAD update after [CI #44228320512](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44228320512) passed Node, Python, canonical validator. New journal entry on `journal/living-world-save-attempts` is `status=ready`, blob `b7c9b4742d395020c43a7d646e33ba863ffcb387`, with baseline source `d1218c16...`, CH-000 turn 9, EV-000029, TXT-000020. An authenticated in-chat GitHub connector both created and reread it. Five canonical file blobs unchanged; `main` unchanged. This is storage/journal initialization, **not** a completed new turn or end-to-end connector save.
