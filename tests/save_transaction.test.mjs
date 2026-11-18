@@ -271,3 +271,43 @@ test('journal unavailable or absent produces a blocked recovery result',async()=
  assert.equal(unavailable.status,'blocked');assert.match(unavailable.reason,/Journal read unavailable/);
  assertNoRecoveryWrites(fixture,buildCount);
 });
+
+const readyBaseline=()=>({status:'ready',branch,baselineHead:source,chapterId:'CH-000',
+ turn:baseline.manifest.last_completed_turn,lastEventId:baseline.manifest.last_event_id,
+ lastTranscriptId:baseline.manifest.last_transcript_id});
+test('canonical save refuses uninitialized journal without creating any commit',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ const result=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',
+  buildNext,requireInitializedJournal:true});
+ assert.equal(result.status,'blocked');
+ assert.match(result.reason,/journal not initialized/);
+ assert.equal(g.created,0);assert.equal(g.updated,0);assert.equal(journal.writes,0);
+});
+test('ready baseline transitions through blocked into verified journaled five-file save',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ journal.entries.set(branch,readyBaseline());
+ const result=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',
+  buildNext,requireInitializedJournal:true});
+ assert.equal(result.status,'verified',result.reason);
+ assert.equal(g.created,1);assert.equal(g.updated,1);
+ assert.equal((await journal.read(branch)).status,'verified');
+ assert.equal((await journal.read(branch)).expectedFiles,null);
+});
+test('stale ready baseline refuses to stage any turn or overwrite journal',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ journal.entries.set(branch,{...readyBaseline(),lastEventId:'EV-000028'});
+ const result=await saveFiveFileTurn({remote:g,journal,branch,chapterId:'CH-000',
+  buildNext,requireInitializedJournal:true});
+ assert.equal(result.status,'blocked');
+ assert.match(result.reason,/Ready journal checkpoint differs/);
+ assert.equal(g.created,0);assert.equal(g.updated,0);
+ assert.equal((await journal.read(branch)).status,'ready');
+});
+test('resuming a ready baseline does not invent recovered narration or turn',async()=>{
+ const g=new FakeGit(),journal=new MemoryJournal();
+ journal.entries.set(branch,readyBaseline());
+ const result=await recoverJournaledSave({remote:g,journal,branch});
+ assert.equal(result.status,'ready');
+ assert.deepEqual(result.narration_messages,[]);
+ assert.equal(g.created,0);assert.equal(journal.writes,0);
+});
