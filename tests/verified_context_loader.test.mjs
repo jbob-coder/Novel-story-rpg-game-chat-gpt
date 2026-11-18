@@ -124,3 +124,27 @@ test('invalid source, journal or branch is rejected without claiming coherence',
  await assert.rejects(()=>loadVerifiedContextPacket({remote:fakeRemote({initial:data}).remote,branch}),
   /Missing complete save file|Requested chapter differs|Turn mismatch|Missing|does not exist/);
 });
+
+function readyRecord(){
+ return {branch,status:'ready',baselineHead:SAVED,chapterId:'CH-000',turn:9,
+  lastEventId:'EV-000029',lastTranscriptId:'TXT-000020'};
+}
+test('ready journal permits read-only context only after exact baseline reconciliation',async()=>{
+ const {remote,state}=fakeRemote(),{journal}=fakeJournal(readyRecord());
+ const packet=await loadVerifiedContextPacket({remote,journal,branch});
+ assert.equal(packet.journalGate,'ready_baseline');
+ assert.equal(packet.mayAdvanceStory,false);
+ assert.ok(state.calls.includes('files:'+SAVED));
+});
+test('ready baseline with altered canonical bytes blocks even if turn numbers match',async()=>{
+ const historical={...base,'chapters/CH-000.md':base['chapters/CH-000.md']+'\nCHANGED'};
+ const {remote}=fakeRemote({historical}),{journal}=fakeJournal(readyRecord());
+ await assert.rejects(()=>loadVerifiedContextPacket({remote,journal,branch}),
+  /Ready journal baseline differs/);
+});
+test('ready baseline with incorrect event ID does not authorize context',async()=>{
+ const record={...readyRecord(),lastEventId:'EV-000028'};
+ const {remote}=fakeRemote(),{journal}=fakeJournal(record);
+ await assert.rejects(()=>loadVerifiedContextPacket({remote,journal,branch}),
+  /Ready journal checkpoint differs/);
+});
