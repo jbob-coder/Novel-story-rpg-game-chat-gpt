@@ -1,6 +1,6 @@
 // Verified, read-only context retrieval from one immutable GitHub checkpoint.
 // No narration, journal writes, branch changes, or in-game time advances.
-import {readCheckpoint,savePaths} from './save_transaction.mjs';
+import {readCheckpoint,savePaths,assertReadyJournalBaseline} from './save_transaction.mjs';
 import {buildContextPacket} from './context_manager.mjs';
 
 const insist=(ok,message)=>{if(!ok)throw Error(message)};
@@ -10,9 +10,10 @@ const stableJson=x=>JSON.stringify(x??null);
 function checkJournalRecord(record,branch){
  if(record===null)return 'not_initialized';
  insist(record&&typeof record==='object'&&record.branch===branch&&
-  ['blocked','verified'].includes(record.status),'Invalid journal identity or status');
+  ['ready','blocked','verified'].includes(record.status),'Invalid journal identity or status');
  if(record.status==='blocked')
   throw Error('Unresolved durable narrative save attempt: recover journal before context use');
+ if(record.status==='ready')return 'ready_baseline';
  insist(sha(record.commitHead)&&record.attempt?.status==='verified'&&
   record.attempt?.percent===100&&record.attempt.verified_head===record.commitHead,
   'Malformed verified durable journal');
@@ -52,6 +53,8 @@ export async function loadVerifiedContextPacket({remote,journal=null,branch,
  insist(header['game/SAVE_MANIFEST.json']===snapshot.sourceFiles['game/SAVE_MANIFEST.json'],
   'Manifest changed within immutable commit read');
 
+ if(journalGate==='ready_baseline')
+  await assertReadyJournalBaseline({remote,record:journalBefore,branch,sourceHead:head,snapshot});
  if(journalGate==='verified_previous_attempt'){
   insist(journalBefore.attempt.turn===snapshot.manifest.last_completed_turn&&
    journalBefore.attempt.chapter_id===snapshot.manifest.chapter_id,
