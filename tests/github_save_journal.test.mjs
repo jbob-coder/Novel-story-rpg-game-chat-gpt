@@ -57,3 +57,24 @@ test('journal remote errors fail closed',async()=>{
   apiBase:'http://mock.github.test',fetchImpl:async()=>({ok:false,status:500})});
  await assert.rejects(()=>j.read(branch),/HTTP 500/);
 });
+
+test('journal bootstraps an evidence-anchored ready baseline exactly once',async()=>{
+ const m=mock();
+ const j=createGitHubSaveJournal({repository:repo,token:'token',journalBranch,
+  fetchImpl:m.fetchImpl,apiBase:'http://mock.github.test'});
+ const ready={status:'ready',branch,baselineHead:'a'.repeat(40),chapterId:'CH-000',
+  turn:9,lastEventId:'EV-000029',lastTranscriptId:'TXT-000020'};
+ assert.equal(await j.write(branch,ready),true);
+ assert.deepEqual(await j.read(branch),ready);
+ await assert.rejects(()=>j.write(branch,ready),/Cannot replace an initialized/);
+ await j.write(branch,{status:'blocked',branch,attempt:{percent:60},expectedFiles:{a:'b'}});
+ await assert.rejects(()=>j.write(branch,ready),/Cannot replace an initialized/);
+ assert.equal((await j.read(branch)).status,'blocked');
+});
+test('ready baseline cannot be malformed or impersonate a completed save',async()=>{
+ const m=mock(),j=createGitHubSaveJournal({repository:repo,token:'token',journalBranch,
+  fetchImpl:m.fetchImpl,apiBase:'http://mock.github.test'});
+ await assert.rejects(()=>j.write(branch,{status:'ready',branch,baselineHead:'not-a-sha'}),
+  /Malformed ready baseline/);
+ assert.equal(m.seen.length,0);
+});
