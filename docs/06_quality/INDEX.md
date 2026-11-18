@@ -11,3 +11,8 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+## Recent connector QA and development evidence
+
+- [Direct ChatGPT GitHub no-op connector transport proof and limits](CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md)
+- [Area completion and acceptance criteria](../00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
