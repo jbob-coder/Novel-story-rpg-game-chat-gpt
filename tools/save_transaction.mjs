@@ -285,12 +285,42 @@ export function saveChapterTransition({remote,branch,chapterId,nextPlan,reason,r
 }
 // No restaging, rewriting or creating a second commit during recovery.
 // A missing/unknown SHA or loss of the exact staged text requires investigation.
-export async function recoverFiveFileSave({remote,blocked}){
- if(blocked?.status==='verified')return blocked;
- check(blocked?.status==='blocked','No blocked save to recover');
- const {expectedFiles,commitHead,sourceHead,branch}=blocked;
- let attempt=blocked.attempt;
+export async function recoverFiveFileSave({remote,blocked,journal=null}={}){
+ // Never accept an unverified caller-supplied "verified" object as proof.
+ // The immutable stored bytes, exact commit, branch ref and full phase history
+ // must be reread before returning literal narration without a new turn.
+ const {expectedFiles=null,commitHead=null,sourceHead=null,branch=null}=blocked??{};
+ let attempt=blocked?.attempt??null;
  try{
+  check(remote&&typeof remote.readHead==='function'&&typeof remote.readFiles==='function',
+   'Git recovery adapter required');
+  check(typeof branch==='string'&&branch&&branch!=='main'&&
+   !branch.startsWith('journal/')&&!branch.startsWith('backup/'),
+   'Invalid narrative recovery target branch');
+  if(branch==='work/chat-narrative-foundation'){
+   check(journal&&typeof journal.read==='function',
+    'Durable journal required for canonical recovery');
+   check(same(await journal.read(branch),blocked),
+    'Durable canonical recovery record differs from supplied attempt');
+  }
+  if(blocked?.status==='verified'){
+   check(attempt?.version===1&&attempt.status==='verified'&&attempt.percent===100&&
+    same(attempt.completed,SAVE_PHASES.map(x=>x.id))&&
+    SAVE_PHASES.every(x=>typeof attempt.evidence?.[x.id]==='string'&&
+     attempt.evidence[x.id].trim()),
+    'Verified recovery lacks complete save evidence');
+   check(sha(commitHead)&&sha(sourceHead)&&attempt.source_head===sourceHead&&
+    attempt.verified_head===commitHead&&expectedFiles&&
+    typeof expectedFiles==='object','Verified recovery identity or staged bytes missing');
+   const head=await remote.readHead(branch);
+   check(head===commitHead,'Verified recovery branch does not point at saved commit');
+   const saved=await readExactCommit(remote,commitHead,expectedFiles,attempt.chapter_id);
+   const narration=narrationFor(decodeFiveFiles(saved,attempt.chapter_id),attempt);
+   check(await remote.readHead(branch)===head,
+    'Remote branch moved during verified recovery');
+   return {...blocked,narration_messages:narration};
+  }
+  check(blocked?.status==='blocked','No blocked save to recover');
   check(attempt?.status==='blocked','No durable save attempt evidence');
   check(sha(commitHead)&&expectedFiles&&sha(sourceHead),'Unknown commit or lost exact staged files');
   check(attempt.source_head===sourceHead,'Save attempt source commit identity mismatch');
@@ -371,7 +401,7 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
   }
   check(stored.status==='blocked','Unexpected journal state');
   // Never restage/author new prose during recovery.
-  const recovered=await recoverFiveFileSave({remote,blocked:stored});
+  const recovered=await recoverFiveFileSave({remote,blocked:stored,journal});
   if(recovered.status==='verified'){
    try{await persistJournal(journal,branch,{status:'verified',attempt:recovered.attempt,
     expectedFiles:null,commitHead:recovered.commitHead,sourceHead:recovered.sourceHead,branch});}
