@@ -1,0 +1,9 @@
+{
+  "status": "ready",
+  "branch": "work/chat-narrative-foundation",
+  "baselineHead": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+  "chapterId": "CH-000",
+  "turn": 9,
+  "lastEventId": "EV-000029",
+  "lastTranscriptId": "TXT-000020"
+}
