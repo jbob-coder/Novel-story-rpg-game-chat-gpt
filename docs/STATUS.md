@@ -1,5 +1,17 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## D-058 follow-up — connector write/ref/readback QA PASS
+
+The authenticated ChatGPT GitHub connector completed an isolated **no-op**
+blocked-journal → detached-commit → read-again → non-force ref-update →
+five-file exact blob readback cycle on `qa/chatgpt-native-journal-transport-20261117`.
+QA commit `124a8114c9cbd121adc1aea9c89f0cf1698c5d81`; journal QA marker
+`qa_transport_verified`, separate from the canonical `ready` record.
+The actual narrative HEAD and all five story blobs remained unchanged.
+See [evidence and limitations](06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md).
+This proves basic GitHub connector transport but not a valid new narrated-turn
+save or changed-byte recovery. Canonical CH-000 turn 10 remains unplayed.
+
 ## D-058 — GitHub-only journal baseline initialized (2026-11-17)
 
 **No Codex, external MCP server, second database, or new hosting.** PR [#71](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/71) integrated by protected fast-forward at `d1218c16f3b141816267b4daa33d8a9f8ef495b6`. [CI #44228320512](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44228320512) passed JavaScript, Python and checkpoint validation. The direct GitHub connector created and reread a new **ready**, not verified, journal record on `journal/living-world-save-attempts`: blob `b7c9b4742d395020c43a7d646e33ba863ffcb387`. It matches source HEAD `d1218c16...`, CH-000 turn 9, EV-000029, TXT-000020. The five canonical game/chapter files did not change. This supersedes the historical D-056 missing-journal observation.
