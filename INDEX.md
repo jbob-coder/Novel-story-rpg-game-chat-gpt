@@ -14,3 +14,12 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+## Dated full-repository development checkpoint (2026-11-17)
+
+- [Repository status and authority snapshot](docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md)
+- [Each area: goals, mechanics, rules and remaining tasks](docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
+- [Meridian Bay physical map and open PR dependency stack](docs/00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md)
+- [Immutable 129-file Git metadata snapshot](docs/00_start/REPOSITORY_FILE_SNAPSHOT_2026-11-17.json)
+
+**This engineering snapshot is navigation, not the live story checkpoint.** Always confirm Git HEAD, journal, game/SAVE_MANIFEST.json and canonical five files first.
