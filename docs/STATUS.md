@@ -1,5 +1,27 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Live Meridian Bay admission verified — 2026-11-18
+
+The six reviewed establishments now exist in the authoritative world, independently
+of Jack's discovery. [PR #78](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78)
+was integrated at `68faa9ab`; journaled admission saved `ca30f1a3`. Canonical journal
+reads `verified`, operation `world_admission`, with all five files verified. A fresh
+runtime recovered that same commit with no narration and no additional writes.
+
+The world contains **14 locations plus Meridian Bay's city container**. Jack remains
+in his workshop, CH-000 turn 9, Day -29 morning, EV-000029 / TXT-000020. The four
+non-STATE checkpoint files retain their original bytes; the STATE difference is
+limited to the catalog, reciprocal district links and admission review. Mutable
+location state is implemented but no fictional closure, schedule or damage was
+invented during admission.
+
+[CI #44322607447](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44322607447)
+passed **395 Node / 47 Python tests and checkpoint validation**. Isolated GitHub
+QA interrupted a detached admission, then recovered the same commit before live
+admission. See [complete evidence and limits](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md#verified-github-admission--2026-11-18).
+NPC needs, businesses and civilian event integration remain the next phase;
+this operation did not play a scene or establish a continuously running simulator.
+
 ## Independent admission and mutable places — 2026-11-18
 
 This increment addresses both findings from the owner's PR #33 review.

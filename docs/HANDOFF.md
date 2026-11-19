@@ -1,3 +1,29 @@
+## Meridian Bay admission complete — verified 2026-11-18, handoff 2026-11-19
+
+Current authoritative world-admission commit: `ca30f1a3eba8b56cf0f8599eb04d35ba564b911e`.
+Code PR [#78](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78), including
+reviewed Phase 1 from #33, integrated at `68faa9abcce60a94b4ca62dd917c7e180407a6d5`.
+The canonical journal on `journal/living-world-save-attempts` is **verified**, operation
+`world_admission`; its saved commit is `ca30f1a3`, source `68faa9ab`. A docs-only
+later HEAD is legitimate only when the checkpoint bytes still match that journal.
+
+There are now 14 LOC records plus the city container. CH-000 remains turn 9,
+Day -29 morning, EV-000029 / TXT-000020, Jack in LOC-WILSON-WORKSHOP. Admission
+changed only approved locations, reciprocal connections and review metadata in
+STATE. All actors, player knowledge, time, projects and the other four checkpoint
+files are unchanged. Do not admit the same catalog again. Recovery returns an
+empty narration list because this was worldbuilding, not a player turn.
+
+Read [live proof and operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md#verified-github-admission--2026-11-18).
+395 JavaScript and 47 Python tests passed before and after synthetic admission;
+actual GitHub interruption/recovery and canonical admission/readback succeeded.
+Future work can integrate NPC needs, services and conditional civilian events
+against this map. A genuinely new story action still requires the normal full
+turn validation, literal transcript and verified journaled save. The world does
+not advance between interactions. Main and unrelated draft work remain untouched.
+
+---
+
 ## D-061 — Repeat repository audit and direct recovery trust boundary (2026-11-18)
 
 [Second audit report](06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md): complete source recheck confirms original Day −30 night opening and current Day −29 mid-morning CH-000 turn 9, EV-000029/TXT-000020. Journal `ready` matches the same five Git blob hashes and no chapter data changed. PR #77 repaired lower-level `recoverFiveFileSave` accepting forged `verified` results without readback and direct canonical recovery without durable journal custody; five more regressions passed [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733) (320 Node, 45 Python and state validator). No server, Codex, MCP, new authoritative store or player turn. CI for final report-index commit must also pass before integration. Direct ChatGPT-connector valid changed-turn QA and reader delivery remain unverified.

@@ -105,3 +105,39 @@ admits the map independently before chosen travel, observation and a later visit
 These fixtures are synthetic. Their results establish implementation behavior,
 not live activation or a new turn in Jack's story. Broader business inventories,
 staffing, budgets, services and civilian event chains remain separate work.
+
+## Verified GitHub admission — 2026-11-18
+
+The implementation in [PR #78](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78)
+was based on the current narrative safeguards at `117fb6b8` and the reviewed
+Phase 1 commit `ec4aedf0`. Published commit `68faa9abcce60a94b4ca62dd917c7e180407a6d5`
+passed [CI #44322607447](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44322607447):
+395 JavaScript tests, 47 Python tests and checkpoint validation. The full suites
+also passed against an isolated admitted-world checkpoint. Historical auditing
+normalizes only the validated catalog delta, then checks the pinned original
+STATE blob hash; it still rejects unrelated state changes.
+
+The tested coordinator delegated remote Git operations to the authenticated
+ChatGPT GitHub connector through a temporary session bridge. No credential,
+external service or continuously running game process was added to the repository.
+
+| Operation | Verified evidence |
+|---|---|
+| Isolated admission | Branch `qa/world-admission-recovery-20261118`, separate journal `journal/qa-world-admission-20261118` |
+| Intentional interruption | Detached commit `7a0d73900be12d80a794fcaf40a52b026b8d28c7`, durable blocked record, stopped before branch update |
+| Fresh recovery | Same detached commit became authoritative only on the QA branch; five-file validation completed; no narration |
+| Code integration | Non-force expected-HEAD update from `117fb6b8` to `68faa9ab`; backup `backup/before-meridian-world-admission-20261118` |
+| Actual world admission | Commit `ca30f1a3eba8b56cf0f8599eb04d35ba564b911e`, parent `68faa9ab`; only `game/STATE.json` changed |
+| Canonical durable journal | `journal/living-world-save-attempts`, status `verified`, operation `world_admission`, source `68faa9ab`, saved commit `ca30f1a3` |
+| Fresh canonical recovery | Re-read source and saved checkpoint, validated the permitted delta, recovered `ca30f1a3`; zero narration and no duplicate commit |
+
+The real checkpoint remains CH-000 turn 9, Day -29 morning, EV-000029 and
+TXT-000020. Jack remains in the workshop; NPCs, discoveries, time and Aster are
+unchanged. There are 14 LOC records plus the city container. The transcript,
+events, chapter prose and manifest remain byte-identical to their pre-admission
+versions. Mutable location states have not been fabricated.
+
+This evidence establishes journaled world admission and recovery. It does not
+claim a new played turn, literary reader delivery, automatic NPC service
+simulation or a tested Day 0 transition. Future sessions must recheck the live
+branch and journal rather than using these dated commit pointers blindly.
