@@ -15,3 +15,10 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+- [Harbor Coast: revisión del fragmento y corrección reversible de dos cruces](MERIDIAN_BAY_HARBOR_COAST_REVIEW_20261120.md)
+- [Harbor Coast: JSON histórico exacto de PR #66, no admitido](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json)
+- [Harbor Coast: variante de geometría revisada, no canónica](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.json)
+
+- [SVG histórico de Harbor Coast — **sin** corrección](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg)
+- [SVG revisado y sincronizado con el JSON — borrador no canónico](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg)
