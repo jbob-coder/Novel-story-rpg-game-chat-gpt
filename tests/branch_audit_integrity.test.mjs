@@ -25,7 +25,7 @@ const fileBlob = path => gitBlob(readFileSync(resolve(root, path)));
 const requiredCanon = {
   'game/SAVE_MANIFEST.json': '897ec2e77ece4f8edf506c7058552a5dd3cdb320',
   'game/STATE.json': '3f4e9c98a7211068faefd31d0a0acbd4260ef589',
-  'chapters/CH-000.events.json': '1f40c724e44f70c9b45814dc11ff1f73262c5a5',
+  'chapters/CH-000.events.json': '1f40c724e44f70c9b45814dc11ff1f73262c5a5f',
   'chapters/CH-000.transcript.json': '1350916ead7fb1f2f15fdd635dda42e69a0a3fed',
   'chapters/CH-000.md': 'e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4'
 };
@@ -122,8 +122,12 @@ test('all shared-HEAD alias links are symmetric and do not duplicate branch fact
   assert.equal(aliases.reduce((total, group) => total + group.length, 0), 44);
   for (const row of report.per_branch) {
     const expected = report.per_branch.filter(x => x.name !== row.name && x.live_head_sha === row.live_head_sha)
-      .map(x => x.name).sort();
-    assert.deepEqual([...row.duplicate_head_with].sort(), expected, row.name);
+      .map(x => x.name);
+    // The live inventory deliberately excludes its own audit branch from
+    // the 113 recorded branch rows, while recording its duplicate HEAD.
+    if (row.live_head_sha === report.baseline.main_sha)
+      expected.push('docs/live-branch-verification-20261120');
+    assert.deepEqual([...row.duplicate_head_with].sort(), expected.sort(), row.name);
   }
 });
 
