@@ -1,0 +1,230 @@
+{
+  "schema": "meridian-geometry-candidate-audit/v1",
+  "frozen_date": "2026-11-20",
+  "authority": "archival_review_only_not_saved_world_canon",
+  "baseline_main_sha": "019175c6463ff31807a0f7013d91299add94913c",
+  "baseline_state_git_blob": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+  "method": "Manually extracted from named historical branch JSONs verified through the GitHub connector. The runnable tests check only this frozen comparative evidence and the unchanged current checkpoint; they DO NOT execute source modules from the historic branch HEADs.",
+  "candidates": [
+    {
+      "pr": 40,
+      "source_branch": "work/meridian-bay-corridor-detail-market-cross-20261116",
+      "source_head": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "source_file": "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+      "source_file_blob": "904983876226ba82451bf9e3b5d6aed8e7885d6a",
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-CROSSWATER-PLAZA",
+      "parent": "MB-WEB-007",
+      "points": [
+        [
+          58,
+          43
+        ],
+        [
+          59.8,
+          42.6
+        ],
+        [
+          62.2,
+          42.3
+        ],
+        [
+          64,
+          42.1
+        ],
+        [
+          65,
+          42
+        ]
+      ]
+    },
+    {
+      "pr": 52,
+      "source_branch": "work/meridian-bay-market-crosswater-detail-20261116",
+      "source_head": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "source_file": "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+      "source_file_blob": "d4defa6b85da6eb32ef1edf367783b92d1faf1db",
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-CROSSWATER-PLAZA",
+      "parent": "MB-WEB-007",
+      "points": [
+        [
+          58,
+          43
+        ],
+        [
+          59.8,
+          42.6
+        ],
+        [
+          62.2,
+          42.3
+        ],
+        [
+          64,
+          42.1
+        ],
+        [
+          65,
+          42
+        ]
+      ]
+    },
+    {
+      "pr": 42,
+      "source_branch": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
+      "source_head": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "source_file": "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+      "source_file_blob": "9904247bfc51e7d3097dd1ec105fbad5632f89a1",
+      "from": "LOC-CROSSWATER-PLAZA",
+      "to": "LOC-HARBOR-WALK",
+      "parent": "MB-WEB-009",
+      "points": [
+        [
+          65,
+          42
+        ],
+        [
+          66.9,
+          40.6
+        ],
+        [
+          68.9,
+          39.15
+        ],
+        [
+          70.1,
+          37.85
+        ],
+        [
+          71,
+          37
+        ]
+      ]
+    },
+    {
+      "pr": 56,
+      "source_branch": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "source_head": "199b3843085d8b4b2ab92739357263d598757331",
+      "source_file": "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+      "source_file_blob": "a5ac772922b4717797118b15f182207be1d1a7fb",
+      "from": "LOC-CROSSWATER-PLAZA",
+      "to": "LOC-HARBOR-WALK",
+      "parent": "MB-WEB-009-DRAFT",
+      "points": [
+        [
+          65,
+          42
+        ],
+        [
+          66.9,
+          40.6
+        ],
+        [
+          68.9,
+          39.15
+        ],
+        [
+          70.1,
+          37.85
+        ],
+        [
+          71,
+          37
+        ]
+      ]
+    },
+    {
+      "pr": 44,
+      "source_branch": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "source_head": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "source_file": "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json",
+      "source_file_blob": "e8efe8e5f6a746ab4e628f76a9deb5f71061010d",
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-HARBOR-WALK",
+      "parent": "MB-WEB-010",
+      "points": [
+        [
+          58,
+          43
+        ],
+        [
+          60,
+          40.7
+        ],
+        [
+          64,
+          38.1
+        ],
+        [
+          68,
+          36.9
+        ],
+        [
+          71,
+          37
+        ]
+      ]
+    },
+    {
+      "pr": 58,
+      "source_branch": "work/meridian-bay-market-harbor-detail-20261116",
+      "source_head": "b11332aa53796717cf299bebccf043d72620220e",
+      "source_file": "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+      "source_file_blob": "280a444f6eed99a33027aea2edb48af70cc67bd0",
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-HARBOR-WALK",
+      "parent": "MB-WEB-010-DRAFT",
+      "points": [
+        [
+          58,
+          43
+        ],
+        [
+          60,
+          39.8
+        ],
+        [
+          63.5,
+          37.5
+        ],
+        [
+          67.5,
+          36.2
+        ],
+        [
+          69.5,
+          36.7
+        ],
+        [
+          71,
+          37
+        ]
+      ]
+    }
+  ],
+  "duplicate_pairs": [
+    [
+      40,
+      52
+    ],
+    [
+      42,
+      56
+    ]
+  ],
+  "conflicting_pairs": [
+    [
+      44,
+      58
+    ]
+  ],
+  "admission_review": [
+    "LOC-RAILGARDEN-ABARROTES",
+    "LOC-RAILGARDEN-CLINIC",
+    "LOC-MARKET-DELIVERY-POINT",
+    "LOC-MARKET-CULTURE-PASSAGE",
+    "LOC-MARKET-BUSINESS-OFFICES"
+  ],
+  "recommendation": "Retain both #44 and #58 as unapproved drafts. Prefer investigating #58 first because of its finer-grained route proposal, but do not select or admit either without a seam, obstruction, provenance and compatibility review."
+}

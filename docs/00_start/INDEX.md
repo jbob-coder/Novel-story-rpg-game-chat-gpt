@@ -39,3 +39,14 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Reconciliación del HEAD narrativo y nuevos faltantes](CURRENT_STATE_RECHECK_2026-11-20.md)
 
 - [Consolidación efectiva de la base narrativa en main (PR #2)](MAIN_CONSOLIDATION_2026-11-20.md)
+
+- **[Verificación en vivo de las 108 ramas originales y 5 nuevas (20-11-2026)](BRANCH_LIVE_VERIFICATION_2026-11-20.md)**.
+- [Tabla estructurada por rama con HEAD, brechas por archivo y siguiente acción](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
+- [Lote 01: revisión de código y pruebas históricas de cuatro ramas NPC](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
+- [Lote 02: revisión de seis ramas de vías, costa y fragmentos de Meridian Bay](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
+- [Lote 03: 14 ramas de corredores y accesos, CI histórica y conflictos de geometría](BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md).
+- [Lote 04: 44 ramas QA, journal, backup y audit — reglas de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
+- [Lote 05: clasificación de las 39 ramas work restantes y cierre del inventario histórico](BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md).
+
+- [Lote 06: verificación ejecutable de inventario y conflictos de trazados](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md).
+- [Seis candidatos de geometría con commit, blob y coordenadas de origen](BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json).

@@ -43,3 +43,40 @@ La rama narrativa avanzó a `2820cca1bd5140ef8a9f2c94cf986feef0ef19cc` e integr�
 ## Consolidación efectiva en main — 2026-11-20
 
 PR #2 **fusionada** y comparada: `main` @ `7c45dc46f2651d8d4375435af704b71643ebdae5` recibió exactamente los 163 archivos de la fuente `2820cca1` sin diferencia blob. El guardado canónico sigue en `work/chat-narrative-foundation`. Ver [acta de integración](MAIN_CONSOLIDATION_2026-11-20.md); las filas del 19-11 son históricas.
+
+
+## Verificación en vivo de cada rama — 2026-11-20 (BR-03)
+
+Se reconsultaron los HEAD de las 108 ramas del inventario: 108 presentes, **106 SHA estables**, dos avances legítimos (`main` y `work/chat-narrative-foundation`). Además existen cinco ramas creadas después del inventario, sin incluir la rama independiente de esta auditoría. Se cotejaron sus registros de rutas y blobs frente a `main` @ `019175c6463f`: **26** nombres de `tools/` y **32** de `tests/` ausentes en el consolidado (diferencias de archivo, no pruebas de implementación). Se preservan las 108 fichas originales como instantánea inmutable; la comparación actualizada y el dictamen individual de las 113 ramas están en [informe](BRANCH_LIVE_VERIFICATION_2026-11-20.md) y [JSON](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
+
+La revisión detallada de código se concentró en la cola diferida, PR #11 (agendas), #12 (decisiones) y #13 (relaciones); siguen pendientes integración y pruebas por SHA cuando corresponda. Los estados en vivo de PR #10–#15, #27, #33, #78–#80 y #82 fueron reconsultados. **La verificación completa funcional por rama NO está terminada.** La nueva documentación se mantiene en rama/PR aislada, sin alterar canon ni los cinco archivos de checkpoint. La CI exacta de esta rama debe anotarse tras ejecutarse.
+
+**Próximo paso:** completar revisión funcional de decisiones/social/deferred, luego ramas cartográficas por dependencias y finalmente custodia de QA/journal/backup; documentar para cada HEAD archivos, contratos, riesgos, test y decisión de integración.
+
+### Lote de inspección funcional 01 (2026-11-20)
+
+Revisión estática de `work/meridian-bay-causal-routines-20261112`, `work/meridian-bay-causal-decisions-20261112`, `work/meridian-bay-social-relations-20261112` y `work/living-world-between-turns-20261112`. Se inspeccionaron módulos, importaciones, hooks de coordinador y suites históricas (13 casos para decisiones, 14 para relaciones). **Incompatibilidades confirmadas por lectura:** `review_metadata` y `social_context` no se transportan por el coordinador `main`; los hooks de cola diferida no están integrados; la agenda sigue como PR #82 borrador. **No se ejecutaron tests de los HEAD antiguos.** [Ver evidencia y dictamen por rama](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
+
+### Lote de inspección funcional 02 (2026-11-20)
+
+Se inspeccionaron seis ramas de carreteras y fragmentos de Meridian Bay (`road-growth-slice1/2/3`, `harbor-coast-fragment-01/02`, `market-crosswater-land-fragment-03`), incluyendo cinco PR con estado reconsultado (#34, #36, #66, #67, #69). Se verificaron HEAD/árboles, datos de geometría, dependencias y archivos de pruebas, pero **no** se ejecutaron las suites de los HEAD históricos. Slice3 agrega solo dos JSON al HEAD de slice2, sin código ni tests propios; las costas y el fragmento terrestre continúan explícitamente como propuestas no admitidas. [Evidencia y próximos pasos](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
+
+### Lotes de inspección 03 y 04 (2026-11-20)
+
+**Lote 03 (14 ramas con PR #38–#64):** módulos, archivos de diseño y tests revisados; 108 declaraciones `test()` identificadas en los 14 archivos de prueba históricos y 14 workflows históricos `completed/success` verificados por HEAD. No se reejecutaron esos tests en `main`. Se detectó duplicación de geometría #40/#52 y #42/#56; **conflicto geométrico #44/#58** (dos trazados distintos para la conexión directa Market–Harbor). Los validadores antiguos de comercios y clínica que requieren lugares no admitidos son incompatibles con las cinco ubicaciones ya incorporadas al `main` (15 ubicaciones guardadas). [Informe](BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md).
+
+**Lote 04 (44 ramas):** 32 QA, cinco journal, tres backups y cuatro audit preservados. 18 QA comparten HEAD con ramas work; tres QA tienen diferencias en los cinco archivos de partida y el resto al menos un blob narrativo diferente. No importar estados históricos ni confundir alias con nuevas funcionalidades. [Registro individual y política de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
+
+Estos lotes son **evidencia de inventario/inspección**, no una certificación de 108 ramas. Falta comparar y probar propuestas work restantes, modernizar adaptadores seleccionados y decidir qué geometría prevalece; no tocar la partida sin una acción real del jugador.
+
+### Lote de inspección 05 (2026-11-20): reconciliación de trabajo restante
+
+Se clasificaron las **39 ramas históricas work** no documentadas con detalle en los lotes 01–03, usando SHA en vivo, capturas de diffs de 28 PR históricas y últimos commits de 11 ramas sin PR. Se revisaron además las fuentes del prototipo web con localStorage, preview de paseos, blueprint de distritos, plano de escala no canónico, obligaciones persistentes y prueba de planes con dos NPC. [Registro por cada rama](BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md).
+
+**Cobertura de fichas individuales:** 108/108 ramas originales documentadas por procedencia, archivos/deltas y dictamen de auditoría en lotes 01–05 (63 `work/` + 44 otras + `main`). Esto **no** equivale a 108 pruebas funcionales ni significa que 108 ramas deban fusionarse. Las cinco ramas nuevas anteriores a la documentación también están en el registro JSON de 113.
+
+**Pendiente:** ejecutar y modernizar las suites de candidatos útiles en el motor/estado vigente; resolver el conflicto de trazado #44/#58 y los validadores obsoletos de tiendas/servicios; no retroceder el checkpoint ni alterar el turno 9.
+
+### Lote 06 — QA reproducible (2026-11-20)
+
+La suite `tests/branch_audit_integrity.test.mjs` somete a comprobación los 108 registros originales, 9 lotes Git completos, 113 entradas de catálogo, 26 rutas tools y 32 rutas tests pendientes, alias de SHA, cinco blobs canónicos, 6 candidatos de rutas con duplicación/conflicto, grafo recíproco y cinco locales previamente admitidos. Sus coordenadas se fijaron con procedencia de commit y blob en [candidatos de geometría](BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json), y el [protocolo de ejecución](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md) separa cuidadosamente verificación del registro y ejecución de módulos históricos. **El resultado de CI se documentará solamente tras observar el workflow del último commit**.
