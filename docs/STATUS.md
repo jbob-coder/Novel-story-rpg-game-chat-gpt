@@ -1,5 +1,26 @@
 # Project checkpoint — narrative foundation and continuity audit
 
+## Phase 2 first increment — NPC needs and established work (2026-11-20)
+
+Qualitative NPC needs and service cases now connect to the admitted map, private
+diagnostics, typed effects, global chapter history and journaled save/recovery.
+Source code is selectively adapted from PR #27 and PR #15; their obsolete
+engine versions and other draft content are not merged. Supported work is
+Lena's dispatch review, Sora's maintenance review and Mara's sales-note review.
+
+The synthetic pipeline records a private need and case, a missing-document
+blocker, a chapter transition, later completion and recovery of the same detached
+save. It preserves Jack, the register's actual condition and literal narration.
+Application and replay reject missing observations, unsupported resource
+references, unavailable work, rewritten history and invented time budgets.
+
+Validation: **422 JavaScript tests, 47 Python tests and checkpoint validator
+passed**. This is the first tested Phase 2 slice; social encounters, richer
+relationships, staff, stock, purchases and broader civilian chains remain open.
+See [the scope and operating contract](01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md).
+The real five checkpoint files remain unchanged: CH-000 turn 9, Day -29 morning,
+14 LOC records plus the city container. No synthetic need or case was activated.
+
 ## Live Meridian Bay admission verified — 2026-11-18
 
 The six reviewed establishments now exist in the authoritative world, independently

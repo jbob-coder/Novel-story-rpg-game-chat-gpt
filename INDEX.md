@@ -38,3 +38,5 @@ Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work
 - [Auditoría de ramas y descripciones contrastadas con GitHub (2026-11-19)](docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md)
 
 - [Comparación estática de las 108 ramas con el código narrativo y riesgos de integración](docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
+
+- [Rectificación de la auditoría al nuevo HEAD (20-11-2026)](docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md)

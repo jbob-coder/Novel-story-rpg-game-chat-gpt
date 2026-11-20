@@ -201,6 +201,14 @@
       "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
       "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json"
     ],
+    "npc_work_increment": [
+      "docs/01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md",
+      "tools/living_world_needs.mjs",
+      "tools/meridian_bay_services.mjs",
+      "tests/integration_npc_needs_plans.test.mjs",
+      "tests/meridian_bay_services.test.mjs",
+      "tests/meridian_bay_phase2_integration.test.mjs"
+    ],
     "branch_audit_2026_11_19": [
       "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.json",
       "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md",
@@ -227,6 +235,9 @@
       "docs/00_start/branch_checks/PR_FILES_03.json",
       "docs/00_start/branch_checks/PR_FILES_04.json",
       "docs/00_start/branch_checks/PR_FILES_05.json"
+    ],
+    "branch_audit_2026_11_20": [
+      "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md"
     ]
   },
   "repository_checkpoints": [

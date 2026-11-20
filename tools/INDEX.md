@@ -25,6 +25,8 @@
 - [Preparación y transición revisada de capítulos](chapter_management.mjs)
 - [Planes condicionales de NPC y límites de información](world_plans.mjs)
 - [Obligaciones causales reutilizadas de PR #10](living_world_obligations.mjs)
+- [Necesidades cualitativas y decisiones observadas de NPC](living_world_needs.mjs)
+- [Tareas de servicios establecidos y revisión histórica](meridian_bay_services.mjs)
 - [Evidencia de integración](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
 - [Catálogo y admisión explícita de Meridian Bay](meridian_bay_locations.mjs)
 - [Admisión del mundo sin consumir un turno](world_admission.mjs)

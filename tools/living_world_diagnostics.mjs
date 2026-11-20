@@ -10,6 +10,8 @@ import {validateTemporalAdvance} from './living_world_time.mjs';
 import {inspectPrebuiltMeridianBay} from './meridian_bay_locations.mjs';
 import {inspectSceneEstablishedPlaces} from './meridian_bay_discovery.mjs';
 import {locationAvailability} from './location_state.mjs';
+import {reviewNPCNeeds} from './living_world_needs.mjs';
+import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -57,6 +59,13 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
         eventIds})),
     commitmentReview:reviewNPCCommitments({state,actorIds:selected,elapsedMinutes,elapsedDays,
       commitments,eventIds}),
+    // A distance-limited routine preview must not conceal saved needs elsewhere.
+    // Review is private and never applies automatic decay or an NPC outcome.
+    needReview:elapsedMinutes>0?reviewNPCNeeds({state,
+      targetDay:state.time.day+elapsedDays,limitPerActor:24}):[],
+    serviceReview:elapsedMinutes>0?reviewServiceCases({state,
+      targetDay:state.time.day+elapsedDays}):[],
+    establishedServices:inspectEstablishedServices({state,weekday,minute,schedules,exceptions}),
     cityDesign:includeCityDesign?{
       classification:'narrator_private_design_review',
       locations:inspectPrebuiltMeridianBay({state,fromId:state.player.location_id,weekday,minute}),

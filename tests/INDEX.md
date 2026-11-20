@@ -1,5 +1,9 @@
 # Pruebas y gates de calidad
 
+- [Necesidades de NPC, planes y límites de información](integration_npc_needs_plans.test.mjs)
+- [Restricciones causales y temporales de servicios](meridian_bay_services.test.mjs)
+- [Tarea privada entre capítulos y recuperación sin duplicados](meridian_bay_phase2_integration.test.mjs)
+
 - [tests/save_gate.test.mjs](save_gate.test.mjs)
 - [Pruebas del adaptador HTTP GitHub (D-043)](github_save_adapter.test.mjs)
 - [Pruebas integrales de guardado y recuperación (D-042)](save_transaction.test.mjs)

@@ -35,3 +35,7 @@ Al completar trabajo, añadir una fila o actualizar el registro correspondiente 
 ## Auditoría complementaria — 2026-11-19
 
 Se publicó la [matriz de comparación de código para las 108 ramas](BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md) y sus [datos JSON](BRANCH_SOURCE_GAP_MATRIX_2026-11-19.json). La matriz valida presencia de rutas y SHA de blobs, no ejecución funcional. Las pruebas aún pendientes permanecen **sin ejecutar**; no avanzar la partida ni fusionar ramas QA.
+
+## Rectificación tras nuevo HEAD — 2026-11-20
+
+La rama narrativa avanzó a `2820cca1bd5140ef8a9f2c94cf986feef0ef19cc` e integró necesidades cualitativas y servicios civiles; las filas fechadas el 19-11 son históricas. En el corte nuevo quedan 26 rutas distintas de herramientas y 32 de tests ausentes (frente a 28 y 34). [Informe actualizado](CURRENT_STATE_RECHECK_2026-11-20.md). No reimportar las versiones anteriores de necesidades/servicios ni alterar el turno 9.
