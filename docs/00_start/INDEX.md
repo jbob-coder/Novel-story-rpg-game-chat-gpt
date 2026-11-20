@@ -39,3 +39,6 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Reconciliación del HEAD narrativo y nuevos faltantes](CURRENT_STATE_RECHECK_2026-11-20.md)
 
 - [Consolidación efectiva de la base narrativa en main (PR #2)](MAIN_CONSOLIDATION_2026-11-20.md)
+
+- **[Verificación en vivo de las 108 ramas originales y 5 nuevas (20-11-2026)](BRANCH_LIVE_VERIFICATION_2026-11-20.md)**.
+- [Tabla estructurada por rama con HEAD, brechas por archivo y siguiente acción](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
