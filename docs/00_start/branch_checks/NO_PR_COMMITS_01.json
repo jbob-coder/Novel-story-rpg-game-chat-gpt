@@ -1,0 +1,135 @@
+{
+  "schema": "branch-no-pr-commits/v1",
+  "note": "HEAD commit message and changed paths only, not full history or tests",
+  "rows": [
+    {
+      "name": "audit/living-world-critical-review-20261112",
+      "head_sha": "c3ab3a679e96927d509de54b75b8caffc5c1c274",
+      "doc_use": "Revisar y documentar confiabilidad del motor; no incorpora funciones por sí sola.",
+      "head_commit_message": "docs(audit): prioritize living-world causality, time integrity, save recovery and narrative gaps",
+      "date": "2026-11-12T21:56:31Z",
+      "changed_paths": [
+        "docs/LIVING_WORLD_CRITICAL_AUDIT_20261112.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "backup/before-meridian-world-admission-20261118",
+      "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "doc_use": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "head_commit_message": "docs: preserve second audit findings, hardening evidence and open gates",
+      "date": "2026-11-18T04:30:05Z",
+      "changed_paths": [
+        "AGENTS.md",
+        "INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md"
+      ],
+      "file_count": 7,
+      "ok": true
+    },
+    {
+      "name": "backup/narrative-before-20261115-readiness-integration",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "doc_use": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "head_commit_message": "docs: record corrected calendar-window guard and 175/175 reliability QA",
+      "date": "2026-11-12T22:40:58Z",
+      "changed_paths": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+      ],
+      "file_count": 4,
+      "ok": true
+    },
+    {
+      "name": "backup/narrative-before-verified-context-20261115",
+      "head_sha": "4c32b464a6b7dbd80600b25890641cb19185838a",
+      "doc_use": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "head_commit_message": "docs: set latest remote runtime QA checkpoint for narration agents",
+      "date": "2026-11-15T22:12:22Z",
+      "changed_paths": [
+        "AGENTS.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "journal/living-world-save-attempts",
+      "head_sha": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+      "doc_use": "Registrar y recuperar operaciones de guardado; nunca mezclar como escenas o código de juego.",
+      "head_commit_message": "chore: checkpoint independent world admission",
+      "date": "2026-11-18T14:19:12Z",
+      "changed_paths": [
+        ".narrative-save-attempts/d29yay9jaGF0LW5hcnJhdGl2ZS1mb3VuZGF0aW9u.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "journal/qa-live-journal-runtime-43767698159",
+      "head_sha": "f7f440fea6183badfaeb56354932dcbd99e2c9e2",
+      "doc_use": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "head_commit_message": "chore: checkpoint narrative save attempt",
+      "date": "2026-11-15T22:09:48Z",
+      "changed_paths": [
+        ".narrative-save-attempts/cWEvbGl2ZS1qb3VybmFsLXJ1bnRpbWUtNDM3Njc2OTgxNTk.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "journal/qa-living-world-smoke-20261112",
+      "head_sha": "ef2337feaa1f7181c52ba3d56ecff5574982da29",
+      "doc_use": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "head_commit_message": "test: resume isolated blocked save journal",
+      "date": "2026-11-12T23:09:00Z",
+      "changed_paths": [
+        ".narrative-save-attempts/cWEvbGl2aW5nLXdvcmxkLWpvdXJuYWwtc21va2UtMjAyNjExMTI.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "journal/qa-narrative-five-file-smoke-20261115",
+      "head_sha": "1fd8e0afa87e85685026e5fcb1139404386faf5a",
+      "doc_use": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "head_commit_message": "test: verify isolated atomic five-file Git recovery and journal",
+      "date": "2026-11-15T17:17:21Z",
+      "changed_paths": [
+        ".narrative-save-attempts/cWEvbmFycmF0aXZlLWZpdmUtZmlsZS1qb3VybmFsLXNtb2tlLTIwMjYxMTE1.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "journal/qa-world-admission-20261118",
+      "head_sha": "220a05b96704291503ccb8756186473ae9398e3a",
+      "doc_use": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "head_commit_message": "chore: checkpoint independent world admission",
+      "date": "2026-11-18T14:18:13Z",
+      "changed_paths": [
+        ".narrative-save-attempts/cWEvd29ybGQtYWRtaXNzaW9uLXJlY292ZXJ5LTIwMjYxMTE4.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "main",
+      "head_sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+      "doc_use": "Publicar la versión consolidada después de revisión y pruebas.",
+      "head_commit_message": "Initial commit",
+      "date": "2026-11-10T01:04:36Z",
+      "changed_paths": [
+        "README.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    }
+  ]
+}
