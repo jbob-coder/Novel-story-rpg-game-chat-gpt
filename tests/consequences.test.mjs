@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {verifyConsequences,stageConsequences} from '../tools/consequences.mjs';
+const state={player:{id:'PLAYER-001'},world:{actors:{'NPC-001':{}}},narrative_threads:[]};
+const events={events:[{id:'EV-000001',turn:1},{id:'EV-000002',turn:2}]};
+const snapshot=(turn)=>({state:structuredClone(state),events:structuredClone(events),manifest:{last_completed_turn:turn}});
+const open={op:'open',event_id:'EV-000001',owner_actor_id:'PLAYER-001',question:'¿Cómo afectará la decisión a los demás?',scope:'observable',summary:'Jack decide intervenir con resultados todavía inciertos.',visibility:'known'};
+test('initial ledger is valid and empty',()=>assert.equal(verifyConsequences(snapshot(1)),true));
+test('cannot preordain an outcome without an event',()=>assert.throws(()=>stageConsequences(snapshot(1),[{...open,event_id:'EV-999999'}]),/actual event/));
+test('opening choice creates event-backed unresolved thread',()=>{const x=stageConsequences(snapshot(1),[open]);assert.equal(x.state.narrative_threads[0].status,'open');assert.equal(x.state.narrative_threads[0].origin_event_id,'EV-000001');assert.equal(state.narrative_threads.length,0)});
+test('subsequent event changes same thread',()=>{const x=stageConsequences(snapshot(1),[open]);x.manifest.last_completed_turn=2;const n=stageConsequences(x,[{op:'develop',thread_id:'THREAD-000001',event_id:'EV-000002',summary:'La reacción se extiende a la estación.',visibility:'hidden'}]);assert.equal(n.state.narrative_threads[0].history.length,2);assert.equal(n.state.narrative_threads[0].status,'open')});
+test('event-based resolution closes a specific thread',()=>{const x=stageConsequences(snapshot(1),[open]);x.manifest.last_completed_turn=2;const n=stageConsequences(x,[{op:'resolve',thread_id:'THREAD-000001',event_id:'EV-000002',summary:'El conflicto terminó por una consecuencia comprobada.',visibility:'known'}]);assert.equal(n.state.narrative_threads[0].resolution_event_id,'EV-000002');assert.equal(n.state.narrative_threads[0].status,'resolved')});
+test('cannot close same branch twice',()=>{let x=stageConsequences(snapshot(1),[open]);x.manifest.last_completed_turn=2;x=stageConsequences(x,[{op:'resolve',thread_id:'THREAD-000001',event_id:'EV-000002',summary:'Resolución confirmada dentro del mundo.',visibility:'known'}]);assert.throws(()=>stageConsequences(x,[{op:'resolve',thread_id:'THREAD-000001',event_id:'EV-000002',summary:'Resolución repetida inválida.',visibility:'known'}]),/not open/)});
+test('offscreen information can remain hidden',()=>{const x=stageConsequences(snapshot(1),[{...open,visibility:'hidden'}]);assert.equal(x.state.narrative_threads[0].history[0].visibility,'hidden')});
+test('no fake pregame threads without played actions',()=>assert.equal(state.narrative_threads.length,0));

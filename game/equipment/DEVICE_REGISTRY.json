@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "owner_actor_id": "PLAYER-001",
+  "chapter_id": "CH-000",
+  "created_at_event": "EV-000020",
+  "registry_kind": "fictional narrative only — no operational access or external identifiers",
+  "source_event_id": "EV-000020",
+  "location_id": "LOC-WILSON-WORKSHOP",
+  "nine_device_rows": [
+    {
+      "id": "CB-001",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "intermittent_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-002",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "intermittent_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-003",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-004",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-005",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-006",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-007",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-008",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    },
+    {
+      "id": "CB-009",
+      "original_occurrence": "CH-000 turn 3",
+      "last_status": "no_response",
+      "active_infection_currently_proven": true,
+      "source_event_id": "EV-000020",
+      "in_fiction_persistent_access_established": true
+    }
+  ],
+  "legacy_group": {
+    "label": "500+",
+    "owner_declared_prior_network": true,
+    "owner_declared_minimum_count": 500,
+    "individually_verified_before_this_turn": 0,
+    "imported_historical_rows": 0,
+    "verification_status": "owner_confirmed_active_in_fiction",
+    "duplicate_overlap_with_nine": "distinct newer Café Bruma additions per owner",
+    "note": "Established narrative history: Jack controls more than 500 devices from years before Café Bruma. No 500 dummy identifiers created; absence of itemized records is not uncertainty about the owner's canon.",
+    "in_fiction_active": true,
+    "itemized_identifiers_not_yet_written": true
+  },
+  "new_group": {
+    "label": "Café Bruma",
+    "records": 9,
+    "ids": [
+      "CB-001",
+      "CB-002",
+      "CB-003",
+      "CB-004",
+      "CB-005",
+      "CB-006",
+      "CB-007",
+      "CB-008",
+      "CB-009"
+    ],
+    "intermittent": 2,
+    "no_response": 7,
+    "verified_historical_at_cafe": 9,
+    "verified_active_virus_now": 9,
+    "notes": "Nine fictional persistent compromises established during Café Bruma; two responded intermittently at the last check and seven did not respond. Reachability does not negate established compromise or guarantee continuous external response."
+  },
+  "distinct_total_verified_historical": 9,
+  "total_network_size_confirmed": null,
+  "total_network_size_story_canon": "More than 500 preexisting active devices plus nine new Café Bruma records; exact total unspecified.",
+  "camera_last_review": {
+    "source_event_id": "EV-000022",
+    "group": "active legacy 500+ fictional device network, not the nine Café Bruma additions",
+    "cameras_checked": "camera section shown; other sources not individually itemized",
+    "preview_status": "one camera feed available, stable",
+    "observed_image": "an illuminated empty corridor and a closed door; location unestablished",
+    "other_previews": "not viewed or unavailable during this check",
+    "no_new_cafe_images": true,
+    "fictional_only": true
+  }
+}

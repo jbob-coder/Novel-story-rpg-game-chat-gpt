@@ -1,0 +1,1856 @@
+{
+  "schema_version": 1,
+  "chapter_id": "CH-000",
+  "events": [
+    {
+      "id": "EV-000001",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack chooses a crowded passage in Crosswater, activates a carried experimental gadget to try to disrupt and infect nearby devices, then leaves for a cafe in Market Row to inspect outcomes. He also requests no more numbered choices.",
+      "outcome": "An isolated burst of visible glitches affects public signage and some nearby phones; no device infection, data theft, or blanket compromise is confirmed. Jack reaches Café Bruma and reviews inconclusive device results while transit staff begin to check anomalies.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "route": [
+            "LOC-CROSSWATER-PLAZA",
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-CAFE-BRUMA"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "sin configurar",
+          "after": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "declared_unresolved",
+          "after": "attempted_unconfirmed"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": null,
+          "after": 15
+        }
+      ],
+      "progression_awards": [
+        {
+          "actor_id": "PLAYER-001",
+          "skill": "electronics",
+          "amount": 1,
+          "reason": "Jack learned from first-hand observation that the prototype causes visible instability but does not provide evidence of successful device infection.",
+          "before": 15,
+          "after": 16,
+          "rank_before": 3,
+          "rank_after": 3
+        }
+      ]
+    },
+    {
+      "id": "EV-000002",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue an ordinary inspection and inspect unexpected display anomalies.",
+      "outcome": "Sora notices the transit sign flickering and begins checking the public display failure without knowing Jack caused it.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "One transit information sign displayed a brief visible anomaly during the evening rush.",
+          "source": "Sora's own observation while inspecting the plaza"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000003",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-001"
+      ],
+      "kind": "independent_actor",
+      "intent": "Address the route delay while handling ordinary operations.",
+      "outcome": "Lena continues arranging the delayed service and receives a routine notice of a display issue, without identifying the source.",
+      "known_to": [
+        "NPC-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-001",
+          "field": "knowledge",
+          "fact": "A Crosswater display suffered a reported brief anomaly.",
+          "source": "Report from transit staff at Crosswater terminal"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000004",
+      "chapter_id": "CH-000",
+      "turn": 1,
+      "day": -30,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Carry the paid parcel toward Market Row.",
+      "outcome": "Darius walks into the commercial district, still focused on completing the paid delivery.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-003",
+          "field": "location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-COMMERCIAL-DISTRICT"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000005",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack points to a coffee and pastry on the café menu. After the attendant leaves, he attempts a staggered second phase of his experimental gadget against nearby third-party devices, trying to force his virus to execute and to inspect financial balances.",
+      "outcome": "Jack seleccionó café y dulce y, tras salir la empleada, el gadget logró ejecutar parte de su segunda fase en dos dispositivos y mostrar dos saldos de cuentas ajenas. Una anomalía afectó la caja de la cafetería. Sin titulares identificados ni dinero transferido.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-CROSSWATER-PLAZA",
+          "after": "LOC-CAFE-BRUMA",
+          "reason": "Carried item location synchronized with player's prior documented move."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "attempted_unconfirmed",
+          "after": "phase_two_partial_success"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_two",
+          "before": null,
+          "after": {
+            "attempted": true,
+            "staggered": true,
+            "unauthorized_execution_confirmed": true,
+            "confirmed_infected_devices": 2,
+            "verified_bank_balances": 2,
+            "observed_balances": [
+              {
+                "device_alias": "FUENTE-01",
+                "amount_display": "4.280,16",
+                "currency": null,
+                "account_holder_known": false
+              },
+              {
+                "device_alias": "FUENTE-02",
+                "amount_display": "93,47",
+                "currency": null,
+                "account_holder_known": false
+              }
+            ],
+            "funds_transferred": false,
+            "result": "Dos ejecuciones parciales observadas y dos lecturas de saldo; otros dispositivos y duración del acceso desconocidos.",
+            "source_event_id": "EV-000005"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "contiene gadget experimental activado una vez; efectos parciales y alcance desconocido",
+          "after": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order",
+          "before": null,
+          "after": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": null,
+            "amount": null,
+            "source_event_id": "EV-000005"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 15,
+          "after": 24
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.information_acquired",
+          "before": false,
+          "after": true,
+          "detail": "Dos lecturas de saldos ficticios sin titulares identificados"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.outcome",
+          "before": "Segunda fase de ejecución escalonada intentada; respuestas incompletas sin infección confirmada, saldos bancarios ni datos extraídos.",
+          "after": "La segunda fase se ejecutó parcialmente en dos dispositivos ajenos y mostró dos saldos bancarios sin titulares identificados, sin transferir dinero. La caja de Café Bruma experimentó una anomalía durante la escena."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000006",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue the inspection of transit display glitches and document unusual recurrence.",
+      "outcome": "Sora records further irregular public-sign behavior as a maintenance incident but has no evidence of who or what caused it.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "The unusual display symptoms merit an incident note rather than being dismissed as an ordinary route-delay message.",
+          "source": "Sora's own maintenance observations during shift"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000007",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-001"
+      ],
+      "kind": "independent_actor",
+      "intent": "Coordinate route operations while receiving maintenance information.",
+      "outcome": "Lena asks transit operations to retain the maintenance report and continues prioritizing the delayed route; she does not suspect Jack.",
+      "known_to": [
+        "NPC-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-001",
+          "field": "knowledge",
+          "fact": "The display malfunction is being tracked by maintenance separately from the train delay.",
+          "source": "Internal transit maintenance communication"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000008",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish the paid delivery in Market Row.",
+      "outcome": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000009",
+      "chapter_id": "CH-000",
+      "turn": 2,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Servir el café y el dulce pedidos y cerrar el turno sin errores de caja.",
+      "outcome": "Mara sirve ambos productos, observa que la caja emite un recibo sin pago y le pregunta a Jack si tiene efectivo; ella no sabe que Jack activó el dispositivo.",
+      "known_to": [
+        "NPC-007",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000005"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "actor_introduction",
+          "before": null,
+          "after": {
+            "name": "Mara Reyes",
+            "role": "barista de Café Bruma",
+            "place": "LOC-CAFE-BRUMA"
+          }
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.register",
+          "before": "normal, pendiente del turno",
+          "after": "intermitente; recibo inesperado"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order.paid",
+          "before": null,
+          "after": null,
+          "detail": "La empleada ofrece cobrar en efectivo; Jack aún no ha decidido."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000010",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack asks Mara the amount by typing through his speech collar, pays cash, then privately persists in his fictional gadget operation to reach the locally detected devices, establish privileged persistent access and minimize evidence.",
+      "outcome": "Mara charges 7.80 in unspecified local currency, Jack pays with 10 cash and receives 2.20 change. His fiction-only device operation establishes privileged persistent access to nine locally detected devices, without visible alerts in the café; his own session traces are cleared but outside records are not guaranteed erased. The shift nears closing and Mara asks Jack to leave the section in five minutes.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "cafe_order",
+          "before": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": null,
+            "amount": null,
+            "source_event_id": "EV-000005"
+          },
+          "after": {
+            "cafe_id": "LOC-CAFE-BRUMA",
+            "items": [
+              "café",
+              "dulce"
+            ],
+            "ordered": true,
+            "delivered": true,
+            "paid": true,
+            "amount": null,
+            "source_event_id": "EV-000005",
+            "price": 7.8,
+            "currency": null,
+            "payment_method": "cash",
+            "cash_tendered": 10,
+            "change_returned": 2.2,
+            "paid_event_id": "EV-000010"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET",
+          "before": null,
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-CAFE-BRUMA",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "segunda fase con dos ejecuciones parciales y lecturas de saldos; alcance y persistencia desconocidos",
+          "after": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "phase_two_partial_success",
+          "after": "phase_three_local_access_persistent"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": null,
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre."
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 24,
+          "after": 38
+        }
+      ],
+      "progression_awards": [
+        {
+          "actor_id": "PLAYER-001",
+          "skill": "technology",
+          "amount": 1,
+          "reason": "Jack managed his first sustained multi-device fictional gadget session and discovered its practical range and thermal limits.",
+          "before": 15,
+          "after": 16,
+          "rank_before": 3,
+          "rank_after": 3
+        }
+      ]
+    },
+    {
+      "id": "EV-000011",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Collect the money for Jack's order, keep manual record of sales and close Café Bruma on time.",
+      "outcome": "Mara accepts cash, returns the change and records the sale manually, then prepares to close the section in five minutes. She has not identified Jack's hidden device activities.",
+      "known_to": [
+        "NPC-007"
+      ],
+      "caused_by": [
+        "EV-000010"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "knowledge",
+          "fact": "Jack paid his café and pastry bill in cash and remained at the table as closing approached.",
+          "source": "Mara received Jack's payment and observed him in the café."
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.order",
+          "before": "café y dulce servidos; pago no completado",
+          "after": "café y pastelito cobrados en efectivo; recibido 10, cambio 2,20"
+        },
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.shift",
+          "before": "quedan unos veinte minutos",
+          "after": "cinco minutos antes del cierre de la zona de mesas"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000012",
+      "chapter_id": "CH-000",
+      "turn": 3,
+      "day": -30,
+      "actor_ids": [
+        "NPC-002"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish maintenance documentation for the public sign anomaly.",
+      "outcome": "Sora closes the immediate panel inspection as an equipment issue, retaining an ordinary maintenance note and no identification of Jack.",
+      "known_to": [
+        "NPC-002"
+      ],
+      "caused_by": [
+        "EV-000002"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-002",
+          "field": "knowledge",
+          "fact": "The immediate Crosswater panel inspection is closed as an unresolved equipment problem without any suspect information.",
+          "source": "Sora completed a routine maintenance check on the public transit sign."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000013",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack gives Mara a polite gesture of no problem, finishes the pending session on his experimental gadget and returns via Market Row and Railgarden to his grandmother's home shared with Elena.",
+      "outcome": "Jack ends the current local gadget session, retains its nine historical registered connections without claiming future remote access certainty, lets the case cool, and returns to the Wilson apartment. Rosa is repairing a neighbor's clock and Elena works on a digital city illustration; both greet Jack and independently seek his input. Café Bruma closes its seating section.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET.location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-CAFE-BRUMA",
+          "after": "LOC-WILSON-APARTMENT",
+          "route": [
+            "LOC-CAFE-BRUMA",
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-RAILGARDEN-RESIDENTIAL",
+            "LOC-WILSON-APARTMENT"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.status",
+          "before": "phase_three_local_access_persistent",
+          "after": "session_finished_returned_home"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre."
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "unknown after Jack's departure",
+            "current_privileged_access_verified": "not reassessed after leaving the cafe"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "nueve accesos locales persistentes registrados; estuche tibio; señales de sesión locales borradas, huellas remotas desconocidas",
+          "after": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 38,
+          "after": 65
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000014",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-007"
+      ],
+      "kind": "independent_actor",
+      "intent": "Finish closing Café Bruma, clear the last occupied table and finish hand-noted sales.",
+      "outcome": "Mara accepts Jack's gesture, returns to the counter and prepares to close the seating area, still unaware of his gadget use.",
+      "known_to": [
+        "NPC-007",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-007",
+          "field": "resources.shift",
+          "before": "cinco minutos antes del cierre de la zona de mesas",
+          "after": "cierre de la zona de mesas en curso"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000015",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Prepare parts for a neighborhood repair meeting and restore a neighbor's faulty alarm clock.",
+      "outcome": "Rosa sorts screws, sketches the alarm clock's mechanism and asks Jack to inspect why the clock gains seven minutes when closed.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "resources.current_repair",
+          "before": null,
+          "after": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000016",
+      "chapter_id": "CH-000",
+      "turn": 4,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue working on a digital illustration for a school presentation while living with her family.",
+      "outcome": "Elena works on a stylized city illustration, talks with Rosa and asks Jack whether the picture reads clearly as a city.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "resources.current_project",
+          "before": null,
+          "after": "Ilustración digital de una ciudad para presentación escolar, aún en progreso."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000017",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack chooses to review Elena's digital city drawing, helping by visually indicating a perspective flaw without speaking new words; afterward he goes to his home workshop and examines which of the nine previously recorded device sessions remain reachable. The player then selects a free action category without specifying the next action.",
+      "outcome": "Elena improves perspective in her city drawing and independently continues adding people, preparing to show it to her teacher tomorrow. Jack checks the historical nine fictional device entries; only two respond intermittently from home, seven have no current response, and no new financial data or proof of remote cleanup arises. Jack remains in his workshop, waiting for the player's unspecified free action.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-PHONE.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-VOICE-COLLAR.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-WALLET.location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-WILSON-WORKSHOP"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 65,
+          "after": 82
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "unknown after Jack's departure",
+            "current_privileged_access_verified": "not reassessed after leaving the cafe"
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+            "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+            "last_observation_event_id": "EV-000017",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "sesión finalizada y guardada; nueve registros históricos, alcance remoto no revisado; aparato enfriándose",
+          "after": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000018",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Refine a school illustration and ask for useful feedback from her older brother.",
+      "outcome": "Elena understands the perspective problem after Jack indicates the misaligned buildings; she corrects them and begins drawing small people to make the street lively.",
+      "known_to": [
+        "NPC-004"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "A pair of buildings in her illustration obscured the street perspective; she corrected their angle after Jack pointed it out.",
+          "source": "Elena herself adjusted the digital illustration after Jack's gestural feedback"
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "resources.current_project",
+          "before": "Ilustración digital de una ciudad para presentación escolar, aún en progreso.",
+          "after": "Ilustración digital urbana con perspectiva corregida y figuras de peatones en proceso; desea enseñarla mañana a su profesora."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "relationship.PLAYER-001.latest_shared_moment",
+          "before": null,
+          "after": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000019",
+      "chapter_id": "CH-000",
+      "turn": 5,
+      "day": -30,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Continue examining a neighbor's alarm clock whose timing changes when the casing is closed.",
+      "outcome": "Rosa keeps working on the clock and makes a light joke about Elena's drawing, leaving the clock's mechanical issue unresolved.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "resources.current_repair",
+          "before": "Reloj despertador de un vecino: adelanta siete minutos al cerrar la carcasa, causa no resuelta.",
+          "after": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000020",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack checks already affected devices and asks to add the nine Café Bruma devices to a 500+ device list, verifies the nine, and reviews his own accounts and shell companies from the home workshop. He supplied no earlier device IDs, own balances or legal entity names.",
+      "outcome": "Jack revisa su red preexistente de más de 500 dispositivos ficticios activos —establecida desde años antes— y organiza por separado los nueve accesos añadidos en Café Bruma. Dos de los nueve responden intermitentemente y siete no responden durante esta consulta, sin deshacer el historial de acceso. Sus reservas privadas y sociedades instrumentales ya existen; cantidades exactas, nombres y balances de empresas no están fijados. Elena pregunta por una memoria USB para su ilustración escolar.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "device_registry",
+          "before": null,
+          "after": {
+            "index_path": "game/equipment/DEVICE_REGISTRY.json",
+            "last_review_event_id": "EV-000020",
+            "legacy_label": "500+",
+            "legacy_claimed_minimum": 500,
+            "legacy_verified_records": 0,
+            "bruma_historical_records": 9,
+            "current_responses": 2,
+            "current_no_response": 7,
+            "current_infection_proven": 9,
+            "verified_total_history_with_records": 9,
+            "deduplication_complete": false,
+            "legacy_active_confirmed_in_fiction": true,
+            "legacy_verification_status": "owner_confirmed_active_in_fiction",
+            "legacy_itemized_records": 0,
+            "cafe_compromises_established_in_fiction": 9
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "finances.asset_ledger_path",
+          "before": null,
+          "after": "game/finances/ASSET_LEDGER.json"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "finances.last_review_status",
+          "before": null,
+          "after": "Private reserves and shell companies predate CH-000 and are confirmed in canon; current numeric balances, entity names and exact counts remain unspecified."
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory.ITEM-COMPACT-CASE.status",
+          "before": "nueve registros históricos; dos respuestas intermitentes al revisar desde el taller, siete sin respuesta; permisos no revalidados",
+          "after": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "opening_intent.phase_three",
+          "before": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "two intermittent responses from the home workshop; seven unresponsive during this check",
+            "current_privileged_access_verified": "not independently re-established; responses alone do not confirm intact privileges",
+            "last_observation_event_id": "EV-000017",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false
+          },
+          "after": {
+            "attempted": true,
+            "completed_local_detected_set": true,
+            "locally_detected_devices": 9,
+            "privileged_persistent_access_count": 9,
+            "includes_previous_two": true,
+            "observed_security_alerts": 0,
+            "local_session_traces_cleared": true,
+            "other_system_logs_erased": "unverified",
+            "known_scope": "Aparatos detectados y alcanzables desde Café Bruma, no todos los existentes",
+            "mechanical_method": "unspecified; fiction only",
+            "source_event_id": "EV-000010",
+            "observed_limit": "El estuche se calienta y el local se acerca al cierre.",
+            "active_session_finished": true,
+            "completion_event_id": "EV-000013",
+            "historical_local_sessions": 9,
+            "current_device_reachability": "2 intermittent responses, 7 no responses in current check",
+            "current_privileged_access_verified": "nine fictional persistent compromises established; present response only observed for two intermittently, seven silent",
+            "last_observation_event_id": "EV-000020",
+            "last_review_place": "LOC-WILSON-WORKSHOP",
+            "responding_intermitently": 2,
+            "no_response_current_check": 7,
+            "new_bank_balance_reads": 0,
+            "remote_logs_verified_clean": false,
+            "last_catalogue_event_id": "EV-000020",
+            "known_registry_path": "game/equipment/DEVICE_REGISTRY.json"
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "time.elapsed_minutes_since_opening_approx",
+          "before": 82,
+          "after": 94
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000021",
+      "chapter_id": "CH-000",
+      "turn": 6,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Prepare her revised city illustration for tomorrow's school presentation and avoid losing the file.",
+      "outcome": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "She needs an external memory device to carry her artwork to school tomorrow.",
+          "source": "Elena prepared the file and asked Jack from the workshop doorway."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Añadir figuras humanas al fondo de la avenida y preparar la ilustración escolar para mostrársela mañana a la profesora.",
+          "after": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000022",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "day": -30,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack gives Elena a spare USB stick, looks at her, turns back to his workshop display, and checks the current status and balances shown for his personal and company accounts and the camera section.",
+      "outcome": "Elena receives a working USB. The private account panel presents two personal and two operational corporate account balances (newly observed in fiction), all with available status, while the Café Bruma third-party readings remain separate. One camera preview belonging to Jack's established earlier device network returns an ordinary stable image, without an identified location.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "libre y funcional",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "libre y funcional",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "after": null
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados.",
+          "source": "Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7",
+          "after": "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas.",
+          "source": "Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7",
+          "after": "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000023",
+      "chapter_id": "CH-000",
+      "turn": 7,
+      "day": -30,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Elena takes the offered USB and prepares to save her illustration for school.",
+      "outcome": "Elena accepts the USB, thanks Jack and returns toward her computer. She can copy the drawing before school; she has not seen his private account or camera data.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000022"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000021",
+            "day": -30,
+            "summary": "Elena saves progress on her illustration, approaches Jack's workshop door and asks if he has a spare USB memory stick; she does not see or understand the confidential device and asset registers."
+          },
+          "after": {
+            "event_id": "EV-000023",
+            "day": -30,
+            "summary": "Elena receives a spare USB from Jack, thanks him, and returns to the computer to copy her illustration."
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "prestada a Elena para su ilustración escolar",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Conseguir una memoria extraíble para llevar a la escuela su ilustración, sin interrumpir el trabajo de Jack.",
+          "after": "Guardar una copia de su ilustración en la memoria USB prestada por Jack y llevarla mañana a la escuela."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "relationship",
+          "target_actor_id": "PLAYER-001",
+          "before": {
+            "relation": "hermano mayor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Feedback gestual útil sobre la perspectiva de su dibujo (CH-000, turno 5)"
+          },
+          "after": {
+            "relation": "hermano mayor",
+            "bond": "cercano pero a veces discrepante",
+            "knowledge_of_crimes": false,
+            "latest_shared_moment": "Jack le prestó una memoria USB para su dibujo escolar (CH-000, turno 7)"
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio.",
+          "source": "Elena recibió la memoria directamente de Jack en la puerta del taller",
+          "after": "Jack le entregó una memoria USB de repuesto para guardar y llevar su ilustración al colegio. (source: Elena recibió la memoria directamente de Jack en la puerta del taller; EV-000023)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000024",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "El propietario autoriza que el narrador cierre la noche y continúe hasta la mañana del día siguiente, sin elegir nuevas decisiones importantes por Jack.",
+      "outcome": "La actividad del taller termina tranquilamente, el monitor queda apagado y llega la mañana siguiente. Jack vuelve al área común del hogar; la red antigua, los registros y Aster permanecen tal como estaban.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-WORKSHOP",
+          "after": "LOC-WILSON-APARTMENT",
+          "route": [
+            "LOC-WILSON-WORKSHOP",
+            "LOC-WILSON-APARTMENT"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-PHONE",
+          "before": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-VOICE-COLLAR",
+          "before": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-COMPACT-CASE",
+          "before": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-WALLET",
+          "before": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000025",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "day": -29,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Elena termina su copia de la ilustración, prepara la memoria prestada y la mochila para llevar el trabajo al colegio.",
+      "outcome": "Elena conserva la memoria USB con una copia de su dibujo, desayuna con prisa normal y se dispone a salir para clase. Aún está en el apartamento y desconoce los registros financieros o privados de Jack.",
+      "known_to": [
+        "NPC-004",
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000023"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000023",
+            "day": -30,
+            "summary": "Elena receives a spare USB from Jack, thanks him, and returns to the computer to copy her illustration."
+          },
+          "after": {
+            "event_id": "EV-000025",
+            "day": -29,
+            "summary": "Elena guardó una copia de su ilustración en la memoria USB, la colocó en la mochila y se preparó para salir a clase; continúa en casa."
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "prestada a Elena para su ilustración escolar",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Guardar una copia de su ilustración en la memoria USB prestada por Jack y llevarla mañana a la escuela.",
+          "after": "Llevar a la clase la copia de la ilustración en la memoria USB prestada, enseñársela a la profesora y devolver la memoria después."
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "knowledge",
+          "fact": "Elena guardó una copia de su ilustración en la memoria USB prestada y la lleva preparada en su mochila.",
+          "source": "Elena comprobó la copia en su propia computadora durante la noche y preparó la mochila por la mañana",
+          "after": "Elena guardó una copia de su ilustración en la memoria USB prestada y la lleva preparada en su mochila. (source: Elena comprobó la copia en su propia computadora durante la noche y preparó la mochila por la mañana; EV-000025)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000026",
+      "chapter_id": "CH-000",
+      "turn": 8,
+      "day": -29,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Rosa prepara el desayuno y continúa con la reparación pendiente del reloj del vecino.",
+      "outcome": "Rosa sirve tostadas, conserva las piezas del reloj sobre la mesa y mantiene pendiente la reparación sin concluirla ni pedir una decisión por Jack.",
+      "known_to": [
+        "NPC-005",
+        "NPC-004",
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000019",
+            "day": -30,
+            "summary": "Rosa keeps working on the clock and makes a light joke about Elena's drawing, leaving the clock's mechanical issue unresolved."
+          },
+          "after": {
+            "event_id": "EV-000026",
+            "day": -29,
+            "summary": "Rosa prepara tostadas para la mañana y sigue examinando el despertador del vecino; la avería de siete minutos continúa sin resolver."
+          }
+        },
+        {
+          "actor_id": "NPC-005",
+          "field": "independent_plan",
+          "before": "Consultar a Jack si desea ayudar a revisar un despertador antes de la próxima reunión vecinal.",
+          "after": "Examinar otra vez el despertador del vecino que se adelanta al cerrarse; mantener sus tareas habituales de la mañana."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000027",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Jack recoge la mochila, se la entrega a Elena, vuelve a la cocina, repara el despertador, regresa al taller, inspecciona Aster y monta su primer brazo.",
+      "outcome": "Jack entrega la mochila a Elena sin retirar la USB. En la cocina corrige una pestaña interior de la tapa del despertador que presionaba el ajuste de hora y comprueba varios cierres sin saltos de minutos. Regresa al taller, corrige una interferencia física del primer brazo de Aster y lo monta en el torso; hombro y codo se desplazan a mano, sin actuadores conectados ni operación autónoma.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "after": null
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-WILSON-WORKSHOP",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-WILSON-WORKSHOP"
+          ]
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-PHONE",
+          "before": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-VOICE-COLLAR",
+          "before": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-COMPACT-CASE",
+          "before": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-WALLET",
+          "before": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-ASTER",
+          "before": {
+            "id": "ITEM-ASTER",
+            "name": "Aster — robot mediano sin cabina",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": false,
+            "status": "en construcción, incompleto y no operativo",
+            "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+            "narrative_only": true,
+            "functional_state": "incompleto",
+            "spec_ref": "game/ASTER_SPEC.md"
+          },
+          "after": {
+            "id": "ITEM-ASTER",
+            "name": "Aster — robot mediano sin cabina",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": false,
+            "status": "En construcción: primer brazo montado mecánicamente y recorrido manual comprobado; actuadores sin conectar; no operativo",
+            "description": "Robot de tamaño mediano sin piloto; diseño flexible y resistente, jetpack, combate automático, visión nocturna/térmica, pantalla 14K, protección térmica y frente a interferencias, posible protección 'UMP' ambigua y retirada de emergencia. Todas las funciones son requisitos de diseño sin validar.",
+            "narrative_only": true,
+            "functional_state": "incompleto",
+            "spec_ref": "game/ASTER_SPEC.md",
+            "assembly_progress": {
+              "first_arm": {
+                "mounted_to_torso": true,
+                "shoulder_joint": "Soporta el conjunto en montaje; revisión manual realizada",
+                "elbow_joint": "Movimiento pasivo de flexión/extensión comprobado sin rozamiento",
+                "manual_alignment": "alineación corregida y comprobada",
+                "actuator_wiring": "sin conectar",
+                "powered_motion": "sin probar",
+                "load_tests": "pendientes",
+                "source_event_id": "EV-000027",
+                "day": -29
+              },
+              "other_modules": "No se atribuyen nuevas funciones; robot aún no operativo"
+            }
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces.",
+          "source": "Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29",
+          "after": "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)"
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000028",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "NPC-004"
+      ],
+      "kind": "independent_actor",
+      "intent": "Elena recoge su mochila de manos de Jack, se la acomoda y se marcha a su jornada escolar.",
+      "outcome": "Elena sale del hogar Wilson hacia Railgarden, de camino a la escuela, con su mochila y la USB de la ilustración. No se afirma que ya haya llegado al colegio.",
+      "known_to": [
+        "NPC-004",
+        "PLAYER-001",
+        "NPC-005"
+      ],
+      "caused_by": [
+        "EV-000027"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-004",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000025",
+            "day": -29,
+            "summary": "Elena guardó una copia de su ilustración en la memoria USB, la colocó en la mochila y se preparó para salir a clase; continúa en casa."
+          },
+          "after": {
+            "event_id": "EV-000028",
+            "day": -29,
+            "summary": "Elena recibe la mochila de Jack, confirma que lleva la USB con el dibujo y sale del apartamento camino de la escuela."
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": null,
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          }
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "location_id",
+          "before": "LOC-WILSON-APARTMENT",
+          "after": "LOC-RAILGARDEN-RESIDENTIAL",
+          "route": [
+            "LOC-WILSON-APARTMENT",
+            "LOC-RAILGARDEN-RESIDENTIAL"
+          ]
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-USB-SPARE-001",
+          "before": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-USB-SPARE-001",
+            "name": "Memoria USB de repuesto",
+            "size": "pequeño",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "con una copia guardada de la ilustración escolar; prestada a Elena y en su mochila",
+            "description": "Memoria USB disponible en el taller; Jack la entrega a Elena en CH-000 turno 7.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "inventory_item",
+          "item_id": "ITEM-ELENA-BACKPACK-001",
+          "before": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-WILSON-APARTMENT",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-ELENA-BACKPACK-001",
+            "name": "Mochila escolar de Elena",
+            "size": "mediano",
+            "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+            "carried": true,
+            "status": "mochila preparada para ir a clase; la memoria USB de Jack va en un bolsillo interior",
+            "description": "Mochila escolar que Elena dejó junto a la puerta; Jack la recoge y se la entrega antes de que salga de casa.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "NPC-004",
+          "field": "independent_plan",
+          "before": "Llevar a la clase la copia de la ilustración en la memoria USB prestada, enseñársela a la profesora y devolver la memoria después.",
+          "after": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase."
+        }
+      ],
+      "progression_awards": []
+    },
+    {
+      "id": "EV-000029",
+      "chapter_id": "CH-000",
+      "turn": 9,
+      "day": -29,
+      "actor_ids": [
+        "NPC-005"
+      ],
+      "kind": "independent_actor",
+      "intent": "Rosa comprueba la reparación del reloj y organiza su devolución al vecino.",
+      "outcome": "Tras comprobar varias veces que al cerrar la carcasa ya no se adelantan las agujas, Rosa considera el despertador reparado y se dispone a devolverlo al vecino más tarde.",
+      "known_to": [
+        "NPC-005",
+        "PLAYER-001"
+      ],
+      "caused_by": [
+        "EV-000027"
+      ],
+      "state_changes": [
+        {
+          "actor_id": "NPC-005",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000026",
+            "day": -29,
+            "summary": "Rosa prepara tostadas para la mañana y sigue examinando el despertador del vecino; la avería de siete minutos continúa sin resolver."
+          },
+          "after": {
+            "event_id": "EV-000029",
+            "day": -29,
+            "summary": "Rosa observa que Jack arregló el problema de la tapa del despertador, comprueba varios cierres y deja el reloj listo para devolvérselo al vecino."
+          }
+        },
+        {
+          "actor_id": "NPC-005",
+          "field": "resources",
+          "before": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "El reloj del vecino sigue adelantando cuando se cierra; diagnóstico no resuelto. Rosa mantiene piezas separadas y el reloj sin cerrar."
+          },
+          "after": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029"
+          }
+        },
+        {
+          "actor_id": "NPC-005",
+          "field": "independent_plan",
+          "before": "Examinar otra vez el despertador del vecino que se adelanta al cerrarse; mantener sus tareas habituales de la mañana.",
+          "after": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana."
+        }
+      ],
+      "progression_awards": []
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "version": 2,
+  "authority": "Canonical paths remain at original location; indexes are navigation-only.",
+  "entrypoints": [
+    "AGENTS.md",
+    "INDEX.md",
+    "docs/INDEX.md"
+  ],
+  "indexes": [
+    "INDEX.md",
+    "docs/INDEX.md",
+    "docs/00_start/INDEX.md",
+    "docs/01_world/INDEX.md",
+    "docs/02_characters/INDEX.md",
+    "docs/03_systems/INDEX.md",
+    "docs/04_story/INDEX.md",
+    "docs/05_persistence/INDEX.md",
+    "docs/06_quality/INDEX.md",
+    "game/INDEX.md",
+    "game/characters/INDEX.md",
+    "game/world/INDEX.md",
+    "game/equipment/INDEX.md",
+    "game/saves/INDEX.md",
+    "chapters/INDEX.md",
+    "chapters/CH-000/INDEX.md",
+    "tools/INDEX.md",
+    "tests/INDEX.md",
+    "game/finances/INDEX.md"
+  ],
+  "canonical": {
+    "game": [
+      "game/STATE.json",
+      "game/SAVE_MANIFEST.json",
+      "game/CHARACTER_JACK.md",
+      "game/JACK_HACKER_HISTORY.md",
+      "game/ASTER_SPEC.md",
+      "game/STARTING_CAST.md",
+      "game/STARTING_LOCATIONS.md",
+      "game/equipment/DEVICE_REGISTRY.json",
+      "game/finances/ASSET_LEDGER.json"
+    ],
+    "story": [
+      "chapters/CH-000.md",
+      "chapters/CH-000.events.json",
+      "chapters/CH-000.transcript.json",
+      "chapters/CH-000.PREP.md",
+      "chapters/revisions/INDEX.md",
+      "chapters/revisions/REV-CH000-0001.json",
+      "chapters/revisions/REV-CH000-0002.json"
+    ],
+    "world": [
+      "docs/CANON.md",
+      "docs/DECISIONS.md",
+      "docs/WORLD_BIBLE.md"
+    ],
+    "rules": [
+      "docs/NARRATIVE_CONTRACT.md",
+      "docs/NARRATIVE_EXECUTION_MODEL.md",
+      "docs/NARRATOR_RULES.md",
+      "docs/NARRATIVE_STANDARD.md",
+      "docs/NPC_RULES.md",
+      "docs/PROGRESSION.md",
+      "docs/STATE_SCHEMA.md",
+      "docs/CHAPTER_PROTOCOL.md",
+      "docs/FULL_NARRATION_ARCHIVE.md",
+      "docs/RECOVERY.md",
+      "docs/SAVE_BLOCKING_PROTOCOL.md",
+      "docs/DECISION_OUTCOMES.md",
+      "docs/SCENE_CRAFT.md",
+      "docs/STORY_REVISIONS.md",
+      "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+      "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md"
+    ],
+    "tracking": [
+      "docs/STATUS.md",
+      "docs/HANDOFF.md",
+      "docs/PLAY_READINESS.md",
+      "docs/IMPLEMENTATION_PLAN.md",
+      "docs/QA_SCENARIOS.md",
+      "docs/TURN_TESTING.md",
+      "docs/FOLDER_POLICY.md"
+    ],
+    "tools": [
+      "tools/save_gate.mjs",
+      "tools/turn_engine.mjs",
+      "tools/narrative_archive.mjs",
+      "tools/validate_state.py",
+      "tools/consequences.mjs",
+      "tools/state_changes.mjs",
+      "tools/save_transaction.mjs",
+      "tools/github_save_adapter.mjs",
+      "tools/chapter_history.mjs",
+      "tools/chapter_management.mjs",
+      "tools/world_plans.mjs",
+      "tools/living_world_obligations.mjs",
+      "tools/context_manager.mjs",
+      "tools/verified_context_loader.mjs",
+      "tools/meridian_bay_locations.mjs",
+      "tools/meridian_bay_discovery.mjs",
+      "tools/meridian_bay_integration.mjs",
+      "tools/meridian_bay_prebuilt_routes.mjs",
+      "tools/meridian_bay_scale_plan.mjs",
+      "tools/world_admission.mjs",
+      "tools/location_state.mjs"
+    ],
+    "tests": [
+      "tests/save_gate.test.mjs",
+      "tests/turn_engine.test.mjs",
+      "tests/test_backstory_aster.py",
+      "tests/test_character_profile.py",
+      "tests/test_starting_checkpoint.py",
+      "tests/index_paths.test.mjs",
+      "tests/test_literal_archive_validator.py",
+      "tests/consequences.test.mjs",
+      "tests/state_changes.test.mjs",
+      "tests/save_transaction.test.mjs",
+      "tests/github_save_adapter.test.mjs",
+      "tests/test_turn9_consequences.py",
+      "tests/chapter_management.test.mjs",
+      "tests/chapter_save_transaction.test.mjs",
+      "tests/test_multichapter_validator.py",
+      "tests/world_plans.test.mjs",
+      "tests/world_plan_pilot.test.mjs",
+      "tests/living_world_persistent_commitments.test.mjs",
+      "tests/context_manager.test.mjs",
+      "tests/verified_context_loader.test.mjs",
+      "tests/meridian_bay_foundation.test.mjs",
+      "tests/meridian_bay_discovery.test.mjs",
+      "tests/meridian_bay_integration.test.mjs",
+      "tests/meridian_bay_prebuilt_routes.test.mjs",
+      "tests/meridian_bay_city_scale.test.mjs",
+      "tests/world_admission.test.mjs",
+      "tests/location_state.test.mjs",
+      "tests/helpers/meridian_bay_fixture.mjs",
+      "tests/location_state_integration.test.mjs"
+    ]
+  },
+  "newChapterPaths": [
+    "chapters/CH-NNN/INDEX.md",
+    "chapters/CH-NNN.md",
+    "chapters/CH-NNN.events.json",
+    "chapters/CH-NNN.transcript.json"
+  ],
+  "maintenance": "Maintain original canonical paths. Enumerate tracked files through entrypoints/indexes/canonical/supplemental/repository_checkpoints. Root entrypoints can also appear in indexes for navigation; otherwise avoid duplicate resource authority. Update the reviewed repository scan when it changes; do not mutate historical source-commit snapshots.",
+  "repository_scan": {
+    "source_branch": "work/chat-narrative-foundation",
+    "source_commit": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+    "source_file_count": 129,
+    "as_of_local_date": "2026-11-17",
+    "note": "This is repository metadata, not an in-game save. Four new dated checkpoint reports were added after the fixed source commit."
+  },
+  "supplemental": {
+    "infrastructure": [
+      ".github/workflows/narrative-qa.yml",
+      "README.md",
+      "docs/FILE_INVENTORY.json"
+    ],
+    "supporting_docs": [
+      "docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md",
+      "docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md",
+      "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
+      "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
+      "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
+      "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
+      "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md",
+      "docs/LIVING_WORLD_DESIGN_PROPOSAL.md",
+      "docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md",
+      "docs/LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md",
+      "docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md",
+      "docs/LIVING_WORLD_QA_PLAN.md",
+      "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md",
+      "docs/LIVING_WORLD_ROUTINE_QA_20261110.md",
+      "docs/LIVING_WORLD_TEST_RESULTS_20261110.md",
+      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+    ],
+    "additional_active_modules": [
+      "tools/github_save_journal.mjs",
+      "tools/living_world_availability.mjs",
+      "tools/living_world_commitments.mjs",
+      "tools/living_world_coordinator.mjs",
+      "tools/living_world_diagnostics.mjs",
+      "tools/living_world_routines.mjs",
+      "tools/living_world_time.mjs",
+      "tools/living_world_travel.mjs"
+    ],
+    "additional_test_suites": [
+      "tests/github_journaled_http_integration.test.mjs",
+      "tests/github_save_journal.test.mjs",
+      "tests/living_world_availability.test.mjs",
+      "tests/living_world_commitments.test.mjs",
+      "tests/living_world_coordinator.test.mjs",
+      "tests/living_world_diagnostics.test.mjs",
+      "tests/living_world_integrated_rehearsal.test.mjs",
+      "tests/living_world_routines.test.mjs",
+      "tests/living_world_travel.test.mjs",
+      "tests/test_checkpoint_audit.py"
+    ],
+    "design_proposals": [
+      "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+      "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+      "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+      "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json"
+    ],
+    "npc_work_increment": [
+      "docs/01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md",
+      "tools/living_world_needs.mjs",
+      "tools/meridian_bay_services.mjs",
+      "tests/integration_npc_needs_plans.test.mjs",
+      "tests/meridian_bay_services.test.mjs",
+      "tests/meridian_bay_phase2_integration.test.mjs"
+    ]
+  },
+  "repository_checkpoints": [
+    "docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md",
+    "docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md",
+    "docs/00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md",
+    "docs/00_start/REPOSITORY_FILE_SNAPSHOT_2026-11-17.json"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "game_id": "living-superhuman-world",
+  "chapter_id": "CH-000",
+  "last_completed_turn": 9,
+  "last_event_sequence": 29,
+  "last_event_id": "EV-000029",
+  "state_schema_version": 2,
+  "status": "checkpoint",
+  "setup_revision": 3,
+  "notes": "CH-000 turn 9 Day -29 morning: Elena carries backpack/USB toward school; Rosa's clock repaired and tested; Aster first arm mechanically mounted, system incomplete. No RPG/powers.",
+  "last_transcript_sequence": 20,
+  "last_transcript_id": "TXT-000020",
+  "story_revision": 2
+}

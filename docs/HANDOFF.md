@@ -1,0 +1,346 @@
+## NPC work increment — 2026-11-20
+
+This code increment adds event-backed NPC needs and three existing work-case
+functions: terminal dispatch review, Crosswater maintenance review and Café
+Bruma sales-note reconciliation. Read [the Phase 2 contract](01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md)
+before drafting changes. The current five-file checkpoint is unchanged from
+verified world admission `ca30f1a3`; the canonical journal still identifies that
+operation. Do not fabricate a new journal entry for this code-only update.
+
+Validation: 422 Node tests, 47 Python tests and checkpoint validator passed.
+A synthetic private need/case remains blocked across CH-001, later resolves,
+and recovers the same interrupted commit without leaking prose or repairing
+unrelated equipment. New need/service changes retain actor observations; replay
+checks historical resources, presence, closures and the player's time budget.
+All persisted open needs/cases are reviewed privately even when their actors
+are outside the nearest-routine selection. No automatic decay or background work.
+
+Continue with social encounters and relationship consequences or a similarly
+bounded civilian workflow. The owner still controls every real Jack action.
+CH-000 turn 9, Day -29 morning, EV-000029 / TXT-000020 remain the live pointers;
+check fresh HEAD/journal/manifest before gameplay. Main is unchanged.
+
+---
+
+## Meridian Bay admission complete — verified 2026-11-18, handoff 2026-11-19
+
+Current authoritative world-admission commit: `ca30f1a3eba8b56cf0f8599eb04d35ba564b911e`.
+Code PR [#78](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78), including
+reviewed Phase 1 from #33, integrated at `68faa9abcce60a94b4ca62dd917c7e180407a6d5`.
+The canonical journal on `journal/living-world-save-attempts` is **verified**, operation
+`world_admission`; its saved commit is `ca30f1a3`, source `68faa9ab`. A docs-only
+later HEAD is legitimate only when the checkpoint bytes still match that journal.
+
+There are now 14 LOC records plus the city container. CH-000 remains turn 9,
+Day -29 morning, EV-000029 / TXT-000020, Jack in LOC-WILSON-WORKSHOP. Admission
+changed only approved locations, reciprocal connections and review metadata in
+STATE. All actors, player knowledge, time, projects and the other four checkpoint
+files are unchanged. Do not admit the same catalog again. Recovery returns an
+empty narration list because this was worldbuilding, not a player turn.
+
+Read [live proof and operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md#verified-github-admission--2026-11-18).
+395 JavaScript and 47 Python tests passed before and after synthetic admission;
+actual GitHub interruption/recovery and canonical admission/readback succeeded.
+Future work can integrate NPC needs, services and conditional civilian events
+against this map. A genuinely new story action still requires the normal full
+turn validation, literal transcript and verified journaled save. The world does
+not advance between interactions. Main and unrelated draft work remain untouched.
+
+---
+
+## D-061 — Repeat repository audit and direct recovery trust boundary (2026-11-18)
+
+[Second audit report](06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md): complete source recheck confirms original Day −30 night opening and current Day −29 mid-morning CH-000 turn 9, EV-000029/TXT-000020. Journal `ready` matches the same five Git blob hashes and no chapter data changed. PR #77 repaired lower-level `recoverFiveFileSave` accepting forged `verified` results without readback and direct canonical recovery without durable journal custody; five more regressions passed [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733) (320 Node, 45 Python and state validator). No server, Codex, MCP, new authoritative store or player turn. CI for final report-index commit must also pass before integration. Direct ChatGPT-connector valid changed-turn QA and reader delivery remain unverified.
+
+---
+
+## D-060 — Independent checkpoint audit (started 2026-11-17, verified 2026-11-18 00:14 AST)
+
+[Full independent audit](06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md): historical chapter begins Day −30 at night; current CH-000 turn 9 remains Day −29 mid-morning in Jack's workshop, EV-000029 / TXT-000020. Rechecked original source hashes, full file inventory, JSON and Markdown links, A00–A17 coverage, 3 editable city fragments and unmerged draft ownership. Found and fixed journal verified-state validation, direct canonical-save bypass, improper docs-only recovery denial, chapter baseline bypass and missing durable journal write readbacks. The audited SHA stayed d37650eadf189ea3b58dbdf6966a2d2ceef816eb; PR #75 is a QA/change-only branch, no player turn. Final PR #75 exact-head CI #44235973810 passed 315 Node / 45 Python / validator on 2026-11-18 at 00:14:59 AST; audit date-precision follow-up remains documentation-only. Live direct-connector valid changed-turn test still unproven, main and canon protected.
+
+---
+
+## D-058 QA supplement — no-op GitHub connector recovery PASS (2026-11-17)
+
+The actual in-chat GitHub connector wrote/read a QA-only blocked journal, persisted detached commit `124a8114c9cbd121adc1aea9c89f0cf1698c5d81`, resumed from that SHA after a deliberately separate tool interaction, moved only `qa/chatgpt-native-journal-transport-20261117` with expected-HEAD protection, and reread all five original canonical blobs byte-identically. QA marker `qa_transport_verified` is NOT a production save. Canonical HEAD and `ready` journal unchanged. Full evidence: [QA report](06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md). This removes uncertainty about basic connector Git-object/ref/journal access, but **does not** demonstrate an authored changed-story five-file turn or an in-chat Node coordinator. Next safe gate: a valid isolated changed-turn end-to-end rehearsal, and an actual player choice before canonical turn 10; never infer automatic background execution.
+
+---
+
+# D-058 — GitHub connector journal ready, story unchanged (2026-11-17)
+
+**Verified state:** authoritative branch `work/chat-narrative-foundation` integrated PR #71 (SHA `d1218c16f3b141816267b4daa33d8a9f8ef495b6`) via non-force expected-HEAD update after [CI #44228320512](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44228320512) passed Node, Python, canonical validator. New journal entry on `journal/living-world-save-attempts` is `status=ready`, blob `b7c9b4742d395020c43a7d646e33ba863ffcb387`, with baseline source `d1218c16...`, CH-000 turn 9, EV-000029, TXT-000020. An authenticated in-chat GitHub connector both created and reread it. Five canonical file blobs unchanged; `main` unchanged. This is storage/journal initialization, **not** a completed new turn or end-to-end connector save.
+
+**Risk and gating:** `ready` marks a verified existing pre-journal baseline. A blocked journal cannot be replaced with ready. Canonical turn saves require a journal and compare baseline identity/bytes (also after docs-only commits). No Node or Codex runtime was connected, no server/paid tool started, and no player event was manufactured. The Node token-backed isolated QA from D-055 is not equivalent to the ChatGPT connector end-to-end run. The still-required launch test is connector-native blocked→detached commit→protected story-ref update→five-file readback→verified→interruption recovery, on QA branches only. The next authentic CH-000 turn 10 requires an actual owner input and full verified save before showing narration.
+
+**Fast resume:** read [docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md](05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md), GitHub ref HEAD, journal status and manifest; use `tools/verified_context_loader.mjs` for a small evidence-linked packet; fetch original source IDs on demand. Keep prior work and NPC secrets intact; no alternative world-state authority or background simulation.
+
+---
+
+# D-056 — verified, evidence-linked context retrieval integrated (2026-11-15)
+
+**Active branch:** `work/chat-narrative-foundation`, context source integrated at `3a623554948e1ac2f7e50d61a7b0e23e69907206` by protected, non-forced fast-forward from `4c32b464a6b7dbd80600b25890641cb19185838a`. Reversible backup: `backup/narrative-before-verified-context-20261115`. No changes to `main`, `game/` or `chapters/`. **Canonical narrative remains CH-000, turn 9, Day -29 morning, EV-000029, TXT-000020.** No user action, NPC event or Day 0 transition was fabricated.
+
+**Independent source ownership:** PR #31 ports only `tools/context_manager.mjs` (blob `7bbeb2f9`) and `tests/context_manager.test.mjs` (blob `629c4ecb`) from draft PR #28; its parent dependency PR #27/#26 NPC-needs changes are NOT imported. PR #28 remains open with coordination comment. The added `tools/verified_context_loader.mjs` reads the manifest/active five files/closed chapter files at the same immutable remote commit, revalidates branch HEAD, checks journal status before and after, rejects blocked attempts and compares all five exact story files against the last verified journal commit when present. It returns reference-linked packets with `mayAdvanceStory=false`; missing journal permits **read-only** context but not play.
+
+**Testing:** [CI #43770852892](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43770852892) **290/290 Node, 37/37 Python and checkpoint validator PASS**, including 14 context/index + loader regression tests. PR #31 automatically closed as merged after fast-forward. An additional actual token-backed, **read-only** GitHub check [#43771221345](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221345) loaded the exact saved checkpoint, Aster references, and a reader-facing packet with no private previews. It reported `PASS`, source `3a623554...`, `CH-000 / turn 9`, `canonicalWrites=0`, and journal gate `not_initialized`. A second full CI [#43771221383](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221383) passed 290 Node, 37 Python and validator. QA PR #32 was closed without merge and its one-off workflow archived read-only.
+
+**Remaining limits:** The canonical journal was not initialized or verified during this read-only smoke. In-chat credential-backed save execution for actual player input is still not demonstrated, even though separate GitHub Actions synthetic save/recovery succeeded in D-055. No attempt to deliver original narration to a user's screen has been tested. The context tool uses lexical matching and pointers, not generated semantic summaries; it must dereference original text from the verified commit and review actor knowledge before disclosure. No background simulation; multi-writer GitHub REST is not strict CAS. Day 0 remains blocked.
+
+**Next:** establish a permitted in-chat narrative save operation with durable journal guard (do not bypass it); then process a genuinely owner-authored turn 10, verify five-file save/readback before displaying the literal response, and run editorial review. Alternatively, continue isolated work on the still-draft scene flow/setting/NPC PRs while preserving branch ownership. Do not move Jack forward on `♾️` alone.
+
+---
+
+# D-055 — actual token-backed Node.js journal recovery passed in isolated GitHub QA (2026-11-15)
+
+**Result:** The combined GitHub REST adapter + durable journal + Living World coordinator regression suite from PR #30 was integrated by safe fast-forward at `2be0ffc5c4f65fff16472bb4665b8b25f10fa257`. [Narrative integrity #43767308282](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767308282) passed **276/276 Node, 37/37 Python and checkpoint validator**. Four new tests cover saved literal delivery, interrupt-before-ref, interrupt-after-ref, and refusal of a second turn with a blocked journal.
+
+**Full remote runtime proof:** [GitHub Actions #43767698159](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767698159) **success**. A one-shot QA script called the actual `createGitHubSaveAdapter`, `createGitHubSaveJournal`, `saveLivingWorldTurn` and `recoverJournaledSave` using a temporary GitHub Actions token. It created `qa/live-journal-runtime-43767698159` and `journal/qa-live-journal-runtime-43767698159`, authored only a marked **NONCANONICAL QA** turn, recorded a detached five-file commit in the journal, deliberately simulated a 422 branch-ref failure, rebuilt both runtime adapters, recovered the original commit, and verified exact five-file bytes and literal narrated text. Commit `29d88759a37203a0278c0989f373f20e11ca22ed`, journal `status=verified`, save `percent=100`, one event EV-000030 and TXT-000022 **on the QA branch only**. A repeated read-only recovery succeeded. The original QA source commit was the single parent. This verifies a real credential-backed GitHub remote workflow, not merely a mocked transport.
+
+**Safety:** After success, the write-capable one-shot workflow on `qa/trigger-live-journal-20261115` was archived as a read-only manual placeholder at commit `d19c276a44cdafe3797b763be005dd7422728071`. There is no automatic live game loop. No token was committed to the repository. `main` and canonical files are unchanged. The authorized narrative branch manifest remains **CH-000, turn 9, Day -29 morning, EV-000029, TXT-000020**.
+
+**Still not demonstrated:** continuous token-backed runtime availability from an ordinary ChatGPT conversation, actual player-authored turn delivery, human narrative quality, and multi-writer concurrency guarantees. Do not mistake the noncanonical QA turn for user action. Read the canonical journal before any authentic turn, keep the five-file guard, and stop on unresolved attempts. Day 0 remains blocked. The next authentic turn 10 requires a new free-form owner action, with the original player text and literal narration stored and remotely verified first. Existing per-turn tools are not a background simulator.
+
+---
+
+# D-054 — reviewed launch integration and live journal-storage smoke (2026-11-15)
+
+**Authoritative branch:** `work/chat-narrative-foundation`. With owner approval, it was fast-forwarded from `b096f84dca1ec4e01f1a2742a67ae41688bd11d6` to `64927b30d9f888b3677bcdf8c33945f9f563cb79`, integrating the ordered commits from draft PRs #24, #25 and #29 without a merge commit. Backup: `backup/narrative-before-20261115-readiness-integration`. The default `main` branch was not touched.
+
+**Verified review:** PR #24 CI run 43385151634, PR #25 run 43597585341, and PR #29 run [43734406737](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43734406737) succeeded. PR #29 reports 272/272 Node and 37/37 Python tests plus checkpoint validation. No outstanding inline review threads were returned. The target branch was confirmed exactly identical to the #29 commit after the fast-forward.
+
+**Canon unchanged:** all five authoritative story-file Git blob SHAs matched on the original, integration and dedicated QA branch: transcript `1350916e`, events `1f40c724`, chapter `e4c11953`, state `0320a93e`, manifest `897ec2e7`. Save manifest is CH-000, turn 9, Day -29 morning, EV-000029 and TXT-000020. No turn 10, chapter transition, power awakening or offscreen event was authored. Never resume from QA branches.
+
+**Real GitHub journal and five-file atomic-storage smoke (still NOT a real narrative turn):** Created dedicated `qa/narrative-five-file-journal-smoke-20261115` and `journal/qa-narrative-five-file-smoke-20261115`. The QA journal was created, reread, updated with its current blob SHA, and reread successfully. Five active story blobs were checked identical to the playable branch. Then a new detached Git tree/commit was created including all five identical files at commit `debd0746a8b651074522d0bc4f894c441dfdfc2c`. It had zero changed paths relative to the starting QA commit. Before moving the QA branch, a `blocked` record for that detached commit was durably saved and read back at journal commit `87f1201efec2a167924c40a6764f9c6a11d6acdc`. A non-forced ref update with expected source HEAD moved only the QA branch to the detached commit, followed by literal GitHub readback of all five saved blobs and the unchanged manifest. The journal was then saved as `verified` and reread at journal commit `1fd8e0afa87e85685026e5fcb1139404386faf5a`. This proves real connector-backed GitHub tree/commit/ref/readback and separate journal storage primitives across an interruption point; it does **not** invoke the token-backed Node adapter, validate authored turn-10 narration, exercise a changed canonical save, or prove ChatGPT display delivery. No fictional action occurred. At the expected canonical journal path, no prior attempt record was found during this review.
+
+**PR housekeeping:** PR #24 is auto-marked merged; #25 and #29 were explicitly commented and closed as **already integrated via fast-forward**, not as rejected code. Their GitHub `merged` flags remain false because no PR-button merge was done.
+
+**Next gate:** configure a credential-scoped runtime journal adapter or verified connector-backed equivalent, then prove an isolated five-file atomic save with interruption and literal recovery using the actual runtime interfaces. Preserve conservative branch-head conflict handling. Only after that, accept the owner's next free-form Jack action as real turn 10, review literary quality and privacy, and save/read back before presenting. Day 0 remains separately blocked. No autonomous/background play.
+
+---
+
+# D-053 — intervalos temporales coherentes y QA (2026-11-12)
+
+La comprobación temporal anterior dejaba pasar una transición imposible: una mañana seguida de la siguiente mañana en 20 minutos. Corrección: no basta el límite `floor/ceil` sobre minutos; ahora hay que encontrar una ventana horaria posible dentro de las franjas narrativas. El estado real sigue sin hora exacta ni weekday. QA sintético aislado #43321955437: **175/175 Node, 24/24 Python, validador PASS**. Documentación: [ventanas temporales](LIVING_WORLD_TIME_WINDOW_QA_20261112.md). **No hay turno real 10 ni nuevo guardado de Jack.** Se mantienen el diario durable y el guardado bloqueado sin journal configurado de D-052.
+
+---
+
+# D-052 — Reliability hardening, NPC triage, private chapter boundary (2026-11-12)
+
+**Latest confirmed infrastructure:** implemented on `work/chat-narrative-foundation`, tested on QA run [43320823776](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43320823776): **173/173 Node, 24/24 Python, checkpoint validator PASS**, including synthetic three-turn save/readback. Changes: narrative days/minutes bounds, separate-branch durable journal and recovery, default nearby-NPC agenda review, and no automatic technical `outcome` dump into future chapter prose. The new guard blocks canonical saving without journal. The journal branch `journal/living-world-save-attempts` exists but requires a runtime scoped token/configuration before real use; no real journal write has been run. **Story unchanged:** CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. No NPC progression while chat inactive. No change to `main`. Distinguish tested synthetic results from literary quality and real end-to-end delivery. [Implementation notes](LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md).
+
+---
+
+# Estado actual D-050 — horarios nocturnos sin fabricar canon (2026-11-12)
+
+La rama `work/chat-narrative-foundation` incorporó `tools/living_world_availability.mjs` con soporte explícito de horarios nocturnos que cruzan medianoche y corrección de enlace confirmado Market Row ↔ Café Bruma. Evaluación conservadora: un día anterior sin horario documentado no permite declarar cerrado; si no existe día de semana/hora oficial la respuesta es `unknown`. No se asignaron horarios nuevos a negocios ni NPC.
+
+QA oficial aislado: [run 43313742280](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43313742280) aprobó **143/143 Node**, **24/24 Python** y validador **PASS**. La PR QA #5 cerró sin fusionarse. Integración por fast-forward protegido: código y pruebas solamente, más informe; **cinco SHA narrativos iguales** a sus valores de D-049, por lo que el único checkpoint auténtico sigue siendo **CH-000, turno 9, día -29 mañana, EV-000029, TXT-000020**. `main` no se actualizó. Horarios actuales, reloj exacto y día de semana siguen sin establecerse; no hay turnos automáticos.
+
+**Siguiente tarea:** comprobar un turno real solo cuando el propietario elija una acción libre de Jack, y más adelante formalizar horarios específicos con evidencia narrativa. No utilizar ramas `qa/*` como canon. Véase [informe D-050](LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md).
+
+---
+
+# Estado actual D-049 — Living World en rama narrativa; privacidad corregida (2026-11-10)
+
+El motor de narración fue corregido para no incluir automáticamente resultados privados de NPC en el texto del capítulo en **nuevos turnos**. GitHub Actions `42953180071`: Node **135/135**, Python **24/24**, validador **PASS**. Corrección `bcfd86fe5ca5cd8598d6e3e9969221c5697a98be` incorporada a `work/chat-narrative-foundation` en fast-forward sin tocar `main`. **La partida sigue CH-000 turno 9, EV-000029, TXT-000020**; verificar manifiesto al iniciar cualquier sesión. No activación automática, ni simulación en segundo plano. El turno 10 de `qa/living-world-integration-20261110` es sintético, nunca fuente narrativa. Documentación: `docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md`. Los registros anteriores debajo son históricos.
+
+---
+
+# Prioridad más reciente — D-048 Living World integrado sin activación automática (2026-11-10)
+
+Se incorporaron a la rama narrativa únicamente módulos, pruebas y documentos Living World mediante fast-forward seguro. **NO se avanzó la partida real**: CH-000, turno 9, Día -29 mañana, EV-000029, TXT-000020. Los cinco archivos de guardado conservan SHA originales. La rama `qa/living-world-integration-20261110` contiene turno 10 sintético/no canónico; PR #3 cerrada sin fusionar. Ejecutado previamente en QA: 133/133 Node, 24/24 Python, validador PASS, guardado remoto de cinco archivos y recuperación PASS. **Pendiente antes de activación:** corregir posible spoiler por eventos offscreen incluidos en Markdown del capítulo y probar su separación, luego usar diagnóstico en un turno futuro real con consentimiento de acción y cinco archivos verificados. Véase `docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md`. Documentos históricos abajo son orientativos, no reemplazan el manifiesto.
+
+---
+
+# D-047 — CH-000 turno 9 guardado y confirmado (2026-11-10)
+
+**Checkpoint:** rama `work/chat-narrative-foundation`, CH-000, Día −29, mañana; **turno 9, EV-000029, TXT-000020**. Entrada original de Jack en TXT-000019: `Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo`. La escena íntegra se conserva en TXT-000020 y `chapters/CH-000.md`.
+
+**Acciones y consecuencias:** Jack entrega la mochila a Elena y vuelve a la cocina. El defecto del despertador del vecino era una pestaña de la tapa que presionaba el control de ajuste; Jack lo corrige y Rosa verifica repetidamente que la hora no salta al cerrarlo (EV-000027/029, `NPC-005.resources`). Elena sale del apartamento con su mochila y la memoria USB de la ilustración, camino a la escuela pero **todavía no se ha narrado que llegó** (EV-000028, ubicación `LOC-RAILGARDEN-RESIDENTIAL`). Jack vuelve al taller y monta **mecánicamente el primer brazo de Aster** en el torso; sus articulaciones funcionan a mano tras corregir un roce. El cableado, los actuadores y las pruebas activas permanecen pendientes; Aster continúa incompleto y **no operativo**. Documento de diseño actualizado: `game/ASTER_SPEC.md`.
+
+**Persistencia:** commit de la escena `45d4d85a6b13bf4b26e80ac89cccc0d92af2ab12`, lectura GitHub de los cinco archivos canónicos y `game/ASTER_SPEC.md` con SHA idénticos a los contenidos preparados. El módulo `tools/state_changes.mjs` admite desde D-047 cambios de recursos cualitativos con before/after para que la reparación del reloj se conserve. El primer CI detectó una prueba con ubicación antigua de Elena; se corrigió para tomar la ubicación del checkpoint y se añadieron pruebas de regresión del turno 9. **Registrar el resultado de CI del nuevo HEAD, sin asumirlo por adelantado.** PR #2 sigue en borrador; main no se ha fusionado. **Turno 10 sin jugar.**
+
+---
+
+# D-046 — CH-000 turno 8 guardado y recuperable (2026-11-10)
+
+**Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, **Día −29, mañana, turno 8, EV-000026 y TXT-000018**. El jugador escribió literalmente `Continue al próximo dia después de narrar como termina puedes decidir tu como termina` (TXT-000017), delegando cerrar la noche de forma cotidiana. El texto íntegro está en TXT-000018 y `chapters/CH-000.md`. La transición quedó guardada en el commit `96538834d2174ea221a419504dcecf77c2dcd936`, con lectura remota exacta de los cinco archivos.
+
+**Escena vigente:** Jack pasó del taller a la zona común/cocina de la casa (LOC-WILSON-APARTMENT); todos sus objetos portados cambiaron de ubicación en sus eventos. Elena aún está en casa, con la memoria ITEM-USB-SPARE-001 y una copia guardada de su ilustración, preparándose para ir a la escuela. Rosa hizo tostadas y mantiene pendiente el despertador que se adelanta siete minutos al cerrarse. Aster sigue incompleto; finanzas, cámara y red de Jack conservan el estado del turno 7. No hay anomalías del Día 0.
+
+**Pruebas:** El readback remoto del turno 8 verificó cinco archivos. El primer CI falló por dos supuestos obsoletos del lugar de Jack; el segundo tuvo 75 JS correctas y falló un test Python que exigía siempre el día -30. Ahora el test comprueba la regla temporal anterior al Día 0 en vez de fijar el día inicial. **Confirmar el CI del HEAD más reciente antes de declarar suites completas aprobadas.** No se ha iniciado turno 9 ni fusionado la PR #2.
+
+---
+
+# D-045 — CH-000 turno 7 guardado y verificado (2026-11-10)
+
+**Checkpoint canónico:** rama `work/chat-narrative-foundation`, CH-000, Día −30, noche, **turno 7, EV-000023, TXT-000016**. Acción literal del propietario en `TXT-000015`: «Give her the usb and look at her then turn around and continue to the display checking the status to all the accounts and there balances also the camara». Escena literal en `TXT-000016` y `chapters/CH-000.md`. El turno se guardó en el commit `a9d3efd27b0225ec8a817accfe1684dc543740a6` con siete archivos atómicos y lectura remota completa.
+
+**Consecuencias:** Jack entrega `ITEM-USB-SPARE-001` a Elena; solo aparece en el inventario de `NPC-004` (ubicación hogar Wilson). La consulta en el monitor registra 2 saldos personales (86.450,20; 173.890,75), 2 cuentas societarias visibles (43.600,00; 97.340,10), estado disponible; no se asignaron nombres legales, moneda ni un importe agregado a todas sus reservas. Las dos lecturas ajenas de Café Bruma siguen separadas. La sección de cámaras muestra una vista estable, sin ubicación fijada, de una fuente de la red antigua 500+ activa. Referencias: `game/finances/ASSET_LEDGER.json`, `game/equipment/DEVICE_REGISTRY.json`, EV-000022/23. Rosa permanece con el reloj, Aster incompleto. **No se ha iniciado turno 8.**
+
+**Pruebas:** El primer CI falló por cinco expectativas antiguas con números fijos de turno 6, no por el contenido narrativo. Se cambiaron a comprobaciones relativas al manifest y se volvió a ejecutar: [GitHub Actions #42933007883](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42933007883) **75/75 JavaScript, 20/20 Python y validador de checkpoint PASS** (commit `5446bf64d06da1cfa641706a74af53c0a52a4e9b`). La PR #2 sigue abierta y sin merge. Resumir la escena no reemplaza la transcripción íntegra.
+
+---
+
+# D-044 — retry autorizado del turno 6, capítulo CH-000 (2026-11-10)
+
+El propietario pidió «Quiero que hagas un retry con el chapter 6»; el repo solo tiene CH-000 con seis turnos. Se rehízo la última escena sin avanzar el turno, conservando literalmente su entrada TXT-000013. La narración anterior, EV-000020/021 anteriores y campos previos del estado se archivaron en `chapters/revisions/REV-CH000-0002.json`. La versión vigente es TXT-000014 (revisada), una escena literaria que reconoce como hechos previos la red activa 500+ y los nueve accesos de Café Bruma, cuentas y empresas ya existentes. No hay cifras propias inventadas ni episodios retroactivos. Elena sigue esperando respuesta. Verificar MANIFEST, estado, eventos y transcripción en el HEAD actual antes de empezar otro turno; no usar QA D-043 como canon.
+
+---
+
+# ESTADO ACTUAL — D-043
+
+## D-043 — GitHub real, prueba aislada, y adaptador sin secretos (2026-11-10)
+
+**Crítica del enfoque previo:** hasta D-042 los tests solo usaban un Git simulado. No demostraban que GitHub conservaría un commit de cinco archivos después de interrumpirse el proceso, ni existía adaptador REST reutilizable. Tampoco el resultado de una suite técnica mide la calidad literaria de la escena.
+
+**Prueba REMOTA de recuperación completada:** rama **exclusiva de QA** `qa/story-save-recovery-d043-20261110`, creada desde `96b9d73b7945686cac4a9090d0a759d8ecd3d3d2`. Se preparó un turno **sintético/no canónico** en cinco archivos con commit `d637304e2665828e5c53cb76fd40e0e4a6ade7ec`; se detuvo el procedimiento después de crear el commit y **antes de mover la rama**, se verificaron remotamente sus cinco archivos por SHA, se reanudó en una operación diferente, se aplicó actualización no forzada con HEAD esperado y se leyó literalmente de nuevo la rama. **No se creó un segundo commit** ni se afectó la rama narrativa. Ese turno 7 de QA **no es una acción del propietario**, jamás usarlo como checkpoint de juego.
+
+**Implementación:** `tools/github_save_adapter.mjs` aporta las operaciones reales `readHead`, `readFiles`, `createCommit` y `updateHead` por API GitHub REST para `tools/save_transaction.mjs`, con credenciales externas y cinco blobs en un solo árbol. `tests/github_save_adapter.test.mjs` prueba lectura, escritura, errores HTTP, colisiones y recuperación con transporte HTTP simulado (sin usar ni exponer un token real). El adaptador **no se ejecutó directamente con token real** en la prueba remota: se verificaron las mismas primitivas Git mediante el conector autorizado. GitHub REST dispone de *read-then-update* y *non-force fast-forward*, pero **no de CAS atómico con expected SHA**. No prometer bloqueo perfecto ante carreras arbitrarias.
+
+**Evidencia de CI:** [GitHub Actions #42912600548](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42912600548) para `ca414ffe56d8faff9dae739046d3a5d4bb525c8e`: **75/75 JavaScript**, **20/20 Python** y `python tools/validate_state.py` PASS. El primer CI detectó identificadores falsos de longitud inválida y ruta `../repo` no rechazada; corregidos antes de aprobar. La continuidad narrativa todavía requiere revisión editorial y el próximo turno auténtico del lector no se ha jugado.
+
+**Canon protegido:** rama `work/chat-narrative-foundation` y PR #2 conservan **CH-000, Día −30, turno 6, EV-000021 y TXT-000014**. Los cinco blobs del checkpoint no se tocaron. Jack continúa en el taller con Elena esperando una respuesta sobre una USB. Mantener la PR en borrador; no fusionar ni reutilizar `qa/*` como fuente narrativa.
+
+
+---
+
+# D-042 — simulación integral de guardado y recuperación (2026-11-10)
+
+**Último commit de implementación:** `f6a8b3ab8aa5526d31cfe78ced74a11187c141ce` en `work/chat-narrative-foundation`; PR #2 continúa abierta y en borrador, sin merge a `main`. Nuevo `tools/save_transaction.mjs` y `tests/save_transaction.test.mjs`; índices, inventario y protocolos actualizados.
+
+**Pruebas reales en GitHub Actions:** [run #42905805692](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42905805692) en este commit, **67/67 Node**, **20/20 Python**, `tools/validate_state.py` PASS. Los 10 escenarios nuevos utilizan un Git remoto **simulado en memoria**; nunca modificaron la historia. Casos: commit atómico de cinco archivos, interrupción tras ref, interrupción tras crear commit, protección CAS, cambios concurrentes, archivo alterado, SHA desconocido, recuperación idempotente, fuente incompleta y entrega literal idéntica.
+
+**Checkpoint conservado:** CH-000, Día −30, turno **6**, evento EV-000021 y transcripción TXT-000014. Los cinco archivos de partida mantienen los mismos blobs verificados antes de D-042. Jack continúa en el taller; Elena espera su respuesta sobre la memoria USB. No hay turno 7 ni decisiones nuevas de Jack.
+
+**Límites pendientes:** el módulo es un **orquestador por adaptador inyectado**, no un cliente GitHub autónomo. Una prueba con GitHub remoto y una acción real del lector con lectura de vuelta siguen sin hacerse. El estado temporal del intento bloqueado debe conservarse para recuperarlo; si desaparecen el commit SHA o el texto exacto, no recrear la acción. La validación de correspondencia entre prosa y cambios permanece editorial. Continúan pendientes las transiciones entre capítulos y el Día 0.
+
+---
+
+# D-041 — CI real y aplicación atómica de cambios (2026-11-10)
+
+**Rama de trabajo:** `work/chat-narrative-foundation`; PR #2 en borrador. Los commits `3e887816` y `fca32dca` implantaron aplicación atómica por actor de un lote de cambios (una validación fallida no modifica el actor ni añade cambios al evento), mensajes explícitos para campos no admitidos y dos pruebas de regresión. También corrigieron una expectativa obsoleta: la siguiente escena se agrega al final de una transcripción que ya tenía 14 entradas, no al inicio.
+
+**Evidencia ejecutada:** GitHub Actions [narrative-qa run 42903181369](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/42903181369) para `fca32dcaf88bd28f03cef7574e97257db80c3243`: Node **57/57**, Python **20/20**, y `python tools/validate_state.py` PASS. Los tres pasos del job finalizaron con éxito. Un primer run `42902977959` había fallado con 56/57 por aquella expectativa obsoleta; el segundo run demuestra la reparación. El flujo se limita a PR para no duplicar consumo de CI en cada push.
+
+**No se avanzó la historia.** El último checkpoint continúa en CH-000, Día −30, turno 6, EV-000021, TXT-000014. Los cinco archivos de partida fueron excluidos de los commits de implementación. La suite usa escenas sintéticas: no prueba todavía el guardado y recuperación remotos de un turno 7 auténtico. D-036, D-037, D-038 y D-040 siguen vigentes. **Pendiente:** comprobar correspondencia entre prosa y efectos declarados en un turno real elegido por el lector, con commit atómico y lectura de vuelta, sin adelantar decisiones de Jack.
+
+---
+
+# D-040 — avance técnico de continuidad (2026-11-10)
+
+**Hechos verificados:** el nuevo módulo `tools/state_changes.mjs` aplica cambios cualitativos con precondiciones de Jack y NPC y se encuentra integrado en `tools/turn_engine.mjs`. Incluye rutas y movimiento de objetos portados, inventarios, relaciones, condiciones, conocimientos, planes y registro de últimos actos NPC. Doce pruebas aisladas **se ejecutaron localmente con Node y pasaron**; las pruebas de integración se añadieron a `tests/turn_engine.test.mjs`, **sin ejecución completa verificada en checkout** debido a la falta de acceso de red de la terminal a GitHub. El código se guardó en la rama de trabajo mediante commits no forzados y readback remoto. El motor no interpreta automáticamente el texto narrado; deben prepararse los cambios materiales explícitos. Ver `docs/STATE_SCHEMA.md` D-040 y `docs/QA_SCENARIOS.md`.
+
+**Checkpoint no jugado:** CH-000, Día −30, turno 6, EV-000021, TXT-000014. Jack sigue en el taller y Elena espera una respuesta sobre la memoria USB. El pasado tecnológico confirmado de Jack figura en `game/JACK_HACKER_HISTORY.md`. No iniciar turno 7 sin decisión del usuario ni afirmar que las suites completas pasaron.
+
+**Pendiente:** ejecutar pruebas de integración y Python sobre el mismo HEAD, luego ensayar guardado/recuperación de un turno real y revisar la correspondencia prosa/estado. No fusionar automáticamente en main.
+
+---
+
+# Revisión operativa D-038 — documentación sin avance narrativo
+
+**Alcance:** se registró la autocrítica y se separaron dirección literaria, resolución/continuidad causal y guardado/entrega. El cierre de cada escena no está obligado a crear suspenso. Un commit leído de vuelta prueba **persistencia**, no entrega visible al lector. Ante entrega incierta se recupera exactamente el mismo texto; no se crea un turno adicional. Ver [modelo operativo](NARRATIVE_EXECUTION_MODEL.md).
+
+**Punto de guardado sin cambios por esta documentación:** CH-000, Día −30, noche; turno 6; EV-000021; TXT-000014. Jack está en el taller; Elena espera respuesta sobre una memoria USB escolar. Rosa continúa con su despertador y Aster está incompleto. El próximo turno solo puede comenzar cuando el lector decida qué hace Jack. Verificar el manifest en cada reanudación.
+
+**Notas históricas a continuación:** informan decisiones pasadas, no reemplazan el checkpoint ni la política D-036/D-037/D-038.
+
+---
+
+# Checkpoint actual y reglas — 2026-11-10 (D-036/D-037)
+
+**Estado autoritativo:** capítulo CH-000, último turno completo **6**, último evento **EV-000021**, última entrada de archivo **TXT-000014**, Jack en el taller de su casa; Elena espera una memoria para guardar su dibujo. Estos valores dependen de la verificación del manifest y archivos; no de las notas históricas inferiores. Esta actualización documental no juega el turno 7.
+
+**Decisión actual:** experiencia convertida a **novela interactiva SIN RPG**. Cualquier instrucción antigua de XP, atributo, rango, «misiones», menú o balance numérico queda obsoleta; datos legados congelados. Ver `docs/NARRATIVE_CONTRACT.md`, `docs/DECISIONS.md` D-036/D-037.
+
+**Canon corregido:** red anterior de **más de 500 dispositivos activos** ya construida por Jack en la ficción. Los nueve registros de Café Bruma son incorporaciones más recientes. Sus fondos privados y sociedades instrumentales existen desde antes; nombres/saldos exactos no definidos. No volver a presentarlos como meras hipótesis sin comprobar. Ciberseguridad solo en resultados y consecuencias narrativas, sin métodos.
+
+**Advertencia:** el resto de este archivo contiene **notas históricas que mencionan turno 0, turno 1 y RPG**. No usar esos párrafos como estado actual ni como normativa. Manifest, state, events, transcript y contrato D-036/D-037 prevalecen.
+
+---
+
+# Revisión de continuidad — Jack Wilson
+
+**Estado:** CH-000, Día −30, noche en Crosswater Transit Plaza, turno 0, eventos 0. Rama de trabajo: `work/chat-narrative-foundation`; PR #2 borrador.
+
+## Decisiones del propietario
+- Jack tiene 21 años. **Elena tiene 17 y es hermana menor**, cuatro años menos. Anteriores referencias a Elena de 25 años/empleada son obsoletas.
+- Padres Daniel e Isabel Wilson fallecidos en un incendio de la infancia; Jack sufrió secuelas relacionadas con su dificultad de voz. Edades históricas estimadas: Jack 12 y Elena 8. Rosa Wilson los cuidó.
+- Ahorros suficientes para una casa proceden de **hacking pasado**. No se sabe la cifra ni los casos concretos. Hogar modesto por elección.
+- Psicopatía como rasgo narrativo descrito por jugador; excepcional autocontrol, intereses propios/familia primero y disposición a poner a terceros en peligro si beneficia; si no, prefiere pasividad. No inventar actos ni presentar diagnóstico clínico.
+- Jack tiene TDAH y escribe en el teléfono para que su collar reproduzca exclusivamente las palabras elegidas por el jugador.
+- Aster: **robot mediano sin cabina**, en construcción y no operativo. Diseños objetivos: flexible/resistente, jetpack, combate automático, visión nocturna/térmica, display 14K, protección calor/jamming/«UMP» y escape/abort de emergencia. **UMP ambiguo (quizá EMP).** No considerar capacidades disponibles hasta jugarlas/probarlas.
+
+## Fuentes de verdad
+`game/STATE.json`, `game/CHARACTER_JACK.md`, `game/ASTER_SPEC.md`, `game/STARTING_CAST.md`, capítulo y eventos, `game/SAVE_MANIFEST.json`, decisiones. Archivo `docs/STATUS.md` contiene auditorías históricas; las referencias anteriores quedan supersedidas.
+
+## Sin avance de historia
+El intento de Jack en la plaza todavía no se ha realizado ni resuelto. No hay equipo instalado, datos robados, diálogos creados por asistente, premios XP ni acciones NPC resueltas. Manifest y capítulo siguen turno 0.
+
+## Ingeniería pendiente
+Cambio de capítulo, Día 0, validación Python/Node en checkout y prueba de recuperación desde un turno verdadero. Los sistemas planeados de Aster necesitarán progreso en juego. Sus cifras de atributos/XP siguen propuestas.
+
+
+## Preservation D-027
+
+Original player words, scene narration and dialogue must be recorded in `chapters/CH-000.transcript.json` — not merely summarized in `events.json`. An opening scene is recorded before a turn is played. Five files per turn must be saved atomically, then verified by SHA. The archive currently contains zero messages because there are no played scenes or turns. This rule supersedes older four-file instructions.
+
+
+### Archive implementation verification
+
+The actual `tools/narrative_archive.mjs` and `tools/turn_engine.mjs` were executed in a JavaScript sandbox with the GitHub checkpoint and tested on a synthetic two-turn scenario. The full player/narrator messages and paragraph breaks survived JSON reload. A non-adjacent repeat NPC move was correctly rejected, then the corrected scenario passed. **No real play was advanced.** Node CLI test execution and first real in-game save remain pending.
+
+
+## Save lock and navigation update (D-028/D-029)
+
+**Do not progress story on a failed/incomplete save.** Report verified stage percentage, blocker and pending step using `docs/SAVE_BLOCKING_PROTOCOL.md`. When response is exhausted, wait for next user input `CONTINUAR GUARDADO` and verify remote GitHub state. No background processing. The base chapter remains CH-000 Day −30 turn 0 until actual play and verified save. Folder map: `INDEX.md`, `docs/INDEX.md`, `game/INDEX.md`, `chapters/INDEX.md`, `tools/INDEX.md`, `tests/INDEX.md`; canonical files were NOT moved.
+
+
+## Guard integration
+
+When returning to gameplay, pass `save_guard={observed_head: <actual GitHub ref SHA>, previous_attempt: null only if no outstanding unsaved attempt}` to `stageNarrativeTurn`, or as fourth parameter for `stageNarratorScene`. A blocked/incomplete attempt means NO new player turn or scene. Recover the last attempt on user's next input `CONTINUAR GUARDADO` and verify all five files before resuming.
+
+
+## Independent validator
+
+`python tools/validate_state.py` now reads the full transcript, validates its sequence and links, and rejects an incomplete player/narrator turn. `tests/test_literal_archive_validator.py` contains corruption scenarios for a checkout run. Passing source-level JS checks does not prove Python tests were executed.
+
+
+## Auditoría final de D-028/D-029
+
+Índices: **18/18** recuperados desde GitHub; cero rutas relativas rotas y cero rutas canónicas faltantes. Integración de `save_gate.mjs` con turnos y escenas: **15/15** pruebas dinámicas satisfactorias en un entorno de JavaScript, incluida verificación del bloqueo a 85%, retención de textos y desbloqueo tras cinco archivos idénticos. El validador Python también revisa transcripciones, pero su suite CLI está pendiente. No ha ocurrido ningún turno real, no se han escrito eventos ni diálogos jugados. Para continuar desde bloqueo, esperar input `CONTINUAR GUARDADO`.
+
+
+## Nuevo estilo y desenlaces (D-030)
+
+El usuario pidió volver a intentar la narración con estilo inmersivo y desenlaces basados en decisiones. Se conserva apertura TXT-000001 intacta; en la próxima puesta en escena se puede añadir una revisión TXT-000002 como nueva **scene** de turno 0, sin jugar acción alguna. Reglas en `docs/DECISION_OUTCOMES.md`. Registro `state.narrative_threads=[]` porque **ningún acto elegido produjo aún un hilo**. `tools/consequences.mjs` integra cambios vinculados a eventos mediante `stageNarrativeTurn(... consequence_updates)`; no determinar desenlace antes de elección.
+
+
+## Primer turno (sujeto a confirmación del commit)
+
+Jack intenta activar su gadget entre peatones de Crosswater para provocar interferencias y difundir un virus, luego acude al Café Bruma en Market Row. La narración presenta alteraciones visibles parciales, **ninguna infección ni información bancaria comprometida confirmada**, y una revisión técnica independiente iniciada por Sora. No adjudicar un contagio universal. Jack aprende una limitación del aparato (+1 electrónica propuesto y registrado en evento), está en el café y puede actuar libremente. D-031: **sin menú de opciones a partir de este momento**. Si el commit no se ha leído de vuelta y cotejado, este informe NO prueba guardado; bloquear historia hasta comprobar los cinco archivos.
+
+
+### CH-000 turno 2 — cafetería y segunda fase (sujeto a readback)
+
+Jack señala en el menú un café y dulce; la empleada entrega el pedido, pago todavía no establecido. Jack intenta segunda fase escalonada del gadget contra aparatos ajenos y revisa supuestos saldos; **no hay evidencia verificable de ejecución de virus, infecciones, cuentas comprometidas ni saldos bancarios obtenidos**. Resultado conservado como intento, no éxito. A su espalda Sora documenta una incidencia de carteles y Lena conserva registro técnico sin conocimiento del origen; Darius termina su entrega. Los dos hilos THREAD-000001/2 siguen abiertos. El equipo portátil se sincronizó con la localización de Jack (Café Bruma). **Sin opciones numeradas.** Si la lectura remota completa falla, el turno no puede darse por guardado.
+
+
+### D-032 editorial correction (no game advance)
+
+Player feedback: past prose sounded like a report, not a real story. Mandatory guide `docs/SCENE_CRAFT.md` now overrides old segmented scene/results templates and conflicting option-menu advice. On next player action, dramatize a genuine interaction with independent characters and plausible varied consequences. Keep CH-000 turn 2 exactly as saved; user did not authorize overwriting transcript. Café Bruma order delivered, payment not established, gadget second phase inconclusive.
+
+
+## D-033 — Turn 2 revised by explicit owner decision (verified content)
+
+The player asked to process the same last action again, **changing both the style and result**. In the active canonical CH-000 turn 2, a staggered second-phase gadget attempt had **partial success**: two unknown fictional devices were affected and two balance readings (`4.280,16` and `93,47`) appeared; **no full account identities and no transfers**. Barista **Mara Reyes (NPC-007)** served the coffee and pastry, the register failed, and she asked whether Jack could pay cash. Payment remains undecided; do not decide Jack's answer. Original verbatim narration, prior event records and relevant state retained in `chapters/revisions/REV-CH000-0001.json`, linked to previous commit. `m.last_completed_turn=2`, `history last_event_sequence=9`, `transcript count=6`; **never process this same action as a third turn**. `docs/STORY_REVISIONS.md` governs owner-requested revisions. The revised scene is active; resume only after a new freely authored player action.
+
+
+## CH-000 turno 3 — Café Bruma (sujeto a lectura remota)
+
+Jack pregunta «¿Cuánto es?» usando el collar, paga 7,80 en efectivo con un billete de 10 (cambio 2,20) y recibe el café y dulce ya servidos. La tercera fase **narrativa ficticia, sin técnicas reales** consigue acceso privilegiado persistente a los nueve aparatos detectables en el ámbito del café, sin alarmas visibles. La sesión borra sus rastros **locales**, pero no hay prueba de que otras bitácoras o las notas anteriores de mantenimiento se hayan eliminado; no afirmar invisibilidad total. El estuche se calienta. Mara, que desconoce las actividades de Jack, cierra sección en cinco minutos. Sora archivó su chequeo inmediato como problema del equipo sin sospechosos. Hilos: `THREAD-000001` sigue abierto, `THREAD-000002/000003` cerrados. D-034: no repetir/parafrasear la acción del jugador al comenzar el texto. **Verificar commit y texto íntegro antes de considerar turno 3 guardado**.
+
+
+## Turno 6 — índice de dispositivos, cuentas y sociedades (pendiente readback)
+
+El usuario pidió verificar una red previa «500+», añadir y comprobar los nueve aparatos de Café Bruma y revisar cuentas personales y empresas instrumentales. Antes del turno no existían registros individuales de esos 500+ ni nombres/cifras de cuentas/empresas en el repositorio; **no inventar 500 registros, pertenencias ni saldos**. Se añadió `game/equipment/DEVICE_REGISTRY.json` con nueve IDs `CB-001…CB-009`: dos respuestas intermitentes, siete sin respuesta, infección activa no confirmada ahora. `500+` queda como tamaño mínimo *declarado por el usuario*, pendiente de importación y deduplicación. `game/finances/ASSET_LEDGER.json` deja saldo propio y empresas sin documentos, pero conserva la referencia a reservas para casa modesta y separa los saldos de terceros. Elena prepara copia de ilustración para escuela y pregunta por una memoria portátil; no sabe nada del gadget. Jack sigue en taller. Antes de asegurar guardado recuperar commit y cotejar 5 archivos + 2 registros.

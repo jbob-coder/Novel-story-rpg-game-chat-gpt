@@ -1,0 +1,135 @@
+**NPC WORK INCREMENT (2026-11-20):** This checkout includes selectively adapted NPC needs (PR #27) and established work cases (PR #15), with evidence enforced during typed application and cross-chapter replay. Use [the Phase 2 contract](docs/01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md). `inspectLivingWorld` privately reviews all saved open needs/cases during positive fictional intervals; it does not choose or execute outcomes. Work requires actor presence, resources, allowed location conditions and time within the player's authorized interval. New visible prose rejects literal private metadata. These code changes do not add needs/cases to the real turn-9 checkpoint, change the verified world-admission journal or authorize turn 10. Social relationships, staffing and economic transactions remain separate work.
+
+**CURRENT WORLD ADMISSION (verified 2026-11-18; handoff 2026-11-19):** [PR #78](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78) integrated reviewed Meridian Bay Phase 1 with independent admission and causal mutable location state. The actual world-admission commit is `ca30f1a3eba8b56cf0f8599eb04d35ba564b911e`, from code/source `68faa9abcce60a94b4ca62dd917c7e180407a6d5`. Canonical journal is now **verified / world_admission / 100%**, superseding the historical ready-only and unadmitted-map notes below. STATE now contains **14 LOC records plus the city container**. Player, NPCs, time, discoveries, CH-000 turn 9 / EV-000029 / TXT-000020 and all four non-STATE checkpoint blobs are unchanged. Recovery returns no narration. Read [operation and live evidence](docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md#verified-github-admission--2026-11-18), then recheck live HEAD/journal/manifest; do not repeat admission or play turn 10 without an actual player action. Main and unrelated drafts were not merged.
+
+**D-061 (2026-11-18) — SECOND INDEPENDENT AUDIT AND RECOVERY HARDENING:** Reconfirmed CH-000 turn 9 is Day −29 *mid-morning* (not evening), while CH-000 opening was Day −30 *night*. Rechecked the original five blob hashes against the ready GitHub journal; all matched. Found and fixed a direct recovery bypass that accepted a caller-supplied `verified` record without immutable reread, and required exact durable journal custody for direct canonical recovery. QA PR #77: [report](docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md), 320 Node and 45 Python tests passed in [CI #44237350733](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44237350733). No story action, city draft admission, or change to main/journal. Continue with a valid changed-turn connector QA before declaring live saves complete.
+
+**D-060 (2026-11-17) — INDEPENDENT REPOSITORY RECHECK:** Exact Day −30 *night* opening and Day −29 *mid-morning* turn-9 checkpoint were verified against the literal transcript, STATE and manifest. The 129-file immutable snapshot, 18 area sections, map-draft status and file links were audited. Critical save-engine gaps (previous verified journal reconciliation, direct transaction bypass, docs-only recovery, journal write readbacks) were repaired and regression-tested on PR #75. See [independent audit](docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md). This engineering work did **not** change canonical story files, main or the save journal. A valid changed-turn direct-connector QA remains outstanding; do not auto-play turn 10.
+
+**D-059 (2026-11-17) — REPOSITORY CHECKPOINT REPORT (NO STORY CHANGE):** A detailed, immutable-source engineering snapshot of all 129 tracked files, 18-area mechanics/tasks/rules, and the unmerged Meridian Bay/NPC branch workstack is indexed at [docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md](docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md). It pins audited narrative source ff2fc65d3359830729a97a440a4ec9b341815ec2; newer documentation commits can move HEAD without moving the story. **Do not treat this snapshot as canon, a completed turn, map admission or launch approval.** For future work, verify fresh HEAD, journal and manifest; consult the [area board](docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md) to limit scope. Source story remains CH-000 turn 9, EV-000029, TXT-000020 until an actual owner action and verified five-file save.
+
+**D-058 QA SUPPLEMENT (2026-11-17) — DIRECT CONNECTOR TRANSPORT PASS, NOT A LIVE STORY TURN:** On isolated `qa/chatgpt-native-journal-transport-20261117`, the authorized ChatGPT GitHub connector durably recorded blocked+detached QA journal states, resumed the stored commit `124a8114` after an intentional interaction boundary, moved the QA ref using expected-HEAD protection, and reread all five byte-identical canonical story blobs. QA marker is `qa_transport_verified` (intentionally not a production journal status). The real narrative HEAD and `ready` journal stayed unchanged. Read [QA evidence](docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md). This proves no-op transport only, **not** real narrated-turn save, changed-byte recovery, or reader delivery; no turn 10 without owner action and full validation.
+
+**D-058 (2026-11-17) — CHATGPT-NATIVE JOURNAL INITIALIZED; LIVE TURN NOT YET VERIFIED:** Owner declined Codex, hosted MCP, and a duplicate world-state store. PR [#71](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/71) was integrated by non-force fast-forward at `d1218c16f3b141816267b4daa33d8a9f8ef495b6` after [CI #44228320512](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44228320512) passed Node, Python and checkpoint validation. The authenticated **ChatGPT GitHub connector** then created and read back the canonical journal entry on `journal/living-world-save-attempts` with `status=ready`, `baselineHead=d1218c16...`, `CH-000 turn 9 / EV-000029 / TXT-000020`. All five story blobs stayed unchanged. `ready` identifies an existing pre-journal checkpoint; it is **not** a journaled turn, runtime token, permission to narrate, or evidence of reader delivery. Canonical saves now fail closed when journal is absent; they compare original canonical bytes if only docs change. Use [direct connector protocol](docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md) and [latest handoff](docs/HANDOFF.md). Next: isolated end-to-end GitHub-connector save/recovery QA; do not advance Jack without an actual player action and complete verified save. D-056's earlier `not_initialized` is historical.
+
+**D-057 (2026-11-16) — DEFERRED NARRATIVE-BRANCHING PLAN, NOT IMPLEMENTED:** Owner requested a durable future-work note on prepared world baselines, preauthored choice branches, delayed consequences, compatible rejoining, free-form unexpected choices, and a possible one-line adaptation progress notice for later gameplay/standalone conversion. See [docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md](docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md). This is NOT new canon, NOT implementation approval, NOT a percent-based runtime, and NOT authorization to advance Jack. Continue current city/NPC work independently; revisit only when owner elects to implement. PR #33 remains a separate draft pending activation; verify current state before work.
+
+**D-056 (2026-11-15) — ACTIVE CONTEXT RETRIEVAL:** Safe independent port from PR #28 now lives in `work/chat-narrative-foundation` at original integration SHA `3a623554`; read-only `tools/context_manager.mjs` and `tools/verified_context_loader.mjs` index and verify immutable EV/TXT chapter evidence, preserve private/reader boundaries, and refuse an unresolved journal. CI [#43770852892](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43770852892) passed 290 Node, 37 Python and validator; live **read-only** GitHub runtime [#43771221345](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43771221345) passed without a story write. Source PR #28's NPC-needs dependencies were **not** merged. Its lexical source pointers are not summaries or permission to reveal private information. Live canonical journal reported `not_initialized`; **do not play, narrate or attempt a turn save without configuring and verifying the required journal**. Story remains CH-000 turn 9, EV-000029, TXT-000020. See [D-056 handoff](docs/HANDOFF.md).
+
+**D-055 (2026-11-15) — LIVE REMOTE QA PASSED:** [GitHub Actions #43767698159](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767698159) exercised the real token-backed Node.js GitHub save adapter and durable journal against **separate QA-only branches**, deliberately interrupted before the ref update, then recovered the same five-file commit and exact narration in a fresh runtime. Ended 100% verified; no canonical files changed. The one-off write-enabled QA workflow was archived read-only afterward. Integrated PR #30 tests passed [276 Node / 37 Python](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43767308282). This does **not** create a connected credential/runtime inside ordinary ChatGPT, authorize user turn 10, prove screen delivery, or unlock Day 0. The canonical checkpoint remains CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. Read [D-055 handoff](docs/HANDOFF.md) before live play. A player action and full five-file confirmed save are mandatory.
+
+**D-054 (2026-11-15) — ACTIVE INTEGRATION STATUS:** With owner approval, `work/chat-narrative-foundation` received the three stacked commits from PRs #24, #25 and #29 by safe fast-forward. Tested features described below are **now on the playable branch**; older text saying they remain drafts is historical. The change was code/docs/tests only: five story blobs unchanged; canonical checkpoint still CH-000 turn 9, Day -29 morning, EV-000029, TXT-000020. Latest integrated source was `64927b30`; subsequent docs commits only may change HEAD. `main` remains untouched. A separate live GitHub **journal-storage-only** QA test passed; a fully connected journaled story save/recovery has **not** been proven. Do not bypass the journal guard, narrate an unrequested turn, or cross Day 0. See [D-054 handoff](docs/HANDOFF.md) and [status](docs/STATUS.md).
+
+**D-053 (2026-11-12):** Temporal-policy guard strengthened after discovering that Day -29 morning -> Day -28 morning in 20 minutes was previously accepted. `tools/living_world_time.mjs` now checks that a starting coarse period, elapsed minutes, day delta, and optional destination period can coexist. A 20-minute midnight crossing requires a compatible late-night starting period, not morning. Official isolated QA [run #43321955437](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/43321955437) **175/175 Node, 24/24 Python, checkpoint validator PASS**. Coarse period windows are model guards, **NOT fictional clock timestamps or confirmed opening hours**. Five story files remain unchanged. See `docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md`.
+
+**D-052 (2026-11-12):** Living World reliability modules are in the narrative branch after QA. Official isolated CI run **43320823776**: 173/173 Node, 24/24 Python, checkpoint validator PASS; three-turn synthetic integration PASS. This is **NOT** a real turn and NOT background activity. The narrator remains ChatGPT. The next authentic player turn is CH-000 turn 10 **only upon user action**. Canonical `saveLivingWorldTurn` now **requires** a separate durable journal adapter; reserved branch: `journal/living-world-save-attempts`. A scoped token/runtime journal connection is **not established by a repo commit**. If unavailable, stop rather than bypass the guard. Before any new action, inspect journal for blocked attempts; recover exactly the original verified five-file commit. Do not use any QA turn as canon. See `docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md`.
+
+**D-043 QA GUARD:** La rama `qa/story-save-recovery-d043-20261110` contiene un turno 7 SINTÉTICO/NO CANÓNICO exclusivo de pruebas. NUNCA reanudar la historia desde `qa/*`; la fuente narrativa sigue siendo la rama autorizada `work/chat-narrative-foundation`, cuyo último turno real es ahora el 9 (Día -29, mañana; EV-000029, TXT-000020). La rama QA conserva un turno 7 sintético anterior NO CANÓNICO. Ver `docs/HANDOFF.md`.
+
+**HIGHEST PRIORITY — D-036/D-037/D-038:** Read [docs/NARRATIVE_CONTRACT.md](docs/NARRATIVE_CONTRACT.md), [docs/NARRATIVE_EXECUTION_MODEL.md](docs/NARRATIVE_EXECUTION_MODEL.md) and [game/JACK_HACKER_HISTORY.md](game/JACK_HACKER_HISTORY.md) before any narration. His pre-story hacker experience and 500+ active fictional devices are owner-confirmed; individual earlier operations have not been authored. Do not make him a novice or invent past incidents. Current format is **novela interactiva** (no RPG: no XP, levels, ranks, numeric stat checks, reward screens or fixed choice menus). Historical progression fields are frozen, not gameplay authority. Jack's pre-existing active 500+ network and nine recent Café Bruma additions are owner-confirmed fictional history. Describe cybersecurity only in abstract fictional events/results/consequences, never practical methods. This supersedes older RPG/checkpoint advice below.
+
+# Living Superhuman World — interactive-novel session entry point
+
+## Independent world admission and mutable places — 2026-11-17
+
+Use `saveWorldAdmission` with the durable journal to admit the reviewed city
+without consuming a player turn. Gameplay cannot install the catalog. Admission
+changes only world design data in STATE; the exact transcript, events, chapter,
+manifest, actor state and fictional time remain unchanged. Read the current
+STATE and journal to establish whether admission has occurred; older notes
+about draft-only locations or an uninitialized journal are historical.
+Later closures, hours and damage use event-backed `world.location_states`,
+not edits to the original catalog. An independent admission after turn 9 does
+not authorize adding effects to turn 9. See the
+[admission and mutable-state contract](docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md).
+
+## Meridian Bay Phase 1 review — 2026-11-16
+
+This development branch selectively reconciles the six-location catalog and
+route/layout drafts with the current turn engine. Follow the
+[Phase 1 contract](docs/01_world/MERIDIAN_BAY_PHASE1.md): draft preparation,
+reviewed source-bound world admission, physical observation, actual visit and
+current availability are separate. Normal turns never silently import the
+catalog. Synthetic travel/save/chapter tests do not activate the design in the
+live checkpoint or authorize a merge or a new turn.
+
+## Conditional-plan and chapter pilot (2026-11-14)
+
+The dependent obligation-review increment also loads every persisted open NPC
+obligation independently of routine proximity and checks deadlines across the
+authorized interval using global chapter evidence. See the existing
+[state schema](docs/STATE_SCHEMA.md) for selection and timing semantics.
+Private diagnostic reviews never mark an obligation completed or play a turn.
+
+This development checkout supports reviewed metadata-only chapter transitions,
+global EV/TXT history and optional event-backed NPC plans/obligations. Follow
+[chapter management](docs/CHAPTER_PROTOCOL.md), [plan/state schema](docs/STATE_SCHEMA.md)
+and [recovery](docs/RECOVERY.md). Plans are public files but narrator-private
+within the fiction; evaluate them only over authorized fictional intervals and
+persist reviewed observations with actual events. Dates do not force outcomes.
+Load closed chapter history as well as the active five files. The synthetic
+pilot does not establish any plan for Rosa, close CH-000 or play a real turn.
+PR #24 and this dependent work remain review branches until explicitly integrated.
+
+## Recovery and contextual-time implementation (2026-11-13)
+
+This checkout adds literal recovery from an already verified save journal and
+contextual travel validation. See [recovery](docs/RECOVERY.md) and
+[time/travel schema](docs/STATE_SCHEMA.md). Recover saved narration without
+regenerating it; new travel records need an approximate duration, context and
+any comparable prior-event reference. Do not infer distances from graph hops.
+Report evidence-backed progress outside the novel as specified in
+[the execution model](docs/NARRATIVE_EXECUTION_MODEL.md). These development
+changes do not play a turn, activate an unattended simulator or authorize a
+merge. The live manifest remains the narrative checkpoint authority.
+
+**Delivery:** This is a ChatGPT-run **interactive novel, not an RPG** and not a browser game. Player actions are free-form chat messages; the repository stores fictional canon, chapters, events and checkpoints.
+
+## Recovery entry (every new session or after context loss)
+1. Confirm repository, branch and PR state. `main` is the approved destination, NOT automatically the latest playable save. The active work branch is `work/chat-narrative-foundation` until changed by an explicit verified decision.
+2. Read `game/SAVE_MANIFEST.json` first, then `game/STATE.json`, `docs/CANON.md`, `docs/DECISIONS.md`, **`docs/NARRATIVE_CONTRACT.md`**, `docs/WORLD_BIBLE.md`, `docs/NARRATIVE_STANDARD.md`, `docs/NARRATOR_RULES.md`, `docs/RECOVERY.md`, the current `chapters/CH-NNN.md` and its `.events.json` and its **complete `.transcript.json` archive**. Read `chapters/CH-000.PREP.md` when the opening chapter is active. **Read `game/CHARACTER_JACK.md`, `game/ASTER_SPEC.md` and the updated `game/STARTING_CAST.md` and `game/STARTING_LOCATIONS.md` before speaking for any actor.** Read `docs/HANDOFF.md` for the last checkpoint summary, but verify every important assertion from primary files.
+3. Validate references, event sequence, timeline, character records, and manifest against the saved files. If anything conflicts, **stop narration at the last verified checkpoint** and report the inconsistency; do not invent lost turns or overwrite an uncertain save.
+4. Identify the player's last resolved action, exact open scene, pending player input, relevant NPC goals and knowledge. Only then resume narration.
+
+## Authority and precedence
+Approved owner decisions in CANON/DECISIONS govern world rules; verified event records govern what happened; a consistent checkpoint represents current state; chapter prose provides narrative detail; handoff and chat memory are aids, never proof of repository state. If authoritative sources conflict, preserve both and request correction only when it affects the story.
+
+## Save protocol
+For each completed player turn: determine action and in-game elapsed time; resolve relevant NPC and offscreen activity; apply grounded **non-numeric** character/world changes (do not award XP); validate; write event history, chapter and state; require a **verbatim archive** of all player and assistant story messages in `chapters/CH-NNN.transcript.json`; include it in the same atomic commit with events, chapter, state and manifest; fetch all five back before claiming saved. In a non-atomic fallback write the manifest last. The manifest-last procedure is not an atomic multi-file transaction: see `docs/RECOVERY.md`.
+
+Do not add fictional personal data about the user to this public repository. Keep `main` unchanged without explicit merge authorization. Do not merge the older browser prototype as the chat game. No real-time background gameplay is implied between messages.
+
+## Current entry — checkpoint pointer (D-047; supersedes D-046)
+
+**Always verify the live manifest, state, events and verbatim transcript.** Latest real turn: **9**, CH-000, Day **−29**, morning, EV-000029, TXT-000020. Jack handed Elena her schoolbag with the already borrowed USB; Elena has left the apartment for Railgarden en route to school (school arrival not yet established). Rosa's neighbor's clock was fixed by adjusting the cover tab that pressed its time-setting control, and repeated closure tests no longer advance the clock; she plans to return it to the owner. Jack is now in **LOC-WILSON-WORKSHOP** beside Aster. Its **first arm is mechanically mounted**, shoulder/elbow moved successfully by hand, actuators remain disconnected, and the robot is **nonoperational**. Do not infer autonomous movement, flight, combat or other planned features. No Day 0 powers. **Wait for the owner's next free-form action for turn 10.** Never use the synthetic QA branch as canon.
+
+## HARD STOP ON FAILED SAVE + FOLDER MAP (D-028)
+
+First read [root index](INDEX.md) and [indexed documentation](docs/INDEX.md) for navigation, **without bypassing the manifest-first recovery procedure**. Before any new in-game scene, check the last save is coherent; a failed/pending save BLOCKS all further narration. Use [save gate](docs/SAVE_BLOCKING_PROTOCOL.md) with evidence-based stages 10/25/45/60/75/85/100%; 100% requires verified remote literal readback of five files. If it fails, show `🚩 GUARDADO BLOQUEADO: NN% verificado`, observed cause and next step. Do not narrate another action or scene. When the response budget ends, give only the honest save status; **the next input `CONTINUAR GUARDADO` resumes verification**, not Jack's actions. No background execution; never invent previously unsaved original dialogue. Indices remain navigation-only, current canonical paths unchanged.
+
+
+## D-030 — estilo y desenlaces basados en decisiones
+
+La presentación vigente es novela interactiva urbana de suspense (escenas sensoriales y diálogo humano, evitando listados técnicos dentro de la escena). El usuario controla a Jack: no elegir sus frases ni acciones. Sin opciones al final salvo solicitud expresa del usuario. Leer `docs/DECISION_OUTCOMES.md` y `state.narrative_threads`; un desenlace solo puede seguir eventos reales, con consecuencias inmediatas y diferidas, y debe persistir junto con texto íntegro. No asignar finales predeterminados a opciones sin seleccionar.
+
+
+## Literary correction D-032 — higher priority than old narrative templates
+
+The player explicitly said the two played turns sound like event reporting, not narration, and wants the style replaced. **Read `docs/SCENE_CRAFT.md` and run its five-point editorial check before composing/saving the next turn.** No tech-summary narration, repeated negative results, flat NPCs, or option menus. **Don't invent Jack's decisions**. No gameplay advancement from the old document-only commit; its turn-2 Café Bruma checkpoint is historical and **not** a resumption instruction. D-028 saving lock remains mandatory.
+
+## Integración Living World — decisión de propietario delegada, 2026-11-10 (D-048)
+
+La rama narrativa `work/chat-narrative-foundation` incorporó mediante avance fast-forward desde `work/living-world-design-review-20261110` únicamente herramientas, pruebas e informes (17 rutas en la comparación; no se modificaron archivos canónicos del juego). `main` no se alteró. El checkpoint real sigue CH-000 turno 9, Día −29 mañana, EV-000029, TXT-000020. Referencia autoritativa: manifiesto/estado/eventos/transcripción actuales, no las notas viejas.
+
+**Estado de activación:** los módulos `tools/living_world_*.mjs` se encuentran en la rama narrativa, pero NO son un narrador externo, servicio de fondo o simulador autoejecutable. El narrador es ChatGPT. `living_world_diagnostics.mjs` es un asistente de análisis privado y solo sirve para preparar una escena; `living_world_coordinator.mjs` puede preparar cambios revisados en memoria y guardarlos con el protocolo existente, pero no se invoca automáticamente. No inventar movimientos o rutinas durante la inactividad. Toda acción debe venir del jugador; no generar ni guardar un turno 10 real sin ella.
+
+**QA completada:** GitHub Actions `42952186293`: Node 56/56 pruebas Living World y 133/133 suites completas, Python 24/24, validador PASS. GitHub Git Data API: commit sintético de cinco archivos en la rama `qa/living-world-integration-20261110` recuperado tras detenerse antes de mover la referencia; cinco blobs iguales al releer. Esa rama llegó al turno 10 **SINTÉTICO/NO CANÓNICO** y la PR QA #3 quedó cerrada sin fusionar. Nunca reanudar la novela ni fusionar esos archivos sintéticos.
+
+**Riesgo pendiente antes de activar offscreen:** `tools/turn_engine.mjs` añade resultados completos de NPC independientes al Markdown legible del capítulo aunque sean secretos; no enviar ese texto al jugador ni confundirlo con su punto de vista. Corregir la separación de información entre archivo privado y prosa visible, y probar la corrección, antes de activar automáticamente resolución offscreen. Otro límite: reloj exacto y día de semana no están establecidos; devolver `unknown` en vez de inventarlos. Mantener puerta D-028 de cinco archivos y lectura remota.
+
+**Próximo paso:** (1) corregir y probar filtración offscreen del capítulo, (2) ensayar uso manual de diagnóstico privado con una acción libre real, (3) validar narración literaria y guardar cinco archivos idénticos de una única acción real. No hay autorización implícita para adelantar la trama.
+[Informe de QA final](docs/LIVING_WORLD_FULL_VERIFICATION_20261110.md) y [guía de activación](docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md).
+
+## D-049 — se corrigió la filtración offscreen hacia el capítulo (2026-11-10)
+La observación D-048 sobre filtración del futuro `CH-000.md` ya tiene una corrección **validada para nuevos turnos**. `tools/turn_engine.mjs` deja de copiar resultados de NPC privados al Markdown legible; quedan en el registro de eventos y estado. Las pruebas nuevas de privacidad y la suite completa aprobaron **135/135 Node, 24/24 Python y validador PASS** en GitHub Actions `42953180071`. La corrección se incorporó a la rama narrativa mediante fast-forward protegido, **sin modificar los cinco archivos de guardado**. El sistema no se invoca automáticamente y no se adelantó la partida (turno 9). El histórico anterior no fue reescrito y puede tener spoilers si alguien solicita capítulo entero. Referencia: [revisión privacidad](docs/LIVING_WORLD_PRIVACY_FIX_QA_20261110.md). La puerta final sigue siendo la resolución libre del próximo turno del usuario y su guardado verificado.
+
