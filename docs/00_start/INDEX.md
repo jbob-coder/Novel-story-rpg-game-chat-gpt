@@ -29,3 +29,5 @@ These records are source-linked developer observations, not new canon or a playe
 - [Inventario JSON de ramas y commits completos](INVENTARIO_RAMAS_2026-11-19.json).
 
 Nueva rama documental fuera del recuento; registrar su HEAD por separado. La revisión es de metadatos, no un merge ni la auditoría de cada línea.
+
+- [Seguimiento del desarrollo: para qué sirve cada sistema y qué falta](SEGUIMIENTO_DEL_DESARROLLO.md)
