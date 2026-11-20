@@ -76,3 +76,7 @@ Se clasificaron las **39 ramas históricas work** no documentadas con detalle en
 **Cobertura de fichas individuales:** 108/108 ramas originales documentadas por procedencia, archivos/deltas y dictamen de auditoría en lotes 01–05 (63 `work/` + 44 otras + `main`). Esto **no** equivale a 108 pruebas funcionales ni significa que 108 ramas deban fusionarse. Las cinco ramas nuevas anteriores a la documentación también están en el registro JSON de 113.
 
 **Pendiente:** ejecutar y modernizar las suites de candidatos útiles en el motor/estado vigente; resolver el conflicto de trazado #44/#58 y los validadores obsoletos de tiendas/servicios; no retroceder el checkpoint ni alterar el turno 9.
+
+### Lote 06 — QA reproducible (2026-11-20)
+
+La suite `tests/branch_audit_integrity.test.mjs` somete a comprobación los 108 registros originales, 9 lotes Git completos, 113 entradas de catálogo, 26 rutas tools y 32 rutas tests pendientes, alias de SHA, cinco blobs canónicos, 6 candidatos de rutas con duplicación/conflicto, grafo recíproco y cinco locales previamente admitidos. Sus coordenadas se fijaron con procedencia de commit y blob en [candidatos de geometría](BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json), y el [protocolo de ejecución](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md) separa cuidadosamente verificación del registro y ejecución de módulos históricos. **El resultado de CI se documentará solamente tras observar el workflow del último commit**.
