@@ -137,10 +137,10 @@ test('removing or duplicating either side of the clinic graph connection fails c
   const s=state();s.world.locations[from].connected_ids=
    s.world.locations[from].connected_ids.filter(id=>id!==to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:s}),
-   /Missing or duplicated original district/);
+   /Missing or duplicated (?:original )?district/);
   const t=state();t.world.locations[from].connected_ids.push(to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:t}),
-   /Missing or duplicated original district/);
+   /Missing or duplicated (?:original )?district/);
  }
 });
 
@@ -149,7 +149,7 @@ test('clinic review cannot remove grocery, market or household connections',()=>
   const s=state();s.world.locations[from].connected_ids=
    s.world.locations[from].connected_ids.filter(id=>id!==to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:s}),
-   /Missing or duplicated original district/);
+   /Missing or duplicated (?:original )?district/);
  }
 });
 
@@ -199,9 +199,19 @@ test('a synthetic explicit schedule is contextual, not adopted as a canonical cl
  const inside=previewRailgardenClinicFrontage({state:s,fromId:a,toId:c,weekday:1,minute:600});
  const outside=previewRailgardenClinicFrontage({state:s,fromId:a,toId:c,weekday:1,minute:1100});
  assert.equal(inside.openNow,'open');
- assert.equal(outside.openNow,'closed');
+ // Off-hours cannot be asserted closed when the previous weekday has no
+ // confirmed schedule: an overnight interval may still cross midnight.
+ assert.equal(outside.openNow,'unknown');
+ assert.equal(outside.openingEvidenceSource,'day_not_documented');
+ assert.equal(JSON.stringify(s),before);
+ // Once the previous day is explicitly covered, closure can be certified.
+ s.world.location_states[clinic].opening_hours.weekdays['0']=[];
+ const completedSchedule=JSON.stringify(s);
+ const confirmedClosed=previewRailgardenClinicFrontage({state:s,fromId:a,toId:c,weekday:1,minute:1100});
+ assert.equal(confirmedClosed.openNow,'closed');
+ assert.equal(confirmedClosed.openingEvidenceSource,'confirmed_schedule');
  assert.equal(inside.staffNow,'unknown');
  assert.equal(inside.servicesNow,'unknown');
- assert.equal(JSON.stringify(s),before);
+ assert.equal(JSON.stringify(s),completedSchedule);
  assert.equal(state().world.locations[clinic].opening_hours,null);
 });
