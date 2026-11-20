@@ -68,3 +68,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Auditoría geométrica del borde portuario, 15 pruebas](meridian_bay_harbor_coast_review.test.mjs)
 
 - [Sincronización SVG/JSON de los 18 trazados costeros y preservación de fuentes](harbor_coast_svg_sync.test.mjs)
+
+- [16 pruebas de continuidad regional, agua, edificios y alternativas de rutas](meridian_bay_three_region_seams.test.mjs)

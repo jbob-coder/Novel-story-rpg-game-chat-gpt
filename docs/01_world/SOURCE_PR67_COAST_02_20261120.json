@@ -1,0 +1,914 @@
+{
+  "schema_version": 1,
+  "id": "MB-HARBOR-COAST-FRAGMENT-02-20261117",
+  "status": "editable_fragment_draft_not_admitted_to_saved_world",
+  "region": "Continuación irregular de la ribera interior: costura del fragmento 01 hacia cota y=51",
+  "study_box": {
+    "x_min": 68,
+    "x_max": 82,
+    "y_min": 42,
+    "y_max": 51,
+    "canvas": "fictional_100x80_not_real_measurement",
+    "cardinal_orientation_known": false
+  },
+  "previous_fragment": "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+  "source_evidence": {
+    "existing_places": [
+      "LOC-HARBOR-WALK",
+      "LOC-CROSSWATER-PLAZA",
+      "LOC-COMMERCIAL-DISTRICT"
+    ],
+    "known_story": "The waterfront promenade and industrial/passenger port views exist; the exact shoreline and adjacent land uses are not canonical.",
+    "source_files": [
+      "game/STARTING_LOCATIONS.md",
+      "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json"
+    ]
+  },
+  "proposed_coast": {
+    "status": "continuous_draft_shore_geometry",
+    "water_on_higher_x_side_in_this_fragment_only": true,
+    "shoreline": [
+      {
+        "x": 75.1,
+        "y": 42
+      },
+      {
+        "x": 75.35,
+        "y": 42.5
+      },
+      {
+        "x": 75,
+        "y": 43
+      },
+      {
+        "x": 75.22,
+        "y": 43.45
+      },
+      {
+        "x": 75.8,
+        "y": 43.82
+      },
+      {
+        "x": 76.4,
+        "y": 44
+      },
+      {
+        "x": 76.2,
+        "y": 44.45
+      },
+      {
+        "x": 75.85,
+        "y": 44.9
+      },
+      {
+        "x": 76.1,
+        "y": 45.25
+      },
+      {
+        "x": 76.9,
+        "y": 45.6
+      },
+      {
+        "x": 77.25,
+        "y": 45.85
+      },
+      {
+        "x": 77.45,
+        "y": 46.3
+      },
+      {
+        "x": 77.05,
+        "y": 46.85
+      },
+      {
+        "x": 77.3,
+        "y": 47.35
+      },
+      {
+        "x": 78,
+        "y": 47.72
+      },
+      {
+        "x": 78.15,
+        "y": 48.1
+      },
+      {
+        "x": 77.85,
+        "y": 48.55
+      },
+      {
+        "x": 78.25,
+        "y": 49
+      },
+      {
+        "x": 78.65,
+        "y": 49.5
+      },
+      {
+        "x": 79.1,
+        "y": 50
+      },
+      {
+        "x": 78.85,
+        "y": 50.45
+      },
+      {
+        "x": 79.2,
+        "y": 51
+      }
+    ],
+    "shoreline_surveyed": false,
+    "shoreline_extends_existing_anchor_without_changing_harbor_walk": true
+  },
+  "proposed_urban_history": [
+    {
+      "phase": "old_shore_settlement",
+      "design_intent": "La calle más antigua sigue parcelas y suelo estable; conserva quiebres y bloques desiguales.",
+      "evidence": "worldbuilding_hypothesis_only"
+    },
+    {
+      "phase": "freight_growth_and_limited_reclamation",
+      "design_intent": "Naves, patios y un relleno parcial empujan un tramo de ribera; su acceso de servicio no es paseo público.",
+      "evidence": "worldbuilding_hypothesis_only"
+    },
+    {
+      "phase": "later_street_reuse",
+      "design_intent": "Una vía de mayor capacidad se encaja junto a calles viejas; algunas quedan cortadas o sin salida.",
+      "evidence": "worldbuilding_hypothesis_only"
+    }
+  ],
+  "land_use_patches": [
+    {
+      "id": "HN-Z-OLD",
+      "use": "manzanas antiguas de oficios, vivienda y comercio",
+      "polygon": [
+        {
+          "x": 68.3,
+          "y": 42.4
+        },
+        {
+          "x": 71.5,
+          "y": 42.4
+        },
+        {
+          "x": 72.2,
+          "y": 43.6
+        },
+        {
+          "x": 71.8,
+          "y": 44.8
+        },
+        {
+          "x": 70.6,
+          "y": 45.2
+        },
+        {
+          "x": 68.4,
+          "y": 45
+        }
+      ],
+      "era": "old_shore_settlement",
+      "status": "provisional_geometry_not_canon"
+    },
+    {
+      "id": "HN-Z-FILL",
+      "use": "franja portuaria readaptada sobre terreno alterado",
+      "polygon": [
+        {
+          "x": 72.25,
+          "y": 42.5
+        },
+        {
+          "x": 74.4,
+          "y": 42.4
+        },
+        {
+          "x": 74.5,
+          "y": 43
+        },
+        {
+          "x": 75,
+          "y": 43.5
+        },
+        {
+          "x": 75.6,
+          "y": 43.8
+        },
+        {
+          "x": 75.35,
+          "y": 44.5
+        },
+        {
+          "x": 74.4,
+          "y": 44.9
+        },
+        {
+          "x": 73,
+          "y": 44.6
+        }
+      ],
+      "era": "freight_growth_and_limited_reclamation",
+      "status": "provisional_geometry_not_canon"
+    },
+    {
+      "id": "HN-Z-BACK",
+      "use": "frente mixto de baja densidad con reutilización irregular",
+      "polygon": [
+        {
+          "x": 68.4,
+          "y": 45.4
+        },
+        {
+          "x": 70,
+          "y": 45.5
+        },
+        {
+          "x": 71.5,
+          "y": 45.9
+        },
+        {
+          "x": 72.7,
+          "y": 46.75
+        },
+        {
+          "x": 72,
+          "y": 47.6
+        },
+        {
+          "x": 69.4,
+          "y": 47.2
+        },
+        {
+          "x": 68.4,
+          "y": 47.5
+        }
+      ],
+      "era": "later_street_reuse",
+      "status": "provisional_geometry_not_canon"
+    },
+    {
+      "id": "HN-Z-EDGE",
+      "use": "suelo húmedo de borde y acceso condicionado, sin canales navegables definidos",
+      "polygon": [
+        {
+          "x": 73,
+          "y": 47.1
+        },
+        {
+          "x": 75.5,
+          "y": 46.9
+        },
+        {
+          "x": 76.7,
+          "y": 47.45
+        },
+        {
+          "x": 77.4,
+          "y": 47.7
+        },
+        {
+          "x": 77.4,
+          "y": 48.6
+        },
+        {
+          "x": 75,
+          "y": 48.5
+        },
+        {
+          "x": 73.5,
+          "y": 48.1
+        }
+      ],
+      "era": "mixed_reuse",
+      "status": "provisional_geometry_not_canon"
+    },
+    {
+      "id": "HN-Z-HOUSING",
+      "use": "tejido de viviendas con patios y locales reformados",
+      "polygon": [
+        {
+          "x": 68.4,
+          "y": 48.2
+        },
+        {
+          "x": 70.6,
+          "y": 48
+        },
+        {
+          "x": 71.9,
+          "y": 48.9
+        },
+        {
+          "x": 72.2,
+          "y": 50.8
+        },
+        {
+          "x": 68.4,
+          "y": 50.8
+        }
+      ],
+      "era": "old_shore_settlement",
+      "status": "provisional_geometry_not_canon"
+    },
+    {
+      "id": "HN-Z-SERVICE",
+      "use": "edificaciones de mantenimiento y patios sin acceso público inferido",
+      "polygon": [
+        {
+          "x": 72.8,
+          "y": 48.9
+        },
+        {
+          "x": 74.6,
+          "y": 48.8
+        },
+        {
+          "x": 76.3,
+          "y": 49.1
+        },
+        {
+          "x": 77,
+          "y": 50.1
+        },
+        {
+          "x": 76.8,
+          "y": 50.7
+        },
+        {
+          "x": 73.3,
+          "y": 50.7
+        }
+      ],
+      "era": "later_street_reuse",
+      "status": "provisional_geometry_not_canon"
+    }
+  ],
+  "building_footprints": [
+    {
+      "id": "HN-B-01",
+      "use": "edificio antiguo de fachadas no alineadas",
+      "polygon": [
+        {
+          "x": 68.62,
+          "y": 42.62
+        },
+        {
+          "x": 69.36,
+          "y": 42.56
+        },
+        {
+          "x": 69.58,
+          "y": 43.04
+        },
+        {
+          "x": 68.85,
+          "y": 43.16
+        }
+      ],
+      "era": "old_shore_settlement",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-02",
+      "use": "comercio adaptado en lote irregular",
+      "polygon": [
+        {
+          "x": 70.1,
+          "y": 44.46
+        },
+        {
+          "x": 70.66,
+          "y": 44.31
+        },
+        {
+          "x": 70.86,
+          "y": 44.85
+        },
+        {
+          "x": 70.23,
+          "y": 45.03
+        }
+      ],
+      "era": "old_shore_settlement",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-03",
+      "use": "nave con patio de carga trasero",
+      "polygon": [
+        {
+          "x": 72.8,
+          "y": 42.73
+        },
+        {
+          "x": 73.72,
+          "y": 42.78
+        },
+        {
+          "x": 73.62,
+          "y": 43.47
+        },
+        {
+          "x": 72.84,
+          "y": 43.36
+        }
+      ],
+      "era": "freight_growth_and_limited_reclamation",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-04",
+      "use": "pequeño almacén sobre suelo alterado",
+      "polygon": [
+        {
+          "x": 74.08,
+          "y": 43.25
+        },
+        {
+          "x": 74.69,
+          "y": 43.19
+        },
+        {
+          "x": 74.85,
+          "y": 43.62
+        },
+        {
+          "x": 74.18,
+          "y": 43.79
+        }
+      ],
+      "era": "freight_growth_and_limited_reclamation",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-05",
+      "use": "fábrica reacondicionada entre calles de distintas épocas",
+      "polygon": [
+        {
+          "x": 70.34,
+          "y": 45.52
+        },
+        {
+          "x": 71.38,
+          "y": 45.58
+        },
+        {
+          "x": 71.61,
+          "y": 46.23
+        },
+        {
+          "x": 70.47,
+          "y": 46.42
+        }
+      ],
+      "era": "mixed_reuse",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-06",
+      "use": "edificación de servicio con retranqueo irregular",
+      "polygon": [
+        {
+          "x": 73.08,
+          "y": 45.15
+        },
+        {
+          "x": 73.91,
+          "y": 45.35
+        },
+        {
+          "x": 73.8,
+          "y": 45.96
+        },
+        {
+          "x": 72.97,
+          "y": 45.79
+        }
+      ],
+      "era": "freight_growth_and_limited_reclamation",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-07",
+      "use": "conjunto residencial anterior a la nueva avenida",
+      "polygon": [
+        {
+          "x": 69.05,
+          "y": 48.56
+        },
+        {
+          "x": 69.92,
+          "y": 48.42
+        },
+        {
+          "x": 70.16,
+          "y": 49.02
+        },
+        {
+          "x": 69.27,
+          "y": 49.2
+        }
+      ],
+      "era": "old_shore_settlement",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-08",
+      "use": "edificio público reutilizado sin uso institucional fijado",
+      "polygon": [
+        {
+          "x": 70.75,
+          "y": 48.24
+        },
+        {
+          "x": 71.55,
+          "y": 48.2
+        },
+        {
+          "x": 71.83,
+          "y": 48.69
+        },
+        {
+          "x": 71.04,
+          "y": 48.92
+        }
+      ],
+      "era": "later_street_reuse",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-09",
+      "use": "edificio de servicios junto a parcela oblicua",
+      "polygon": [
+        {
+          "x": 73.35,
+          "y": 49.59
+        },
+        {
+          "x": 74.25,
+          "y": 49.59
+        },
+        {
+          "x": 74.4,
+          "y": 50.14
+        },
+        {
+          "x": 73.53,
+          "y": 50.27
+        }
+      ],
+      "era": "mixed_reuse",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    },
+    {
+      "id": "HN-B-10",
+      "use": "patio cubierto modernizado",
+      "polygon": [
+        {
+          "x": 75.18,
+          "y": 49.67
+        },
+        {
+          "x": 76.21,
+          "y": 49.59
+        },
+        {
+          "x": 76.35,
+          "y": 50.2
+        },
+        {
+          "x": 75.26,
+          "y": 50.3
+        }
+      ],
+      "era": "later_street_reuse",
+      "status": "provisional_geometry_not_canon",
+      "interior_status": "unmapped",
+      "access_status": "not_established",
+      "occupants_or_businesses_assigned": false
+    }
+  ],
+  "street_alignments": [
+    {
+      "id": "HN-A-OLD",
+      "role": "calle anterior con curvas de parcelario",
+      "points": [
+        {
+          "x": 68.1,
+          "y": 43.8
+        },
+        {
+          "x": 69.12,
+          "y": 43.57
+        },
+        {
+          "x": 70.13,
+          "y": 43.84
+        },
+        {
+          "x": 71.16,
+          "y": 44.12
+        },
+        {
+          "x": 72.18,
+          "y": 43.94
+        },
+        {
+          "x": 73.12,
+          "y": 44.2
+        }
+      ],
+      "mode": "unknown",
+      "era": "old_shore_settlement",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-NEW",
+      "role": "vía posterior encajada entre barrios, con cambios de alineación",
+      "points": [
+        {
+          "x": 68.2,
+          "y": 46.65
+        },
+        {
+          "x": 69.35,
+          "y": 46.62
+        },
+        {
+          "x": 70.4,
+          "y": 46.9
+        },
+        {
+          "x": 71.5,
+          "y": 46.7
+        },
+        {
+          "x": 72.8,
+          "y": 46.3
+        },
+        {
+          "x": 73.45,
+          "y": 46.48
+        },
+        {
+          "x": 74.28,
+          "y": 46.35
+        },
+        {
+          "x": 75.3,
+          "y": 45.95
+        }
+      ],
+      "mode": "candidate_vehicle_access_unverified",
+      "era": "later_street_reuse",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-DEAD",
+      "role": "ramal local que dejó de extenderse",
+      "points": [
+        {
+          "x": 69.75,
+          "y": 43.52
+        },
+        {
+          "x": 69.83,
+          "y": 44.45
+        },
+        {
+          "x": 70.14,
+          "y": 45.13
+        }
+      ],
+      "mode": "dead_end",
+      "era": "later_street_reuse",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-FREIGHT",
+      "role": "conexión de servicio parcial a zona de almacenes",
+      "points": [
+        {
+          "x": 69.4,
+          "y": 42.2
+        },
+        {
+          "x": 70.2,
+          "y": 43.02
+        },
+        {
+          "x": 71.2,
+          "y": 43.15
+        },
+        {
+          "x": 72.38,
+          "y": 43.1
+        },
+        {
+          "x": 72.62,
+          "y": 43.23
+        }
+      ],
+      "mode": "service_restricted_unknown",
+      "era": "freight_growth_and_limited_reclamation",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-FRONT",
+      "role": "calle junto a borde portuario con acceso no autorizado más allá",
+      "points": [
+        {
+          "x": 74.15,
+          "y": 45.62
+        },
+        {
+          "x": 74.22,
+          "y": 45.53
+        },
+        {
+          "x": 75.19,
+          "y": 45.25
+        },
+        {
+          "x": 75.68,
+          "y": 45.42
+        }
+      ],
+      "mode": "restricted_unknown",
+      "era": "freight_growth_and_limited_reclamation",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-TRACE",
+      "role": "antigua vía cortada al reconstruir un bloque",
+      "points": [
+        {
+          "x": 70.23,
+          "y": 48.84
+        },
+        {
+          "x": 71.09,
+          "y": 48.51
+        },
+        {
+          "x": 71.98,
+          "y": 48.21
+        },
+        {
+          "x": 72.48,
+          "y": 48.16
+        }
+      ],
+      "mode": "blocked_remnant",
+      "era": "old_shore_settlement",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    },
+    {
+      "id": "HN-A-PROMENADE-POTENTIAL",
+      "role": "senda de litoral propuesta sin conexión certificada a Harbor Walk",
+      "points": [
+        {
+          "x": 74.65,
+          "y": 45.18
+        },
+        {
+          "x": 75.45,
+          "y": 45.7
+        },
+        {
+          "x": 75.79,
+          "y": 46.13
+        },
+        {
+          "x": 76.47,
+          "y": 46.69
+        },
+        {
+          "x": 77.05,
+          "y": 47.48
+        },
+        {
+          "x": 77.36,
+          "y": 48.19
+        }
+      ],
+      "mode": "pedestrian_candidate_unconnected",
+      "era": "later_street_reuse",
+      "registered_as_new_story_link": false,
+      "walking_minutes": null
+    }
+  ],
+  "reference_anchors": [
+    {
+      "id": "COAST-SEAM-01",
+      "xy": {
+        "x": 75.1,
+        "y": 42
+      },
+      "meaning": "Must equal fragment 01 COAST-HIGH precisely; land/water continuity, not a street junction."
+    }
+  ],
+  "assembly_seams": [
+    {
+      "id": "COAST-02-START",
+      "xy": {
+        "x": 75.1,
+        "y": 42
+      },
+      "kind": "shoreline_only",
+      "joins": {
+        "fragment": "MB-HARBOR-COAST-FRAGMENT-01-20261117",
+        "seam": "COAST-HIGH"
+      }
+    },
+    {
+      "id": "COAST-02-END",
+      "xy": {
+        "x": 79.2,
+        "y": 51
+      },
+      "kind": "shoreline_only",
+      "joins": null
+    },
+    {
+      "id": "LAND-02-OLD",
+      "xy": {
+        "x": 68.1,
+        "y": 43.8
+      },
+      "kind": "unapproved_street_continuation",
+      "joins": null
+    },
+    {
+      "id": "LAND-02-NEW",
+      "xy": {
+        "x": 68.2,
+        "y": 46.65
+      },
+      "kind": "unapproved_street_continuation",
+      "joins": null
+    }
+  ],
+  "known_connections_preserved": [
+    {
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-HARBOR-WALK",
+      "status": "existing_graph_edge_unchanged_no_new_link"
+    },
+    {
+      "from": "LOC-CROSSWATER-PLAZA",
+      "to": "LOC-HARBOR-WALK",
+      "status": "existing_graph_edge_unchanged_no_new_link"
+    }
+  ],
+  "limits": {
+    "canonical_save_untouched": true,
+    "no_story_or_npc_actions": true,
+    "no_new_travel_routes_in_saved_state": true,
+    "no_inferred_port_or_ferry_access": true,
+    "no_established_residents_or_businesses": true,
+    "no_public_access_assumed_from_drawing": true,
+    "no_georeferenced_shoreline": true,
+    "no_claim_of_playable_region": true
+  },
+  "next_piece": "Ampliar físicamente el borde urbano del lado de tierra desde el límite x=68; no reorganizar ni terminar la ciudad entera.",
+  "review_corrections": {
+    "road_footprint_crossings_resolved": true,
+    "historic_blocked_trace_overbuilding_intentional": true,
+    "comment": "Historic trace HN-A-TRACE is an abandoned alignment under a later parcel, never a traversable road."
+  }
+}

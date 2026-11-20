@@ -22,3 +22,5 @@
 
 - [SVG histórico de Harbor Coast — **sin** corrección](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg)
 - [SVG revisado y sincronizado con el JSON — borrador no canónico](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg)
+
+- [Tres fragmentos: costuras, choques de rutas y alternativa PR #67 — auditoría no canónica](MERIDIAN_BAY_THREE_REGION_SEAM_AUDIT_20261120.md)
