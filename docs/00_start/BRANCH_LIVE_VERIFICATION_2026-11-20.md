@@ -193,6 +193,8 @@ No se reescribe el catálogo histórico de 108; estas cinco se auditan como un g
 | [`work/npc-causal-agenda-20261120`](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/npc-causal-agenda-20261120) | `53f6dcb77965` | 1/1 | PR #82 separada; revisar |
 | [`work/npc-causal-needs-port-20261120`](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/npc-causal-needs-port-20261120) | `0efd2586ac86` | 0/0 | Preparatoria; revisar redundancia |
 
+[Pruebas ejecutables de integridad del inventario y seis trazados de geometría, lote 06](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md).
+
 ## 6. Próximo recorrido para auditoría de código y pruebas (sin nuevas fusiones)
 
 - **Lote funcional siguiente:** `work/meridian-bay-causal-decisions-20261112`, `work/meridian-bay-social-relations-20261112`, `work/living-world-between-turns-20261112`: matriz por exportaciones, dependencias y tests históricos frente a la versión actual, con señales explícitas de incompatibilidad. No activar funcionalidades sin QA del HEAD exacto.
