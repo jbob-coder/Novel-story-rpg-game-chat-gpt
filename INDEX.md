@@ -34,3 +34,5 @@
 Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work/chat-narrative-foundation`; `main` no contiene todavía esa rama.
 
 - [Seguimiento del desarrollo, uso y tareas pendientes](docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md)
+
+- [Auditoría de ramas y descripciones contrastadas con GitHub (2026-11-19)](docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md)
