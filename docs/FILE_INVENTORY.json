@@ -245,7 +245,11 @@
       "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.json",
       "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_REVIEW_20261120.md",
       "tools/meridian_bay_harbor_coast_review.mjs",
-      "tests/meridian_bay_harbor_coast_review.test.mjs"
+      "tests/meridian_bay_harbor_coast_review.test.mjs",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg",
+      "tools/render_harbor_coast_svg.mjs",
+      "tests/harbor_coast_svg_sync.test.mjs"
     ]
   },
   "repository_checkpoints": [
