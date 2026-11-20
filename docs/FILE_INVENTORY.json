@@ -193,7 +193,8 @@
       "tests/living_world_integrated_rehearsal.test.mjs",
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
-      "tests/test_checkpoint_audit.py"
+      "tests/test_checkpoint_audit.py",
+      "tests/branch_audit_integrity.test.mjs"
     ],
     "design_proposals": [
       "docs/01_world/MERIDIAN_BAY_PHASE1.md",
@@ -241,7 +242,9 @@
       "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md",
       "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md",
       "docs/00_start/BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md",
-      "docs/00_start/BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md"
+      "docs/00_start/BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md",
+      "docs/00_start/BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md",
+      "docs/00_start/BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json"
     ],
     "branch_live_verification_2026_11_20": [
       "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.md",
