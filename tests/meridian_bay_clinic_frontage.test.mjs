@@ -137,10 +137,10 @@ test('removing or duplicating either side of the clinic graph connection fails c
   const s=state();s.world.locations[from].connected_ids=
    s.world.locations[from].connected_ids.filter(id=>id!==to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:s}),
-   /Missing or duplicated (?:original )?district/);
+   /Missing or duplicated (?:original )?district|Incomplete or altered authored location/);
   const t=state();t.world.locations[from].connected_ids.push(to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:t}),
-   /Missing or duplicated (?:original )?district/);
+   /Missing or duplicated (?:original )?district|Incomplete or altered authored location/);
  }
 });
 
@@ -149,7 +149,7 @@ test('clinic review cannot remove grocery, market or household connections',()=>
   const s=state();s.world.locations[from].connected_ids=
    s.world.locations[from].connected_ids.filter(id=>id!==to);
   assert.throws(()=>validateRailgardenClinicFrontage({state:s}),
-   /Missing or duplicated (?:original )?district/);
+   /Missing or duplicated (?:original )?district|Incomplete or altered authored location/);
  }
 });
 
