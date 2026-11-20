@@ -31,3 +31,5 @@ These records are source-linked developer observations, not new canon or a playe
 Nueva rama documental fuera del recuento; registrar su HEAD por separado. La revisión es de metadatos, no un merge ni la auditoría de cada línea.
 
 - [Seguimiento del desarrollo: para qué sirve cada sistema y qué falta](SEGUIMIENTO_DEL_DESARROLLO.md)
+
+- [Auditoría de 108 ramas: archivos, 20 descripciones precisadas, HEAD compartidos](VERIFICACION_DESCRIPCIONES_2026-11-19.md)
