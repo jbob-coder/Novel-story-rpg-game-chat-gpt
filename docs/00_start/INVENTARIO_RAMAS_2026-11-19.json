@@ -1,0 +1,1940 @@
+{
+  "schema": "branch-inventory/v1",
+  "captured_local_date": "2026-11-19",
+  "repo": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "scope": "108 pre-documentation branches; excludes documentation branch",
+  "documentation_branch_excluded": "docs/inventario-ramas-20261119",
+  "branch_count": 108,
+  "pull_requests_consulted": 79,
+  "groups": {
+    "main": 1,
+    "work": 63,
+    "audit": 4,
+    "qa": 32,
+    "journal": 5,
+    "backup": 3
+  },
+  "source_branch": "work/chat-narrative-foundation",
+  "source_head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+  "main_head_sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+  "ci_observed": {
+    "run_id": 44540964561,
+    "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "canonical_checkpoint": {
+    "chapter": "CH-000",
+    "turn": 9,
+    "event": "EV-000029",
+    "transcript": "TXT-000020"
+  },
+  "journal": {
+    "status": "verified",
+    "operation": "world_admission",
+    "percent": 100,
+    "verified_head": "ca30f1a3eba8b56cf0f8599eb04d35ba564b911e"
+  },
+  "limitation": "GitHub metadata audited for all 108 branches; individual source/test audits are not yet performed. No claims of all-branch integration.",
+  "branches": [
+    {
+      "name": "audit/independent-checkpoint-verification-20261117",
+      "group": "audit",
+      "head_sha": "9a760d25070a77ed1746bd2d69c0b06c9f6182be",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/audit/independent-checkpoint-verification-20261117",
+      "pr": {
+        "number": 75,
+        "title": "Independent full checkpoint audit + GitHub journal correctness hardening",
+        "head_sha": "9a760d25070a77ed1746bd2d69c0b06c9f6182be",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/75"
+      },
+      "topic": "Independent full checkpoint audit + GitHub journal correctness hardening",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "audit/living-world-critical-review-20261112",
+      "group": "audit",
+      "head_sha": "c3ab3a679e96927d509de54b75b8caffc5c1c274",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/audit/living-world-critical-review-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world critical review 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "group": "audit",
+      "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "pr": {
+        "number": 77,
+        "title": "Recovery boundary audit: validate direct verified results and canonical journal custody",
+        "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/77"
+      },
+      "topic": "Recovery boundary audit: validate direct verified results and canonical journal custody",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "audit/world-plan-npc-integration-20261114",
+      "group": "audit",
+      "head_sha": "26422133498340fed3bd96ea0898c1da96ca164b",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/audit/world-plan-npc-integration-20261114",
+      "pr": {
+        "number": 26,
+        "title": "QA draft: NPC/chapter integration audit and preservation contract",
+        "head_sha": "26422133498340fed3bd96ea0898c1da96ca164b",
+        "base_branch": "work/chapter-plan-pilot-20261113",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/26"
+      },
+      "topic": "QA draft: NPC/chapter integration audit and preservation contract",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "backup/before-meridian-world-admission-20261118",
+      "group": "backup",
+      "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/backup/before-meridian-world-admission-20261118",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: before meridian world admission 20261118; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar como recuperación; no fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "backup/narrative-before-20261115-readiness-integration",
+      "group": "backup",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/backup/narrative-before-20261115-readiness-integration",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: narrative before 20261115 readiness integration; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar como recuperación; no fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "backup/narrative-before-verified-context-20261115",
+      "group": "backup",
+      "head_sha": "4c32b464a6b7dbd80600b25890641cb19185838a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/backup/narrative-before-verified-context-20261115",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: narrative before verified context 20261115; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar como recuperación; no fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "journal/living-world-save-attempts",
+      "group": "journal",
+      "head_sha": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/living-world-save-attempts",
+      "pr": null,
+      "topic": "Custodia separada de guardado; evidencia `world_admission` verificada.",
+      "next_action": "Mantener separado del código y de historia; NO fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "journal/qa-live-journal-runtime-43767698159",
+      "group": "journal",
+      "head_sha": "f7f440fea6183badfaeb56354932dcbd99e2c9e2",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/qa-live-journal-runtime-43767698159",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: qa live journal runtime 43767698159; archivos no inspeccionados individualmente.",
+      "next_action": "Mantener separado del código y de historia; NO fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "journal/qa-living-world-smoke-20261112",
+      "group": "journal",
+      "head_sha": "ef2337feaa1f7181c52ba3d56ecff5574982da29",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/qa-living-world-smoke-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: qa living world smoke 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Mantener separado del código y de historia; NO fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "journal/qa-narrative-five-file-smoke-20261115",
+      "group": "journal",
+      "head_sha": "1fd8e0afa87e85685026e5fcb1139404386faf5a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/qa-narrative-five-file-smoke-20261115",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: qa narrative five file smoke 20261115; archivos no inspeccionados individualmente.",
+      "next_action": "Mantener separado del código y de historia; NO fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "journal/qa-world-admission-20261118",
+      "group": "journal",
+      "head_sha": "220a05b96704291503ccb8756186473ae9398e3a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/qa-world-admission-20261118",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: qa world admission 20261118; archivos no inspeccionados individualmente.",
+      "next_action": "Mantener separado del código y de historia; NO fusionar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "main",
+      "group": "main",
+      "head_sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/main",
+      "pr": null,
+      "topic": "Solo `README.md` en el árbol consultado; rama predeterminada, NO fuente de la partida.",
+      "next_action": "Destino de integración cuando la base esté validada; no cambiar hasta aceptación.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/chatgpt-native-journal-transport-20261117",
+      "group": "qa",
+      "head_sha": "124a8114c9cbd121adc1aea9c89f0cf1698c5d81",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/chatgpt-native-journal-transport-20261117",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: chatgpt native journal transport 20261117; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "group": "qa",
+      "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "pr": {
+        "number": 43,
+        "title": "QA ONLY: verify Crosswater Plaza–Harbor Walk section",
+        "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/43"
+      },
+      "topic": "QA ONLY: verify Crosswater Plaza–Harbor Walk section",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/live-journal-runtime-43767698159",
+      "group": "qa",
+      "head_sha": "29d88759a37203a0278c0989f373f20e11ca22ed",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/live-journal-runtime-43767698159",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: live journal runtime 43767698159; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-integration-20261110",
+      "group": "qa",
+      "head_sha": "56d946a3e3a56c2ddce1c87e70f798c2937f4778",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-integration-20261110",
+      "pr": {
+        "number": 3,
+        "title": "QA ONLY: Living World integration checks (not for merge)",
+        "head_sha": "56d946a3e3a56c2ddce1c87e70f798c2937f4778",
+        "base_branch": "work/living-world-design-review-20261110",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/3"
+      },
+      "topic": "QA ONLY: Living World integration checks (not for merge)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-overnight-20261112",
+      "group": "qa",
+      "head_sha": "e7e9c6d16d13b6d4d4b5a2c0d251f700eea5b46e",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-overnight-20261112",
+      "pr": {
+        "number": 5,
+        "title": "QA ONLY: overnight Living World schedule regression — do not merge",
+        "head_sha": "e7e9c6d16d13b6d4d4b5a2c0d251f700eea5b46e",
+        "base_branch": "work/living-world-overnight-availability-20261112",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/5"
+      },
+      "topic": "QA ONLY: overnight Living World schedule regression — do not merge",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-private-chapter-20261110",
+      "group": "qa",
+      "head_sha": "dfa3608d1e79cfa81c6e5a37c01f91a0e6386ccc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-private-chapter-20261110",
+      "pr": {
+        "number": 4,
+        "title": "QA ONLY: verify private NPC chapter redaction (do not merge)",
+        "head_sha": "dfa3608d1e79cfa81c6e5a37c01f91a0e6386ccc",
+        "base_branch": "work/living-world-private-chapter-20261110",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/4"
+      },
+      "topic": "QA ONLY: verify private NPC chapter redaction (do not merge)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-reliability-20261112",
+      "group": "qa",
+      "head_sha": "642bedd5f05dc9e6d675c0662f5674093511be45",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-reliability-20261112",
+      "pr": {
+        "number": 6,
+        "title": "QA only: narrative temporal and save-journal regression — do not merge",
+        "head_sha": "642bedd5f05dc9e6d675c0662f5674093511be45",
+        "base_branch": "work/living-world-reliability-20261112",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/6"
+      },
+      "topic": "QA only: narrative temporal and save-journal regression — do not merge",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-reliability-v2-20261112",
+      "group": "qa",
+      "head_sha": "9cdc61e5e671735ea91ab1722c4aa9034f17a89c",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-reliability-v2-20261112",
+      "pr": {
+        "number": 7,
+        "title": "QA only: Living World reliability v2 (do not merge)",
+        "head_sha": "9cdc61e5e671735ea91ab1722c4aa9034f17a89c",
+        "base_branch": "work/living-world-reliability-20261112",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/7"
+      },
+      "topic": "QA only: Living World reliability v2 (do not merge)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-reliability-v3-20261112",
+      "group": "qa",
+      "head_sha": "9395dad48f636ac3a359d99e3a85e469c95ebeb9",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-reliability-v3-20261112",
+      "pr": {
+        "number": 8,
+        "title": "QA only: full Living World reliability v3 (do not merge)",
+        "head_sha": "9395dad48f636ac3a359d99e3a85e469c95ebeb9",
+        "base_branch": "work/living-world-reliability-20261112",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/8"
+      },
+      "topic": "QA only: full Living World reliability v3 (do not merge)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/living-world-time-windows-20261112",
+      "group": "qa",
+      "head_sha": "23c0501bd7babd2574cf93fbde361299092ce69d",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/living-world-time-windows-20261112",
+      "pr": {
+        "number": 9,
+        "title": "QA ONLY — temporal window consistency (do not merge)",
+        "head_sha": "23c0501bd7babd2574cf93fbde361299092ce69d",
+        "base_branch": "work/living-world-time-interval-hardening-20261112",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/9"
+      },
+      "topic": "QA ONLY — temporal window consistency (do not merge)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "group": "qa",
+      "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "pr": {
+        "number": 68,
+        "title": "QA ONLY: coastal physical fragments 01+02 seam and layered maps (PR #67)",
+        "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+        "base_branch": "main",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/68"
+      },
+      "topic": "QA ONLY: coastal physical fragments 01+02 seam and layered maps (PR #67)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-business-frontage-ci-20261116",
+      "group": "qa",
+      "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-business-frontage-ci-20261116",
+      "pr": {
+        "number": 51,
+        "title": "QA ONLY: verify Market Row business-services frontage",
+        "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/51"
+      },
+      "topic": "QA ONLY: verify Market Row business-services frontage",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-cross-detail-ci-20261116",
+      "group": "qa",
+      "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-cross-detail-ci-20261116",
+      "pr": {
+        "number": 41,
+        "title": "QA ONLY: Market Row–Crosswater detailed corridor regression",
+        "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/41"
+      },
+      "topic": "QA ONLY: Market Row–Crosswater detailed corridor regression",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "group": "qa",
+      "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "pr": {
+        "number": 53,
+        "title": "QA ONLY: verify detailed Market Row–Crosswater corridor in sequence",
+        "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/53"
+      },
+      "topic": "QA ONLY: verify detailed Market Row–Crosswater corridor in sequence",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "group": "qa",
+      "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "pr": {
+        "number": 49,
+        "title": "QA ONLY: Market Row cultural-passage frontage tests",
+        "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/49"
+      },
+      "topic": "QA ONLY: Market Row cultural-passage frontage tests",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "group": "qa",
+      "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "pr": {
+        "number": 47,
+        "title": "QA ONLY: test Market Row delivery-point frontage",
+        "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/47"
+      },
+      "topic": "QA ONLY: test Market Row delivery-point frontage",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "group": "qa",
+      "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "pr": {
+        "number": 45,
+        "title": "QA ONLY: validate direct Market Row–Harbor Walk detailed corridor",
+        "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/45"
+      },
+      "topic": "QA ONLY: validate direct Market Row–Harbor Walk detailed corridor",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "group": "qa",
+      "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "pr": {
+        "number": 59,
+        "title": "QA ONLY: test independent Market–Harbor section 5 on exact commit",
+        "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/59"
+      },
+      "topic": "QA ONLY: test independent Market–Harbor section 5 on exact commit",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "group": "qa",
+      "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "pr": {
+        "number": 70,
+        "title": "QA ONLY: physical region 03 Market Row–Crosswater plus coastal fragments",
+        "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+        "base_branch": "main",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/70"
+      },
+      "topic": "QA ONLY: physical region 03 Market Row–Crosswater plus coastal fragments",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "group": "qa",
+      "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "pr": {
+        "number": 57,
+        "title": "QA ONLY: four Crosswater–Harbor Walk route sections and checkpoint validation",
+        "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/57"
+      },
+      "topic": "QA ONLY: four Crosswater–Harbor Walk route sections and checkpoint validation",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-plaza-terminal-ci-20261116",
+      "group": "qa",
+      "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-plaza-terminal-ci-20261116",
+      "pr": {
+        "number": 55,
+        "title": "QA ONLY: Crosswater Plaza–Terminal sequential map validation",
+        "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/55"
+      },
+      "topic": "QA ONLY: Crosswater Plaza–Terminal sequential map validation",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "group": "qa",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "pr": {
+        "number": 65,
+        "title": "QA ONLY: run full tests for Railgarden clinic map detail (PR #64)",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "base_branch": "main",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/65"
+      },
+      "topic": "QA ONLY: run full tests for Railgarden clinic map detail (PR #64)",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "group": "qa",
+      "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "pr": {
+        "number": 63,
+        "title": "QA ONLY: Railgarden grocery design and earlier corridor regressions",
+        "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/63"
+      },
+      "topic": "QA ONLY: Railgarden grocery design and earlier corridor regressions",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-road-web-ci-20261116",
+      "group": "qa",
+      "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-road-web-ci-20261116",
+      "pr": {
+        "number": 35,
+        "title": "QA ONLY: run Meridian Bay road-web and story-map regression suites",
+        "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/35"
+      },
+      "topic": "QA ONLY: run Meridian Bay road-web and story-map regression suites",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-road-web-slice2-ci-20261116",
+      "group": "qa",
+      "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-road-web-slice2-ci-20261116",
+      "pr": {
+        "number": 37,
+        "title": "QA ONLY: validate full Meridian Bay road web through Crosswater",
+        "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/37"
+      },
+      "topic": "QA ONLY: validate full Meridian Bay road web through Crosswater",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "group": "qa",
+      "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "pr": {
+        "number": 61,
+        "title": "QA ONLY: Wilson ↔ Railgarden two-part corridor and save validator",
+        "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/61"
+      },
+      "topic": "QA ONLY: Wilson ↔ Railgarden two-part corridor and save validator",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/narrative-five-file-journal-smoke-20261115",
+      "group": "qa",
+      "head_sha": "debd0746a8b651074522d0bc4f894c441dfdfc2c",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/narrative-five-file-journal-smoke-20261115",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: narrative five file journal smoke 20261115; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/rail-market-corridor-detail-ci-20261116",
+      "group": "qa",
+      "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/rail-market-corridor-detail-ci-20261116",
+      "pr": {
+        "number": 39,
+        "title": "QA ONLY: run detailed Railgarden–Market Row corridor regressions",
+        "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/39"
+      },
+      "topic": "QA ONLY: run detailed Railgarden–Market Row corridor regressions",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/story-save-recovery-d043-20261110",
+      "group": "qa",
+      "head_sha": "d637304e2665828e5c53cb76fd40e0e4a6ade7ec",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/story-save-recovery-d043-20261110",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: story save recovery d043 20261110; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/trigger-live-context-read-20261115",
+      "group": "qa",
+      "head_sha": "78f56c65ad4f8183720599b6bf8d4eb2e88c4d5b",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/trigger-live-context-read-20261115",
+      "pr": {
+        "number": 32,
+        "title": "QA only: live read-only context loader against verified GitHub checkpoint",
+        "head_sha": "78f56c65ad4f8183720599b6bf8d4eb2e88c4d5b",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/32"
+      },
+      "topic": "QA only: live read-only context loader against verified GitHub checkpoint",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/trigger-live-journal-20261115",
+      "group": "qa",
+      "head_sha": "d19c276a44cdafe3797b763be005dd7422728071",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/trigger-live-journal-20261115",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: trigger live journal 20261115; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "qa/world-admission-recovery-20261118",
+      "group": "qa",
+      "head_sha": "7a0d73900be12d80a794fcaf40a52b026b8d28c7",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/qa/world-admission-recovery-20261118",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: world admission recovery 20261118; archivos no inspeccionados individualmente.",
+      "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/chapter-plan-pilot-20261113",
+      "group": "work",
+      "head_sha": "c9448eeaee555b3eb1474eec1832a0aa2991a1b2",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/chapter-plan-pilot-20261113",
+      "pr": {
+        "number": 25,
+        "title": "Preserve conditional NPC plans through verified chapter transitions",
+        "head_sha": "c9448eeaee555b3eb1474eec1832a0aa2991a1b2",
+        "base_branch": "work/literal-recovery-contextual-time-20261113",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/25"
+      },
+      "topic": "Preserve conditional NPC plans through verified chapter transitions",
+      "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/chat-narrative-foundation",
+      "group": "work",
+      "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/chat-narrative-foundation",
+      "pr": {
+        "number": 2,
+        "title": "Living Superhuman World — interactive novel, continuity and safe saves",
+        "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+        "base_branch": "main",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/2"
+      },
+      "topic": "Novela interactiva activa: historia, 157 archivos, 252 commits respecto a main, motor y recuperación.",
+      "next_action": "Preparar PR #2 para `main`; actualizar descripción histórica y repetir controles al merge.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/chatgpt-native-journal-readiness-20261117",
+      "group": "work",
+      "head_sha": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/chatgpt-native-journal-readiness-20261117",
+      "pr": {
+        "number": 71,
+        "title": "Journal readiness for ChatGPT-native GitHub saves (no MCP or Codex)",
+        "head_sha": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/71"
+      },
+      "topic": "Journal readiness for ChatGPT-native GitHub saves (no MCP or Codex)",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/checkpoint-audit-date-precision-20261118",
+      "group": "work",
+      "head_sha": "a10e049cedf662f2d9d7be0fefdba853035ebdbc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/checkpoint-audit-date-precision-20261118",
+      "pr": {
+        "number": 76,
+        "title": "Correct checkpoint audit’s Puerto Rico completion date and final CI evidence",
+        "head_sha": "a10e049cedf662f2d9d7be0fefdba853035ebdbc",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/76"
+      },
+      "topic": "Correct checkpoint audit’s Puerto Rico completion date and final CI evidence",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/connector-transport-qa-handoff-20261117",
+      "group": "work",
+      "head_sha": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/connector-transport-qa-handoff-20261117",
+      "pr": {
+        "number": 73,
+        "title": "Preserve ChatGPT GitHub connector QA evidence and live-save limits",
+        "head_sha": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/73"
+      },
+      "topic": "Preserve ChatGPT GitHub connector QA evidence and live-save limits",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/context-retrieval-pilot-20261114",
+      "group": "work",
+      "head_sha": "25b99ee207dfca7fa07a9e0b4ef069fe2fea9f4f",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/context-retrieval-pilot-20261114",
+      "pr": {
+        "number": 28,
+        "title": "Draft: read-only evidence-linked context packets and on-demand references",
+        "head_sha": "25b99ee207dfca7fa07a9e0b4ef069fe2fea9f4f",
+        "base_branch": "work/npc-needs-chapter-bridge-20261114",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/28"
+      },
+      "topic": "Draft: read-only evidence-linked context packets and on-demand references",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/journal-handoff-fast-resume-20261117",
+      "group": "work",
+      "head_sha": "ba19db963162e5c5f4ce4ad2e8d6a71cc9dff57e",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/journal-handoff-fast-resume-20261117",
+      "pr": {
+        "number": 72,
+        "title": "Record initialized GitHub journal and fast-resume workflow",
+        "head_sha": "ba19db963162e5c5f4ce4ad2e8d6a71cc9dff57e",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/72"
+      },
+      "topic": "Record initialized GitHub journal and fast-resume workflow",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/literal-recovery-contextual-time-20261113",
+      "group": "work",
+      "head_sha": "73fd82757b7cdef4cc7ca931f7b1bbded0f431ca",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/literal-recovery-contextual-time-20261113",
+      "pr": {
+        "number": 24,
+        "title": "Recover saved scenes literally and validate contextual travel time",
+        "head_sha": "73fd82757b7cdef4cc7ca931f7b1bbded0f431ca",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/24"
+      },
+      "topic": "Recover saved scenes literally and validate contextual travel time",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-between-turns-20261112",
+      "group": "work",
+      "head_sha": "000b912ce792b4fb215aca12639a3f570ce42b66",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-between-turns-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world between turns 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-design-review-20261110",
+      "group": "work",
+      "head_sha": "068a2bf25dd3fa3552f16fde45a87f0eabcac13f",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-design-review-20261110",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world design review 20261110; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-foundation",
+      "group": "work",
+      "head_sha": "f121c8bfed7c17b45b0239bb5d0a52d54eb57070",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-foundation",
+      "pr": {
+        "number": 1,
+        "title": "Foundation: living-world simulation, cosmic shockwave, canon and tests",
+        "head_sha": "f121c8bfed7c17b45b0239bb5d0a52d54eb57070",
+        "base_branch": "main",
+        "status": "open",
+        "draft": false,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/1"
+      },
+      "topic": "Foundation: living-world simulation, cosmic shockwave, canon and tests",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-overnight-availability-20261112",
+      "group": "work",
+      "head_sha": "dc84b2da5d8a32fbc5b88ab7402e65602c716aa1",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-overnight-availability-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world overnight availability 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-persistent-commitments-20261112",
+      "group": "work",
+      "head_sha": "ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-persistent-commitments-20261112",
+      "pr": {
+        "number": 10,
+        "title": "QA (draft): persistent causal NPC obligations — noncanonical",
+        "head_sha": "ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/10"
+      },
+      "topic": "QA (draft): persistent causal NPC obligations — noncanonical",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-private-chapter-20261110",
+      "group": "work",
+      "head_sha": "bcfd86fe5ca5cd8598d6e3e9969221c5697a98be",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-private-chapter-20261110",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world private chapter 20261110; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-reliability-20261112",
+      "group": "work",
+      "head_sha": "3a690c87ffd7800e277613da4c7a2df4a781a0c4",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-reliability-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world reliability 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/living-world-time-interval-hardening-20261112",
+      "group": "work",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/living-world-time-interval-hardening-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: living world time interval hardening 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-admission-handoff-20261119",
+      "group": "work",
+      "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-admission-handoff-20261119",
+      "pr": {
+        "number": 79,
+        "title": "Record verified Meridian Bay admission and exact recovery evidence",
+        "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/79"
+      },
+      "topic": "Record verified Meridian Bay admission and exact recovery evidence",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-atlas-20261112",
+      "group": "work",
+      "head_sha": "5cbf433e5cb1e59945ba5cf3d79a3e127d9406b6",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-atlas-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay atlas 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-causal-decisions-20261112",
+      "group": "work",
+      "head_sha": "7b0c6ddf9c07192b2e8b2560725712b2efb0f82f",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-causal-decisions-20261112",
+      "pr": {
+        "number": 12,
+        "title": "QA draft: causal decision evidence gate for Meridian Bay NPCs",
+        "head_sha": "7b0c6ddf9c07192b2e8b2560725712b2efb0f82f",
+        "base_branch": "work/meridian-bay-causal-routines-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/12"
+      },
+      "topic": "QA draft: causal decision evidence gate for Meridian Bay NPCs",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-causal-routines-20261112",
+      "group": "work",
+      "head_sha": "7301f2b511dbb6dfdefe065aa9e9a74c600bbd35",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-causal-routines-20261112",
+      "pr": {
+        "number": 11,
+        "title": "QA draft: Meridian Bay causal NPC routines and civic expansion proposals",
+        "head_sha": "7301f2b511dbb6dfdefe065aa9e9a74c600bbd35",
+        "base_branch": "work/living-world-persistent-commitments-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/11"
+      },
+      "topic": "QA draft: Meridian Bay causal NPC routines and civic expansion proposals",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-city-scale-20261112",
+      "group": "work",
+      "head_sha": "3b4d1b4f2a6339161f397d5806a1950f66886afb",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-city-scale-20261112",
+      "pr": {
+        "number": 23,
+        "title": "Meridian Bay: provisional city dimensions and neighborhood map grid",
+        "head_sha": "3b4d1b4f2a6339161f397d5806a1950f66886afb",
+        "base_branch": "work/meridian-bay-prebuilt-routes-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/23"
+      },
+      "topic": "Meridian Bay: provisional city dimensions and neighborhood map grid",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-core-integrated-atlas-20261117",
+      "group": "work",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-core-integrated-atlas-20261117",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay core integrated atlas 20261117; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
+      "group": "work",
+      "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-corridor-detail-cross-harbor-20261116",
+      "pr": {
+        "number": 42,
+        "title": "Meridian Bay: Crosswater Plaza to Harbor Walk four-part corridor detail",
+        "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+        "base_branch": "work/meridian-bay-corridor-detail-market-cross-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/42"
+      },
+      "topic": "Meridian Bay: Crosswater Plaza to Harbor Walk four-part corridor detail",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-corridor-detail-market-cross-20261116",
+      "group": "work",
+      "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-corridor-detail-market-cross-20261116",
+      "pr": {
+        "number": 40,
+        "title": "Meridian Bay: detail Market Row–Crosswater in four in-between sections",
+        "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+        "base_branch": "work/meridian-bay-corridor-detail-rail-market-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/40"
+      },
+      "topic": "Meridian Bay: detail Market Row–Crosswater in four in-between sections",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "group": "work",
+      "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "pr": {
+        "number": 44,
+        "title": "Meridian Bay: detail direct Market Row–Harbor Walk corridor in four spans",
+        "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+        "base_branch": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/44"
+      },
+      "topic": "Meridian Bay: detail direct Market Row–Harbor Walk corridor in four spans",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-corridor-detail-rail-market-20261116",
+      "group": "work",
+      "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-corridor-detail-rail-market-20261116",
+      "pr": {
+        "number": 38,
+        "title": "Meridian Bay: detail Railgarden–Market Row in four linked microsections",
+        "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+        "base_branch": "work/meridian-bay-road-growth-slice1-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/38"
+      },
+      "topic": "Meridian Bay: detail Railgarden–Market Row in four linked microsections",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-district-blueprint-20261112",
+      "group": "work",
+      "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-district-blueprint-20261112",
+      "pr": {
+        "number": 20,
+        "title": "QA draft: audited prebuilt Meridian Bay district map and evidence classes",
+        "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+        "base_branch": "work/meridian-bay-atlas-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/20"
+      },
+      "topic": "QA draft: audited prebuilt Meridian Bay district map and evidence classes",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "group": "work",
+      "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "pr": {
+        "number": 67,
+        "title": "Meridian Bay: build coastal fragment 02 and stitch Harbor Walk shoreline",
+        "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+        "base_branch": "work/meridian-bay-harbor-coast-fragment-20261117",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/67"
+      },
+      "topic": "Meridian Bay: build coastal fragment 02 and stitch Harbor Walk shoreline",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-harbor-coast-fragment-20261117",
+      "group": "work",
+      "head_sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-harbor-coast-fragment-20261117",
+      "pr": {
+        "number": 66,
+        "title": "Meridian Bay: build first physical coastal region fragment at Harbor Walk",
+        "head_sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+        "base_branch": "work/meridian-bay-railgarden-clinic-detail-20261117",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/66"
+      },
+      "topic": "Meridian Bay: build first physical coastal region fragment at Harbor Walk",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-business-frontage-20261116",
+      "group": "work",
+      "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-business-frontage-20261116",
+      "pr": {
+        "number": 50,
+        "title": "Meridian Bay: detail Market Row business-services frontage",
+        "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+        "base_branch": "work/meridian-bay-market-culture-frontage-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/50"
+      },
+      "topic": "Meridian Bay: detail Market Row business-services frontage",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-crosswater-detail-20261116",
+      "group": "work",
+      "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-crosswater-detail-20261116",
+      "pr": {
+        "number": 52,
+        "title": "Meridian Bay: detail Market Row–Crosswater after the first complete corridor",
+        "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+        "base_branch": "work/meridian-bay-corridor-detail-rail-market-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/52"
+      },
+      "topic": "Meridian Bay: detail Market Row–Crosswater after the first complete corridor",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
+      "group": "work",
+      "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-crosswater-land-fragment-03-20261117",
+      "pr": {
+        "number": 69,
+        "title": "Meridian Bay: build third landward fragment joining Market Row, Crosswater and bay",
+        "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+        "base_branch": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/69"
+      },
+      "topic": "Meridian Bay: build third landward fragment joining Market Row, Crosswater and bay",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-culture-frontage-20261116",
+      "group": "work",
+      "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-culture-frontage-20261116",
+      "pr": {
+        "number": 48,
+        "title": "Meridian Bay: detail prepared Market Row Cultural Passage frontage",
+        "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+        "base_branch": "work/meridian-bay-market-delivery-frontage-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/48"
+      },
+      "topic": "Meridian Bay: detail prepared Market Row Cultural Passage frontage",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-delivery-frontage-20261116",
+      "group": "work",
+      "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-delivery-frontage-20261116",
+      "pr": {
+        "number": 46,
+        "title": "Meridian Bay: detail Market Row delivery-point frontage in three spans",
+        "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+        "base_branch": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/46"
+      },
+      "topic": "Meridian Bay: detail Market Row delivery-point frontage in three spans",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-market-harbor-detail-20261116",
+      "group": "work",
+      "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-market-harbor-detail-20261116",
+      "pr": {
+        "number": 58,
+        "title": "Meridian Bay: detail direct Market Row ↔ Harbor Walk in five connected sections",
+        "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+        "base_branch": "work/meridian-bay-plaza-harbor-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/58"
+      },
+      "topic": "Meridian Bay: detail direct Market Row ↔ Harbor Walk in five connected sections",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-needs-tradeoffs-20261112",
+      "group": "work",
+      "head_sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-needs-tradeoffs-20261112",
+      "pr": {
+        "number": 14,
+        "title": "QA draft: event-backed NPC needs, observed costs and competing responsibilities",
+        "head_sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+        "base_branch": "work/meridian-bay-social-relations-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/14"
+      },
+      "topic": "QA draft: event-backed NPC needs, observed costs and competing responsibilities",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-phase1-20261116",
+      "group": "work",
+      "head_sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-phase1-20261116",
+      "pr": {
+        "number": 33,
+        "title": "Integrate Meridian Bay design, routes and physically grounded discovery",
+        "head_sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/33"
+      },
+      "topic": "Integrate Meridian Bay design, routes and physically grounded discovery",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "group": "work",
+      "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-plaza-harbor-detail-20261116",
+      "pr": {
+        "number": 56,
+        "title": "Meridian Bay: detail Crosswater Plaza ↔ Harbor Walk in four linked segments",
+        "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+        "base_branch": "work/meridian-bay-plaza-terminal-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/56"
+      },
+      "topic": "Meridian Bay: detail Crosswater Plaza ↔ Harbor Walk in four linked segments",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-plaza-terminal-detail-20261116",
+      "group": "work",
+      "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-plaza-terminal-detail-20261116",
+      "pr": {
+        "number": 54,
+        "title": "Meridian Bay: detail the Crosswater Plaza ↔ Terminal entrance in two subsegments",
+        "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+        "base_branch": "work/meridian-bay-market-crosswater-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/54"
+      },
+      "topic": "Meridian Bay: detail the Crosswater Plaza ↔ Terminal entrance in two subsegments",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-integration-20261112",
+      "group": "work",
+      "head_sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-prebuilt-integration-20261112",
+      "pr": {
+        "number": 21,
+        "title": "QA draft: prebuilt Meridian Bay places exist before Jack encounters them",
+        "head_sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+        "base_branch": "work/meridian-bay-prebuilt-world-fix-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/21"
+      },
+      "topic": "QA draft: prebuilt Meridian Bay places exist before Jack encounters them",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-routes-20261112",
+      "group": "work",
+      "head_sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-prebuilt-routes-20261112",
+      "pr": {
+        "number": 22,
+        "title": "QA draft: navigator routes to prebuilt Meridian Bay places without playing story",
+        "head_sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+        "base_branch": "work/meridian-bay-prebuilt-integration-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/22"
+      },
+      "topic": "QA draft: navigator routes to prebuilt Meridian Bay places without playing story",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-world-fix-20261112",
+      "group": "work",
+      "head_sha": "14421a9d883a0d9b1a964ff2bcb7478a3e2e5289",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-prebuilt-world-fix-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay prebuilt world fix 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "group": "work",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-railgarden-clinic-detail-20261117",
+      "pr": {
+        "number": 64,
+        "title": "Meridian Bay: detail Railgarden ↔ health center exterior in two linked sections",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "base_branch": "work/meridian-bay-railgarden-grocery-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/64"
+      },
+      "topic": "Meridian Bay: detail Railgarden ↔ health center exterior in two linked sections",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-railgarden-grocery-detail-20261116",
+      "group": "work",
+      "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-railgarden-grocery-detail-20261116",
+      "pr": {
+        "number": 62,
+        "title": "Meridian Bay: detail Railgarden ↔ grocery frontage in two linked segments",
+        "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+        "base_branch": "work/meridian-bay-wilson-railgarden-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/62"
+      },
+      "topic": "Meridian Bay: detail Railgarden ↔ grocery frontage in two linked segments",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-railgarden-marketrow-20261112",
+      "group": "work",
+      "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-railgarden-marketrow-20261112",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay railgarden marketrow 20261112; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-railgarden-regional-map-20261117",
+      "group": "work",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-railgarden-regional-map-20261117",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay railgarden regional map 20261117; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-road-growth-slice1-20261116",
+      "group": "work",
+      "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-road-growth-slice1-20261116",
+      "pr": {
+        "number": 34,
+        "title": "Meridian Bay road-web slice 1: Railgarden–Market Row and local branches",
+        "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+        "base_branch": "work/meridian-bay-phase1-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/34"
+      },
+      "topic": "Meridian Bay road-web slice 1: Railgarden–Market Row and local branches",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-road-growth-slice2-20261116",
+      "group": "work",
+      "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-road-growth-slice2-20261116",
+      "pr": {
+        "number": 36,
+        "title": "Meridian Bay road web slice 2: Market Row → Crosswater Plaza",
+        "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+        "base_branch": "work/meridian-bay-road-growth-slice1-20261116",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/36"
+      },
+      "topic": "Meridian Bay road web slice 2: Market Row → Crosswater Plaza",
+      "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-road-growth-slice3-20261116",
+      "group": "work",
+      "head_sha": "61818e07f9602486bf6d42ff52758d522b2ddea9",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-road-growth-slice3-20261116",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: meridian bay road growth slice3 20261116; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-route-choices-20261112",
+      "group": "work",
+      "head_sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-route-choices-20261112",
+      "pr": {
+        "number": 17,
+        "title": "QA draft: reader-directed waypoint routes in Meridian Bay narrative preview",
+        "head_sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+        "base_branch": "work/meridian-bay-walk-slice-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/17"
+      },
+      "topic": "QA draft: reader-directed waypoint routes in Meridian Bay narrative preview",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-services-20261112",
+      "group": "work",
+      "head_sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-services-20261112",
+      "pr": {
+        "number": 15,
+        "title": "QA draft: three existing Meridian Bay service workflows with causal case history",
+        "head_sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+        "base_branch": "work/meridian-bay-needs-tradeoffs-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/15"
+      },
+      "topic": "QA draft: three existing Meridian Bay service workflows with causal case history",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-social-relations-20261112",
+      "group": "work",
+      "head_sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-social-relations-20261112",
+      "pr": {
+        "number": 13,
+        "title": "QA draft: verified NPC social encounters and directional relationships",
+        "head_sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+        "base_branch": "work/meridian-bay-causal-decisions-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/13"
+      },
+      "topic": "QA draft: verified NPC social encounters and directional relationships",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-visitables-20261112",
+      "group": "work",
+      "head_sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-visitables-20261112",
+      "pr": {
+        "number": 19,
+        "title": "QA draft: scene-established public Meridian Bay places with linked navigation",
+        "head_sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+        "base_branch": "work/meridian-bay-services-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/19"
+      },
+      "topic": "QA draft: scene-established public Meridian Bay places with linked navigation",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-walk-slice-20261112",
+      "group": "work",
+      "head_sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-walk-slice-20261112",
+      "pr": {
+        "number": 16,
+        "title": "QA draft: Meridian Bay read-only house-to-plaza walking slice",
+        "head_sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+        "base_branch": "work/meridian-bay-atlas-20261112",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/16"
+      },
+      "topic": "QA draft: Meridian Bay read-only house-to-plaza walking slice",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/meridian-bay-wilson-railgarden-detail-20261116",
+      "group": "work",
+      "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/meridian-bay-wilson-railgarden-detail-20261116",
+      "pr": {
+        "number": 60,
+        "title": "Meridian Bay: detail Wilson home ↔ Railgarden in two local frontage sections",
+        "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+        "base_branch": "work/meridian-bay-market-harbor-detail-20261116",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/60"
+      },
+      "topic": "Meridian Bay: detail Wilson home ↔ Railgarden in two local frontage sections",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/narrative-continuous-scenes-20261112",
+      "group": "work",
+      "head_sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/narrative-continuous-scenes-20261112",
+      "pr": {
+        "number": 18,
+        "title": "Narrative policy draft: continuous scenes from a single player decision",
+        "head_sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/18"
+      },
+      "topic": "Narrative policy draft: continuous scenes from a single player decision",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/narrative-journal-http-e2e-20261115",
+      "group": "work",
+      "head_sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/narrative-journal-http-e2e-20261115",
+      "pr": {
+        "number": 30,
+        "title": "QA: exercise journaled narrative saves through both GitHub REST adapters",
+        "head_sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/30"
+      },
+      "topic": "QA: exercise journaled narrative saves through both GitHub REST adapters",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/narrative-verified-context-20261115",
+      "group": "work",
+      "head_sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/narrative-verified-context-20261115",
+      "pr": {
+        "number": 31,
+        "title": "QA: port evidence-linked context packets with immutable checkpoint and journal gate",
+        "head_sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/31"
+      },
+      "topic": "QA: port evidence-linked context packets with immutable checkpoint and journal gate",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/npc-needs-chapter-bridge-20261114",
+      "group": "work",
+      "head_sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/npc-needs-chapter-bridge-20261114",
+      "pr": {
+        "number": 27,
+        "title": "QA draft: event-backed NPC needs integrated with plans and chapter history",
+        "head_sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+        "base_branch": "audit/world-plan-npc-integration-20261114",
+        "status": "open",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/27"
+      },
+      "topic": "QA draft: event-backed NPC needs integrated with plans and chapter history",
+      "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/persistent-obligation-review-20261115",
+      "group": "work",
+      "head_sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/persistent-obligation-review-20261115",
+      "pr": {
+        "number": 29,
+        "title": "Review saved NPC obligations beyond nearby routines and chapter boundaries",
+        "head_sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+        "base_branch": "work/chapter-plan-pilot-20261113",
+        "status": "closed",
+        "draft": true,
+        "merged": false,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/29"
+      },
+      "topic": "Review saved NPC obligations beyond nearby routines and chapter boundaries",
+      "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/repository-complete-checkpoint-20261117",
+      "group": "work",
+      "head_sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/repository-complete-checkpoint-20261117",
+      "pr": {
+        "number": 74,
+        "title": "Full dated repository checkpoint: area rules, tasks, map drafts and immutable 129-file inventory",
+        "head_sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/74"
+      },
+      "topic": "Full dated repository checkpoint: area rules, tasks, map drafts and immutable 129-file inventory",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/story-rpg-foundation",
+      "group": "work",
+      "head_sha": "63d1c1e430291ac20b4063333aacd990b38f8dfc",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/story-rpg-foundation",
+      "pr": null,
+      "topic": "Tema orientativo derivado del nombre: story rpg foundation; archivos no inspeccionados individualmente.",
+      "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    },
+    {
+      "name": "work/world-admission-location-state-20261116",
+      "group": "work",
+      "head_sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+      "browser_url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/work/world-admission-location-state-20261116",
+      "pr": {
+        "number": 78,
+        "title": "Admit Meridian Bay independently and record mutable location conditions",
+        "head_sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+        "base_branch": "work/chat-narrative-foundation",
+        "status": "closed",
+        "draft": true,
+        "merged": true,
+        "url": "https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/78"
+      },
+      "topic": "Admit Meridian Bay independently and record mutable location conditions",
+      "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
+      "individual_source_audit": "not_performed",
+      "individual_test_result": "not_executed_in_this_review"
+    }
+  ]
+}
