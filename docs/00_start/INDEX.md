@@ -44,3 +44,5 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Tabla estructurada por rama con HEAD, brechas por archivo y siguiente acción](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
 - [Lote 01: revisión de código y pruebas históricas de cuatro ramas NPC](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
 - [Lote 02: revisión de seis ramas de vías, costa y fragmentos de Meridian Bay](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
+- [Lote 03: 14 ramas de corredores y accesos, CI histórica y conflictos de geometría](BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md).
+- [Lote 04: 44 ramas QA, journal, backup y audit — reglas de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
