@@ -56,3 +56,7 @@ La revisión detallada de código se concentró en la cola diferida, PR #11 (age
 ### Lote de inspección funcional 01 (2026-11-20)
 
 Revisión estática de `work/meridian-bay-causal-routines-20261112`, `work/meridian-bay-causal-decisions-20261112`, `work/meridian-bay-social-relations-20261112` y `work/living-world-between-turns-20261112`. Se inspeccionaron módulos, importaciones, hooks de coordinador y suites históricas (13 casos para decisiones, 14 para relaciones). **Incompatibilidades confirmadas por lectura:** `review_metadata` y `social_context` no se transportan por el coordinador `main`; los hooks de cola diferida no están integrados; la agenda sigue como PR #82 borrador. **No se ejecutaron tests de los HEAD antiguos.** [Ver evidencia y dictamen por rama](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
+
+### Lote de inspección funcional 02 (2026-11-20)
+
+Se inspeccionaron seis ramas de carreteras y fragmentos de Meridian Bay (`road-growth-slice1/2/3`, `harbor-coast-fragment-01/02`, `market-crosswater-land-fragment-03`), incluyendo cinco PR con estado reconsultado (#34, #36, #66, #67, #69). Se verificaron HEAD/árboles, datos de geometría, dependencias y archivos de pruebas, pero **no** se ejecutaron las suites de los HEAD históricos. Slice3 agrega solo dos JSON al HEAD de slice2, sin código ni tests propios; las costas y el fragmento terrestre continúan explícitamente como propuestas no admitidas. [Evidencia y próximos pasos](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
