@@ -1,5 +1,5 @@
 {
-  "schema": "branch-inventory/v1",
+  "schema": "branch-inventory/v2",
   "captured_local_date": "2026-11-19",
   "repo": "jbob-coder/Novel-story-rpg-game-chat-gpt",
   "scope": "108 pre-documentation branches; excludes documentation branch",
@@ -55,7 +55,9 @@
       "topic": "Independent full checkpoint audit + GitHub journal correctness hardening",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "audit/living-world-critical-review-20261112",
@@ -66,7 +68,9 @@
       "topic": "Tema orientativo derivado del nombre: living world critical review 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Revisar y documentar confiabilidad del motor; no incorpora funciones por sí sola.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
@@ -86,7 +90,9 @@
       "topic": "Recovery boundary audit: validate direct verified results and canonical journal custody",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "audit/world-plan-npc-integration-20261114",
@@ -106,7 +112,9 @@
       "topic": "QA draft: NPC/chapter integration audit and preservation contract",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Revisar y documentar necesidades y comportamiento de NPC; no incorpora funciones por sí sola.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "backup/before-meridian-world-admission-20261118",
@@ -117,7 +125,9 @@
       "topic": "Tema orientativo derivado del nombre: before meridian world admission 20261118; archivos no inspeccionados individualmente.",
       "next_action": "Conservar como recuperación; no fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "backup/narrative-before-20261115-readiness-integration",
@@ -128,7 +138,9 @@
       "topic": "Tema orientativo derivado del nombre: narrative before 20261115 readiness integration; archivos no inspeccionados individualmente.",
       "next_action": "Conservar como recuperación; no fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "backup/narrative-before-verified-context-20261115",
@@ -139,7 +151,9 @@
       "topic": "Tema orientativo derivado del nombre: narrative before verified context 20261115; archivos no inspeccionados individualmente.",
       "next_action": "Conservar como recuperación; no fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "journal/living-world-save-attempts",
@@ -150,7 +164,9 @@
       "topic": "Custodia separada de guardado; evidencia `world_admission` verificada.",
       "next_action": "Mantener separado del código y de historia; NO fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Registrar y recuperar operaciones de guardado; nunca mezclar como escenas o código de juego.",
+      "uso_breve_origen": "verificación_de_función"
     },
     {
       "name": "journal/qa-live-journal-runtime-43767698159",
@@ -161,7 +177,9 @@
       "topic": "Tema orientativo derivado del nombre: qa live journal runtime 43767698159; archivos no inspeccionados individualmente.",
       "next_action": "Mantener separado del código y de historia; NO fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "journal/qa-living-world-smoke-20261112",
@@ -172,7 +190,9 @@
       "topic": "Tema orientativo derivado del nombre: qa living world smoke 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Mantener separado del código y de historia; NO fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "journal/qa-narrative-five-file-smoke-20261115",
@@ -183,7 +203,9 @@
       "topic": "Tema orientativo derivado del nombre: qa narrative five file smoke 20261115; archivos no inspeccionados individualmente.",
       "next_action": "Mantener separado del código y de historia; NO fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "journal/qa-world-admission-20261118",
@@ -194,7 +216,9 @@
       "topic": "Tema orientativo derivado del nombre: qa world admission 20261118; archivos no inspeccionados individualmente.",
       "next_action": "Mantener separado del código y de historia; NO fusionar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "main",
@@ -205,7 +229,9 @@
       "topic": "Solo `README.md` en el árbol consultado; rama predeterminada, NO fuente de la partida.",
       "next_action": "Destino de integración cuando la base esté validada; no cambiar hasta aceptación.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Publicar la versión consolidada después de revisión y pruebas.",
+      "uso_breve_origen": "verificación_de_función"
     },
     {
       "name": "qa/chatgpt-native-journal-transport-20261117",
@@ -216,7 +242,9 @@
       "topic": "Tema orientativo derivado del nombre: chatgpt native journal transport 20261117; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "qa/crosswater-harbor-corridor-detail-ci-20261116",
@@ -236,7 +264,9 @@
       "topic": "QA ONLY: verify Crosswater Plaza–Harbor Walk section",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/live-journal-runtime-43767698159",
@@ -247,7 +277,9 @@
       "topic": "Tema orientativo derivado del nombre: live journal runtime 43767698159; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "qa/living-world-integration-20261110",
@@ -267,7 +299,9 @@
       "topic": "QA ONLY: Living World integration checks (not for merge)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada living world integration sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-overnight-20261112",
@@ -287,7 +321,9 @@
       "topic": "QA ONLY: overnight Living World schedule regression — do not merge",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada coherencia del tiempo y disponibilidad sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-private-chapter-20261110",
@@ -307,7 +343,9 @@
       "topic": "QA ONLY: verify private NPC chapter redaction (do not merge)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada la separación entre información privada y texto visible sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-reliability-20261112",
@@ -327,7 +365,9 @@
       "topic": "QA only: narrative temporal and save-journal regression — do not merge",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-reliability-v2-20261112",
@@ -347,7 +387,9 @@
       "topic": "QA only: Living World reliability v2 (do not merge)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-reliability-v3-20261112",
@@ -367,7 +409,9 @@
       "topic": "QA only: full Living World reliability v3 (do not merge)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/living-world-time-windows-20261112",
@@ -387,7 +431,9 @@
       "topic": "QA ONLY — temporal window consistency (do not merge)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada living world time windows sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
@@ -407,7 +453,9 @@
       "topic": "QA ONLY: coastal physical fragments 01+02 seam and layered maps (PR #67)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-business-frontage-ci-20261116",
@@ -427,7 +475,9 @@
       "topic": "QA ONLY: verify Market Row business-services frontage",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-cross-detail-ci-20261116",
@@ -447,7 +497,9 @@
       "topic": "QA ONLY: Market Row–Crosswater detailed corridor regression",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-crosswater-detail-ci-20261116",
@@ -467,7 +519,9 @@
       "topic": "QA ONLY: verify detailed Market Row–Crosswater corridor in sequence",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-culture-frontage-ci-20261116",
@@ -487,7 +541,9 @@
       "topic": "QA ONLY: Market Row cultural-passage frontage tests",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-delivery-frontage-ci-20261116",
@@ -507,7 +563,9 @@
       "topic": "QA ONLY: test Market Row delivery-point frontage",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-harbor-detail-ci-20261116",
@@ -527,7 +585,9 @@
       "topic": "QA ONLY: validate direct Market Row–Harbor Walk detailed corridor",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
@@ -547,7 +607,9 @@
       "topic": "QA ONLY: test independent Market–Harbor section 5 on exact commit",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
@@ -567,7 +629,9 @@
       "topic": "QA ONLY: physical region 03 Market Row–Crosswater plus coastal fragments",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
@@ -587,7 +651,9 @@
       "topic": "QA ONLY: four Crosswater–Harbor Walk route sections and checkpoint validation",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-plaza-terminal-ci-20261116",
@@ -607,7 +673,9 @@
       "topic": "QA ONLY: Crosswater Plaza–Terminal sequential map validation",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-railgarden-clinic-ci-20261117",
@@ -627,7 +695,9 @@
       "topic": "QA ONLY: run full tests for Railgarden clinic map detail (PR #64)",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
@@ -647,7 +717,9 @@
       "topic": "QA ONLY: Railgarden grocery design and earlier corridor regressions",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-road-web-ci-20261116",
@@ -667,7 +739,9 @@
       "topic": "QA ONLY: run Meridian Bay road-web and story-map regression suites",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-road-web-slice2-ci-20261116",
@@ -687,7 +761,9 @@
       "topic": "QA ONLY: validate full Meridian Bay road web through Crosswater",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
@@ -707,7 +783,9 @@
       "topic": "QA ONLY: Wilson ↔ Railgarden two-part corridor and save validator",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/narrative-five-file-journal-smoke-20261115",
@@ -718,7 +796,9 @@
       "topic": "Tema orientativo derivado del nombre: narrative five file journal smoke 20261115; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "qa/rail-market-corridor-detail-ci-20261116",
@@ -738,7 +818,9 @@
       "topic": "QA ONLY: run detailed Railgarden–Market Row corridor regressions",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/story-save-recovery-d043-20261110",
@@ -749,7 +831,9 @@
       "topic": "Tema orientativo derivado del nombre: story save recovery d043 20261110; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "qa/trigger-live-context-read-20261115",
@@ -769,7 +853,9 @@
       "topic": "QA only: live read-only context loader against verified GitHub checkpoint",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "qa/trigger-live-journal-20261115",
@@ -780,7 +866,9 @@
       "topic": "Tema orientativo derivado del nombre: trigger live journal 20261115; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "qa/world-admission-recovery-20261118",
@@ -791,7 +879,9 @@
       "topic": "Tema orientativo derivado del nombre: world admission recovery 20261118; archivos no inspeccionados individualmente.",
       "next_action": "Conservar solo como evidencia de pruebas; NO fusionar resultados sintéticos.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar de forma aislada la incorporación controlada de lugares al mundo sin alterar la partida canónica.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/chapter-plan-pilot-20261113",
@@ -811,7 +901,9 @@
       "topic": "Preserve conditional NPC plans through verified chapter transitions",
       "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/chat-narrative-foundation",
@@ -831,7 +923,9 @@
       "topic": "Novela interactiva activa: historia, 157 archivos, 252 commits respecto a main, motor y recuperación.",
       "next_action": "Preparar PR #2 para `main`; actualizar descripción histórica y repetir controles al merge.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Mantener el núcleo de la novela, su partida autorizada y el código de continuidad.",
+      "uso_breve_origen": "verificación_de_función"
     },
     {
       "name": "work/chatgpt-native-journal-readiness-20261117",
@@ -851,7 +945,9 @@
       "topic": "Journal readiness for ChatGPT-native GitHub saves (no MCP or Codex)",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/checkpoint-audit-date-precision-20261118",
@@ -871,7 +967,9 @@
       "topic": "Correct checkpoint audit’s Puerto Rico completion date and final CI evidence",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/connector-transport-qa-handoff-20261117",
@@ -891,7 +989,9 @@
       "topic": "Preserve ChatGPT GitHub connector QA evidence and live-save limits",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/context-retrieval-pilot-20261114",
@@ -911,7 +1011,9 @@
       "topic": "Draft: read-only evidence-linked context packets and on-demand references",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/journal-handoff-fast-resume-20261117",
@@ -931,7 +1033,9 @@
       "topic": "Record initialized GitHub journal and fast-resume workflow",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/literal-recovery-contextual-time-20261113",
@@ -951,7 +1055,9 @@
       "topic": "Recover saved scenes literally and validate contextual travel time",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/living-world-between-turns-20261112",
@@ -962,7 +1068,9 @@
       "topic": "Tema orientativo derivado del nombre: living world between turns 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/living-world-design-review-20261110",
@@ -973,7 +1081,9 @@
       "topic": "Tema orientativo derivado del nombre: living world design review 20261110; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Explorar living world design review; confirmar su contenido antes de integrarlo.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/living-world-foundation",
@@ -993,7 +1103,9 @@
       "topic": "Foundation: living-world simulation, cosmic shockwave, canon and tests",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Conservar un prototipo histórico del mundo vivo; no sustituye la novela actual.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/living-world-overnight-availability-20261112",
@@ -1004,7 +1116,9 @@
       "topic": "Tema orientativo derivado del nombre: living world overnight availability 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/living-world-persistent-commitments-20261112",
@@ -1024,7 +1138,9 @@
       "topic": "QA (draft): persistent causal NPC obligations — noncanonical",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/living-world-private-chapter-20261110",
@@ -1035,7 +1151,9 @@
       "topic": "Tema orientativo derivado del nombre: living world private chapter 20261110; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/living-world-reliability-20261112",
@@ -1046,7 +1164,9 @@
       "topic": "Tema orientativo derivado del nombre: living world reliability 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Explorar confiabilidad del motor; confirmar su contenido antes de integrarlo.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/living-world-time-interval-hardening-20261112",
@@ -1057,7 +1177,9 @@
       "topic": "Tema orientativo derivado del nombre: living world time interval hardening 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-admission-handoff-20261119",
@@ -1077,7 +1199,9 @@
       "topic": "Record verified Meridian Bay admission and exact recovery evidence",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-atlas-20261112",
@@ -1088,7 +1212,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay atlas 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-causal-decisions-20261112",
@@ -1108,7 +1234,9 @@
       "topic": "QA draft: causal decision evidence gate for Meridian Bay NPCs",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar necesidades y comportamiento de NPC antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-causal-routines-20261112",
@@ -1128,7 +1256,9 @@
       "topic": "QA draft: Meridian Bay causal NPC routines and civic expansion proposals",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-city-scale-20261112",
@@ -1148,7 +1278,9 @@
       "topic": "Meridian Bay: provisional city dimensions and neighborhood map grid",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-core-integrated-atlas-20261117",
@@ -1159,7 +1291,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay core integrated atlas 20261117; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
@@ -1179,7 +1313,9 @@
       "topic": "Meridian Bay: Crosswater Plaza to Harbor Walk four-part corridor detail",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-corridor-detail-market-cross-20261116",
@@ -1199,7 +1335,9 @@
       "topic": "Meridian Bay: detail Market Row–Crosswater in four in-between sections",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-corridor-detail-market-harbor-20261116",
@@ -1219,7 +1357,9 @@
       "topic": "Meridian Bay: detail direct Market Row–Harbor Walk corridor in four spans",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-corridor-detail-rail-market-20261116",
@@ -1239,7 +1379,9 @@
       "topic": "Meridian Bay: detail Railgarden–Market Row in four linked microsections",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-district-blueprint-20261112",
@@ -1259,7 +1401,9 @@
       "topic": "QA draft: audited prebuilt Meridian Bay district map and evidence classes",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-harbor-coast-fragment-02-20261117",
@@ -1279,7 +1423,9 @@
       "topic": "Meridian Bay: build coastal fragment 02 and stitch Harbor Walk shoreline",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-harbor-coast-fragment-20261117",
@@ -1299,7 +1445,9 @@
       "topic": "Meridian Bay: build first physical coastal region fragment at Harbor Walk",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-business-frontage-20261116",
@@ -1319,7 +1467,9 @@
       "topic": "Meridian Bay: detail Market Row business-services frontage",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-crosswater-detail-20261116",
@@ -1339,7 +1489,9 @@
       "topic": "Meridian Bay: detail Market Row–Crosswater after the first complete corridor",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
@@ -1359,7 +1511,9 @@
       "topic": "Meridian Bay: build third landward fragment joining Market Row, Crosswater and bay",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-culture-frontage-20261116",
@@ -1379,7 +1533,9 @@
       "topic": "Meridian Bay: detail prepared Market Row Cultural Passage frontage",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-delivery-frontage-20261116",
@@ -1399,7 +1555,9 @@
       "topic": "Meridian Bay: detail Market Row delivery-point frontage in three spans",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-market-harbor-detail-20261116",
@@ -1419,7 +1577,9 @@
       "topic": "Meridian Bay: detail direct Market Row ↔ Harbor Walk in five connected sections",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-needs-tradeoffs-20261112",
@@ -1439,7 +1599,9 @@
       "topic": "QA draft: event-backed NPC needs, observed costs and competing responsibilities",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-phase1-20261116",
@@ -1459,7 +1621,9 @@
       "topic": "Integrate Meridian Bay design, routes and physically grounded discovery",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-plaza-harbor-detail-20261116",
@@ -1479,7 +1643,9 @@
       "topic": "Meridian Bay: detail Crosswater Plaza ↔ Harbor Walk in four linked segments",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-plaza-terminal-detail-20261116",
@@ -1499,7 +1665,9 @@
       "topic": "Meridian Bay: detail the Crosswater Plaza ↔ Terminal entrance in two subsegments",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-prebuilt-integration-20261112",
@@ -1519,7 +1687,9 @@
       "topic": "QA draft: prebuilt Meridian Bay places exist before Jack encounters them",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-prebuilt-routes-20261112",
@@ -1539,7 +1709,9 @@
       "topic": "QA draft: navigator routes to prebuilt Meridian Bay places without playing story",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-prebuilt-world-fix-20261112",
@@ -1550,7 +1722,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay prebuilt world fix 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-railgarden-clinic-detail-20261117",
@@ -1570,7 +1744,9 @@
       "topic": "Meridian Bay: detail Railgarden ↔ health center exterior in two linked sections",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-railgarden-grocery-detail-20261116",
@@ -1590,7 +1766,9 @@
       "topic": "Meridian Bay: detail Railgarden ↔ grocery frontage in two linked segments",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-railgarden-marketrow-20261112",
@@ -1601,7 +1779,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay railgarden marketrow 20261112; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-railgarden-regional-map-20261117",
@@ -1612,7 +1792,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay railgarden regional map 20261117; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-road-growth-slice1-20261116",
@@ -1632,7 +1814,9 @@
       "topic": "Meridian Bay road-web slice 1: Railgarden–Market Row and local branches",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-road-growth-slice2-20261116",
@@ -1652,7 +1836,9 @@
       "topic": "Meridian Bay road web slice 2: Market Row → Crosswater Plaza",
       "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-road-growth-slice3-20261116",
@@ -1663,7 +1849,9 @@
       "topic": "Tema orientativo derivado del nombre: meridian bay road growth slice3 20261116; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/meridian-bay-route-choices-20261112",
@@ -1683,7 +1871,9 @@
       "topic": "QA draft: reader-directed waypoint routes in Meridian Bay narrative preview",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-services-20261112",
@@ -1703,7 +1893,9 @@
       "topic": "QA draft: three existing Meridian Bay service workflows with causal case history",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-social-relations-20261112",
@@ -1723,7 +1915,9 @@
       "topic": "QA draft: verified NPC social encounters and directional relationships",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-visitables-20261112",
@@ -1743,7 +1937,9 @@
       "topic": "QA draft: scene-established public Meridian Bay places with linked navigation",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-walk-slice-20261112",
@@ -1763,7 +1959,9 @@
       "topic": "QA draft: Meridian Bay read-only house-to-plaza walking slice",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/meridian-bay-wilson-railgarden-detail-20261116",
@@ -1783,7 +1981,9 @@
       "topic": "Meridian Bay: detail Wilson home ↔ Railgarden in two local frontage sections",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/narrative-continuous-scenes-20261112",
@@ -1803,7 +2003,9 @@
       "topic": "Narrative policy draft: continuous scenes from a single player decision",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/narrative-journal-http-e2e-20261115",
@@ -1823,7 +2025,9 @@
       "topic": "QA: exercise journaled narrative saves through both GitHub REST adapters",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/narrative-verified-context-20261115",
@@ -1843,7 +2047,9 @@
       "topic": "QA: port evidence-linked context packets with immutable checkpoint and journal gate",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/npc-needs-chapter-bridge-20261114",
@@ -1863,7 +2069,9 @@
       "topic": "QA draft: event-backed NPC needs integrated with plans and chapter history",
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/persistent-obligation-review-20261115",
@@ -1883,7 +2091,9 @@
       "topic": "Review saved NPC obligations beyond nearby routines and chapter boundaries",
       "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/repository-complete-checkpoint-20261117",
@@ -1903,7 +2113,9 @@
       "topic": "Full dated repository checkpoint: area rules, tasks, map drafts and immutable 129-file inventory",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     },
     {
       "name": "work/story-rpg-foundation",
@@ -1914,7 +2126,9 @@
       "topic": "Tema orientativo derivado del nombre: story rpg foundation; archivos no inspeccionados individualmente.",
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Preparar la base de código y reglas del proyecto antes de su integración.",
+      "uso_breve_origen": "inferencia_por_nombre"
     },
     {
       "name": "work/world-admission-location-state-20261116",
@@ -1934,7 +2148,10 @@
       "topic": "Admit Meridian Bay independently and record mutable location conditions",
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
-      "individual_test_result": "not_executed_in_this_review"
+      "individual_test_result": "not_executed_in_this_review",
+      "uso_breve": "Explorar lugares y conexiones de Meridian Bay; confirmar su contenido antes de integrarlo.",
+      "uso_breve_origen": "título_de_PR_y_nombre"
     }
-  ]
+  ],
+  "note_uso_breve": "Campo resumido para facilitar seguimiento: para ramas sin análisis individual es una finalidad prevista/inferida, NO evidencia de ejecución."
 }
