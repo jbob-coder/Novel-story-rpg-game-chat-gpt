@@ -32,3 +32,5 @@
 - [Catálogo de 108 ramas con sus PR y acciones](docs/00_start/INVENTARIO_RAMAS_2026-11-19.md)
 
 Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work/chat-narrative-foundation`; `main` no contiene todavía esa rama.
+
+- [Seguimiento del desarrollo, uso y tareas pendientes](docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md)
