@@ -33,3 +33,5 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Seguimiento del desarrollo: para qué sirve cada sistema y qué falta](SEGUIMIENTO_DEL_DESARROLLO.md)
 
 - [Auditoría de 108 ramas: archivos, 20 descripciones precisadas, HEAD compartidos](VERIFICACION_DESCRIPCIONES_2026-11-19.md)
+
+- [Matriz de brechas de código para las 108 ramas (28 módulos / 34 suites ausentes por ruta)](BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
