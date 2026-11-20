@@ -209,6 +209,11 @@
       "tests/meridian_bay_services.test.mjs",
       "tests/meridian_bay_phase2_integration.test.mjs"
     ],
+    "npc_causal_agenda_increment": [
+      "docs/01_world/NPC_CAUSAL_AGENDA_INTEGRATION_20261120.md",
+      "tools/living_world_agenda.mjs",
+      "tests/npc_causal_agenda.test.mjs"
+    ],
     "branch_audit_2026_11_19": [
       "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.json",
       "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md",
