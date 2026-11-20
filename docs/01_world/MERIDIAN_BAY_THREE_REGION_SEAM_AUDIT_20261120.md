@@ -63,3 +63,11 @@ The source inspection reports the following **strict geometric QA** (all *candid
 **Acceptance gate:** run on the precise final branch HEAD using GitHub Actions (Node, Python, saved checkpoint validator); then compare Git trees, inventory and five protected story blobs. Historical QA PR #68 and #70 are evidence of previous source tests, not a live compatibility test of this new combined review.
 
 **Recommended next safe implementation:** produce a separately sourced **complete Coast 01 candidate** based on PR #67, with SVG regenerated against the updated three-scalar geometry; then assess whether to supersede the PR #86 draft in review. Continue to keep #44/#58 and Plaza–Harbor conflicts in design review, not player navigation.
+
+## Executed GitHub Actions evidence (2026-11-20)
+
+On source and test commit `5571b465a32d96c36804bc83937dc82f63014cdc`, an isolated, **no-merge** QA clone PR #88 (base `main`) ran the full [Narrative integrity workflow #44813055038](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/44813055038): **461/461 Node tests passed** (the existing 445 plus the 16 new seam tests), **47/47 Python tests passed**, and the **canonical checkpoint validator passed**.
+
+The first QA run #44812907011 had **460/461** Node results because a newly added regression expected the wrong error text when the upstream Meridian Bay validator correctly rejected a forged saved district anchor. Only the test's accepted error-message pattern was adjusted. No engine rules or story files changed; the second run succeeded.
+
+Independent Git tree comparison at the tested commit: **199 files in parent PR #86**, **208 in this stacked PR**, exactly **9 added**, **4 index/inventory paths modified**, **0 deleted**. Inventory **208/208** with no absent or extra path. The five canonical story blobs equal both parent and `main` at `019175c6463ff31807a0f7013d91299add94913c`. This appendix is **documentation added after** the successful run; the final doc-only HEAD should receive its own exact-head QA readback before the PR is ready for review. The QA-only PR must not be merged.
