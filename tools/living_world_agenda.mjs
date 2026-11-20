@@ -68,7 +68,7 @@ export function planNPCAgendas({state,actorIds=null,elapsedMinutes=0,elapsedDays
   for(const o of obligations){
    selected.push({...base,id:'agenda:'+o.id,kind:'obligation',
     objective:o.summary,obligationId:o.id,sourceEventId:o.sourceEventId,
-    review:o.review,priority:o.priority??'normal',
+    review:o.review,intervalReview:o.intervalReview,priority:o.priority??'normal',
     blockers:o.blockers??[],actionProposal:o.status==='blocked'?
       'Consider a feasible workaround, postponement or justified cancellation':
       'Consider the next step while accounting for the deadline and current resources',
