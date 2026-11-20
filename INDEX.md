@@ -31,7 +31,7 @@
 - [LEER PRIMERO: situación, documentación y pendientes](docs/00_start/LEER_PRIMERO_RAMAS_2026-11-19.md)
 - [Catálogo de 108 ramas con sus PR y acciones](docs/00_start/INVENTARIO_RAMAS_2026-11-19.md)
 
-Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work/chat-narrative-foundation`; `main` no contiene todavía esa rama.
+Estas notas no alteran el checkpoint. **`main` ya contiene la base narrativa** tras la [PR #2](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/2) (commit `7c45dc46f2651d8d4375435af704b71643ebdae5`); el guardado vivo sigue vinculado a `work/chat-narrative-foundation` hasta migración validada.
 
 - [Seguimiento del desarrollo, uso y tareas pendientes](docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md)
 
@@ -40,3 +40,5 @@ Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work
 - [Comparación estática de las 108 ramas con el código narrativo y riesgos de integración](docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
 
 - [Rectificación de la auditoría al nuevo HEAD (20-11-2026)](docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md)
+
+- [Resultado: base narrativa integrada y validada en main (20-11-2026)](docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md)

@@ -37,3 +37,5 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Matriz de brechas de código para las 108 ramas (28 módulos / 34 suites ausentes por ruta)](BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
 
 - [Reconciliación del HEAD narrativo y nuevos faltantes](CURRENT_STATE_RECHECK_2026-11-20.md)
+
+- [Consolidación efectiva de la base narrativa en main (PR #2)](MAIN_CONSOLIDATION_2026-11-20.md)

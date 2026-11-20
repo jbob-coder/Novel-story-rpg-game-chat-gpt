@@ -237,7 +237,8 @@
       "docs/00_start/branch_checks/PR_FILES_05.json"
     ],
     "branch_audit_2026_11_20": [
-      "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md"
+      "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
+      "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
     ]
   },
   "repository_checkpoints": [

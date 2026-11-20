@@ -1,5 +1,9 @@
 # Leer primero — guía de consolidación (19-11-2026)
 
+## Actualización posterior al inventario — 2026-11-20
+
+**`main` ya contiene la fuente narrativa:** [PR #2 fusionada](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/2), commit `7c45dc46f2651d8d4375435af704b71643ebdae5`; 163 archivos comparados sin diferencias frente a `work/chat-narrative-foundation` @ `2820cca1bd51`. La PR #80 continúa la documentación, y las referencias siguientes a `main` solo README / PR #2 en borrador son **datos históricos del 19-11**, no estado actual. [Ver el informe de consolidación](MAIN_CONSOLIDATION_2026-11-20.md).
+
 **Propósito:** saber en menos de un minuto **dónde está el proyecto, qué leer, qué falta y qué no se debe mezclar**. Este archivo es navegación de ingeniería, no canon narrativo ni autorización para adelantar una partida.
 
 ## Situación comprobada
