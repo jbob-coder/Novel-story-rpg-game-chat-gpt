@@ -180,7 +180,7 @@ test('missing world, forged map anchor and nonexistent player location are rejec
   /four existing saved-world links|Harbor and saved-player identities must exist/);
  const missing=state();missing.world.locations[market].id='LOC-FAKE-MARKET';
  assert.throws(()=>validateMeridianRegionalSeams({state:missing}),
-  /Scale plan|Harbor|source|does not match|identities/);
+  /Scale plan|Harbor|source|does not match|identities|Missing saved district anchor/);
 });
 
 test('all previews are cloned and do not mutate the current checkpoint or the archive',()=>{
