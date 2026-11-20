@@ -15,3 +15,6 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+
+- [Adaptación del corredor exterior de la clínica admitida de Railgarden](MERIDIAN_BAY_CLINIC_FRONTAGE_ADAPTATION_20261120.md)
+- [Dos tramos provisionales de la clínica con procedencia histórica](MERIDIAN_BAY_RAILGARDEN_CLINIC_FRONTAGE_REVIEW_20261120.json)
