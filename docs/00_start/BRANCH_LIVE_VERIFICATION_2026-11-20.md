@@ -28,6 +28,8 @@ Las [PR #2](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/2) 
 
 [Informe de custodia de 44 ramas QA, journal, backup y audit](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
 
+[Clasificación de las 39 ramas work restantes: completitud del inventario histórico 108/108](BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md).
+
 ## 3. Revisión puntual de contenido de ramas prioritarias
 
 1. **`work/living-world-between-turns-20261112`**: se inspeccionó `tools/living_world_deferred.mjs`, de 122 líneas. Conserva una cola `pending.npc_review_queue`, máximo 12 entradas y tres nuevas por turno del jugador, que solo se consumen tras otra resolución causal revisada. Importa `living_world_agenda.mjs`, que aún no está en `main` (la PR #82 la propone). **Pendiente:** validar la representación de `pending` en el estado actual, la persistencia entre capítulos y que el coordinador no descarte metadatos. No promete actividad en segundo plano.
