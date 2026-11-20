@@ -53,3 +53,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Inspección privada de costa de Harbor Walk y control de cruces](meridian_bay_harbor_coast_review.mjs)
 
 - [Generador determinista del SVG costero desde el JSON revisado](render_harbor_coast_svg.mjs)
+
+- [Comparación de tres fragmentos y rutas históricas con blobs de origen](meridian_bay_three_region_seams.mjs)
