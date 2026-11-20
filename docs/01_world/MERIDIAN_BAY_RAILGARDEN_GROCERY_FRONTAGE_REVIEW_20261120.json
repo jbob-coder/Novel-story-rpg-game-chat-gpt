@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-RAILGARDEN-GROCERY-ADMITTED-FRONTAGE-20261120-V1",
+  "status": "private_spatial_draft_not_story_canon",
+  "scope": "One existing reciprocal saved-world link: Railgarden residential district to Abarrotes de Railgarden, without asserting actual pavement, door position or operating hours.",
+  "provenance": {
+    "historical_branch": "work/meridian-bay-railgarden-grocery-detail-20261116",
+    "historical_head": "3bad47131f631d7edb472ef57dc8495226a22835",
+    "historical_plan_file": "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL_20261116.json",
+    "historical_plan_blob_sha": "c2c4881a2432f4be447200d9305ae375b8545ee1",
+    "modern_base_commit": "019175c6463ff31807a0f7013d91299add94913c",
+    "adaptation": "Only the site-admission assumption is modernized; spatial waypoints and provisional frontage evidence are retained. Original JSON and historical HEAD remain unchanged."
+  },
+  "source_plan": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+  "source_catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+  "endpoints": {
+    "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+    "to_id": "LOC-RAILGARDEN-ABARROTES",
+    "design_id": "MB-PREBUILT-20261112-V2",
+    "historical_parent_segment": "MB-WEB-003",
+    "saved_world_admission_required": true
+  },
+  "nodes": [
+    {
+      "id": "MB-RG-N0",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "kind": "saved_district_anchor",
+      "xy": {
+        "x": 48,
+        "y": 44
+      }
+    },
+    {
+      "id": "MB-RG-N1",
+      "location_id": null,
+      "kind": "private_draft_waypoint_only",
+      "xy": {
+        "x": 47.72,
+        "y": 44.15
+      }
+    },
+    {
+      "id": "MB-RG-N2",
+      "location_id": "LOC-RAILGARDEN-ABARROTES",
+      "kind": "saved_public_site_anchor",
+      "xy": {
+        "x": 47.5,
+        "y": 44.6
+      }
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-RG-L1",
+      "from": "MB-RG-N0",
+      "to": "MB-RG-N1",
+      "band_id": "MB-RG-B1",
+      "approximate_minutes": null
+    },
+    {
+      "id": "MB-RG-L2",
+      "from": "MB-RG-N1",
+      "to": "MB-RG-N2",
+      "band_id": "MB-RG-B2",
+      "approximate_minutes": null
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-RG-B1",
+      "sides": {
+        "A": "Railgarden residential context; individual residents and properties unverified",
+        "B": "Neighborhood commercial backdrop without additional named services"
+      },
+      "footprints_verified": false
+    },
+    {
+      "id": "MB-RG-B2",
+      "sides": {
+        "A": "Grocery exterior reference; door, stock and staffing unverified",
+        "B": "Ordinary neighborhood facade, no new building or shop asserted"
+      },
+      "footprints_verified": false
+    }
+  ],
+  "limits": {
+    "new_location_ids": false,
+    "new_saved_graph_links": false,
+    "source_surveyed": false,
+    "direct_navigation_authorized": false,
+    "player_movement": false,
+    "npc_movement": false,
+    "automatic_discovery": false,
+    "automatic_visit": false,
+    "automatic_story_time": false,
+    "opening_hours_confirmed": false,
+    "inventory_confirmed": false,
+    "staffing_confirmed": false
+  }
+}

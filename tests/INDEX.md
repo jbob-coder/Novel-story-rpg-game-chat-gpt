@@ -64,3 +64,5 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.test.mjs](living_world_routines.test.mjs) — NPC route/goal routine proposals.
 - [living_world_travel.test.mjs](living_world_travel.test.mjs) — Route, elapsed time and chronology guards.
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
+
+- [Regresiones del acceso cartográfico a Abarrotes admitido: seguridad y contratos](meridian_bay_grocery_frontage.test.mjs)
