@@ -43,3 +43,4 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - **[Verificación en vivo de las 108 ramas originales y 5 nuevas (20-11-2026)](BRANCH_LIVE_VERIFICATION_2026-11-20.md)**.
 - [Tabla estructurada por rama con HEAD, brechas por archivo y siguiente acción](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
 - [Lote 01: revisión de código y pruebas históricas de cuatro ramas NPC](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
+- [Lote 02: revisión de seis ramas de vías, costa y fragmentos de Meridian Bay](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
