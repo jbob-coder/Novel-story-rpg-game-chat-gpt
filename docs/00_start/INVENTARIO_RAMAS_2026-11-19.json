@@ -1,5 +1,5 @@
 {
-  "schema": "branch-inventory/v2",
+  "schema": "branch-inventory/v3",
   "captured_local_date": "2026-11-19",
   "repo": "jbob-coder/Novel-story-rpg-game-chat-gpt",
   "scope": "108 pre-documentation branches; excludes documentation branch",
@@ -56,8 +56,16 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Auditar el checkpoint y endurecer la verificación del journal y la recuperación remota.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "9a760d25070a77ed1746bd2d69c0b06c9f6182be",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "audit/living-world-critical-review-20261112",
@@ -70,7 +78,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Revisar y documentar confiabilidad del motor; no incorpora funciones por sí sola.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "c3ab3a679e96927d509de54b75b8caffc5c1c274",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
@@ -91,8 +107,18 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Comprobar recuperación ante datos falsificados y cerrar el bypass de validación del journal.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "backup/before-meridian-world-admission-20261118"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "audit/world-plan-npc-integration-20261114",
@@ -114,7 +140,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Revisar y documentar necesidades y comportamiento de NPC; no incorpora funciones por sí sola.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "26422133498340fed3bd96ea0898c1da96ca164b",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "backup/before-meridian-world-admission-20261118",
@@ -127,7 +161,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "backup/narrative-before-20261115-readiness-integration",
@@ -140,7 +184,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/living-world-time-interval-hardening-20261112"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "backup/narrative-before-verified-context-20261115",
@@ -153,7 +207,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Conservar una versión de recuperación anterior a cambios importantes.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "4c32b464a6b7dbd80600b25890641cb19185838a",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "journal/living-world-save-attempts",
@@ -166,7 +228,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Registrar y recuperar operaciones de guardado; nunca mezclar como escenas o código de juego.",
-      "uso_breve_origen": "verificación_de_función"
+      "uso_breve_origen": "verificación_de_función",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "journal/qa-live-journal-runtime-43767698159",
@@ -179,7 +249,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "f7f440fea6183badfaeb56354932dcbd99e2c9e2",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "journal/qa-living-world-smoke-20261112",
@@ -192,7 +270,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "ef2337feaa1f7181c52ba3d56ecff5574982da29",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "journal/qa-narrative-five-file-smoke-20261115",
@@ -205,7 +291,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "1fd8e0afa87e85685026e5fcb1139404386faf5a",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "journal/qa-world-admission-20261118",
@@ -218,7 +312,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "220a05b96704291503ccb8756186473ae9398e3a",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "main",
@@ -231,7 +333,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Publicar la versión consolidada después de revisión y pruebas.",
-      "uso_breve_origen": "verificación_de_función"
+      "uso_breve_origen": "verificación_de_función",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/chatgpt-native-journal-transport-20261117",
@@ -244,7 +354,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "124a8114c9cbd121adc1aea9c89f0cf1698c5d81",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/crosswater-harbor-corridor-detail-ci-20261116",
@@ -266,7 +384,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-corridor-detail-cross-harbor-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/live-journal-runtime-43767698159",
@@ -279,7 +407,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "29d88759a37203a0278c0989f373f20e11ca22ed",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-integration-20261110",
@@ -301,7 +437,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada living world integration sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "56d946a3e3a56c2ddce1c87e70f798c2937f4778",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-overnight-20261112",
@@ -323,7 +467,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada coherencia del tiempo y disponibilidad sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "e7e9c6d16d13b6d4d4b5a2c0d251f700eea5b46e",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-private-chapter-20261110",
@@ -345,7 +497,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada la separación entre información privada y texto visible sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "dfa3608d1e79cfa81c6e5a37c01f91a0e6386ccc",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-reliability-20261112",
@@ -367,7 +527,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "642bedd5f05dc9e6d675c0662f5674093511be45",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-reliability-v2-20261112",
@@ -389,7 +557,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "9cdc61e5e671735ea91ab1722c4aa9034f17a89c",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-reliability-v3-20261112",
@@ -411,7 +587,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "9395dad48f636ac3a359d99e3a85e469c95ebeb9",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/living-world-time-windows-20261112",
@@ -433,7 +617,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada living world time windows sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "23c0501bd7babd2574cf93fbde361299092ce69d",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
@@ -455,7 +647,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-harbor-coast-fragment-02-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-business-frontage-ci-20261116",
@@ -477,7 +679,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-business-frontage-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-cross-detail-ci-20261116",
@@ -499,7 +711,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-corridor-detail-market-cross-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-crosswater-detail-ci-20261116",
@@ -521,7 +743,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-crosswater-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-culture-frontage-ci-20261116",
@@ -543,7 +775,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-culture-frontage-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-delivery-frontage-ci-20261116",
@@ -565,7 +807,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-delivery-frontage-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-harbor-detail-ci-20261116",
@@ -587,7 +839,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-corridor-detail-market-harbor-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
@@ -609,7 +871,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-harbor-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
@@ -631,7 +903,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-market-crosswater-land-fragment-03-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
@@ -653,7 +935,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-plaza-harbor-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-plaza-terminal-ci-20261116",
@@ -675,7 +967,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-plaza-terminal-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-railgarden-clinic-ci-20261117",
@@ -697,7 +999,19 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-core-integrated-atlas-20261117",
+          "work/meridian-bay-railgarden-clinic-detail-20261117",
+          "work/meridian-bay-railgarden-regional-map-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
@@ -719,7 +1033,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-railgarden-grocery-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-road-web-ci-20261116",
@@ -741,7 +1065,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-road-growth-slice1-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-road-web-slice2-ci-20261116",
@@ -763,7 +1097,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-road-growth-slice2-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
@@ -785,7 +1129,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-wilson-railgarden-detail-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/narrative-five-file-journal-smoke-20261115",
@@ -798,7 +1152,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "debd0746a8b651074522d0bc4f894c441dfdfc2c",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/rail-market-corridor-detail-ci-20261116",
@@ -820,7 +1182,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-corridor-detail-rail-market-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/story-save-recovery-d043-20261110",
@@ -833,7 +1205,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "d637304e2665828e5c53cb76fd40e0e4a6ade7ec",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/trigger-live-context-read-20261115",
@@ -855,7 +1235,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "78f56c65ad4f8183720599b6bf8d4eb2e88c4d5b",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/trigger-live-journal-20261115",
@@ -868,7 +1256,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "d19c276a44cdafe3797b763be005dd7422728071",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "qa/world-admission-recovery-20261118",
@@ -881,7 +1277,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar de forma aislada la incorporación controlada de lugares al mundo sin alterar la partida canónica.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "7a0d73900be12d80a794fcaf40a52b026b8d28c7",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/chapter-plan-pilot-20261113",
@@ -902,8 +1306,16 @@
       "next_action": "Cerrado sin merge; revisar motivo antes de reutilizar.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Conservar planes condicionales de NPC al cruzar capítulos verificados; incluye QA sintética.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "c9448eeaee555b3eb1474eec1832a0aa2991a1b2",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/chat-narrative-foundation",
@@ -925,7 +1337,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Mantener el núcleo de la novela, su partida autorizada y el código de continuidad.",
-      "uso_breve_origen": "verificación_de_función"
+      "uso_breve_origen": "verificación_de_función",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-admission-handoff-20261119"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/chatgpt-native-journal-readiness-20261117",
@@ -947,7 +1369,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/checkpoint-audit-date-precision-20261118",
@@ -968,8 +1398,16 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Corregir la fecha local del informe de auditoría y registrar evidencia de CI.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "a10e049cedf662f2d9d7be0fefdba853035ebdbc",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/connector-transport-qa-handoff-20261117",
@@ -991,7 +1429,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/context-retrieval-pilot-20261114",
@@ -1013,7 +1459,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "25b99ee207dfca7fa07a9e0b4ef069fe2fea9f4f",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/journal-handoff-fast-resume-20261117",
@@ -1035,7 +1489,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "ba19db963162e5c5f4ce4ad2e8d6a71cc9dff57e",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/literal-recovery-contextual-time-20261113",
@@ -1056,8 +1518,16 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Recuperar escenas guardadas literalmente y validar tiempos de viaje según el contexto.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "73fd82757b7cdef4cc7ca931f7b1bbded0f431ca",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-between-turns-20261112",
@@ -1069,8 +1539,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Conservar actividades diferidas de NPC entre turnos del jugador, sin simulación continua.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "000b912ce792b4fb215aca12639a3f570ce42b66",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-design-review-20261110",
@@ -1082,8 +1560,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Explorar living world design review; confirmar su contenido antes de integrarlo.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Documentar la revisión técnica y las pruebas del sistema Living World.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "068a2bf25dd3fa3552f16fde45a87f0eabcac13f",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-foundation",
@@ -1105,7 +1591,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Conservar un prototipo histórico del mundo vivo; no sustituye la novela actual.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "f121c8bfed7c17b45b0239bb5d0a52d54eb57070",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-overnight-availability-20261112",
@@ -1117,8 +1611,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Probar disponibilidad y rutinas de NPC durante intervalos nocturnos, sin inventar horarios.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "dc84b2da5d8a32fbc5b88ab7402e65602c716aa1",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-persistent-commitments-20261112",
@@ -1140,7 +1642,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-private-chapter-20261110",
@@ -1152,8 +1662,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Evitar que los resultados privados de NPC aparezcan en capítulos visibles al jugador.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "bcfd86fe5ca5cd8598d6e3e9969221c5697a98be",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-reliability-20261112",
@@ -1165,8 +1683,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Explorar confiabilidad del motor; confirmar su contenido antes de integrarlo.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Endurecer fiabilidad de rutinas, guardado y recuperación, con pruebas de regresión.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "3a690c87ffd7800e277613da4c7a2df4a781a0c4",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/living-world-time-interval-hardening-20261112",
@@ -1178,8 +1704,18 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Corregir y comprobar la coherencia entre días, franjas horarias y minutos transcurridos.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "backup/narrative-before-20261115-readiness-integration"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-admission-handoff-20261119",
@@ -1200,8 +1736,18 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Documentar la admisión verificada de Meridian Bay y la recuperación exacta, ya integrada.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/chat-narrative-foundation"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-atlas-20261112",
@@ -1214,7 +1760,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "5cbf433e5cb1e59945ba5cf3d79a3e127d9406b6",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-causal-decisions-20261112",
@@ -1235,8 +1789,16 @@
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar necesidades y comportamiento de NPC antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Evaluar decisiones de NPC por objetivos, recursos y obstáculos; exigir evidencia para resultados.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "7b0c6ddf9c07192b2e8b2560725712b2efb0f82f",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-causal-routines-20261112",
@@ -1258,7 +1820,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "7301f2b511dbb6dfdefe065aa9e9a74c600bbd35",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-city-scale-20261112",
@@ -1280,7 +1850,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3b4d1b4f2a6339161f397d5806a1950f66886afb",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-core-integrated-atlas-20261117",
@@ -1292,8 +1870,20 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Conservar una referencia a la integración de mapas; comparte commit con otras ramas de Railgarden.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-railgarden-clinic-ci-20261117",
+          "work/meridian-bay-railgarden-clinic-detail-20261117",
+          "work/meridian-bay-railgarden-regional-map-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
@@ -1315,7 +1905,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/crosswater-harbor-corridor-detail-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-corridor-detail-market-cross-20261116",
@@ -1337,7 +1937,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-cross-detail-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-corridor-detail-market-harbor-20261116",
@@ -1359,7 +1969,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-harbor-detail-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-corridor-detail-rail-market-20261116",
@@ -1381,7 +2001,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/rail-market-corridor-detail-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-district-blueprint-20261112",
@@ -1403,7 +2033,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-railgarden-marketrow-20261112"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-harbor-coast-fragment-02-20261117",
@@ -1425,7 +2065,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-coast-fragment-02-ci-20261117-a"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-harbor-coast-fragment-20261117",
@@ -1447,7 +2097,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-business-frontage-20261116",
@@ -1469,7 +2127,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-business-frontage-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-crosswater-detail-20261116",
@@ -1491,7 +2159,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-crosswater-detail-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
@@ -1513,7 +2191,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-culture-frontage-20261116",
@@ -1535,7 +2223,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-culture-frontage-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-delivery-frontage-20261116",
@@ -1557,7 +2255,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-delivery-frontage-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-market-harbor-detail-20261116",
@@ -1579,7 +2287,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-market-harbor-section5-ci-20261116-a"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-needs-tradeoffs-20261112",
@@ -1601,7 +2319,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-phase1-20261116",
@@ -1622,8 +2348,16 @@
       "next_action": "Fusionado en su base de PR; no aplicar otra vez sin revisar SHA/diff.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Integrar el catálogo y las rutas base de seis lugares de Meridian Bay; la admisión real fue posterior.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-plaza-harbor-detail-20261116",
@@ -1645,7 +2379,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-plaza-harbor-corridor-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-plaza-terminal-detail-20261116",
@@ -1667,7 +2411,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-plaza-terminal-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-prebuilt-integration-20261112",
@@ -1689,7 +2443,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-prebuilt-routes-20261112",
@@ -1711,7 +2473,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-prebuilt-world-fix-20261112",
@@ -1723,8 +2493,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Impedir que un evento del jugador cree lugares; observar un sitio solo cambia conocimiento.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "14421a9d883a0d9b1a964ff2bcb7478a3e2e5289",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-railgarden-clinic-detail-20261117",
@@ -1746,7 +2524,19 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-railgarden-clinic-ci-20261117",
+          "work/meridian-bay-core-integrated-atlas-20261117",
+          "work/meridian-bay-railgarden-regional-map-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-railgarden-grocery-detail-20261116",
@@ -1768,7 +2558,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-railgarden-grocery-ci-20261116-a"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-railgarden-marketrow-20261112",
@@ -1780,8 +2580,18 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Documentar el diseño y la revisión del corredor Railgarden–Market Row.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "work/meridian-bay-district-blueprint-20261112"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-railgarden-regional-map-20261117",
@@ -1793,8 +2603,20 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Conservar el mapa regional de Railgarden; comparte commit con la rama del detalle de clínica.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-railgarden-clinic-ci-20261117",
+          "work/meridian-bay-core-integrated-atlas-20261117",
+          "work/meridian-bay-railgarden-clinic-detail-20261117"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-road-growth-slice1-20261116",
@@ -1816,7 +2638,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-road-web-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-road-growth-slice2-20261116",
@@ -1838,7 +2670,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-road-web-slice2-ci-20261116"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-road-growth-slice3-20261116",
@@ -1851,7 +2693,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve_origen": "inferencia_por_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "61818e07f9602486bf6d42ff52758d522b2ddea9",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-route-choices-20261112",
@@ -1873,7 +2723,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-services-20261112",
@@ -1894,8 +2752,16 @@
       "next_action": "Revisar dependencias, diff y pruebas; integrar selectivamente si aporta cambios.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve": "Gestionar tres servicios civiles existentes mediante casos persistentes y eventos causales.",
+      "uso_breve_origen": "revisión_de_PR_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-social-relations-20261112",
@@ -1917,7 +2783,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-visitables-20261112",
@@ -1939,7 +2813,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-walk-slice-20261112",
@@ -1961,7 +2843,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/meridian-bay-wilson-railgarden-detail-20261116",
@@ -1983,7 +2873,17 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [
+          "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a"
+        ],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/narrative-continuous-scenes-20261112",
@@ -2005,7 +2905,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/narrative-journal-http-e2e-20261115",
@@ -2027,7 +2935,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/narrative-verified-context-20261115",
@@ -2049,7 +2965,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/npc-needs-chapter-bridge-20261114",
@@ -2071,7 +2995,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/persistent-obligation-review-20261115",
@@ -2093,7 +3025,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/repository-complete-checkpoint-20261117",
@@ -2115,7 +3055,15 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Probar o documentar guardado, verificación de estado y recuperación segura.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/story-rpg-foundation",
@@ -2127,8 +3075,16 @@
       "next_action": "Sin PR asociada en la captura; inspeccionar diff/QA antes de decidir.",
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
-      "uso_breve": "Preparar la base de código y reglas del proyecto antes de su integración.",
-      "uso_breve_origen": "inferencia_por_nombre"
+      "uso_breve": "Conservar el plan histórico inicial de diseño; no representa el formato narrativo actual.",
+      "uso_breve_origen": "revisión_de_commit_y_rutas",
+      "auditoria_2026_11_19": {
+        "estado": "descripción precisada",
+        "nivel": "estructural",
+        "head_sha": "63d1c1e430291ac20b4063333aacd990b38f8dfc",
+        "fuente": "commit HEAD y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     },
     {
       "name": "work/world-admission-location-state-20261116",
@@ -2150,8 +3106,26 @@
       "individual_source_audit": "not_performed",
       "individual_test_result": "not_executed_in_this_review",
       "uso_breve": "Explorar lugares y conexiones de Meridian Bay; confirmar su contenido antes de integrarlo.",
-      "uso_breve_origen": "título_de_PR_y_nombre"
+      "uso_breve_origen": "título_de_PR_y_nombre",
+      "auditoria_2026_11_19": {
+        "estado": "coherencia temática preliminar",
+        "nivel": "estructural",
+        "head_sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+        "fuente": "PR título y rutas modificadas",
+        "otros_nombres_mismo_commit": [],
+        "pruebas_funcionales_nuevas": "no_ejecutadas"
+      }
     }
   ],
-  "note_uso_breve": "Campo resumido para facilitar seguimiento: para ramas sin análisis individual es una finalidad prevista/inferida, NO evidencia de ejecución."
+  "note_uso_breve": "Campo resumido para facilitar seguimiento: para ramas sin análisis individual es una finalidad prevista/inferida, NO evidencia de ejecución.",
+  "audit_2026_11_19": {
+    "date": "2026-11-19",
+    "tree_heads_matched": 108,
+    "pr_file_lists_verified": 79,
+    "no_pr_head_commits_verified": 29,
+    "descriptions_refined": 20,
+    "shared_head_groups": 22,
+    "semantic_code_tests_complete": false,
+    "report": "docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md"
+  }
 }
