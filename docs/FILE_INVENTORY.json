@@ -238,7 +238,9 @@
     ],
     "branch_functional_audit_2026_11_20": [
       "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md",
-      "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md"
+      "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md",
+      "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md",
+      "docs/00_start/BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md"
     ],
     "branch_live_verification_2026_11_20": [
       "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.md",
