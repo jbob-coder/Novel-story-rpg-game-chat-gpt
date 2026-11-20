@@ -239,6 +239,12 @@
     "branch_audit_2026_11_20": [
       "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
       "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
+    ],
+    "clinic_frontage_adaptation_2026_11_20": [
+      "docs/01_world/MERIDIAN_BAY_CLINIC_FRONTAGE_ADAPTATION_20261120.md",
+      "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_FRONTAGE_REVIEW_20261120.json",
+      "tools/meridian_bay_clinic_frontage.mjs",
+      "tests/meridian_bay_clinic_frontage.test.mjs"
     ]
   },
   "repository_checkpoints": [
