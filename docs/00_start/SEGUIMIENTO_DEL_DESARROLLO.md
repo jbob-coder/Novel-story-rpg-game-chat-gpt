@@ -52,3 +52,7 @@ Se reconsultaron los HEAD de las 108 ramas del inventario: 108 presentes, **106 
 La revisión detallada de código se concentró en la cola diferida, PR #11 (agendas), #12 (decisiones) y #13 (relaciones); siguen pendientes integración y pruebas por SHA cuando corresponda. Los estados en vivo de PR #10–#15, #27, #33, #78–#80 y #82 fueron reconsultados. **La verificación completa funcional por rama NO está terminada.** La nueva documentación se mantiene en rama/PR aislada, sin alterar canon ni los cinco archivos de checkpoint. La CI exacta de esta rama debe anotarse tras ejecutarse.
 
 **Próximo paso:** completar revisión funcional de decisiones/social/deferred, luego ramas cartográficas por dependencias y finalmente custodia de QA/journal/backup; documentar para cada HEAD archivos, contratos, riesgos, test y decisión de integración.
+
+### Lote de inspección funcional 01 (2026-11-20)
+
+Revisión estática de `work/meridian-bay-causal-routines-20261112`, `work/meridian-bay-causal-decisions-20261112`, `work/meridian-bay-social-relations-20261112` y `work/living-world-between-turns-20261112`. Se inspeccionaron módulos, importaciones, hooks de coordinador y suites históricas (13 casos para decisiones, 14 para relaciones). **Incompatibilidades confirmadas por lectura:** `review_metadata` y `social_context` no se transportan por el coordinador `main`; los hooks de cola diferida no están integrados; la agenda sigue como PR #82 borrador. **No se ejecutaron tests de los HEAD antiguos.** [Ver evidencia y dictamen por rama](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
