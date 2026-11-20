@@ -250,6 +250,17 @@
       "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg",
       "tools/render_harbor_coast_svg.mjs",
       "tests/harbor_coast_svg_sync.test.mjs"
+    ],
+    "three_region_seam_audit_2026_11_20": [
+      "docs/01_world/MERIDIAN_BAY_THREE_REGION_SEAM_AUDIT_20261120.md",
+      "docs/01_world/SOURCE_PR67_COAST_01_20261120.json",
+      "docs/01_world/SOURCE_PR67_COAST_02_20261120.json",
+      "docs/01_world/SOURCE_PR69_LAND_03_20261120.json",
+      "docs/01_world/SOURCE_PR44_MARKET_HARBOR_20261120.json",
+      "docs/01_world/SOURCE_PR58_MARKET_HARBOR_20261120.json",
+      "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json",
+      "tools/meridian_bay_three_region_seams.mjs",
+      "tests/meridian_bay_three_region_seams.test.mjs"
     ]
   },
   "repository_checkpoints": [
