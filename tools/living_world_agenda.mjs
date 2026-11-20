@@ -57,6 +57,13 @@ export function planNPCAgendas({state,actorIds=null,elapsedMinutes=0,elapsedDays
   const selected=[];
   const obligations=reviewNPCCommitments({state,actorIds:[actorId],
     elapsedMinutes,elapsedDays}).filter(x=>x.kind==='explicit_commitment'&&x.actorId===actorId)
+    // The commitment module classifies the interval; an agenda must classify
+    // urgency at the *destination day* rather than accidentally at its start.
+    .map(o=>({...o,intervalReview:o.review,
+      review:o.dueDay!==null&&o.dueDay<targetDay?'overdue_review':
+        o.dueDay===targetDay?'due_today_review':
+        o.status==='blocked'?'blocked_review':
+        o.dueDay===null?'deadline_unknown':'upcoming'}))
     .sort((a,b)=>(urgencyRank[a.review]??9)-(urgencyRank[b.review]??9)||a.id.localeCompare(b.id));
   for(const o of obligations){
    selected.push({...base,id:'agenda:'+o.id,kind:'obligation',
