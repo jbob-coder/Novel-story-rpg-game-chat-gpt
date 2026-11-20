@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-RAILGARDEN-CLINIC-ADMITTED-FRONTAGE-20261120-V1",
+  "status": "private_spatial_draft_not_story_canon",
+  "type": "single_health_center_frontage_approach",
+  "scope": "Railgarden district ↔ already-admitted public health center; one saved reciprocal graph link, two original unverified spatial design stretches; NO established door, route accessibility, services, staff or operating hours",
+  "sources": {
+    "saved_graph": "game/STATE.json",
+    "catalog": "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+    "road_web": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+    "city_canvas": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "previous_detail": "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL_20261116.json"
+  },
+  "endpoints": {
+    "from_id": "LOC-RAILGARDEN-RESIDENTIAL",
+    "to_id": "LOC-RAILGARDEN-CLINIC",
+    "parent_segment": "MB-WEB-004",
+    "design_id": "MB-PREBUILT-20261112-V2",
+    "site_status": "admitted_saved_story_location_with_unverified_frontage",
+    "saved_world_admission_required": true
+  },
+  "nodes": [
+    {
+      "id": "MB-RC-N0",
+      "kind": "saved_district_anchor",
+      "location_id": "LOC-RAILGARDEN-RESIDENTIAL",
+      "xy": {
+        "x": 48,
+        "y": 44
+      },
+      "name_provisional": "Railgarden district anchor",
+      "land_use": "Existing residential neighborhood, not a surveyed intersection or specific door",
+      "junction_note": "Shared district origin only; grocery and household keep separate authored links."
+    },
+    {
+      "id": "MB-RC-N1",
+      "kind": "private_draft_waypoint_only",
+      "location_id": null,
+      "xy": {
+        "x": 48.55,
+        "y": 44.28
+      },
+      "name_provisional": "Candidate neighborhood care approach",
+      "land_use": "Proposed transition from ordinary housing frontage to a community-facing facility approach",
+      "junction_note": "Planning bend, not an established street crossing, traffic intersection, parking area or entrance."
+    },
+    {
+      "id": "MB-RC-N2",
+      "kind": "saved_public_site_anchor",
+      "location_id": "LOC-RAILGARDEN-CLINIC",
+      "xy": {
+        "x": 49,
+        "y": 44.8
+      },
+      "name_provisional": "Health center design anchor",
+      "land_use": "Preauthored neighborhood health facility serving ordinary care needs; no actual services or staffing specified",
+      "junction_note": "The design confirms public-facing access, not the exact door, accessibility, hours or current admissions."
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-RC-L1",
+      "from": "MB-RC-N0",
+      "to": "MB-RC-N1",
+      "type": "one_existing_draft_neighborhood_link",
+      "character": "Residential Railgarden approach toward the planned health center frontage",
+      "pedestrian_context": "Candidate continuous pedestrian edge; exact sidewalks, crossings, ramps and grades unverified",
+      "band_id": "MB-RC-B1",
+      "access_notes": "No cut through a home, no newly invented road, and no assertion of emergency vehicle or ambulance access",
+      "travel_minutes": null,
+      "traffic_flow": "unknown"
+    },
+    {
+      "id": "MB-RC-L2",
+      "from": "MB-RC-N1",
+      "to": "MB-RC-N2",
+      "type": "one_existing_draft_neighborhood_link",
+      "character": "Local transition to the public-facing health center parcel reference",
+      "pedestrian_context": "Potential approach from residential edge to a health facility frontage, with exact threshold and level unknown",
+      "band_id": "MB-RC-B2",
+      "access_notes": "Design-level approach does not prove a door position, hours, active medical services, staffing, or a recorded visit",
+      "travel_minutes": null,
+      "traffic_flow": "unknown"
+    }
+  ],
+  "bands": [
+    {
+      "id": "MB-RC-B1",
+      "link_id": "MB-RC-L1",
+      "sides": {
+        "A": "Ordinary residential frontage without assigned occupants, lot boundaries or measured setbacks",
+        "B": "Neighborhood outdoor edge without invented pharmacies, clinics, schools, crossings or new businesses"
+      },
+      "footprints_verified": false
+    },
+    {
+      "id": "MB-RC-B2",
+      "link_id": "MB-RC-L2",
+      "sides": {
+        "A": "Provisional community health center exterior; no confirmed facade, doorway, ramp or interior",
+        "B": "Existing local neighborhood context; no new medical staff, parked vehicles or patient movements"
+      },
+      "footprints_verified": false
+    }
+  ],
+  "site_semantics": {
+    "exists_in_catalog": true,
+    "requires_no_saved_world_admission_for_draft": false,
+    "existing_in_saved_checkpoint": true,
+    "public_access_in_design": true,
+    "open_now": "derived_from_event_backed_location_state",
+    "clinical_staff_now": "unknown",
+    "services_available_now": "unknown",
+    "emergency_capacity": "unknown",
+    "user_discovered": null,
+    "visit_recorded": null,
+    "npc_presence_inferred": false,
+    "travel_time_minutes": null,
+    "saved_world_admission_required": true,
+    "actual_accessible_entrance_confirmed": false
+  },
+  "spatial_policy": {
+    "reversible_canvas": true,
+    "source_parent_polyline_must_match": true,
+    "road_names_known": false,
+    "exact_door_or_sidewalk_certified": false,
+    "accessible_route_certified": false,
+    "verified_crosswalk": false,
+    "parking_or_ambulance_access_certified": false,
+    "vehicle_route_certified": false,
+    "grocery_connection_replaced": false,
+    "home_workshop_as_street_vertex": false,
+    "elena_school_here": false,
+    "unreviewed_shortcuts_permitted": false
+  },
+  "review_gate": {
+    "no_canonical_save_writes": true,
+    "no_automatic_admission": true,
+    "no_story_actions": true,
+    "no_npc_movements": true,
+    "no_time_passage": true,
+    "no_discovery_or_visit_grant": true,
+    "must_have_two_contiguous_subsegments": true,
+    "must_verify_source_design_link": true,
+    "must_preserve_existing_railgarden_links": true,
+    "next_section": "Market Row → Noah repair-and-components shop exterior frontage",
+    "must_validate_admitted_saved_world": true
+  },
+  "provenance": {
+    "historical_branch": "work/meridian-bay-railgarden-clinic-detail-20261117",
+    "historical_head": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+    "historical_tool_file": "tools/meridian_bay_railgarden_clinic_detail.mjs",
+    "historical_tool_blob_sha": "43ddfce346bf939ae669fde53ca73c2042c39eff",
+    "historical_plan_file": "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_DETAIL_20261117.json",
+    "historical_plan_blob_sha": "5e8442b4baec74e646b79148d09d11ed6d113acb",
+    "modern_base_commit": "019175c6463ff31807a0f7013d91299add94913c",
+    "adaptation": "Only inherited unadmitted-state assumption and status fields updated; node XY, link context, frontage bands and all uncertainty rules preserved"
+  },
+  "authority": "private_review_not_playable_world"
+}
