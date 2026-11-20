@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {planNPCAgendas,previewNearbyNPCContacts,CIVILIAN_ROUTINES,
   recommendNPCIntentReviews} from '../tools/living_world_agenda.mjs';
+import {inspectLivingWorld,playerVisibleDiagnostic} from '../tools/living_world_diagnostics.mjs';
 
 const state=JSON.parse(readFileSync(new URL('../game/STATE.json',import.meta.url),'utf8'));
 const original=JSON.stringify(state);
@@ -138,4 +139,24 @@ test('zero time and invalid selections fail closed, never execute work',()=>{
  assert.throws(()=>previewNearbyNPCContacts({state,actorIds:['NPC-003','NPC-003']}),
    /Invalid contact actor selection/);
  assert.equal(JSON.stringify(state),original);
+});
+
+test('integrated narrator diagnostics keep agendas and possible contacts private',()=>{
+ const snapshot={
+   state:structuredClone(state),
+   manifest:JSON.parse(readFileSync(new URL('../game/SAVE_MANIFEST.json',import.meta.url),'utf8')),
+   events:JSON.parse(readFileSync(new URL('../chapters/CH-000.events.json',import.meta.url),'utf8')),
+   transcript:JSON.parse(readFileSync(new URL('../chapters/CH-000.transcript.json',import.meta.url),'utf8')),
+   chapter:readFileSync(new URL('../chapters/CH-000.md',import.meta.url),'utf8')
+ };
+ const before=JSON.stringify(snapshot);
+ const report=inspectLivingWorld({snapshot,actorIds:['NPC-003','NPC-006'],elapsedMinutes:30});
+ assert.equal(report.classification,'narrator_private_only');
+ assert.ok(report.causalAgenda.length>=2);
+ assert.equal(report.possibleNPCContacts.length,1);
+ assert.ok(report.recommendedNPCIntents.length>=1);
+ for(const key of ['causalAgenda','possibleNPCContacts','recommendedNPCIntents'])
+   assert.ok(!Object.hasOwn(playerVisibleDiagnostic(report),key));
+ assert.equal(report.checkpoint.turn,9);
+ assert.equal(JSON.stringify(snapshot),before);
 });
