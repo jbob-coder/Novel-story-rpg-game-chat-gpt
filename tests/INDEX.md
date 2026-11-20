@@ -66,3 +66,5 @@ These files already existed in the authoritative source and are listed here for 
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
 
 - [Auditoría geométrica del borde portuario, 15 pruebas](meridian_bay_harbor_coast_review.test.mjs)
+
+- [Sincronización SVG/JSON de los 18 trazados costeros y preservación de fuentes](harbor_coast_svg_sync.test.mjs)
