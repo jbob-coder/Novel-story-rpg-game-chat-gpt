@@ -20,6 +20,8 @@
 
 Las [PR #2](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/2) y [#80](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/80) ya se habían fusionado a `main`. Se han consultado ahora los estados de: **#10, #11, #12, #13, #14, #15, #27** (abiertas como borrador), **#33, #78, #79, #80** (fusionadas en sus bases respectivas) y [#82](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/82) (borrador abierto; su CI se verificó en el ciclo de desarrollo previo). Una PR antigua abierta **puede** contener piezas ya portadas selectivamente; su estado no acredita ausencia de funcionalidad.
 
+[Informe detallado del primer lote funcional: PR #11, #12, #13 y cola diferida](BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md).
+
 ## 3. Revisión puntual de contenido de ramas prioritarias
 
 1. **`work/living-world-between-turns-20261112`**: se inspeccionó `tools/living_world_deferred.mjs`, de 122 líneas. Conserva una cola `pending.npc_review_queue`, máximo 12 entradas y tres nuevas por turno del jugador, que solo se consumen tras otra resolución causal revisada. Importa `living_world_agenda.mjs`, que aún no está en `main` (la PR #82 la propone). **Pendiente:** validar la representación de `pending` en el estado actual, la persistencia entre capítulos y que el coordinador no descarte metadatos. No promete actividad en segundo plano.
