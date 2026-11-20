@@ -23,7 +23,7 @@ The source drew an irregular shoreline with **16** vertices, a provisional **4-z
 
 But `HC-A-MARKET` starts at **(69.5,36.7)** from the conflicting/unmerged Market–Harbor corridor design **#58**; `HC-A-PLAZA` starts at **(70.1,37.85)** from unmerged draft **#56**. These drawing tails are **not surveyed approaches** and are not evidence that either variant was chosen. An existing saved link proves neither route geometry nor walkability of the illustrated tail, nor travel minutes.
 
-**Original visual:** the historical [SVG in PR #66](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/blob/d5f8af27779aa49ecfa082e091f6bb57308a146a/docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg) renders the **uncorrected** source JSON. It is deliberately **not** copied as the rendering of this revised variant; a corrected graphic needs a separate source-matched render and verification.
+**Visualización histórica y revisada:** el [SVG original](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg) permanece **idéntico** a la fuente de PR #66 (blob `56e6ba7a830fdc53e6dcff205871b3af57e7c04e`) y muestra el diseño anterior. El [SVG revisado](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg) es un archivo **diferente**, generado a partir del JSON corregido. El generador determinista `tools/render_harbor_coast_svg.mjs` compara las 11 geometrías poligonales y 7 polilíneas históricas con la fuente y vuelve a dibujar esos 18 elementos con coordenadas del JSON revisado; `tests/harbor_coast_svg_sync.test.mjs` contrasta **cada vértice en píxeles** con el JSON (máxima diferencia 0.051 px por redondeo a una decimal) y el contenido SVG completo contra una regeneración independiente. El SVG no acredita topografía real, acceso, ruta ni canon.
 
 ## Code and tests
 
@@ -35,10 +35,10 @@ But `HC-A-MARKET` starts at **(69.5,36.7)** from the conflicting/unmerged Market
 
 `tests/meridian_bay_harbor_coast_review.test.mjs` adds **15** regression cases: immutable archived Git blob, exact two-crossing reproduction, corrected zero-crossing model, only two new vertices, source/variant semantics, detachable geometry, existing graph tail boundaries, unknown destinations, broken or duplicate reciprocal links, missing world/player, no service/ownership assertions, original SVG caution, and no save/turn changes.
 
-**QA gate:** report the exact PR HEAD and completed Node + Python + checkpoint workflow **only after** the run finishes. Independently compare all five narrative Git blobs and the repository inventory; preserve `CH-000` turn 9.
+**QA gate:** report the exact PR HEAD and completed Node + Python + checkpoint workflow **only after** the run finishes. Las ocho pruebas nuevas de sincronización SVG/JSON forman parte de la ejecución Node. Independently compare all five narrative Git blobs and the repository inventory; preserve `CH-000` turn 9.
 
 ## Open issues and next work
 
 Physical road, sidewalk, seawall and accessibility geometry remain hypotheses. The draft does not solve potential overlaps between provisional land-use patches, resolve #44 against #58, or establish shoreline orientation or an actual city boundary.
 
-A follow-up can produce a corrected *source-consistent SVG* based on the reviewed JSON, then test SVG/JSON coordinate equivalence in a separately scoped change. Do not silently use the historical uncorrected SVG as new visual proof.
+La representación revisada ya se reproduce con `node tools/render_harbor_coast_svg.mjs --write` y tiene una suite de equivalencia visual/JSON. Una revisión futura deberá validar gráficamente el ensamblaje con fragmentos vecinos y resolver el trazado directo #44/#58 antes de cualquier aceptación cartográfica. No utilizar el SVG histórico como si fuese el dibujo revisado.
