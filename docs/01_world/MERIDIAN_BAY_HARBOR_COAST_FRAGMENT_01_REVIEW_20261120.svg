@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 820" width="1020" height="820">
+<title>Meridian Bay: fragmento costero revisado (borrador no canónico)</title>
+<desc>VARIANTE REVISADA Y NO CANÓNICA: el polígono portuario HC-Z-FREIGHT ya no cruza la costa hipotética. Fuente: PR 66; son propuestas sin revisión física, navegación ni accesos certificados.</desc>
+<style>.h{font:700 24px Arial;fill:#263b42}.s{font:14px Arial;fill:#435a61}.l{font:600 13px Arial;fill:#293d43;paint-order:stroke;stroke:#faf7ee;stroke-width:4px}.t{font:11px monospace;fill:#667}</style>
+<rect width="1020" height="820" fill="#f8f7f0"/>
+<text class="h" x="75" y="35">Meridian Bay · bahía · fragmento 01 (revisado)</text><text class="s" x="75" y="55">Borrador no canónico · costa interna corregida · accesos físicos no verificados</text>
+<rect x="100" y="74" width="756" height="614" fill="#ece8dc" stroke="#b4bcb6"/>
+<path d="M 100 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="100" y="711">68</text>
+<path d="M 184 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="184" y="711">69</text>
+<path d="M 268 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="268" y="711">70</text>
+<path d="M 352 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="352" y="711">71</text>
+<path d="M 436 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="436" y="711">72</text>
+<path d="M 520 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="520" y="711">73</text>
+<path d="M 604 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="604" y="711">74</text>
+<path d="M 688 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="688" y="711">75</text>
+<path d="M 772 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="772" y="711">76</text>
+<path d="M 856 74 V 688" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="middle" x="856" y="711">77</text>
+<path d="M 100 688 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="692">32</text>
+<path d="M 100 626.6 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="630.6">33</text>
+<path d="M 100 565.2 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="569.2">34</text>
+<path d="M 100 503.8 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="507.8">35</text>
+<path d="M 100 442.4 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="446.4">36</text>
+<path d="M 100 381 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="385">37</text>
+<path d="M 100 319.6 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="323.6">38</text>
+<path d="M 100 258.2 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="262.2">39</text>
+<path d="M 100 196.8 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="200.8">40</text>
+<path d="M 100 135.4 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="139.4">41</text>
+<path d="M 100 74 H 856" stroke="#d5dbd8" stroke-width=".6"/><text class="t" text-anchor="end" x="86" y="78">42</text>
+<polygon points="696.4,74.0 671.2,117.0 633.4,160.0 641.8,209.1 587.2,252.1 562.0,295.0 528.4,344.2 549.4,374.9 562.0,405.6 503.2,430.1 511.6,467.0 452.8,497.7 444.4,528.4 461.2,577.5 503.2,620.5 520.0,688.0 856.0,688.0 856.0,74.0" data-map-id="HC-WATER" fill="#a9cfda"/>
+<polygon points="108.4,325.7 192.4,319.6 268.0,335.0 356.2,298.1 419.2,236.7 335.2,178.4 242.8,147.7 108.4,156.9" data-map-id="HC-Z-OLD" fill="#e1d4bc" opacity=".8" stroke="#807c71" stroke-width="1" stroke-dasharray="4 4"/>
+<polygon points="133.6,620.5 318.4,620.5 427.6,577.5 419.2,528.4 437.7,497.7 478.0,467.0 394.0,399.4 221.8,393.3 142.0,467.0" data-map-id="HC-Z-FREIGHT" fill="#d2c5b7" opacity=".8" stroke="#807c71" stroke-width="1" stroke-dasharray="4 4"/>
+<polygon points="398.2,491.5 452.8,497.7 490.6,460.8 476.3,420.9 423.4,414.8" data-map-id="HC-Z-RECLAIM" fill="#c5b6a2" opacity=".8" stroke="#807c71" stroke-width="1" stroke-dasharray="4 4"/>
+<polygon points="310.0,399.4 377.2,408.6 469.6,384.1 520.0,338.0 532.6,292.0 465.4,258.2 377.2,304.3" data-map-id="HC-Z-PUBLIC" fill="#cfdbc7" opacity=".8" stroke="#807c71" stroke-width="1" stroke-dasharray="4 4"/>
+<polyline points="520.0,688.0 503.2,620.5 461.2,577.5 444.4,528.4 452.8,497.7 511.6,467.0 503.2,430.1 562.0,405.6 549.4,374.9 528.4,344.2 562.0,295.0 587.2,252.1 641.8,209.1 633.4,160.0 671.2,117.0 696.4,74.0" data-map-id="HC-COAST" fill="none" stroke="#286d88" stroke-width="4"/>
+<polygon points="154.6,292.0 213.4,304.3 234.4,270.5 175.6,255.1" data-map-id="HC-B-01" fill="#b99c84" stroke="#514f4b" stroke-width="2"/>
+<polygon points="242.8,255.1 294.9,279.7 331.0,250.8 278.1,218.3" data-map-id="HC-B-02" fill="#c4b098" stroke="#514f4b" stroke-width="2"/>
+<polygon points="226.0,497.7 291.5,498.9 303.3,453.5 244.5,444.2" data-map-id="HC-B-03" fill="#9f9b92" stroke="#514f4b" stroke-width="2"/>
+<polygon points="367.1,574.4 424.2,571.3 436.0,523.4 373.0,527.1" data-map-id="HC-B-04" fill="#a5a39b" stroke="#514f4b" stroke-width="2"/>
+<polygon points="417.5,482.3 462.9,473.1 466.2,442.4 423.4,448.5" data-map-id="HC-B-05" fill="#c0b6a9" stroke="#514f4b" stroke-width="2"/>
+<polygon points="392.3,313.5 440.2,308.5 451.1,279.7 406.6,284.6" data-map-id="HC-B-06" fill="#bea98b" stroke="#514f4b" stroke-width="2"/>
+<polyline points="226.0,399.4 352.0,381.0" data-map-id="HC-A-MARKET" fill="none" stroke="#275f85" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none"/>
+<polyline points="276.4,328.8 352.0,381.0" data-map-id="HC-A-PLAZA" fill="none" stroke="#275f85" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none"/>
+<polyline points="108.4,184.5 165.5,216.4 236.1,211.5 299.1,252.1 378.9,264.3 442.7,242.9" data-map-id="HC-A-OLD" fill="none" stroke="#776751" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 5"/>
+<polyline points="116.8,552.9 192.4,541.9 255.4,549.8 311.7,519.2 339.4,485.4" data-map-id="HC-A-SERVICE" fill="none" stroke="#776751" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 5"/>
+<polyline points="179.8,362.6 236.9,371.8 283.1,399.4 331.0,390.2" data-map-id="HC-A-OLDTRACE" fill="none" stroke="#9c624c" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 7"/>
+<polyline points="352.0,381.0 412.5,377.3 459.5,341.1 490.6,298.1" data-map-id="HC-A-WALK" fill="none" stroke="#417a62" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 5"/>
+<circle cx="352" cy="381" r="7" fill="#1d526c" stroke="#fff" stroke-width="2"/>
+<text class="l" x="290" y="361">Harbor Walk</text>
+<text class="l" x="179.19999999999976" y="187.5900000000001">Manzanas antiguas</text>
+<text class="l" x="186" y="586.69">Patios y naves</text>
+<text class="l" x="427.6000000000005" y="453.2599999999999">Relleno tardío</text>
+<text class="l" x="443.6000000000005" y="294.25">Paseo público</text>
+<text class="l" x="658.1999999999998" y="429.05">Bahía (hipótesis)</text>
+<text class="l" x="249.39999999999952" y="471.38000000000017">Vial sin salida</text>
+<rect x="100" y="725" width="813" height="70" rx="6" fill="#fff" stroke="#d6dcd8"/>
+<path d="M120 746 h32" stroke="#275f85" stroke-width="5"/><text class="s" x="160" y="750">Conexiones existentes</text>
+<path d="M460 746 h32" stroke="#776751" stroke-width="4" stroke-dasharray="8 5"/><text class="s" x="500" y="750">Calles propuestas</text>
+<path d="M120 774 h32" stroke="#417a62" stroke-width="4" stroke-dasharray="8 5"/><text class="s" x="160" y="779">Paseo propuesto</text>
+<rect x="460" y="763" width="32" height="14" fill="#a9cfda"/><text class="s" x="500" y="779">Agua hipotética; límite revisable</text>
+<metadata id="harbor-review" data-original-svg-git-blob="56e6ba7a830fdc53e6dcff205871b3af57e7c04e" data-original-json-git-blob="81ef8da51951205394ba050fe6f867bfc00d7244" data-review-plan="MB-HARBOR-COAST-FRAGMENT-01-20261117" data-admitted="false"/>
+</svg>
