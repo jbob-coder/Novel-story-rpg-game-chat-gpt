@@ -21,3 +21,21 @@
 
 These records are source-linked developer observations, not new canon or a player turn.
 - [Full independent snapshot/journal recheck and corrections](../06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
+
+## Guía y catálogo de ramas — 2026-11-19
+
+- **[LEER PRIMERO: resumen de consolidación](LEER_PRIMERO_RAMAS_2026-11-19.md)**.
+- [Las 108 ramas originales: PR, SHA, dependencia, siguiente acción](INVENTARIO_RAMAS_2026-11-19.md).
+- [Inventario JSON de ramas y commits completos](INVENTARIO_RAMAS_2026-11-19.json).
+
+Nueva rama documental fuera del recuento; registrar su HEAD por separado. La revisión es de metadatos, no un merge ni la auditoría de cada línea.
+
+- [Seguimiento del desarrollo: para qué sirve cada sistema y qué falta](SEGUIMIENTO_DEL_DESARROLLO.md)
+
+- [Auditoría de 108 ramas: archivos, 20 descripciones precisadas, HEAD compartidos](VERIFICACION_DESCRIPCIONES_2026-11-19.md)
+
+- [Matriz de brechas de código para las 108 ramas (28 módulos / 34 suites ausentes por ruta)](BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
+
+- [Reconciliación del HEAD narrativo y nuevos faltantes](CURRENT_STATE_RECHECK_2026-11-20.md)
+
+- [Consolidación efectiva de la base narrativa en main (PR #2)](MAIN_CONSOLIDATION_2026-11-20.md)

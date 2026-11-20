@@ -1,0 +1,120 @@
+{
+  "schema": "branch-no-pr-commits/v1",
+  "note": "HEAD commit message and changed paths only, not full history or tests",
+  "rows": [
+    {
+      "name": "work/living-world-reliability-20261112",
+      "head_sha": "3a690c87ffd7800e277613da4c7a2df4a781a0c4",
+      "doc_use": "Explorar confiabilidad del motor; confirmar su contenido antes de integrarlo.",
+      "head_commit_message": "docs: record verified Living World reliability QA, recovery gate and unchanged canon",
+      "date": "2026-11-12T22:33:43Z",
+      "changed_paths": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md"
+      ],
+      "file_count": 4,
+      "ok": true
+    },
+    {
+      "name": "work/living-world-time-interval-hardening-20261112",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "doc_use": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "head_commit_message": "docs: record corrected calendar-window guard and 175/175 reliability QA",
+      "date": "2026-11-12T22:40:58Z",
+      "changed_paths": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+      ],
+      "file_count": 4,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-atlas-20261112",
+      "head_sha": "5cbf433e5cb1e59945ba5cf3d79a3e127d9406b6",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "head_commit_message": "docs(world): prioritize Meridian Bay while allowing sourced off-map references",
+      "date": "2026-11-13T02:19:20Z",
+      "changed_paths": [
+        "docs/01_world/MERIDIAN_BAY_ATLAS_BASIC_20261112.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-core-integrated-atlas-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "head_commit_message": "Index clinic corridor regression tests",
+      "date": "2026-11-18T01:45:24Z",
+      "changed_paths": [
+        "tests/INDEX.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-world-fix-20261112",
+      "head_sha": "14421a9d883a0d9b1a964ff2bcb7478a3e2e5289",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "head_commit_message": "Reject player-event world location creation; keep place observation as knowledge",
+      "date": "2026-11-13T03:14:02Z",
+      "changed_paths": [
+        "tools/state_changes.mjs"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-railgarden-marketrow-20261112",
+      "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "head_commit_message": "Document critical map re-review and correct site versus reference counts",
+      "date": "2026-11-13T03:01:52Z",
+      "changed_paths": [
+        "docs/01_world/MERIDIAN_BAY_DISTRICT_BLUEPRINT_20261112.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-railgarden-regional-map-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "head_commit_message": "Index clinic corridor regression tests",
+      "date": "2026-11-18T01:45:24Z",
+      "changed_paths": [
+        "tests/INDEX.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-road-growth-slice3-20261116",
+      "head_sha": "61818e07f9602486bf6d42ff52758d522b2ddea9",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "head_commit_message": "world: draft evidence-grounded Crosswater to Harbor Walk connector",
+      "date": "2026-11-16T17:07:46Z",
+      "changed_paths": [
+        "docs/01_world/MERIDIAN_BAY_WATERFRONT_STORY_EVIDENCE_20261116.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/story-rpg-foundation",
+      "head_sha": "63d1c1e430291ac20b4063333aacd990b38f8dfc",
+      "doc_use": "Preparar la base de código y reglas del proyecto antes de su integración.",
+      "head_commit_message": "docs: define phased design process before creating game canon",
+      "date": "2026-11-10T01:10:42Z",
+      "changed_paths": [
+        "docs/PROJECT_PLAN.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    }
+  ]
+}

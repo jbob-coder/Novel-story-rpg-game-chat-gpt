@@ -208,6 +208,37 @@
       "tests/integration_npc_needs_plans.test.mjs",
       "tests/meridian_bay_services.test.mjs",
       "tests/meridian_bay_phase2_integration.test.mjs"
+    ],
+    "branch_audit_2026_11_19": [
+      "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.json",
+      "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md",
+      "docs/00_start/INVENTARIO_RAMAS_2026-11-19.json",
+      "docs/00_start/INVENTARIO_RAMAS_2026-11-19.md",
+      "docs/00_start/LEER_PRIMERO_RAMAS_2026-11-19.md",
+      "docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md",
+      "docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.json",
+      "docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md",
+      "docs/00_start/branch_checks/LOT_01.json",
+      "docs/00_start/branch_checks/LOT_02.json",
+      "docs/00_start/branch_checks/LOT_03.json",
+      "docs/00_start/branch_checks/LOT_04.json",
+      "docs/00_start/branch_checks/LOT_05.json",
+      "docs/00_start/branch_checks/LOT_06.json",
+      "docs/00_start/branch_checks/LOT_07.json",
+      "docs/00_start/branch_checks/LOT_08.json",
+      "docs/00_start/branch_checks/LOT_09.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_01.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_02.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_03.json",
+      "docs/00_start/branch_checks/PR_FILES_01.json",
+      "docs/00_start/branch_checks/PR_FILES_02.json",
+      "docs/00_start/branch_checks/PR_FILES_03.json",
+      "docs/00_start/branch_checks/PR_FILES_04.json",
+      "docs/00_start/branch_checks/PR_FILES_05.json"
+    ],
+    "branch_audit_2026_11_20": [
+      "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
+      "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
     ]
   },
   "repository_checkpoints": [
