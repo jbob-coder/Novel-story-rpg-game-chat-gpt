@@ -28,6 +28,10 @@
 - **P3, Meridian Bay:** integrar gradualmente diseño de carreteras, frentes urbanos, costa y regiones; no confundir lugar diseñado con visita o servicio probado.
 - **P4, higiene del repositorio:** resolver ramas sin PR, redundancias e inventarios antiguos; mantener historial intacto salvo decisión explícita.
 
+## Seguimiento y para qué sirve
+
+La [tabla de las 108 ramas](INVENTARIO_RAMAS_2026-11-19.md) incluye ahora la columna **«Para qué sirve»**, para decidir qué aprovechar y evitar repetir código. Para saber **qué falta y quién debe verificarlo**, utilizar el [registro de seguimiento del desarrollo](SEGUIMIENTO_DEL_DESARROLLO.md); actualizar cada entrada con fuente, SHA, pruebas, bloqueo y siguiente paso. Las descripciones de uso inferidas por nombre son propuestas, no verificaciones de código.
+
 ## Precauciones
 
 **Este informe no ejecuta el juego ni valida semánticamente cada archivo de las 108 ramas.** Sus conclusiones por rama usan metadatos de GitHub y, cuando no hay PR, el nombre. Un PR fusionado puede apuntar a una base que no es `main`. Prohibido convertir pruebas sintéticas en la historia, fusionar el journal, cambiar los cinco archivos de partida, avanzar Jack o inventar progreso.
