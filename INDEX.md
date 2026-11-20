@@ -36,3 +36,5 @@ Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work
 - [Seguimiento del desarrollo, uso y tareas pendientes](docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md)
 
 - [Auditoría de ramas y descripciones contrastadas con GitHub (2026-11-19)](docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md)
+
+- [Comparación estática de las 108 ramas con el código narrativo y riesgos de integración](docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md)
