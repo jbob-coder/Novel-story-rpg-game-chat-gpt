@@ -37,3 +37,7 @@ La [tabla de las 108 ramas](INVENTARIO_RAMAS_2026-11-19.md) incluye ahora la col
 **Este informe no ejecuta el juego ni valida semánticamente cada archivo de las 108 ramas.** Sus conclusiones por rama usan metadatos de GitHub y, cuando no hay PR, el nombre. Un PR fusionado puede apuntar a una base que no es `main`. Prohibido convertir pruebas sintéticas en la historia, fusionar el journal, cambiar los cinco archivos de partida, avanzar Jack o inventar progreso.
 
 **Última decisión recomendada:** documentar y revisar la base consolidada en una PR a `main`; integrar los borradores restantes por piezas pequeñas, con diffs y CI.
+
+## Verificación individual de las ramas — 2026-11-19
+
+El [informe de cotejo de 108 ramas](VERIFICACION_DESCRIPCIONES_2026-11-19.md) contrasta los árboles Git de todas las ramas, las listas de archivos cambiados de 79 PR y 29 commits HEAD sin PR. Se precisaron 20 descripciones y detectaron 22 grupos de nombres que comparten un HEAD. **La identidad de archivos está cotejada; no se han ejecutado pruebas funcionales nuevas de cada rama.**
