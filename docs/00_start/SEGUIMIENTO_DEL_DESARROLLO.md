@@ -68,3 +68,11 @@ Se inspeccionaron seis ramas de carreteras y fragmentos de Meridian Bay (`road-g
 **Lote 04 (44 ramas):** 32 QA, cinco journal, tres backups y cuatro audit preservados. 18 QA comparten HEAD con ramas work; tres QA tienen diferencias en los cinco archivos de partida y el resto al menos un blob narrativo diferente. No importar estados históricos ni confundir alias con nuevas funcionalidades. [Registro individual y política de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
 
 Estos lotes son **evidencia de inventario/inspección**, no una certificación de 108 ramas. Falta comparar y probar propuestas work restantes, modernizar adaptadores seleccionados y decidir qué geometría prevalece; no tocar la partida sin una acción real del jugador.
+
+### Lote de inspección 05 (2026-11-20): reconciliación de trabajo restante
+
+Se clasificaron las **39 ramas históricas work** no documentadas con detalle en los lotes 01–03, usando SHA en vivo, capturas de diffs de 28 PR históricas y últimos commits de 11 ramas sin PR. Se revisaron además las fuentes del prototipo web con localStorage, preview de paseos, blueprint de distritos, plano de escala no canónico, obligaciones persistentes y prueba de planes con dos NPC. [Registro por cada rama](BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md).
+
+**Cobertura de fichas individuales:** 108/108 ramas originales documentadas por procedencia, archivos/deltas y dictamen de auditoría en lotes 01–05 (63 `work/` + 44 otras + `main`). Esto **no** equivale a 108 pruebas funcionales ni significa que 108 ramas deban fusionarse. Las cinco ramas nuevas anteriores a la documentación también están en el registro JSON de 113.
+
+**Pendiente:** ejecutar y modernizar las suites de candidatos útiles en el motor/estado vigente; resolver el conflicto de trazado #44/#58 y los validadores obsoletos de tiendas/servicios; no retroceder el checkpoint ni alterar el turno 9.
