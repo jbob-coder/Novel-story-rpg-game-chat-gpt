@@ -60,3 +60,11 @@ Revisión estática de `work/meridian-bay-causal-routines-20261112`, `work/merid
 ### Lote de inspección funcional 02 (2026-11-20)
 
 Se inspeccionaron seis ramas de carreteras y fragmentos de Meridian Bay (`road-growth-slice1/2/3`, `harbor-coast-fragment-01/02`, `market-crosswater-land-fragment-03`), incluyendo cinco PR con estado reconsultado (#34, #36, #66, #67, #69). Se verificaron HEAD/árboles, datos de geometría, dependencias y archivos de pruebas, pero **no** se ejecutaron las suites de los HEAD históricos. Slice3 agrega solo dos JSON al HEAD de slice2, sin código ni tests propios; las costas y el fragmento terrestre continúan explícitamente como propuestas no admitidas. [Evidencia y próximos pasos](BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md).
+
+### Lotes de inspección 03 y 04 (2026-11-20)
+
+**Lote 03 (14 ramas con PR #38–#64):** módulos, archivos de diseño y tests revisados; 108 declaraciones `test()` identificadas en los 14 archivos de prueba históricos y 14 workflows históricos `completed/success` verificados por HEAD. No se reejecutaron esos tests en `main`. Se detectó duplicación de geometría #40/#52 y #42/#56; **conflicto geométrico #44/#58** (dos trazados distintos para la conexión directa Market–Harbor). Los validadores antiguos de comercios y clínica que requieren lugares no admitidos son incompatibles con las cinco ubicaciones ya incorporadas al `main` (15 ubicaciones guardadas). [Informe](BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md).
+
+**Lote 04 (44 ramas):** 32 QA, cinco journal, tres backups y cuatro audit preservados. 18 QA comparten HEAD con ramas work; tres QA tienen diferencias en los cinco archivos de partida y el resto al menos un blob narrativo diferente. No importar estados históricos ni confundir alias con nuevas funcionalidades. [Registro individual y política de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
+
+Estos lotes son **evidencia de inventario/inspección**, no una certificación de 108 ramas. Falta comparar y probar propuestas work restantes, modernizar adaptadores seleccionados y decidir qué geometría prevalece; no tocar la partida sin una acción real del jugador.
