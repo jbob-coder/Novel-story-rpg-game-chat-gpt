@@ -3,6 +3,8 @@ import {validateTravelEstimate} from './living_world_travel.mjs';
 import {allEvents} from './chapter_history.mjs';
 import {validateNPCCommitments,validateNPCCommitmentChange} from './living_world_obligations.mjs';
 import {validateNPCPlans,validateNPCPlanChange} from './world_plans.mjs';
+import {validateNPCNeeds,validateNPCNeedChange,validateNPCNeedEvidence} from './living_world_needs.mjs';
+import {validateNPCServiceCases,validateNPCServiceCaseChange,verifyNPCServiceHistory} from './meridian_bay_services.mjs';
 import {applyLocationStateChange,verifyLocationStateHistory} from './location_state.mjs';
 const requireFact = (ok, message) => { if (!ok) throw new Error(message); };
 const copy = value => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -108,6 +110,25 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       validateNPCCommitmentChange({before:change.before,after:change.after,eventId:record.id});
       actor.commitments=copy(change.after);
       record.state_changes.push({actor_id:actorId,field,before:copy(change.before),after:copy(change.after)});
+    } else if (field === 'needs') {
+      requireFact(actorId!==state.player.id,'Only NPC needs may change');
+      requireFact(equal(actor.needs??[],change.before),'Stale NPC needs');
+      validateNPCNeedEvidence({event:record,review:change.review,
+        before:change.before,after:change.after});
+      validateNPCNeedChange({before:change.before,after:change.after,eventId:record.id,
+        resources:actor.resources??{}});
+      actor.needs=copy(change.after);
+      record.state_changes.push({actor_id:actorId,field,before:copy(change.before),
+        after:copy(change.after),review:copy(change.review)});
+    } else if (field === 'service_cases') {
+      requireFact(actorId!==state.player.id,'Only NPC service cases may change');
+      requireFact(equal(actor.service_cases??[],change.before),'Stale NPC service cases');
+      validateNPCServiceCaseChange({before:change.before,after:change.after,actorId,
+        locations:state.world.locations,needs:actor.needs??[],eventId:record.id,
+        state,event:record,review:change.review});
+      actor.service_cases=copy(change.after);
+      record.state_changes.push({actor_id:actorId,field,before:copy(change.before),
+        after:copy(change.after),review:copy(change.review)});
     } else if (field === 'independent_plan') {
       requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
@@ -151,10 +172,32 @@ function applyStateChanges(state, record, changes = []) {
 function verifyStateChanges(snapshot) {
   const state = snapshot.state, seen = new Map(), ids = new Set();
   const events=allEvents(snapshot),eventIds=new Set(events.map(event=>event.id)),
-    actors=actorIds(state),planIds=new Set();
+    actors=actorIds(state),planIds=new Set(),needIds=new Set(),serviceIds=new Set();
+  // Reconstruct resources at each recorded need change. Final resources may
+  // legitimately have been consumed since a historical reference was created.
+  const resourceContext=new Map([state.player,...Object.values(state.world.actors)]
+    .map(actor=>[actor.id,copy(actor.resources??{})]));
+  for(const event of [...events].reverse())if(event.turn>6)
+    for(const change of [...event.state_changes].reverse())
+      if(change.field==='resources')resourceContext.set(change.actor_id,copy(change.before));
   for (const actor of [state.player, ...Object.values(state.world.actors)]) {
     if(actor.id!==state.player.id&&actor.commitments!==undefined)
       validateNPCCommitments(actor.commitments,{eventIds});
+    if(actor.id!==state.player.id&&actor.needs!==undefined){
+      validateNPCNeeds(actor.needs,{eventIds});
+      for(const need of actor.needs){
+        requireFact(!needIds.has(need.id),'Duplicate NPC need ID across actors');
+        needIds.add(need.id);
+      }
+    }
+    if(actor.id!==state.player.id&&actor.service_cases!==undefined){
+      validateNPCServiceCases(actor.service_cases,{actorId:actor.id,
+        locations:state.world.locations,needs:actor.needs??[],eventIds});
+      for(const item of actor.service_cases){
+        requireFact(!serviceIds.has(item.id),'Duplicate service case ID across actors');
+        serviceIds.add(item.id);
+      }
+    }
     if(actor.id!==state.player.id&&actor.plans!==undefined){
       validateNPCPlans(actor.plans,{actorId:actor.id,eventIds,actorIds:actors,state});
       for(const plan of actor.plans){
@@ -162,7 +205,7 @@ function verifyStateChanges(snapshot) {
         planIds.add(plan.id);
       }
     }
-    for(const field of ['plans','commitments'])for(const item of actor[field]??[]){
+    for(const field of ['plans','commitments','needs','service_cases'])for(const item of actor[field]??[]){
       const origin=events.find(e=>e.id===item.source_event_id);
       const latest=events.find(e=>e.id===item.last_change_event_id);
       requireFact(origin?.actor_ids[0]===actor.id&&latest?.actor_ids[0]===actor.id,
@@ -187,7 +230,7 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases'].includes(field), 'Unknown tracked change field');
       // The world-level history is keyed by location rather than event actor;
       // different people may cause consecutive changes to the same building.
       if(field==='location_state')continue;
@@ -208,6 +251,14 @@ function verifyStateChanges(snapshot) {
         validateNPCCommitmentChange({before:change.before,after:change.after,eventId:event.id});
         validateNPCCommitments(change.after,{eventIds});
       }
+      if(field==='needs'){
+        requireFact(change.actor_id!==state.player.id,'Only NPC needs may change');
+        validateNPCNeedEvidence({event,review:change.review,before:change.before,after:change.after});
+        validateNPCNeedChange({before:change.before,after:change.after,eventId:event.id,
+          resources:resourceContext.get(change.actor_id)??{}});
+        validateNPCNeeds(change.after,{eventIds});
+      }
+      if(field==='resources')resourceContext.set(change.actor_id,copy(change.after));
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
         continue;
@@ -227,6 +278,7 @@ function verifyStateChanges(snapshot) {
     requireFact(equal(actual, expected), `Saved state differs from recorded ${field} effect`);
   }
   verifyLocationStateHistory(snapshot);
+  verifyNPCServiceHistory(snapshot);
   return true;
 }
 

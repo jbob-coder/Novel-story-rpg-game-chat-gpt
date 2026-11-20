@@ -2,6 +2,15 @@
 
 ## Source of truth and relationship graph
 
+**Optional NPC work records:** actor-owned `needs` and `service_cases` use
+reviewed event changes, qualitative statuses and immutable source/history
+references. Their `change.review` retains the actual observer and causal source;
+service reviews also record work minutes within the real turn budget. Replay
+uses global chapter events and the historical actor/location context. These
+records never seed themselves into a checkpoint or grant Jack knowledge.
+See the [Phase 2 contract](01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md) for the
+supported service scope, privacy limits and evidence requirements.
+
 **Multi-chapter extension:** chapter files remain local collections; turn and
 EV/TXT counters are global. `history.completed_chapters` stores immutable closed
 chapter descriptors. See [chapter boundaries](CHAPTER_PROTOCOL.md) for their

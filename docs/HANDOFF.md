@@ -1,3 +1,27 @@
+## NPC work increment — 2026-11-20
+
+This code increment adds event-backed NPC needs and three existing work-case
+functions: terminal dispatch review, Crosswater maintenance review and Café
+Bruma sales-note reconciliation. Read [the Phase 2 contract](01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md)
+before drafting changes. The current five-file checkpoint is unchanged from
+verified world admission `ca30f1a3`; the canonical journal still identifies that
+operation. Do not fabricate a new journal entry for this code-only update.
+
+Validation: 422 Node tests, 47 Python tests and checkpoint validator passed.
+A synthetic private need/case remains blocked across CH-001, later resolves,
+and recovers the same interrupted commit without leaking prose or repairing
+unrelated equipment. New need/service changes retain actor observations; replay
+checks historical resources, presence, closures and the player's time budget.
+All persisted open needs/cases are reviewed privately even when their actors
+are outside the nearest-routine selection. No automatic decay or background work.
+
+Continue with social encounters and relationship consequences or a similarly
+bounded civilian workflow. The owner still controls every real Jack action.
+CH-000 turn 9, Day -29 morning, EV-000029 / TXT-000020 remain the live pointers;
+check fresh HEAD/journal/manifest before gameplay. Main is unchanged.
+
+---
+
 ## Meridian Bay admission complete — verified 2026-11-18, handoff 2026-11-19
 
 Current authoritative world-admission commit: `ca30f1a3eba8b56cf0f8599eb04d35ba564b911e`.

@@ -200,6 +200,14 @@
       "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
       "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
       "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json"
+    ],
+    "npc_work_increment": [
+      "docs/01_world/MERIDIAN_BAY_PHASE2_NPC_WORK.md",
+      "tools/living_world_needs.mjs",
+      "tools/meridian_bay_services.mjs",
+      "tests/integration_npc_needs_plans.test.mjs",
+      "tests/meridian_bay_services.test.mjs",
+      "tests/meridian_bay_phase2_integration.test.mjs"
     ]
   },
   "repository_checkpoints": [
