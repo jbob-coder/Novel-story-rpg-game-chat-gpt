@@ -25,3 +25,10 @@
 **This engineering snapshot is navigation, not the live story checkpoint.** Always confirm Git HEAD, journal, game/SAVE_MANIFEST.json and canonical five files first.
 - [Independent checkpoint correctness and journal integrity re-audit](docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
 - [D-061 second independent recheck and direct recovery integrity](docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md)
+
+## Guía actual de ramas e integración (2026-11-19)
+
+- [LEER PRIMERO: situación, documentación y pendientes](docs/00_start/LEER_PRIMERO_RAMAS_2026-11-19.md)
+- [Catálogo de 108 ramas con sus PR y acciones](docs/00_start/INVENTARIO_RAMAS_2026-11-19.md)
+
+Estas notas no alteran el checkpoint. La fuente narrativa continúa siendo `work/chat-narrative-foundation`; `main` no contiene todavía esa rama.
