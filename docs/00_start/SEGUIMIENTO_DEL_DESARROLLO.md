@@ -43,3 +43,12 @@ La rama narrativa avanzó a `2820cca1bd5140ef8a9f2c94cf986feef0ef19cc` e integr�
 ## Consolidación efectiva en main — 2026-11-20
 
 PR #2 **fusionada** y comparada: `main` @ `7c45dc46f2651d8d4375435af704b71643ebdae5` recibió exactamente los 163 archivos de la fuente `2820cca1` sin diferencia blob. El guardado canónico sigue en `work/chat-narrative-foundation`. Ver [acta de integración](MAIN_CONSOLIDATION_2026-11-20.md); las filas del 19-11 son históricas.
+
+
+## Verificación en vivo de cada rama — 2026-11-20 (BR-03)
+
+Se reconsultaron los HEAD de las 108 ramas del inventario: 108 presentes, **106 SHA estables**, dos avances legítimos (`main` y `work/chat-narrative-foundation`). Además existen cinco ramas creadas después del inventario, sin incluir la rama independiente de esta auditoría. Se cotejaron sus registros de rutas y blobs frente a `main` @ `019175c6463f`: **26** nombres de `tools/` y **32** de `tests/` ausentes en el consolidado (diferencias de archivo, no pruebas de implementación). Se preservan las 108 fichas originales como instantánea inmutable; la comparación actualizada y el dictamen individual de las 113 ramas están en [informe](BRANCH_LIVE_VERIFICATION_2026-11-20.md) y [JSON](BRANCH_LIVE_VERIFICATION_2026-11-20.json).
+
+La revisión detallada de código se concentró en la cola diferida, PR #11 (agendas), #12 (decisiones) y #13 (relaciones); siguen pendientes integración y pruebas por SHA cuando corresponda. Los estados en vivo de PR #10–#15, #27, #33, #78–#80 y #82 fueron reconsultados. **La verificación completa funcional por rama NO está terminada.** La nueva documentación se mantiene en rama/PR aislada, sin alterar canon ni los cinco archivos de checkpoint. La CI exacta de esta rama debe anotarse tras ejecutarse.
+
+**Próximo paso:** completar revisión funcional de decisiones/social/deferred, luego ramas cartográficas por dependencias y finalmente custodia de QA/journal/backup; documentar para cada HEAD archivos, contratos, riesgos, test y decisión de integración.
