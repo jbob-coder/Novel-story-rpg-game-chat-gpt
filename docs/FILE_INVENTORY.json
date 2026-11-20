@@ -236,6 +236,10 @@
       "docs/00_start/branch_checks/PR_FILES_04.json",
       "docs/00_start/branch_checks/PR_FILES_05.json"
     ],
+    "branch_live_verification_2026_11_20": [
+      "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.md",
+      "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.json"
+    ],
     "branch_audit_2026_11_20": [
       "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
       "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
