@@ -47,3 +47,6 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Lote 03: 14 ramas de corredores y accesos, CI histórica y conflictos de geometría](BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md).
 - [Lote 04: 44 ramas QA, journal, backup y audit — reglas de custodia](BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md).
 - [Lote 05: clasificación de las 39 ramas work restantes y cierre del inventario histórico](BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md).
+
+- [Lote 06: verificación ejecutable de inventario y conflictos de trazados](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md).
+- [Seis candidatos de geometría con commit, blob y coordenadas de origen](BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json).
