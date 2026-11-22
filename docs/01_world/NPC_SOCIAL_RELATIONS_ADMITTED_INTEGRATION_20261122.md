@@ -28,3 +28,14 @@ Se conserva el sistema de novela interactiva (no XP), la separación entre reali
 ## Siguiente fase sugerida
 
 Verificar el resultado del CI y los SHA finales; corregir cualquier fallo sin desactivar las pruebas. Si pasa, mantener un draft PR apilado sobre #98 y realizar una QA-only PR con base `main` para disparar workflows si hace falta, **cerrándola sin merge**. Posteriormente evaluar la persistencia independiente de observaciones causales y la revalidación de fuente a lo largo de capítulos sin duplicar los eventos ni exponer secretos.
+
+
+## Verificación de CI sobre código y evidencia de readback
+
+- [GitHub Actions #45081453706](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45081453706): **completed / success** sobre el commit de código `d5ce244f245f044171a03cf728d18e4a00140f48`, compartido por PR de desarrollo #108 y PR QA-only #109.
+- JavaScript `node --test tests/*.test.mjs`: **470/470 PASS**, 0 fallos, 0 omitidos (incluye 19 casos sociales).
+- Python `python -m unittest discover -s tests -p 'test_*.py' -v`: **47/47 PASS**.
+- `python tools/validate_state.py`: **PASS** (checkpoint, cronología, eventos y estado heredado).
+- Árbol Git comprobado por SHA recursivo: **199 archivos / 199 rutas del inventario**, sin faltantes/sobrantes. Comparación con PR #98: **3 rutas nuevas, 6 modificadas, 0 eliminadas**. Los cinco blobs narrativos son idénticos a `main` y a PR #98.
+- Esta documentación adicional no cambia lógica ni partida. Si el documento genera un commit posterior, se debe verificar **también** el HEAD definitivo en el workflow, sin inferir que la pasada anterior lo cubrió.
+- **No** se ha demostrado que haya ocurrido un encuentro real, que un mensaje privado haya llegado a Jack, que se haya ejecutado un guardado de turno vivo o que PR #108 se pueda fusionar antes de PR #98/#82.
