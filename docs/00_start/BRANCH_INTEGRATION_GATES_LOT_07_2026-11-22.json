@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "scope": "2026-11-22 remote read-only snapshot, not floating integration authority",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "baseline": {
+    "branch": "main",
+    "sha": "019175c6463ff31807a0f7013d91299add94913c",
+    "canonical_blobs": {
+      "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+      "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+      "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+      "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+      "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+    }
+  },
+  "source": "GitHub PR metadata, complete Git trees, compare API and Actions run/jobs API",
+  "observed_open_prs_total": 42,
+  "pr_records": [
+    {
+      "pr": 82,
+      "category": "npc_agenda",
+      "head_branch": "work/npc-causal-agenda-20261120",
+      "head_sha": "53f6dcb77965a62cf896be22cd1d97cef2088761",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "gate": "Review interval ownership and test with current NPC work code before selecting adoption.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44792327502,
+        "head_sha": "53f6dcb77965a62cf896be22cd1d97cef2088761",
+        "head_branch": "work/npc-causal-agenda-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 6,
+      "changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/NPC_CAUSAL_AGENDA_INTEGRATION_20261120.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/npc_causal_agenda.test.mjs",
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_diagnostics.mjs"
+      ]
+    },
+    {
+      "pr": 83,
+      "category": "branch_custody",
+      "head_branch": "docs/live-branch-verification-20261120",
+      "head_sha": "5db66f51265dcb86d80f12cd80f4c567f5a4bb4a",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "gate": "Integrate as audit evidence; keep 108/113 as dated counts, not live floating branch count.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44802352081,
+        "head_sha": "5db66f51265dcb86d80f12cd80f4c567f5a4bb4a",
+        "head_branch": "docs/live-branch-verification-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 14,
+      "changed_paths": [
+        "docs/00_start/BRANCH_CUSTODY_AUDIT_LOT_04_2026-11-20.md",
+        "docs/00_start/BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md",
+        "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_01_2026-11-20.md",
+        "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_02_2026-11-20.md",
+        "docs/00_start/BRANCH_FUNCTIONAL_AUDIT_LOT_03_2026-11-20.md",
+        "docs/00_start/BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json",
+        "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.json",
+        "docs/00_start/BRANCH_LIVE_VERIFICATION_2026-11-20.md",
+        "docs/00_start/BRANCH_REMAINING_WORK_AUDIT_LOT_05_2026-11-20.md",
+        "docs/00_start/INDEX.md",
+        "docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/branch_audit_integrity.test.mjs"
+      ]
+    },
+    {
+      "pr": 84,
+      "category": "railgarden_grocery",
+      "head_branch": "work/meridian-grocery-frontage-admitted-20261120",
+      "head_sha": "ea0dcea84ff851af762454d13241fc3d597b58cc",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "gate": "Preserve null hours/travel; reconcile overlapping index/inventory edits with PR #85.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44804587891,
+        "head_sha": "ea0dcea84ff851af762454d13241fc3d597b58cc",
+        "head_branch": "work/meridian-grocery-frontage-admitted-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 8,
+      "changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_GROCERY_FRONTAGE_ADAPTATION_20261120.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_FRONTAGE_REVIEW_20261120.json",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_grocery_frontage.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_grocery_frontage.mjs"
+      ]
+    },
+    {
+      "pr": 85,
+      "category": "railgarden_clinic",
+      "head_branch": "work/meridian-clinic-frontage-admitted-20261120",
+      "head_sha": "dc4bb38858aa271f5b5470dfe7322015ce2eca48",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "gate": "Rebase/reconcile after #84 and retest combined index + inventory without changing places.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44809457137,
+        "head_sha": "dc4bb38858aa271f5b5470dfe7322015ce2eca48",
+        "head_branch": "work/meridian-clinic-frontage-admitted-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 8,
+      "changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CLINIC_FRONTAGE_ADAPTATION_20261120.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_FRONTAGE_REVIEW_20261120.json",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_clinic_frontage.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_clinic_frontage.mjs"
+      ]
+    },
+    {
+      "pr": 86,
+      "category": "harbor_coast01",
+      "head_branch": "work/harbor-coast-fragment-review-20261120",
+      "head_sha": "79cca5c6f9106b904c5fb371fea28e183b9509ad",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "gate": "Blocked for physical-map approval: candidate old street intersects building HC-B-02 in 3 findings; PR description contains prior HEAD 695a5bea.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44811439451,
+        "head_sha": "79cca5c6f9106b904c5fb371fea28e183b9509ad",
+        "head_branch": "work/harbor-coast-fragment-review-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 13,
+      "changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_REVIEW_20261120.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/harbor_coast_svg_sync.test.mjs",
+        "tests/meridian_bay_harbor_coast_review.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_harbor_coast_review.mjs",
+        "tools/render_harbor_coast_svg.mjs"
+      ]
+    },
+    {
+      "pr": 87,
+      "category": "three_region_seams",
+      "head_branch": "work/meridian-three-region-seam-qa-20261120",
+      "head_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+      "base_branch": "work/harbor-coast-fragment-review-20261120",
+      "base_sha": "79cca5c6f9106b904c5fb371fea28e183b9509ad",
+      "gate": "Stacked on #86; CI was exact-SHA QA clone. Preserve #44/#58 competing routes and #56 candidate building crossings; do not independently merge.",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "git_tree_complete": true,
+      "ci": {
+        "run_id": 44813211142,
+        "head_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+        "head_branch": "qa/meridian-three-region-seam-ci-20261120",
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          "JavaScript unit and integration suites",
+          "Python regression suite",
+          "Verify canonical saved checkpoint"
+        ]
+      },
+      "canonical_blobs_match_baseline": true,
+      "changed_file_count": 13,
+      "changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_THREE_REGION_SEAM_AUDIT_20261120.md",
+        "docs/01_world/SOURCE_PR44_MARKET_HARBOR_20261120.json",
+        "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json",
+        "docs/01_world/SOURCE_PR58_MARKET_HARBOR_20261120.json",
+        "docs/01_world/SOURCE_PR67_COAST_01_20261120.json",
+        "docs/01_world/SOURCE_PR67_COAST_02_20261120.json",
+        "docs/01_world/SOURCE_PR69_LAND_03_20261120.json",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_three_region_seams.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_three_region_seams.mjs"
+      ]
+    }
+  ]
+}

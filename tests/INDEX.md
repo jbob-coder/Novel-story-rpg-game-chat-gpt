@@ -66,3 +66,5 @@ These files already existed in the authoritative source and are listed here for 
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
 
 - [Pruebas reproducibles de las 108 ramas originales y conflictos cartográficos](branch_audit_integrity.test.mjs)
+
+- [Puertas ejecutables de integración PR #82–#87, checkpoint y SHA](branch_integration_gates_lot07.test.mjs).
