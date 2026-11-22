@@ -57,3 +57,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Comparación de tres fragmentos y rutas históricas con blobs de origen](meridian_bay_three_region_seams.mjs)
 
 - [Regenerate and verify PR #67 Coast01 candidate SVG without story writes](render_harbor_coast_pr67_candidate.mjs)
+- [Read-only Harbor corridor contact and source-provenance audit](meridian_corridor_contact_audit.mjs)
