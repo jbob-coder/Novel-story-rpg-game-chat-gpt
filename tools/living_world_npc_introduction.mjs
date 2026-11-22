@@ -115,6 +115,18 @@ export function verifyNPCIntroductionHistory(snapshot,events=allEvents(snapshot)
   const entry=event.state_changes?.find(c=>c.field==='npc_introduction');
   if(event.kind!=='npc_introduction'){
    ensure(!entry,'NPC introduction effect requires its dedicated event kind');
+   // The final world contains every admitted NPC; that must not retroactively
+   // make a future actor available to earlier event actors, witnesses or links.
+   const referenced=[...(event.actor_ids??[]),...(event.known_to??[]),
+    ...(event.social_context?.participant_ids??[])];
+   for(const change of event.state_changes??[]){
+    if(change.actor_id!==undefined)referenced.push(change.actor_id);
+    if(change.target_actor_id!==undefined)referenced.push(change.target_actor_id);
+   }
+   for(const id of referenced){
+    if(actorId(id))ensure(known.has(id),
+      'Event references a future NPC before reviewed admission');
+   }
    continue;
   }
   ensure(Number(event.id.slice(3))>sealedUntil,
