@@ -41,7 +41,7 @@ test('frozen M1/P1 evidence is exactly regenerated from immutable narrative and 
 
 test('seven source Git blobs are pinned, including actual game and played transcript',()=>{
  const table=[
- ['../game/STATE.json','state','3f4e9c98a7211068faafd31d0a0acbd4260ef589'],
+ ['../game/STATE.json','state','3f4e9c98a7211068faefd31d0a0acbd4260ef589'],
  ['../game/STARTING_LOCATIONS.md','places','0c1717e8f63d86e95e1aed431927f5a092c5b061'],
  ['../chapters/CH-000.transcript.json','story','1350916ead7fb1f2f15fdd635dda42e69a0a3fed'],
  ['../docs/01_world/MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.json','ledger','a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b'],
