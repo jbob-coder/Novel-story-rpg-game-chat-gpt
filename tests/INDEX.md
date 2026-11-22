@@ -74,3 +74,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Invariantes de PR #113–#123, alias QA, dependencias y checkpoint](branch_followup_lot09.test.mjs).
 
 - [Invariantes del lote 10: PR #126–#131, memoria NPC, alias QA y checkpoint](branch_security_access_lot10.test.mjs).
+
+- [Integridad de la comparación M1/P1, QA y guardado (lote 11)](branch_m1p1_comparison_lot11.test.mjs).
