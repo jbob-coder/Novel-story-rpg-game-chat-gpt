@@ -249,3 +249,33 @@ test('baseline checkpoint still has only seven original NPCs and all legacy even
  assert.equal(verifyNPCIntroductionHistory(baseline).size,0);
  assert.equal(verifyNarrativeSnapshot(baseline),true);
 });
+
+test('historical witness co-location remains valid after the witness later travels',()=>{
+ const admitted=first();
+ const moved=stageLivingWorldTurn({snapshot:admitted,observedHead:head,
+  turn:turn('synthetic-npc-witness-travels-later',[]),
+  npcResolutions:[{actor_id:'NPC-006',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC confirmed movement to a neighboring repair counter.',
+   outcome:'The shopkeeper walks from the district to his own repair counter.',
+   changes:[{field:'location_id',before:location,
+    after:'LOC-MARKET-NOAH-REPAIR',
+    route:[location,'LOC-MARKET-NOAH-REPAIR'],
+    travel:{mode:'walk',elapsed_minutes:8,
+     basis:'Synthetic observed short trip along the known market connection.'}}],
+   disclosures:[]}]});
+ assert.equal(moved.state.world.actors['NPC-006'].location_id,'LOC-MARKET-NOAH-REPAIR');
+ assert.equal(moved.state.world.actors['NPC-008'].location_id,location);
+ assert.equal(verifyNPCIntroductionHistory(moved).size,1);
+ assert.equal(verifyNarrativeSnapshot(moved),true);
+});
+
+test('final actor name and goal cannot diverge without authored lifecycle events',()=>{
+ const checkpoint=first(),forged=structuredClone(checkpoint);
+ forged.state.world.actors['NPC-008'].name='SYNTHETIC retroactive replacement';
+ assert.throws(()=>verifyNPCIntroductionHistory(forged),
+  /NPC initial identity diverged without an authored update/);
+ const changed=structuredClone(checkpoint);
+ changed.state.world.actors['NPC-008'].goal='Invented new objective without causal event.';
+ assert.throws(()=>verifyNarrativeSnapshot(changed),
+  /NPC initial identity diverged without an authored update/);
+});
