@@ -279,3 +279,15 @@ test('final actor name and goal cannot diverge without authored lifecycle events
  assert.throws(()=>verifyNarrativeSnapshot(changed),
   /NPC initial identity diverged without an authored update/);
 });
+
+test('past event cannot reference an NPC whose introduction happens later',()=>{
+ const candidate=first();
+ const early=structuredClone(candidate);
+ early.events.events[8].known_to.push('NPC-008');
+ assert.throws(()=>verifyNarrativeSnapshot(early),
+  /Event references a future NPC before reviewed admission/);
+ const forged=structuredClone(candidate);
+ forged.events.events[8].actor_ids.push('NPC-008');
+ assert.throws(()=>verifyNPCIntroductionHistory(forged),
+  /Event references a future NPC before reviewed admission/);
+});
