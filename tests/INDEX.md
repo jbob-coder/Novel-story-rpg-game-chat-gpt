@@ -74,3 +74,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Regresión de rutas históricas PR #44, #58 y #56](meridian_bay_harbor_route_comparison.test.mjs)
 - [Pruebas de alternativas reversibles Plaza–Harbor](meridian_bay_plaza_harbor_variant_review.test.mjs)
 - [Regressions for candidate corridor clearance, clipping and sibling PR #103 reconciliation](meridian_bay_plaza_harbor_crossstack_coverage.test.mjs)
+- [14 verificaciones del tramo Plaza–Coast 01 y su continuidad documental](meridian_bay_plaza_approach_evidence_gap.test.mjs)

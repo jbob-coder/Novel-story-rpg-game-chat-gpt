@@ -59,3 +59,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Comparador privado de candidatos de ruta Harbor (sin admisión)](meridian_bay_harbor_route_comparison.mjs)
 - [Comparador seguro de variantes Plaza–Harbor y límites de zona](meridian_bay_plaza_harbor_variant_review.mjs)
 - [Source-locked cross-stack Plaza–Harbor clearance and study-box coverage audit](meridian_bay_plaza_harbor_crossstack_coverage.mjs)
+- [Recortes del hueco de evidencia Plaza–Coast 01 y revisión de plan general](meridian_bay_plaza_approach_evidence_gap.mjs)

@@ -284,6 +284,11 @@
       "tools/meridian_bay_plaza_harbor_crossstack_coverage.mjs",
       "tests/meridian_bay_plaza_harbor_crossstack_coverage.test.mjs",
       "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CROSSSTACK_COVERAGE_AUDIT_20261122.md"
+    ],
+    "plaza_approach_evidence_gap_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_PLAZA_APPROACH_EVIDENCE_GAP_20261122.md",
+      "tools/meridian_bay_plaza_approach_evidence_gap.mjs",
+      "tests/meridian_bay_plaza_approach_evidence_gap.test.mjs"
     ]
   },
   "repository_checkpoints": [
