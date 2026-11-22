@@ -287,6 +287,13 @@
       "docs/01_world/MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.md",
       "tools/meridian_harbor_section04_ledger.mjs",
       "tests/meridian_harbor_section04_ledger.test.mjs"
+    ],
+    "harbor_section04_m1_p1_entry_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.svg",
+      "docs/01_world/MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.md",
+      "tools/meridian_section04_m1p1_entry_evidence.mjs",
+      "tests/meridian_section04_m1p1_entry_evidence.test.mjs"
     ]
   },
   "repository_checkpoints": [
