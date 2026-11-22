@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "id": "MB-SECTION04-M1P1-ENTRY-EVIDENCE-20261122",
+  "status": "source_evidence_and_unmapped_entry_search_only_not_physical_fragment",
+  "sourceGitBlobs": {
+    "state": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "places": "0c1717e8f63d86e95e1aed431927f5a092c5b061",
+    "story": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "ledger": "a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b",
+    "land03": "2a95eb9e50f69436cb65711daf8ff586f4ef4279",
+    "cityPlan": "2e8c5ff412436a6e7d526bc0172adfca77107263",
+    "design": "014586f9c2996501f3bf16b9bfb8aebaf44fd462"
+  },
+  "inheritedSectionLedgerId": "MB-URBAN-CONNECTOR-SECTION04-STUDY-20261122",
+  "illustrativeCoordinateFrame": {
+    "widthUnits": 100,
+    "heightUnits": 80,
+    "georeferenced": false,
+    "cardinalDirectionVerified": false,
+    "actualDistanceScale": null
+  },
+  "historicalLand03Context": {
+    "sourceFragment": "SOURCE_PR69_LAND_03_20261120.json",
+    "studyBox": {
+      "x_min": 58,
+      "x_max": 68.2,
+      "y_min": 42,
+      "y_max": 51
+    },
+    "existingTopologySketchId": "MX-A-MARKET-PLAZA",
+    "existingTopologySketchPoints": [
+      {
+        "x": 58,
+        "y": 43
+      },
+      {
+        "x": 59.8,
+        "y": 42.6
+      },
+      {
+        "x": 62.2,
+        "y": 42.3
+      },
+      {
+        "x": 64,
+        "y": 42.1
+      },
+      {
+        "x": 65,
+        "y": 42
+      }
+    ],
+    "plazaTerminalSketchId": "MX-A-PLAZA-TERM",
+    "plazaTerminalSketchPoints": [
+      {
+        "x": 65,
+        "y": 42
+      },
+      {
+        "x": 65.5,
+        "y": 42
+      },
+      {
+        "x": 66,
+        "y": 42
+      }
+    ],
+    "roadsArePhysicalPassageProof": false
+  },
+  "entries": [
+    {
+      "sectionId": "MB-04-M1",
+      "priority": "M1",
+      "sourceRoute": "market",
+      "savedPlaceId": "LOC-COMMERCIAL-DISTRICT",
+      "savedPlaceName": "Market Row",
+      "priorSourceAnchor": {
+        "x": 58,
+        "y": 43
+      },
+      "lineFrom": {
+        "x": 58.869565,
+        "y": 42
+      },
+      "lineTo": {
+        "x": 60,
+        "y": 40.7
+      },
+      "studySearchBox": {
+        "x_min": 58.869565,
+        "x_max": 60,
+        "y_min": 40.7,
+        "y_max": 42
+      },
+      "searchBoxMeaning": "point_derived_search_extent_not_urban_parcel_or_public_road",
+      "evidence": {
+        "savedGraphHarborAdjacency": true,
+        "historicalRoadMarketPlazaStart": {
+          "x": 58,
+          "y": 43
+        },
+        "sourceOldRoadPassabilityVerified": false,
+        "startingSetting": "small_shops_food_vendors_offices_delivery_traffic",
+        "chapterSceneMarketCafeArrivalEstablished": true,
+        "chapterSceneCafeTerminalGlowEstablished": true
+      },
+      "unanswered": [
+        "precise_public_market_row_egress",
+        "status_of_old_street_traces",
+        "property_and_parcel_ownership",
+        "frontage_and_entrance_geometry",
+        "pedestrian_clearance_and_crossings",
+        "urban_building_massing_and_terminal_glow"
+      ],
+      "landUse": null,
+      "buildingFootprints": null,
+      "rightOfWay": null,
+      "accessGateCoordinatesVerified": false,
+      "canNavigate": false
+    },
+    {
+      "sectionId": "MB-04-P1",
+      "priority": "P1",
+      "sourceRoute": "plaza",
+      "savedPlaceId": "LOC-CROSSWATER-PLAZA",
+      "savedPlaceName": "Crosswater Transit Plaza",
+      "priorSourceAnchor": {
+        "x": 65,
+        "y": 42
+      },
+      "lineFrom": {
+        "x": 65,
+        "y": 42
+      },
+      "lineTo": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "studySearchBox": {
+        "x_min": 65,
+        "x_max": 66.9,
+        "y_min": 40.6,
+        "y_max": 42
+      },
+      "searchBoxMeaning": "point_derived_search_extent_not_urban_parcel_or_public_road",
+      "evidence": {
+        "savedGraphHarborAdjacency": true,
+        "plazaPublicArea": true,
+        "sourceLand03MarketPlazaStreetEndsAtAnchor": true,
+        "sourceLand03TerminalStreetStartsAtAnchor": true,
+        "sourcePedestrianHarborStreetExistsOnMap": false,
+        "startingSetting": "public_plaza_glass_terminal_harbor_visible_between_buildings"
+      },
+      "unanswered": [
+        "precise_public_plaza_harbor_exit",
+        "transit_vehicle_vs_pedestrian_crossing",
+        "parcel_and_fence_boundary",
+        "frontage_buildings_and_heights",
+        "legal_public_right_of_way",
+        "pedestrian_accessibility_and_visibility"
+      ],
+      "landUse": null,
+      "buildingFootprints": null,
+      "rightOfWay": null,
+      "accessGateCoordinatesVerified": false,
+      "canNavigate": false
+    }
+  ],
+  "sharedFactBoundaries": {
+    "narrativeGraphAdjacencyDoesNotSurveyStreets": true,
+    "plazaPublicAreaDoesNotApproveSpecificWalkway": true,
+    "historicalMarketPlazaRouteDoesNotAuthoriseHarborBranch": true,
+    "cafeTerminalGlowRequiresFutureMassingReview": true,
+    "missingPhysicalStudyDoesNotMeanEmptyLand": true,
+    "noParticularBuildingsOrParcelsAssigned": true,
+    "notACertifiedPhysicalRoute": true,
+    "notASurveyOrRealWorldMap": true
+  },
+  "limitations": {
+    "savedWorldChanged": false,
+    "storyTurnAdvanced": false,
+    "playerMoved": false,
+    "npcMoved": false,
+    "fictionalTimeAdvanced": false,
+    "newLocationLinks": [],
+    "realTravelMinutes": null,
+    "roadWidthMeters": null,
+    "buildingsMapped": false,
+    "publicEasementVerified": false,
+    "routeApproved": false
+  },
+  "nextAction": "inspect_parcel_and_frontage_sources_for_M1_P1_before_creating_first_Section04_physical_zone"
+}
