@@ -49,3 +49,4 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.mjs](living_world_routines.mjs) — Independent NPC routine proposals and causal staging.
 - [living_world_time.mjs](living_world_time.mjs) — Coarse in-fiction time window validation.
 - [living_world_travel.mjs](living_world_travel.mjs) — Evidence-based travel estimates and context chronology.
+- [Evaluación y borrador causal privado de decisiones NPC](living_world_decisions.mjs)
