@@ -20,3 +20,4 @@
 - [Relaciones sociales NPC y eventos causales de encuentro — Lote 09](NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md)
 - [Lote 10: memoria social, cronología de testimonios y capítulos cerrados](NPC_SOCIAL_PROVENANCE_CROSS_CHAPTER_20261122.md)
 - [Lote 11: referencia fijada de conocimientos NPC en el turno 9](NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md)
+- [Lote 12: migración revisada y sin escritura de la referencia de conocimientos NPC](NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md)
