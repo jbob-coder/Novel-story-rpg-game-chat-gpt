@@ -70,3 +70,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Sincronización SVG/JSON de los 18 trazados costeros y preservación de fuentes](harbor_coast_svg_sync.test.mjs)
 
 - [16 pruebas de continuidad regional, agua, edificios y alternativas de rutas](meridian_bay_three_region_seams.test.mjs)
+- [Regresiones y procedencia de SVG PR #67](harbor_coast_pr67_variant.test.mjs)
