@@ -64,4 +64,4 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.test.mjs](living_world_routines.test.mjs) — NPC route/goal routine proposals.
 - [living_world_travel.test.mjs](living_world_travel.test.mjs) — Route, elapsed time and chronology guards.
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
-- [Decisiones causales NPC: 18 regresiones sobre el mundo admitido](npc_causal_decisions_admitted.test.mjs)
+- [Decisiones causales NPC: 19 regresiones sobre el mundo admitido](npc_causal_decisions_admitted.test.mjs)
