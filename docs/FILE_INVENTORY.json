@@ -256,6 +256,11 @@
     ],
     "branch_followup_2026_11_22": [
       "docs/00_start/BRANCH_FOLLOWUP_AUDIT_LOT_07_2026-11-22.md"
+    ],
+    "branch_integration_gates_2026_11_22": [
+      "docs/00_start/BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.json",
+      "docs/00_start/BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.md",
+      "tests/branch_integration_gates_lot07.test.mjs"
     ]
   },
   "repository_checkpoints": [
