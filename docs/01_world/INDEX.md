@@ -16,3 +16,4 @@
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
+- [Decisiones causales NPC sobre mundo admitido, Lote 08 (borrador)](NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md)
