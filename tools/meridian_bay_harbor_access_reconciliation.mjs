@@ -289,7 +289,7 @@ export function renderHarborAccessReconciliationSvg({state}={}){
   'Verde: PR44 con desvío',
   'Azul: PR56 con rodeo',
   'Gris: PR44/PR56 originales',
-  'Marrón: PR58 descartado',
+  'Marrón: PR58 alternativo',
   'Rojo: calle vieja bloqueada',
   'Rosa: zona portuaria candidata',
   'Gris oscuro: huellas provisionales',
