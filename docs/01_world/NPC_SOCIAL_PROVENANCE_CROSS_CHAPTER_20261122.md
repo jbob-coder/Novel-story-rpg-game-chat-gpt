@@ -23,13 +23,14 @@ La comprobación al *crear* el encuentro `draftReviewedSocialContact` sí exigí
 
 ## Regresiones sintéticas añadidas
 
-`tests/npc_social_cross_chapter_provenance.test.mjs` tiene cinco casos nuevos, sin actividad de jugador ni guardado remoto:
+`tests/npc_social_cross_chapter_provenance.test.mjs` tiene seis casos nuevos, sin actividad de jugador ni guardado remoto:
 
 - Un testimonio aprendido mediante encuentro en CH-000 puede retransmitirse por su nuevo propietario en **CH-001**, preservando el vínculo causal y la procedencia de ambos eventos.
 - Un relato adquirido **después** de un intercambio no puede presentarse como su fuente previa, aunque figure en la memoria final del NPC.
 - La modificación de información social en un capítulo cerrado se rechaza tanto por el verificador social como por la custodia de hashes del archivo.
 - Reutilizar el mismo ID de encuentro en distintos capítulos no puede duplicar su identidad ni colapsar dos parejas en un solo contacto.
 - Un turno posterior sin encuentro conserva las trazas privadas históricas sin generar una conversación nueva.
+- Un texto de conocimiento que falsifique el identificador EV de su adquisición se rechaza durante la recuperación social.
 
 **Separación de autoridad:** todos los turnos CH-001, CH-000 turno 10 y cualquier `EV-` adicional de la suite son **solo objetos en memoria**; los archivos `game/STATE.json`, `game/SAVE_MANIFEST.json`, `chapters/CH-000.*` y el journal real no se han modificado.
 
