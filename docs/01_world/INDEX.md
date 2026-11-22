@@ -33,3 +33,5 @@
 - [Auditoría del acceso Plaza–Coast 01 sin detalle físico (no canónica)](MERIDIAN_BAY_PLAZA_APPROACH_EVIDENCE_GAP_20261122.md)
 - [Crosswater–Coast 01: provisional centerline and missing-evidence study](MERIDIAN_BAY_CROSSWATER_APPROACH_FRAGMENT_REVIEW_20261122.md)
 - [Crosswater–Coast 01: unadmitted source-locked study manifest](MERIDIAN_BAY_CROSSWATER_APPROACH_PROVISIONAL_FRAGMENT_20261122.json)
+- [Crosswater schematic frontage, sidewalk and crossing review (unadmitted)](MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_REVIEW_20261122.md)
+- [Source-locked provisional frontage/crossing study JSON](MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_STUDY_20261122.json)

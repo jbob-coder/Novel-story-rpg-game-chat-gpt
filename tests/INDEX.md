@@ -76,3 +76,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Regressions for candidate corridor clearance, clipping and sibling PR #103 reconciliation](meridian_bay_plaza_harbor_crossstack_coverage.test.mjs)
 - [14 verificaciones del tramo Plaza–Coast 01 y su continuidad documental](meridian_bay_plaza_approach_evidence_gap.test.mjs)
 - [13 tests for provisional Crosswater approach and source-only contacts](meridian_bay_crosswater_approach_fragment.test.mjs)
+- [15 Crosswater schematic frontend, frontage and crossing-proof regressions](meridian_bay_crosswater_frontage_study.test.mjs)
