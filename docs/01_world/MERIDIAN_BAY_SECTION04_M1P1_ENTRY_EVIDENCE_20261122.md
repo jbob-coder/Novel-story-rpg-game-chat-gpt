@@ -56,3 +56,14 @@ El [SVG de estudio de accesos M1/P1](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_
 5. **Aceptación separada:** integrar geometría física en un estudio independiente, probar todas las intersecciones con vecinos y solicitar revisión editorial. No modificar `game/STATE.json`, los capítulos o los cinco archivos de guardado sin el protocolo apropiado.
 
 **Recomendación técnica:** conservar el registro de PR #122 sin cambios y construir los próximos candidatos de geometría a partir de las restricciones M1/P1, distinguiendo los hechos de la historia, los bocetos de rutas y las preguntas todavía abiertas. El proyecto aún **no** dispone de un plano físico completo de la sección 04.
+
+
+## Evidencia QA ejecutada — 22 de noviembre de 2026
+
+La primera CI sobre el commit `b45c1c948828904b0218457406490af78fd7ebe4` ([Actions #45082992768](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45082992768)) detectó **una única falla de prueba por un SHA esperado mal transcrito en el test nuevo**: el origen real `game/STATE.json` coincidía con el hash correcto y el validador de fuentes no había modificado ningún archivo. Resultado de esa corrida: 534/535 Node; Python y checkpoint quedaron sin ejecutar porque el paso Node falló. La única reparación fue corregir el literal de expectativa del test.
+
+El commit reparado `7368cab4d425dcdff1adf6e283734366b1fe7c0d` se ejecutó mediante el clon de QA temporal [PR #133](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/133), con el **mismo HEAD exacto** que la propuesta [PR #132](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/132). [GitHub Actions #45083089889](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45083089889) resultó **SUCCESS**: **535/535 tests JavaScript PASS**, **47/47 Python PASS**, y **validador de cinco archivos narrativos PASS**. La batería incluye 521 Node heredados y 14 nuevos para M1/P1.
+
+Verificación separada de Git trees en ese commit: `main` 190 archivos, PR #122 226 y PR #132 231; **5 archivos nuevos**, **4 índices/inventario actualizados**, **0 eliminados**; inventario **231/231** sin entradas extra ni faltantes. Los cinco blobs de `game/STATE.json`, `game/SAVE_MANIFEST.json` y `chapters/CH-000.{md,events.json,transcript.json}` siguen idénticos a `main`. La historia permanece en CH-000, turno 9.
+
+**Corte de verificación:** esta nota documental se incorporó **después** del resultado sobre `7368cab4...`. Debe ejecutarse CI de nuevo sobre el HEAD documental final antes de afirmar que todo el contenido fue probado. Ninguna de estas pruebas demuestra que una calle, una parcela o el acceso físico a Harbor Walk esté habilitado.
