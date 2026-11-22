@@ -261,6 +261,12 @@
       "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json",
       "tools/meridian_bay_three_region_seams.mjs",
       "tests/meridian_bay_three_region_seams.test.mjs"
+    ],
+    "harbor_coast_pr67_variant_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_PR67_VARIANT_20261122.svg",
+      "tools/render_harbor_coast_pr67_variant_svg.mjs",
+      "tests/harbor_coast_pr67_variant.test.mjs",
+      "docs/01_world/MERIDIAN_BAY_PR67_VARIANT_REVIEW_20261122.md"
     ]
   },
   "repository_checkpoints": [
