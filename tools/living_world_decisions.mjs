@@ -46,10 +46,13 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
   weekday,minute,schedules,exceptions};
  const agenda=planNPCAgendas({...input,limitPerActor:8});
  const selections=recommendNPCIntentReviews(input);
- const byId=new Map(agenda.map(x=>[x.id,x]));
+ // A commitment ID is local to its owner. Multiple NPCs may legitimately
+ // hold independently recorded obligations with the same local ID.
+ const ownedKey=(actorId,candidateId)=>JSON.stringify([actorId,candidateId]);
+ const byOwnerAndId=new Map(agenda.map(x=>[ownedKey(x.actorId,x.id),x]));
  const results=[];
  for(const intent of selections.slice(0,limit===0?0:100)){
-  const candidate=byId.get(intent.candidateId);
+  const candidate=byOwnerAndId.get(ownedKey(intent.actorId,intent.candidateId));
   requireFact(candidate&&candidate.actorId===intent.actorId,
    'Selected intention has no source candidate');
   const actor=state.world.actors[intent.actorId];
@@ -93,7 +96,8 @@ export function assessNPCDecisions({state,actorIds=null,elapsedMinutes=0,
    gaps.push({code:'conditions_need_human_review',detail:'Conditions have no automatic capacity interpretation'});
   if(candidate.kind==='obligation'&&candidate.review==='overdue_review')
    gaps.push({code:'overdue_does_not_mean_failed',detail:'Deadline alone proves neither failure nor completion'});
-  const alternatives=intent.competingAlternatives.filter(x=>byId.has(x));
+  const alternatives=intent.competingAlternatives.filter(x=>
+    byOwnerAndId.has(ownedKey(intent.actorId,x)));
   results.push({
    classification:'narrator_private_causal_assessment',
    actorId:intent.actorId,candidateId:intent.candidateId,
