@@ -85,10 +85,19 @@ export function deriveSection04MiddleReadiness({state}={}){
    s.canNavigate===false&&s.measuredWidth===null,
    'Prior register promoted unknown physical geometry: '+id);
   const route=s.route==='market'?'market_to_harbor':'plaza_to_harbor';
-  fail(s.sourcePr103Property===route&&
-   xyEqual(routeNode(route,s.sourceWaypointIds[0])?.xy,s.from)&&
-   xyEqual(routeNode(route,s.sourceWaypointIds[1])?.xy,s.to),
-   'Section04 segment no longer matches unapproved source polyline: '+id);
+  const sourceStart=routeNode(route,s.sourceWaypointIds[0])?.xy;
+  const sourceEnd=routeNode(route,s.sourceWaypointIds[1])?.xy;
+  const clippedP2=id==='MB-04-P2';
+  // P2 ends where the source PR103 line crosses x=68, *before* its
+  // proposed N2 waypoint (68.3,38.1). Treating that waypoint as the
+  // source clip boundary would invent a new region extent.
+  const t=clippedP2?(s.to.x-sourceStart.x)/(sourceEnd.x-sourceStart.x):1;
+  const expectedEnd=clippedP2?{
+   x:68,y:Math.round((sourceStart.y+(sourceEnd.y-sourceStart.y)*t)*1e6)/1e6
+  }:sourceEnd;
+  fail(s.sourcePr103Property===route&&xyEqual(sourceStart,s.from)&&
+   Number.isFinite(t)&&t>0&&t<=1&&xyEqual(expectedEnd,s.to),
+   'Section04 segment no longer matches source or clipped boundary: '+id);
   return {
    id,route:s.route,sourcePr103Property:s.sourcePr103Property,
    sourceWaypointIds:clone(s.sourceWaypointIds),
