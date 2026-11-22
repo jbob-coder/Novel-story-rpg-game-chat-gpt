@@ -4,6 +4,7 @@ import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_discovery.mjs';
 import {verifyTravelHistory} from './living_world_travel.mjs';
+import {verifySocialEventHistory} from './living_world_social.mjs';
 import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
 // Deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
@@ -54,6 +55,8 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyStateChanges(snapshot);
   verifyReviewedPlaceHistory(snapshot);
   verifyTravelHistory(snapshot);
+  // Social provenance is narrator-private and validated across closed chapters.
+  verifySocialEventHistory(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -92,11 +95,23 @@ function stageNarrativeTurn(snapshot, turn) {
   applyStateChanges(s,playerEvent,turn.changes??[]);
   applyReviewedPlaceDiscovery({state:s,event:playerEvent,
     discoveries:turn.location_discoveries??[],narrationMessages:turn.narration_messages});
+  const firstSocialEvent=new Map();
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
     const actor=s.world.actors[item.actor_id];
     const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id]);
+    // Only reviewed, actor-paired social resolutions reach this stage through
+    // the coordinator. Persist one immutable private context per participant.
+    if(item.social_context!==undefined){
+      const socialId=item.social_context?.interaction_id;
+      check(typeof socialId==='string'&&/^SOC-[A-Za-z0-9_-]{4,64}$/.test(socialId),
+        'Invalid social event context');
+      record.social_context=JSON.parse(JSON.stringify(item.social_context));
+      const preceding=firstSocialEvent.get(socialId);
+      if(preceding)record.caused_by.push(preceding);
+      else firstSocialEvent.set(socialId,record.id);
+    }
     const before=actor.last_resolved_action==null?null:JSON.parse(JSON.stringify(actor.last_resolved_action));
     const after={event_id:record.id,day:newDay,summary:item.outcome};
     actor.last_resolved_action=after;
