@@ -39,3 +39,9 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Reconciliación del HEAD narrativo y nuevos faltantes](CURRENT_STATE_RECHECK_2026-11-20.md)
 
 - [Consolidación efectiva de la base narrativa en main (PR #2)](MAIN_CONSOLIDATION_2026-11-20.md)
+
+## Verificación de integración — 2026-11-22
+
+- [Lote 07: PR #82–#87, SHA/CI, solapamientos, custodia de partida y orden de integración](BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.md).
+- [Datos verificables de ese corte de PR y ramas](BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.json).
+Son evidencias congeladas, no merges, turnos jugados ni certificación de calles reales.
