@@ -1,8 +1,8 @@
 {
-  "status": "blocked",
+  "status": "verified",
   "branch": "qa/chatgpt-fivefile-delta-recovery-20261122",
   "classification": "QA_ONLY_NONCANONICAL_FORMAT_DELTA",
-  "phase": "detached_commit_persisted_before_branch_ref_update",
+  "phase": "readback_and_recovery_complete",
   "sourceHead": "2820cca1bd5140ef8a9f2c94cf986feef0ef19cc",
   "candidateTreeSha": "8289cc2b013eb467b801afd92dc2050588b2b0e2",
   "detachedCommitHead": "cd61b86496a7d2d8e81bc70e9cedabe07f610784",
@@ -33,5 +33,23 @@
   "fictionalTimeAdvanced": false,
   "newStoryTurnCreated": false,
   "note": "Private QA journal branch only. Never merge. Resume by source head and staged tree, then record detached commit and nonforce QA ref update. No owner story input.",
-  "recoveryProof": "journal persisted with source head, five old/new Git blob IDs and detached commit before moving QA ref"
+  "recoveryProof": "journal persisted with source head, five old/new Git blob IDs and detached commit before moving QA ref",
+  "observedQAHead": "cd61b86496a7d2d8e81bc70e9cedabe07f610784",
+  "verifiedFiveBlobIDs": {
+    "chapters/CH-000.transcript.json": "45d5dfa71232c417af84fd855946d6eefe2441e5",
+    "chapters/CH-000.events.json": "af05365b46e368101816e545cb2ef7db680231bb",
+    "chapters/CH-000.md": "217ccec4c9b4be01e88c2923c2a9012af08b6a54",
+    "game/STATE.json": "ae95f63cf4b72eb391d644f1f28afec8e6ecde84",
+    "game/SAVE_MANIFEST.json": "1f8ab23d64eae4d4aa1f1cb5a8e792a368523c67"
+  },
+  "exactBytesReadback": true,
+  "jsonSemanticsIdentical": true,
+  "noNewNarrativeTurn": true,
+  "qaOnlyRecoveryVerified": true,
+  "productionRecoveryVerified": false,
+  "productionNarrativeVerified": false,
+  "gameStoryBranchUnchanged": true,
+  "productionJournalUnchanged": true,
+  "mainUnchanged": true,
+  "verificationLimit": "Five changed FORMAT-ONLY file bytes persisted and recovered through ChatGPT connector. No synthetically generated valid next turn, no in-chat delivered narrative, no proof of production turn save."
 }
