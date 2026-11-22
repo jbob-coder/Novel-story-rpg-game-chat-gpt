@@ -28,3 +28,4 @@
 - [Harbor Coast 01: PR #67 corrected candidate — review and unresolved access decisions](MERIDIAN_BAY_PR67_COAST_CANDIDATE_REVIEW_20261122.md)
 - [Harbor Coast 01: PR #67 candidate source JSON (not admitted)](MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.json)
 - [Harbor Coast 01: PR #67 candidate SVG (draft)](MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.svg)
+- [Meridian Bay Harbor corridors: exact candidate contact points, no route admission](MERIDIAN_BAY_CORRIDOR_CONTACT_AUDIT_20261122.md)

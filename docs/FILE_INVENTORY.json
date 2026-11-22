@@ -268,6 +268,11 @@
       "docs/01_world/MERIDIAN_BAY_PR67_COAST_CANDIDATE_REVIEW_20261122.md",
       "tools/render_harbor_coast_pr67_candidate.mjs",
       "tests/harbor_coast_pr67_candidate.test.mjs"
+    ],
+    "harbor_corridor_contact_audit_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_CORRIDOR_CONTACT_AUDIT_20261122.md",
+      "tools/meridian_corridor_contact_audit.mjs",
+      "tests/meridian_corridor_contact_audit.test.mjs"
     ]
   },
   "repository_checkpoints": [
