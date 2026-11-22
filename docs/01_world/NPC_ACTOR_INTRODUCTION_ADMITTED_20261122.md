@@ -27,7 +27,7 @@ Tres funciones, separadas de la escritura remota:
 
 ## Pruebas y custodia
 
-`tests/npc_actor_introduction_admitted.test.mjs` contiene **15 escenarios sintéticos**: no modificación de propuesta, nacimiento de identidad en un evento, secuencia de dos admisiones, compatibilidad con otras acciones del mundo, identidad duplicada, edad/ubicación/testigo inválido, fuente y límite de conocimientos, perfil adulterado, actor sin evento, recuperación adulterada, persistencia en capítulo cerrado, testimonio social en turno posterior, no divulgación al jugador, límite de una admisión y compatibilidad del turno 9. La historia del propietario **no** se desarrolla durante estas pruebas.
+`tests/npc_actor_introduction_admitted.test.mjs` contiene **17 escenarios sintéticos**: no modificación de propuesta, nacimiento de identidad en un evento, secuencia de dos admisiones, compatibilidad con otras acciones del mundo, identidad duplicada, edad/ubicación/testigo inválido, fuente y límite de conocimientos, perfil adulterado, actor sin evento, recuperación adulterada, persistencia en capítulo cerrado, recorrido temporal de testigo tras su viaje, identidad inmutable, testimonio social en turno posterior, no divulgación al jugador, límite de una admisión y compatibilidad del turno 9. La historia del propietario **no** se desarrolla durante estas pruebas.
 
 No se cambian `game/STATE.json`, `game/SAVE_MANIFEST.json`, `chapters/CH-000.*`, el journal ni el motor de guardado GitHub; no se crean NPC en el canon durante este lote. Solo un turno auténtico resuelto y guardado con journal, commit atómico y readback podría materializar una admisión después de la revisión correspondiente.
 
@@ -38,3 +38,7 @@ El contrato es conservador: **solo una admisión por turno**, testigo directo, I
 La migración de la referencia original del Lote 12 **permanece separada y bloqueada** para `register_npc`. Aceptar el evento de creación en la simulación no autoriza promover un nuevo checkpoint de referencia; ese trabajo requerirá verificar independientemente el árbol remoto, la procedencia y aprobación del propietario.
 
 **QA requerida:** ejecutar Node, Python, `tools/validate_state.py` en GitHub Actions sobre el HEAD exacto, inventariar el árbol, comprobar los hashes canónicos y mantener la PR de desarrollo apilada sobre #138. Una PR QA-only temporal contra `main` debe cerrarse sin fusionar.
+
+## QA inicial: hallazgo y corrección de contrato
+
+La primera ejecución de CI [#45084263570](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45084263570) terminó con **512/513 JavaScript PASS** y una prueba heredada del Lote 12 fallida, por lo que no llegó a Python ni al validador. Las **15 pruebas iniciales de Lote 13 pasaron**. La prueba antigua esperaba una respuesta de migración `status=blocked` para un actor añadido sin evento, pero el validador de snapshot ahora **rechaza antes** el estado fraudulento con `NPC actor roster has unsourced additions or removals`. Se actualizó **solo la expectativa del test heredado en esta rama** para exigir el rechazo estricto; el código de validación no se relajó. Se añadieron además dos regresiones de ubicación del testigo tras viaje y estabilidad de nombre/objetivo, quedando **17 pruebas nuevas**. La ejecución inicial no certifica el HEAD corregido; hay que repetir CI.
