@@ -241,8 +241,14 @@ export function verifySocialEventHistory(snapshot){
  ensure(snapshot?.events?.events&&snapshot?.state?.world?.locations,
   'Saved event history required');
  const grouped=new Map();
- for(const event of allEvents(snapshot)){
+ const history=allEvents(snapshot);
+ const sealedUntil=Number(NPC_KNOWLEDGE_ANCHOR.lastEventId.slice(3));
+ for(const event of history){
   if(event.social_context===undefined)continue;
+  // A forged old encounter must fail at the sealed chronology boundary before
+  // a malformed payload can disguise its actual historical origin.
+  ensure(Number(event.id.slice(3))>sealedUntil,
+   'Unverified social interaction predates the sealed knowledge anchor');
   ensure(event.kind==='independent_actor'&&Array.isArray(event.actor_ids)&&
     event.actor_ids.length===1&&event.known_to?.includes(event.actor_ids[0]),
     'Saved social event must be an actor-owned private NPC event');
@@ -297,6 +303,6 @@ export function verifySocialEventHistory(snapshot){
   }
   ensure(effectCount>0,'Recorded social encounter lacks any effect');
  }
- if(grouped.size)verifySocialKnowledgeChronology(snapshot,allEvents(snapshot));
+ if(grouped.size)verifySocialKnowledgeChronology(snapshot,history);
  return true;
 }
