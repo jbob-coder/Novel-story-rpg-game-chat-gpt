@@ -79,3 +79,5 @@ These files already existed in the authoritative source and are listed here for 
 - [13 pruebas de la ficha Sección 04, procedencia, empalmes y guardado](meridian_harbor_section04_ledger.test.mjs)
 
 - [14 regresiones M1/P1 de fuentes, acceso desconocido y equivalencia SVG](meridian_section04_m1p1_entry_evidence.test.mjs)
+
+- [20 regresiones de M2/M3/P2, requisitos físicos y paridad visual](meridian_section04_middle_readiness.test.mjs)

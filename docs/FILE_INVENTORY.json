@@ -294,6 +294,13 @@
       "docs/01_world/MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.md",
       "tools/meridian_section04_m1p1_entry_evidence.mjs",
       "tests/meridian_section04_m1p1_entry_evidence.test.mjs"
+    ],
+    "harbor_section04_middle_readiness_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_20261122.svg",
+      "docs/01_world/MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_REVIEW_20261122.md",
+      "tools/meridian_section04_middle_readiness.mjs",
+      "tests/meridian_section04_middle_readiness.test.mjs"
     ]
   },
   "repository_checkpoints": [

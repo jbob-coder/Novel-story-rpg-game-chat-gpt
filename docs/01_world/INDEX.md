@@ -41,3 +41,7 @@
 - [Sección 04, M1/P1: evidencia de accesos públicos y límites desconocidos](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.md)
 - [Sección 04, M1/P1: registro JSON de fuentes y accesos sin certificar](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.json)
 - [Sección 04, M1/P1: plano SVG de evidencias y cajas de investigación](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.svg)
+
+- [Sección 04: requisitos faltantes de M2, M3 y P2 antes de crear calles](MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_REVIEW_20261122.md)
+- [M2/M3/P2: registro JSON y control de admisión, no canónico](MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_20261122.json)
+- [M2/M3/P2: SVG de líneas heredadas y suelo sin estudiar](MERIDIAN_BAY_SECTION04_MIDDLE_READINESS_20261122.svg)
