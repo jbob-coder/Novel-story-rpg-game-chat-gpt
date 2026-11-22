@@ -289,6 +289,12 @@
       "docs/01_world/MERIDIAN_BAY_PLAZA_APPROACH_EVIDENCE_GAP_20261122.md",
       "tools/meridian_bay_plaza_approach_evidence_gap.mjs",
       "tests/meridian_bay_plaza_approach_evidence_gap.test.mjs"
+    ],
+    "crosswater_approach_provisional_fragment_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_PROVISIONAL_FRAGMENT_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_FRAGMENT_REVIEW_20261122.md",
+      "tools/meridian_bay_crosswater_approach_fragment.mjs",
+      "tests/meridian_bay_crosswater_approach_fragment.test.mjs"
     ]
   },
   "repository_checkpoints": [
