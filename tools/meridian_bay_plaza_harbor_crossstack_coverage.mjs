@@ -134,11 +134,9 @@ export function routeRouteContacts(first,second){
   else if(contact(a,b,c,d)){
    // Terminal-only meeting is expected, but any additional touch must be reviewed.
    const terminalOnly=i===first.length-2&&j===second.length-2&&
-    equal(b,d)&&!on(a,b,c)&&!on(a,b,d===c?c:c)&&
-    !on(c,d,a)&&!on(c,d,b)&&!equal(a,c);
-   // Directly check no alternative shared endpoint / segment overlap.
-   const shared=equal(b,d)&&
-    !(on(a,b,c)||on(c,d,a)||equal(a,c))&&terminalOnly;
+    equal(b,d)&&!on(a,b,c)&&!on(c,d,a)&&!equal(a,c);
+   // Shared terminal is permitted; overlapping or touching elsewhere is not.
+   const shared=terminalOnly;
    other.push({firstSegment:i,secondSegment:j,sharedTerminalOnly:shared});
   }
  }
