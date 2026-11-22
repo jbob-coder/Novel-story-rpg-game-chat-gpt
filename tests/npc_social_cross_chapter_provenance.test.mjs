@@ -71,7 +71,7 @@ test('social testimony can be retransmitted only after a recorded earlier exchan
  const one=first();
  const learned=one.state.world.actors[darius].knowledge.at(-1);
  assert.ok(learned.startsWith('Reported by NPC-006 (not independently verified):'));
- assert.ok(learned.includes('EV-000031'));
+ assert.ok(learned.includes('EV-000032'));
  const closed=close(one);
  assert.equal(closed.manifest.chapter_id,'CH-001');
  assert.equal(closed.archives['CH-000'].events.events.at(-1).social_context.interaction_id,
@@ -84,7 +84,7 @@ test('social testimony can be retransmitted only after a recorded earlier exchan
  assert.equal(verifySocialEventHistory(second),true);
  assert.equal(second.manifest.last_completed_turn,11);
  assert.equal(second.manifest.last_event_id,'EV-000035');
- assert.equal(second.archives['CH-000'].events.events.at(-1).id,'EV-000031');
+ assert.equal(second.archives['CH-000'].events.events.at(-1).id,'EV-000032');
  assert.equal(second.events.events.length,3);
  assert.equal(second.events.events[2].caused_by.includes(second.events.events[1].id),true);
  assert.ok(second.state.world.actors[noah].knowledge.at(-1).includes(
@@ -106,7 +106,7 @@ test('a future-acquired statement cannot be forged as an earlier social source',
   disclosures:[]
  }],'synthetic-social-future-source');
  const later=future.state.world.actors[noah].knowledge.at(-1);
- assert.ok(later.includes('EV-000033'));
+ assert.ok(later.includes('EV-000034'));
  assert.equal(verifyNarrativeSnapshot(future),true);
  const forged=structuredClone(future);
  const social=forged.events.events.filter(e=>e.social_context?.interaction_id===
@@ -130,10 +130,15 @@ test('the full archive verifier rejects rewritten earlier speaker testimony',()=
  const old=broken.archives['CH-000'].events.events.filter(e=>
   e.social_context?.interaction_id==='SOC-CHAIN-INIT-001');
  assert.equal(old.length,2);
- old[0].social_context.transfer.known_entry=
-  'Synthetic fact the speaker never held before the turn.';
- old[1].social_context.transfer.known_entry=
-  'Synthetic fact the speaker never held before the turn.';
+ const invented='Synthetic fact the speaker never held before the turn.';
+ for(const event of old)event.social_context.transfer.known_entry=invented;
+ const recipient=old.find(event=>event.actor_ids[0]===darius);
+ const change=recipient.state_changes.find(c=>c.field==='knowledge');
+ const before=change.after;
+ change.fact='Reported by '+noah+' (not independently verified): '+invented;
+ change.after=change.fact+' (source: '+change.source+'; '+recipient.id+')';
+ const known=broken.state.world.actors[darius].knowledge;
+ known.splice(known.indexOf(before),1,change.after);
  assert.throws(()=>verifySocialEventHistory(broken),
   /Social speaker had not yet learned the transferred statement/);
  assert.throws(()=>verifyNarrativeSnapshot(broken),/Closed chapter/);
