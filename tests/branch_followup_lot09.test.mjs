@@ -86,8 +86,7 @@ test('new downstream dependency and older narrative provenance are not conflated
 
 test('independent stacked PR bases are the exact preceding source SHA',()=>{
   assert.equal(rows.get(114).base_sha,'b22e05f1c4738bdcd0d907dc2bae671ac690e711');
-  assert.equal(rows.get(116).base_sha,report.parent_head_sha === rows.get(116).head_sha ?
-    'fa3fe37ca48724f66559cbbc380af1b1a9d0464e':report.baseline_main_sha);
+  assert.equal(rows.get(116).base_sha,'fa3fe37ca48724f66559cbbc380af1b1a9d0464e');
   assert.equal(rows.get(118).base_sha,'bf2edd9c6e86240c2ef81a4c43d11e4fad49f1c7');
   assert.equal(rows.get(122).base_branch,'work/meridian-harbor-regional-coverage-20261122');
   assert.equal(rows.get(122).base_sha,report.source_revision_followup.revised_head);
