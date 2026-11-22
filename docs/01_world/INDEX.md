@@ -26,3 +26,4 @@
 - [Tres fragmentos: costuras, choques de rutas y alternativa PR #67 — auditoría no canónica](MERIDIAN_BAY_THREE_REGION_SEAM_AUDIT_20261120.md)
 - [Auditoría de variante técnica PR #67 — no canónica](MERIDIAN_BAY_PR67_VARIANT_REVIEW_20261122.md)
 - [SVG de Coast 01 derivado de PR #67 — borrador](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_PR67_VARIANT_20261122.svg)
+- [Auditoría histórica de alternativas de rutas Market–Harbor y Plaza–Harbor (no canónica)](MERIDIAN_BAY_HARBOR_ROUTE_COMPARISON_20261122.md)

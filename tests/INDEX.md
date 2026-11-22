@@ -71,3 +71,4 @@ These files already existed in the authoritative source and are listed here for 
 
 - [16 pruebas de continuidad regional, agua, edificios y alternativas de rutas](meridian_bay_three_region_seams.test.mjs)
 - [Regresiones y procedencia de SVG PR #67](harbor_coast_pr67_variant.test.mjs)
+- [Regresión de rutas históricas PR #44, #58 y #56](meridian_bay_harbor_route_comparison.test.mjs)
