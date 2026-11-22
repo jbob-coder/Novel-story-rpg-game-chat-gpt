@@ -27,3 +27,5 @@
 - [Auditoría de variante técnica PR #67 — no canónica](MERIDIAN_BAY_PR67_VARIANT_REVIEW_20261122.md)
 - [SVG de Coast 01 derivado de PR #67 — borrador](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_PR67_VARIANT_20261122.svg)
 - [Auditoría histórica de alternativas de rutas Market–Harbor y Plaza–Harbor (no canónica)](MERIDIAN_BAY_HARBOR_ROUTE_COMPARISON_20261122.md)
+- [Comparación reversible de variantes Plaza–Harbor: ruta N2 o edificio B01 (no canónica)](MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_REVIEW_20261122.md)
+- [Parches de geometría propuestos (no admitidos)](MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_OPTIONS_20261122.json)
