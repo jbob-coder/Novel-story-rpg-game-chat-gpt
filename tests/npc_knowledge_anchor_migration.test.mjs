@@ -197,3 +197,30 @@ test('migration can never silently change the requested operation or actor',()=>
   actorId:'NPC-006',entry:'Unreviewed proposed memory removal'}),
   /proposal differs from verified source and review/);
 });
+
+test('an added actor with no documented lifecycle cannot be hidden in promotion',()=>{
+ const checkpoint=future(),forged=structuredClone(checkpoint);
+ const actor=structuredClone(forged.state.world.actors['NPC-007']);
+ actor.id='NPC-008';actor.name='SYNTHETIC undocumented actor';
+ actor.knowledge=[];
+ forged.state.world.actors['NPC-008']=actor;
+ const files=encodeFiveFiles(checkpoint);
+ files['game/STATE.json']=JSON.stringify(forged.state,null,2)+'\n';
+ const report=assessNPCKnowledgeAnchorMigration({
+  ...input(checkpoint),snapshot:forged,sourceFiles:files
+ });
+ assert.equal(report.status,'blocked');
+ assert.equal(report.candidate,null);
+ assert.deepEqual(report.actorDrift.added,['NPC-008']);
+ assert.ok(report.blockers.includes('actor_roster_migration_not_implemented'));
+});
+
+test('removing old knowledge from final state cannot be disguised as forgetting',()=>{
+ const checkpoint=future(),forged=structuredClone(checkpoint);
+ forged.state.world.actors['NPC-006'].knowledge.pop();
+ const files=encodeFiveFiles(checkpoint);
+ files['game/STATE.json']=JSON.stringify(forged.state,null,2)+'\n';
+ assert.throws(()=>assessNPCKnowledgeAnchorMigration({
+  ...input(checkpoint),snapshot:forged,sourceFiles:files
+ }),/NPC knowledge diverges from sealed anchor and event history/);
+});
