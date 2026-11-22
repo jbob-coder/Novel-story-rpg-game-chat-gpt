@@ -192,9 +192,13 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
  * the speaker must already hold the cited entry; the final state must match
  * the anchored knowledge plus all subsequently recorded additions in order.
  */
-function verifySocialKnowledgeChronology(snapshot,events){
+export function verifySealedNPCKnowledge(snapshot,events=allEvents(snapshot)){
  const actors=snapshot.state.world.actors;
  const anchor=NPC_KNOWLEDGE_ANCHOR;
+ // No actor may be silently added to or removed from a sealed NPC roster.
+ // Actor lifecycle changes require a new, separately reviewed migration contract.
+ ensure(same(Object.keys(actors).sort(),Object.keys(anchor.actorKnowledge).sort()),
+  'NPC actor roster differs from sealed knowledge anchor');
  const startSeq=Number(anchor.lastEventId.slice(3));
  ensure(Number.isSafeInteger(startSeq)&&startSeq>0&&
   events[startSeq-1]?.id===anchor.lastEventId,
@@ -303,6 +307,6 @@ export function verifySocialEventHistory(snapshot){
   }
   ensure(effectCount>0,'Recorded social encounter lacks any effect');
  }
- if(grouped.size)verifySocialKnowledgeChronology(snapshot,history);
+ if(grouped.size)verifySealedNPCKnowledge(snapshot,history);
  return true;
 }
