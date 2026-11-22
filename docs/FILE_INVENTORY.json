@@ -271,6 +271,11 @@
       "docs/00_start/BRANCH_FOLLOWUP_LOT_09_2026-11-22.json",
       "docs/00_start/BRANCH_FOLLOWUP_LOT_09_2026-11-22.md",
       "tests/branch_followup_lot09.test.mjs"
+    ],
+    "branch_security_access_lot10_2026_11_22": [
+      "docs/00_start/BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.json",
+      "docs/00_start/BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.md",
+      "tests/branch_security_access_lot10.test.mjs"
     ]
   },
   "repository_checkpoints": [
