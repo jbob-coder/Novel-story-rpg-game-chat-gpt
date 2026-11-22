@@ -29,7 +29,7 @@ const defs=[
  {
   id:'M1-A',section:'M1',name:'commercial_frontage_separated_public_walk',
   concept:'Maintain shop/customer entry distinct from a proposed public walking strip, with service/delivery conflicts screened outside it.',
-  layers:['existing_market_public_place','unverified_shop_door_and_delivery_interface',
+  layers:['existing_market_saved_graph_area','unverified_shop_door_and_delivery_interface',
    'proposed_public_pedestrian_clear_strip','proposed_delivery_conflict_buffer',
    'unmapped_M1_study_continuation'],
   focus:['M1-SOURCE-EXIT','M1-CAFE-DOOR','M1-CROSSING','M1-BUILDINGS'],
@@ -40,7 +40,7 @@ const defs=[
  {
   id:'M1-B',section:'M1',name:'commercial_perimeter_bypass',
   concept:'Study a public-realm perimeter bypass that does not assume passage through a café or loading frontage.',
-  layers:['existing_market_public_place','unverified_public_perimeter_exit',
+  layers:['existing_market_saved_graph_area','unverified_public_perimeter_exit',
    'proposed_conflict_controlled_crossing','proposed_perimeter_pedestrian_band',
    'unmapped_M1_study_continuation'],
   focus:['M1-SOURCE-EXIT','M1-PARCEL-RIGHTS','M1-CROSSING','M1-GRADE'],
