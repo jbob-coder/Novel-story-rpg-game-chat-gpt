@@ -244,6 +244,11 @@
     "branch_audit_2026_11_20": [
       "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
       "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
+    ],
+    "npc_decision_increment_2026_11_22": [
+      "docs/01_world/NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md",
+      "tools/living_world_decisions.mjs",
+      "tests/npc_causal_decisions_admitted.test.mjs"
     ]
   },
   "repository_checkpoints": [
