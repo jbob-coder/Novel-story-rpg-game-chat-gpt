@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "fragment_id": "MB-CROSSWATER-APPROACH-STUDY-20261122",
+  "authority": "provisional_study_overlay_not_admitted_world",
+  "kind": "dual_candidate_missing_geometry_work_package",
+  "applies_to": "LOC-CROSSWATER-PLAZA -> LOC-HARBOR-WALK existing saved place link only",
+  "source_review_head": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+  "source_blobs": {
+    "scale": "2e8c5ff412436a6e7d526bc0172adfca77107263",
+    "plaza": "a5ac772922b4717797118b15f182207be1d1a7fb",
+    "sibling": "aae66aae315603e37e8cb88034600446bf46d21d",
+    "coast01": "7cb79b2113bfef7b7fbbc39539c17fd80a275cd7",
+    "land03": "2a95eb9e50f69436cb65711daf8ff586f4ef4279",
+    "coast02": "325a0acde67a1ce3b44576860824657a3db41695"
+  },
+  "study_window": {
+    "x_min": 65,
+    "x_max": 68,
+    "y_min": 38.635714285714286,
+    "y_max": 42,
+    "interpretation": "derived_bounding_window_only_not_parcel_or_road"
+  },
+  "common_undetailed_leg": {
+    "id": "CW-GAP-S0",
+    "from": {
+      "x": 65,
+      "y": 42
+    },
+    "to": {
+      "x": 66.9,
+      "y": 40.6
+    },
+    "provenance": "PR56_undetailed_N0_to_N1",
+    "status": "source_route_centerline_hypothesis_only"
+  },
+  "variant_exit_legs": [
+    {
+      "id": "PR106_A",
+      "from": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "coast_study_entry": {
+        "x": 68,
+        "y": 39.94814814814815
+      },
+      "source_next_waypoint": {
+        "x": 69.6,
+        "y": 39
+      },
+      "status": "derived_clip_not_a_new_street"
+    },
+    {
+      "id": "PR103_SIBLING",
+      "from": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "coast_study_entry": {
+        "x": 68,
+        "y": 38.635714285714286
+      },
+      "source_next_waypoint": {
+        "x": 68.3,
+        "y": 38.1
+      },
+      "status": "derived_clip_not_a_new_street"
+    }
+  ],
+  "adjacent_source_sketches": [
+    {
+      "id": "MX-A-MARKET-PLAZA",
+      "source": "land03",
+      "at": {
+        "x": 65,
+        "y": 42
+      },
+      "contact_kind": "shared_plaza_reference_only",
+      "physical_crossing_verified": false
+    },
+    {
+      "id": "MX-A-PLAZA-TERM",
+      "source": "land03",
+      "at": {
+        "x": 65,
+        "y": 42
+      },
+      "contact_kind": "shared_plaza_reference_only",
+      "physical_crossing_verified": false
+    }
+  ],
+  "obstacles_known_confirmed": [],
+  "unknown_obstruction_and_parcel_checks": [
+    {
+      "id": "CW-UNK-PARCELS",
+      "issue": "property_boundaries_and_easements",
+      "scope": "shared_leg",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-UNK-WALLS",
+      "issue": "actual_building_wall_and_door_locations",
+      "scope": "shared_leg",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-UNK-PEDESTRIAN",
+      "issue": "walking_width_curb_and_accessibility",
+      "scope": "both_variants",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-UNK-TERMINAL",
+      "issue": "terminal_entrance_and_crosswalk",
+      "scope": "shared_leg",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-UNK-TRAFFIC",
+      "issue": "road_crossings_and_vehicle_flow",
+      "scope": "both_variants",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-UNK-PORT",
+      "issue": "public_vs_restricted_waterfront_transition",
+      "scope": "coastal_study_entry",
+      "status": "unknown",
+      "geometry": null,
+      "confirmed": false
+    }
+  ],
+  "decisions_unmade": [
+    {
+      "id": "CW-D-01",
+      "question": "Which pedestrian connection leaves the Plaza, and on which public frontage?",
+      "requires": "approved parcel and public access design"
+    },
+    {
+      "id": "CW-D-02",
+      "question": "Where are Terminal entrances and actual crossings relative to the centerline candidates?",
+      "requires": "terminal circulation and road crossing layout"
+    },
+    {
+      "id": "CW-D-03",
+      "question": "What building footprints, grades, sidewalks and clear pedestrian widths occupy this approach?",
+      "requires": "detailed local street and parcel geometry"
+    },
+    {
+      "id": "CW-D-04",
+      "question": "Which candidate coastal handoff connects to an approved accessible physical corridor?",
+      "requires": "editorial review and cross-region testing"
+    }
+  ],
+  "invariants": {
+    "no_canonical_story_or_state_edits": true,
+    "no_new_saved_location_or_edges": true,
+    "no_physical_road_or_building_claim": true,
+    "no_confirmed_obstacles_invented": true,
+    "no_player_or_npc_movement": true,
+    "no_time_advance": true,
+    "no_distance_km_or_travel_minutes": true,
+    "must_preserve_both_candidate_paths": true,
+    "must_not_select_or_admit_variant": true
+  },
+  "review_status": "requires_original_city_geometry_and_editorial_approval"
+}
