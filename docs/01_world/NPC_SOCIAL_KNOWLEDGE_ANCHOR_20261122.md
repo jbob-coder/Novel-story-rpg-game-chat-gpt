@@ -23,7 +23,7 @@ El fichero `tools/living_world_knowledge_anchor.mjs` conserva **29 entradas de c
 
 El verificador `verifySocialKnowledgeChronology` (en `tools/living_world_social.mjs`) se ejecuta dentro de `verifySocialEventHistory` cuando existen eventos sociales y:
 
-1. Exige que el historial global contenga el evento frontera `EV-000029` y no admita un encuentro social reescrito en el historial anterior a la referencia.
+1. Rechaza inmediatamente un encuentro social atribuido a `EV-000029` o cualquier evento anterior, **antes** de interpretar la estructura del mensaje, y luego exige que el historial global contenga el evento frontera legítimo. No se pueden añadir encuentros retrospectivos al registro fijado.
 2. Inicializa conjuntos/órdenes de conocimiento con la referencia **fija**, no con la memoria final potencialmente adulterada. NPC nuevos no incluidos comienzan sin conocimiento acreditado; requieren una adquisición explícita posterior para poder comunicar información.
 3. Reproduce exclusivamente los eventos posteriores a `EV-000029`, en el orden del historial consolidado incluyendo capítulos cerrados. Las adquisiciones `field=knowledge` exigen `after` y correspondencia exacta con `fact`, `source`, propietario del evento y `EV-ID`. Un duplicado idéntico se rechaza.
 4. Para cada encuentro social exige que el emisor ya conozca `transfer.known_entry` **antes** del evento emisor. La información atribuida sigue siendo testimonio, no verdad objetiva.
@@ -42,3 +42,7 @@ Los eventos previos a la frontera siguen custodiados por el historial canónico 
 Para aceptar este lote se requiere QA real Node/Python/validador sobre el **HEAD final** con prueba de exactitud de inventario, enlaces y los cinco blobs canónicos. Registrar el workflow y cerrar la PR temporal de pruebas sin merge.
 
 El diseño deliberadamente es **estricto**: si cambia el checkpoint inicial o se incorporan nuevos NPC que posean conocimientos heredados sin un evento de adquisición, se debe revisar una **migración explícita de referencia**, en vez de aceptar silenciosamente memoria no documentada. La derivación de información desde diálogos del jugador o testigos sin evento todavía no se autoriza. La siguiente tarea después de superar QA es definir criterios de migración del checkpoint de referencia y comprobar efectos de borrado/olvido deliberado solo si se incorporan al motor con cambios causales firmados.
+
+## CI de desarrollo: fallo encontrado y cambio específico
+
+La primera QA-only [#45082641534](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45082641534) ejecutó **484 tests JavaScript: 483 PASS, 1 FAIL**, sin llegar a Python/validador. El test nuevo de encuentro antiguo falsificado esperaba el rechazo por **frontera temporal**; el verificador lo rechazó antes por una estructura inválida (`Malformed saved social context`). Este resultado confirmó que la falsificación se bloqueaba, pero también reveló un orden de diagnóstico menos específico del previsto. Se fortaleció `verifySocialEventHistory` para **comprobar primero que el evento social sea posterior a EV-000029** y solo después revisar participantes y mensaje; se mantuvo intacta la prueba y no se redujo ninguna validación. Una nueva ejecución de CI sobre el HEAD definitivo sigue siendo necesaria para confirmar la corrección.
