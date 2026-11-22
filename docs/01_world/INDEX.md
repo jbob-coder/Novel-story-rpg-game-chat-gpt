@@ -30,3 +30,4 @@
 - [Comparación reversible de variantes Plaza–Harbor: ruta N2 o edificio B01 (no canónica)](MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_REVIEW_20261122.md)
 - [Parches de geometría propuestos (no admitidos)](MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_OPTIONS_20261122.json)
 - [Cross-stack audit of Plaza–Harbor clearances and uncharted corridor coverage (noncanonical)](MERIDIAN_BAY_PLAZA_HARBOR_CROSSSTACK_COVERAGE_AUDIT_20261122.md)
+- [Auditoría del acceso Plaza–Coast 01 sin detalle físico (no canónica)](MERIDIAN_BAY_PLAZA_APPROACH_EVIDENCE_GAP_20261122.md)
