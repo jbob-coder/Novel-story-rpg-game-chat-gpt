@@ -67,4 +67,14 @@ Ambas parten del mismo main y añaden respectivamente un validador y 12 pruebas 
 
 El JSON conserva, por PR, ref base, HEAD, estado observado, lista exacta de ficheros del diff, ejecución de CI y paso de verificación, y puertas de integración. La suite nueva comprueba cinco invariantes: unicidad de la clasificación, cinco Git blobs protegidos, identidad SHA de CI, dependencia #87→#86 y los cuatro archivos concurrentes de #84/#85. Las pruebas validan **consistencia de una captura**; no son sustituto de volver a consultar GitHub cuando cambie cualquiera de esas ramas.
 
-**Estado de este lote:** pendiente de atribuir CI al commit final de su propia PR. Su resultado se registrará en la descripción de la PR tras ejecutarse y consultarse, no se anticipa en este documento.
+**Ejecución verificada para el primer HEAD de PR #93:** `cf734cd47262b5b643290ccf679c0f7d7479ac4e`, [Actions #45069991128](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45069991128): `completed/success`; logs del job `137354582934`: **427/427 Node**, **47/47 Python** y validador de checkpoint **PASS**. Si este documento cambia, verificar de nuevo la CI del nuevo HEAD antes de aceptar la PR.
+
+
+## Reconciliación entre agentes (adenda 2026-11-22)
+
+- [PR #92](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/92), HEAD `32e847beaff4928aaa9fdcb07ece161c41dfdf29`, está apilada sobre #83 y conserva una **auditoría independiente de las seis fuentes históricas**, además del alias de QA cerrado #88. Esos hallazgos y su procedencia deben mantenerse como autoridad documental de custodia. Esta PR #93 **no** sustituye ese documento ni verifica de nuevo los seis blobs de origen.
+- La aportación exclusiva de [PR #93](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/93) es el **JSON estructurado de puertas de integración** y cinco pruebas ejecutables para los SHA y archivos protegidos. Ambas PR modifican `docs/00_start/INDEX.md` y `docs/FILE_INVENTORY.json`; por tanto, se requiere reconciliar esas entradas, sin aplicar una sustitución total del inventario.
+- [PR #89](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/89), HEAD `964d84698f65db0ea41d7617bf5b9f22dd85db8f`, **ya implementa** el candidato Coast 01 basado en #67 con JSON, SVG y tests. Sustituye la acción futura propuesta de crear ese mismo candidato: ahora corresponde **revisar y validar su integración**, no duplicar su implementación. Sigue apilada sobre #87 → #86 y no constituye una admisión cartográfica.
+- [PR #91](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/91) desarrolla otra auditoría NPC; no trasladar esa responsabilidad a esta PR de custodia.
+
+**Plan de reconciliación:** conservar el historial #83→#92 como fuente documental; conservar la matriz y las pruebas de #93 como QA complementaria; probar el conjunto en una rama aislada antes de fusionar. Releer los HEAD y la CI de cada rama tras cualquier actualización. No se ha ejecutado aquí un merge de estas PR.
