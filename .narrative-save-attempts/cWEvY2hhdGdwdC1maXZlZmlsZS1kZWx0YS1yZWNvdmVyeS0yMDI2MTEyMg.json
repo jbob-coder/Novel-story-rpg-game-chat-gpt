@@ -2,10 +2,10 @@
   "status": "blocked",
   "branch": "qa/chatgpt-fivefile-delta-recovery-20261122",
   "classification": "QA_ONLY_NONCANONICAL_FORMAT_DELTA",
-  "phase": "before_detached_commit",
+  "phase": "detached_commit_persisted_before_branch_ref_update",
   "sourceHead": "2820cca1bd5140ef8a9f2c94cf986feef0ef19cc",
   "candidateTreeSha": "8289cc2b013eb467b801afd92dc2050588b2b0e2",
-  "detachedCommitHead": null,
+  "detachedCommitHead": "cd61b86496a7d2d8e81bc70e9cedabe07f610784",
   "changedPaths": [
     "chapters/CH-000.transcript.json",
     "chapters/CH-000.events.json",
@@ -32,5 +32,6 @@
   "canonicalJournalUntouched": true,
   "fictionalTimeAdvanced": false,
   "newStoryTurnCreated": false,
-  "note": "Private QA journal branch only. Never merge. Resume by source head and staged tree, then record detached commit and nonforce QA ref update. No owner story input."
+  "note": "Private QA journal branch only. Never merge. Resume by source head and staged tree, then record detached commit and nonforce QA ref update. No owner story input.",
+  "recoveryProof": "journal persisted with source head, five old/new Git blob IDs and detached commit before moving QA ref"
 }
