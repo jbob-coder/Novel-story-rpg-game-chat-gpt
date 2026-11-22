@@ -1,0 +1,36 @@
+{
+  "status": "blocked",
+  "branch": "qa/chatgpt-fivefile-delta-recovery-20261122",
+  "classification": "QA_ONLY_NONCANONICAL_FORMAT_DELTA",
+  "phase": "before_detached_commit",
+  "sourceHead": "2820cca1bd5140ef8a9f2c94cf986feef0ef19cc",
+  "candidateTreeSha": "8289cc2b013eb467b801afd92dc2050588b2b0e2",
+  "detachedCommitHead": null,
+  "changedPaths": [
+    "chapters/CH-000.transcript.json",
+    "chapters/CH-000.events.json",
+    "chapters/CH-000.md",
+    "game/STATE.json",
+    "game/SAVE_MANIFEST.json"
+  ],
+  "originalSourceBlobSHA": {
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320"
+  },
+  "stagedBlobSHA": {
+    "chapters/CH-000.transcript.json": "45d5dfa71232c417af84fd855946d6eefe2441e5",
+    "chapters/CH-000.events.json": "af05365b46e368101816e545cb2ef7db680231bb",
+    "chapters/CH-000.md": "217ccec4c9b4be01e88c2923c2a9012af08b6a54",
+    "game/STATE.json": "ae95f63cf4b72eb391d644f1f28afec8e6ecde84",
+    "game/SAVE_MANIFEST.json": "1f8ab23d64eae4d4aa1f1cb5a8e792a368523c67"
+  },
+  "testMethod": "append_single_newline_to_each_of_five_original_files",
+  "semanticFieldsUnchanged": true,
+  "canonicalJournalUntouched": true,
+  "fictionalTimeAdvanced": false,
+  "newStoryTurnCreated": false,
+  "note": "Private QA journal branch only. Never merge. Resume by source head and staged tree, then record detached commit and nonforce QA ref update. No owner story input."
+}
