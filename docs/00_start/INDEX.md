@@ -66,3 +66,9 @@ Estas son capturas fechadas, no autorización para fusionar o jugar.
 - [Lote 09: PR #113–#123, QA alias, nueva revisión de #112 y procedencia en #122](BRANCH_FOLLOWUP_LOT_09_2026-11-22.md).
 - [Matriz fechada de HEAD/base, cambios exclusivos y CI](BRANCH_FOLLOWUP_LOT_09_2026-11-22.json).
 No implica merge, admisión física ni nuevo turno.
+
+## Seguridad NPC y brechas de acceso — 2026-11-22
+
+- [Lote 10: auditoría de las PR #126–#131, conocimiento NPC fijado y corredores sin certificación](BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.md).
+- [Registro estructurado por PR, cabeza, CI y dependencias](BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.json).
+Las rutas son bocetos y el estado canónico permanece en CH-000 turno 9.
