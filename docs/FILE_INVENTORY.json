@@ -295,6 +295,12 @@
       "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_FRAGMENT_REVIEW_20261122.md",
       "tools/meridian_bay_crosswater_approach_fragment.mjs",
       "tests/meridian_bay_crosswater_approach_fragment.test.mjs"
+    ],
+    "crosswater_frontage_street_study_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_STUDY_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_REVIEW_20261122.md",
+      "tools/meridian_bay_crosswater_frontage_study.mjs",
+      "tests/meridian_bay_crosswater_frontage_study.test.mjs"
     ]
   },
   "repository_checkpoints": [

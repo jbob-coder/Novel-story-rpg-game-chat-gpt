@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "MB-CROSSWATER-FRONTAGE-REVIEW-20261122",
+  "authority": "new_original_design_hypothesis_not_saved_canon",
+  "status": "review_only_non_playable",
+  "parent_pr140_head": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+  "parent_fragment": {
+    "path": "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_PROVISIONAL_FRAGMENT_20261122.json",
+    "git_blob_sha": "b411fe76cef5c87237805725feb2b425acefc785"
+  },
+  "provenance_classes": {
+    "anchor": "preexisting_fictional_approximate_place_reference_not_physical_coordinate",
+    "derived": "calculated_from_existing_unapproved_draft_line_and_study_rectangle",
+    "new_proposal": "invented_schematic_geometry_only_for_design_review",
+    "unknown": "unmeasured_unverified_building_parcel_or_access_fact"
+  },
+  "diagram_parameters": {
+    "review_pedestrian_half_width_canvas": 0.12,
+    "frontage_investigation_outer_offset_canvas": 0.45,
+    "physical_width_meters": null,
+    "length_to_meters_conversion": null,
+    "design_source": "new_proposal",
+    "declared_feasibility": false,
+    "meaning": "symmetric_overlay_bands_only_not_sidewalk_or_legal_parcel"
+  },
+  "shared_approach": {
+    "source_id": "CW-GAP-S0",
+    "description": "original PR56 undetailed segment, no route admission"
+  },
+  "coastal_handoffs": [
+    {
+      "source_id": "PR106_A",
+      "status": "unselected_hypothesis"
+    },
+    {
+      "source_id": "PR103_SIBLING",
+      "status": "unselected_hypothesis"
+    }
+  ],
+  "frontage_study_sides": [
+    {
+      "id": "CW-FRONT-LEFT",
+      "side": "left",
+      "evidence_class": "new_proposal",
+      "identified_parcels": [],
+      "physical_property_line": null
+    },
+    {
+      "id": "CW-FRONT-RIGHT",
+      "side": "right",
+      "evidence_class": "new_proposal",
+      "identified_parcels": [],
+      "physical_property_line": null
+    }
+  ],
+  "crossing_review_stations": [
+    {
+      "id": "CW-X-PLAZA-REVIEW",
+      "method": "source_plaza_anchor",
+      "evidence_class": "anchor",
+      "crosswalk_verified": false,
+      "vehicle_flow_verified": false
+    },
+    {
+      "id": "CW-X-TERMINAL-REVIEW",
+      "method": "orthogonal_projection_of_approximate_terminal_reference_onto_shared_centerline",
+      "evidence_class": "derived",
+      "crosswalk_verified": false,
+      "vehicle_flow_verified": false
+    }
+  ],
+  "survey_ledger": [
+    {
+      "id": "CW-SURVEY-PARCELS",
+      "topic": "parcel_and_public_right_of_way",
+      "required": "new_parcel_boundaries_and_easements",
+      "physical_geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-SURVEY-FOOTPRINTS",
+      "topic": "building_walls_and_entrances",
+      "required": "building_and_door_geometry",
+      "physical_geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-SURVEY-PEDESTRIAN",
+      "topic": "sidewalk_slope_width_accessibility",
+      "required": "dimensioned_walkway_and_gradient",
+      "physical_geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-SURVEY-CROSSINGS",
+      "topic": "traffic_and_transit_crosswalks",
+      "required": "actual_crosswalk_and_terminal_entrances",
+      "physical_geometry": null,
+      "confirmed": false
+    },
+    {
+      "id": "CW-SURVEY-PORT",
+      "topic": "public_or_restricted_harbor_access",
+      "required": "approved_waterfront_public_boundary",
+      "physical_geometry": null,
+      "confirmed": false
+    }
+  ],
+  "decisions_open": [
+    {
+      "id": "CW-DEC-FRONTAGE",
+      "question": "Is either side of the conceptual passage available as public frontage?",
+      "owner_decision_required": true
+    },
+    {
+      "id": "CW-DEC-TERMINAL",
+      "question": "Where are the real transit entrance and legal pedestrian crossing, if any?",
+      "owner_decision_required": true
+    },
+    {
+      "id": "CW-DEC-WIDTH",
+      "question": "What physically viable accessibility and clearance dimensions should be used?",
+      "owner_decision_required": true
+    },
+    {
+      "id": "CW-DEC-ROUTE",
+      "question": "Which of the two Plaza–Coast 01 approaches, if either, should be canonical?",
+      "owner_decision_required": true
+    }
+  ],
+  "invariants": {
+    "no_physical_building_or_parcel_claim": true,
+    "no_real_sidewalk_or_crosswalk_claim": true,
+    "no_road_or_route_graph_change": true,
+    "no_canonical_location_changes": true,
+    "no_game_or_story_action": true,
+    "no_npc_or_player_movement": true,
+    "no_fictional_time_advance": true,
+    "no_physical_distance_assumption": true,
+    "both_route_alternatives_preserved": true,
+    "only_draft_review_surfaces": true
+  },
+  "approval": {
+    "physical_walkability": "not_verified",
+    "editorial": "pending",
+    "story_integration": false
+  }
+}
