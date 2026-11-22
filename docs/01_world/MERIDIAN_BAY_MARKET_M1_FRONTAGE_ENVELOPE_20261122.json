@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "MB-SECTION04-M1-MARKET-FRONTAGE-ILLUSTRATIVE-CLEARANCE-20261122",
+  "status": "noncanonical_graphical_screen_no_physical_right_of_way",
+  "sourceGitBlobs": {
+    "concepts": "593b332e69e4eecdfeaa5217ad7464a230e1bad2",
+    "section04": "a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b",
+    "marketHarbor": "e8efe8e5f6a746ab4e628f76a9deb5f71061010d",
+    "marketCross": "904983876226ba82451bf9e3b5d6aed8e7885d6a",
+    "inland": "2a95eb9e50f69436cb65711daf8ff586f4ef4279",
+    "city": "2e8c5ff412436a6e7d526bc0172adfca77107263"
+  },
+  "studySection": "MB-04-M1",
+  "sourcePr44FirstLegId": "MB-MH-L1",
+  "originalSourceSegment": [
+    {
+      "x": 58,
+      "y": 43
+    },
+    {
+      "x": 60,
+      "y": 40.7
+    }
+  ],
+  "clippedCenterline": [
+    {
+      "x": 58.869565,
+      "y": 42
+    },
+    {
+      "x": 60,
+      "y": 40.7
+    }
+  ],
+  "screenOnlyAgainst": "PR69_Land03_12_candidate_footprints_not_M1_unknown_parcels",
+  "marketFocusEnvelopeId": "MB-FOCUS-MARKET",
+  "reviewedConceptIds": [
+    "M1-A",
+    "M1-B"
+  ],
+  "ribbonAndInquiryBands": [
+    {
+      "id": "M1-CLEAR-STRIP-INQUIRY",
+      "kind": "pedestrian_strip_illustration_not_width_or_legal_access",
+      "lateralOffsetsCanvasUnits": [
+        -0.12,
+        0.12
+      ],
+      "polygonIllustrativeCanvas": [
+        {
+          "x": 58.779012,
+          "y": 41.921259
+        },
+        {
+          "x": 59.909447,
+          "y": 40.621259
+        },
+        {
+          "x": 60.090553,
+          "y": 40.778741
+        },
+        {
+          "x": 58.960118,
+          "y": 42.078741
+        }
+      ],
+      "land03StudyBoxClippedPolygon": [
+        {
+          "x": 58.960118,
+          "y": 42.078741
+        },
+        {
+          "x": 58.869565,
+          "y": 42
+        },
+        {
+          "x": 59.028588,
+          "y": 42
+        }
+      ],
+      "graphicalAreaOverLand03StudyBoxSqUnits": 0.006261,
+      "fullyWithinUnsurveyedMarketFocusEnvelope": true,
+      "candidateLand03BuildingsScreened": [
+        "MX-B-01",
+        "MX-B-02",
+        "MX-B-03",
+        "MX-B-04",
+        "MX-B-05",
+        "MX-B-06",
+        "MX-B-07",
+        "MX-B-08",
+        "MX-B-09",
+        "MX-B-10",
+        "MX-B-11",
+        "MX-B-12"
+      ],
+      "recordedHistoricalBuildingShapeContacts": [],
+      "physicalBuildingClearanceVerified": false,
+      "parcelOwnershipVerified": false,
+      "actualPedestrianWidthVerified": false,
+      "passageFromMarketRowVerified": false,
+      "graphicOffsetsAreMeters": false,
+      "streetApproved": false
+    },
+    {
+      "id": "M1-LATERAL-A-INQUIRY",
+      "kind": "frontage_screening_only_occupancy_and_side_unknown",
+      "lateralOffsetsCanvasUnits": [
+        0.12,
+        0.45
+      ],
+      "polygonIllustrativeCanvas": [
+        {
+          "x": 58.960118,
+          "y": 42.078741
+        },
+        {
+          "x": 60.090553,
+          "y": 40.778741
+        },
+        {
+          "x": 60.339572,
+          "y": 40.99528
+        },
+        {
+          "x": 59.209137,
+          "y": 42.29528
+        }
+      ],
+      "land03StudyBoxClippedPolygon": [
+        {
+          "x": 59.209137,
+          "y": 42.29528
+        },
+        {
+          "x": 58.960118,
+          "y": 42.078741
+        },
+        {
+          "x": 59.028588,
+          "y": 42
+        },
+        {
+          "x": 59.465902,
+          "y": 42
+        }
+      ],
+      "graphicalAreaOverLand03StudyBoxSqUnits": 0.081782,
+      "fullyWithinUnsurveyedMarketFocusEnvelope": true,
+      "candidateLand03BuildingsScreened": [
+        "MX-B-01",
+        "MX-B-02",
+        "MX-B-03",
+        "MX-B-04",
+        "MX-B-05",
+        "MX-B-06",
+        "MX-B-07",
+        "MX-B-08",
+        "MX-B-09",
+        "MX-B-10",
+        "MX-B-11",
+        "MX-B-12"
+      ],
+      "recordedHistoricalBuildingShapeContacts": [],
+      "physicalBuildingClearanceVerified": false,
+      "parcelOwnershipVerified": false,
+      "actualPedestrianWidthVerified": false,
+      "passageFromMarketRowVerified": false,
+      "graphicOffsetsAreMeters": false,
+      "streetApproved": false
+    },
+    {
+      "id": "M1-LATERAL-B-INQUIRY",
+      "kind": "frontage_screening_only_occupancy_and_side_unknown",
+      "lateralOffsetsCanvasUnits": [
+        -0.45,
+        -0.12
+      ],
+      "polygonIllustrativeCanvas": [
+        {
+          "x": 58.529993,
+          "y": 41.70472
+        },
+        {
+          "x": 59.660428,
+          "y": 40.40472
+        },
+        {
+          "x": 59.909447,
+          "y": 40.621259
+        },
+        {
+          "x": 58.779012,
+          "y": 41.921259
+        }
+      ],
+      "land03StudyBoxClippedPolygon": [],
+      "graphicalAreaOverLand03StudyBoxSqUnits": 0,
+      "fullyWithinUnsurveyedMarketFocusEnvelope": true,
+      "candidateLand03BuildingsScreened": [
+        "MX-B-01",
+        "MX-B-02",
+        "MX-B-03",
+        "MX-B-04",
+        "MX-B-05",
+        "MX-B-06",
+        "MX-B-07",
+        "MX-B-08",
+        "MX-B-09",
+        "MX-B-10",
+        "MX-B-11",
+        "MX-B-12"
+      ],
+      "recordedHistoricalBuildingShapeContacts": [],
+      "physicalBuildingClearanceVerified": false,
+      "parcelOwnershipVerified": false,
+      "actualPedestrianWidthVerified": false,
+      "passageFromMarketRowVerified": false,
+      "graphicOffsetsAreMeters": false,
+      "streetApproved": false
+    }
+  ],
+  "centerlineTouchesLand03AtStartOnly": true,
+  "ribbonHasPositiveGraphicAreaAcrossStudyBoundary": true,
+  "candidateKnownLand03BuildingContacts": [],
+  "unknownUnmappedM1BuildingFootprints": null,
+  "publicMarketExitApproved": false,
+  "cafeEntranceAndLoadingConfiguration": null,
+  "legalRightOfWayVerified": false,
+  "physicalCrossingsVerified": false,
+  "realRouteSafetyVerified": false,
+  "realDimensionsMeters": null,
+  "land03StudyBoxNotAParcel": true,
+  "noPortOrTerminalAccessInferred": true,
+  "selectedConstruction": null,
+  "preservedOtherSectionIds": [
+    "MB-04-P1",
+    "MB-04-P2",
+    "MB-04-M2",
+    "MB-04-M3"
+  ],
+  "newSavedGraphEdges": [],
+  "newBuildings": [],
+  "playerMoved": false,
+  "npcMoved": false,
+  "timeAdvanced": false
+}
