@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-MARKET-CROSS-CORRIDOR-DETAIL-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_corridor_micro_map",
+  "policy": "complete_this_section_before_designing_next_section",
+  "source": {
+    "source_story": "chapters/CH-000.transcript.json",
+    "canonical_graph": "game/STATE.json",
+    "city_scale": "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+    "parent_road_sketch": "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+    "preceding_detail": "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+    "crosswalk": "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json"
+  },
+  "endpoints": {
+    "from_location_id": "LOC-COMMERCIAL-DISTRICT",
+    "to_location_id": "LOC-CROSSWATER-PLAZA",
+    "parent_segment_id": "MB-WEB-007"
+  },
+  "sketch_limits": {
+    "mapped_distances_are_illustrative_only": true,
+    "nodes_not_new_locations": true,
+    "coordinate_precision_not_surveyed": true,
+    "no_fixed_street_names": true,
+    "no_intersection_right_of_way_assumed": true,
+    "no_verified_sidewalk_accessibility": true,
+    "no_building_heights_or_rooflines": true,
+    "no_routed_travel_minutes": true,
+    "no_new_canonical_location_discovery": true,
+    "only_planning_grid_directions": true
+  },
+  "nodes": [
+    {
+      "id": "MB-MC-N0",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-COMMERCIAL-DISTRICT",
+      "xy": {
+        "x": 58,
+        "y": 43
+      },
+      "site": "Market Row district reference",
+      "street_role": "Commercial streets and storefronts already established; Café Bruma and Noah's shop remain separate draft/current district links",
+      "junction": "Unspecified local Market Row approach; not a surveyed junction"
+    },
+    {
+      "id": "MB-MC-N1",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 59.8,
+        "y": 42.6
+      },
+      "site": "Market Row outer frontage",
+      "street_role": "Proposed transition between shop windows and a wider public-transit pedestrian flow",
+      "junction": "Unspecified bend; do not place a new shop entrance or crossing as fact"
+    },
+    {
+      "id": "MB-MC-N2",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 62.2,
+        "y": 42.3
+      },
+      "site": "Mid-corridor service frontage",
+      "street_role": "Proposed mixed shops and small services along a route toward the transit area",
+      "junction": "Candidate pedestrian crossing decision point, no established legal crossing"
+    },
+    {
+      "id": "MB-MC-N3",
+      "kind": "intermediate_geometry_node",
+      "location_id": null,
+      "xy": {
+        "x": 64,
+        "y": 42.1
+      },
+      "site": "Crosswater-side approach",
+      "street_role": "Proposed transition to transit-facing facades and more foot traffic",
+      "junction": "Approach only; exact plaza curb, signage, bus and rail gates unresolved"
+    },
+    {
+      "id": "MB-MC-N4",
+      "kind": "district_approach_anchor",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "xy": {
+        "x": 65,
+        "y": 42
+      },
+      "site": "Crosswater Transit Plaza reference",
+      "street_role": "Existing plaza with terminal frontage, people, information boards and space toward Harbor Walk",
+      "junction": "Public space interface; entrance geometry to terminal remains a separate connector"
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-MC-L1",
+      "from": "MB-MC-N0",
+      "to": "MB-MC-N1",
+      "frontage_band": "MB-MC-B1",
+      "character": "Market Row storefront approach",
+      "pedestrian_concept": "Continuous candidate footway along commercial frontage; no confirmed width",
+      "site_access": "Separate Café Bruma frontage does not prove its door opens onto this line",
+      "crossing_verified": false,
+      "vehicle_rules": "unknown",
+      "time_minutes": null
+    },
+    {
+      "id": "MB-MC-L2",
+      "from": "MB-MC-N1",
+      "to": "MB-MC-N2",
+      "frontage_band": "MB-MC-B2",
+      "character": "Mixed commercial street",
+      "pedestrian_concept": "Candidate footway with ordinary shopper/service movement",
+      "site_access": "No new named shops or known occupancy; service doors remain unspecified",
+      "crossing_verified": false,
+      "vehicle_rules": "unknown",
+      "time_minutes": null
+    },
+    {
+      "id": "MB-MC-L3",
+      "from": "MB-MC-N2",
+      "to": "MB-MC-N3",
+      "frontage_band": "MB-MC-B3",
+      "character": "Transition to transit-facing businesses",
+      "pedestrian_concept": "Candidate wider walking approach to the plaza, not a confirmed sidewalk measurement",
+      "site_access": "Do not presume access through private buildings or a bus platform shortcut",
+      "crossing_verified": false,
+      "vehicle_rules": "unknown",
+      "time_minutes": null
+    },
+    {
+      "id": "MB-MC-L4",
+      "from": "MB-MC-N3",
+      "to": "MB-MC-N4",
+      "frontage_band": "MB-MC-B4",
+      "character": "Crosswater transit-plaza edge",
+      "pedestrian_concept": "Candidate uninterrupted pedestrian approach to the public plaza",
+      "site_access": "Plaza/terminal entrance relation preserved; actual curb, crossing and boarding area unplaced",
+      "crossing_verified": false,
+      "vehicle_rules": "unknown",
+      "time_minutes": null
+    }
+  ],
+  "frontage_bands": [
+    {
+      "id": "MB-MC-B1",
+      "link_id": "MB-MC-L1",
+      "side_a": "Proposed small-shop frontage consistent with Market Row",
+      "side_b": "Proposed commerce/service-side facades without assigned business identities",
+      "activity_scope": "Ordinary trade and loading possible in district, no specific event",
+      "physical_buildings_confirmed": false,
+      "visual_openings_verified": false
+    },
+    {
+      "id": "MB-MC-B2",
+      "link_id": "MB-MC-L2",
+      "side_a": "Candidate mixed retail and services",
+      "side_b": "Candidate offices with commercial frontage",
+      "activity_scope": "Foot traffic and deliveries are ordinary background possibilities, not narrated events",
+      "physical_buildings_confirmed": false,
+      "visual_openings_verified": false
+    },
+    {
+      "id": "MB-MC-B3",
+      "link_id": "MB-MC-L3",
+      "side_a": "Candidate transit-oriented small retail",
+      "side_b": "Candidate office/shop transition; preserve potential light through streets or reflections",
+      "activity_scope": "More passenger traffic toward Crosswater may be modeled only during a real turn",
+      "physical_buildings_confirmed": false,
+      "visual_openings_verified": false
+    },
+    {
+      "id": "MB-MC-B4",
+      "link_id": "MB-MC-L4",
+      "side_a": "Proposed public-facing shops near the plaza",
+      "side_b": "Proposed plaza-oriented edge with unspecified terminal gates",
+      "activity_scope": "Station delays, signboards and passenger movement already appear in story",
+      "physical_buildings_confirmed": false,
+      "visual_openings_verified": false
+    }
+  ],
+  "story_requirements": [
+    {
+      "id": "CH000-CROSSWATER-TO-MARKET",
+      "fragment": "Jack se aleja hacia Market Row",
+      "meaning": "Jack's movement from the plaza into Market Row must remain plausible; reverse detailed path is available as a planning preview."
+    },
+    {
+      "id": "CH000-CAFE-CORNER",
+      "fragment": "En una esquina encuentra **Café Bruma**",
+      "meaning": "Café Bruma remains a corner business in Market Row. Its exact street corner and entrance are NOT assigned by this draft."
+    },
+    {
+      "id": "CH000-CAFE-LIGHT",
+      "fragment": "resplandor del terminal",
+      "meaning": "Keep plausible perception of terminal light from the café, direct or reflected; no approved view ray or building heights."
+    }
+  ],
+  "visibility_gate": {
+    "origin_location_id": "LOC-CAFE-BRUMA",
+    "related_area_id": "LOC-TRANSIT-TERMINAL",
+    "exact_corner_unknown": true,
+    "terminal_light_source_unknown": true,
+    "building_massing_unknown": true,
+    "raycast_or_sightline_completed": false,
+    "block_new_obstructing_building_canon_until_review": true,
+    "do_not_claim_direct_line_of_sight": true,
+    "interpretation": "Perceptible terminal light may be reflected or partially visible between buildings. The chapter does not prove a geometrically unobstructed ray."
+  },
+  "validation_gate": {
+    "parent_geometry_must_match_exactly": true,
+    "one_continuous_corridor_only": true,
+    "each_link_has_two_sided_frontage": true,
+    "missing_source_graph_link_must_fail": true,
+    "previous_rail_market_detail_unchanged": true,
+    "no_automatic_game_state_changes": true,
+    "no_npc_placements": true,
+    "no_story_advance": true,
+    "next_section": "Crosswater Plaza–Harbor Walk, only after this interior section has passed targeted and full QA, and continuity review"
+  }
+}
