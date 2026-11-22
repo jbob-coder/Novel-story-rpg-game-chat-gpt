@@ -64,3 +64,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Sección 04: derivar y validar cinco tramos urbanos pendientes sin crear calles](meridian_harbor_section04_ledger.mjs)
 - [M1/P1: auditoría read-only de referencias urbanas y posibles accesos](meridian_harbor_m1_p1_access_evidence.mjs)
 - [Puerta de evidencia histórica de salidas M1/P1, sin admisión física](meridian_m1_p1_historical_exit_gates.mjs)
+- [Diseños conceptuales M1/P1: validar secciones y 12 requisitos sin inventar servidumbres](meridian_m1_p1_interface_concepts.mjs)
