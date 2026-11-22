@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "id": "MB-SECTION04-M1-P1-PHYSICAL-INTERFACE-OPTIONS-20261122",
+  "status": "conceptual_interfaces_only_require_site_design",
+  "sourceGitBlobs": {
+    "gates": "c4fb60f05c605e031a753b7f5cfc6a2c89d495bb",
+    "section": "a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b",
+    "evidence": "464bb09f77c4c01b3c75ee2dccfc13b0b2dfafba"
+  },
+  "alternatives": [
+    {
+      "id": "M1-A",
+      "studySection": "MB-04-M1",
+      "description": "Maintain shop/customer entry distinct from a proposed public walking strip, with service/delivery conflicts screened outside it.",
+      "layoutName": "commercial_frontage_separated_public_walk",
+      "conceptualRelativeLayers": [
+        "existing_market_saved_graph_area",
+        "unverified_shop_door_and_delivery_interface",
+        "proposed_public_pedestrian_clear_strip",
+        "proposed_delivery_conflict_buffer",
+        "unmapped_M1_study_continuation"
+      ],
+      "relativeSideOrientation": "unfixed",
+      "fixedGeometry": null,
+      "polygon": null,
+      "measuredWidthMeters": null,
+      "pathDistanceKm": null,
+      "walkingTimeMinutes": null,
+      "sourceLineFrom": {
+        "x": 58.869565,
+        "y": 42
+      },
+      "sourceLineTo": {
+        "x": 60,
+        "y": 40.7
+      },
+      "studyWindowOnlyNotPublicLand": true,
+      "evidenceRequired": [
+        "M1-SOURCE-EXIT",
+        "M1-CAFE-DOOR",
+        "M1-PARCEL-RIGHTS",
+        "M1-CROSSING",
+        "M1-BUILDINGS",
+        "M1-GRADE"
+      ],
+      "reviewFocus": [
+        "M1-SOURCE-EXIT",
+        "M1-CAFE-DOOR",
+        "M1-CROSSING",
+        "M1-BUILDINGS"
+      ],
+      "unresolvedInteraction": "Shop doors and delivery movements can interrupt an unmeasured clear path.",
+      "firstToInvestigate": true,
+      "requiresNewLegalAccessEvidence": true,
+      "physicallyLocated": false,
+      "parcelOwnerKnown": false,
+      "crossingDesigned": false,
+      "unrestrictedPublicAccessVerified": false,
+      "accessibilityVerified": false,
+      "selectedForBuild": false,
+      "canNavigate": false
+    },
+    {
+      "id": "M1-B",
+      "studySection": "MB-04-M1",
+      "description": "Study a public-realm perimeter bypass that does not assume passage through a café or loading frontage.",
+      "layoutName": "commercial_perimeter_bypass",
+      "conceptualRelativeLayers": [
+        "existing_market_saved_graph_area",
+        "unverified_public_perimeter_exit",
+        "proposed_conflict_controlled_crossing",
+        "proposed_perimeter_pedestrian_band",
+        "unmapped_M1_study_continuation"
+      ],
+      "relativeSideOrientation": "unfixed",
+      "fixedGeometry": null,
+      "polygon": null,
+      "measuredWidthMeters": null,
+      "pathDistanceKm": null,
+      "walkingTimeMinutes": null,
+      "sourceLineFrom": {
+        "x": 58.869565,
+        "y": 42
+      },
+      "sourceLineTo": {
+        "x": 60,
+        "y": 40.7
+      },
+      "studyWindowOnlyNotPublicLand": true,
+      "evidenceRequired": [
+        "M1-SOURCE-EXIT",
+        "M1-CAFE-DOOR",
+        "M1-PARCEL-RIGHTS",
+        "M1-CROSSING",
+        "M1-BUILDINGS",
+        "M1-GRADE"
+      ],
+      "reviewFocus": [
+        "M1-SOURCE-EXIT",
+        "M1-PARCEL-RIGHTS",
+        "M1-CROSSING",
+        "M1-GRADE"
+      ],
+      "unresolvedInteraction": "The proposed public perimeter and any crossing have not been located or authorized.",
+      "firstToInvestigate": false,
+      "requiresNewLegalAccessEvidence": true,
+      "physicallyLocated": false,
+      "parcelOwnerKnown": false,
+      "crossingDesigned": false,
+      "unrestrictedPublicAccessVerified": false,
+      "accessibilityVerified": false,
+      "selectedForBuild": false,
+      "canNavigate": false
+    },
+    {
+      "id": "P1-A",
+      "studySection": "MB-04-P1",
+      "description": "Study an outward public-plaza perimeter connection separated from terminal loading, ticketing and vehicle circulation.",
+      "layoutName": "plaza_perimeter_non_terminal_exit",
+      "conceptualRelativeLayers": [
+        "existing_crosswater_public_plaza",
+        "unverified_public_plaza_outer_edge",
+        "proposed_terminal_operations_separation",
+        "proposed_pedestrian_clear_strip",
+        "unmapped_P1_study_continuation"
+      ],
+      "relativeSideOrientation": "unfixed",
+      "fixedGeometry": null,
+      "polygon": null,
+      "measuredWidthMeters": null,
+      "pathDistanceKm": null,
+      "walkingTimeMinutes": null,
+      "sourceLineFrom": {
+        "x": 65,
+        "y": 42
+      },
+      "sourceLineTo": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "studyWindowOnlyNotPublicLand": true,
+      "evidenceRequired": [
+        "P1-PLAZA-EXIT",
+        "P1-TERMINAL-BOUNDARY",
+        "P1-PARCEL-RIGHTS",
+        "P1-CROSSING",
+        "P1-WIDTH",
+        "P1-GRADE"
+      ],
+      "reviewFocus": [
+        "P1-PLAZA-EXIT",
+        "P1-TERMINAL-BOUNDARY",
+        "P1-PARCEL-RIGHTS",
+        "P1-WIDTH"
+      ],
+      "unresolvedInteraction": "Exact terminal circulation and the public plaza edge are not surveyed.",
+      "firstToInvestigate": true,
+      "requiresNewLegalAccessEvidence": true,
+      "physicallyLocated": false,
+      "parcelOwnerKnown": false,
+      "crossingDesigned": false,
+      "unrestrictedPublicAccessVerified": false,
+      "accessibilityVerified": false,
+      "selectedForBuild": false,
+      "canNavigate": false
+    },
+    {
+      "id": "P1-B",
+      "studySection": "MB-04-P1",
+      "description": "Compare a designed crossing from the public plaza to a separate proposed pedestrian approach outside controlled terminal premises.",
+      "layoutName": "segregated_plaza_crossing",
+      "conceptualRelativeLayers": [
+        "existing_crosswater_public_plaza",
+        "unverified_crossing_location",
+        "proposed_protected_pedestrian_crossing",
+        "proposed_buffer_from_transit_traffic",
+        "unmapped_P1_study_continuation"
+      ],
+      "relativeSideOrientation": "unfixed",
+      "fixedGeometry": null,
+      "polygon": null,
+      "measuredWidthMeters": null,
+      "pathDistanceKm": null,
+      "walkingTimeMinutes": null,
+      "sourceLineFrom": {
+        "x": 65,
+        "y": 42
+      },
+      "sourceLineTo": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "studyWindowOnlyNotPublicLand": true,
+      "evidenceRequired": [
+        "P1-PLAZA-EXIT",
+        "P1-TERMINAL-BOUNDARY",
+        "P1-PARCEL-RIGHTS",
+        "P1-CROSSING",
+        "P1-WIDTH",
+        "P1-GRADE"
+      ],
+      "reviewFocus": [
+        "P1-PLAZA-EXIT",
+        "P1-CROSSING",
+        "P1-TERMINAL-BOUNDARY",
+        "P1-GRADE"
+      ],
+      "unresolvedInteraction": "No certified crossing, vehicle conflict diagram, curb treatment or public easement exists.",
+      "firstToInvestigate": false,
+      "requiresNewLegalAccessEvidence": true,
+      "physicallyLocated": false,
+      "parcelOwnerKnown": false,
+      "crossingDesigned": false,
+      "unrestrictedPublicAccessVerified": false,
+      "accessibilityVerified": false,
+      "selectedForBuild": false,
+      "canNavigate": false
+    }
+  ],
+  "reviewOrder": [
+    "M1-A",
+    "P1-A",
+    "M1-B",
+    "P1-B"
+  ],
+  "reviewOrderDoesNotSelectConstruction": true,
+  "hasMappedCrossSection": false,
+  "section04RemainingUnknown": [
+    "MB-04-M2",
+    "MB-04-P2",
+    "MB-04-M3"
+  ],
+  "physicalSurfaceApproval": null,
+  "selectedMarketExit": null,
+  "selectedPlazaExit": null,
+  "newPublicRoads": [],
+  "newBuildings": [],
+  "newLocationIds": [],
+  "originalSavedGraphUnchanged": true,
+  "storyBlobsUnchanged": true,
+  "noPlayerAction": true,
+  "noNpcAction": true,
+  "noFictionalTimeElapsed": true,
+  "nextEngineeringTask": "seek_source_or_owner_evidence_for_exit_parcels_and_schematic_public_boundaries"
+}
