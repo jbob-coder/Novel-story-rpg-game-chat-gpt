@@ -17,3 +17,4 @@
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
 - [Decisiones causales NPC sobre mundo admitido, Lote 08 (borrador)](NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md)
+- [Relaciones sociales NPC y eventos causales de encuentro — Lote 09](NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md)
