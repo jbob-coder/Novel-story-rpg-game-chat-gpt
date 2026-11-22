@@ -263,6 +263,11 @@
       "docs/01_world/NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md",
       "tools/living_world_knowledge_anchor.mjs",
       "tests/npc_social_knowledge_anchor.test.mjs"
+    ],
+    "npc_knowledge_migration_2026_11_22": [
+      "docs/01_world/NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md",
+      "tools/living_world_knowledge_migration.mjs",
+      "tests/npc_knowledge_anchor_migration.test.mjs"
     ]
   },
   "repository_checkpoints": [
