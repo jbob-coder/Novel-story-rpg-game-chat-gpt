@@ -50,3 +50,4 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 
 - [Lote 06: verificación ejecutable de inventario y conflictos de trazados](BRANCH_EXECUTABLE_VERIFICATION_LOT_06_2026-11-20.md).
 - [Seis candidatos de geometría con commit, blob y coordenadas de origen](BRANCH_GEOMETRY_CANDIDATES_2026-11-20.json).
+- **[Lote 07 (22-11-2026): seguimiento de PR #82–#88, custodia de seis fuentes y QA costera](BRANCH_FOLLOWUP_AUDIT_LOT_07_2026-11-22.md).**
