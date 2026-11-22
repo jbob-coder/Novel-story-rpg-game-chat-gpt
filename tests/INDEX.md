@@ -76,3 +76,4 @@ These files already existed in the authoritative source and are listed here for 
 - [16 pruebas de alternativas locales #44/#58/#56 y equivalencia visual](meridian_bay_harbor_access_reconciliation.test.mjs)
 
 - [19 regresiones de cobertura regional, colisión y sincronización SVG](meridian_bay_harbor_region_coverage.test.mjs)
+- [13 pruebas de la ficha Sección 04, procedencia, empalmes y guardado](meridian_harbor_section04_ledger.test.mjs)
