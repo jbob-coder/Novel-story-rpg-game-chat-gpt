@@ -80,3 +80,4 @@ These files already existed in the authoritative source and are listed here for 
 - [16 pruebas de procedencia, proximidad y no admisión para M1/P1](meridian_harbor_m1_p1_access_evidence.test.mjs)
 - [16 regresiones de procedencia histórica, cruces y bloqueo M1/P1](meridian_m1_p1_historical_exit_gates.test.mjs)
 - [16 pruebas de interfaces M1/P1, protección de accesos y preservación de historia](meridian_m1_p1_interface_concepts.test.mjs)
+- [20 regresiones de geometría y fuentes sobre el estudio M1 de Market Row](meridian_market_m1_frontage_envelope.test.mjs)

@@ -65,3 +65,4 @@ These files already existed in the authoritative source and are listed here for 
 - [M1/P1: auditoría read-only de referencias urbanas y posibles accesos](meridian_harbor_m1_p1_access_evidence.mjs)
 - [Puerta de evidencia histórica de salidas M1/P1, sin admisión física](meridian_m1_p1_historical_exit_gates.mjs)
 - [Diseños conceptuales M1/P1: validar secciones y 12 requisitos sin inventar servidumbres](meridian_m1_p1_interface_concepts.mjs)
+- [Auditoría geométrica de M1: franja gráfica, recortes y edificios de Land03](meridian_market_m1_frontage_envelope.mjs)

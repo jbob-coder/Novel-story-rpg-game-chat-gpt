@@ -307,6 +307,12 @@
       "docs/01_world/MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_REVIEW_20261122.md",
       "tools/meridian_m1_p1_interface_concepts.mjs",
       "tests/meridian_m1_p1_interface_concepts.test.mjs"
+    ],
+    "meridian_market_m1_frontage_envelope_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_MARKET_M1_FRONTAGE_ENVELOPE_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_MARKET_M1_FRONTAGE_ENVELOPE_REVIEW_20261122.md",
+      "tools/meridian_market_m1_frontage_envelope.mjs",
+      "tests/meridian_market_m1_frontage_envelope.test.mjs"
     ]
   },
   "repository_checkpoints": [
