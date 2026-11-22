@@ -62,3 +62,5 @@ These files already existed in the authoritative source and are listed here for 
 
 - [Auditar longitudes de rutas dentro y fuera de las tres regiones físicas históricas](meridian_bay_harbor_region_coverage.mjs)
 - [Sección 04: derivar y validar cinco tramos urbanos pendientes sin crear calles](meridian_harbor_section04_ledger.mjs)
+
+- [Verificar evidencias M1/P1 desde STATE, historia y Land03 y regenerar SVG](meridian_section04_m1p1_entry_evidence.mjs)
