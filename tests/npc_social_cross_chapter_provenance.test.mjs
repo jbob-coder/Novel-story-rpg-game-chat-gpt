@@ -168,3 +168,13 @@ test('a later ordinary turn retains private social evidence without duplication'
  assert.ok(next.transcript.entries.every(x=>!x.text?.includes('SOC-CHAIN-INIT-001')));
  assert.equal(baseline.manifest.last_completed_turn,9);
 });
+
+test('a forged acquired-knowledge event ID is rejected during social replay',()=>{
+ const forged=structuredClone(first());
+ const recipient=forged.events.events.at(-1);
+ const learned=recipient.state_changes.find(change=>change.field==='knowledge');
+ assert.ok(learned.after.includes(recipient.id));
+ learned.after=learned.after.replace(recipient.id,'EV-999999');
+ assert.throws(()=>verifySocialEventHistory(forged),
+  /Event-backed NPC knowledge has inconsistent source or event ID/);
+});
