@@ -253,6 +253,9 @@
     "branch_audit_2026_11_20": [
       "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
       "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
+    ],
+    "branch_followup_2026_11_22": [
+      "docs/00_start/BRANCH_FOLLOWUP_AUDIT_LOT_07_2026-11-22.md"
     ]
   },
   "repository_checkpoints": [
