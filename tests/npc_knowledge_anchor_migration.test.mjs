@@ -206,13 +206,12 @@ test('an added actor with no documented lifecycle cannot be hidden in promotion'
  forged.state.world.actors['NPC-008']=actor;
  const files=encodeFiveFiles(checkpoint);
  files['game/STATE.json']=JSON.stringify(forged.state,null,2)+'\n';
- const report=assessNPCKnowledgeAnchorMigration({
+ // Lote 13: the snapshot validator now rejects an unregistered actor
+ // before the migration assessor can return its former blocked report.
+ // This is intentionally stronger than accepting the forged checkpoint.
+ assert.throws(()=>assessNPCKnowledgeAnchorMigration({
   ...input(checkpoint),snapshot:forged,sourceFiles:files
- });
- assert.equal(report.status,'blocked');
- assert.equal(report.candidate,null);
- assert.deepEqual(report.actorDrift.added,['NPC-008']);
- assert.ok(report.blockers.includes('actor_roster_migration_not_implemented'));
+ }),/NPC actor roster has unsourced additions or removals/);
 });
 
 test('removing old knowledge from final state cannot be disguised as forgetting',()=>{
