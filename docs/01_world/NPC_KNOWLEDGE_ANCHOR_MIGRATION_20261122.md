@@ -45,3 +45,10 @@ Establecer un contrato autoritativo de **admisión de actores** con identidad es
 ## Historial de QA
 
 La ejecución inicial [#45083270859](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45083270859) se completó correctamente sobre el primer commit funcional `82dbae8e83cf7f88fbcfe996554bc7ad31157d71`: **496/496 JavaScript PASS, 47/47 Python PASS y validador canónico PASS**. Se añadieron después dos regresiones adversariales (roster de NPC sin evento y borrado de memoria), llevando la suite nueva a **14 casos**. Este registro **no** certifica el HEAD modificado: es obligatorio volver a ejecutar CI y registrar la corrida exacta. Los cinco archivos narrativos no se tocaron.
+
+
+### QA del código ampliado: dos regresiones adversariales adicionales
+
+La ejecución [#45083375037](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45083375037) terminó **SUCCESS** en el commit `9a1230125ac5494e4aa745ff996498f3fb8fcb88`: **498/498 JavaScript PASS, 47/47 Python PASS**, `python tools/validate_state.py`: **PASS**. Se comprobó el rechazo de un nuevo actor introducido sin historial, así como del borrado de conocimiento sin evento. La rama conserva el inventario de archivos sin modificaciones canónicas.
+
+**Precisión de certificación:** esta anotación crea un commit documental nuevo, por lo que el resultado anterior acredita solo el commit indicado. Se realizará otra ejecución exacta de QA sobre el HEAD final antes de cerrar el disparador temporal. La PR de desarrollo seguirá en borrador; un éxito del simulador no autoriza promover la referencia ni avanzar la historia.
