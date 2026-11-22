@@ -19,3 +19,4 @@
 - [Decisiones causales NPC sobre mundo admitido, Lote 08 (borrador)](NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md)
 - [Relaciones sociales NPC y eventos causales de encuentro — Lote 09](NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md)
 - [Lote 10: memoria social, cronología de testimonios y capítulos cerrados](NPC_SOCIAL_PROVENANCE_CROSS_CHAPTER_20261122.md)
+- [Lote 11: referencia fijada de conocimientos NPC en el turno 9](NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md)
