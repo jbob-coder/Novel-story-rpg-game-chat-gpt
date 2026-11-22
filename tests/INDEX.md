@@ -77,3 +77,4 @@ These files already existed in the authoritative source and are listed here for 
 
 - [19 regresiones de cobertura regional, colisión y sincronización SVG](meridian_bay_harbor_region_coverage.test.mjs)
 - [13 pruebas de la ficha Sección 04, procedencia, empalmes y guardado](meridian_harbor_section04_ledger.test.mjs)
+- [16 pruebas de procedencia, proximidad y no admisión para M1/P1](meridian_harbor_m1_p1_access_evidence.test.mjs)
