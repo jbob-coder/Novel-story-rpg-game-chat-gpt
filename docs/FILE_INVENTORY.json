@@ -301,6 +301,12 @@
       "docs/01_world/MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.md",
       "tools/meridian_m1_p1_historical_exit_gates.mjs",
       "tests/meridian_m1_p1_historical_exit_gates.test.mjs"
+    ],
+    "harbor_m1_p1_interface_concepts_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_REVIEW_20261122.md",
+      "tools/meridian_m1_p1_interface_concepts.mjs",
+      "tests/meridian_m1_p1_interface_concepts.test.mjs"
     ]
   },
   "repository_checkpoints": [
