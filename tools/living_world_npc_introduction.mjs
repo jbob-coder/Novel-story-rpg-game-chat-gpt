@@ -37,6 +37,10 @@ function validateIntroductionProfile({state,actor,initialKnowledge,observation,r
    Object.hasOwn(state.world.actors,observation.observer_actor_id))&&
   (existingIds===undefined||existingIds.has(observation.observer_actor_id)),
   'NPC introduction requires an existing observer and reviewed current-turn evidence');
+ const observer=observation.observer_actor_id===state.player.id?
+  state.player:state.world.actors[observation.observer_actor_id];
+ ensure(observer?.location_id===actor.location_id,
+  'Direct NPC admission requires a co-located existing observer');
  ensure(text(outcome,12,700),'NPC introduction requires a reviewed private result');
  ensure(Array.isArray(initialKnowledge)&&initialKnowledge.length<=3&&
   initialKnowledge.every(item=>item&&Object.keys(item).sort().join(',')==='fact,source'&&
