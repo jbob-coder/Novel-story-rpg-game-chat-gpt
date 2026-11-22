@@ -37,6 +37,7 @@ const boxValid=b=>b&&[b.x_min,b.x_max,b.y_min,b.y_max].every(Number.isFinite)&&
 
 export function clipSegmentToStudyBox(a,b,box){
  check(finite(a)&&finite(b)&&boxValid(box),'Finite endpoints and valid study rectangle required');
+ if(hypot(a,b)<=EPS)return null; // touching at one point is not spatial coverage
  let start=0,end=1,dx=b.x-a.x,dy=b.y-a.y;
  for(const [p,q] of [[-dx,a.x-box.x_min],[dx,box.x_max-a.x],
   [-dy,a.y-box.y_min],[dy,box.y_max-a.y]]){
