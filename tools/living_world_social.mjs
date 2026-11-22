@@ -1,4 +1,5 @@
 import {allEvents} from './chapter_history.mjs';
+import {NPC_KNOWLEDGE_ANCHOR} from './living_world_knowledge_anchor.mjs';
 // Selective adaptation of PR #13 social contacts to the admitted 15-place world.
 // Source Git blob 971cf964a45fe1842c986288212543c198f8f63a.
 // Event-backed NPC social contacts. Proposal-only until a player-triggered,
@@ -179,39 +180,54 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
 }
 
 /**
- * Reconstruct actor-owned knowledge at each recorded social exchange.
+ * Replay NPC knowledge from a pinned, versioned CH-000 turn-nine snapshot.
  *
- * Final knowledge alone is insufficient: a speaker may learn a statement in a
- * later chapter. Because knowledge is additive in the current state engine,
- * subtract event-backed additions from the materialized final actor knowledge
- * to recover the legacy/seeded baseline, then replay additions in event order.
- * Old pre-turn-7 records without a materialized "after" are legacy seed facts;
- * this does not claim to independently certify their original observation.
+ * Never derive the unknown preexisting knowledge set from the mutable final
+ * state: that would let an injected future fact masquerade as legacy memory.
+ * The anchor is explicitly forward-only. It preserves all 29 original entries
+ * without claiming to reconstruct their individual pre-turn-nine acquisition.
+ *
+ * Every later knowledge addition must be recorded in the correct actor's event
+ * with its exact materialized source and event ID. At every social transfer
+ * the speaker must already hold the cited entry; the final state must match
+ * the anchored knowledge plus all subsequently recorded additions in order.
  */
 function verifySocialKnowledgeChronology(snapshot,events){
  const actors=snapshot.state.world.actors;
- const acquired=new Map(Object.keys(actors).map(id=>[id,new Set()]));
- for(const event of events)for(const change of event.state_changes??[]){
-  if(change.field!=='knowledge'||!acquired.has(change.actor_id)||
-     typeof change.after!=='string')continue;
-  const reconstructed=`${change.fact} (source: ${change.source}; ${event.id})`;
-  ensure(change.after===reconstructed,
-   'Event-backed NPC knowledge has inconsistent source or event ID');
-  acquired.get(change.actor_id).add(change.after);
- }
- const known=new Map(Object.entries(actors).map(([id,actor])=>
-  [id,new Set((actor.knowledge??[]).filter(entry=>!acquired.get(id).has(entry)))]));
- for(const event of events){
+ const anchor=NPC_KNOWLEDGE_ANCHOR;
+ const startSeq=Number(anchor.lastEventId.slice(3));
+ ensure(Number.isSafeInteger(startSeq)&&startSeq>0&&
+  events[startSeq-1]?.id===anchor.lastEventId,
+  'Sealed social knowledge anchor requires intact historical event boundary');
+ ensure(events.slice(0,startSeq).every(event=>event.social_context===undefined),
+  'Unverified social interaction predates the sealed knowledge anchor');
+ for(const actorId of Object.keys(anchor.actorKnowledge))
+  ensure(Object.hasOwn(actors,actorId),
+   'Sealed NPC knowledge anchor actor is missing from the checkpoint');
+ const known=new Map(Object.entries(actors).map(([id])=>
+  [id,[...(anchor.actorKnowledge[id]??[])]]));
+ for(const event of events.slice(startSeq)){
   const context=event.social_context;
   if(context?.transfer?.speaker_id===event.actor_ids?.[0]){
    const transfer=context.transfer;
-   ensure(known.get(transfer.speaker_id)?.has(transfer.known_entry),
+   ensure(known.get(transfer.speaker_id)?.includes(transfer.known_entry),
     'Social speaker had not yet learned the transferred statement');
   }
   for(const change of event.state_changes??[]){
-   if(change.field==='knowledge'&&known.has(change.actor_id)&&
-      typeof change.after==='string')known.get(change.actor_id).add(change.after);
+   if(change.field!=='knowledge'||!known.has(change.actor_id))continue;
+   const expected=`${change.fact} (source: ${change.source}; ${event.id})`;
+   ensure(typeof change.after==='string'&&change.after===expected&&
+     change.actor_id===event.actor_ids?.[0],
+    'Event-backed NPC knowledge has inconsistent source or event ID');
+   ensure(!known.get(change.actor_id).includes(change.after),
+    'Recorded NPC knowledge was duplicated across the sealed boundary');
+   known.get(change.actor_id).push(change.after);
   }
+ }
+ for(const [actorId,entries] of known){
+  ensure(Array.isArray(actors[actorId].knowledge)&&
+   same(actors[actorId].knowledge,entries),
+   'NPC knowledge diverges from sealed anchor and event history');
  }
  return true;
 }
@@ -225,8 +241,14 @@ export function verifySocialEventHistory(snapshot){
  ensure(snapshot?.events?.events&&snapshot?.state?.world?.locations,
   'Saved event history required');
  const grouped=new Map();
- for(const event of allEvents(snapshot)){
+ const history=allEvents(snapshot);
+ const sealedUntil=Number(NPC_KNOWLEDGE_ANCHOR.lastEventId.slice(3));
+ for(const event of history){
   if(event.social_context===undefined)continue;
+  // A forged old encounter must fail at the sealed chronology boundary before
+  // a malformed payload can disguise its actual historical origin.
+  ensure(Number(event.id.slice(3))>sealedUntil,
+   'Unverified social interaction predates the sealed knowledge anchor');
   ensure(event.kind==='independent_actor'&&Array.isArray(event.actor_ids)&&
     event.actor_ids.length===1&&event.known_to?.includes(event.actor_ids[0]),
     'Saved social event must be an actor-owned private NPC event');
@@ -281,6 +303,6 @@ export function verifySocialEventHistory(snapshot){
   }
   ensure(effectCount>0,'Recorded social encounter lacks any effect');
  }
- if(grouped.size)verifySocialKnowledgeChronology(snapshot,allEvents(snapshot));
+ if(grouped.size)verifySocialKnowledgeChronology(snapshot,history);
  return true;
 }
