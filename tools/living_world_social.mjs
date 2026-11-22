@@ -134,6 +134,9 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
    items.every(x=>x.reviewed===true&&x.resolved===true&&knownText(x.outcome)&&
     x.disclosures?.length===0),
    'Social interaction must have two reviewed, matching NPC resolutions');
+  if(context.transfer!==null)ensure(items[0].actor_id===context.transfer.speaker_id&&
+    items[1].actor_id===context.transfer.recipient_id,
+    'Social knowledge must be staged speaker first, recipient second');
   let materialEffects=0;
   for(const item of items){
    const other=context.participant_ids.find(id=>id!==item.actor_id);
