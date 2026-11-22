@@ -35,3 +35,5 @@
 
 - [Auditoría de cobertura de las rutas Harbor Walk fuera del fragmento 01](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md)
 - [Mapa SVG de partes estudiadas y partes sin cobertura](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg)
+- [Sección 04 de estudio: cinco tramos urbanos sin cartografía física](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.md)
+- [Sección 04: inventario JSON reproducible de tramos sin estudio](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.json)

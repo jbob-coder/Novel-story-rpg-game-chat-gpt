@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "id": "MB-URBAN-CONNECTOR-SECTION04-STUDY-20261122",
+  "status": "source_derived_section_ledger_not_a_physical_fragment",
+  "baseReviewPr": 112,
+  "sourceGitBlobs": {
+    "routes": "aae66aae315603e37e8cb88034600446bf46d21d",
+    "coast01": "139c3687c98285aff886d28422544d082768217d",
+    "coast02": "325a0acde67a1ce3b44576860824657a3db41695",
+    "land03": "2a95eb9e50f69436cb65711daf8ff586f4ef4279"
+  },
+  "explorationWindow": {
+    "x_min": 58,
+    "x_max": 68,
+    "y_min": 36.9,
+    "y_max": 42,
+    "classification": "source_endpoint_bounding_window_not_zoning_or_survey"
+  },
+  "routes": [
+    {
+      "key": "market",
+      "fromLocationId": "LOC-COMMERCIAL-DISTRICT",
+      "toLocationId": "LOC-HARBOR-WALK",
+      "originalRouteSourcePr": 44,
+      "sectionIds": [
+        "MB-04-M1",
+        "MB-04-M2",
+        "MB-04-M3"
+      ],
+      "missingStudyLengthCanvasUnits": 10.669621,
+      "totalCandidateLengthCanvasUnits": 15.303534,
+      "playable": false
+    },
+    {
+      "key": "plaza",
+      "fromLocationId": "LOC-CROSSWATER-PLAZA",
+      "toLocationId": "LOC-HARBOR-WALK",
+      "originalRouteSourcePr": 56,
+      "sectionIds": [
+        "MB-04-P1",
+        "MB-04-P2"
+      ],
+      "missingStudyLengthCanvasUnits": 4.6114,
+      "totalCandidateLengthCanvasUnits": 8.280615,
+      "playable": false
+    }
+  ],
+  "sections": [
+    {
+      "id": "MB-04-M1",
+      "route": "market",
+      "sourcePr103Property": "market_to_harbor",
+      "sourceSegmentIndex": 0,
+      "sourceWaypointIds": [
+        "MB-MH-N0",
+        "MB-MH-N1"
+      ],
+      "from": {
+        "x": 58.869565,
+        "y": 42
+      },
+      "to": {
+        "x": 60,
+        "y": 40.7
+      },
+      "hypotheticalLengthUnits": 1.722754,
+      "status": "line_from_unapproved_source_only_missing_physical_region_study",
+      "buildingFootprints": null,
+      "landUse": null,
+      "publicEasement": null,
+      "measuredWidth": null,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-M2",
+      "route": "market",
+      "sourcePr103Property": "market_to_harbor",
+      "sourceSegmentIndex": 1,
+      "sourceWaypointIds": [
+        "MB-MH-N1",
+        "MB-MH-N2"
+      ],
+      "from": {
+        "x": 60,
+        "y": 40.7
+      },
+      "to": {
+        "x": 64,
+        "y": 38.1
+      },
+      "hypotheticalLengthUnits": 4.770744,
+      "status": "line_from_unapproved_source_only_missing_physical_region_study",
+      "buildingFootprints": null,
+      "landUse": null,
+      "publicEasement": null,
+      "measuredWidth": null,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-M3",
+      "route": "market",
+      "sourcePr103Property": "market_to_harbor",
+      "sourceSegmentIndex": 2,
+      "sourceWaypointIds": [
+        "MB-MH-N2",
+        "MB-MH-N3"
+      ],
+      "from": {
+        "x": 64,
+        "y": 38.1
+      },
+      "to": {
+        "x": 68,
+        "y": 36.9
+      },
+      "hypotheticalLengthUnits": 4.176123,
+      "status": "line_from_unapproved_source_only_missing_physical_region_study",
+      "buildingFootprints": null,
+      "landUse": null,
+      "publicEasement": null,
+      "measuredWidth": null,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-P1",
+      "route": "plaza",
+      "sourcePr103Property": "plaza_to_harbor",
+      "sourceSegmentIndex": 0,
+      "sourceWaypointIds": [
+        "MB-PH-N0",
+        "MB-PH-N1"
+      ],
+      "from": {
+        "x": 65,
+        "y": 42
+      },
+      "to": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "hypotheticalLengthUnits": 2.360085,
+      "status": "line_from_unapproved_source_only_missing_physical_region_study",
+      "buildingFootprints": null,
+      "landUse": null,
+      "publicEasement": null,
+      "measuredWidth": null,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-P2",
+      "route": "plaza",
+      "sourcePr103Property": "plaza_to_harbor",
+      "sourceSegmentIndex": 1,
+      "sourceWaypointIds": [
+        "MB-PH-N1",
+        "MB-PH-N2"
+      ],
+      "from": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "to": {
+        "x": 68,
+        "y": 38.635714
+      },
+      "hypotheticalLengthUnits": 2.251315,
+      "status": "line_from_unapproved_source_only_missing_physical_region_study",
+      "buildingFootprints": null,
+      "landUse": null,
+      "publicEasement": null,
+      "measuredWidth": null,
+      "canNavigate": false
+    }
+  ],
+  "summary": {
+    "distinctUnstudiedSections": 5,
+    "notYetStudiedMarketCanvasUnits": 10.669621,
+    "notYetStudiedPlazaCanvasUnits": 4.6114,
+    "land03Exit": {
+      "x": 58.869565,
+      "y": 42
+    },
+    "plazaStart": {
+      "x": 65,
+      "y": 42
+    },
+    "coast01Entries": [
+      {
+        "x": 68,
+        "y": 36.9
+      },
+      {
+        "x": 68,
+        "y": 38.635714
+      }
+    ],
+    "coast02RouteLengthCovered": 0,
+    "sharedPhysicalStreetSelected": false
+  },
+  "evidenceBoundary": {
+    "noBuildingsDrawn": true,
+    "noCadastralClaims": true,
+    "noPublicRightOfWayAssumed": true,
+    "noNewSavedGraphEdges": true,
+    "noStreetAuthorized": true,
+    "noSurveysCompleted": true,
+    "noFictionalTimeAdvanced": true
+  },
+  "proposedNextReview": [
+    "study_unknown_parcels_and_legal_access_with_sources",
+    "verify_market_section_boundary_from_land03",
+    "verify_plaza_start_and_coast01_entries_without_invented_links",
+    "review_urban_footprints_without_treating_blank_area_as_empty",
+    "reconcile_parallel_PR110_and_PR112_before_any_merges"
+  ],
+  "canonicalWorldChanged": false,
+  "playerMoved": false,
+  "npcMoved": false,
+  "routePassabilityVerified": false,
+  "storyTurnAdvanced": false
+}
