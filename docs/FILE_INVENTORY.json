@@ -281,6 +281,11 @@
       "docs/00_start/BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.json",
       "docs/00_start/BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.md",
       "tests/branch_m1p1_comparison_lot11.test.mjs"
+    ],
+    "branch_cross_family_lot12_2026_11_22": [
+      "docs/00_start/BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.json",
+      "docs/00_start/BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.md",
+      "tests/branch_cross_family_lot12.test.mjs"
     ]
   },
   "repository_checkpoints": [
