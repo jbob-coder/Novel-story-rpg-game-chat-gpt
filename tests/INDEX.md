@@ -79,3 +79,4 @@ These files already existed in the authoritative source and are listed here for 
 - [13 pruebas de la ficha Sección 04, procedencia, empalmes y guardado](meridian_harbor_section04_ledger.test.mjs)
 - [16 pruebas de procedencia, proximidad y no admisión para M1/P1](meridian_harbor_m1_p1_access_evidence.test.mjs)
 - [16 regresiones de procedencia histórica, cruces y bloqueo M1/P1](meridian_m1_p1_historical_exit_gates.test.mjs)
+- [16 pruebas de interfaces M1/P1, protección de accesos y preservación de historia](meridian_m1_p1_interface_concepts.test.mjs)
