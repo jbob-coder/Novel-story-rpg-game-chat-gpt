@@ -37,3 +37,5 @@
 - [Mapa SVG de partes estudiadas y partes sin cobertura](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg)
 - [Sección 04 de estudio: cinco tramos urbanos sin cartografía física](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.md)
 - [Sección 04: inventario JSON reproducible de tramos sin estudio](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.json)
+- [M1/P1: revisión documentada de accesos y referencias de Market Row y Crosswater](MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_REVIEW_20261122.md)
+- [M1/P1: matriz JSON de evidencias de posiciones inciertas](MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_20261122.json)
