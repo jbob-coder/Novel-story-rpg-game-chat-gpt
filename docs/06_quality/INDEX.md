@@ -18,3 +18,4 @@
 - [Area completion and acceptance criteria](../00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
 - [Independent checkpoint, all-repo link/source and journal correctness audit (D-060)](REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
 - [Second independent checkpoint and direct recovery boundary audit (D-061)](REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md)
+- [Lote 07: compatibilidad de decisiones y relaciones NPC, PR #12/#13 (2026-11-22)](BRANCH_NPC_DECISIONS_SOCIAL_COMPATIBILITY_2026-11-22.md)
