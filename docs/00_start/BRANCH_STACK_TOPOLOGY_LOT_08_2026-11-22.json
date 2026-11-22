@@ -1,0 +1,687 @@
+{
+  "version": 1,
+  "scope": "Dated read-only branch topology, GitHub PR metadata, exclusive compares, workflow runs; not floating authority or merge permission",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "snapshot_date": "2026-11-22",
+  "snapshot_pr_range": [
+    88,
+    112
+  ],
+  "baseline_main_sha": "019175c6463ff31807a0f7013d91299add94913c",
+  "parent_audit_pr": 99,
+  "parent_audit_sha": "fa3fe37ca48724f66559cbbc380af1b1a9d0464e",
+  "protected_blobs": {
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+  },
+  "qa_mirror_pr_map": {
+    "88": 87,
+    "90": 89,
+    "95": 94,
+    "97": 96,
+    "100": 98,
+    "102": 101,
+    "104": 103,
+    "105": 99,
+    "107": 106,
+    "109": 108,
+    "111": 110
+  },
+  "documented_overlap": {
+    "prs": [
+      110,
+      112
+    ],
+    "parent_pr": 103,
+    "common_path": "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md",
+    "distinct_blob_sha_by_pr": {
+      "110": "7f50b39554ad59e1437aa9b39af10cdb3d80010c",
+      "112": "175e79f84667c1109d7da72c553cc79f5b5ebc48"
+    },
+    "shared_reported_uncovered_percent": {
+      "market_to_harbor": 69.72,
+      "plaza_to_harbor": 55.6891
+    },
+    "finding": "Sibling alternatives modify the same report with different bytes; must reconcile rather than overwrite."
+  },
+  "records": [
+    {
+      "pr": 88,
+      "category": "qa_only_alias",
+      "head_branch": "qa/meridian-three-region-seam-ci-20261120",
+      "head_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 87,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 44813211142,
+        "head_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+        "head_branch": "qa/meridian-three-region-seam-ci-20261120",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 89,
+      "category": "coast_candidate",
+      "head_branch": "work/meridian-coast-pr67-candidate-20261122",
+      "head_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+      "base_branch": "work/meridian-three-region-seam-qa-20261120",
+      "base_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.svg",
+        "docs/01_world/MERIDIAN_BAY_PR67_COAST_CANDIDATE_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/harbor_coast_pr67_candidate.test.mjs",
+        "tools/INDEX.md",
+        "tools/render_harbor_coast_pr67_candidate.mjs"
+      ],
+      "exclusive_diff_ahead": 9,
+      "ci_matching_head": {
+        "run_id": 45069896585,
+        "head_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+        "head_branch": "qa/meridian-pr67-coast-candidate-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 90,
+      "category": "qa_only_alias",
+      "head_branch": "qa/meridian-pr67-coast-candidate-20261122",
+      "head_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 89,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45069896585,
+        "head_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+        "head_branch": "qa/meridian-pr67-coast-candidate-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 91,
+      "category": "npc_compatibility_docs",
+      "head_branch": "docs/npc-pr12-pr13-compatibility-20261122",
+      "head_sha": "206e472fed4483eea9f7362cdb467b886f32c977",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/06_quality/BRANCH_NPC_DECISIONS_SOCIAL_COMPATIBILITY_2026-11-22.md",
+        "docs/06_quality/INDEX.md",
+        "docs/FILE_INVENTORY.json"
+      ],
+      "exclusive_diff_ahead": 3,
+      "ci_matching_head": {
+        "run_id": 45069966757,
+        "head_sha": "206e472fed4483eea9f7362cdb467b886f32c977",
+        "head_branch": "docs/npc-pr12-pr13-compatibility-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 92,
+      "category": "branch_custody",
+      "head_branch": "docs/branch-followup-lot07-20261122",
+      "head_sha": "32e847beaff4928aaa9fdcb07ece161c41dfdf29",
+      "base_branch": "docs/live-branch-verification-20261120",
+      "base_sha": "5db66f51265dcb86d80f12cd80f4c567f5a4bb4a",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/00_start/BRANCH_FOLLOWUP_AUDIT_LOT_07_2026-11-22.md",
+        "docs/00_start/INDEX.md",
+        "docs/FILE_INVENTORY.json"
+      ],
+      "exclusive_diff_ahead": 3,
+      "ci_matching_head": null
+    },
+    {
+      "pr": 93,
+      "category": "superseded_integration_draft",
+      "head_branch": "docs/branch-integration-gates-lot07-20261122",
+      "head_sha": "e9a3ff2c8913b16eafa5193d8b11b6d9970e234c",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "superseded_by_pr": 99,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45070210847,
+        "head_sha": "e9a3ff2c8913b16eafa5193d8b11b6d9970e234c",
+        "head_branch": "docs/branch-integration-gates-lot07-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 94,
+      "category": "coast_variant",
+      "head_branch": "work/harbor-coast-pr67-svg-review-20261122",
+      "head_sha": "070f36dac9fe63603a3fd7dcacf3f6cceb569b69",
+      "base_branch": "work/meridian-three-region-seam-qa-20261120",
+      "base_sha": "3a923dab989c046b186370d2f441ad4a545c6c2f",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_PR67_VARIANT_20261122.svg",
+        "docs/01_world/MERIDIAN_BAY_PR67_VARIANT_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/harbor_coast_pr67_variant.test.mjs",
+        "tools/INDEX.md",
+        "tools/render_harbor_coast_pr67_variant_svg.mjs"
+      ],
+      "exclusive_diff_ahead": 1,
+      "ci_matching_head": {
+        "run_id": 45070220388,
+        "head_sha": "070f36dac9fe63603a3fd7dcacf3f6cceb569b69",
+        "head_branch": "work/harbor-coast-pr67-svg-review-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 95,
+      "category": "qa_only_alias",
+      "head_branch": "work/harbor-coast-pr67-svg-review-20261122",
+      "head_sha": "070f36dac9fe63603a3fd7dcacf3f6cceb569b69",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 94,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45070220388,
+        "head_sha": "070f36dac9fe63603a3fd7dcacf3f6cceb569b69",
+        "head_branch": "work/harbor-coast-pr67-svg-review-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 96,
+      "category": "corridor_contact",
+      "head_branch": "work/meridian-corridor-contact-audit-20261122",
+      "head_sha": "109059cca914f8d1be142a4edfb5634d253a9d8a",
+      "base_branch": "work/meridian-coast-pr67-candidate-20261122",
+      "base_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CORRIDOR_CONTACT_AUDIT_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_corridor_contact_audit.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_corridor_contact_audit.mjs"
+      ],
+      "exclusive_diff_ahead": 7,
+      "ci_matching_head": {
+        "run_id": 45070449859,
+        "head_sha": "109059cca914f8d1be142a4edfb5634d253a9d8a",
+        "head_branch": "qa/meridian-corridor-contact-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 97,
+      "category": "qa_only_alias",
+      "head_branch": "qa/meridian-corridor-contact-ci-20261122",
+      "head_sha": "109059cca914f8d1be142a4edfb5634d253a9d8a",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 96,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45070449859,
+        "head_sha": "109059cca914f8d1be142a4edfb5634d253a9d8a",
+        "head_branch": "qa/meridian-corridor-contact-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 98,
+      "category": "npc_causal",
+      "head_branch": "work/npc-causal-decisions-admitted-20261122",
+      "head_sha": "b858c5c5cd0d0975dae67048e639cf12d493422d",
+      "base_branch": "work/npc-causal-agenda-20261120",
+      "base_sha": "53f6dcb77965a62cf896be22cd1d97cef2088761",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/npc_causal_decisions_admitted.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs"
+      ],
+      "exclusive_diff_ahead": 12,
+      "ci_matching_head": {
+        "run_id": 45070633853,
+        "head_sha": "b858c5c5cd0d0975dae67048e639cf12d493422d",
+        "head_branch": "qa/npc-causal-decisions-admitted-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 99,
+      "category": "branch_custody_integration",
+      "head_branch": "docs/reconcile-audits-92-93-20261122",
+      "head_sha": "fa3fe37ca48724f66559cbbc380af1b1a9d0464e",
+      "base_branch": "docs/branch-followup-lot07-20261122",
+      "base_sha": "32e847beaff4928aaa9fdcb07ece161c41dfdf29",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/00_start/BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.json",
+        "docs/00_start/BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.md",
+        "docs/00_start/INDEX.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/branch_integration_gates_lot07.test.mjs"
+      ],
+      "exclusive_diff_ahead": 6,
+      "ci_matching_head": {
+        "run_id": 45081289641,
+        "head_sha": "fa3fe37ca48724f66559cbbc380af1b1a9d0464e",
+        "head_branch": "qa/reconciled-audit-92-93-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 100,
+      "category": "qa_only_alias",
+      "head_branch": "qa/npc-causal-decisions-admitted-ci-20261122",
+      "head_sha": "b858c5c5cd0d0975dae67048e639cf12d493422d",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 98,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45070633853,
+        "head_sha": "b858c5c5cd0d0975dae67048e639cf12d493422d",
+        "head_branch": "qa/npc-causal-decisions-admitted-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 101,
+      "category": "harbor_route_comparison",
+      "head_branch": "audit/harbor-route-alternatives-20261122",
+      "head_sha": "819a059696593ed1c6c9c0310b7ab021c39e068c",
+      "base_branch": "work/harbor-coast-pr67-svg-review-20261122",
+      "base_sha": "070f36dac9fe63603a3fd7dcacf3f6cceb569b69",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_ROUTE_COMPARISON_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_harbor_route_comparison.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_harbor_route_comparison.mjs"
+      ],
+      "exclusive_diff_ahead": 1,
+      "ci_matching_head": {
+        "run_id": 45070669045,
+        "head_sha": "819a059696593ed1c6c9c0310b7ab021c39e068c",
+        "head_branch": "audit/harbor-route-alternatives-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 102,
+      "category": "qa_only_alias",
+      "head_branch": "audit/harbor-route-alternatives-20261122",
+      "head_sha": "819a059696593ed1c6c9c0310b7ab021c39e068c",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 101,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45070669045,
+        "head_sha": "819a059696593ed1c6c9c0310b7ab021c39e068c",
+        "head_branch": "audit/harbor-route-alternatives-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 103,
+      "category": "harbor_access",
+      "head_branch": "work/meridian-harbor-corridor-reconciliation-20261122",
+      "head_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+      "base_branch": "work/meridian-coast-pr67-candidate-20261122",
+      "base_sha": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_RECONCILIATION_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_harbor_access_reconciliation.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_harbor_access_reconciliation.mjs"
+      ],
+      "exclusive_diff_ahead": 13,
+      "ci_matching_head": {
+        "run_id": 45071254273,
+        "head_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+        "head_branch": "qa/meridian-harbor-corridor-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 104,
+      "category": "qa_only_alias",
+      "head_branch": "qa/meridian-harbor-corridor-ci-20261122",
+      "head_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 103,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45071254273,
+        "head_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+        "head_branch": "qa/meridian-harbor-corridor-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 105,
+      "category": "qa_only_alias",
+      "head_branch": "qa/reconciled-audit-92-93-ci-20261122",
+      "head_sha": "fa3fe37ca48724f66559cbbc380af1b1a9d0464e",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 99,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45081289641,
+        "head_sha": "fa3fe37ca48724f66559cbbc380af1b1a9d0464e",
+        "head_branch": "qa/reconciled-audit-92-93-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 106,
+      "category": "plaza_harbor_variants",
+      "head_branch": "audit/plaza-harbor-candidate-variants-20261122",
+      "head_sha": "b22e05f1c4738bdcd0d907dc2bae671ac690e711",
+      "base_branch": "audit/harbor-route-alternatives-20261122",
+      "base_sha": "819a059696593ed1c6c9c0310b7ab021c39e068c",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_OPTIONS_20261122.json",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_harbor_variant_review.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_plaza_harbor_variant_review.mjs"
+      ],
+      "exclusive_diff_ahead": 1,
+      "ci_matching_head": {
+        "run_id": 45081371685,
+        "head_sha": "b22e05f1c4738bdcd0d907dc2bae671ac690e711",
+        "head_branch": "audit/plaza-harbor-candidate-variants-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 107,
+      "category": "qa_only_alias",
+      "head_branch": "audit/plaza-harbor-candidate-variants-20261122",
+      "head_sha": "b22e05f1c4738bdcd0d907dc2bae671ac690e711",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 106,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45081371685,
+        "head_sha": "b22e05f1c4738bdcd0d907dc2bae671ac690e711",
+        "head_branch": "audit/plaza-harbor-candidate-variants-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 108,
+      "category": "npc_social",
+      "head_branch": "work/npc-social-relations-admitted-20261122",
+      "head_sha": "bf2edd9c6e86240c2ef81a4c43d11e4fad49f1c7",
+      "base_branch": "work/npc-causal-decisions-admitted-20261122",
+      "base_sha": "b858c5c5cd0d0975dae67048e639cf12d493422d",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/npc_social_relations_admitted.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_coordinator.mjs",
+        "tools/living_world_social.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "exclusive_diff_ahead": 11,
+      "ci_matching_head": {
+        "run_id": 45081562236,
+        "head_sha": "bf2edd9c6e86240c2ef81a4c43d11e4fad49f1c7",
+        "head_branch": "qa/npc-social-relations-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 109,
+      "category": "qa_only_alias",
+      "head_branch": "qa/npc-social-relations-ci-20261122",
+      "head_sha": "bf2edd9c6e86240c2ef81a4c43d11e4fad49f1c7",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 108,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45081562236,
+        "head_sha": "bf2edd9c6e86240c2ef81a4c43d11e4fad49f1c7",
+        "head_branch": "qa/npc-social-relations-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 110,
+      "category": "harbor_coverage",
+      "head_branch": "work/meridian-harbor-region-coverage-20261122",
+      "head_sha": "f93e1e6c097f9baf29e83d88a54b338c922e9dd1",
+      "base_branch": "work/meridian-harbor-corridor-reconciliation-20261122",
+      "base_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_harbor_region_coverage.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_harbor_region_coverage.mjs"
+      ],
+      "exclusive_diff_ahead": 7,
+      "ci_matching_head": {
+        "run_id": 45081566934,
+        "head_sha": "f93e1e6c097f9baf29e83d88a54b338c922e9dd1",
+        "head_branch": "qa/meridian-harbor-region-coverage-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 111,
+      "category": "qa_only_alias",
+      "head_branch": "qa/meridian-harbor-region-coverage-ci-20261122",
+      "head_sha": "f93e1e6c097f9baf29e83d88a54b338c922e9dd1",
+      "base_branch": "main",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "state_at_snapshot": "closed",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "qa_alias_for_pr": 110,
+      "exclusive_changed_paths": null,
+      "exclusive_diff_ahead": null,
+      "ci_matching_head": {
+        "run_id": 45081566934,
+        "head_sha": "f93e1e6c097f9baf29e83d88a54b338c922e9dd1",
+        "head_branch": "qa/meridian-harbor-region-coverage-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 112,
+      "category": "harbor_coverage",
+      "head_branch": "work/meridian-harbor-regional-coverage-20261122",
+      "head_sha": "616c6155a279bf0126f07ccc46536665179731b5",
+      "base_branch": "work/meridian-harbor-corridor-reconciliation-20261122",
+      "base_sha": "a04712478fad6ab3f367d3af2eb1f14ee55013e2",
+      "state_at_snapshot": "open",
+      "merged_at_snapshot": false,
+      "draft_at_snapshot": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_harbor_region_coverage.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_harbor_region_coverage.mjs"
+      ],
+      "exclusive_diff_ahead": 9,
+      "ci_matching_head": {
+        "run_id": 45081672029,
+        "head_sha": "616c6155a279bf0126f07ccc46536665179731b5",
+        "head_branch": "qa/meridian-harbor-regional-coverage-ci-20261122",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    }
+  ]
+}
