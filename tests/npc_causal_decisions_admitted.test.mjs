@@ -267,3 +267,35 @@ test('decision assessment stays private in narrator diagnostics and never create
  assert.ok(!JSON.stringify(visible).includes('destination_or_handover_not_established'));
  assert.equal(JSON.stringify(baseline),before);
 });
+
+test('same obligation ID under two owners never cross-selects causal evidence',()=>{
+ const modified=structuredClone(state);
+ for(const id of ['NPC-003','NPC-005']){
+  modified.world.actors[id].commitments=[{
+   id:'OBL-SHARED-LOCAL-ID',
+   summary:'SYNTHETIC commitment personally owned by '+id,
+   source_event_id:'EV-000029',last_change_event_id:'EV-000029',
+   due_day:-29,status:'blocked',priority:'urgent',
+   blockers:['Owner-specific blocked evidence for '+id],
+   resolution:null,resolution_event_id:null
+  }];
+ }
+ const assessments=assessNPCDecisions({state:modified,
+  actorIds:['NPC-003','NPC-005'],elapsedMinutes:25});
+ assert.equal(assessments.length,2);
+ assert.deepEqual(assessments.map(x=>x.actorId),['NPC-003','NPC-005']);
+ for(const a of assessments){
+  assert.equal(a.obligationId,'OBL-SHARED-LOCAL-ID');
+  assert.ok(a.objective.endsWith(a.actorId));
+  assert.ok(a.source.recordedCommitments[0].summary.endsWith(a.actorId));
+  assert.ok(a.blockingEvidence.some(x=>x.detail.endsWith(a.actorId)));
+  assert.ok(!a.allowedConclusions.includes('completed'));
+ }
+ const forged=structuredClone(assessments[0]);
+ forged.actorId='NPC-005';
+ assert.throws(()=>draftReviewedNPCDecision({
+  state:modified,assessment:forged,reviewed:true,conclusion:'defer',
+  reasoning:'A synthetic independently reviewed deferral for this actor.',
+  outcome:'No change to the current obligation is performed.'
+ }),/Stale NPC decision assessment|Assessment changed or cannot be reproduced/);
+});
