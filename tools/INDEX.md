@@ -61,3 +61,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Auditoría y SVG reproducible de alternativas Market/Plaza–Harbor](meridian_bay_harbor_access_reconciliation.mjs)
 
 - [Auditar longitudes de rutas dentro y fuera de las tres regiones físicas históricas](meridian_bay_harbor_region_coverage.mjs)
+- [Sección 04: derivar y validar cinco tramos urbanos pendientes sin crear calles](meridian_harbor_section04_ledger.mjs)
