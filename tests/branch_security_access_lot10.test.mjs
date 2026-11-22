@@ -11,7 +11,7 @@ const str=p=>bytes(p).toString('utf8');
 const data=JSON.parse(str('docs/00_start/BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.json'));
 const byPR=new Map(data.records.map(r=>[r.pr,r]));
 const blob=b=>createHash('sha1')
-  .update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
+  .update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
 
 test('lot10 is exactly six frozen records and three independent review heads',()=>{
   assert.equal(data.version,1);
