@@ -54,3 +54,9 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 
 - **[Lote 07 complementario: puertas de integración PR #82–#87 y CI](BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.md)**.
 - [Matriz estructurada de integridad y dependencias](BRANCH_INTEGRATION_GATES_LOT_07_2026-11-22.json).
+
+## Auditoría de dependencias — 2026-11-22
+
+- [Lote 08: ficha de PR #88–#112, espejos QA, bases, CI y conflictos de integración](BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.md).
+- [Matriz estructurada de ramas, SHA, diferencias y fuentes](BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.json).
+Estas son capturas fechadas, no autorización para fusionar o jugar.

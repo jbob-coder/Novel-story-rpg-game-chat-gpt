@@ -68,3 +68,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Pruebas reproducibles de las 108 ramas originales y conflictos cartográficos](branch_audit_integrity.test.mjs)
 
 - [Puertas ejecutables de integración PR #82–#87, checkpoint y SHA](branch_integration_gates_lot07.test.mjs).
+
+- [Regresiones de topología y custodia de PR #88–#112](branch_stack_topology_lot08.test.mjs).
