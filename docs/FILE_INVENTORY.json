@@ -254,6 +254,10 @@
       "docs/01_world/NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md",
       "tools/living_world_social.mjs",
       "tests/npc_social_relations_admitted.test.mjs"
+    ],
+    "npc_social_chronology_2026_11_22": [
+      "docs/01_world/NPC_SOCIAL_PROVENANCE_CROSS_CHAPTER_20261122.md",
+      "tests/npc_social_cross_chapter_provenance.test.mjs"
     ]
   },
   "repository_checkpoints": [
