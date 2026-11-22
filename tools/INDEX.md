@@ -53,3 +53,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Encuentros sociales NPC: pareja causal, testimonio y verificación de eventos](living_world_social.mjs)
 - [Referencia versionada de conocimientos NPC en el checkpoint del turno 9](living_world_knowledge_anchor.mjs)
 - [Evaluación privada de migración NPC y validación determinista del candidato](living_world_knowledge_migration.mjs)
+- [NPC nuevo: propuesta revisada, evento de admisión y verificación de historial](living_world_npc_introduction.mjs)
