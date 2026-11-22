@@ -78,3 +78,9 @@ Las rutas son bocetos y el estado canónico permanece en CH-000 turno 9.
 - [Lote 11: PR #132 / #136, SVG, archivos históricos y bloqueos de paso](BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.md).
 - [Registro por SHA, bases, CI y discrepancia documental](BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.json).
 Sin nuevas calles aprobadas, ni turnos jugados.
+
+## Auditoría transversal de NPC y accesos — 2026-11-22
+
+- [Lote 12: migración de memoria NPC PR #138 y estudios Crosswater/M1/P1 #140, #142, #146](BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.md).
+- [Matriz por SHA de origen, QA y bloqueos de integración](BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.json).
+No implica fusión ni continuidad narrativa.
