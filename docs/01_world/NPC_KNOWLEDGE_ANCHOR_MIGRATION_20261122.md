@@ -32,7 +32,7 @@ El chequeo de `observedHead` valida **formato y consistencia de entrada**, no pr
 
 ## Pruebas y límites de alcance
 
-`tests/npc_knowledge_anchor_migration.test.mjs` añade **12 pruebas**, todas sintéticas, que cubren bloqueo del mismo checkpoint, promoción solo candidata, cinco hashes calculados sobre bytes, revisión incompleta, fuente faltante/corrupta, HEAD inválido, operaciones no soportadas, modificación de propuesta, conocimiento nuevo legítimo con evento y rechazo de memoria inventada.
+`tests/npc_knowledge_anchor_migration.test.mjs` añade **14 pruebas**, todas sintéticas, que cubren bloqueo del mismo checkpoint, promoción solo candidata, cinco hashes calculados sobre bytes, revisión incompleta, fuente faltante/corrupta, HEAD inválido, operaciones no soportadas, modificación de propuesta, conocimiento nuevo legítimo con evento y rechazo de memoria inventada, incorporación de un actor no registrado y olvido no documentado.
 
 **No hay turno 10 real:** los candidatos que contienen turno 10 solo viven en memoria durante QA. La referencia original sigue en `STATE.json` blob `3f4e9c98a7211068faefd31d0a0acbd4260ef589`, CH-000, turno 9, EV-000029.
 
@@ -41,3 +41,7 @@ El chequeo de `observedHead` valida **formato y consistencia de entrada**, no pr
 ## Siguiente trabajo
 
 Establecer un contrato autoritativo de **admisión de actores** con identidad estable, evento de creación, conocimiento inicial trazable y posibilidad de rectificación causal, antes de admitir un NPC nuevo con memoria heredada. Diseñar por separado una operación de olvido voluntario/accidental que registre origen, motivo y evento sin borrar el historial de que el personaje anteriormente poseía ese conocimiento. No sustituir la referencia por heurísticas de memoria final.
+
+## Historial de QA
+
+La ejecución inicial [#45083270859](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45083270859) se completó correctamente sobre el primer commit funcional `82dbae8e83cf7f88fbcfe996554bc7ad31157d71`: **496/496 JavaScript PASS, 47/47 Python PASS y validador canónico PASS**. Se añadieron después dos regresiones adversariales (roster de NPC sin evento y borrado de memoria), llevando la suite nueva a **14 casos**. Este registro **no** certifica el HEAD modificado: es obligatorio volver a ejecutar CI y registrar la corrida exacta. Los cinco archivos narrativos no se tocaron.
