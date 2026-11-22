@@ -64,3 +64,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Sección 04: derivar y validar cinco tramos urbanos pendientes sin crear calles](meridian_harbor_section04_ledger.mjs)
 
 - [Verificar evidencias M1/P1 desde STATE, historia y Land03 y regenerar SVG](meridian_section04_m1p1_entry_evidence.mjs)
+
+- [Inspección M2/M3/P2 de evidencias, unión costera y prevención de admisión física falsa](meridian_section04_middle_readiness.mjs)
