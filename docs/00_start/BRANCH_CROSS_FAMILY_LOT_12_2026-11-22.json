@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "kind": "dated_cross_family_branch_custody_review",
+  "date": "2026-11-22",
+  "repo": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "parent_pr": 144,
+  "parent_sha": "fa8fc08d36170ed31ccb4d996f248b01092003f3",
+  "main_at_snapshot": "019175c6463ff31807a0f7013d91299add94913c",
+  "protected_story_git_blobs": {
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+  },
+  "qa_pairs": {
+    "139": 138,
+    "141": 140,
+    "143": 142,
+    "147": 146
+  },
+  "common_index_paths": [
+    "docs/01_world/INDEX.md",
+    "docs/FILE_INVENTORY.json",
+    "tests/INDEX.md",
+    "tools/INDEX.md"
+  ],
+  "findings": {
+    "npc_migration": {
+      "pr": 138,
+      "source_pr": 127,
+      "operations": {
+        "promote_checkpoint": "candidate_only_requires_external_review_if_eligible",
+        "register_npc": "blocked",
+        "forget": "blocked"
+      },
+      "candidate_applied": false,
+      "remote_commit_verified": false,
+      "owner_approved": false,
+      "baseline_turn": 9,
+      "baseline_event": "EV-000029",
+      "baseline_knowledge_entries": 29,
+      "baseline_actor_count": 7,
+      "source_identity_checked_by_git_blob": true,
+      "observed_head_is_only_format_checked": true,
+      "notes": "No external commit-to-tree attestation, approval, actual anchor write or real-world turn. Review-only candidate digest is not an external signature."
+    },
+    "crosswater_provisional": {
+      "pr": 140,
+      "base_pr": 130,
+      "source_json_sha": "b411fe76cef5c87237805725feb2b425acefc785",
+      "unknown_checks": 6,
+      "route_variants": 2,
+      "common_leg": [
+        [
+          65,
+          42
+        ],
+        [
+          66.9,
+          40.6
+        ]
+      ],
+      "physical_walkability_verified": false
+    },
+    "m1p1_concepts": {
+      "pr": 142,
+      "base_pr": 136,
+      "source_json_sha": "593b332e69e4eecdfeaa5217ad7464a230e1bad2",
+      "option_ids": [
+        "M1-A",
+        "M1-B",
+        "P1-A",
+        "P1-B"
+      ],
+      "open_gates": 12,
+      "options_selected_for_build": 0,
+      "physical_route_approved": false
+    },
+    "crosswater_frontage": {
+      "pr": 146,
+      "base_pr": 140,
+      "source_json_sha": "9bc8ab5c443948f28cc2055879bc25f0a2d09e13",
+      "diagram_half_width_canvas": 0.12,
+      "diagram_frontage_offset_canvas": 0.45,
+      "metric_width_meters": null,
+      "unverified_survey_checks": 5,
+      "variants_preserved": 2,
+      "physical_route_approved": false
+    },
+    "technical_integrity": "All four HEADs have successful GitHub Actions on exact SHA, but tests were per-branch; combined merge requires new SHA and independent CI.",
+    "integration_gate": "Do not merge QA mirrors. Reconcile common indexes and inventories, run post-combination full tests, require source-backed physical geometry/ownership before movement or route creation, and require owner-approved remote authenticated checkpoint migration before NPC anchor promotion."
+  },
+  "records": [
+    {
+      "pr": 138,
+      "role": "work_draft",
+      "head_sha": "e9ff3c7496495c77e338654ed9045fa3d66aac64",
+      "head_branch": "work/npc-knowledge-anchor-migration-20261122",
+      "base_sha": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+      "base_branch": "work/npc-social-knowledge-anchor-20261122",
+      "state_at_snapshot": "open",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "exclusive_files": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/npc_knowledge_anchor_migration.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_knowledge_migration.mjs",
+        "tools/living_world_social.mjs"
+      ],
+      "exclusive_ahead": 12,
+      "exclusive_behind": 0,
+      "ci": {
+        "run_id": 45083442698,
+        "job_id": 137396570466,
+        "head_sha": "e9ff3c7496495c77e338654ed9045fa3d66aac64",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 498,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 139,
+      "role": "qa_only_mirror",
+      "head_sha": "e9ff3c7496495c77e338654ed9045fa3d66aac64",
+      "head_branch": "qa/npc-knowledge-anchor-migration-ci-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_snapshot": "closed",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "qa_of": 138,
+      "ci": {
+        "run_id": 45083442698,
+        "job_id": 137396570466,
+        "head_sha": "e9ff3c7496495c77e338654ed9045fa3d66aac64",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 498,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 140,
+      "role": "work_draft",
+      "head_sha": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+      "head_branch": "audit/crosswater-approach-provisional-fragment-20261122",
+      "base_sha": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+      "base_branch": "audit/plaza-harbor-approach-evidence-gap-20261122",
+      "state_at_snapshot": "open",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "exclusive_files": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_FRAGMENT_REVIEW_20261122.md",
+        "docs/01_world/MERIDIAN_BAY_CROSSWATER_APPROACH_PROVISIONAL_FRAGMENT_20261122.json",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_crosswater_approach_fragment.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_crosswater_approach_fragment.mjs"
+      ],
+      "exclusive_ahead": 5,
+      "exclusive_behind": 0,
+      "ci": {
+        "run_id": 45083380584,
+        "job_id": 137396370157,
+        "head_sha": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 527,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 141,
+      "role": "qa_only_mirror",
+      "head_sha": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+      "head_branch": "audit/crosswater-approach-provisional-fragment-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_snapshot": "closed",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "qa_of": 140,
+      "ci": {
+        "run_id": 45083380584,
+        "job_id": 137396370157,
+        "head_sha": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 527,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 142,
+      "role": "work_draft",
+      "head_sha": "ef6c3340446d21704608c678d04a5eeb2f64eb6b",
+      "head_branch": "work/meridian-m1-p1-interface-concepts-20261122",
+      "base_sha": "3a38d41d745075373170b790c1aab92cf8da4785",
+      "base_branch": "work/meridian-m1-p1-historical-access-gates-20261122",
+      "state_at_snapshot": "open",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "exclusive_files": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_20261122.json",
+        "docs/01_world/MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_m1_p1_interface_concepts.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_m1_p1_interface_concepts.mjs"
+      ],
+      "exclusive_ahead": 9,
+      "exclusive_behind": 0,
+      "ci": {
+        "run_id": 45083620986,
+        "job_id": 137397130770,
+        "head_sha": "ef6c3340446d21704608c678d04a5eeb2f64eb6b",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 569,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 143,
+      "role": "qa_only_mirror",
+      "head_sha": "ef6c3340446d21704608c678d04a5eeb2f64eb6b",
+      "head_branch": "qa/meridian-m1-p1-interface-concepts-ci-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_snapshot": "closed",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "qa_of": 142,
+      "ci": {
+        "run_id": 45083620986,
+        "job_id": 137397130770,
+        "head_sha": "ef6c3340446d21704608c678d04a5eeb2f64eb6b",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 569,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 146,
+      "role": "work_draft",
+      "head_sha": "5c2b46d08e89d68c614775bf97b770ae6b39b8c2",
+      "head_branch": "audit/crosswater-frontage-street-study-20261122",
+      "base_sha": "190cff8a4eb1d3bdb9a8e44a76b57255fe91e245",
+      "base_branch": "audit/crosswater-approach-provisional-fragment-20261122",
+      "state_at_snapshot": "open",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "exclusive_files": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_REVIEW_20261122.md",
+        "docs/01_world/MERIDIAN_BAY_CROSSWATER_FRONTAGE_STREET_STUDY_20261122.json",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_crosswater_frontage_study.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_crosswater_frontage_study.mjs"
+      ],
+      "exclusive_ahead": 5,
+      "exclusive_behind": 0,
+      "ci": {
+        "run_id": 45083815316,
+        "job_id": 137397728688,
+        "head_sha": "5c2b46d08e89d68c614775bf97b770ae6b39b8c2",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 542,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    },
+    {
+      "pr": 147,
+      "role": "qa_only_mirror",
+      "head_sha": "5c2b46d08e89d68c614775bf97b770ae6b39b8c2",
+      "head_branch": "audit/crosswater-frontage-street-study-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_snapshot": "closed",
+      "draft_at_snapshot": true,
+      "merged_at_snapshot": false,
+      "qa_of": 146,
+      "ci": {
+        "run_id": 45083815316,
+        "job_id": 137397728688,
+        "head_sha": "5c2b46d08e89d68c614775bf97b770ae6b39b8c2",
+        "status": "completed",
+        "conclusion": "success",
+        "javascript_pass": 542,
+        "python_pass": 47,
+        "checkpoint": "PASS"
+      }
+    }
+  ]
+}
