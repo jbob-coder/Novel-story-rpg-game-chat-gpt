@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="880" viewBox="0 0 1540 880">
+<title>Meridian Bay: M1/P1 SOURCE FACTS, unmapped access points</title>
+<desc>Source-backed Market Row and Crosswater context. The line studies and their bounding rectangles are not surveyed streets, real buildings or approved passage.</desc>
+<rect width="1540" height="880" fill="#f5f4ee"/>
+<text x="80.00" y="42.00" font-size="24" fill="#263c43">SECTION 04 · M1 / P1 — GATES DE EVIDENCIA</text>
+<text x="80.00" y="67.00" font-size="15" fill="#263c43">NO CANÓNICO · continuidad narrativa confirmada, posición física del acceso desconocida</text>
+<rect x="80" y="100" width="934.8" height="587.5" fill="#eceae3" stroke="#a5b2b0"/>
+<rect data-map-id="LAND-03-STUDY-BOX-CROPPED" x="96.40" y="100.00" width="836.40" height="312.50" fill="#c0d3c7" opacity="0.56" stroke="#567176" stroke-width="2"/>
+<rect data-map-id="COAST01-ADJACENT-STUDY" x="916.40" y="412.50" width="98.40" height="275.00" fill="#b8cedc" opacity="0.5" stroke="#567176" stroke-width="2" stroke-dasharray="6 5"/>
+<rect data-map-id="M1-SEARCH-NOT-SURVEY" x="167.70" y="412.50" width="92.70" height="162.50" fill="#e7b6a3" opacity="0.37" stroke="#567176" stroke-width="2" stroke-dasharray="6 5"/>
+<rect data-map-id="P1-SEARCH-NOT-SURVEY" x="670.40" y="412.50" width="155.80" height="175.00" fill="#e7b6a3" opacity="0.37" stroke="#567176" stroke-width="2" stroke-dasharray="6 5"/>
+<polygon data-map-id="MX-B-01" points="149.70,233.75 212.02,242.50 223.50,162.50 160.36,140.00" fill="#888783" fill-opacity=".68" stroke="#575653" stroke-width="1"/>
+<polygon data-map-id="MX-B-02" points="237.44,230.00 292.38,237.50 295.66,167.50 246.46,152.50" fill="#888783" fill-opacity=".68" stroke="#575653" stroke-width="1"/>
+<polygon data-map-id="MX-B-09" points="549.86,231.25 616.28,235.00 626.12,160.00 557.24,141.25" fill="#888783" fill-opacity=".68" stroke="#575653" stroke-width="1"/>
+<polygon data-map-id="MX-B-10" points="701.56,203.75 776.18,206.25 786.02,138.75 712.22,120.00" fill="#888783" fill-opacity=".68" stroke="#575653" stroke-width="1"/>
+<polyline data-map-id="MX-A-MARKET-PLAZA" points="96.40,287.50 244.00,337.50 440.80,375.00 588.40,400.00 670.40,412.50" fill="none" stroke="#6a7574" stroke-width="3.5" stroke-dasharray="4 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline data-map-id="MX-A-PLAZA-TERM" points="670.40,412.50 711.40,412.50 752.40,412.50" fill="none" stroke="#6a7574" stroke-width="2" stroke-dasharray="4 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline data-map-id="M1-SOURCE-APPROACH" points="96.40,287.50 167.70,412.50" fill="none" stroke="#73716d" stroke-width="2.5" stroke-dasharray="3 5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline data-map-id="MB-04-M1" points="167.70,412.50 260.40,575.00" fill="none" stroke="#b55b49" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline data-map-id="MB-04-P1" points="670.40,412.50 826.20,587.50" fill="none" stroke="#b55b49" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round"/>
+<circle data-map-id="MARKET-LOCATION-ANCHOR" cx="96.40" cy="287.50" r="5" fill="#34596c" stroke="#fff" stroke-width="2"/>
+<text x="104.40" y="276.50" font-size="11" fill="#263c43">MARKET ROW · fuente de dibujo</text>
+<circle data-map-id="M1-LAND03-EXIT" cx="167.70" cy="412.50" r="5" fill="#34596c" stroke="#fff" stroke-width="2"/>
+<text x="175.70" y="401.50" font-size="11" fill="#263c43">M1 sale de LAND03: no calle verificada</text>
+<circle data-map-id="PLAZA-LOCATION-ANCHOR" cx="670.40" cy="412.50" r="5" fill="#34596c" stroke="#fff" stroke-width="2"/>
+<text x="678.40" y="401.50" font-size="11" fill="#263c43">CROSSWATER · plaza pública</text>
+<circle data-map-id="P1-END-UNKNOWN" cx="826.20" cy="587.50" r="5" fill="#34596c" stroke="#fff" stroke-width="2"/>
+<text x="834.20" y="576.50" font-size="11" fill="#263c43">P1 desconocido</text>
+<rect x="1043" y="100" width="462" height="625" rx="9" fill="#fffefa" stroke="#b9c6c2"/>
+<text x="1057.00" y="143.00" font-size="13" fill="#263c43">HECHOS DE FUENTE:</text>
+<text x="1057.00" y="170.00" font-size="13" fill="#263c43">Market Row ↔ Harbor Walk: enlace guardado</text>
+<text x="1057.00" y="197.00" font-size="13" fill="#263c43">Crosswater ↔ Harbor Walk: enlace guardado</text>
+<text x="1057.00" y="224.00" font-size="13" fill="#263c43">Crosswater es plaza pública.</text>
+<text x="1057.00" y="251.00" font-size="13" fill="#263c43">Market-Plaza: solo trazado histórico.</text>
+<text x="1057.00" y="278.00" font-size="13" fill="#263c43">Desde Café Bruma: brillo del terminal.</text>
+<text x="1057.00" y="319.00" font-size="13" fill="#263c43">NO SE HA ESTABLECIDO:</text>
+<text x="1057.00" y="346.00" font-size="13" fill="#263c43">Entrada pública exacta desde Market Row.</text>
+<text x="1057.00" y="373.00" font-size="13" fill="#263c43">Salida hacia puerto desde la plaza.</text>
+<text x="1057.00" y="400.00" font-size="13" fill="#263c43">Parcelas, edificios de sección 04.</text>
+<text x="1057.00" y="427.00" font-size="13" fill="#263c43">Límites de propiedad / servidumbres.</text>
+<text x="1057.00" y="454.00" font-size="13" fill="#263c43">Ancho de acera, paso o tráfico.</text>
+<text x="1057.00" y="481.00" font-size="13" fill="#263c43">Altura de edificios y visual al terminal.</text>
+<text x="1057.00" y="522.00" font-size="13" fill="#263c43">ZONAS ROJIZAS: CAJAS DE BÚSQUEDA</text>
+<text x="1057.00" y="549.00" font-size="13" fill="#263c43">Líneas rojas: accesos por investigar.</text>
+<text x="1057.00" y="576.00" font-size="13" fill="#263c43">LAND03: plano histórico no admitido.</text>
+<text x="1057.00" y="603.00" font-size="13" fill="#263c43">Gris oscuro: edificios candidatos LAND03.</text>
+<text x="1057.00" y="644.00" font-size="13" fill="#263c43">No es ruta jugable ni plano catastral.</text>
+<rect x="80" y="760" width="1425" height="79" rx="10" fill="#fffcf5" stroke="#b7c3c1"/>
+<text x="96.00" y="790.00" font-size="16" fill="#263c43">PRIORIDAD: M1/P1 requieren evidencia real de fachadas, parcelas y paso público ANTES de crear un fragmento 04 físico.</text>
+<text x="96.00" y="820.00" font-size="14" fill="#263c43">Las coordenadas son referencias ilustrativas; el hueco del dibujo no representa terreno vacío ni seguridad de circulación.</text>
+<metadata id="section04-frontage-evidence" data-admitted="false" data-access-approved="false" data-story-action="false"/>
+</svg>

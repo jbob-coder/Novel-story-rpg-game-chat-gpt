@@ -37,3 +37,7 @@
 - [Mapa SVG de partes estudiadas y partes sin cobertura](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg)
 - [Sección 04 de estudio: cinco tramos urbanos sin cartografía física](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.md)
 - [Sección 04: inventario JSON reproducible de tramos sin estudio](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.json)
+
+- [Sección 04, M1/P1: evidencia de accesos públicos y límites desconocidos](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.md)
+- [Sección 04, M1/P1: registro JSON de fuentes y accesos sin certificar](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.json)
+- [Sección 04, M1/P1: plano SVG de evidencias y cajas de investigación](MERIDIAN_BAY_SECTION04_M1P1_ENTRY_EVIDENCE_20261122.svg)
