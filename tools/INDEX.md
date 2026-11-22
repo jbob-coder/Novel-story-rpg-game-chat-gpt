@@ -60,3 +60,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Comparador seguro de variantes Plaza–Harbor y límites de zona](meridian_bay_plaza_harbor_variant_review.mjs)
 - [Source-locked cross-stack Plaza–Harbor clearance and study-box coverage audit](meridian_bay_plaza_harbor_crossstack_coverage.mjs)
 - [Recortes del hueco de evidencia Plaza–Coast 01 y revisión de plan general](meridian_bay_plaza_approach_evidence_gap.mjs)
+- [Verify Crosswater provisional approach and unconfirmed obstructions](meridian_bay_crosswater_approach_fragment.mjs)
