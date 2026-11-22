@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "MB-SECTION04-M1-P1-ACCESS-EVIDENCE-20261122",
+  "status": "source_only_access_evidence_no_physical_map_or_traversal",
+  "sources": {
+    "sections": "a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b",
+    "city": "2e8c5ff412436a6e7d526bc0172adfca77107263",
+    "inland": "2a95eb9e50f69436cb65711daf8ff586f4ef4279",
+    "prebuilt": "014586f9c2996501f3bf16b9bfb8aebaf44fd462"
+  },
+  "sectionEntries": [
+    {
+      "sectionId": "MB-04-M1",
+      "sectionType": "market",
+      "start": {
+        "x": 58.869565,
+        "y": 42
+      },
+      "end": {
+        "x": 60,
+        "y": 40.7
+      },
+      "existingLocationReferenceCandidates": [
+        {
+          "id": "LOC-CAFE-BRUMA",
+          "cityReference": {
+            "x": 58.8,
+            "y": 42
+          },
+          "placementUncertaintyCanvasUnits": 1.5,
+          "nearestLineDistanceCanvasUnits": 0.069565,
+          "lineProjection": {
+            "x": 58.869565,
+            "y": 42
+          },
+          "projectionT": 0,
+          "cityAnchorKind": "existing_business",
+          "locationPublicArea": true,
+          "locationAccessStatus": null,
+          "footprintDefined": false,
+          "evidence": "reference_uncertainty_disk_intersects_proposed_line",
+          "evidenceDoesNotEstablish": "doorway_sidewalk_crossing_easement_or_passable_route"
+        },
+        {
+          "id": "LOC-COMMERCIAL-DISTRICT",
+          "cityReference": {
+            "x": 58,
+            "y": 43
+          },
+          "placementUncertaintyCanvasUnits": 3,
+          "nearestLineDistanceCanvasUnits": 1.325196,
+          "lineProjection": {
+            "x": 58.869565,
+            "y": 42
+          },
+          "projectionT": 0,
+          "cityAnchorKind": "district_reference",
+          "locationPublicArea": false,
+          "locationAccessStatus": null,
+          "footprintDefined": false,
+          "evidence": "reference_uncertainty_disk_intersects_proposed_line",
+          "evidenceDoesNotEstablish": "doorway_sidewalk_crossing_easement_or_passable_route"
+        },
+        {
+          "id": "LOC-MARKET-BUSINESS-OFFICES",
+          "cityReference": {
+            "x": 58.3,
+            "y": 42.1
+          },
+          "placementUncertaintyCanvasUnits": 1,
+          "nearestLineDistanceCanvasUnits": 0.578277,
+          "lineProjection": {
+            "x": 58.869565,
+            "y": 42
+          },
+          "projectionT": 0,
+          "cityAnchorKind": "prebuilt_public_site",
+          "locationPublicArea": true,
+          "locationAccessStatus": "public_confirmed",
+          "footprintDefined": false,
+          "evidence": "reference_uncertainty_disk_intersects_proposed_line",
+          "evidenceDoesNotEstablish": "doorway_sidewalk_crossing_easement_or_passable_route"
+        }
+      ],
+      "historicInlandStreetEndpointCoincidences": [],
+      "startsOnDraftLandUseBoundaries": [],
+      "schematicBoundaryY42": true,
+      "noPositiveLand03PhysicalCoverage": true,
+      "adjacentPublicSidewalkKnown": false,
+      "parcelOwnershipVerified": false,
+      "doorwayConnectionToRouteVerified": false,
+      "trafficOrGradeVerified": false,
+      "physicalAccessApproved": false,
+      "nextResearchQuestion": "verify_commercial_frontage_public_exit_and_cafe_boundary"
+    },
+    {
+      "sectionId": "MB-04-P1",
+      "sectionType": "plaza",
+      "start": {
+        "x": 65,
+        "y": 42
+      },
+      "end": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "existingLocationReferenceCandidates": [
+        {
+          "id": "LOC-CROSSWATER-PLAZA",
+          "cityReference": {
+            "x": 65,
+            "y": 42
+          },
+          "placementUncertaintyCanvasUnits": 2,
+          "nearestLineDistanceCanvasUnits": 0,
+          "lineProjection": {
+            "x": 65,
+            "y": 42
+          },
+          "projectionT": 0,
+          "cityAnchorKind": "public_space",
+          "locationPublicArea": true,
+          "locationAccessStatus": null,
+          "footprintDefined": false,
+          "evidence": "reference_uncertainty_disk_intersects_proposed_line",
+          "evidenceDoesNotEstablish": "doorway_sidewalk_crossing_easement_or_passable_route"
+        },
+        {
+          "id": "LOC-TRANSIT-TERMINAL",
+          "cityReference": {
+            "x": 66,
+            "y": 42
+          },
+          "placementUncertaintyCanvasUnits": 1.5,
+          "nearestLineDistanceCanvasUnits": 0.593199,
+          "lineProjection": {
+            "x": 65.648115,
+            "y": 41.522442
+          },
+          "projectionT": 0.341113,
+          "cityAnchorKind": "public_transport",
+          "locationPublicArea": false,
+          "locationAccessStatus": null,
+          "footprintDefined": false,
+          "evidence": "reference_uncertainty_disk_intersects_proposed_line",
+          "evidenceDoesNotEstablish": "doorway_sidewalk_crossing_easement_or_passable_route"
+        }
+      ],
+      "historicInlandStreetEndpointCoincidences": [
+        {
+          "id": "MX-A-MARKET-PLAZA",
+          "pointIndex": 4,
+          "coordinate": {
+            "x": 65,
+            "y": 42
+          },
+          "evidence": "same_illustrative_source_endpoint_not_a_new_street",
+          "usableStreetConfirmed": false
+        },
+        {
+          "id": "MX-A-PLAZA-TERM",
+          "pointIndex": 0,
+          "coordinate": {
+            "x": 65,
+            "y": 42
+          },
+          "evidence": "same_illustrative_source_endpoint_not_a_new_street",
+          "usableStreetConfirmed": false
+        }
+      ],
+      "startsOnDraftLandUseBoundaries": [
+        "MX-Z-TRANSIT"
+      ],
+      "schematicBoundaryY42": true,
+      "noPositiveLand03PhysicalCoverage": true,
+      "adjacentPublicSidewalkKnown": false,
+      "parcelOwnershipVerified": false,
+      "doorwayConnectionToRouteVerified": false,
+      "trafficOrGradeVerified": false,
+      "physicalAccessApproved": false,
+      "nextResearchQuestion": "verify_plaza_to_public_sidewalk_transition_outside_terminal"
+    }
+  ],
+  "sourceWarnings": [
+    "location_public_area_is_not_route_access",
+    "prebuilt_public_confirmed_is_only_the_place_not_new_street",
+    "uncertainty_disk_overlap_is_not_a_building_or_doorway",
+    "coincident_topology_sketch_endpoint_is_not_a_surveyed_junction",
+    "land_use_boundary_is_unapproved_draft",
+    "no_claim_about_unmapped_segment_land_use_or_obstacles"
+  ],
+  "existingGraphModified": false,
+  "newPublicRoads": [],
+  "siteBuildingsProposed": [],
+  "travelMinutes": null,
+  "actualDistancesKm": null,
+  "playerMoved": false,
+  "npcMoved": false,
+  "fictionalTimeAdvanced": false,
+  "readyForPhysicalApproval": false
+}
