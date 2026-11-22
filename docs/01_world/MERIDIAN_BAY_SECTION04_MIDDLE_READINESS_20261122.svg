@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1550" height="930" viewBox="0 0 1550 930">
+<title>Meridian Bay Section 04 M2 M3 P2 — unmapped, NOT playable</title>
+<desc>All lines derive from immutable provisional corridor source nodes. Colored boxes are segment envelopes, not parcels or real city geometry. Nothing is approved for walking.</desc>
+<rect width="1550" height="930" fill="#f6f4ed"/>
+<text x="85.00" y="38.00" font-size="25" fill="#243943">MERIDIAN BAY · SECTION 04 — M2 / M3 / P2</text>
+<text x="85.00" y="62.00" font-size="15" fill="#243943">PROPUESTA DE INVESTIGACIÓN · SIN PARCELAS NI VÍAS FÍSICAS APROBADAS</text>
+<rect x="85" y="70" width="1200" height="760" fill="#ecece5" stroke="#aab9b6"/>
+<rect data-map-id="MIDDLE-SEARCH-NOT-SURVEY" x="285.00" y="288.50" width="800.00" height="361.00" fill="#d9b2a4" opacity=".28" stroke="#63757c" stroke-width="1.5" stroke-dasharray="6 5"/>
+<rect data-map-id="MB-04-M2-QUERY-BOX" x="285.00" y="288.50" width="400.00" height="247.00" fill="#e3c7a0" opacity=".28" stroke="#63757c" stroke-width="1.5" stroke-dasharray="6 5"/>
+<rect data-map-id="MB-04-M3-QUERY-BOX" x="685.00" y="535.50" width="400.00" height="114.00" fill="#e3c7a0" opacity=".28" stroke="#63757c" stroke-width="1.5" stroke-dasharray="6 5"/>
+<rect data-map-id="MB-04-P2-QUERY-BOX" x="975.00" y="298.00" width="110.00" height="186.61" fill="#b4c9d6" opacity=".28" stroke="#63757c" stroke-width="1.5" stroke-dasharray="6 5"/>
+<polyline data-map-id="INHERITED-M1" points="171.96,165.00 285.00,288.50" stroke="#8c9998" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 8"/>
+<polyline data-map-id="INHERITED-P1" points="785.00,165.00 975.00,298.00" stroke="#8c9998" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 8"/>
+<polyline data-map-id="MB-04-M2" points="285.00,288.50 685.00,535.50" stroke="#b05945" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<text x="493.00" y="404.00" font-size="13" fill="#243943">MB-04-M2 · ? </text>
+<polyline data-map-id="MB-04-M3" points="685.00,535.50 1085.00,649.50" stroke="#b05945" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<text x="893.00" y="584.50" font-size="13" fill="#243943">MB-04-M3 · ? </text>
+<polyline data-map-id="MB-04-P2" points="975.00,298.00 1085.00,484.61" stroke="#286a9e" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<text x="1038.00" y="383.30" font-size="13" fill="#243943">MB-04-P2 · ? </text>
+<circle cx="171.96" cy="165.00" r="5" fill="#305e72" stroke="white" stroke-width="2"/>
+<text x="179.96" y="153.00" font-size="12" fill="#243943">LAND03 EXIT · not certified</text>
+<circle cx="1085.00" cy="649.50" r="5" fill="#305e72" stroke="white" stroke-width="2"/>
+<text x="1093.00" y="637.50" font-size="12" fill="#243943">COAST01 M3 HANDOFF</text>
+<circle cx="1085.00" cy="484.61" r="5" fill="#305e72" stroke="white" stroke-width="2"/>
+<text x="1093.00" y="472.61" font-size="12" fill="#243943">COAST01 P2 HANDOFF</text>
+<rect x="1300" y="75" width="237" height="744" rx="9" fill="#fffefa" stroke="#b8c4c4"/>
+<text x="1314.00" y="114.00" font-size="12" fill="#243943">ESTUDIOS PENDIENTES:</text>
+<text x="1314.00" y="143.00" font-size="12" fill="#243943">M2 · zona comercial</text>
+<text x="1314.00" y="172.00" font-size="12" fill="#243943">M3 · llegada a costa</text>
+<text x="1314.00" y="201.00" font-size="12" fill="#243943">P2 · transición plaza</text>
+<text x="1314.00" y="243.00" font-size="12" fill="#243943">Desconocido:</text>
+<text x="1314.00" y="272.00" font-size="12" fill="#243943">Parcelas y edificios</text>
+<text x="1314.00" y="301.00" font-size="12" fill="#243943">Derechos de paso</text>
+<text x="1314.00" y="330.00" font-size="12" fill="#243943">Obstáculos reales</text>
+<text x="1314.00" y="359.00" font-size="12" fill="#243943">Cruces y seguridad</text>
+<text x="1314.00" y="388.00" font-size="12" fill="#243943">Anchura accesible</text>
+<text x="1314.00" y="417.00" font-size="12" fill="#243943">Transición a Coast01</text>
+<text x="1314.00" y="459.00" font-size="12" fill="#243943">18 requisitos abiertos</text>
+<text x="1314.00" y="488.00" font-size="12" fill="#243943">No habilitar rutas</text>
+<text x="1314.00" y="517.00" font-size="12" fill="#243943">No construir casas</text>
+<text x="1314.00" y="546.00" font-size="12" fill="#243943">No conceder acceso</text>
+<text x="1314.00" y="575.00" font-size="12" fill="#243943">al puerto industrial</text>
+<text x="1314.00" y="617.00" font-size="12" fill="#243943">M1 / P1: PR #132</text>
+<text x="1314.00" y="646.00" font-size="12" fill="#243943">Registro: PR #122</text>
+<text x="1314.00" y="688.00" font-size="12" fill="#243943">NO CANÓNICO</text>
+<rect x="85" y="850" width="1451" height="61" rx="8" fill="#fffefa" stroke="#bac7c4"/>
+<text x="98.00" y="878.00" font-size="15" fill="#243943">Líneas de origen hipotético, no calles públicas. Ningún permiso, edificio, navegación, tiempo ni hecho narrativo nuevo.</text>
+<text x="98.00" y="899.00" font-size="13" fill="#243943">La ausencia de huellas de edificios en este dibujo NO significa que el suelo esté vacío.</text>
+<metadata id="section04-middle-gate" data-admitted="false" data-travel-approved="false" data-story-action="false"/>
+</svg>
