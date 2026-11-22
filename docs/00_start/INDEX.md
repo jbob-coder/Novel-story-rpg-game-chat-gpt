@@ -72,3 +72,9 @@ No implica merge, admisión física ni nuevo turno.
 - [Lote 10: auditoría de las PR #126–#131, conocimiento NPC fijado y corredores sin certificación](BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.md).
 - [Registro estructurado por PR, cabeza, CI y dependencias](BRANCH_SECURITY_AND_ACCESS_LOT_10_2026-11-22.json).
 Las rutas son bocetos y el estado canónico permanece en CH-000 turno 9.
+
+## Comparación de fuentes de acceso M1/P1 — 2026-11-22
+
+- [Lote 11: PR #132 / #136, SVG, archivos históricos y bloqueos de paso](BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.md).
+- [Registro por SHA, bases, CI y discrepancia documental](BRANCH_M1P1_COMPARISON_LOT_11_2026-11-22.json).
+Sin nuevas calles aprobadas, ni turnos jugados.
