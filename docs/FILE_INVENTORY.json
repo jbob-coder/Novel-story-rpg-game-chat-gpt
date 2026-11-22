@@ -272,6 +272,12 @@
       "tools/meridian_bay_harbor_route_comparison.mjs",
       "tests/meridian_bay_harbor_route_comparison.test.mjs",
       "docs/01_world/MERIDIAN_BAY_HARBOR_ROUTE_COMPARISON_20261122.md"
+    ],
+    "plaza_harbor_variant_review_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_OPTIONS_20261122.json",
+      "tools/meridian_bay_plaza_harbor_variant_review.mjs",
+      "tests/meridian_bay_plaza_harbor_variant_review.test.mjs",
+      "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_REVIEW_20261122.md"
     ]
   },
   "repository_checkpoints": [

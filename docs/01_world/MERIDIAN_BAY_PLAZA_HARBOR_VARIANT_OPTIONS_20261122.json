@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "MB-PLAZA-HARBOR-REVIEW-20261122",
+  "status": "hypothetical_options_only_not_approved_or_admitted",
+  "kind": "reversible_cross_source_geometry_review",
+  "source_pr56": {
+    "path": "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json",
+    "original_pr_head": "199b3843085d8b4b2ab92739357263d598757331",
+    "git_blob_sha": "a5ac772922b4717797118b15f182207be1d1a7fb"
+  },
+  "source_pr67": {
+    "path": "docs/01_world/SOURCE_PR67_COAST_01_20261120.json",
+    "original_pr_head": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+    "git_blob_sha": "7cb79b2113bfef7b7fbbc39539c17fd80a275cd7"
+  },
+  "options": [
+    {
+      "id": "ROUTE_N2_EAST_GAP",
+      "kind": "edit_one_draft_route_waypoint",
+      "target_node": "MB-PH-N2",
+      "source_xy": {
+        "x": 68.9,
+        "y": 39.15
+      },
+      "candidate_xy": {
+        "x": 69.6,
+        "y": 39
+      },
+      "preserves_node_count": true,
+      "preserves_harbor_tail": true
+    },
+    {
+      "id": "BUILDING_B01_SOUTH",
+      "kind": "translate_candidate_footprint_only",
+      "target_building": "HC-B-01",
+      "dx": 0,
+      "dy": -0.55,
+      "preserves_route_points": true
+    }
+  ],
+  "constraints": {
+    "require_unchanged_saved_graph": true,
+    "no_new_player_routes": true,
+    "no_building_or_path_admission": true,
+    "no_editorial_choice_made": true,
+    "no_player_npc_or_time_change": true,
+    "not_real_coordinates_or_distances": true,
+    "no_canonical_files_written": true
+  },
+  "review": "Both options clear strict PR56-vs-HC-B-01 sketch crossings in a local screening. The building translation moves its footprint outside portions of candidate HC-Z-OLD zoning. No physical gap, street blockage, sightline, rights-of-way, ownership, or land survey has been certified."
+}
