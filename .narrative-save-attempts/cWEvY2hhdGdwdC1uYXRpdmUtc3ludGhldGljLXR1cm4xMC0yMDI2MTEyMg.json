@@ -1,0 +1,40 @@
+{
+  "status": "blocked",
+  "branch": "qa/chatgpt-native-synthetic-turn10-20261122",
+  "sourceHead": "019175c6463ff31807a0f7013d91299add94913c",
+  "commitHead": null,
+  "expectedFiles": null,
+  "expectedBlobs": {
+    "chapters/CH-000.transcript.json": "254dcf7095cd26c3f43552504a932652d7f1dc1a",
+    "chapters/CH-000.events.json": "b7fb3ba31c2dffb27bbeddb5952d68551c50946f",
+    "chapters/CH-000.md": "157789e58f3579079abd9b8e1592e8ae9cd47ab3",
+    "game/STATE.json": "a9beb1ac8e697dcc4b45f08b802e2709c0ebd716",
+    "game/SAVE_MANIFEST.json": "4addf8b91eb027da6ce9db5b231be41a08986d4c"
+  },
+  "expectedTree": "06b2cf8ab93ff2283fbac7886e37c642888c6014",
+  "attempt": {
+    "version": 1,
+    "status": "blocked",
+    "source_head": "019175c6463ff31807a0f7013d91299add94913c",
+    "chapter_id": "CH-000",
+    "turn": 10,
+    "operation": "turn",
+    "completed": [
+      "read",
+      "validate",
+      "stage",
+      "preflight"
+    ],
+    "evidence": {
+      "read": "QA-only source ref and five original blobs inspected at 019175c6463ff31807a0f7013d91299add94913c",
+      "validate": "Manifest/event/transcript counters and original seven NPC records inspected",
+      "stage": "All five bytes modified with a clearly NONCANONICAL synthetic turn 10",
+      "preflight": "Detached tree 06b2cf8ab93ff2283fbac7886e37c642888c6014 has exact five expected Git blob SHAs; Node/Python CI still pending"
+    },
+    "percent": 60,
+    "blocked_reason": "Deliberate QA interruption before detached commit",
+    "verified_head": null
+  },
+  "qaOnly": true,
+  "description": "NONCANONICAL ChatGPT connector transport QA. Never merge into story or main."
+}
