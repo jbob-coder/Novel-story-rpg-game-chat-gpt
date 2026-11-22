@@ -59,3 +59,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Regenerate and verify PR #67 Coast01 candidate SVG without story writes](render_harbor_coast_pr67_candidate.mjs)
 
 - [Auditoría y SVG reproducible de alternativas Market/Plaza–Harbor](meridian_bay_harbor_access_reconciliation.mjs)
+- [Auditoría privada de recortes, cobertura y edificios en corredores hacia Harbor Walk](meridian_harbor_region_coverage.mjs)

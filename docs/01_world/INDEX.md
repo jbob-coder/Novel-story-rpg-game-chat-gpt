@@ -32,3 +32,4 @@
 - [Reconciliación técnica de rutas #44, #58 y #56 hacia Harbor Walk](MERIDIAN_BAY_HARBOR_ACCESS_RECONCILIATION_REVIEW_20261122.md)
 - [Propuesta de trazados locales, JSON no canónico](MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.json)
 - [Plano SVG de rutas históricas y alternativas no jugables](MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.svg)
+- [Cobertura regional de accesos al puerto: tramos que aún carecen de plano](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md)

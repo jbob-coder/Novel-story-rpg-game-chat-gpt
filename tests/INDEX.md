@@ -74,3 +74,4 @@ These files already existed in the authoritative source and are listed here for 
 - [PR #67 Coast01: source, road and SVG pixel-level integration checks](harbor_coast_pr67_candidate.test.mjs)
 
 - [16 pruebas de alternativas locales #44/#58/#56 y equivalencia visual](meridian_bay_harbor_access_reconciliation.test.mjs)
+- [16 regresiones de recortes y cobertura regional sin admitir navegación](meridian_harbor_region_coverage.test.mjs)
