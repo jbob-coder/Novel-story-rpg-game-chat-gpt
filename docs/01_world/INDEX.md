@@ -39,3 +39,7 @@
 - [Sección 04: inventario JSON reproducible de tramos sin estudio](MERIDIAN_BAY_HARBOR_SECTION04_STUDY_20261122.json)
 - [M1/P1: revisión documentada de accesos y referencias de Market Row y Crosswater](MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_REVIEW_20261122.md)
 - [M1/P1: matriz JSON de evidencias de posiciones inciertas](MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_20261122.json)
+- [Accesos M1/P1: comprobación histórica PR40/44/54/56 y requisitos físicos pendientes](MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.md)
+- [Matriz JSON de 12 requisitos de salida peatonal pendientes](MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.json)
+- [Copia literal histórica PR40 del frente Market–Crosswater](SOURCE_PR40_MARKET_CROSS_ACCESS_20261122.json)
+- [Copia literal histórica PR54 de Plaza–Terminal](SOURCE_PR54_PLAZA_TERMINAL_ACCESS_20261122.json)

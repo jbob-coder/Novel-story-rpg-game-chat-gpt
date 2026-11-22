@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "plan_id": "MB-PLAZA-TERMINAL-APPROACH-20261116-V1",
+  "status": "detailed_draft_not_story_canon",
+  "type": "single_short_pedestrian_approach",
+  "parent_segment": "MB-WEB-008",
+  "source_plan": "MB-ROAD-WEB-SLICE2-20261116",
+  "source_story": "game/STARTING_LOCATIONS.md",
+  "from_id": "LOC-CROSSWATER-PLAZA",
+  "to_id": "LOC-TRANSIT-TERMINAL",
+  "meaning": "Subdivide the already-established adjacent plaza-to-terminal pedestrian interface, not a new route or a real surveyed crossing.",
+  "nodes": [
+    {
+      "id": "MB-PT-N0",
+      "xy": {
+        "x": 65,
+        "y": 42
+      },
+      "kind": "source_location_anchor",
+      "location_id": "LOC-CROSSWATER-PLAZA",
+      "character": "Existing busy transit plaza, public pedestrian area, signage and retail frontage; exact plaza boundary is unknown."
+    },
+    {
+      "id": "MB-PT-N1",
+      "xy": {
+        "x": 65.5,
+        "y": 42
+      },
+      "kind": "noncanonical_approach_point",
+      "location_id": null,
+      "character": "Proposed pedestrian forecourt transition separating broad plaza movement from the station door area; no named street or crossing."
+    },
+    {
+      "id": "MB-PT-N2",
+      "xy": {
+        "x": 66,
+        "y": 42
+      },
+      "kind": "source_location_anchor",
+      "location_id": "LOC-TRANSIT-TERMINAL",
+      "character": "Existing glass-fronted terminal entrance for adjoining bus and rail interchange; exact door, bus bay and platform positions unknown."
+    }
+  ],
+  "links": [
+    {
+      "id": "MB-PT-L1",
+      "from": "MB-PT-N0",
+      "to": "MB-PT-N1",
+      "character": "Public plaza approach with commuter pedestrian flow",
+      "sideA": "Existing plaza benches and information board context, precise siting unresolved",
+      "sideB": "Existing generic scattered retail frontage, no new business or stall invented",
+      "walking_access": "possible_from_original_graph_not_surveyed",
+      "traffic_crossing_status": "unknown",
+      "minutes": null
+    },
+    {
+      "id": "MB-PT-L2",
+      "from": "MB-PT-N1",
+      "to": "MB-PT-N2",
+      "character": "Terminal entrance forecourt facing the glass-fronted building",
+      "sideA": "Candidate sheltered entrance edge; exact canopy and door geometry not established",
+      "sideB": "Candidate waiting/forecourt space, transit operations and bus circulation unresolved",
+      "walking_access": "possible_from_original_graph_not_surveyed",
+      "traffic_crossing_status": "unknown",
+      "minutes": null
+    }
+  ],
+  "pedestrian_interface": {
+    "conceptual_continuity": true,
+    "verified_accessibility": false,
+    "verified_crosswalk": false,
+    "verified_vehicle_conflict_free": false,
+    "verified_curb_alignment": false,
+    "verified_ticketed_boundary": false,
+    "terminal_glass_entrance_story_confirmed": true,
+    "sightline_to_cafe_confirmed": false,
+    "exact_plaza_area_and_station_footprint_unknown": true
+  },
+  "narrative_evidence_required": [
+    "glass-fronted terminal entrance",
+    "Bus and rail connections adjacent to the plaza."
+  ],
+  "world_constraints": {
+    "new_places": false,
+    "new_graph_links": false,
+    "canon_write": false,
+    "auto_npc_placement": false,
+    "player_discovery": false,
+    "fiction_time_progression": false,
+    "verified_travel_minutes": false,
+    "certified_traffic_route": false
+  },
+  "next_detail_after_review": "LOC-CROSSWATER-PLAZA → LOC-HARBOR-WALK (do not shortcut missing waterfront section)"
+}

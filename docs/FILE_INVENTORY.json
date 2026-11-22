@@ -293,6 +293,14 @@
       "docs/01_world/MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_REVIEW_20261122.md",
       "tools/meridian_harbor_m1_p1_access_evidence.mjs",
       "tests/meridian_harbor_m1_p1_access_evidence.test.mjs"
+    ],
+    "harbor_m1_p1_historical_exit_gates_2026_11_22": [
+      "docs/01_world/SOURCE_PR40_MARKET_CROSS_ACCESS_20261122.json",
+      "docs/01_world/SOURCE_PR54_PLAZA_TERMINAL_ACCESS_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.md",
+      "tools/meridian_m1_p1_historical_exit_gates.mjs",
+      "tests/meridian_m1_p1_historical_exit_gates.test.mjs"
     ]
   },
   "repository_checkpoints": [
