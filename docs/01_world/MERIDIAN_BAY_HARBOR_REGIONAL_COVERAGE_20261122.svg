@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1490" height="1040" viewBox="0 0 1490 1040">
+<title>Meridian Bay: cobertura física DOCUMENTADA e INCOMPLETA de rutas a Harbor Walk</title>
+<desc>Contorno de fragmentos históricos y rutas propuestas. Los tramos sin cobertura NO tienen edificios ni seguridad verificada. Borrador no canónico.</desc>
+<rect width="1490" height="1040" fill="#f6f4ee"/>
+<text x="100" y="45" font-size="24" fill="#243b47">MERIDIAN BAY — AUDITORÍA DE COBERTURA REGIONAL</text>
+<text x="100" y="70" font-size="15" fill="#243b47">Solo cajas de estudio, NO costa medida, NO seguridad de paso, NO rutas jugables.</text>
+<rect x="100" y="120" width="1008" height="798" fill="#ece9df" stroke="#9faaa6" stroke-width="1.5"/>
+<rect data-map-id="LAND-03" x="100.00" y="120.00" width="428.40" height="378.00" fill="#c7d7b7" opacity=".55" stroke="#607782" stroke-dasharray="5 4" stroke-width="1.5"/>
+<rect data-map-id="COAST-02" x="520.00" y="120.00" width="588.00" height="378.00" fill="#b4d5dc" opacity=".55" stroke="#607782" stroke-dasharray="5 4" stroke-width="1.5"/>
+<rect data-map-id="COAST-01" x="520.00" y="498.00" width="378.00" height="420.00" fill="#c6c4e0" opacity=".55" stroke="#607782" stroke-dasharray="5 4" stroke-width="1.5"/>
+<polyline data-map-id="MARKET-SEG0-T0-0.434783" points="100.00,456.00 136.52,498.00" stroke="#277660" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="MARKET-SEG0-T0.434783-1" points="136.52,498.00 184.00,552.60" stroke="#b65e4c" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="MARKET-SEG1-T0-1" points="184.00,552.60 352.00,661.80" stroke="#b65e4c" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="MARKET-SEG2-T0-1" points="352.00,661.80 520.00,712.20" stroke="#b65e4c" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="MARKET-SEG3-T0-1" points="520.00,712.20 562.00,682.80" stroke="#277660" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="MARKET-SEG4-T0-1" points="562.00,682.80 646.00,708.00" stroke="#277660" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="PLAZA-SEG0-T0-1" points="394.00,498.00 473.80,556.80" stroke="#b65e4c" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="PLAZA-SEG1-T0-0.785714" points="473.80,556.80 520.00,639.30" stroke="#b65e4c" stroke-width="4" stroke-dasharray="7 7" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="PLAZA-SEG1-T0.785714-1" points="520.00,639.30 532.60,661.80" stroke="#276fa0" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="PLAZA-SEG2-T0-1" points="532.60,661.80 608.20,672.30" stroke="#276fa0" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<polyline data-map-id="PLAZA-SEG3-T0-1" points="608.20,672.30 646.00,708.00" stroke="#276fa0" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+<circle cx="100.00" cy="456.00" r="5" fill="#1c5871" stroke="white" stroke-width="2"/>
+<text x="107" y="448" font-size="11" fill="#243b47">MARKET ROW</text>
+<circle cx="394.00" cy="498.00" r="5" fill="#1c5871" stroke="white" stroke-width="2"/>
+<text x="401" y="490" font-size="11" fill="#243b47">CROSSWATER</text>
+<circle cx="646.00" cy="708.00" r="5" fill="#1c5871" stroke="white" stroke-width="2"/>
+<text x="653" y="700" font-size="11" fill="#243b47">HARBOR WALK</text>
+<rect x="1126" y="120" width="342" height="755" rx="9" fill="#fffdf8" stroke="#bec6c1"/>
+<text x="1143" y="160" font-size="13" fill="#243b47">ZONAS CON BOCETO PREVIO:</text>
+<text x="1143" y="190" font-size="13" fill="#243b47">LAND-03: área urbana interior</text>
+<text x="1143" y="220" font-size="13" fill="#243b47">COAST-02: continuación costera</text>
+<text x="1143" y="250" font-size="13" fill="#243b47">COAST-01: Harbor Walk</text>
+<text x="1143" y="291" font-size="13" fill="#243b47">LÍNEAS VERDES/AZULES:</text>
+<text x="1143" y="321" font-size="13" fill="#243b47">Segmento dentro de alguna caja</text>
+<text x="1143" y="351" font-size="13" fill="#243b47">de estudio, NO pasabilidad.</text>
+<text x="1143" y="392" font-size="13" fill="#243b47">LÍNEAS ROJAS DISCONTINUAS:</text>
+<text x="1143" y="422" font-size="13" fill="#243b47">SIN plano físico conocido.</text>
+<text x="1143" y="452" font-size="13" fill="#243b47">No inventar edificios o calles.</text>
+<text x="1143" y="493" font-size="13" fill="#243b47">MARKET ROW:</text>
+<text x="1143" y="523" font-size="13" fill="#243b47">69.72% sin cobertura de boceto</text>
+<text x="1143" y="553" font-size="13" fill="#243b47">CROSSWATER:</text>
+<text x="1143" y="583" font-size="13" fill="#243b47">55.6891% sin cobertura de boceto</text>
+<text x="1143" y="624" font-size="13" fill="#243b47">Sin rutas físicas aprobadas.</text>
+<text x="1143" y="654" font-size="13" fill="#243b47">Sin distancias reales o tiempos.</text>
+<text x="1143" y="684" font-size="13" fill="#243b47">Sin acciones de Jack o NPC.</text>
+<rect x="100" y="948" width="1368" height="64" rx="10" fill="#fffdf7" stroke="#c7ccca"/>
+<text x="114" y="974" font-size="14" fill="#243b47">PENDIENTE: cartografiar área entre x menor que 68 e y menor que 42. Validar edificaciones, acceso y continuidad.</text>
+<text x="114" y="997" font-size="13" fill="#243b47">Cuadrícula ficticia 100×80 sin norte ni escala terrestre. No admite rutas o escenas a STATE.</text>
+<metadata id="regional-coverage" data-source="PR103" data-admitted="false" data-story-action="false"/>
+</svg>
