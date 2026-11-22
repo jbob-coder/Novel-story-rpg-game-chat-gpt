@@ -1,11 +1,14 @@
-name: Narrative integrity
+# QA-ONLY overlay. DO NOT MERGE into main or the narrative branch.
+# The original repository's 422 JS/47 Python suites use CH-000 turn 9 as a
+# fixed fixture; this detached changed-byte turn 10 must use direct validators.
+name: QA-only changed checkpoint structural verification
 on:
   pull_request:
-    branches: [main, work/chat-narrative-foundation, work/literal-recovery-contextual-time-20261113, work/chapter-plan-pilot-20261113]
+    branches: [main]
 permissions:
   contents: read
 jobs:
-  tests:
+  synthetic-checkpoint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -16,9 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - name: JavaScript unit and integration suites
-        run: node --test tests/*.test.mjs
-      - name: Python regression suite
-        run: python -m unittest discover -s tests -p 'test_*.py' -v
-      - name: Verify canonical saved checkpoint
+      - name: Node snapshot, chapter, history, and exact five-byte roundtrip
+        run: node --test tests/qa_changed_turn_direct_connector.test.mjs
+      - name: Python canonical checkpoint validator on synthetic changed bytes
         run: python tools/validate_state.py
