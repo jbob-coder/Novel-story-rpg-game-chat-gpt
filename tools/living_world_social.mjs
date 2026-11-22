@@ -179,6 +179,44 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
 }
 
 /**
+ * Reconstruct actor-owned knowledge at each recorded social exchange.
+ *
+ * Final knowledge alone is insufficient: a speaker may learn a statement in a
+ * later chapter. Because knowledge is additive in the current state engine,
+ * subtract event-backed additions from the materialized final actor knowledge
+ * to recover the legacy/seeded baseline, then replay additions in event order.
+ * Old pre-turn-7 records without a materialized "after" are legacy seed facts;
+ * this does not claim to independently certify their original observation.
+ */
+function verifySocialKnowledgeChronology(snapshot,events){
+ const actors=snapshot.state.world.actors;
+ const acquired=new Map(Object.keys(actors).map(id=>[id,new Set()]));
+ for(const event of events)for(const change of event.state_changes??[]){
+  if(change.field!=='knowledge'||!acquired.has(change.actor_id)||
+     typeof change.after!=='string')continue;
+  const reconstructed=`${change.fact} (source: ${change.source}; ${event.id})`;
+  ensure(change.after===reconstructed,
+   'Event-backed NPC knowledge has inconsistent source or event ID');
+  acquired.get(change.actor_id).add(change.after);
+ }
+ const known=new Map(Object.entries(actors).map(([id,actor])=>
+  [id,new Set((actor.knowledge??[]).filter(entry=>!acquired.get(id).has(entry)))]));
+ for(const event of events){
+  const context=event.social_context;
+  if(context?.transfer?.speaker_id===event.actor_ids?.[0]){
+   const transfer=context.transfer;
+   ensure(known.get(transfer.speaker_id)?.has(transfer.known_entry),
+    'Social speaker had not yet learned the transferred statement');
+  }
+  for(const change of event.state_changes??[]){
+   if(change.field==='knowledge'&&known.has(change.actor_id)&&
+      typeof change.after==='string')known.get(change.actor_id).add(change.after);
+  }
+ }
+ return true;
+}
+
+/**
  * Readback guard for saved social events. Reject half-pairs, wrong counterpart,
  * lost transfer provenance and tampered event linkage. Baseline events without
  * social_context remain valid and are not rewritten.
@@ -243,5 +281,6 @@ export function verifySocialEventHistory(snapshot){
   }
   ensure(effectCount>0,'Recorded social encounter lacks any effect');
  }
+ if(grouped.size)verifySocialKnowledgeChronology(snapshot,allEvents(snapshot));
  return true;
 }
