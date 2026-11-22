@@ -86,6 +86,22 @@ export function stageReviewedNPCIntroduction({state,event,proposal}={}){
  return copy(proposal.review.initial_knowledge);
 }
 
+// Recover where the witness stood before the introduction event, even if
+// they travelled later. Only explicit event-backed movement can alter it.
+function observedLocationBefore({actorId,events,index,actors}){
+ let location=actors[actorId]?.location_id;
+ ensure(typeof location==='string','NPC admission witness lacks final location');
+ for(let j=events.length-1;j>=index;j--){
+  for(const effect of [...(events[j].state_changes??[])].reverse()){
+   if(effect.field!=='location_id'||effect.actor_id!==actorId)continue;
+   ensure(effect.after===location,
+    'NPC introduction observer location history has inconsistent travel');
+   location=effect.before;
+  }
+ }
+ return location;
+}
+
 /** Every admitted NPC is reconstructed from its unique post-anchor event. */
 export function verifyNPCIntroductionHistory(snapshot,events=allEvents(snapshot)){
  const actors=snapshot?.state?.world?.actors;
@@ -125,9 +141,17 @@ export function verifyNPCIntroductionHistory(snapshot,events=allEvents(snapshot)
     lifetime_skill_xp:0,milestones:[]})&&after.last_resolved_action===null,
    'NPC creation event has a forged initial profile');
   const existingIds=new Set([...known,snapshot.state.player.id]);
-  const syntheticState={player:snapshot.state.player,
-   world:{actors:Object.fromEntries([...known].map(x=>[x,{}])),
-    locations:snapshot.state.world.locations}};
+  const allActors={[snapshot.state.player.id]:snapshot.state.player,...actors};
+  const observerId=review?.observation?.observer_actor_id;
+  const observerLocation=observedLocationBefore({
+   actorId:observerId,events,index:i,actors:allActors});
+  const witness=observerId===snapshot.state.player.id?
+   {...snapshot.state.player,location_id:observerLocation}:
+   snapshot.state.player;
+  const syntheticState={player:witness,
+   world:{actors:Object.fromEntries([...known].map(x=>[x,{
+    location_id:x===observerId?observerLocation:null
+   }])),locations:snapshot.state.world.locations}};
   const identity=Object.fromEntries(initialFields.map(k=>[k,after[k]]));
   validateIntroductionProfile({state:syntheticState,actor:identity,
    initialKnowledge:review?.initial_knowledge,observation:review?.observation,
