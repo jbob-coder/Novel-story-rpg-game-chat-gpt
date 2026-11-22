@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "id": "MB-M1-P1-HISTORICAL-PUBLIC-EXIT-GATES-20261122",
+  "status": "BLOCKED_ON_UNVERIFIED_PHYSICAL_ACCESS",
+  "sources": {
+    "current": {
+      "path": "docs/01_world/MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_20261122.json",
+      "gitBlob": "464bb09f77c4c01b3c75ee2dccfc13b0b2dfafba"
+    },
+    "marketCrossPR40": {
+      "path": "docs/01_world/SOURCE_PR40_MARKET_CROSS_ACCESS_20261122.json",
+      "gitBlob": "904983876226ba82451bf9e3b5d6aed8e7885d6a"
+    },
+    "marketHarborPR44": {
+      "path": "docs/01_world/SOURCE_PR44_MARKET_HARBOR_20261120.json",
+      "gitBlob": "e8efe8e5f6a746ab4e628f76a9deb5f71061010d"
+    },
+    "plazaTerminalPR54": {
+      "path": "docs/01_world/SOURCE_PR54_PLAZA_TERMINAL_ACCESS_20261122.json",
+      "gitBlob": "8f687b97adecd3c03a4b962ef539f0b058520f0f"
+    },
+    "plazaHarborPR56": {
+      "path": "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json",
+      "gitBlob": "a5ac772922b4717797118b15f182207be1d1a7fb"
+    }
+  },
+  "checks": [
+    {
+      "sectionId": "M1",
+      "sourcePrIds": [
+        40,
+        44
+      ],
+      "verifiedSourceRelationships": [
+        {
+          "claim": "market_commercial_frontage_exists_in_setting",
+          "evidence": "PR40/PR44 planning references",
+          "class": "setting_supported_not_surveyed"
+        },
+        {
+          "claim": "cafe_actual_corner_or_door_is_fixed",
+          "evidence": "PR40 visibility and site-access guard",
+          "class": "explicitly_unverified"
+        },
+        {
+          "claim": "first_direct_market_harbor_sketch_subsegment_is_consistent",
+          "evidence": "PR44 M1 crop at y42",
+          "class": "illustrative_only"
+        }
+      ],
+      "placeReferenceIds": [
+        "LOC-CAFE-BRUMA",
+        "LOC-COMMERCIAL-DISTRICT",
+        "LOC-MARKET-BUSINESS-OFFICES"
+      ],
+      "requirements": [
+        {
+          "requirementId": "M1-SOURCE-EXIT",
+          "question": "Evidence of a specific public pedestrian exit from Market Row to M1",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "M1-CAFE-DOOR",
+          "question": "Surveyed Café Bruma doorway and frontage compatibility",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "M1-PARCEL-RIGHTS",
+          "question": "Verified public land or legally usable easement for the proposed line",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "M1-CROSSING",
+          "question": "Crossing, curb, sidewalk continuity and actual travel width",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "M1-BUILDINGS",
+          "question": "Building footprint, deliveries and service access conflict review",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "M1-GRADE",
+          "question": "Measured slope, grade and accessibility of public route",
+          "status": "missing",
+          "authoritativeProofRef": null
+        }
+      ],
+      "gate": "BLOCKED_PHYSICAL_EXIT_NOT_ESTABLISHED",
+      "existingGraphConnectivityPreserved": true,
+      "physicalPassageEstablished": false,
+      "publicEasementVerified": false,
+      "actualDoorwayOrCrosswalkMapped": false,
+      "mayPromoteToSavedWorld": false
+    },
+    {
+      "sectionId": "P1",
+      "sourcePrIds": [
+        40,
+        54,
+        56
+      ],
+      "verifiedSourceRelationships": [
+        {
+          "claim": "plaza_anchor_shared_by_historic_plans",
+          "evidence": "PR40/PR54/PR56 (65,42)",
+          "class": "illustrative_only"
+        },
+        {
+          "claim": "plaza_terminal_walkway_is_physical_and_accessible",
+          "evidence": "PR54 pedestrian_interface",
+          "class": "explicitly_unverified"
+        },
+        {
+          "claim": "plaza_harbor_egress_right_of_way_established",
+          "evidence": "PR56 L1 access_notes",
+          "class": "explicitly_unverified"
+        }
+      ],
+      "placeReferenceIds": [
+        "LOC-CROSSWATER-PLAZA",
+        "LOC-TRANSIT-TERMINAL"
+      ],
+      "requirements": [
+        {
+          "requirementId": "P1-PLAZA-EXIT",
+          "question": "Exact plaza boundary and verified outward pedestrian passage",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "P1-TERMINAL-BOUNDARY",
+          "question": "Evidence that route remains outside restricted terminal/vehicle circulation",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "P1-PARCEL-RIGHTS",
+          "question": "Verified public land or legally usable easement for the proposed line",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "P1-CROSSING",
+          "question": "Crosswalk, curb and conflict-free passage from plaza",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "P1-WIDTH",
+          "question": "Measured sidewalk clearance and continuous unobstructed width",
+          "status": "missing",
+          "authoritativeProofRef": null
+        },
+        {
+          "requirementId": "P1-GRADE",
+          "question": "Measured slope, grade and accessibility of plaza exit",
+          "status": "missing",
+          "authoritativeProofRef": null
+        }
+      ],
+      "gate": "BLOCKED_PHYSICAL_EXIT_NOT_ESTABLISHED",
+      "existingGraphConnectivityPreserved": true,
+      "physicalPassageEstablished": false,
+      "publicEasementVerified": false,
+      "actualDoorwayOrCrosswalkMapped": false,
+      "mayPromoteToSavedWorld": false
+    }
+  ],
+  "openRequirementsCount": 12,
+  "provenPublicExits": [],
+  "auditedSavedGraphOnly": true,
+  "unapprovedSketchesNotCanon": true,
+  "legalEasementEstablished": false,
+  "newRoadsAndBuildings": [],
+  "noNewLocationIds": true,
+  "physicalRoutesApproved": false,
+  "playerMoved": false,
+  "npcMoved": false,
+  "fictionalTimeAdvanced": false,
+  "nextAction": "obtain_source_backed_parcel_frontage_curb_and_public_right_of_way_evidence"
+}
