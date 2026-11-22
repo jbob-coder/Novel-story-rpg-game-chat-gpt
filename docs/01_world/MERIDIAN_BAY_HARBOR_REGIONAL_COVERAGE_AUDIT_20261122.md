@@ -54,3 +54,12 @@ El [SVG de cobertura](MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg) dibuja
 - Ejecutar CI Node, Python y checkpoint en el HEAD exacto, validar inventario completo y los cinco archivos narrativos antes de solicitar revisión.
 
 **Recomendación:** no fusionar los caminos propuestos a un mapa jugable. La siguiente tarea útil es un **fragmento 04 de transición con trazabilidad histórica**, no continuar moviendo arbitrariamente un punto hasta que parezca que la ruta evita edificios conocidos.
+
+
+## Validación ejecutada por GitHub Actions (22 de noviembre de 2026)
+
+En el commit de implementación `616c6155a279bf0126f07ccc46536665179731b5`, el clon de QA aislado [PR #113](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/113), con base `main` únicamente para disparar el workflow, ejecutó [Narrative integrity #45081672029](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45081672029): **508/508 JavaScript PASS**, **47/47 Python PASS** y **validador de guardado PASS**. El conjunto contiene las 489 pruebas anteriores y 19 nuevas de cobertura. Los resultados se confirmaron en el job `137390996998`, que terminó exitosamente.
+
+Comparación exacta de árboles Git en ese commit: `main` **190** archivos, PR #103 **218**, PR #112 **222**. Diferencias respecto a PR #103: **4 archivos nuevos**, **4 índices/inventario modificados**, **0 borrados**. Inventario **222/222**, sin sobrantes ni ausentes. Los **cinco archivos narrativos protegidos tienen el mismo Git blob que `main` y PR #103**. No se fusionó ninguna PR ni se agregó conexión o progreso narrativo.
+
+**Corte de evidencia:** este párrafo documental se agregó después de esa ejecución; el HEAD final de la rama debe superar otra ejecución idéntica para certificar también el documento actualizado. Una suite verde no convierte las regiones hipotéticas en vías abiertas ni cubre el sector sin mapa.
