@@ -268,6 +268,13 @@
       "docs/01_world/MERIDIAN_BAY_PR67_COAST_CANDIDATE_REVIEW_20261122.md",
       "tools/render_harbor_coast_pr67_candidate.mjs",
       "tests/harbor_coast_pr67_candidate.test.mjs"
+    ],
+    "harbor_access_reconciliation_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.json",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_LOCAL_RECONCILIATION_20261122.svg",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_RECONCILIATION_REVIEW_20261122.md",
+      "tools/meridian_bay_harbor_access_reconciliation.mjs",
+      "tests/meridian_bay_harbor_access_reconciliation.test.mjs"
     ]
   },
   "repository_checkpoints": [

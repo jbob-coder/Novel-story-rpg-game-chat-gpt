@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1570" height="900" viewBox="0 0 1570 900">
+<title>Meridian Bay: rutas candidatas a Harbor Walk (NO CANÓNICAS)</title>
+<desc>Comparación geométrica del borrador PR44/PR58/PR56 sobre Coast01 PR67; ninguna ruta física verificada ni habilitada en la partida.</desc>
+<rect width="1570" height="900" fill="#f7f5ef"/>
+<text x="80.0" y="42.0" font-size="23" fill="#243942">MERIDIAN BAY · HARBOR WALK · RECONCILIACIÓN LOCAL</text>
+<text x="80.0" y="68.0" font-size="14" fill="#243942">Dibujo provisional; coordenadas ilustrativas sin escala real ni verificación de accesos</text>
+<rect x="80" y="96" width="1140" height="660" fill="#ece8dd" stroke="#80989c" stroke-width="1.6"/>
+<line x1="80.0" y1="96" x2="80.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="140.0" y1="96" x2="140.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="200.0" y1="96" x2="200.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="260.0" y1="96" x2="260.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="320.0" y1="96" x2="320.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="380.0" y1="96" x2="380.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="440.0" y1="96" x2="440.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="500.0" y1="96" x2="500.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="560.0" y1="96" x2="560.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="620.0" y1="96" x2="620.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="680.0" y1="96" x2="680.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="740.0" y1="96" x2="740.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="800.0" y1="96" x2="800.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="860.0" y1="96" x2="860.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="920.0" y1="96" x2="920.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="980.0" y1="96" x2="980.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="1040.0" y1="96" x2="1040.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="1100.0" y1="96" x2="1100.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="1160.0" y1="96" x2="1160.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="1220.0" y1="96" x2="1220.0" y2="756" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="756.0" x2="1220" y2="756.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="696.0" x2="1220" y2="696.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="636.0" x2="1220" y2="636.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="576.0" x2="1220" y2="576.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="516.0" x2="1220" y2="516.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="456.0" x2="1220" y2="456.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="396.0" x2="1220" y2="396.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="336.0" x2="1220" y2="336.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="276.0" x2="1220" y2="276.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="216.0" x2="1220" y2="216.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="156.0" x2="1220" y2="156.0" stroke="#c4c8c1" stroke-width=".6"/>
+<line x1="80" y1="96.0" x2="1220" y2="96.0" stroke="#c4c8c1" stroke-width=".6"/>
+<polygon points="980.0,756.0 968.0,690.0 938.0,648.0 926.0,600.0 932.0,570.0 974.0,540.0 968.0,504.0 1010.0,480.0 1001.0,450.0 986.0,420.0 1010.0,372.0 1028.0,330.0 1067.0,288.0 1061.0,240.0 1088.0,198.0 1106.0,156.0 1220.0,156.0 1220.0,756.0" data-map-id="HC-WATER" fill="#b5d6df" opacity="1" stroke="#666" stroke-width="1"/>
+<polygon points="704.0,690.0 836.0,690.0 914.0,648.0 935.0,540.0 890.0,474.0 767.0,468.0 710.0,540.0" data-map-id="HC-Z-FREIGHT" fill="#d6a9a2" opacity="0.55" stroke="#666" stroke-width="1"/>
+<polygon points="719.0,369.0 761.0,381.0 776.0,348.0 734.0,333.0" data-map-id="HC-B-01" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polygon points="782.0,333.0 819.2,357.0 845.0,328.8 807.2,297.0" data-map-id="HC-B-02" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polygon points="770.0,570.0 816.8,571.2 825.2,526.8 783.2,517.8" data-map-id="HC-B-03" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polygon points="870.8,645.0 911.6,642.0 920.0,595.2 875.0,598.8" data-map-id="HC-B-04" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polygon points="906.8,555.0 939.2,546.0 941.6,516.0 911.0,522.0" data-map-id="HC-B-05" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polygon points="888.8,390.0 923.0,385.2 930.8,357.0 899.0,361.8" data-map-id="HC-B-06" fill="#938b82" opacity="0.85" stroke="#666" stroke-width="1"/>
+<polyline points="980.0,756.0 968.0,690.0 938.0,648.0 926.0,600.0 932.0,570.0 974.0,540.0 968.0,504.0 1010.0,480.0 1001.0,450.0 986.0,420.0 1010.0,372.0 1028.0,330.0 1067.0,288.0 1061.0,240.0 1088.0,198.0 1106.0,156.0" data-map-id="HC-COAST" fill="none" stroke="#276a8b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="737.0,438.0 777.8,447.0 810.8,474.0 845.0,465.0" data-map-id="HC-A-OLDTRACE" fill="none" stroke="#b55b48" stroke-width="3" stroke-dasharray="4 7" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="80.0,96.0 200.0,234.0 440.0,390.0 680.0,462.0 860.0,456.0" data-map-id="SOURCE-PR44" fill="none" stroke="#888" stroke-width="2.2" stroke-dasharray="5 8" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="80.0,96.0 200.0,288.0 410.0,426.0 650.0,504.0 770.0,474.0 860.0,456.0" data-map-id="SOURCE-PR58" fill="none" stroke="#98604e" stroke-width="2.2" stroke-dasharray="4 8" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="500.0,156.0 614.0,240.0 734.0,327.0 806.0,405.0 860.0,456.0" data-map-id="SOURCE-PR56" fill="none" stroke="#8c8794" stroke-width="2.2" stroke-dasharray="4 8" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="80.0,96.0 200.0,234.0 440.0,390.0 680.0,462.0 740.0,420.0 860.0,456.0" data-map-id="REVIEW-MARKET" fill="none" stroke="#217a69" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="500.0,156.0 614.0,240.0 698.0,390.0 806.0,405.0 860.0,456.0" data-map-id="REVIEW-PLAZA" fill="none" stroke="#326d9b" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="740.0,420.0 860.0,456.0" data-map-id="REVIEW-MARKET-TAIL" fill="none" stroke="#164e3f" stroke-width="2.3" stroke-dasharray="2 4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="80.0" cy="96.0" r="7" fill="#1a5472" stroke="white" stroke-width="2.5"/>
+<text x="89.0" y="84.0" font-size="12" fill="#243942">Market Row · origen</text>
+<circle cx="500.0" cy="156.0" r="7" fill="#1a5472" stroke="white" stroke-width="2.5"/>
+<text x="509.0" y="144.0" font-size="12" fill="#243942">Crosswater Plaza · origen</text>
+<circle cx="860.0" cy="456.0" r="7" fill="#1a5472" stroke="white" stroke-width="2.5"/>
+<text x="869.0" y="444.0" font-size="12" fill="#243942">Harbor Walk · destino existente</text>
+<rect x="1240" y="100" width="305" height="625" rx="10" fill="#fffdf8" stroke="#bfc6c5"/>
+<text x="1255.0" y="143.0" font-size="15" fill="#243942">SOLO BOCETO — SIN CANON</text>
+<text x="1255.0" y="168.0" font-size="13" fill="#243942">Verde: PR44 con desvío</text>
+<text x="1255.0" y="193.0" font-size="13" fill="#243942">Azul: PR56 con rodeo</text>
+<text x="1255.0" y="218.0" font-size="13" fill="#243942">Gris: PR44/PR56 originales</text>
+<text x="1255.0" y="243.0" font-size="13" fill="#243942">Marrón: PR58 alternativo</text>
+<text x="1255.0" y="268.0" font-size="13" fill="#243942">Rojo: calle vieja bloqueada</text>
+<text x="1255.0" y="293.0" font-size="13" fill="#243942">Rosa: zona portuaria candidata</text>
+<text x="1255.0" y="318.0" font-size="13" fill="#243942">Gris oscuro: huellas provisionales</text>
+<text x="1255.0" y="343.0" font-size="13" fill="#243942">Azul claro: agua hipotética</text>
+<text x="1255.0" y="380.0" font-size="13" fill="#243942">Punto PR44 añadido:</text>
+<text x="1255.0" y="405.0" font-size="13" fill="#243942">(69.0, 37.6)</text>
+<text x="1255.0" y="430.0" font-size="13" fill="#243942">Punto PR56 revisado:</text>
+<text x="1255.0" y="455.0" font-size="13" fill="#243942">(68.3, 38.1)</text>
+<text x="1255.0" y="492.0" font-size="13" fill="#243942">No se crean enlaces ni calles</text>
+<text x="1255.0" y="517.0" font-size="13" fill="#243942">utilizables en el juego.</text>
+<text x="1255.0" y="542.0" font-size="13" fill="#243942">Sin distancias ni tiempos.</text>
+<text x="1255.0" y="567.0" font-size="13" fill="#243942">Sin permisos de puerto.</text>
+<text x="1255.0" y="592.0" font-size="13" fill="#243942">Tramos fuera de Coast01:</text>
+<text x="1255.0" y="617.0" font-size="13" fill="#243942">NO VERIFICADOS.</text>
+<rect x="80" y="790" width="1465" height="68" rx="10" fill="#fffdf8" stroke="#c3c9c7"/>
+<text x="95.0" y="818.0" font-size="15" fill="#243942">Dibujo de coordinación de propuestas. No actualizar STATE.json, no afirmar pasabilidad, no narrar desplazamientos.</text>
+<text x="95.0" y="843.0" font-size="13" fill="#243942">Fuentes conservadas: PR #44 / #58 / #56; Coast 01 PR #67 vía PR #89. Requiere revisión regional independiente.</text>
+<metadata id="harbor-routes-review" data-map-source="PR89" data-admitted="false" data-story-action="false"/>
+</svg>
