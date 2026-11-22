@@ -1,5 +1,6 @@
 import {allEvents} from './chapter_history.mjs';
 import {NPC_KNOWLEDGE_ANCHOR} from './living_world_knowledge_anchor.mjs';
+import {verifyNPCIntroductionHistory} from './living_world_npc_introduction.mjs';
 // Selective adaptation of PR #13 social contacts to the admitted 15-place world.
 // Source Git blob 971cf964a45fe1842c986288212543c198f8f63a.
 // Event-backed NPC social contacts. Proposal-only until a player-triggered,
@@ -195,10 +196,9 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
 export function verifySealedNPCKnowledge(snapshot,events=allEvents(snapshot)){
  const actors=snapshot.state.world.actors;
  const anchor=NPC_KNOWLEDGE_ANCHOR;
- // No actor may be silently added to or removed from a sealed NPC roster.
- // Actor lifecycle changes require a new, separately reviewed migration contract.
- ensure(same(Object.keys(actors).sort(),Object.keys(anchor.actorKnowledge).sort()),
-  'NPC actor roster differs from sealed knowledge anchor');
+ // New NPCs are admitted only through their own reviewed, actor-owned
+ // introduction event after the original sealed seven-actor roster.
+ verifyNPCIntroductionHistory(snapshot,events);
  const startSeq=Number(anchor.lastEventId.slice(3));
  ensure(Number.isSafeInteger(startSeq)&&startSeq>0&&
   events[startSeq-1]?.id===anchor.lastEventId,

@@ -230,10 +230,14 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases','npc_introduction'].includes(field), 'Unknown tracked change field');
       // The world-level history is keyed by location rather than event actor;
       // different people may cause consecutive changes to the same building.
       if(field==='location_state')continue;
+      // Creation is validated against the historic actor roster and private
+      // introduction event by verifyNPCIntroductionHistory(), not as a change
+      // to an already-existing actor's field.
+      if(field==='npc_introduction')continue;
       if(field==='plans'){
         requireFact(change.actor_id!==state.player.id,'Only NPC plans may change');
         const previousIds=new Set(events.filter(e=>Number(e.id.slice(3))<Number(event.id.slice(3))).map(e=>e.id));

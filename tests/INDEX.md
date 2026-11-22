@@ -69,3 +69,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Regresión de procedencia social y recuperación entre capítulos (6 escenarios)](npc_social_cross_chapter_provenance.test.mjs)
 - [Pruebas de referencia fijada, memoria social y detección de falsificaciones (8 casos)](npc_social_knowledge_anchor.test.mjs)
 - [Migración de referencia NPC: 14 pruebas de fuente, revisión y rechazo](npc_knowledge_anchor_migration.test.mjs)
+- [Admisión de actores NPC: regresiones de identidad, privacidad y capítulos (18 escenarios)](npc_actor_introduction_admitted.test.mjs)

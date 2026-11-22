@@ -268,6 +268,11 @@
       "docs/01_world/NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md",
       "tools/living_world_knowledge_migration.mjs",
       "tests/npc_knowledge_anchor_migration.test.mjs"
+    ],
+    "npc_actor_introduction_2026_11_22": [
+      "docs/01_world/NPC_ACTOR_INTRODUCTION_ADMITTED_20261122.md",
+      "tools/living_world_npc_introduction.mjs",
+      "tests/npc_actor_introduction_admitted.test.mjs"
     ]
   },
   "repository_checkpoints": [

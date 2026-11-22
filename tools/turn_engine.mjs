@@ -4,7 +4,8 @@ import {verifyConsequences,stageConsequences} from './consequences.mjs';
 import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_discovery.mjs';
 import {verifyTravelHistory} from './living_world_travel.mjs';
-import {verifySocialEventHistory} from './living_world_social.mjs';
+import {verifySocialEventHistory,verifySealedNPCKnowledge} from './living_world_social.mjs';
+import {stageReviewedNPCIntroduction,verifyNPCIntroductionHistory} from './living_world_npc_introduction.mjs';
 import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
 // Deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
@@ -52,7 +53,9 @@ function verifyNarrativeSnapshot(snapshot) {
   }
   verifyConsequences(snapshot);
   checkFullNarration(snapshot);
+  const newNPCs=verifyNPCIntroductionHistory(snapshot,history);
   verifyStateChanges(snapshot);
+  if(newNPCs.size)verifySealedNPCKnowledge(snapshot,history);
   verifyReviewedPlaceHistory(snapshot);
   verifyTravelHistory(snapshot);
   // Social provenance is narrator-private and validated across closed chapters.
@@ -70,6 +73,9 @@ function stageNarrativeTurn(snapshot, turn) {
   check(typeof turn.outcome==="string" && turn.outcome.trim().length>0 && turn.outcome.length<=5000,"Resolved narration required");
   check(Number.isSafeInteger(turn.elapsed_days) && turn.elapsed_days>=0 && turn.elapsed_days<=365,"Elapsed days invalid");
   check((turn.offscreen??[]).length<=20, "Too many offscreen events");
+  check(Array.isArray(turn.npc_introductions??[])&&
+    (turn.npc_introductions??[]).length<=1,
+    "At most one reviewed NPC introduction per player-triggered turn");
   // D-036: the interactive novel no longer awards XP; historical XP is read-only.
   check(turn.awards==null || (Array.isArray(turn.awards) && turn.awards.length===0), "RPG XP awards disabled (D-036)");
   check((turn.offscreen??[]).every(item=>item.awards==null || (Array.isArray(item.awards) && item.awards.length===0)), "RPG XP awards disabled (D-036)");
@@ -95,6 +101,24 @@ function stageNarrativeTurn(snapshot, turn) {
   applyStateChanges(s,playerEvent,turn.changes??[]);
   applyReviewedPlaceDiscovery({state:s,event:playerEvent,
     discoveries:turn.location_discoveries??[],narrationMessages:turn.narration_messages});
+  // An admission records a new identity in its own private actor event.
+  // It is not a player action and does not imply Jack has met this person.
+  for(const proposal of turn.npc_introductions??[]){
+    check(proposal&&typeof proposal.actor?.id==='string'&&
+      typeof proposal.outcome==='string',
+      'NPC introduction requires a reviewed candidate');
+    const introduction=event('npc_introduction',proposal.actor.id,
+      'Reviewed independent NPC presence supported by current-turn evidence.',
+      proposal.outcome,[proposal.actor.id]);
+    const facts=stageReviewedNPCIntroduction({state:s,event:introduction,proposal});
+    if(facts.length)applyStateChanges(s,introduction,
+      facts.map(item=>({field:'knowledge',fact:item.fact,source:item.source})));
+    // No automatic player disclosure from private encounter/admission metadata.
+    const privateLines=[proposal.outcome,...facts.map(x=>x.fact)];
+    check(privateLines.every(secret=>secret.trim().length<12||
+      !turn.narration_messages.some(message=>message.includes(secret.trim()))),
+      'Private NPC introduction information leaked into narration');
+  }
   const firstSocialEvent=new Map();
   for(const item of turn.offscreen??[]) {
     check(item && typeof item.actor_id==="string" && s.world.actors[item.actor_id],"Unknown offscreen NPC");
