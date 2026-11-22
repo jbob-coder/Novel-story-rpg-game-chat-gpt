@@ -64,3 +64,7 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.test.mjs](living_world_routines.test.mjs) — NPC route/goal routine proposals.
 - [living_world_travel.test.mjs](living_world_travel.test.mjs) — Route, elapsed time and chronology guards.
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
+
+## Auditoría de ramas — 2026-11-22
+
+- [Lote 07: invariantes de seis PR, cinco blobs y dependencias](branch_integration_gates_lot07.test.mjs).
