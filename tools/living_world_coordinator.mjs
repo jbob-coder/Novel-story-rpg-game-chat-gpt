@@ -21,6 +21,9 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
     turn.elapsed_minutes<=525600,'Explicit, nonnegative narrative minutes required');
   ensure(!hasOwn(turn,'awards') || !turn.awards?.length,'No RPG progression');
   ensure(Array.isArray(npcResolutions) && npcResolutions.length<=20,'Too many NPC resolutions');
+  ensure(Array.isArray(turn.npc_introductions??[])&&
+    (turn.npc_introductions??[]).length<=1,
+    'Only one separately reviewed NPC may be admitted per turn');
   // PR #13: a claimed encounter must have two actor-owned, matching results.
   validateSocialResolutionBatch({state:snapshot.state,npcResolutions});
   const nextTurn=snapshot.manifest.last_completed_turn+1;
@@ -33,7 +36,8 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
     ensure(!seen.has(resolved.actor_id),'Multiple outcomes for one NPC require separate adjudication');
     seen.add(resolved.actor_id);
     // The player action is the first event in a turn. NPC events follow in order.
-    const eventId='EV-'+String(snapshot.manifest.last_event_sequence+i+2).padStart(6,'0');
+    const eventId='EV-'+String(snapshot.manifest.last_event_sequence+i+2+
+      (turn.npc_introductions??[]).length).padStart(6,'0');
     ensure(!resolved.disclosures?.length,
       'Disclosure must be recorded explicitly as a causal knowledge change, not emitted from a private draft');
     const staged=stageNPCResolution({state:snapshot.state,actorId:resolved.actor_id,
