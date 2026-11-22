@@ -24,17 +24,19 @@
       "validate",
       "stage",
       "preflight",
-      "commit"
+      "commit",
+      "ref"
     ],
     "evidence": {
       "read": "QA-only source ref and five original blobs inspected at 019175c6463ff31807a0f7013d91299add94913c",
       "validate": "Manifest/event/transcript counters and original seven NPC records inspected",
       "stage": "All five bytes modified with a clearly NONCANONICAL synthetic turn 10",
       "preflight": "Detached tree 06b2cf8ab93ff2283fbac7886e37c642888c6014 has exact five expected Git blob SHAs; Node/Python CI still pending",
-      "commit": "Created exactly one detached Git commit 72ff6a034d7ba3f896cca27edb134d7d1bbc76cc parented to 019175c6463ff31807a0f7013d91299add94913c"
+      "commit": "Created exactly one detached Git commit 72ff6a034d7ba3f896cca27edb134d7d1bbc76cc parented to 019175c6463ff31807a0f7013d91299add94913c",
+      "ref": "Non-force expected-head ref update confirmed at 72ff6a034d7ba3f896cca27edb134d7d1bbc76cc"
     },
-    "percent": 75,
-    "blocked_reason": "Deliberately stopped after detached commit: must recover without producing a second commit or turn",
+    "percent": 85,
+    "blocked_reason": "Deliberate second QA interruption: ref moved but five-file byte readback and final journal verification still pending",
     "verified_head": null
   },
   "qaOnly": true,
