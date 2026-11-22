@@ -60,3 +60,9 @@ Nueva rama documental fuera del recuento; registrar su HEAD por separado. La rev
 - [Lote 08: ficha de PR #88–#112, espejos QA, bases, CI y conflictos de integración](BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.md).
 - [Matriz estructurada de ramas, SHA, diferencias y fuentes](BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.json).
 Estas son capturas fechadas, no autorización para fusionar o jugar.
+
+## Seguimiento de ramas posteriores — 2026-11-22
+
+- [Lote 09: PR #113–#123, QA alias, nueva revisión de #112 y procedencia en #122](BRANCH_FOLLOWUP_LOT_09_2026-11-22.md).
+- [Matriz fechada de HEAD/base, cambios exclusivos y CI](BRANCH_FOLLOWUP_LOT_09_2026-11-22.json).
+No implica merge, admisión física ni nuevo turno.
