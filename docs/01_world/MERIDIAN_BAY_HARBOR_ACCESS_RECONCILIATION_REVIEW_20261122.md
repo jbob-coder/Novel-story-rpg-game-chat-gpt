@@ -69,3 +69,11 @@ El código [`tools/meridian_bay_harbor_access_reconciliation.mjs`](../../tools/m
 - El siguiente avance seguro es contrastar las secciones fuera de Coast 01 contra los fragmentos territoriales pertinentes y sus edificios antes de revisar esta variante para integración.
 
 **Recomendación técnica:** usar el desvío PR #44 y la rectificación PR #56 como **hipótesis coordinadas** para la siguiente revisión regional; conservar #58 y la cola original para trazabilidad. No fusionar todavía ni narrar recorrido alguno a partir de las coordenadas.
+
+## Evidencia GitHub CI ejecutada (2026-11-22)
+
+Para el commit de implementación `01eae2a12b1a31d3adc0aad3fcf9b6e7f94f39ca`, la QA aislada [PR #104](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/pull/104) contra `main` ejecutó [Narrative integrity #45071135800](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45071135800): **489/489 tests JavaScript PASS**, **47/47 tests Python PASS** y **validador del checkpoint PASS**. Esa ejecución contiene las 16 pruebas nuevas, más 473 pruebas Node heredadas de PR #89. No se hizo merge.
+
+Comparación de Git trees efectuada sobre ese SHA: `main` **190** blobs, PR #89 **213**, propuesta **218**; solo **5 archivos añadidos**, **4 índices/inventario editados** y **0 eliminados**. Inventario **218/218** sin faltantes ni extras; los cinco archivos centrales de la historia conservan exactamente sus blobs de `main`. La capa de rutas `HC-A-MARKET` original en PR #89 permanece intacta, y el desvío alternativo vive únicamente en el JSON de propuesta.
+
+**Nota de corte:** esta sección documental se incorpora **después** de la CI anterior. El HEAD documental posterior debe probarse de nuevo con commit exacto antes de dar por completada la auditoría final. Los resultados geométricos anteriores no prueban derechos de paso o seguridad física.
