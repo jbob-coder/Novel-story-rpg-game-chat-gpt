@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "id": "MB-HARBOR-ACCESS-LOCAL-ALTERNATIVE-20261122",
+  "status": "review_only_not_admitted_to_saved_world",
+  "authority": "derived_from_historical_draft_geometry_not_a_new_location",
+  "historical_sources": {
+    "market_44": {
+      "pr": 44,
+      "head": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "blob": "e8efe8e5f6a746ab4e628f76a9deb5f71061010d",
+      "archive": "docs/01_world/SOURCE_PR44_MARKET_HARBOR_20261120.json"
+    },
+    "market_58": {
+      "pr": 58,
+      "head": "b11332aa53796717cf299bebccf043d72620220e",
+      "blob": "280a444f6eed99a33027aea2edb48af70cc67bd0",
+      "archive": "docs/01_world/SOURCE_PR58_MARKET_HARBOR_20261120.json"
+    },
+    "plaza_56": {
+      "pr": 56,
+      "head": "199b3843085d8b4b2ab92739357263d598757331",
+      "blob": "a5ac772922b4717797118b15f182207be1d1a7fb",
+      "archive": "docs/01_world/SOURCE_PR56_PLAZA_HARBOR_20261120.json"
+    },
+    "coast_pr67_variant": {
+      "pr": 89,
+      "head": "964d84698f65db0ea41d7617bf5b9f22dd85db8f",
+      "blob": "139c3687c98285aff886d28422544d082768217d",
+      "archive": "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.json"
+    }
+  },
+  "study_box": {
+    "x_min": 68,
+    "x_max": 77,
+    "y_min": 32,
+    "y_max": 42,
+    "canvas": "fictional_100x80_not_real_measurement",
+    "north_unknown": true
+  },
+  "market_to_harbor": {
+    "original_pr": 44,
+    "reviewed_only": true,
+    "source_graph_link": {
+      "from": "LOC-COMMERCIAL-DISTRICT",
+      "to": "LOC-HARBOR-WALK",
+      "existing": true
+    },
+    "change": {
+      "kind": "insert_waypoint_before_saved_harbor_anchor",
+      "after_node": "MB-MH-N3",
+      "new_node_id": "MB-MH-REVIEW-BEND-20261122",
+      "xy": {
+        "x": 69,
+        "y": 37.6
+      }
+    },
+    "nodes": [
+      {
+        "id": "MB-MH-N0",
+        "xy": {
+          "x": 58,
+          "y": 43
+        }
+      },
+      {
+        "id": "MB-MH-N1",
+        "xy": {
+          "x": 60,
+          "y": 40.7
+        }
+      },
+      {
+        "id": "MB-MH-N2",
+        "xy": {
+          "x": 64,
+          "y": 38.1
+        }
+      },
+      {
+        "id": "MB-MH-N3",
+        "xy": {
+          "x": 68,
+          "y": 36.9
+        }
+      },
+      {
+        "id": "MB-MH-REVIEW-BEND-20261122",
+        "xy": {
+          "x": 69,
+          "y": 37.6
+        }
+      },
+      {
+        "id": "MB-MH-N4",
+        "xy": {
+          "x": 71,
+          "y": 37
+        }
+      }
+    ],
+    "local_coast_tail_overlay": {
+      "id": "HC-A-MARKET",
+      "points": [
+        {
+          "x": 69,
+          "y": 37.6
+        },
+        {
+          "x": 71,
+          "y": 37
+        }
+      ],
+      "source_coast_pr67_tail": [
+        {
+          "x": 69.5,
+          "y": 36.7
+        },
+        {
+          "x": 71,
+          "y": 37
+        }
+      ],
+      "changed_only_in_this_overlay": true
+    },
+    "candidate_path_status": "geometry_proposed_not_verified_traversable"
+  },
+  "plaza_to_harbor": {
+    "original_pr": 56,
+    "reviewed_only": true,
+    "source_graph_link": {
+      "from": "LOC-CROSSWATER-PLAZA",
+      "to": "LOC-HARBOR-WALK",
+      "existing": true
+    },
+    "change": {
+      "kind": "relocate_intermediate_waypoint",
+      "node_id": "MB-PH-N2",
+      "from": {
+        "x": 68.9,
+        "y": 39.15
+      },
+      "to": {
+        "x": 68.3,
+        "y": 38.1
+      }
+    },
+    "nodes": [
+      {
+        "id": "MB-PH-N0",
+        "xy": {
+          "x": 65,
+          "y": 42
+        }
+      },
+      {
+        "id": "MB-PH-N1",
+        "xy": {
+          "x": 66.9,
+          "y": 40.6
+        }
+      },
+      {
+        "id": "MB-PH-N2",
+        "xy": {
+          "x": 68.3,
+          "y": 38.1
+        }
+      },
+      {
+        "id": "MB-PH-N3",
+        "xy": {
+          "x": 70.1,
+          "y": 37.85
+        }
+      },
+      {
+        "id": "MB-PH-N4",
+        "xy": {
+          "x": 71,
+          "y": 37
+        }
+      }
+    ],
+    "local_coast_tail_inherited": "HC-A-PLAZA",
+    "candidate_path_status": "geometry_proposed_not_verified_traversable"
+  },
+  "retired_from_current_local_preference": {
+    "original_pr": 58,
+    "reason": "Draft alternative crosses provisional HC-Z-FREIGHT and blocked historic HC-A-OLDTRACE; retained for comparison, not deleted nor invalidated in canonical graph.",
+    "preview_only": true
+  },
+  "limitations": {
+    "coast_fragment_01_geometry_only": true,
+    "elsewhere_city_building_and_rights_of_way_unverified": true,
+    "draft_land_use_not_real_permit": true,
+    "no_new_saved_graph_edge": true,
+    "no_industrial_port_or_wharf_access": true,
+    "no_verified_accessibility_or_travel_time": true,
+    "no_player_or_npc_movement": true,
+    "no_fictional_time_progression": true,
+    "not_a_story_action": true
+  },
+  "acceptance": "needs_cross_region_and_full_city_street_review_then_editorial_approval"
+}

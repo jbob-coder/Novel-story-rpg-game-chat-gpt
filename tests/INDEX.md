@@ -73,3 +73,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Regresiones y procedencia de SVG PR #67](harbor_coast_pr67_variant.test.mjs)
 - [Regresión de rutas históricas PR #44, #58 y #56](meridian_bay_harbor_route_comparison.test.mjs)
 - [Pruebas de alternativas reversibles Plaza–Harbor](meridian_bay_plaza_harbor_variant_review.test.mjs)
+- [Regressions for candidate corridor clearance, clipping and sibling PR #103 reconciliation](meridian_bay_plaza_harbor_crossstack_coverage.test.mjs)

@@ -58,3 +58,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Renderizador de SVG PR #67 con fuente SHA verificada](render_harbor_coast_pr67_variant_svg.mjs)
 - [Comparador privado de candidatos de ruta Harbor (sin admisión)](meridian_bay_harbor_route_comparison.mjs)
 - [Comparador seguro de variantes Plaza–Harbor y límites de zona](meridian_bay_plaza_harbor_variant_review.mjs)
+- [Source-locked cross-stack Plaza–Harbor clearance and study-box coverage audit](meridian_bay_plaza_harbor_crossstack_coverage.mjs)

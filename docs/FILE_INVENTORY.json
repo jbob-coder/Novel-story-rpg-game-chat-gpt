@@ -278,6 +278,12 @@
       "tools/meridian_bay_plaza_harbor_variant_review.mjs",
       "tests/meridian_bay_plaza_harbor_variant_review.test.mjs",
       "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_VARIANT_REVIEW_20261122.md"
+    ],
+    "plaza_harbor_crossstack_coverage_audit_2026_11_22": [
+      "docs/01_world/SOURCE_PR103_HARBOR_ACCESS_RECONCILIATION_20261122.json",
+      "tools/meridian_bay_plaza_harbor_crossstack_coverage.mjs",
+      "tests/meridian_bay_plaza_harbor_crossstack_coverage.test.mjs",
+      "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CROSSSTACK_COVERAGE_AUDIT_20261122.md"
     ]
   },
   "repository_checkpoints": [
