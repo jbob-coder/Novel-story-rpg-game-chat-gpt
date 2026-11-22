@@ -72,3 +72,4 @@ These files already existed in the authoritative source and are listed here for 
 - [16 pruebas de continuidad regional, agua, edificios y alternativas de rutas](meridian_bay_three_region_seams.test.mjs)
 
 - [PR #67 Coast01: source, road and SVG pixel-level integration checks](harbor_coast_pr67_candidate.test.mjs)
+- [Meridian Bay corridor intersection classification, tangent and containment regressions](meridian_corridor_contact_audit.test.mjs)
