@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "scope": "2026-11-22 GitHub immutable snapshot PR #126–131, not floating authority; do not merge or admit physical routes / narrative events",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "date": "2026-11-22",
+  "parent_pr": 124,
+  "parent_sha": "4f76f51becbd7af8ebe6c281d0e85dbfca3bfaf6",
+  "baseline_main_sha": "019175c6463ff31807a0f7013d91299add94913c",
+  "canonical_git_blobs": {
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+  },
+  "qa_aliases": {
+    "128": 126,
+    "129": 127,
+    "131": 130
+  },
+  "records": [
+    {
+      "pr": 126,
+      "classification": "review_work",
+      "area": "M1_P1_access",
+      "head_sha": "8659fbdfec0e87bdaa2990254468f4a154d37d91",
+      "head_branch": "work/meridian-m1-p1-source-access-review-20261122",
+      "base_sha": "1daa0e8de0859bbab03361342908a265d309b86a",
+      "base_branch": "work/meridian-harbor-section04-study-validated-20261122",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_20261122.json",
+        "docs/01_world/MERIDIAN_BAY_M1_P1_ACCESS_EVIDENCE_REVIEW_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_harbor_m1_p1_access_evidence.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_harbor_m1_p1_access_evidence.mjs"
+      ],
+      "exclusive_ahead": 8,
+      "exclusive_behind": 0,
+      "ci_exact_head": {
+        "run_id": 45082626318,
+        "head_sha": "8659fbdfec0e87bdaa2990254468f4a154d37d91",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 127,
+      "classification": "review_work",
+      "area": "NPC_knowledge_anchor",
+      "head_sha": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+      "head_branch": "work/npc-social-knowledge-anchor-20261122",
+      "base_sha": "414896744036731949aab7ee2a687d29efb80f9a",
+      "base_branch": "work/npc-social-provenance-chapter-20261122",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/npc_social_knowledge_anchor.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_knowledge_anchor.mjs",
+        "tools/living_world_social.mjs"
+      ],
+      "exclusive_ahead": 11,
+      "exclusive_behind": 0,
+      "ci_exact_head": {
+        "run_id": 45082823222,
+        "head_sha": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 128,
+      "classification": "qa_only_same_sha",
+      "area": "M1_P1_access",
+      "head_sha": "8659fbdfec0e87bdaa2990254468f4a154d37d91",
+      "head_branch": "qa/meridian-m1-p1-access-source-ci-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_review": "closed",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "qa_mirror_of": 126,
+      "ci_exact_head": {
+        "run_id": 45082626318,
+        "head_sha": "8659fbdfec0e87bdaa2990254468f4a154d37d91",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 129,
+      "classification": "qa_only_same_sha",
+      "area": "NPC_knowledge_anchor",
+      "head_sha": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+      "head_branch": "qa/npc-social-knowledge-anchor-ci-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_review": "closed",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "qa_mirror_of": 127,
+      "ci_exact_head": {
+        "run_id": 45082823222,
+        "head_sha": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 130,
+      "classification": "review_work",
+      "area": "Plaza_to_Coast01_gap",
+      "head_sha": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+      "head_branch": "audit/plaza-harbor-approach-evidence-gap-20261122",
+      "base_sha": "26560ccc1fb859cc7372967b54d7354c854fc92a",
+      "base_branch": "audit/plaza-harbor-crossstack-coverage-20261122",
+      "state_at_review": "open",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "exclusive_changed_paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_APPROACH_EVIDENCE_GAP_20261122.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_approach_evidence_gap.test.mjs",
+        "tools/INDEX.md",
+        "tools/meridian_bay_plaza_approach_evidence_gap.mjs"
+      ],
+      "exclusive_ahead": 4,
+      "exclusive_behind": 0,
+      "ci_exact_head": {
+        "run_id": 45082859326,
+        "head_sha": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "pr": 131,
+      "classification": "qa_only_same_sha",
+      "area": "Plaza_to_Coast01_gap",
+      "head_sha": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+      "head_branch": "audit/plaza-harbor-approach-evidence-gap-20261122",
+      "base_sha": "019175c6463ff31807a0f7013d91299add94913c",
+      "base_branch": "main",
+      "state_at_review": "closed",
+      "merged_at_review": false,
+      "draft_at_review": true,
+      "qa_mirror_of": 130,
+      "ci_exact_head": {
+        "run_id": 45082859326,
+        "head_sha": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    }
+  ],
+  "findings": {
+    "npc_legacy_memory_bug": "PR #118 inferred legacy NPC knowledge from final knowledge minus event additions, allowing an unrecorded final-only fact to masquerade as old knowledge; PR #127 introduces a fixed turn-9 anchor and chronological replay with negative tests.",
+    "npc_anchor": {
+      "pr": 127,
+      "head": "ae42f871e3ef336dc69a23dca1ba8e861b30cc8d",
+      "source_commit": "019175c6463ff31807a0f7013d91299add94913c",
+      "source_blob": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+      "last_turn": 9,
+      "last_event": "EV-000029",
+      "npc_count": 7,
+      "knowledge_entry_count": 29
+    },
+    "harbor_m1p1": {
+      "pr": 126,
+      "parent_pr": 122,
+      "head": "8659fbdfec0e87bdaa2990254468f4a154d37d91",
+      "findings": "Market frontage and plaza references are approximate, not verified entry paths or rights of way"
+    },
+    "plaza_approach": {
+      "pr": 130,
+      "parent_pr": 114,
+      "head": "34898eb209472ad4f429c06e6d2b3df6c67f2d55",
+      "shared_first_draft_segment": [
+        [
+          65,
+          42
+        ],
+        [
+          66.9,
+          40.6
+        ]
+      ],
+      "shared_length": 2.360085,
+      "illustrative_uncovered_lengths": {
+        "pr106_variant": 3.638721,
+        "pr103_variant": 4.6114
+      },
+      "conclusion": "Neither option is admitted public passage"
+    },
+    "prerequisite_overlap": {
+      "pr110": "f93e1e6c097f9baf29e83d88a54b338c922e9dd1",
+      "pr112": "f2e71276be59fd09ea6684ef4e80232ed2f71f17",
+      "shared_report": "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md",
+      "resolved": false
+    },
+    "stale_provenance": {
+      "pr": 122,
+      "head": "1daa0e8de0859bbab03361342908a265d309b86a",
+      "parent_current_sha": "f2e71276be59fd09ea6684ef4e80232ed2f71f17",
+      "parent_historic_sha_in_report": "616c6155a279bf0126f07ccc46536665179731b5",
+      "review_comment": 7087441989,
+      "resolved": false
+    }
+  }
+}
