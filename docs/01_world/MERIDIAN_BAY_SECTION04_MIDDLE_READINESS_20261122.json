@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "id": "MB-SECTION04-M2-M3-P2-PHYSICAL-READINESS-20261122",
+  "status": "source_locked_middle_sections_unmapped_not_playable",
+  "parentDraftPr": 132,
+  "sourceGitBlobs": {
+    "section04": "a8138c2c1acbb7e0e4604b5df8ea1dec3531ac9b",
+    "m1p1": "760e819f0b9027e9eb7a8b55f1f33d0e65251a74",
+    "routeReconciliation": "aae66aae315603e37e8cb88034600446bf46d21d",
+    "coast01": "139c3687c98285aff886d28422544d082768217d",
+    "cityCanvas": "2e8c5ff412436a6e7d526bc0172adfca77107263"
+  },
+  "coordinateAuthority": "non_georeferenced_reversible_100x80_illustrative_canvas",
+  "focusSections": [
+    "MB-04-M2",
+    "MB-04-M3",
+    "MB-04-P2"
+  ],
+  "studySearchWindow": {
+    "x_min": 60,
+    "x_max": 68,
+    "y_min": 36.9,
+    "y_max": 40.7,
+    "meaning": "mathematical_envelope_only_not_physical_territory_or_parcels"
+  },
+  "sections": [
+    {
+      "id": "MB-04-M2",
+      "route": "market",
+      "sourcePr103Property": "market_to_harbor",
+      "sourceWaypointIds": [
+        "MB-MH-N1",
+        "MB-MH-N2"
+      ],
+      "sourceSegmentIndex": 1,
+      "from": {
+        "x": 60,
+        "y": 40.7
+      },
+      "to": {
+        "x": 64,
+        "y": 38.1
+      },
+      "hypotheticalLengthUnits": 4.770744,
+      "searchBox": {
+        "x_min": 60,
+        "x_max": 64,
+        "y_min": 38.1,
+        "y_max": 40.7
+      },
+      "searchBoxMeaning": "derived_line_extent_not_parcel_or_road_survey",
+      "evidenceRequirements": [
+        {
+          "key": "documented_parcel_and_building_massing",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "public_pedestrian_right_of_way",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "road_crossings_and_traffic_separation",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "obstruction_inventory_including_walls",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "pedestrian_width_and_accessibility",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "continuity_from_M1_and_to_M3",
+          "status": "unknown",
+          "sourceEvidence": null
+        }
+      ],
+      "landUse": null,
+      "buildingFootprints": null,
+      "publicRightOfWay": null,
+      "actualRoadWidth": null,
+      "physicalObstacles": null,
+      "entranceApproved": false,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-M3",
+      "route": "market",
+      "sourcePr103Property": "market_to_harbor",
+      "sourceWaypointIds": [
+        "MB-MH-N2",
+        "MB-MH-N3"
+      ],
+      "sourceSegmentIndex": 2,
+      "from": {
+        "x": 64,
+        "y": 38.1
+      },
+      "to": {
+        "x": 68,
+        "y": 36.9
+      },
+      "hypotheticalLengthUnits": 4.176123,
+      "searchBox": {
+        "x_min": 64,
+        "x_max": 68,
+        "y_min": 36.9,
+        "y_max": 38.1
+      },
+      "searchBoxMeaning": "derived_line_extent_not_parcel_or_road_survey",
+      "evidenceRequirements": [
+        {
+          "key": "documented_parcel_and_building_massing",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "public_pedestrian_right_of_way",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "coast01_boundary_and_seam_access",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "industrial_port_fence_and_security_transition",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "obstruction_inventory_and_safe_crossings",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "pedestrian_width_and_accessibility",
+          "status": "unknown",
+          "sourceEvidence": null
+        }
+      ],
+      "landUse": null,
+      "buildingFootprints": null,
+      "publicRightOfWay": null,
+      "actualRoadWidth": null,
+      "physicalObstacles": null,
+      "entranceApproved": false,
+      "canNavigate": false
+    },
+    {
+      "id": "MB-04-P2",
+      "route": "plaza",
+      "sourcePr103Property": "plaza_to_harbor",
+      "sourceWaypointIds": [
+        "MB-PH-N1",
+        "MB-PH-N2"
+      ],
+      "sourceSegmentIndex": 1,
+      "from": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "to": {
+        "x": 68,
+        "y": 38.635714
+      },
+      "hypotheticalLengthUnits": 2.251315,
+      "searchBox": {
+        "x_min": 66.9,
+        "x_max": 68,
+        "y_min": 38.635714,
+        "y_max": 40.6
+      },
+      "searchBoxMeaning": "derived_line_extent_not_parcel_or_road_survey",
+      "evidenceRequirements": [
+        {
+          "key": "documented_parcel_and_building_massing",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "public_pedestrian_right_of_way",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "safe_separation_from_plaza_terminal_traffic",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "coast01_boundary_and_seam_access",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "obstruction_inventory_and_safe_crossings",
+          "status": "unknown",
+          "sourceEvidence": null
+        },
+        {
+          "key": "pedestrian_width_and_accessibility",
+          "status": "unknown",
+          "sourceEvidence": null
+        }
+      ],
+      "landUse": null,
+      "buildingFootprints": null,
+      "publicRightOfWay": null,
+      "actualRoadWidth": null,
+      "physicalObstacles": null,
+      "entranceApproved": false,
+      "canNavigate": false
+    }
+  ],
+  "handoffs": {
+    "market": {
+      "m1_end": {
+        "x": 60,
+        "y": 40.7
+      },
+      "m2_start": {
+        "x": 60,
+        "y": 40.7
+      },
+      "m2_end": {
+        "x": 64,
+        "y": 38.1
+      },
+      "m3_start": {
+        "x": 64,
+        "y": 38.1
+      },
+      "m3_end": {
+        "x": 68,
+        "y": 36.9
+      },
+      "coast01_entry": {
+        "x": 68,
+        "y": 36.9
+      }
+    },
+    "plaza": {
+      "p1_end": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "p2_start": {
+        "x": 66.9,
+        "y": 40.6
+      },
+      "p2_end": {
+        "x": 68,
+        "y": 38.635714
+      },
+      "coast01_entry": {
+        "x": 68,
+        "y": 38.635714
+      }
+    }
+  },
+  "existingPlaceGraphAlreadyLinksMarketPlazaToHarbor": true,
+  "knownInternalRouteCrossings": 0,
+  "knownMapCollisionsBeyondStudyRegions": "unknown",
+  "routeSharedStreetVerified": false,
+  "sourceWindowCoveredByApprovedPhysicalPlan": false,
+  "missingEvidenceRequirementCount": 18,
+  "admissionRules": {
+    "newRoadsAuthorized": false,
+    "publicPassageProven": false,
+    "coast01IntegrationCertified": false,
+    "privatePortAccessAllowed": false,
+    "centerlineClearanceEstablishesAccessibility": false,
+    "unknownBuildingFootprintsImplyEmptyLand": false,
+    "needsEditorialPhysicalDesignReview": true
+  },
+  "storyProtection": {
+    "savedWorldChanged": false,
+    "newLocationEdges": [],
+    "playerMoved": false,
+    "npcMoved": false,
+    "fictionalTimeAdvanced": false
+  },
+  "nextAction": "obtain_authored_parcel_frontage_crossing_and_public_access_evidence_before_section04_physical_fragment"
+}
