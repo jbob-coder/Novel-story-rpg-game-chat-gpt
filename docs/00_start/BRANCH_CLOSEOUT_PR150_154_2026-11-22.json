@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "record_kind": "bounded_branch_audit_and_chat_closeout",
+  "date": "2026-11-22",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "project_mode": "chatgpt_only_interactive_novel",
+  "prohibited_out_of_scope": [
+    "Godot",
+    "Unity",
+    "APK",
+    "standalone_game_engine",
+    "new_map_scope",
+    "new_gameplay_features"
+  ],
+  "source_audit_parent_pr": 148,
+  "source_audit_parent_sha": "e4461c0eda4cfe7415935c9bb39a5859c67d5939",
+  "main_sha_at_review": "019175c6463ff31807a0f7013d91299add94913c",
+  "narrative_sha_at_review": "2820cca1bd5140ef8a9f2c94cf986feef0ef19cc",
+  "production_journal_sha_at_review": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+  "canonical_five_git_blobs": {
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+  },
+  "family_audit_coverage": {
+    "historical_108_branches": "documented_and_compared_in_lots_01_through_06_from_prior_audits",
+    "pr_lots_07_through_12": "source_documented_in_distinct_stacked_draft_review_PRS",
+    "this_closeout": "PR150_PR152_PR154_plus_exact_SHA_QA_mirrors",
+    "not_certified": "all_open_branches_merged_or_combined_compatible"
+  },
+  "work_prs": [
+    {
+      "pr": 150,
+      "qa": 151,
+      "title": "Section04 M2 M3 P2 evidence-gated draft interfaces",
+      "head": "8737f29e45bd74cc8c29f6289d6df251922ffd9e",
+      "basePR": 132,
+      "base": "07c1e099a83b22cdb5d993876d2ad284e08652b6",
+      "files": 236,
+      "parentFiles": 231,
+      "added": 5,
+      "modified": 4,
+      "removed": 0,
+      "run": 45084135573,
+      "job": 137398726684,
+      "js": 555,
+      "python": 47,
+      "checkpoint": "PASS",
+      "approval": "18_unsourced_physical_gates_unknown",
+      "gameAdmission": false
+    },
+    {
+      "pr": 152,
+      "qa": 153,
+      "title": "Market M1 frontage hypothetical geometric clearance against historical Land03 buildings",
+      "head": "8d5b323897770d098699279fd232564a160118ec",
+      "basePR": 142,
+      "base": "ef6c3340446d21704608c678d04a5eeb2f64eb6b",
+      "files": 244,
+      "parentFiles": 240,
+      "added": 4,
+      "modified": 4,
+      "removed": 0,
+      "run": 45084194123,
+      "job": 137398910671,
+      "js": 589,
+      "python": 47,
+      "checkpoint": "PASS",
+      "approval": "physical_sidewalks_and_frontage_not_surveyed",
+      "gameAdmission": false
+    },
+    {
+      "pr": 154,
+      "qa": 155,
+      "title": "Event-backed reviewed NPC introduction; only synthetic tests and unmerged draft",
+      "head": "5221300eacee3d0c71dd48be2b41800149097ba1",
+      "basePR": 138,
+      "base": "e9ff3c7496495c77e338654ed9045fa3d66aac64",
+      "files": 210,
+      "parentFiles": 207,
+      "added": 3,
+      "modified": 9,
+      "removed": 0,
+      "run": 45084569977,
+      "job": 137400135511,
+      "js": 516,
+      "python": 47,
+      "checkpoint": "PASS",
+      "approval": "owner_actor_admission_or_canonical_npc_integration_not_authorized",
+      "gameAdmission": false
+    }
+  ],
+  "qa_mirrors": [
+    {
+      "qa": 151,
+      "of": 150,
+      "state": "closed",
+      "merged": false,
+      "head": "8737f29e45bd74cc8c29f6289d6df251922ffd9e",
+      "base": "main",
+      "same_actions_run": 45084135573
+    },
+    {
+      "qa": 153,
+      "of": 152,
+      "state": "closed",
+      "merged": false,
+      "head": "8d5b323897770d098699279fd232564a160118ec",
+      "base": "main",
+      "same_actions_run": 45084194123
+    },
+    {
+      "qa": 155,
+      "of": 154,
+      "state": "closed",
+      "merged": false,
+      "head": "5221300eacee3d0c71dd48be2b41800149097ba1",
+      "base": "main",
+      "same_actions_run": 45084569977
+    }
+  ],
+  "shared_conflict_paths": [
+    "docs/01_world/INDEX.md",
+    "docs/FILE_INVENTORY.json",
+    "tests/INDEX.md",
+    "tools/INDEX.md"
+  ],
+  "connector_qa": {
+    "status": "verified_QA_only_format_delta",
+    "source_narrative_sha": "2820cca1bd5140ef8a9f2c94cf986feef0ef19cc",
+    "isolated_story_branch": "qa/chatgpt-fivefile-delta-recovery-20261122",
+    "isolated_journal_branch": "journal/qa-chatgpt-fivefile-delta-20261122",
+    "isolated_journal_file": ".narrative-save-attempts/cWEvY2hhdGdwdC1maXZlZmlsZS1kZWx0YS1yZWNvdmVyeS0yMDI2MTEyMg.json",
+    "isolated_journal_verification_commit": "79de5c8b86c65a068d5011b43ccb372ee06596f7",
+    "candidate_tree_sha": "8289cc2b013eb467b801afd92dc2050588b2b0e2",
+    "detached_commit_and_final_qa_head": "cd61b86496a7d2d8e81bc70e9cedabe07f610784",
+    "original_blobs": {
+      "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+      "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+      "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+      "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+      "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+    },
+    "new_blobs": {
+      "game/SAVE_MANIFEST.json": "1f8ab23d64eae4d4aa1f1cb5a8e792a368523c67",
+      "game/STATE.json": "ae95f63cf4b72eb391d644f1f28afec8e6ecde84",
+      "chapters/CH-000.events.json": "af05365b46e368101816e545cb2ef7db680231bb",
+      "chapters/CH-000.transcript.json": "45d5dfa71232c417af84fd855946d6eefe2441e5",
+      "chapters/CH-000.md": "217ccec4c9b4be01e88c2923c2a9012af08b6a54"
+    },
+    "five_modified_bytes_verified": true,
+    "four_json_files_same_semantics": true,
+    "one_markdown_extra_newline_only": true,
+    "blocked_before_commit": true,
+    "detached_commit_recorded_before_qa_ref_move": true,
+    "resumed_from_independent_journal_read": true,
+    "nonforce_expected_sha_ref_update": true,
+    "literal_readback_matches_all_five": true,
+    "qa_journal_verified": true,
+    "production_refs_unchanged": true,
+    "fictional_turn_unmodified": true,
+    "synthetic_new_turn_tested": false,
+    "owner_turn_live_tested": false,
+    "screen_delivery_attested": false,
+    "concurrent_other_work": "PR156 separate QA-only synthetic turn investigation; not included in this verified format-only proof"
+  },
+  "canonical_story_status": {
+    "chapter": "CH-000",
+    "completed_turn": 9,
+    "last_event": "EV-000029",
+    "last_transcript": "TXT-000020",
+    "day": -29,
+    "location_id": "LOC-WILSON-WORKSHOP",
+    "pending": "await_player_action",
+    "journal_verified_operation": "world_admission"
+  },
+  "scope_completion": {
+    "branch_150_152_154_custody": "verified",
+    "individual_CI": "verified",
+    "combined_integration": "not_attempted_not_authorized",
+    "chatgpt_only_engine": "confirmed",
+    "story_turn_10": "not_requested_no_action",
+    "production_live_turn_save": "not_tested",
+    "remaining_required_before_actual_owner_turn": "revalidate_current_story_ref_manifest_five_files_journal_and_use_strict_durable_save_gate"
+  },
+  "no_merge_no_story_write": true
+}
