@@ -275,6 +275,12 @@
       "docs/01_world/MERIDIAN_BAY_HARBOR_ACCESS_RECONCILIATION_REVIEW_20261122.md",
       "tools/meridian_bay_harbor_access_reconciliation.mjs",
       "tests/meridian_bay_harbor_access_reconciliation.test.mjs"
+    ],
+    "harbor_region_coverage_2026_11_22": [
+      "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_20261122.svg",
+      "docs/01_world/MERIDIAN_BAY_HARBOR_REGIONAL_COVERAGE_AUDIT_20261122.md",
+      "tools/meridian_bay_harbor_region_coverage.mjs",
+      "tests/meridian_bay_harbor_region_coverage.test.mjs"
     ]
   },
   "repository_checkpoints": [
