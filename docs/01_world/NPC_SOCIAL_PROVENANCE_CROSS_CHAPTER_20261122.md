@@ -39,3 +39,10 @@ La comprobación al *crear* el encuentro `draftReviewedSocialContact` sí exigí
 Requerido antes de considerar la rama lista para revisión: comparar los cinco SHA de blob canónicos con `main`/PR #108, inventariar exhaustivamente el nuevo árbol, ejecutar toda la suite JavaScript, Python y `tools/validate_state.py` sobre el HEAD exacto; registrar CI real y fallos en la descripción de la PR. Si hace falta un workflow, usar una PR QA-only clonada del mismo commit, cerrarla **sin fusionar** después de verificar.
 
 **Siguiente tarea recomendada:** endurecer la reconciliación de la primera adquisición de conocimiento con un origen del checkpoint sellado, sin inferir automáticamente secretos ni modificar registros legacy sin pruebas de migración. Evaluar también interacciones sociales con testigos y cambios de ubicación durante el intervalo solo mediante eventos explícitos, no por proximidad casual.
+
+
+## QA inicial comprobada en GitHub Actions
+
+El checkout técnico `5ba343fc27d52391b2fc8c873de786d6e8833b6b` se validó en la PR temporal de QA #119 mediante [GitHub Actions #45082105334](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45082105334): **completed / SUCCESS**, **476/476 pruebas JavaScript PASS**, **47/47 Python PASS**, `python tools/validate_state.py`: **PASS**. Esta corrida ejecutó las seis regresiones nuevas, incluida la reconstrucción de procedencia en un capítulo cerrado y el rechazo de conocimiento adquirido después.
+
+**Custodia y límite:** este documento se actualiza *después* de la primera corrida, de modo que hay un nuevo commit documental. El resultado previo se acredita únicamente al commit citado; es obligatorio volver a ejecutar QA en el HEAD definitivo antes de cerrar la PR temporal. La ejecución no modifica `main`, los cinco archivos narrativos ni el journal; no equivale a persistir un nuevo turno.
