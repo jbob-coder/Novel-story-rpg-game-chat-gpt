@@ -24,3 +24,7 @@
 - [SVG revisado y sincronizado con el JSON — borrador no canónico](MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_REVIEW_20261120.svg)
 
 - [Tres fragmentos: costuras, choques de rutas y alternativa PR #67 — auditoría no canónica](MERIDIAN_BAY_THREE_REGION_SEAM_AUDIT_20261120.md)
+
+- [Harbor Coast 01: PR #67 corrected candidate — review and unresolved access decisions](MERIDIAN_BAY_PR67_COAST_CANDIDATE_REVIEW_20261122.md)
+- [Harbor Coast 01: PR #67 candidate source JSON (not admitted)](MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.json)
+- [Harbor Coast 01: PR #67 candidate SVG (draft)](MERIDIAN_BAY_HARBOR_COAST_PR67_CANDIDATE_20261122.svg)
