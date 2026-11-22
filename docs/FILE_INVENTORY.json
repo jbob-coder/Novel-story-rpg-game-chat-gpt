@@ -266,6 +266,11 @@
       "docs/00_start/BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.json",
       "docs/00_start/BRANCH_STACK_TOPOLOGY_LOT_08_2026-11-22.md",
       "tests/branch_stack_topology_lot08.test.mjs"
+    ],
+    "branch_followup_lot09_2026_11_22": [
+      "docs/00_start/BRANCH_FOLLOWUP_LOT_09_2026-11-22.json",
+      "docs/00_start/BRANCH_FOLLOWUP_LOT_09_2026-11-22.md",
+      "tests/branch_followup_lot09.test.mjs"
     ]
   },
   "repository_checkpoints": [
