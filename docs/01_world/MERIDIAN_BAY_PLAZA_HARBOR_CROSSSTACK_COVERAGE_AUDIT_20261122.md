@@ -42,3 +42,11 @@ The region coverage test uses the **union of rectangular study bounds** for Coas
 ## Recommended next work; no canon decision
 
 Before selecting either draft N2, expand the missing corridor coverage between Crosswater Plaza and Coast 01. Document all relevant buildings, public access boundaries, old street contacts and plausible walkway width **within the actual wider world plan**, without inventing surveyed measurements or fixed physical access. Only then compare fully compatible geometry, consider true pedestrian constraints and seek editorial approval. Both alternatives remain **unapproved**.
+
+## Initial official CI evidence — implementation commit
+
+On `fb04c5f142e7e297351bbf3aec4706f0f957252b`, the temporary, explicitly **no-merge** QA PR #115 triggered [Narrative integrity run #45081856027](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45081856027), which finished **completed/success** on that exact commit. GitHub Actions logs and individual steps were read back: **500/500 Node tests passed**, **47/47 Python tests passed**, canonical checkpoint validator **PASS**.
+
+An independent recursive Git tree comparison found **223** blobs vs parent PR #106's **219**: 4 source/docs/test files added, 4 original index/inventory paths modified, 0 deleted. Complete inventory **223/223**, no missing or extra paths. All five canonical narrative Git blobs match parent PR #106 and `main` at `019175c6463ff31807a0f7013d91299add94913c`.
+
+This appendix is **a documentation-only follow-up commit**. Its new HEAD must be tested independently before final review; the earlier successful run is evidence for the implementation commit, not proof of the updated HEAD. QA PR #115 must be closed without merge after the final exact-HEAD run.
