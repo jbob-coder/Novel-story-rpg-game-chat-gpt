@@ -67,3 +67,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Decisiones causales NPC: 19 regresiones sobre el mundo admitido](npc_causal_decisions_admitted.test.mjs)
 - [Regresiones de relaciones sociales NPC sobre la ciudad admitida (Lote 09)](npc_social_relations_admitted.test.mjs)
 - [Regresión de procedencia social y recuperación entre capítulos (6 escenarios)](npc_social_cross_chapter_provenance.test.mjs)
+- [Pruebas de referencia fijada, memoria social y detección de falsificaciones (8 casos)](npc_social_knowledge_anchor.test.mjs)
