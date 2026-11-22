@@ -43,3 +43,5 @@
 - [Matriz JSON de 12 requisitos de salida peatonal pendientes](MERIDIAN_BAY_M1_P1_HISTORICAL_EXIT_GATES_20261122.json)
 - [Copia literal histórica PR40 del frente Market–Crosswater](SOURCE_PR40_MARKET_CROSS_ACCESS_20261122.json)
 - [Copia literal histórica PR54 de Plaza–Terminal](SOURCE_PR54_PLAZA_TERMINAL_ACCESS_20261122.json)
+- [M1/P1: cuatro alternativas reversibles para organizar comercios, peatones y terminal](MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_REVIEW_20261122.md)
+- [Esquemas funcionales M1-A/B y P1-A/B sin calles admitidas (JSON)](MERIDIAN_BAY_M1_P1_INTERFACE_CONCEPTS_20261122.json)
