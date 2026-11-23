@@ -163,3 +163,34 @@ is not an action gate; it must not block inference, misinformation,
 concealment or changing beliefs. New observed or communicated facts require
 reviewed actor-specific event changes before they can be considered saved.
 All functionality is read-only, private, capped and noncanonical by itself.
+
+## Recuperación privada de hilos del mundo — incremento acotado (2026-11-22)
+
+El índice contextual también proyecta los registros **ya guardados** en
+`state.narrative_threads` como referencias `THREAD-*` del narrador. Los hilos
+abiertos son elegibles incluso sin consulta específica; los resueltos se
+recuperan por palabras relevantes. Cada referencia indica `game/STATE.json`
+y el último EV original. `resolvePrivateContextReference` devuelve una copia
+del hilo y rutas a **todos** los EV de su historial, incluso de capítulos
+archivados. El resumen jamás sustituye esos eventos originales.
+
+Esta operación solo lee el checkpoint verificado. No inicia sucesos, no
+convierte rumores en hechos, no emite noticias, no actualiza a NPC y no avanza
+tiempo ficticio. La clasificación `reader_visible` sigue excluyendo los hilos
+y sus resúmenes: solo el narrador puede abrir estas referencias. Los campos
+`visibility: known` y `known_to` por sí solos **no demuestran** que Jack
+conozca cada afirmación; hay que comprobar la vía concreta de recepción antes
+de incluirla en prosa. En el checkpoint histórico, por ejemplo, THREAD-000003
+cita EV-000011 como `known`, mientras el EV registra solo a NPC-007 en
+`known_to`; esta divergencia se conserva sin reinterpretar ni modificar
+el save y requiere revisión contextual antes de cualquier divulgación.
+
+La regresión aislada de `tests/context_manager.test.mjs` cubre hilos
+abiertos y resueltos, recuperación exacta, ausencia de mutación, privacidad
+del lector y una corrección hipotética de rumor por NPC mediante dos EV
+distintos. Estos turnos sintéticos no se guardan en GitHub ni son historia.
+
+La biblioteca de posibilidades editoriales se recupera como `document_pointer`
+solamente al consultar referencias relevantes (p. ej. MAC, noticias, rumores).
+La biblioteca sigue siendo **no canónica**: localizarla nunca la convierte
+por sí sola en hechos EV ni difunde información al jugador.
