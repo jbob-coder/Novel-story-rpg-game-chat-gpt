@@ -51,6 +51,8 @@
 - [Referencia cartográfica provisional](meridian_bay_city_scale.test.mjs)
 - [Informe de resultados y límites](../docs/LIVING_WORLD_COORDINATOR_QA_20261110.md)
 
+- [Cadena informativa sintética: aviso, receptor, rectificación, memoria y recuperación](living_world_news_causal_revisions.test.mjs)
+
 ## Current source index supplement — audited November 17, 2026
 
 These files already existed in the authoritative source and are listed here for discoverability; indexing them is not a change to story state.
