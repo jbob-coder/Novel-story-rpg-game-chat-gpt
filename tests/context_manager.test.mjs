@@ -481,3 +481,21 @@ test('integrated duplicate-name ambiguity and private thread recall remain indep
  assert.equal(reader.npcAmbiguities,undefined);
  assert.ok(reader.references.every(x=>x.kind==='transcript'));
 });
+
+test('private editor-only news reference does not leak or create an event',()=>{
+  const snapshot=initial(),unchanged=JSON.stringify(snapshot);
+  const path='docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md';
+  const internal=buildContextPacket({snapshot,query:'noticias macroeventos',
+    maxReferences:24,maxPreviewCharacters:500});
+  assert.ok(internal.references.some(ref=>ref.kind==='document_pointer'&&ref.id===path));
+  const source=resolvePrivateContextReference({snapshot,referenceId:path});
+  assert.equal(source.classification,'narrator_private_only');
+  assert.equal(source.path,path);
+  assert.equal(source.status,'fetch_original_from_verified_repository');
+  const reader=buildContextPacket({snapshot,audience:'reader_visible',
+    query:'noticias macroeventos',maxReferences:24});
+  assert.ok(reader.references.every(ref=>ref.kind==='transcript'));
+  assert.ok(!JSON.stringify(reader).includes(path));
+  assert.equal(snapshot.manifest.last_completed_turn,9);
+  assert.equal(JSON.stringify(snapshot),unchanged);
+});
