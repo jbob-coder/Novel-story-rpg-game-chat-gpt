@@ -80,6 +80,10 @@ test('closed chapter evidence remains addressable after a synthetic transition',
   assert.ok(packet.references.some(r=>r.chapterId==='CH-000'));
   assert.equal(resolvePrivateContextReference({snapshot:opened,referenceId:'EV-000029'}).data.id,
     'EV-000029');
+  const resolvedThread=resolvePrivateContextReference({snapshot:opened,referenceId:'THREAD-000002'});
+  assert.deepEqual(resolvedThread.eventReferences.map(x=>x.id),
+    ['EV-000002','EV-000006','EV-000012']);
+  assert.ok(resolvedThread.eventReferences.every(x=>x.path==='chapters/CH-000.events.json'));
 });
 
 test('explicit NPC memory is restored from saved state with exact event pointers',()=>{
