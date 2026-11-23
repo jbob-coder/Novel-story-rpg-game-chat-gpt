@@ -63,3 +63,54 @@ test('narrator can discover this proposed reference, and the repository inventor
   assert.equal(inventory.supplemental.supporting_docs.filter(path => path === referencePath).length, 1);
   assert.equal(inventory.supplemental.additional_test_suites.filter(path => path === 'tests/living_world_news_reference.test.mjs').length, 1);
 });
+
+
+test('conditional macroevents have ten unique references and complete causal news-chain fields', () => {
+  const rows = rowFor('MAC');
+  const expected = Array.from({length: 10}, (_, i) => 'MAC-' + String(i + 1).padStart(2, '0'));
+  assert.deepEqual(extractIds(rows, 'MAC'), expected, 'stable and ordered macroevent identifiers');
+  assert.equal(new Set(extractIds(rows, 'MAC')).size, 10);
+  for (const row of rows) {
+    const cells = row.split('|').slice(1, -1).map(cell => cell.trim());
+    assert.equal(cells.length, 5, 'each macroevent needs condition, chain, news and alternative');
+    assert.ok(cells[0].length >= 6 && cells.slice(1).every(cell => cell.length > 35),
+      'macroevent must supply nontrivial context for conditional review');
+  }
+  assert.equal(rows.filter(line => /Día 0 — la onda cósmica llega a la Tierra, hecho CANÓNICO futuro/.test(line)).length, 1,
+    'one confirmed macroevent, arrival of the cosmic shockwave');
+  for (const id of ['MAC-08', 'MAC-09', 'MAC-10']) {
+    const row = rows.find(line => line.includes('| ' + id + ' |'));
+    assert.ok(/Día 0/.test(row), id + ' cannot predate day 0');
+  }
+});
+
+test('macro news progression never schedules effects or equates coverage to truth', () => {
+  for (const heading of [
+    '## 9. Macroeventos independientes',
+    '### 9.1 Evolución causal (no cronograma fijo)',
+    '### 9.2 Catálogo de cadenas posibles',
+    '### 9.3 Ejemplo concreto de noticia',
+    '### 9.4 Condiciones de promoción y seguimiento'
+  ]) assert.ok(body.includes(heading), 'missing macroevent protocol: ' + heading);
+  for (const stage of ['F0 · Latente', 'F1 · Primer hecho', 'F2 · Reacción/información',
+    'F3 · Propagación o contención', 'F4 · Consecuencias persistentes', 'F5 · Deriva, resolución o revisión']) {
+    assert.ok(body.includes(stage), 'missing macroevent review stage: ' + stage);
+  }
+  for (const safeguard of [
+    'Todos los demás MAC',
+    'Ninguna ocurrida',
+    'No ejecutar nada mientras el chat está inactivo',
+    'sin «resolver» todos los sistemas de una ciudad',
+    'una noticia antigua sigue siendo evidencia de lo que alguien supo o creyó',
+    'Únicamente la llegada futura de la onda en Día 0 pertenece al canon establecido',
+    'No reservar IDs, anticipar resultados',
+    'El total es **50 referencias editoriales no ejecutadas**',
+    'Jack puede no enterarse jamás'
+  ]) {
+    assert.ok(body.toLocaleLowerCase('es').includes(safeguard.toLocaleLowerCase('es')),
+      'missing macroevent gate: ' + safeguard);
+  }
+  assert.ok(body.includes('**F3 · opción A:**'));
+  assert.ok(body.includes('**F3 · opción B:**'));
+  assert.ok(body.includes('**F3 · opción C:**'));
+});
