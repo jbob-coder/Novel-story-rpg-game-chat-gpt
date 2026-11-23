@@ -29,21 +29,73 @@ const npcMemoryFields=['name','age','role','location_id','goal','independent_pla
 
 // Memory is a projection of the exact saved actor, not a generated biography.
 // Event IDs are evidence pointers, not a claim that the NPC knows every detail.
-function actorMemoryAtCheckpoint(snapshot,npcIds){
+
+// Narrow retrieval is an editorial aid, NOT evidence that an actor is present.
+// Explicit names/IDs win, then caller-known scene actors, then same saved LOC.
+// Do not use approximate graph proximity or actor-private knowledge as matches.
+export function selectNPCMemoryCandidates({state,query='',sceneNpcIds=[],maxActors=3}={}){
+  const actors=state?.world?.actors;
+  if(!actors||typeof query!=='string'||!Array.isArray(sceneNpcIds)||
+     !Number.isSafeInteger(maxActors)||maxActors<0||maxActors>8)return [];
+  const names=Object.entries(actors).map(([id,actor])=>({id,
+    nameParts:tokens(actor.name??'')}));
+  const givenCounts=new Map();
+  for(const {nameParts} of names)if(nameParts.length>0)
+    givenCounts.set(nameParts[0],(givenCounts.get(nameParts[0])??0)+1);
+  const queryWords=new Set(tokens(query)),paddedQuery=' '+tokens(query).join(' ')+' ';
+  const hinted=new Set(sceneNpcIds);
+  return names.flatMap(({id,nameParts})=>{
+    const actor=actors[id];
+    if(!/^NPC-\d{3,}$/.test(id))return [];
+    const fullName=nameParts.length>0 && paddedQuery.includes(' '+nameParts.join(' ')+' ');
+    const byId=queryWords.has(id.toLowerCase());
+    const givenName=nameParts.length>0 && givenCounts.get(nameParts[0])===1 &&
+      queryWords.has(nameParts[0]);
+    const sameSavedLocation=actor.location_id===state.player?.location_id &&
+      typeof actor.location_id==='string';
+    const score=byId||fullName?150:givenName?120:hinted.has(id)?100:sameSavedLocation?50:0;
+    return score?[{id,score}]:[];
+  }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id))
+    .slice(0,maxActors).map(x=>x.id);
+}
+
+const compactFields=['name','age','role','location_id','goal','independent_plan',
+  'conditions','last_resolved_action'];
+function compactActorState(actor,query,relatedIds){
+  const state=Object.fromEntries(compactFields
+    .filter(key=>Object.hasOwn(actor,key)).map(key=>[key,copy(actor[key])]));
+  const list=Array.isArray(actor.knowledge)?actor.knowledge:[];
+  const terms=new Set(tokens(query));
+  const prioritized=list.map((value,index)=>({value,index,score:new Set(tokens(value))
+    .intersection(terms).size})).sort((a,b)=>b.score-a.score||b.index-a.index);
+  if(Array.isArray(actor.knowledge))state.knowledge=prioritized.slice(0,4)
+    .sort((a,b)=>a.index-b.index).map(x=>copy(x.value));
+  const relations=Object.fromEntries(Object.entries(actor.relationships??{})
+    .filter(([id])=>relatedIds.has(id)).map(([id,value])=>[id,copy(value)]));
+  if(Object.keys(relations).length)state.relationships=relations;
+  return {state,knowledgeCount:list.length,
+    knowledgeIncluded:state.knowledge?.length??0};
+}
+
+function actorMemoryAtCheckpoint(snapshot,npcIds,{compact=false,query=''}={}){
   const history=allEvents(snapshot),actors=snapshot.state.world.actors;
   return npcIds.map(actorId=>{
     const actor=actors[actorId];
-    const state=Object.fromEntries(npcMemoryFields
+    const selected=compact?compactActorState(actor,query,
+      new Set([snapshot.state.player.id,...npcIds])):null;
+    const state=compact?selected.state:Object.fromEntries(npcMemoryFields
       .filter(key=>Object.hasOwn(actor,key))
       .map(key=>[key,copy(actor[key])]));
     const related=history.filter(event=>(event.actor_ids??[]).includes(actorId)||
       (event.known_to??[]).includes(actorId));
     return {actorId,sourcePath:'game/STATE.json',state,
       relatedEventCount:related.length,
-      recentEventReferences:related.slice(-10).reverse().map(event=>({
+      recentEventReferences:related.slice(compact?-4:-10).reverse().map(event=>({
         id:event.id,path:'chapters/'+event.chapter_id+'.events.json',
         chapterId:event.chapter_id,turn:event.turn
-      }))};
+      })),
+      ...(compact?{memoryMode:'compact_auto',knowledgeCount:selected.knowledgeCount,
+        knowledgeIncluded:selected.knowledgeIncluded}: {})};
   });
 }
 
@@ -86,7 +138,8 @@ function rank(entry,queryTokens,nowTurn){
 
 /** A derived, bounded and read-only packet, never a source of story truth. */
 export function buildContextPacket({snapshot,audience='narrator_private',query='',
-  maxReferences=8,maxPreviewCharacters=1600,sourceCommit=null,npcIds=[]}={}){
+  maxReferences=8,maxPreviewCharacters=1600,sourceCommit=null,npcIds=[],
+  sceneNpcIds=[],autoNpcMemory=true}={}){
   ensure(validAudience.has(audience),'Unsupported context audience');
   ensure(typeof query==='string'&&query.length<=500,'Invalid context query');
   ensure(Number.isSafeInteger(maxReferences)&&maxReferences>=1&&maxReferences<=30,
@@ -99,9 +152,17 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     new Set(npcIds).size===npcIds.length &&
     npcIds.every(id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id)&&
       Object.hasOwn(snapshot?.state?.world?.actors??{},id)), 'Invalid NPC memory selection');
-  ensure(audience==='narrator_private'||npcIds.length===0,
+  ensure(Array.isArray(sceneNpcIds)&&sceneNpcIds.length<=8 &&
+    new Set(sceneNpcIds).size===sceneNpcIds.length &&
+    sceneNpcIds.every(id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id)&&
+      Object.hasOwn(snapshot?.state?.world?.actors??{},id)), 'Invalid scene NPC selection');
+  ensure(typeof autoNpcMemory==='boolean','Invalid auto NPC selection flag');
+  ensure(audience==='narrator_private'||(npcIds.length===0&&sceneNpcIds.length===0),
     'NPC memory is narrator-private only');
   const checkpoint=basis(snapshot),entries=selectEntries(snapshot,audience),q=tokens(query);
+  const automatic=audience==='narrator_private'&&autoNpcMemory&&npcIds.length===0;
+  const selectedNpcIds=automatic?selectNPCMemoryCandidates({
+    state:snapshot.state,query,sceneNpcIds}):npcIds;
   const ranked=entries.map(entry=>({...entry,score:rank(entry,q,checkpoint.turn)}))
     .filter(entry=>entry.score>0)
     .sort((a,b)=>b.score-a.score||(b.turn??-1)-(a.turn??-1)||a.id.localeCompare(b.id));
@@ -132,7 +193,8 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
       ', '+(checkpoint.timeOfDay??'unknown period')+'; player at '+checkpoint.playerLocationId+'.':
       null,
     references,
-    ...(npcIds.length?{npcMemory:actorMemoryAtCheckpoint(snapshot,npcIds)}:{}),
+    ...(selectedNpcIds.length?{npcMemory:actorMemoryAtCheckpoint(snapshot,selectedNpcIds,
+      {compact:automatic,query})}:{}),
     requiredReads:audience==='narrator_private'?mandatoryReads:[],
     warnings:audience==='narrator_private'?
       ['Summaries and pointers are not canon. Check original references before resolving actions.',

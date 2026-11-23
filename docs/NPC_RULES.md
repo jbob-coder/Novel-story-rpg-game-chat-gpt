@@ -36,3 +36,11 @@ con identificadores EV. La memoria **no** implica omnisciencia: se recuperan
 las fuentes pertinentes al interpretar una escena y los datos privados no se
 revelan a Jack sin una causa. No se simulan acciones durante la inactividad del
 chat ni se avanza la historia para rellenar recuerdos.
+
+
+La recuperación contextual puede seleccionar automáticamente un NPC si su
+nombre o identificador aparece en la consulta o comparte la ubicación
+**guardada** con Jack. La selección no prueba un encuentro y no entrega
+conocimientos de un actor a otro. La proyección automática es breve: antes de
+resolver algo material, el narrador debe consultar el estado y los eventos
+originales completos del actor.
