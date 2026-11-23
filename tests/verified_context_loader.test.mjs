@@ -206,3 +206,19 @@ test('verified loader checks actor-specific knowledge without leaking to reader 
    audience:'reader_visible',npcKnowledgeClaims:[{actorId:'NPC-005',fact}]}),
    /narrator-private only/);
 });
+
+
+test('immutable remote thread references do not authorize reader disclosure',async()=>{
+ const {remote}=fakeRemote();
+ const packet=await loadVerifiedContextPacket({remote,branch,query:'THREAD-000003',
+  maxReferences:16,maxPreviewCharacters:800});
+ assert.equal(packet.loadStatus,'verified_read_only');
+ assert.ok(packet.references.some(x=>x.id==='THREAD-000003'&&x.kind==='thread'));
+ assert.ok(packet.warnings.some(x=>x.includes('THREAD visibility')));
+ const {remote:readerRemote}=fakeRemote();
+ const visible=await loadVerifiedContextPacket({remote:readerRemote,branch,
+  audience:'reader_visible',query:'THREAD-000003',maxReferences:16});
+ assert.ok(visible.references.every(x=>x.kind==='transcript'));
+ assert.equal(JSON.stringify(visible).includes('THREAD-000003'),false);
+ assert.equal(visible.mayAdvanceStory,false);
+});
