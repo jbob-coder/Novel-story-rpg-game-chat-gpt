@@ -279,7 +279,9 @@ test('narrator-authored seven-actor scene respects completed work, uncertainty a
 export function replayNarratorThirtyTurnReviewThroughStep01(){
  const initial=start(),before=JSON.stringify(initial);
  const requestById=Object.fromEntries(Object.keys(initial.state.world.actors)
-  .map(id=>[id,request(initial,id)]));
+  .map(id=>[id,prepareNPCIntentionRequests({snapshot:initial,
+   actorIds:[id],elapsedDays:0,elapsedMinutes:10,
+   nextPeriod:'morning'}).requests[0]]));
  const abstain=(id,reasoning)=>({
   request:requestById[id],proposal:{actorId:id,decision:'abstain',reasoning}
  });
