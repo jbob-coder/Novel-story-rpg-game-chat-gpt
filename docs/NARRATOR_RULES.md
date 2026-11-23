@@ -1,3 +1,5 @@
+**D-062 — MAPA MÍNIMO:** Se navega mediante lugares y conexiones verificadas, sin completar de antemano calles o edificios. Los datos visuales, dimensiones, horarios e interiores pueden ser desconocidos. Solo fijar lo requerido para una interacción; guardar hechos, no suposiciones. Existencia no implica conocimiento de Jack, visita ni servicio disponible. Véase [política aprobada](01_world/MERIDIAN_BAY_MINIMAL_SPATIAL_POLICY_20261122.md).
+
 **CURRENT OVERRIDE (D-036/D-037):** Read [NARRATIVE_CONTRACT.md](NARRATIVE_CONTRACT.md) first. This is an **interactive novel, not an RPG**. Old RPG XP/checks/progression instructions are revoked. Owner-confirmed fictional 500+ prior active network is canon; Café Bruma nine are recent. Cyber events are fictional, nonprocedural and dramatized. Do not audit/re-question those canonical accomplishments each turn. The checkpoint is the latest manifest, not embedded historical notes.
 
 # Narrator operating contract (ChatGPT-run game)

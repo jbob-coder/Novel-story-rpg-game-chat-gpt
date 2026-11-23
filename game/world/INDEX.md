@@ -3,6 +3,7 @@
 - [game/STARTING_LOCATIONS.md](../STARTING_LOCATIONS.md)
 - [Estado autoritativo del mundo](../STATE.json)
 - [docs/WORLD_BIBLE.md](../../docs/WORLD_BIBLE.md)
+- **[D-062 — Mapa mínimo aprobado](../../docs/01_world/MERIDIAN_BAY_MINIMAL_SPATIAL_POLICY_20261122.md)**
 - [docs/CANON.md](../../docs/CANON.md)
 - [chapters/INDEX.md](../../chapters/INDEX.md)
 
