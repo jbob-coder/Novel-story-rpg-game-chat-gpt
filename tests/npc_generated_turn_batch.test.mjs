@@ -389,3 +389,125 @@ test('narrator original-initiative assessment turn 01 replays in isolation with 
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 02 is authored from the decoded outcome of step 01, never from a
+// prewritten thirty-step script or the obsolete canonical turn-9 request.
+// The frozen, reproducible QA case is not an automated model invocation.
+export function replayNarratorThirtyTurnReviewThroughStep02(){
+ const first=replayNarratorThirtyTurnReviewThroughStep01();
+ assert.equal(first.snapshotHash,
+  'f26d16089c46caff37e3bd4b685e0776d2126b9bf5f5212fedf5f78bb3c2e5c5',
+  'Step 02 requires the exact reviewed Step 01 checkpoint');
+ const prior=first.snapshot,unchanged=JSON.stringify(prior);
+ const r=Object.fromEntries(Object.keys(prior.state.world.actors).map(id=>[
+  id,prepareNPCIntentionRequests({snapshot:prior,actorIds:[id],
+   elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'}).requests[0]
+ ]));
+ const abstain=(id,reasoning)=>({request:r[id],proposal:{
+  actorId:id,decision:'abstain',reasoning
+ }});
+ const actWith=(id,intention,reasoning,sourceEventIds,afterPlan,outcome)=>({
+  request:r[id],proposal:{actorId:id,decision:'act',
+   intention,reasoning,sourceEventIds},
+  reviewed:true,outcome,changes:[{field:'independent_plan',
+   before:r[id].evidence.independentPlan,after:afterPlan}]
+ });
+ const choices=[
+  actWith('NPC-001',
+   'Lena decides to separate the previous evening delayed route from the display anomaly in her handover notes so neither report is mistaken for a new incident.',
+   'She already knows an evening route was late and the reported display malfunction was passed to maintenance; no current dispatch update justifies declaring another disruption.',
+   ['EV-000007'],
+   'Separate prior evening route delay from display maintenance; await a current staff update before dispatch action.',
+   'SYNTHETIC PRIVATE LENA STEP02: Lena sorts the existing reports without assuming a new delay, departure or technical finding.'),
+  abstain('NPC-002',
+   'The Crosswater inspection is closed and no new maintenance request or observed fault has entered Sora personal record.'),
+  abstain('NPC-003',
+   'His previous verified result retired the delivered parcel. Darius lacks a newly confirmed paid assignment, route or deadline.'),
+  abstain('NPC-004',
+   'Elena already selected a detail to explain about her artwork; nothing in the recorded interval establishes school arrival, a classroom or a teacher.'),
+  actWith('NPC-005',
+   'Rosa decides to leave herself a reminder that the tested alarm clock is ready for return, without claiming its owner is available.',
+   'She knows the clock repair has been checked, while the neighbor availability remains unknown. This is a household planning action, not an actual handover.',
+   ['EV-000029'],
+   'Keep the repaired alarm clock on a return reminder until a real opportunity to meet its owner is established.',
+   'SYNTHETIC PRIVATE ROSA STEP02: Rosa keeps a private reminder about the pending clock return; no encounter occurs.'),
+  actWith('NPC-006',
+   'Noah decides to formulate one specific question about unverified parts requirements for his next legitimate workshop discussion, delaying supplier orders until those needs are clear.',
+   'His most recent actor-owned result established the need to check requirements, but there is no observed inventory count, customer visit or supplier reply in the intervening time.',
+   [r['NPC-006'].evidence.previousResult.eventId],
+   'Prepare a question about which components are actually needed; wait for genuine clarification before ordering.',
+   'SYNTHETIC PRIVATE NOAH STEP02: Noah refines a future parts question; nobody has been contacted and nothing purchased.'),
+  abstain('NPC-007',
+   'The recorded cafe closing belongs to an earlier shift; there is no known current duty, customer or register event to justify action.')
+ ];
+ const noahSource=r['NPC-006'].evidence.previousResult.eventId;
+ assert.ok(noahSource,'Noah needs his actual first-turn event');
+ assert.ok(r['NPC-006'].evidence.knownEvents.some(e=>
+  e.id===noahSource&&e.outcome.includes('SYNTHETIC PRIVATE NOAH STEP01')));
+ assert.ok(r['NPC-003'].evidence.knownEvents.some(e=>
+  e.outcome.includes('SYNTHETIC PRIVATE DARIUS STEP01')));
+ assert.ok(r['NPC-001'].evidence.knownEventIds.includes('EV-000007'));
+ assert.ok(r['NPC-005'].evidence.knownEventIds.includes('EV-000029'));
+ assert.ok(!r['NPC-001'].evidence.knownEventIds.includes(noahSource));
+ const currentTurn={...turn('narrator-30-step-02'),
+  elapsed_minutes:10,
+  intent:'[ISOLATED EVALUATION] Jack gives no instruction to offscreen actors.',
+  outcome:'Another ten fictional minutes pass without telling Jack about unseen decisions.',
+  narration_messages:['[ISOLATED EVALUATION] Private offscreen information remains private.']};
+ const staged=stageReviewedNPCIntentionTurn({
+  snapshot:prior,turn:currentTurn,observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,11);
+ assert.equal(staged.manifest.last_event_sequence,37);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,
+  ['NPC-001','NPC-005','NPC-006']);
+ assert.deepEqual(staged.npcTurnReview.abstainedActorIds,
+  ['NPC-002','NPC-003','NPC-004','NPC-007']);
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+20);
+ for(const row of choices.filter(x=>x.outcome)){
+  const id=row.proposal.actorId;
+  assert.equal(recovered.state.world.actors[id].independent_plan,
+   row.changes[0].after);
+  const event=recovered.events.events.find(e=>e.turn===11&&
+   e.actor_ids.includes(id));
+  assert.ok(event,'Acting NPC needs an individually attributed event');
+  assert.deepEqual(event.caused_by,row.proposal.sourceEventIds);
+  assert.ok(!recovered.chapter.includes(row.outcome));
+  assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(row.outcome)));
+ }
+ assert.equal(recovered.state.world.actors['NPC-003'].last_resolved_action.event_id,
+  prior.state.world.actors['NPC-003'].last_resolved_action.event_id);
+ assert.equal(recovered.state.world.actors['NPC-004'].location_id,
+  prior.state.world.actors['NPC-004'].location_id);
+ assert.equal(recovered.state.world.actors['NPC-005'].resources.current_repair,
+  prior.state.world.actors['NPC-005'].resources.current_repair);
+ assert.equal(JSON.stringify(prior),unchanged);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,choices,snapshotHash,firstHash:first.snapshotHash};
+}
+test('narrator original-initiative assessment turn 02 follows verified first-turn consequences',()=>{
+ const {snapshot,choices,snapshotHash,firstHash}=
+  replayNarratorThirtyTurnReviewThroughStep02();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_02 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:2,ofPlannedTurns:30,
+  firstVerifiedSnapshotHash:firstHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:choices.filter(x=>x.proposal.decision==='act').map(x=>x.proposal.actorId),
+  abstained:choices.filter(x=>x.proposal.decision==='abstain').map(x=>x.proposal.actorId),
+  parcelNotRedelivered:true,schoolArrivalNotInvented:true,
+  neighborHandoverNotInvented:true,
+  verifiedSnapshotHash:snapshotHash,canonicalSaveWrites:0,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
