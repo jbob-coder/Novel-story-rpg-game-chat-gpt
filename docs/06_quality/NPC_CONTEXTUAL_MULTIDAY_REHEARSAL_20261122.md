@@ -18,3 +18,12 @@ Multi-day simulation here means **fictional days processed via staged synthetic 
 ## Decision gate
 
 A passing suite establishes evidence/continuity compatibility and a wider review surface. Do **not** merge it into the active narrative branch as an autonomous agent upgrade until a separate reviewed evaluation shows a genuine, non-tautological improvement in actor choice quality, state-dependent replanning, honesty about unknown locations, and consequences. No replacement of existing `recommendNPCIntentReviews` or `assessNPCDecisions` is included.
+
+
+## Thirty-turn sequential replay — technical stress gate, NOT narrator-quality acceptance
+
+The companion test in \`tests/npc_contextual_multiday_rehearsal.test.mjs\` now also builds **30 consecutive in-memory turns** (ten fictional minutes each, without moving the player). Each step obtains a *fresh* request for an existing NPC from the just-decoded five-file checkpoint. It either abstains or proposes a context-linked private intention, separately stages a reviewed, limited outcome, then validates and re-encodes/decodes the resulting checkpoint before progressing to the next step. The fixture chooses five existing actors for conservative private plan changes and two for abstention where a new school arrival or cafe shift cannot be inferred. The initial CH-000 save remains untouched.
+
+The test-double **is not a language model**. Its example intentions are controlled template variants chosen from the NPC's current saved plan. This is deliberately a structural stress test of replay, memory ownership, privacy, chronology, actor-specific causal attribution, multiple abstentions and plan persistence, **not** evidence that the narrator generates surprising or convincing choices. It prints \`NPC_30_TURN_SYNTHETIC_QA\` with counts and \`narratorAutonomyQualityEstablished:false\` when it passes. Automated pass does not satisfy the independent narrative-quality merge gate documented in PR #193.
+
+**Remaining acceptance:** perform a separately inspected, model-authored 30-turn run with no prewritten action list, expose each fresh NPC context *only after* the preceding verified result, review adaptability, evidence and semantic privacy case-by-case against the older selector, and record errors and counterexamples. Keep the PR in draft while that evidence is missing; do not activate or update Jack's real story.
