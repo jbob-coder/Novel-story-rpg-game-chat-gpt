@@ -374,3 +374,110 @@ test('foundational saved NPC memory has no fabricated revisions',()=>{
  assert.equal(Object.hasOwn(buildContextPacket({snapshot,audience:'reader_visible'}),
    'npcKnowledgeChecks'),false);
 });
+
+test('private context indexes real open threads with stable source-event pointers',()=>{
+  const snapshot=initial(),unchanged=JSON.stringify(snapshot);
+  const packet=buildContextPacket({snapshot,maxReferences:10,maxPreviewCharacters:350});
+  const threads=packet.references.filter(ref=>ref.kind==='thread');
+  assert.ok(threads.some(ref=>ref.id==='THREAD-000001'));
+  assert.ok(threads.some(ref=>ref.id==='THREAD-000004'));
+  assert.ok(threads.every(ref=>ref.path==='game/STATE.json'));
+  for(const ref of threads){
+    const record=snapshot.state.narrative_threads.find(x=>x.id===ref.id);
+    assert.equal(ref.lastEventId,record.history.at(-1).event_id);
+  }
+  assert.equal(JSON.stringify(snapshot),unchanged);
+});
+
+test('resolved world issues can be retrieved privately, including original reports and corrections',()=>{
+  const snapshot=initial();
+  const packet=buildContextPacket({snapshot,query:'Sora anomalías revisión',
+    maxReferences:20});
+  assert.ok(packet.references.some(x=>x.id==='THREAD-000002'&&x.kind==='thread'));
+  const source=resolvePrivateContextReference({snapshot,referenceId:'THREAD-000002'});
+  assert.equal(source.classification,'narrator_private_only');
+  assert.equal(source.kind,'thread');
+  assert.equal(source.data.status,'resolved');
+  assert.deepEqual(source.eventReferences.map(x=>x.id),
+    ['EV-000002','EV-000006','EV-000012']);
+  source.data.history[0].summary='CORRUPTED LOCAL COPY';
+  assert.notEqual(snapshot.state.narrative_threads[1].history[0].summary,
+    'CORRUPTED LOCAL COPY');
+  const reader=buildContextPacket({snapshot,audience:'reader_visible',
+    query:'THREAD-000002 Sora'});
+  assert.ok(reader.references.every(ref=>ref.kind==='transcript'));
+  assert.ok(!JSON.stringify(reader).includes('THREAD-000002'));
+});
+
+test('synthetic NPC rumor and correction remain separate events without revealing either to Jack',async()=>{
+  const {stageLivingWorldTurn}=await import('../tools/living_world_coordinator.mjs');
+  const baseline=initial(),before=JSON.stringify(baseline),head='a'.repeat(40);
+  const stage=(snapshot,suffix,op,threadId)=>{
+    const npcEvent='EV-'+String(snapshot.manifest.last_event_sequence+2).padStart(6,'0');
+    return stageLivingWorldTurn({snapshot,observedHead:head,
+      turn:{key:'synthetic-news-context-'+suffix,
+        intent:'[SYNTHETIC] Jack remains at the workbench.',
+        outcome:'[SYNTHETIC] No new report reaches Jack.',
+        player_text:'[SYNTHETIC QA ONLY, NOT A PLAYER ACTION]',
+        narration_messages:['[SYNTHETIC] Quiet work at the bench.'],
+        elapsed_days:0,elapsed_minutes:15,
+        consequence_updates:[{op,event_id:npcEvent,
+          summary:op==='open'
+            ? 'Sora records an unconfirmed equipment rumor without adopting it as fact.'
+            : 'Sora corrects the previous unconfirmed claim after checking the equipment.',
+          visibility:'hidden',...(op==='open'
+            ? {owner_actor_id:'NPC-002',scope:'world',
+              question:'Who verifies the unconfirmed equipment rumor?'}
+            : {thread_id:threadId})}]},
+      npcResolutions:[{actor_id:'NPC-002',reviewed:true,resolved:true,
+        causal_basis:'Sora independently checks an ordinary equipment report.',
+        outcome:op==='open'
+          ? 'PRIVATE SYNTHETIC: a source repeats an unsupported equipment claim.'
+          : 'PRIVATE SYNTHETIC: the earlier claim is withdrawn, not established as fact.',
+        changes:[]}]
+    });
+  };
+  const first=stage(baseline,'origin','open',null);
+  const newThread=first.state.narrative_threads.at(-1);
+  const second=stage(first,'correction','resolve',newThread.id);
+  const record=resolvePrivateContextReference({snapshot:second,referenceId:newThread.id});
+  assert.deepEqual(record.eventReferences.map(x=>x.id),[
+    first.events.events.at(-1).id,second.events.events.at(-1).id]);
+  assert.deepEqual(record.data.history.map(x=>x.kind),['open','resolve']);
+  assert.equal(record.data.status,'resolved');
+  assert.ok(record.data.history[0].summary.includes('unconfirmed'));
+  assert.ok(record.data.history[1].summary.includes('corrects'));
+  assert.equal(second.state.time.day,-29);
+  assert.equal(second.state.player.progression.powers.length,0);
+  assert.ok(!second.chapter.includes('PRIVATE SYNTHETIC:'));
+  assert.ok(!second.transcript.entries.some(entry=>
+    entry.text.includes('PRIVATE SYNTHETIC:')));
+  assert.ok(buildContextPacket({snapshot:second,query:'equipment rumor',
+    maxReferences:15}).references.some(ref=>ref.id===newThread.id));
+  const publicView=buildContextPacket({snapshot:second,
+    audience:'reader_visible',query:'equipment rumor',maxReferences:15});
+  assert.ok(publicView.references.every(ref=>ref.kind==='transcript'));
+  assert.ok(!JSON.stringify(publicView).includes(newThread.id));
+  assert.equal(JSON.stringify(baseline),before);
+});
+
+test('integrated duplicate-name ambiguity and private thread recall remain independent',()=>{
+ const snapshot=initial();
+ const twin=structuredClone(snapshot.state.world.actors['NPC-005']);
+ twin.id='NPC-008';snapshot.state.world.actors['NPC-008']=twin;
+ const packet=buildContextPacket({snapshot,query:'Rosa Wilson THREAD-000001',maxReferences:12});
+ assert.equal(packet.npcMemory,undefined);
+ assert.ok(packet.references.some(ref=>ref.id==='THREAD-000001'&&ref.kind==='thread'));
+ assert.deepEqual(packet.npcAmbiguities,[{
+   name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
+   status:'requires_explicit_identity'
+ }]);
+ const result=resolvePrivateContextReference({snapshot,referenceId:'THREAD-000001'});
+ assert.equal(result.kind,'thread');
+ assert.ok(result.eventReferences.length>0);
+ const reader=buildContextPacket({snapshot,query:'Rosa Wilson THREAD-000001',
+   audience:'reader_visible',maxReferences:12});
+ assert.equal(reader.npcMemory,undefined);
+ assert.equal(reader.npcAmbiguities,undefined);
+ assert.ok(reader.references.every(x=>x.kind==='transcript'));
+});
