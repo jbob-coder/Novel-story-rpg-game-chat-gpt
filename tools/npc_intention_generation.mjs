@@ -2,7 +2,8 @@
 // from actor-owned evidence; JavaScript only verifies provenance and stages
 // reviewed outcomes. No hardcoded menu, LLM/network calls, background ticks,
 // player disclosure, automatic movement or live save writes.
-import {inspectOpenNPCAgency,draftOpenNPCAction} from './npc_actor_agency.mjs';
+import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
+import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
  from './npc_contextual_intents.mjs';
 
@@ -128,10 +129,20 @@ export function draftOutcomeFromNPCIntention({snapshot,request,proposal,
  ensure(checked.classification==='npc_actor_authored_proposal_review_v1',
   'No action can be staged for abstention');
  ensure(nonempty(outcome,12,2000),'A reviewed actual outcome is required');
- const params=request.reviewParameters;
- const frame=inspectOpenNPCAgency({
-  snapshot,actorIds:[request.actorId],...params,limit:1}).frames[0];
- return draftOpenNPCAction({snapshot,frame,...params,
-  intention:checked.intention,reasoning:checked.reasoning,
-  outcome,changes,reviewed:true});
+ ensure(Array.isArray(changes)&&changes.length<=40,
+  'Too many reviewed NPC state changes');
+ const causalBasis='Reviewed NPC intention: '+checked.intention+
+  ' Evidence: '+checked.reasoning;
+ ensure(nonempty(causalBasis,16,1200),
+  'Reviewed causal explanation too long');
+ // The previous actor outcome informs CONTEXT, not necessarily the cause
+ // of the new action. A new independent initiative can have no event link.
+ // Link only the events the narrator explicitly cites, after proof that the
+ // actor knew them and a separate causal review of the actual result.
+ if(checked.sourceEventIds.length)return draftReviewedNPCCausalContinuation({
+  snapshot,actorId:request.actorId,
+  sourceEventIds:checked.sourceEventIds,
+  reasoning:causalBasis,outcome,changes,reviewed:true});
+ return copy({actor_id:request.actorId,reviewed:true,resolved:true,
+  causal_basis:causalBasis,outcome,changes,disclosures:[]});
 }

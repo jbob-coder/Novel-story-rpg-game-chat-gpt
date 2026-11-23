@@ -145,3 +145,37 @@ test('one selected model intention still requires narrative review, and no dupli
  for(const [path,bytes] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
 });
+
+
+test('a new goal-led action after a previous result need not invent causal event linkage',()=>{
+ const s=baseline(),r=initial(s,'NPC-005');
+ assert.equal(r.evidence.previousResult.eventId,'EV-000029');
+ const fresh=propose(r,
+  'Rosa considers an ordinary personal activity unrelated to the completed clock repair.');
+ const decision=draftOutcomeFromNPCIntention({snapshot:s,request:r,
+  proposal:fresh,reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa arranges an independent household priority without fictional meetings.'});
+ assert.equal(Object.hasOwn(decision,'continuation_context'),false);
+ const staged=stageLivingWorldTurn({snapshot:s,observedHead:head,
+  turn:turn('unrelated-new-intent'),npcResolutions:[decision]});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.deepEqual(staged.events.events.at(-1).caused_by,[]);
+ assert.equal(staged.events.events.at(-1).actor_ids[0],'NPC-005');
+});
+
+test('the cited older known source is preserved instead of silently forcing latest event',()=>{
+ const s=baseline(),r=initial(s,'NPC-005');
+ assert.ok(r.evidence.knownEventIds.includes('EV-000025'));
+ const alternate=propose(r,
+  'Rosa privately considers how her previously known family morning plans affect today household priorities.',
+  ['EV-000025']);
+ const draft=draftOutcomeFromNPCIntention({snapshot:s,request:r,
+  proposal:alternate,reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa considers a separate personal priority without moving Jack.'});
+ assert.deepEqual(draft.continuation_context.source_event_ids,['EV-000025']);
+ const staged=stageLivingWorldTurn({snapshot:s,observedHead:head,
+  turn:turn('older-owned-source'),npcResolutions:[draft]});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.deepEqual(staged.events.events.at(-1).caused_by,['EV-000025']);
+ assert.ok(!staged.transcript.entries.some(x=>x.text.includes('SYNTHETIC PRIVATE:')));
+});

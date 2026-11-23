@@ -8,11 +8,11 @@ The engine is a **ChatGPT-narrated interactive novel**, not an autonomous hosted
 
 `inspectNPCGeneratedIntention` receives the narrator/model's original candidate, **does not execute it**, verifies it belongs to the same actor and fresh checkpoint, checks prior known event IDs, checks admitted-map routes for named destinations, and rejects predeclared success, state mutations or invented events. Code cannot establish semantic accuracy solely from fluent text: narrator editorial review remains required for access, resources, and meaning.
 
-`draftOutcomeFromNPCIntention` forwards one reviewed current-turn outcome to the existing coordinator; staging and the five-file saving protocol stay unchanged. Previous-result events inform the next turn only **after** those events actually exist.
+`draftOutcomeFromNPCIntention` forwards one reviewed current-turn outcome to the existing coordinator; staging and the five-file saving protocol stay unchanged. Previous-result events inform the next turn only **after** those events actually exist. A subsequent independent goal-led action is NOT required to cite the immediately preceding event as its cause: the model must cite only relevant actor-known source events. Omitted causal links are permitted when a recorded goal supplies the current motive. This distinction prevents false narrative causal chains.
 
 ## Controlled counterfactual
 
-In a fully isolated synthetic scenario Noah has no prior owned independent action. He considers reviewing existing business records, then a reviewed synthetic turn changes his own plan. The next request is **different and cites the new actor-owned outcome**; an attempt to submit the old pre-change request is rejected. Other tests cover separate personal evidence, multiple free-language candidate actions, inactivity, false cross-actor evidence, fake routes, outcome preclaims, private information and duplicate same-turn acts.
+In a fully isolated synthetic scenario Noah has no prior owned independent action. He considers reviewing existing business records, then a reviewed synthetic turn changes his own plan. The next request is **different and cites the new actor-owned outcome**; an attempt to submit the old pre-change request is rejected. Other tests cover separate personal evidence, multiple free-language candidate actions, inactivity, false cross-actor evidence, fake routes, outcome preclaims, private information, duplicate same-turn acts, **a new independent action after a prior result without false causal linkage**, and an alternate earlier actor-known cause preserved precisely.
 
 ## What the tests do and do not prove
 
