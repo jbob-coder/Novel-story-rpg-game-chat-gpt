@@ -43,7 +43,17 @@ test('separate actors receive private open-ended generation requests without men
  assert.equal(all.actionsPerformed,0);
  assert.equal(Object.hasOwn(noah,'routineMenu'),false);
  assert.equal(noah.evidence.knownEventIds.length,0);
+ assert.deepEqual(noah.evidence.knownEvents,[]);
+ assert.ok(Array.isArray(noah.evidence.plans));
  assert.ok(rosa.evidence.knownEventIds.includes('EV-000029'));
+ assert.ok(rosa.evidence.knownEvents.some(e=>e.id==='EV-000029'&&
+  e.outcome.includes('despertador reparado')));
+ assert.ok(rosa.evidence.knownEvents.every(e=>
+  rosa.evidence.knownEventIds.includes(e.id)));
+ const darius=all.requests.find(x=>x.actorId==='NPC-003');
+ assert.ok(darius);
+ assert.ok(!darius.evidence.knownEvents.some(e=>e.id==='EV-000029'));
+ assert.ok(!JSON.stringify(darius.evidence).includes('despertador reparado'));
  assert.equal(JSON.stringify(s),before);
  const report=inspectLivingWorld({snapshot:s,elapsedMinutes:25});
  assert.equal(playerVisibleDiagnostic(report).openNPCIntentionRequests,undefined);
@@ -82,6 +92,8 @@ test('plan change changes next generated request; the provider must reconsider i
  assert.notEqual(next.evidence.independentPlan,r.evidence.independentPlan);
  assert.equal(next.evidence.independentPlan,newPlan);
  assert.equal(next.evidence.previousResult.eventId,staged.events.events.at(-1).id);
+ assert.ok(next.evidence.knownEvents.some(e=>e.id===staged.events.events.at(-1).id&&
+  e.outcome.includes('Noah updates his private parts review priority')));
  assert.throws(()=>inspectNPCGeneratedIntention({snapshot:reread,request:r,
   proposal:first}),/Stale or altered/);
  const revision=propose(next,
