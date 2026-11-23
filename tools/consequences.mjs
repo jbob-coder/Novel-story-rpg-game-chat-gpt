@@ -6,7 +6,7 @@ const duplicate=x=>JSON.parse(JSON.stringify(x));
 function verifyConsequences(snapshot){
  const s=snapshot.state,e=snapshot.events;
  need(Array.isArray(s.narrative_threads),"Narrative thread ledger missing");
- const events=new Map(allEvents(snapshot).map(x=>[x.id,x]));
+ const events=new Map(allEvents(snapshot).map((event,order)=>[event.id,{event,order}]));
  const actors=new Set([s.player.id,...Object.keys(s.world.actors)]);
  s.narrative_threads.forEach((x,index)=>{
   const id="THREAD-"+String(index+1).padStart(6,"0");
@@ -17,18 +17,24 @@ function verifyConsequences(snapshot){
   need(["private","observable","world"].includes(x.scope),"Consequence thread scope invalid");
   need(Array.isArray(x.history)&&x.history.length>=1,"Consequence thread has no event history");
   need(x.origin_event_id===x.history[0].event_id,"Consequence thread origin mismatch");
-  let lastTurn=0;
+  let lastEventOrder=-1;
   x.history.forEach((h,i)=>{
    need(h&&["open","develop","resolve"].includes(h.kind),"Consequence operation invalid");
    need(i===0 ? h.kind==="open" : h.kind!=="open","Consequence history opening invalid");
-   const event=events.get(h.event_id);
-   need(event&&event.turn>=lastTurn,"Consequence update event missing/out of order");
+   const source=events.get(h.event_id);
+   // Global EV order also matters within a single fictional turn. Reusing
+   // one event twice or reversing its causal order must never validate.
+   need(source&&source.order>lastEventOrder,
+    "Consequence update event missing, duplicated or out of order");
+   const event=source.event;
    need(typeof h.summary==="string"&&h.summary.trim().length>=6,"Consequence summary missing");
    need(["hidden","known"].includes(h.visibility),"Consequence visibility invalid");
-   lastTurn=event.turn;
+   lastEventOrder=source.order;
   });
   const ends=x.history.filter(h=>h.kind==="resolve");
   need(ends.length<=1,"Consequence thread resolved multiple times");
+  need(ends.length===0||x.history.at(-1).kind==="resolve",
+   "Consequence development after resolution");
   need((x.status==="resolved")===(ends.length===1),"Consequence resolution status mismatch");
   need(x.status==="resolved" ? x.resolution_event_id===ends[0].event_id : x.resolution_event_id===null,"Consequence resolution ID mismatch");
  });
@@ -57,7 +63,7 @@ function stageConsequences(snapshot,updates=[]){
   }else{
    const current=records.find(x=>x.id===change.thread_id);
    need(current&&current.status==="open","Consequence target not open or missing");
-   need(!current.history.some(x=>x.event_id===event.id&&x.kind===change.op),"Consequence event duplicated");
+   need(!current.history.some(x=>x.event_id===event.id),"Consequence event already used by this thread");
    current.history.push({kind:change.op,event_id:event.id,summary:change.summary,visibility:change.visibility});
    if(change.op==="resolve"){current.status="resolved";current.resolution_event_id=event.id}
   }

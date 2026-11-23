@@ -210,6 +210,9 @@
       "tests/integration_npc_needs_plans.test.mjs",
       "tests/meridian_bay_services.test.mjs",
       "tests/meridian_bay_phase2_integration.test.mjs"
+    ],
+    "consequence_ledger_order_repair_2026_11_22": [
+      "docs/06_quality/CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md"
     ]
   },
   "repository_checkpoints": [
