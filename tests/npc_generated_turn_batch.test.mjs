@@ -2,6 +2,7 @@
 // All experiments use an isolated in-memory snapshot, never a story save.
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {savePaths,decodeFiveFiles,encodeFiveFiles} from '../tools/save_transaction.mjs';
 import {prepareNPCIntentionRequests,stageReviewedNPCIntentionTurn}
@@ -267,5 +268,122 @@ test('narrator-authored seven-actor scene respects completed work, uncertainty a
   independentNewActionWithoutForgedCause:true,
   actorKnownCausalFollowup:true,stagedTurns:2,canonicalSaveWrites:0,
   liveProviderCallsInCI:0,blindNarrativeQualityCertified:false
+ }));
+});
+
+
+// First step of a separately authored 30-step evaluation. Authored ONLY
+// after reading the actual turn-9 checkpoint. Do not author future steps
+// until step 01 outcome is verified and recovered as the next input.
+// This is an explicitly frozen narrator-reviewed corpus, NOT a model API call.
+export function replayNarratorThirtyTurnReviewThroughStep01(){
+ const initial=start(),before=JSON.stringify(initial);
+ const requestById=Object.fromEntries(Object.keys(initial.state.world.actors)
+  .map(id=>[id,request(initial,id)]));
+ const abstain=(id,reasoning)=>({
+  request:requestById[id],proposal:{actorId:id,decision:'abstain',reasoning}
+ });
+ const actWith=(id,intention,reasoning,sourceEventIds,afterPlan,outcome)=>{
+  const old=requestById[id].evidence.independentPlan;
+  return {request:requestById[id],proposal:{
+   actorId:id,decision:'act',intention,reasoning,sourceEventIds},
+   reviewed:true,outcome,
+   changes:[{field:'independent_plan',before:old,after:afterPlan}]};
+ };
+ // This different first-turn scene is NOT copied from the prior two-turn
+ // exploratory scene: Darius is now explicitly allowed to replace an
+ // obsolete plan because his own last event already completed that job.
+ const choices=[
+  abstain('NPC-001',
+   'The saved dispatch incident is from the previous evening; no fresh scheduled departure or current staff report is confirmed during this morning interval.'),
+  abstain('NPC-002',
+   'The prior Crosswater panel inspection was closed and no new maintenance instruction or fault is reported; she can defer starting another inspection.'),
+  actWith('NPC-003',
+   'Darius decides to stop treating the parcel already delivered to Market Row as an outstanding task and to check for a genuinely new assignment before planning another trip.',
+   'His own completed delivery EV-000008 contradicts the older generic delivery plan; no new order, recipient or deadline is established.',
+   ['EV-000008'],
+   'Confirm whether a new paid courier assignment exists before planning another delivery; previous parcel already delivered.',
+   'SYNTHETIC PRIVATE DARIUS STEP01: He drops the completed parcel from his active priorities; he has not acquired a new delivery.'),
+  actWith('NPC-004',
+   'Elena decides which one detail of the corrected street perspective to explain first when she eventually presents her artwork, while continuing toward school.',
+   'She carries the prepared USB and remembers her corrected illustration, but her recorded state is still en route and she cannot assume the teacher has met her.',
+   ['EV-000028'],
+   'Continue toward school with the USB and a chosen perspective detail to explain; classroom arrival remains unverified.',
+   'SYNTHETIC PRIVATE ELENA STEP01: She settles on an explanation for the corrected perspective; no school arrival or presentation occurs.'),
+  abstain('NPC-005',
+   'The clock is repaired, but the neighbor availability and a suitable handover are not established. Rosa need not manufacture an encounter in ten minutes.'),
+  actWith('NPC-006',
+   'Noah decides to mark the part requirements he still needs to verify before contacting any supplier about his pending workshop tasks.',
+   'He has a shop goal and an existing plan to review pending jobs, but no inventory count, confirmed purchase or supplier response is in the saved evidence.',
+   [],
+   'Check which parts pending workshop tasks actually require before approaching suppliers; no orders assumed.',
+   'SYNTHETIC PRIVATE NOAH STEP01: He makes verifying parts needs his next priority without counting stock or contacting a supplier.'),
+  abstain('NPC-007',
+   'The earlier cafe close and Jack payment are not evidence of a new morning shift, new order or a cash discrepancy needing her intervention.')
+ ];
+ // These expectations are fact-specific semantic review, not mere syntactic
+ // validation: a previously delivered parcel must remain completed.
+ assert.ok(requestById['NPC-003'].evidence.knownEvents.some(e=>
+  e.id==='EV-000008'&&e.outcome.includes('delivers his parcel')));
+ assert.ok(requestById['NPC-004'].evidence.knownEvents.some(e=>
+  e.id==='EV-000028'&&e.outcome.includes('de camino')));
+ assert.ok(requestById['NPC-005'].evidence.knownEvents.some(e=>
+  e.id==='EV-000029'&&e.outcome.includes('reparado')));
+ assert.ok(!requestById['NPC-003'].evidence.knownEvents.some(e=>
+  e.id==='EV-000029'));
+ const fictionalTurn={...turn('narrator-30-step-01'),
+  elapsed_minutes:10,
+  intent:'[ISOLATED EVALUATION] No directive from Jack to any offscreen actor.',
+  outcome:'Ten quiet fictional minutes pass; the unseen NPC decisions are not disclosed to Jack.',
+  narration_messages:['[ISOLATED EVALUATION] Jack receives no private NPC information.']};
+ const staged=stageReviewedNPCIntentionTurn({snapshot:initial,
+  turn:fictionalTurn,observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,10);
+ assert.equal(staged.manifest.last_event_sequence,33);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,
+  ['NPC-003','NPC-004','NPC-006']);
+ assert.deepEqual(staged.npcTurnReview.abstainedActorIds,
+  ['NPC-001','NPC-002','NPC-005','NPC-007']);
+ const decoded=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(decoded),true);
+ assert.deepEqual(decoded.state.player,initial.state.player);
+ assert.equal(decoded.state.time.elapsed_minutes_since_opening_approx,
+  initial.state.time.elapsed_minutes_since_opening_approx+10);
+ for(const row of choices.filter(x=>x.outcome)){
+  const a=row.proposal.actorId;
+  assert.equal(decoded.state.world.actors[a].independent_plan,
+   row.changes[0].after);
+  assert.ok(!decoded.chapter.includes(row.outcome));
+  assert.ok(decoded.transcript.entries.every(e=>!e.text.includes(row.outcome)));
+ }
+ assert.equal(decoded.state.world.actors['NPC-003'].last_resolved_action.event_id,
+  decoded.events.events.find(e=>e.intent.includes('previously delivered')||
+   e.intent.includes('parcel already delivered'))?.id);
+ assert.equal(decoded.state.world.actors['NPC-004'].location_id,
+  initial.state.world.actors['NPC-004'].location_id);
+ assert.equal(decoded.state.world.actors['NPC-005'].resources.current_repair,
+  initial.state.world.actors['NPC-005'].resources.current_repair);
+ assert.equal(JSON.stringify(initial),before);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(decoded))).digest('hex');
+ return {snapshot:decoded,choices,snapshotHash};
+}
+test('narrator original-initiative assessment turn 01 replays in isolation with correct unfinished-work boundaries',()=>{
+ const {snapshot,choices,snapshotHash}=replayNarratorThirtyTurnReviewThroughStep01();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_01 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,
+  modelApiInvokedByTest:false,
+  reviewTurn:1,ofPlannedTurns:30,
+  startCanonicalTurn:9,stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:choices.filter(x=>x.proposal.decision==='act').map(x=>x.proposal.actorId),
+  abstained:choices.filter(x=>x.proposal.decision==='abstain').map(x=>x.proposal.actorId),
+  knownCompletedParcelNotRedelivered:true,
+  schoolArrivalNotInvented:true,neighborHandoverNotInvented:true,
+  verifiedSnapshotHash:snapshotHash,canonicalSaveWrites:0,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
  }));
 });
