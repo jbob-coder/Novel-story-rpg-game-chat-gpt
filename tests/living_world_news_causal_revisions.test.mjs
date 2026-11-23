@@ -5,7 +5,8 @@ import {readFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
-import {checkNPCFactEvidence,buildContextPacket} from '../tools/context_manager.mjs';
+import {checkNPCFactEvidence,buildContextPacket,
+  resolvePrivateContextReference} from '../tools/context_manager.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 import {allEvents} from '../tools/chapter_history.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
@@ -176,4 +177,49 @@ test('news source and correction survive a synthetic chapter rollover without fi
   assert.equal(original.manifest.last_completed_turn,9);
   for(const [path,text] of Object.entries(protectedFiles))
     assert.equal(readFileSync(resolve(root,path),'utf8'),text);
+});
+
+
+test('private notice-to-thread evidence is source-backed without sharing knowledge or disclosing it',()=>{
+  const {recipientUpdated,threadId,sourceEvent,correctionEvent}=scenario();
+  const before=JSON.stringify(recipientUpdated);
+  const published=checkNPCFactEvidence({snapshot:recipientUpdated,
+    actorId:sourceActor,fact:sourceClaim});
+  const corrected=checkNPCFactEvidence({snapshot:recipientUpdated,
+    actorId:sourceActor,fact:sourceCorrection});
+  const listener=checkNPCFactEvidence({snapshot:recipientUpdated,
+    actorId:recipient,fact:heardClaim});
+  assert.equal(published.status,'recorded_event');
+  assert.equal(corrected.status,'recorded_event');
+  assert.equal(published.truthStatus,'not_assessed');
+  assert.equal(corrected.truthStatus,'not_assessed');
+  assert.deepEqual(published.relatedThreadReferences.map(x=>({
+    threadId:x.threadId,eventId:x.sourceEventId,kind:x.threadOperation,
+    association:x.association
+  })),[{threadId,eventId:sourceEvent,kind:'open',
+    association:'shared_event_pointer_only'}]);
+  assert.deepEqual(corrected.relatedThreadReferences.map(x=>x.sourceEventId),
+    [correctionEvent]);
+  assert.deepEqual(listener.relatedThreadReferences,[]);
+  assert.equal(listener.statementRevisionStatus,'explicitly_revised');
+
+  const record=resolvePrivateContextReference({snapshot:recipientUpdated,
+    referenceId:threadId});
+  assert.equal(record.classification,'narrator_private_only');
+  assert.deepEqual(record.eventReferences.map(x=>x.id),
+    [sourceEvent,correctionEvent]);
+  assert.ok(record.eventReferences.every(x=>
+    x.ownerActorInEvent===true&&
+    x.ownerRecordedKnowledgeChangesInEvent===1&&
+    x.ownerKnowledgeEvidence==='actor_owned_recorded_change_in_same_event'&&
+    x.playerDisclosureAuthorized===false));
+  // Every pointer is evidence of an actor-owned saved statement, not a
+  // fact check of the notice content or proof that Jack heard the notice.
+  const safe=buildContextPacket({snapshot:recipientUpdated,
+    audience:'reader_visible',query:threadId,maxReferences:20});
+  assert.ok(safe.references.every(x=>x.kind==='transcript'));
+  assert.ok(!JSON.stringify(safe).includes(threadId));
+  assert.ok(!JSON.stringify(safe).includes(sourceClaim));
+  assert.ok(!JSON.stringify(safe).includes(sourceCorrection));
+  assert.equal(JSON.stringify(recipientUpdated),before);
 });
