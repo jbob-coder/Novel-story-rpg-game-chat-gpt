@@ -50,11 +50,11 @@ test('stale NPC repair change blocks the entire batch',()=>{
 
 
 test('later NPC knowledge revision retains the original and links newer evidence',()=>{
- const s=make(),actor=s.state.world.actors['NPC-004'];
+ const s=make();
  const original='SYNTHETIC: the station is open today.';
  const n=add(s,'NPC-004',22);
  applyStateChanges(s.state,n,[{field:'knowledge',fact:original,source:'direct visit'}]);
- const old=actor.knowledge.at(-1);
+ const old=s.state.world.actors['NPC-004'].knowledge.at(-1);
  const newer=add(s,'NPC-004',23);
  applyStateChanges(s.state,newer,[{field:'knowledge',
    fact:'SYNTHETIC: the station has now closed.',source:'second direct visit',
