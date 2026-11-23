@@ -116,6 +116,24 @@ puede decidir que el NPC dude, sospeche, acepte, rechace o mienta según
 evidencias y circunstancias. Ninguna revisión exige certeza ni convierte
 una declaración de terceros en verdad objetiva.
 
+
+### Reconciliación privada de memoria y hilos
+
+Las referencias de THREAD y de `knowledge` pueden compartir un EV sin que
+eso demuestre que el NPC conozca todo el hilo. `relatedThreadReferences`
+indica únicamente un enlace por **mismo evento** cuando una memoria literal
+ya está respaldada por un cambio de conocimiento del actor. La lectura privada
+de THREAD incluye evidencia separada de participación, inclusión en
+`known_to` y cantidad de cambios de `knowledge` del propietario que
+permanecen en el guardado. Ninguno de esos indicadores convierte el resumen
+del hilo en una creencia confirmada ni autoriza su divulgación a Jack.
+
+Incluso con `visibility:'known'`, `playerDisclosureAuthorized:false`
+expresa que esta herramienta **no certifica** qué frase conoce el jugador.
+Antes de narrar información no pública, contrastar los eventos y la
+experiencia real del protagonista. Las correcciones, rumores y decisiones
+libres siguen siendo responsabilidad del narrador.
+
 ## Referencia de vida cotidiana y noticias (propuesta, no canon)
 
 Cuando un turno narrativo requiera contexto de barrio, trabajo, familia, noticias,

@@ -240,6 +240,31 @@ by a later correction, independent opposing speakers, cross-actor privacy and
 CH-000 -> CH-001 recovery. No canonical story files, journals, new turns or
 persistent NPC fields are changed.
 
+
+## Private NPC/thread event evidence reconciliation (2026-11-22)
+
+Read-only private fact evidence now adds `relatedThreadReferences` *only*
+when that exact actor's proven recorded knowledge event also appears in a
+saved THREAD history. It marks `association:'shared_event_pointer_only'`.
+A shared event is a retrieval link, not proof that the NPC knows a THREAD
+summary, believes the statement or should disclose it.
+
+`resolvePrivateContextReference({snapshot,referenceId:'THREAD-...'})`
+returns original private THREAD history plus event pointers with the
+historical `threadVisibility`, `ownerActorInEvent`,
+`ownerListedInKnownTo`, and the count of **same-event, actor-owned knowledge
+changes still retained** in state. `ownerKnowledgeEvidence` says only
+whether that concrete change was recorded; it never certifies the entire
+THREAD or its summary as learned. Each private EV pointer explicitly marks
+`playerDisclosureAuthorized:false`, including legacy `visibility:'known'`
+records. This is a warning that further narration-specific evidence is
+required, not a permanent block on real known information.
+
+Synthetic QA covers an original knowledge event shared with a THREAD, a
+subsequent update authored by a different NPC, a historical ambiguous
+`known` flag, exact immutable remote retrieval, nonmutation and exclusion
+from `reader_visible`. No canon, chapter, in-game time or save is changed.
+
 ## Referencia editorial de noticias (2026-11-22)
 
 La biblioteca `docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md`
