@@ -12,6 +12,8 @@ import {inspectSceneEstablishedPlaces} from './meridian_bay_discovery.mjs';
 import {locationAvailability} from './location_state.mjs';
 import {reviewNPCNeeds} from './living_world_needs.mjs';
 import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_services.mjs';
+import {planNPCAgendas,recommendNPCIntentReviews,previewNearbyNPCContacts} from './living_world_agenda.mjs';
+import {assessNPCDecisions} from './living_world_decisions.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -54,6 +56,16 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
       id:x.id,ownerActorId:x.owner_actor_id,scope:x.scope,question:x.question
     })),
     proposedNPCActivities:candidates,
+    // Read-only, narrator-private alternatives. No activity or contact is
+    // established until an attributed, reviewed event is saved.
+    causalAgenda:planNPCAgendas({state,actorIds:selected,elapsedMinutes,elapsedDays,
+      weekday,minute,schedules,exceptions}),
+    recommendedNPCIntents:recommendNPCIntentReviews({state,actorIds:selected,
+      elapsedMinutes,elapsedDays,weekday,minute,schedules,exceptions}),
+    possibleNPCContacts:previewNearbyNPCContacts({state,actorIds:selected}),
+    // PR #12: private source-backed decisions; NOT a performed NPC action.
+    causalDecisionAssessments:assessNPCDecisions({state,actorIds:selected,
+      elapsedMinutes,elapsedDays,weekday,minute,schedules,exceptions}),
     planReview:Object.entries(state.world.actors).filter(([,actor])=>actor.plans?.length)
       .flatMap(([actorId])=>evaluateNPCPlans({state,actorId,elapsedMinutes,elapsedDays,
         eventIds})),

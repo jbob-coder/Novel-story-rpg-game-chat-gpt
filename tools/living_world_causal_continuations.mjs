@@ -1,0 +1,145 @@
+// Lote 14 (bounded): event-linked NPC continuations, not a dialogue menu,
+// decision tree, autonomous timer or automatic narrative outcome.
+// A narrator must review every result during an owner-triggered story turn.
+import {allEvents} from './chapter_history.mjs';
+
+const insist=(ok,message)=>{if(!ok)throw new Error(message)};
+const clone=x=>JSON.parse(JSON.stringify(x));
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const text=(v,min=12,max=1200)=>typeof v==='string'&&v.trim().length>=min&&v.length<=max;
+const eventID=v=>typeof v==='string'&&/^EV-\d{6,}$/.test(v);
+const eventNumber=id=>Number(id.slice(3));
+const baselineLastEvent=29; // CH-000 turn-nine boundary: do not reinterpret old links.
+
+const actualEventHistory=snapshot=>{
+ insist(snapshot?.state?.world?.actors&&snapshot?.manifest&&snapshot?.events,
+  'Verified story checkpoint is required before reviewing NPC causal continuations');
+ const events=allEvents(snapshot);
+ insist(events.length===snapshot.manifest.last_event_sequence,
+  'NPC causal review requires an unbroken event sequence');
+ return events;
+};
+
+function assertKnownSources({events,actorId,sourceEventIds,priorTurn}){
+ insist(Array.isArray(sourceEventIds)&&sourceEventIds.length>=1&&
+  sourceEventIds.length<=3&&sourceEventIds.every(eventID)&&
+  new Set(sourceEventIds).size===sourceEventIds.length,
+  'NPC continuation needs one to three distinct prior event IDs');
+ const ids=new Map(events.map(e=>[e.id,e]));
+ for(const sourceId of sourceEventIds){
+  const source=ids.get(sourceId);
+  insist(source&&source.turn<priorTurn&&
+   Array.isArray(source.known_to)&&source.known_to.includes(actorId)&&
+   Array.isArray(source.actor_ids)&&source.actor_ids.length>0,
+   'NPC cannot react to a future event or an event it does not know');
+ }
+ return true;
+}
+
+/**
+ * Private, read-only continuation possibilities, ordered deterministically.
+ * A candidate is a reminder to the narrator, not a resolved actor decision.
+ * The author may also cite any older known event explicitly.
+ */
+export function inspectNPCCausalContinuations({snapshot,actorIds=null,limitPerActor=4}={}){
+ const events=actualEventHistory(snapshot),actors=snapshot.state.world.actors;
+ insist(Number.isSafeInteger(limitPerActor)&&limitPerActor>=1&&limitPerActor<=12,
+  'NPC continuation review must stay bounded');
+ insist(actorIds===null||(Array.isArray(actorIds)&&new Set(actorIds).size===actorIds.length&&
+  actorIds.every(id=>Object.hasOwn(actors,id))),
+  'NPC continuation review has unknown or duplicate actors');
+ const chosen=actorIds??Object.keys(actors).sort();
+ return chosen.flatMap(actorId=>events.filter(event=>
+  event.known_to?.includes(actorId)&&event.turn<=snapshot.manifest.last_completed_turn)
+  .slice(-limitPerActor).reverse().map(event=>({
+   actor_id:actorId,cause_event_id:event.id,
+   source_actor_id:event.actor_ids[0],source_turn:event.turn,
+   status:'review_required',resolved:false,applied:false,
+   player_visible:false
+  })));
+}
+
+/** Review a chosen continuation; never write a story turn or invent an outcome. */
+export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEventIds,
+ reasoning,outcome,changes=[],reviewed=false}={}){
+ const events=actualEventHistory(snapshot);
+ insist(Object.hasOwn(snapshot.state.world.actors,actorId),
+  'NPC continuation requires an existing actor');
+ insist(reviewed===true&&text(reasoning,16,1200)&&text(outcome,12,3000),
+  'NPC continuation requires editorial review, reasoning and concrete result');
+ insist(Array.isArray(changes)&&changes.length<=40,
+  'NPC continuation changes must be a bounded event-backed array');
+ assertKnownSources({events,actorId,sourceEventIds,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ return clone({
+  actor_id:actorId,reviewed:true,resolved:true,
+  causal_basis:reasoning,outcome,changes,disclosures:[],
+  continuation_context:{
+   kind:'known_event',reviewed:true,reasoning,
+   source_event_ids:sourceEventIds
+  }
+ });
+}
+
+/** Called before staging an event, including direct turn_engine callers. */
+export function validateNPCContinuationDraft({snapshot,item}={}){
+ if(item?.continuation_context===undefined){
+  insist(item?.causal_source_event_ids===undefined&&item?.caused_by===undefined,
+   'Use a reviewed NPC continuation context for explicit causal sources');
+  return null;
+ }
+ const context=item.continuation_context;
+ insist(item.social_context===undefined,
+  'Social encounters use their separately verified paired causal events');
+ insist(context&&typeof context==='object'&&!Array.isArray(context)&&
+  same(Object.keys(context).sort(),
+   ['kind','reasoning','reviewed','source_event_ids'].sort())&&
+  context.kind==='known_event'&&context.reviewed===true&&
+  text(context.reasoning,16,1200)&&
+  context.reasoning===item.intent,
+  'NPC continuation review differs from its actor-owned intent');
+ insist(snapshot?.state?.world?.actors&&Object.hasOwn(snapshot.state.world.actors,item.actor_id),
+  'Unknown causal continuation actor');
+ assertKnownSources({events:actualEventHistory(snapshot),actorId:item.actor_id,
+  sourceEventIds:context.source_event_ids,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ return clone(context);
+}
+
+/** Readback across active and already closed chapters, rejecting forged links. */
+export function verifyNPCCausalContinuationHistory(snapshot){
+ const events=actualEventHistory(snapshot),seen=[];
+ const known=new Map();
+ for(const event of events){
+  insist(eventID(event.id)&&Array.isArray(event.caused_by),
+   'NPC causal event history is malformed');
+  const c=event.continuation_context,refs=event.caused_by;
+  if(c===undefined){
+   if(eventNumber(event.id)>baselineLastEvent&&
+    event.kind==='independent_actor'&&event.social_context===undefined){
+    insist(refs.length===0,
+     'NPC causal event cannot claim unsourced continuation links');
+   }
+  }else{
+   insist(eventNumber(event.id)>baselineLastEvent&&
+    event.kind==='independent_actor'&&event.actor_ids?.length===1&&
+    Object.hasOwn(snapshot.state.world.actors,event.actor_ids[0])&&
+    event.social_context===undefined&&
+    same(Object.keys(c).sort(),['kind','reviewed','reasoning','source_event_ids'].sort())&&
+    c.kind==='known_event'&&c.reviewed===true&&
+    text(c.reasoning,16,1200)&&event.intent===c.reasoning&&
+    same(refs,c.source_event_ids)&&
+    event.known_to?.includes(event.actor_ids[0])&&
+    event.state_changes?.some(change=>change.actor_id===event.actor_ids[0]&&
+     change.field==='last_resolved_action'),
+    'Saved NPC continuation is unreviewed, altered or not actor-owned');
+   assertKnownSources({events:[...known.values()],actorId:event.actor_ids[0],
+    sourceEventIds:c.source_event_ids,priorTurn:event.turn});
+   seen.push({event_id:event.id,actor_id:event.actor_ids[0],
+    source_event_ids:[...c.source_event_ids]});
+  }
+  insist(!known.has(event.id),'Duplicate NPC causal event ID');
+  known.set(event.id,event);
+ }
+ return seen;
+}

@@ -49,3 +49,9 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.mjs](living_world_routines.mjs) — Independent NPC routine proposals and causal staging.
 - [living_world_time.mjs](living_world_time.mjs) — Coarse in-fiction time window validation.
 - [living_world_travel.mjs](living_world_travel.mjs) — Evidence-based travel estimates and context chronology.
+- [Evaluación y borrador causal privado de decisiones NPC](living_world_decisions.mjs)
+- [Encuentros sociales NPC: pareja causal, testimonio y verificación de eventos](living_world_social.mjs)
+- [Referencia versionada de conocimientos NPC en el checkpoint del turno 9](living_world_knowledge_anchor.mjs)
+- [Evaluación privada de migración NPC y validación determinista del candidato](living_world_knowledge_migration.mjs)
+- [NPC nuevo: propuesta revisada, evento de admisión y verificación de historial](living_world_npc_introduction.mjs)
+- [Continuaciones NPC: fuentes conocidas, revisión y recuperación de enlaces causales](living_world_causal_continuations.mjs)
