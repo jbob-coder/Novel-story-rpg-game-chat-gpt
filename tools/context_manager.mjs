@@ -322,6 +322,15 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
 export function resolvePrivateContextReference({snapshot,referenceId}={}){
   ensure(typeof referenceId==='string'&&referenceId.length>0,'Reference ID required');
   basis(snapshot);
+  const thread=snapshot.state.narrative_threads.find(t=>t.id===referenceId);
+  if(thread){
+    const byId=new Map(allEvents(snapshot).map(event=>[event.id,event]));
+    return {classification:'narrator_private_only',kind:'thread',path:'game/STATE.json',
+      data:copy(thread),eventReferences:thread.history.map(change=>({
+        id:change.event_id,kind:change.kind,
+        path:'chapters/'+byId.get(change.event_id).chapter_id+'.events.json'
+      }))};
+  }
   const event=allEvents(snapshot).find(e=>e.id===referenceId);
   if(event)return {classification:'narrator_private_only',kind:'event',
     path:'chapters/'+event.chapter_id+'.events.json',data:copy(event)};
