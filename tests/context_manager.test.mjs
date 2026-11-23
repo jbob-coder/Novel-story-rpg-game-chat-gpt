@@ -8,11 +8,48 @@ import {buildContextPacket,resolvePrivateContextReference,selectNPCMemoryCandida
   checkNPCFactEvidence} from '../tools/context_manager.mjs';
 import {decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
+import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
+import {draftReviewedNPCIntroduction} from '../tools/living_world_npc_introduction.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const files=Object.fromEntries(savePaths('CH-000').map(path=>
   [path,readFileSync(resolve(root,path),'utf8')]));
 const initial=()=>decodeFiveFiles(files,'CH-000');
+
+// A second NPC must be admitted through reviewed causal history, not inserted
+// directly in a mutable STATE fixture; otherwise strict replay rejects it.
+function syntheticSecondRosa(){
+  const snapshot=initial(),head='a'.repeat(40);
+  const actor={
+    id:'NPC-008',name:'Rosa Rivera',age:39,
+    role:'Synthetic market inventory coordinator',
+    location_id:'LOC-COMMERCIAL-DISTRICT',
+    goal:'Keep the merchant supply register accurate and useful.',
+    independent_plan:'Review delivery records and check current inventory.',
+    description:'An independent synthetic adult used solely for name ambiguity QA.'
+  };
+  const introduction=draftReviewedNPCIntroduction({
+    state:snapshot.state,actor,reviewed:true,
+    observation:{
+      kind:'current_turn_observation',
+      observer_actor_id:'NPC-006',confirmed_by_reviewer:true,
+      fact:'Synthetic Noah observes Rosa Rivera checking the market supply register.',
+      causal_source:'A fictional current-turn witness at the established Market Row counter.'
+    },
+    outcome:'The new market coordinator works privately on the delivery ledger.'
+  });
+  return stageLivingWorldTurn({
+    snapshot,observedHead:head,npcResolutions:[],
+    turn:{
+      key:'synthetic-context-second-rosa-001',
+      intent:'Synthetic interval for context name ambiguity verification.',
+      outcome:'The workshop stays quiet while a separate citizen works at Market Row.',
+      player_text:'SYNTHETIC QA ONLY: observe the workbench quietly.',
+      narration_messages:['Synthetic daylight remains on the bench; no private NPC data is shared.'],
+      elapsed_days:0,elapsed_minutes:25,npc_introductions:[introduction]
+    }
+  });
+}
 
 test('narrator packet anchors the saved checkpoint, search and preview limits',()=>{
   const snapshot=initial(),before=JSON.stringify(snapshot);
@@ -227,11 +264,7 @@ test('strict NPC fact checks allow saved legacy facts but not event association 
 });
 
 test('ambiguous given names produce a private resolution warning but no guessed NPC',()=>{
-  const snapshot=initial(),actors=snapshot.state.world.actors;
-  const copy=structuredClone(actors['NPC-005']);
-  copy.id='NPC-008';copy.name='Rosa Rivera';
-  actors['NPC-008']=copy;
-  const query='Rosa';
+  const snapshot=syntheticSecondRosa(),query='Rosa';
   const selected=selectNPCMemoryCandidates({state:snapshot.state,query});
   assert.deepEqual(selected,[]);
   const packet=buildContextPacket({snapshot,query});
@@ -245,6 +278,16 @@ test('ambiguous given names produce a private resolution warning but no guessed 
   assert.equal(Object.hasOwn(precise,'npcAmbiguities'),false);
   const reader=buildContextPacket({snapshot,audience:'reader_visible',query});
   assert.ok(!JSON.stringify(reader).includes('candidateActorIds'));
+});
+
+
+test('full context packets reject unsourced actor injection despite ambiguous name support',()=>{
+  const snapshot=initial(),copy=structuredClone(snapshot.state.world.actors['NPC-005']);
+  copy.id='NPC-008';copy.name='Rosa Rivera';
+  snapshot.state.world.actors['NPC-008']=copy;
+  assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'Rosa'}),[]);
+  assert.throws(()=>buildContextPacket({snapshot,query:'Rosa'}),
+    /unsourced additions or removals/);
 });
 
 test('unknown fact claims never inherit the event pointers or another NPC knowledge',()=>{
@@ -264,10 +307,7 @@ test('unknown fact claims never inherit the event pointers or another NPC knowle
 
 
 test('a named Rosa and a separate bare Rosa remain ambiguous instead of being merged',()=>{
- const snapshot=initial();
- const duplicate=structuredClone(snapshot.state.world.actors['NPC-005']);
- duplicate.id='NPC-008';duplicate.name='Rosa Rivera';
- snapshot.state.world.actors['NPC-008']=duplicate;
+ const snapshot=syntheticSecondRosa();
  const ambiguous=buildContextPacket({snapshot,query:'Rosa Wilson habló con Rosa'});
  assert.deepEqual(ambiguous.npcMemory?.map(x=>x.actorId),['NPC-005']);
  assert.deepEqual(ambiguous.npcAmbiguities,[{
