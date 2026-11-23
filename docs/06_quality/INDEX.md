@@ -29,3 +29,5 @@
 - [Siete días sintéticos: comparación de decisiones abiertas, memoria e integridad](../../docs/06_quality/NPC_CONTEXTUAL_MULTIDAY_REHEARSAL_20261122.md)
 
 - [NPC: una resolución por turno y continuación desde el resultado verificado](NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md)
+
+- [Revisión de agencia NPC fuera de escena, sin acción obligatoria](NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md)

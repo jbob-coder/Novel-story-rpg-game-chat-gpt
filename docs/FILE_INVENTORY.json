@@ -104,7 +104,8 @@
       "tools/world_admission.mjs",
       "tools/location_state.mjs",
       "tools/npc_contextual_intents.mjs",
-      "tools/npc_sequential_turns.mjs"
+      "tools/npc_sequential_turns.mjs",
+      "tools/npc_actor_agency.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -138,7 +139,8 @@
       "tests/location_state_integration.test.mjs",
       "tests/npc_contextual_intents.test.mjs",
       "tests/npc_contextual_multiday_rehearsal.test.mjs",
-      "tests/npc_sequential_turns.test.mjs"
+      "tests/npc_sequential_turns.test.mjs",
+      "tests/npc_actor_agency.test.mjs"
     ]
   },
   "newChapterPaths": [
@@ -307,7 +309,8 @@
     "npc_contextual_intent_prototype_2026_11_22": [
       "docs/06_quality/NPC_CONTEXTUAL_INTENT_PROTOTYPE_20261122.md",
       "docs/06_quality/NPC_CONTEXTUAL_MULTIDAY_REHEARSAL_20261122.md",
-      "docs/06_quality/NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md"
+      "docs/06_quality/NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md",
+      "docs/06_quality/NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md"
     ]
   },
   "repository_checkpoints": [
