@@ -114,3 +114,92 @@ test('macro news progression never schedules effects or equates coverage to trut
   assert.ok(body.includes('**F3 · opción B:**'));
   assert.ok(body.includes('**F3 · opción C:**'));
 });
+
+
+test('synthetic macro news cycle: world-scoped NPC event opens, develops and resolves without a canonical save', async () => {
+  // No actual player action is issued. Only temporary in-memory snapshots are staged.
+  // Exercise the production coordinator and consequences path, not just document text.
+  const {savePaths, decodeFiveFiles} = await import('../tools/save_transaction.mjs');
+  const {stageLivingWorldTurn} = await import('../tools/living_world_coordinator.mjs');
+  const {verifyNarrativeSnapshot} = await import('../tools/turn_engine.mjs');
+  const rawPaths = savePaths('CH-000');
+  const rawFiles = Object.fromEntries(rawPaths.map(path => [path, read(path)]));
+  const baseline = decodeFiveFiles(rawFiles, 'CH-000');
+  const untouchedBytes = JSON.stringify(rawFiles);
+  const immutableBaseline = JSON.stringify(baseline);
+  const observedHead = 'a'.repeat(40);
+
+  const stage = (snapshot, suffix, operation, id, eventId) => {
+    const t = snapshot.manifest.last_completed_turn + 1;
+    const npcId = 'NPC-002'; // Sora: established NPC, not a fabricated institution.
+    const news = {
+      op: operation, event_id: eventId,
+      summary: operation === 'open'
+        ? 'Sora records a hypothetical maintenance notice for future verification.'
+        : operation === 'develop'
+          ? 'Sora updates the hypothetical notice while the cause remains unverified.'
+          : 'Sora closes the hypothetical review with no confirmed wider outage.',
+      visibility: 'hidden',
+      ...(operation === 'open'
+        ? {owner_actor_id: npcId,
+          question: 'Will an observed maintenance notice require further review?',
+          scope: 'world'}
+        : {thread_id: id})
+    };
+    return stageLivingWorldTurn({
+      snapshot, observedHead,
+      turn: {
+        key: 'synthetic-macro-news-turn-' + suffix,
+        intent: '[SYNTHETIC QA ONLY] fictional workbench wait',
+        outcome: '[SYNTHETIC QA ONLY] no public news was received',
+        player_text: '[SYNTHETIC QA ONLY — NO PLAYER ACTION]',
+        narration_messages: ['[SYNTHETIC QA ONLY] The workshop is quiet.'],
+        elapsed_days: 0, elapsed_minutes: 15,
+        consequence_updates: [news]
+      },
+      npcResolutions: [{
+        actor_id: npcId, reviewed: true, resolved: true,
+        causal_basis: 'Sora reviews a hypothetical maintenance notice independently.',
+        outcome: 'PRIVATE SYNTHETIC: Sora conducts an ordinary review with no confirmed regional impact.',
+        changes: []
+      }]
+    });
+  };
+
+  const eventAt = (snapshot) => 'EV-' + String(snapshot.manifest.last_event_sequence + 2).padStart(6, '0');
+  const opened = stage(baseline, 'open', 'open', null, eventAt(baseline));
+  const originalCount = baseline.state.narrative_threads.length;
+  assert.equal(opened.state.narrative_threads.length, originalCount + 1);
+  const thread = opened.state.narrative_threads.at(-1);
+  assert.equal(thread.owner_actor_id, 'NPC-002');
+  assert.equal(thread.scope, 'world');
+  assert.equal(thread.status, 'open');
+  assert.equal(thread.history[0].visibility, 'hidden');
+
+  const developed = stage(opened, 'develop', 'develop', thread.id, eventAt(opened));
+  const resolved = stage(developed, 'resolve', 'resolve', thread.id, eventAt(developed));
+  const finalThread = resolved.state.narrative_threads.at(-1);
+  assert.equal(finalThread.status, 'resolved');
+  assert.deepEqual(finalThread.history.map(e => e.kind), ['open', 'develop', 'resolve']);
+  assert.ok(finalThread.history.every(e => e.visibility === 'hidden'));
+  assert.equal(verifyNarrativeSnapshot(resolved), true);
+  assert.ok(!resolved.chapter.includes('PRIVATE SYNTHETIC:'));
+  assert.ok(!resolved.transcript.entries.some(x => x.text.includes('PRIVATE SYNTHETIC:')));
+  assert.equal(JSON.stringify(baseline), immutableBaseline);
+  assert.equal(JSON.stringify(rawFiles), untouchedBytes);
+  // These snapshots are not submitted to a Git journal or any remote commit.
+});
+
+test('a future macroevent cannot open from a nonexistent event or unknown actor', async () => {
+  const {stageConsequences} = await import('../tools/consequences.mjs');
+  const fake = {state:{player:{id:'PLAYER-001'},world:{actors:{'NPC-002':{}}},narrative_threads:[]},
+    events:{events:[{id:'EV-000001',turn:1,actor_ids:['NPC-002']}]},
+    manifest:{last_completed_turn:1}};
+  const payload={op:'open',event_id:'EV-000001',owner_actor_id:'NPC-002',
+    question:'Could the observed maintenance issue extend beyond one service?',
+    scope:'world',summary:'Sora observes a hypothetical local maintenance incident.',
+    visibility:'hidden'};
+  assert.throws(()=>stageConsequences(fake,[{...payload,event_id:'EV-999999'}]),/actual event/);
+  assert.throws(()=>stageConsequences(fake,[{...payload,owner_actor_id:'NPC-999'}]),/actor unknown/);
+  assert.equal(fake.state.narrative_threads.length,0);
+});
