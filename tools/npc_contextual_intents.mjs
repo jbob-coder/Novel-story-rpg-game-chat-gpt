@@ -44,7 +44,10 @@ export function inspectNPCContextualChoices({snapshot,actorId,limitKnownEvents=8
    resources:a.resources??{},needs:a.needs??[],conditions:a.conditions??[],
    relationships:a.relationships??{},commitments:a.commitments??[],
    plans:a.plans??[],knowledge:a.knowledge??[],
-   knownEventIds:known.map(e=>e.id)
+   knownEventIds:known.map(e=>e.id),
+   // Actor-known history is private, bounded, and meaningful beyond opaque IDs.
+   knownEvents:known.map(e=>({id:e.id,turn:e.turn,day:e.day,
+    kind:e.kind,actorIds:e.actor_ids,intent:e.intent,outcome:e.outcome}))
   },
   status:'proposal_only',executionAuthorized:false,
   readerVisible:false,automaticallySelectedAction:false
