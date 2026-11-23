@@ -226,25 +226,20 @@ test('strict NPC fact checks allow saved legacy facts but not event association 
   assert.throws(()=>checkNPCFactEvidence({snapshot,actorId:'NPC-005',fact:'x'}),/Invalid NPC fact/);
 });
 
-test('ambiguous given names produce a private resolution warning but no guessed NPC',()=>{
-  const snapshot=initial(),actors=snapshot.state.world.actors;
-  const copy=structuredClone(actors['NPC-005']);
-  copy.id='NPC-008';copy.name='Rosa Rivera';
-  actors['NPC-008']=copy;
-  const query='Rosa';
-  const selected=selectNPCMemoryCandidates({state:snapshot.state,query});
-  assert.deepEqual(selected,[]);
-  const packet=buildContextPacket({snapshot,query});
-  assert.equal(packet.npcMemory,undefined);
-  assert.deepEqual(packet.npcAmbiguities,[{
-    name:'rosa',candidateActorIds:['NPC-005','NPC-008'],
-    status:'requires_explicit_identity'
-  }]);
-  const precise=buildContextPacket({snapshot,query:'Rosa Wilson'});
-  assert.deepEqual(precise.npcMemory?.map(x=>x.actorId),['NPC-005']);
-  assert.equal(Object.hasOwn(precise,'npcAmbiguities'),false);
-  const reader=buildContextPacket({snapshot,audience:'reader_visible',query});
-  assert.ok(!JSON.stringify(reader).includes('candidateActorIds'));
+
+test('synthetic duplicate given names do not bypass the admitted NPC roster',()=>{
+ const snapshot=initial(),actors=snapshot.state.world.actors;
+ const twin=structuredClone(actors['NPC-005']);
+ twin.id='NPC-008';twin.name='Rosa Rivera';
+ actors['NPC-008']=twin;
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'Rosa'}),[]);
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'Rosa Wilson'}),['NPC-005']);
+ for(const options of [{query:'Rosa'},{query:'Rosa Wilson'},
+   {audience:'reader_visible',query:'Rosa'}])
+   assert.throws(()=>buildContextPacket({snapshot,...options}),
+     /unsourced additions or removals/);
+ // An unadmitted actor cannot appear in the trusted reader or narrator packet.
+ assert.equal(initial().manifest.last_completed_turn,9);
 });
 
 test('unknown fact claims never inherit the event pointers or another NPC knowledge',()=>{
@@ -263,22 +258,20 @@ test('unknown fact claims never inherit the event pointers or another NPC knowle
 });
 
 
-test('a named Rosa and a separate bare Rosa remain ambiguous instead of being merged',()=>{
- const snapshot=initial();
- const duplicate=structuredClone(snapshot.state.world.actors['NPC-005']);
- duplicate.id='NPC-008';duplicate.name='Rosa Rivera';
- snapshot.state.world.actors['NPC-008']=duplicate;
- const ambiguous=buildContextPacket({snapshot,query:'Rosa Wilson habló con Rosa'});
- assert.deepEqual(ambiguous.npcMemory?.map(x=>x.actorId),['NPC-005']);
- assert.deepEqual(ambiguous.npcAmbiguities,[{
-   name:'rosa',candidateActorIds:['NPC-005','NPC-008'],
-   status:'requires_explicit_identity'
- }]);
- const twoFull=buildContextPacket({snapshot,query:'Rosa Wilson habló con Rosa Rivera'});
- assert.deepEqual(twoFull.npcMemory?.map(x=>x.actorId),['NPC-005','NPC-008']);
- assert.equal(twoFull.npcAmbiguities,undefined);
- const reverse=buildContextPacket({snapshot,query:'Rosa habló con Rosa Rivera'});
- assert.ok(reverse.npcAmbiguities?.some(x=>x.name==='rosa'));
+
+test('mixed complete and bare NPC names are suggestions only until introduction is sourced',()=>{
+ const snapshot=initial(),actors=snapshot.state.world.actors;
+ const twin=structuredClone(actors['NPC-005']);
+ twin.id='NPC-008';twin.name='Rosa Rivera';
+ actors['NPC-008']=twin;
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,
+   query:'Rosa Wilson habló con Rosa'}),['NPC-005']);
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,
+   query:'Rosa Wilson habló con Rosa Rivera'}),['NPC-005','NPC-008']);
+ for(const query of ['Rosa Wilson habló con Rosa',
+   'Rosa Wilson habló con Rosa Rivera','Rosa habló con Rosa Rivera'])
+   assert.throws(()=>buildContextPacket({snapshot,query}),
+     /unsourced additions or removals/);
 });
 
 test('similar paraphrases, rumors and opposite assertions yield review hints, not factual permission',()=>{
@@ -319,37 +312,21 @@ test('no lexical match does not imply absolute ignorance or prevent fictional ly
  assert.equal(JSON.stringify(visible).includes('relatedStatementsForReview'),false);
 });
 
-test('duplicate full names need an explicit actor ID even when every name token matches',()=>{
- const snapshot=initial(),before=JSON.stringify(snapshot);
- const duplicate=structuredClone(snapshot.state.world.actors['NPC-005']);
- duplicate.id='NPC-008';
- snapshot.state.world.actors['NPC-008']=duplicate;
- const exactName='Rosa Wilson';
- // Neither established NPC should be guessed from the identical name.
- assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:exactName}),[]);
- const ambiguous=buildContextPacket({snapshot,query:exactName});
- assert.equal(ambiguous.npcMemory,undefined);
- assert.deepEqual(ambiguous.npcAmbiguities,[{
-  name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
-  status:'requires_explicit_identity'
- }]);
- // A validated stable ID or pre-established scene hint is independent evidence.
+
+test('duplicate full names cannot be trusted without an NPC admission event even by explicit ID',()=>{
+ const snapshot=initial(),original=JSON.stringify(snapshot);
+ const twin=structuredClone(snapshot.state.world.actors['NPC-005']);
+ twin.id='NPC-008';
+ snapshot.state.world.actors['NPC-008']=twin;
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'Rosa Wilson'}),[]);
  assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'NPC-008'}),['NPC-008']);
- const explicit=buildContextPacket({snapshot,query:'Rosa Wilson',npcIds:['NPC-008']});
- assert.deepEqual(explicit.npcMemory.map(x=>x.actorId),['NPC-008']);
- const hinted=buildContextPacket({snapshot,query:exactName,sceneNpcIds:['NPC-008']});
- assert.deepEqual(hinted.npcMemory.map(x=>x.actorId),['NPC-008']);
- assert.deepEqual(hinted.npcAmbiguities,[{
-  name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
-  status:'requires_explicit_identity'
- }]);
- // Reader output never receives private identity alternatives.
- const reader=buildContextPacket({snapshot,query:exactName,audience:'reader_visible'});
- assert.equal(Object.hasOwn(reader,'npcAmbiguities'),false);
- assert.equal(Object.hasOwn(reader,'npcMemory'),false);
- assert.equal(JSON.stringify(initial().state.world.actors['NPC-005']),
-  JSON.stringify(snapshot.state.world.actors['NPC-005']));
- assert.notEqual(JSON.stringify(snapshot),before); // Only this fixture changed.
+ for(const options of [{query:'Rosa Wilson'},
+   {query:'Rosa Wilson',npcIds:['NPC-008']},
+   {query:'Rosa Wilson',sceneNpcIds:['NPC-008']},
+   {query:'Rosa Wilson',audience:'reader_visible'}])
+   assert.throws(()=>buildContextPacket({snapshot,...options}),
+     /unsourced additions or removals/);
+ assert.equal(JSON.stringify(initial()),original);
 });
 
 test('duplicate full-name alert is scoped to the referenced name, not an unrelated NPC',()=>{
@@ -461,27 +438,31 @@ test('synthetic NPC rumor and correction remain separate events without revealin
   assert.equal(JSON.stringify(baseline),before);
 });
 
-test('integrated duplicate-name ambiguity and private thread recall remain independent',()=>{
- const snapshot=initial();
- const twin=structuredClone(snapshot.state.world.actors['NPC-005']);
- twin.id='NPC-008';snapshot.state.world.actors['NPC-008']=twin;
- const packet=buildContextPacket({snapshot,query:'Rosa Wilson THREAD-000001',maxReferences:12});
- assert.equal(packet.npcMemory,undefined);
- assert.ok(packet.references.some(ref=>ref.id==='THREAD-000001'&&ref.kind==='thread'));
- assert.deepEqual(packet.npcAmbiguities,[{
-   name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
-   status:'requires_explicit_identity'
- }]);
- const result=resolvePrivateContextReference({snapshot,referenceId:'THREAD-000001'});
- assert.equal(result.kind,'thread');
- assert.ok(result.eventReferences.length>0);
- const reader=buildContextPacket({snapshot,query:'Rosa Wilson THREAD-000001',
-   audience:'reader_visible',maxReferences:12});
- assert.equal(reader.npcMemory,undefined);
- assert.equal(reader.npcAmbiguities,undefined);
- assert.ok(reader.references.every(x=>x.kind==='transcript'));
-});
 
+test('private thread lookup works only on a valid roster; an injected twin cannot leak it',()=>{
+ const valid=initial(),query='THREAD-000001';
+ const internal=buildContextPacket({snapshot:valid,query,maxReferences:12});
+ assert.ok(internal.references.some(ref=>ref.id===query&&ref.kind==='thread'));
+ const resolved=resolvePrivateContextReference({snapshot:valid,referenceId:query});
+ assert.equal(resolved.kind,'thread');
+ assert.ok(resolved.eventReferences.length>0);
+ const reader=buildContextPacket({snapshot:valid,query,audience:'reader_visible',
+   maxReferences:12});
+ assert.ok(reader.references.every(ref=>ref.kind==='transcript'));
+ assert.ok(!JSON.stringify(reader).includes(query));
+
+ const unsafe=initial();
+ const twin=structuredClone(unsafe.state.world.actors['NPC-005']);
+ twin.id='NPC-008';
+ unsafe.state.world.actors['NPC-008']=twin;
+ assert.deepEqual(selectNPCMemoryCandidates({state:unsafe.state,query:'Rosa Wilson'}),[]);
+ assert.throws(()=>buildContextPacket({snapshot:unsafe,query:'Rosa Wilson THREAD-000001'}),
+   /unsourced additions or removals/);
+ assert.throws(()=>resolvePrivateContextReference({snapshot:unsafe,referenceId:query}),
+   /unsourced additions or removals/);
+ assert.throws(()=>buildContextPacket({snapshot:unsafe,
+   audience:'reader_visible',query}),/unsourced additions or removals/);
+});
 
 test('historical thread visibility never becomes evidence that Jack learned private event details',()=>{
  const snapshot=initial(),before=JSON.stringify(snapshot);
