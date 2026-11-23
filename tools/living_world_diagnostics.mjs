@@ -15,6 +15,7 @@ import {inspectEstablishedServices,reviewServiceCases} from './meridian_bay_serv
 import {planNPCAgendas,recommendNPCIntentReviews,previewNearbyNPCContacts} from './living_world_agenda.mjs';
 import {assessNPCDecisions} from './living_world_decisions.mjs';
 import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
+import {prepareNPCIntentionRequests} from './npc_intention_generation.mjs';
 
 const copy=value=>JSON.parse(JSON.stringify(value));
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
@@ -67,6 +68,8 @@ export function inspectLivingWorld({snapshot,elapsedMinutes=0,elapsedDays=0,acto
     // Independent offscreen actor review. Not limited by Jack proximity.
     // These are private evidence frames, NOT decisions or performed events.
     openNPCDecisionFrames:inspectOpenNPCAgency({snapshot,elapsedMinutes,elapsedDays}),
+    // Private generative-narrator input; NEVER exposed by playerVisibleDiagnostic.
+    openNPCIntentionRequests:prepareNPCIntentionRequests({snapshot,elapsedMinutes,elapsedDays}),
     // PR #12: private source-backed decisions; NOT a performed NPC action.
     causalDecisionAssessments:assessNPCDecisions({state,actorIds:selected,
       elapsedMinutes,elapsedDays,weekday,minute,schedules,exceptions}),

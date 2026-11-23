@@ -85,3 +85,5 @@ These files already existed in the authoritative source and are listed here for 
 - [NPC: continuidad secuencial y rechazo de resultados duplicados](npc_sequential_turns.test.mjs)
 
 - [NPC: primera decisión abierta, continuidad y privacidad fuera de escena](npc_actor_agency.test.mjs)
+
+- [NPC: propuestas generadas por narrador, memoria, abstención y causalidad](npc_intention_generation.test.mjs)
