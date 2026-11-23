@@ -191,3 +191,30 @@ does not inherit the newer information, forged source links are rejected,
 and CH-001 can restore all supporting CH-000 events without touching
 the actual player checkpoint. No new actor schema or additional storage
 is introduced.
+
+
+## Cadenas informativas y recepción limitada (QA sintética, 2026-11-22)
+
+`tests/living_world_news_causal_revisions.test.mjs` recorre, **solo en memoria**,
+cuatro turnos hipotéticos: una persona identificada registra un aviso no
+confirmado; otra lo lee y conserva la fuente precisa; la primera publica
+una rectificación basada en revisión posterior; la segunda solo actualiza su
+recuerdo después de recibir también esa rectificación. Cada declaración
+conserva su EV, incluso cuando ya fue revisada. Un hilo del mundo se abre y
+se cierra únicamente con eventos reales **dentro del escenario sintético**.
+
+La prueba usa `stageLivingWorldTurn`, `consequence_updates`, los cambios de
+`knowledge` con `revision_of`, `checkNPCFactEvidence` y el archivado de
+capítulos existentes; no introduce tablas, relojes, actores o estados de
+noticias nuevos. Un evento que registra la *publicación* demuestra que esa
+comunicación ocurrió en la ficción ensayada, **no** que su afirmación fuera
+verdadera, que otra persona la vio o que Jack recibió la noticia.
+
+**Límite importante:** el campo textual `source` del conocimiento requiere
+revisión causal editorial. Este ensayo fija explícitamente cuál EV se supone
+que contiene cada aviso leído; el motor comprueba el vínculo de revisión del
+mismo actor, pero **no** autentica por sí solo cualquier cadena arbitraria de
+transmisión social. No atribuir acceso a otro NPC sin una acción observada,
+comunicada y guardada en ese turno. No hay simulación fuera del chat ni noticias
+canónicas generadas por ejecutar QA. El checkpoint de CH-000 turno 9 permanece
+intacto.
