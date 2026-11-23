@@ -4,14 +4,14 @@
 
 ## Defecto identificado
 
-`tools/consequences.mjs` exigía que la identidad del propietario existiera y que el evento de origen estuviera registrado, pero no comprobaba que ese **personaje participara en ese evento**. Un registro sintético podía atribuir a `NPC-001` una pregunta causal nacida exclusivamente de un evento del jugador y superar esa validación. Un tercero que afecta una pregunta existente es legítimo; **atribuir falsamente el origen del hilo** no lo es.
+`tools/consequences.mjs` exigía que la identidad del propietario existiera y que el evento de origen estuviera registrado, pero no comprobaba que ese **personaje participara o estuviera registrado entre quienes lo conocen**. Un registro sintético podía atribuir a `NPC-001` una pregunta causal nacida exclusivamente de un evento del jugador y superar esa validación. Un tercero que afecta una pregunta existente es legítimo; **atribuir falsamente el origen del hilo sin participación ni observación registrada** no lo es.
 
 ## Cambios delimitados
 
-- La verificación de un historial ya guardado exige que `owner_actor_id` aparezca en `actor_ids` del evento `origin_event_id`. Si no existe ese dato causal, se detiene la validación.
-- La creación de un hilo exige la misma relación entre el propietario y el evento actual. No convierte `known_to`, la proximidad física ni un rumor en prueba de autoría.
+- La verificación de un historial ya guardado exige que `owner_actor_id` aparezca en `actor_ids` o `known_to` del evento `origin_event_id`. Si no existe ese dato causal, se detiene la validación.
+- La creación de un hilo exige la misma relación entre el propietario y el evento actual: participación o registro en `known_to`. `known_to` acredita solo un vínculo de observación; no garantiza que el actor conozca cada detalle del suceso. La proximidad física y los rumores sin registro tampoco prueban ese vínculo.
 - Los desarrollos y resoluciones posteriores **siguen permitiendo otros actores**, siempre que exista el EV causal correspondiente y se conserve el orden estricto y el cierre terminal fijados por PR #166.
-- Cuatro nuevas pruebas: origen atribuido a otro NPC rechazado, checkpoint falsificado rechazado, NPC legítimo con desarrollos de otro actor aceptado, origen sin `actor_ids` rechazado. Se ajusta la fixture histórica para usar el campo de evento que exige el esquema real.
+- Cinco nuevas pruebas: origen atribuido a otro NPC rechazado, checkpoint falsificado rechazado, NPC legítimo con desarrollos de otro actor aceptado, origen sin `actor_ids` ni `known_to` rechazado, y origen válido por observación registrada sin asignar falsamente al testigo la autoría del evento. Se ajusta la fixture histórica para usar el campo de evento que exige el esquema real.
 
 ## Compatibilidad y límites
 

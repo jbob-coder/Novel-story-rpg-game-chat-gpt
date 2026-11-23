@@ -99,7 +99,7 @@ test('opening an NPC question using only another actor event is rejected',()=>{
  const s=snapshot(1);
  assert.throws(()=>stageConsequences(s,[{
   ...open,owner_actor_id:'NPC-001'
- }]),/opening event does not include its owning actor/);
+ }]),/opening event has no actor or observer evidence/);
  // A PLAYER record cannot be assigned to NPC-001 merely by changing the ID.
  assert.equal(s.state.narrative_threads.length,0);
 });
@@ -109,7 +109,7 @@ test('a forged stored consequence owner must have participated in its opening ev
  const forged=structuredClone(saved);
  forged.state.narrative_threads[0].owner_actor_id='NPC-001';
  assert.throws(()=>verifyConsequences(forged),
-  /origin event does not include its owning actor/);
+  /origin has no actor or observer evidence/);
  assert.equal(verifyConsequences(saved),true);
 });
 
@@ -137,5 +137,21 @@ test('missing origin event actor attribution is not silently treated as knowledg
  const s=snapshot(1);
  delete s.events.events[0].actor_ids;
  assert.throws(()=>stageConsequences(s,[open]),
-  /opening event does not include its owning actor/);
+  /opening event has no actor or observer evidence/);
+});
+
+test('witness-origin thread uses event known_to without making witness the actor',()=>{
+ const s=snapshot(2);
+ s.events.events[1].actor_ids=['PLAYER-001'];
+ s.events.events[1].known_to=['NPC-001'];
+ const next=stageConsequences(s,[{
+  ...open,owner_actor_id:'NPC-001',event_id:'EV-000002',
+  scope:'observable',visibility:'hidden'
+ }]);
+ assert.equal(verifyConsequences(next),true);
+ assert.equal(next.state.narrative_threads[0].owner_actor_id,'NPC-001');
+ assert.deepEqual(s.events.events[1].actor_ids,['PLAYER-001']);
+ assert.equal(s.state.narrative_threads.length,0);
+ // The source link is not a free-form claim that the witness knows all facts.
+ assert.equal(next.events.events[1].known_to.includes('NPC-001'),true);
 });
