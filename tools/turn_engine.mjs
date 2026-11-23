@@ -6,6 +6,7 @@ import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian
 import {verifyTravelHistory} from './living_world_travel.mjs';
 import {verifySocialEventHistory,verifySealedNPCKnowledge} from './living_world_social.mjs';
 import {stageReviewedNPCIntroduction,verifyNPCIntroductionHistory} from './living_world_npc_introduction.mjs';
+import {validateNPCContinuationDraft,verifyNPCCausalContinuationHistory} from './living_world_causal_continuations.mjs';
 import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
 // Deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
@@ -60,6 +61,7 @@ function verifyNarrativeSnapshot(snapshot) {
   verifyTravelHistory(snapshot);
   // Social provenance is narrator-private and validated across closed chapters.
   verifySocialEventHistory(snapshot);
+  verifyNPCCausalContinuationHistory(snapshot);
   return true;
 }
 function stageNarrativeTurn(snapshot, turn) {
@@ -125,6 +127,13 @@ function stageNarrativeTurn(snapshot, turn) {
     check(typeof item.outcome==="string" && item.outcome.trim() && item.outcome.length<3000,"Offscreen result required");
     const actor=s.world.actors[item.actor_id];
     const record=event("independent_actor",item.actor_id,item.intent??actor.independent_plan,item.outcome,[item.actor_id]);
+    const continuation=validateNPCContinuationDraft({snapshot,item:{
+      ...item,intent:record.intent
+    }});
+    if(continuation!==null){
+      record.continuation_context=continuation;
+      record.caused_by.push(...continuation.source_event_ids);
+    }
     // Only reviewed, actor-paired social resolutions reach this stage through
     // the coordinator. Persist one immutable private context per participant.
     if(item.social_context!==undefined){
