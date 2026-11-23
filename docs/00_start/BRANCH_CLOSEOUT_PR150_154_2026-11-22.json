@@ -185,5 +185,32 @@
     "production_live_turn_save": "not_tested",
     "remaining_required_before_actual_owner_turn": "revalidate_current_story_ref_manifest_five_files_journal_and_use_strict_durable_save_gate"
   },
-  "no_merge_no_story_write": true
+  "no_merge_no_story_write": true,
+  "external_connector_synthetic_qa": {
+    "original_qa_pr": 156,
+    "original_qa_head": "72ff6a034d7ba3f896cca27edb134d7d1bbc76cc",
+    "original_qa_closed_without_merge": true,
+    "original_qa_full_baseline_ci": {
+      "run": 45085938742,
+      "status": "completed",
+      "conclusion": "failure",
+      "fixed_turn_nine_invariants_failed": 51,
+      "reason": "QA fixture deliberately represents synthetic turn 10; production tests assume turn 9"
+    },
+    "scoped_qa_overlay_pr": 157,
+    "scoped_overlay_head": "93c9b4be9389a926eabf95c74670ba7f0fb89f2d",
+    "scoped_actions": {
+      "run": 45086079166,
+      "status": "completed",
+      "conclusion": "success",
+      "js_pass": 5,
+      "js_fail": 0,
+      "python_checkpoint": "PASS"
+    },
+    "five_source_candidate_qa_files_verified_in_scoped_overlay": true,
+    "real_owner_turn_tested": false,
+    "canonical_saved_story_changed": false,
+    "production_journal_changed": false,
+    "status": "QA_synthetic_transport_and_snapshot_validated_not_production_turn"
+  }
 }

@@ -135,3 +135,23 @@ test('documentary artifacts are inventoried, linked and independent of story fil
  assert.ok(docs.includes('CHATGPT_ONLY_HANDOFF_2026-11-22.md'));
  assert.ok(tests.includes('chat_closeout_branch_audit.test.mjs'));
 });
+
+
+test('independent synthetic QA distinguishes 51 baseline failures from focused PASS',()=>{
+ const qa=data.external_connector_synthetic_qa;
+ assert.equal(qa.original_qa_pr,156);
+ assert.equal(qa.original_qa_closed_without_merge,true);
+ assert.equal(qa.original_qa_full_baseline_ci.conclusion,'failure');
+ assert.equal(qa.original_qa_full_baseline_ci.fixed_turn_nine_invariants_failed,51);
+ assert.equal(qa.scoped_qa_overlay_pr,157);
+ assert.notEqual(qa.original_qa_head,qa.scoped_overlay_head);
+ assert.equal(qa.scoped_actions.run,45086079166);
+ assert.equal(qa.scoped_actions.conclusion,'success');
+ assert.equal(qa.scoped_actions.js_pass,5);
+ assert.equal(qa.scoped_actions.js_fail,0);
+ assert.equal(qa.scoped_actions.python_checkpoint,'PASS');
+ assert.equal(qa.five_source_candidate_qa_files_verified_in_scoped_overlay,true);
+ assert.equal(qa.real_owner_turn_tested,false);
+ assert.equal(qa.canonical_saved_story_changed,false);
+ assert.equal(qa.production_journal_changed,false);
+});
