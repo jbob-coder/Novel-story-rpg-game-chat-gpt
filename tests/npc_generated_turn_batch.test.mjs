@@ -511,3 +511,95 @@ test('narrator original-initiative assessment turn 02 follows verified first-tur
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Turn 03 probes a frequent narrative-autonomy failure mode: inventing work
+// merely because a turn elapsed. No actor received a new order, encounter,
+// observation or delivery during turns 01/02. Deliberate inactivity is a
+// legitimate authored outcome, not seven secret routine executions.
+export function replayNarratorThirtyTurnReviewThroughStep03(){
+ const second=replayNarratorThirtyTurnReviewThroughStep02();
+ assert.equal(second.snapshotHash,
+  '62c42ceb4eee19542726016c51e06b24f7aba88127d8c2463da210141afa1081',
+  'Step 03 needs the exact verified decoded Step 02 checkpoint');
+ const prior=second.snapshot,original=JSON.stringify(prior);
+ const reasons={
+  'NPC-001':'Lena already categorized the old route and maintenance reports. No present dispatch message or new departure instruction justifies repeating that action.',
+  'NPC-002':'Sora closed her prior equipment inspection. Without a new fault observation, assignment or source, she does not stage another maintenance action.',
+  'NPC-003':'Darius has closed the previously delivered parcel in his own plan. No new paid job or recipient is known, so inventing a new delivery would violate continuity.',
+  'NPC-004':'Elena is still travelling with her completed USB illustration and already chose what to explain. No verified classroom arrival or teacher interaction has occurred.',
+  'NPC-005':'Rosa already noted that the repaired clock needs returning. There is no confirmed visit or availability of the neighbor, so another reminder would merely repeat her last decision.',
+  'NPC-006':'Noah already refined a question about uncertain parts. Without actual customer details or supplier information, another reformulation would add no grounded progress.',
+  'NPC-007':'Mara previous cafe closing did not establish an ongoing morning shift, new customer or register problem; she has no justified new task in this interval.'
+ };
+ const batch=prepareNPCIntentionRequests({
+  snapshot:prior,actorIds:Object.keys(reasons),elapsedDays:0,
+  elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const choices=batch.requests.map(request=>({
+  request,proposal:{actorId:request.actorId,decision:'abstain',
+   reasoning:reasons[request.actorId]}
+ }));
+ for(const item of choices){
+  assert.equal(item.request.checkpoint.completedTurn,11);
+  if(['NPC-001','NPC-003','NPC-004','NPC-005','NPC-006'].includes(item.request.actorId)){
+   const own=item.request.evidence.previousResult?.eventId;
+   assert.ok(own,'Recent actor activity must remain in its own history');
+   assert.ok(item.request.evidence.knownEvents.some(e=>e.id===own),
+    'Previous action cannot be forgotten in third-turn request');
+  }
+ }
+ const third=stageReviewedNPCIntentionTurn({
+  snapshot:prior,observedHead:head,
+  turn:{...turn('narrator-30-step-03'),elapsed_minutes:10,
+   intent:'[ISOLATED EVALUATION] Jack supplies no information or offscreen instructions.',
+   outcome:'Ten more fictional minutes pass without a new reported cause for offscreen activity.',
+   narration_messages:['[ISOLATED EVALUATION] No private NPC facts become player-visible.']},
+  choices});
+ assert.equal(verifyNarrativeSnapshot(third),true);
+ assert.equal(third.manifest.last_completed_turn,12);
+ assert.equal(third.manifest.last_event_sequence,38,
+  'One player-placeholder event, no involuntary NPC result');
+ assert.deepEqual(third.npcTurnReview.actedActorIds,[]);
+ assert.deepEqual(third.npcTurnReview.abstainedActorIds,Object.keys(reasons));
+ const recovered=decodeFiveFiles(encodeFiveFiles(third),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ assert.deepEqual(recovered.state.world.actors,prior.state.world.actors,
+  'Inactivity must not silently modify any NPC plan or memory');
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+30);
+ const fresh=prepareNPCIntentionRequests({
+  snapshot:recovered,actorIds:['NPC-006'],elapsedDays:0,
+  elapsedMinutes:10,nextPeriod:'morning'}).requests[0];
+ assert.notDeepEqual(fresh.checkpoint,
+  batch.requests.find(x=>x.actorId==='NPC-006').checkpoint,
+  'Even an inactive interval has a new checkpoint');
+ assert.equal(fresh.evidence.previousResult.eventId,
+  batch.requests.find(x=>x.actorId==='NPC-006').evidence.previousResult.eventId,
+  'An abstention must not replace the last genuine NPC result');
+ assert.equal(JSON.stringify(prior),original);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,choices,snapshotHash,secondHash:second.snapshotHash};
+}
+test('narrator original-initiative assessment turn 03 permits all actors to abstain without forgetting results',()=>{
+ const {snapshot,choices,snapshotHash,secondHash}=
+  replayNarratorThirtyTurnReviewThroughStep03();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_03 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:3,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:secondHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:[],abstained:choices.map(x=>x.proposal.actorId),
+  ungroundedRepeatedTasksAvoided:true,
+  allPriorActorStatesPreserved:true,
+  newNpcEvents:0,canonicalSaveWrites:0,
+  verifiedSnapshotHash:snapshotHash,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
