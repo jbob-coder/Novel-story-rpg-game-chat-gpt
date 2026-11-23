@@ -5,6 +5,7 @@
 - [docs/WORLD_BIBLE.md](../WORLD_BIBLE.md)
 - [game/STARTING_LOCATIONS.md](../../game/STARTING_LOCATIONS.md)
 - [Estado autoritativo del mundo](../../game/STATE.json)
+- **[D-062 — Mapa mínimo aprobado y expansión mediante eventos](MERIDIAN_BAY_MINIMAL_SPATIAL_POLICY_20261122.md)**
 - [Meridian Bay Phase 1: integración y mapa de conexiones en revisión](MERIDIAN_BAY_PHASE1.md)
 - [Admisión independiente del mundo y estado mutable de lugares](WORLD_ADMISSION_AND_LOCATION_STATE.md)
 - [Fase 2: necesidades de NPC y trabajo establecido](MERIDIAN_BAY_PHASE2_NPC_WORK.md)

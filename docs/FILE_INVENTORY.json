@@ -69,7 +69,8 @@
       "docs/SCENE_CRAFT.md",
       "docs/STORY_REVISIONS.md",
       "docs/05_persistence/CONTEXT_MANAGEMENT.md",
-      "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md"
+      "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md",
+      "docs/01_world/MERIDIAN_BAY_MINIMAL_SPATIAL_POLICY_20261122.md"
     ],
     "tracking": [
       "docs/STATUS.md",
