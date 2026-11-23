@@ -22,3 +22,4 @@
 - [Lote 11: referencia fijada de conocimientos NPC en el turno 9](NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md)
 - [Lote 12: migración revisada y sin escritura de la referencia de conocimientos NPC](NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md)
 - [Lote 13: admisión causal de NPC nuevos y recuperación histórica](NPC_ACTOR_INTRODUCTION_ADMITTED_20261122.md)
+- [Continuaciones causales abiertas entre NPC y acciones generales (revisión)](NPC_OPEN_CAUSAL_CONTINUATIONS_20261122.md)
