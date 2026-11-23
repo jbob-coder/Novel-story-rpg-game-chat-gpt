@@ -16,3 +16,24 @@ The result is an **in-memory staged checkpoint** that is validated through the e
 ### Important limit
 
 The model-side text in automated CI remains editorially supplied fixtures. The stage wrapper proves safe composition and causal persistence, **not** that a model autonomously selects convincing actions or that text-level checks detect semantic paraphrase leaks. Evaluating independent long-horizon decision quality requires a separate live narrator review on representative scenes. Until then the PR must not be called a complete NPC autonomy system.
+
+
+### Exploratory model-narrator scene — authored from the frozen CH-000 turn-9 evidence
+
+This review uses **seven original, actor-specific proposals written by the ChatGPT narrator after inspecting the actual turn-9 saved actor registry and history**. These are not the canned policy variants from the 30-turn deterministic replay. They are then **frozen as an explicit test corpus** in \`tests/npc_generated_turn_batch.test.mjs\`, because CI cannot call a live model. A second turn is authored from the recovered outcome for Noah; requests from the old checkpoint must never be reused.
+
+The authored initial choices are:
+
+| Actor | Grounding and selected behavior | Quality assessment |
+| --- | --- | --- |
+| Lena (NPC-001) | The recorded route delay belongs to the earlier evening; **abstain** from inventing a new morning dispatch. | Time-bound evidence respected; no blanket routine replay. |
+| Sora (NPC-002) | Inspection EV-000012 was closed as an unresolved equipment fault; distinguish observations from hypotheses, with no new diagnosis or shift claim. | New work priority without a fictional technical discovery. |
+| Darius (NPC-003) | EV-000008 already delivered the documented parcel; **abstain**, despite the old generalized delivery goal. | Detects a real goal/result tension that a naive routine-first selector may overlook. |
+| Elena (NPC-004) | EV-000028 confirms departure, **not school arrival**; independently rehearse an explanation of the corrected artwork while traveling. | Preserves pending travel, backpack and USB; no invented classroom scene. |
+| Rosa (NPC-005) | EV-000029 confirms clock repaired and tested; plan return, not a second repair or unverified neighbor meeting. | Goal-driven and actor-known causal source; no forced encounter. |
+| Noah (NPC-006) | No previous owned event; voluntarily narrow parts-purchasing priorities, without assuming a sale, inventory count or supplier response. | Original initiative with no fabricated event cause. |
+| Mara (NPC-007) | Saved cafe closing belongs to a previous shift; **abstain** from inventing a new shift or payment. | Maintains chronological uncertainty and privacy. |
+
+After staging the first fictional turn and decoding all five files, Noah receives his new privately known event and authors a distinct follow-up: **postpone purchases until concrete parts requirements are checked**. This second action cites only the verified new event; Rosa and Elena abstain because the missing encounter/arrival evidence has not changed. Both steps are **in-memory QA**, never authorized live story turns. The test checks the unchanged original player, NPC attribution, exact private-text separation, causal links, current plan and original five canonical files.
+
+**Critical limitations (not a completion claim):** This is **one exploratory, two-turn scene**, not a blind, independent 30-turn quality benchmark. The author and reviewer are the same assistant; alternatives are manually inspected, not sampled from a production model connector. The JS validators mostly check provenance and structure, **not semantic truth**; a grammatically plausible but contradictory proposal may pass until a narrator rejects it. Semantic paraphrase leaks are likewise not fully caught. The prior 30-turn run remains a *deterministic structural stress test*. Until distinct, incrementally generated long-horizon model scenes and independent semantic review are available, keep PR #193 in draft.
