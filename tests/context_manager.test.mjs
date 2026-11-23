@@ -397,3 +397,15 @@ test('duplicate full-name alert is scoped to the referenced name, not an unrelat
  // Explicit ID still identifies the selected person regardless of their name.
  assert.deepEqual(selectNPCMemoryCandidates({state,query:'NPC-005'}),['NPC-005']);
 });
+
+test('foundational saved NPC memory has no fabricated revisions',()=>{
+ const snapshot=initial();
+ const actor=snapshot.state.world.actors['NPC-005'];
+ const fact=actor.knowledge[0];
+ const check=checkNPCFactEvidence({snapshot,actorId:'NPC-005',fact});
+ assert.equal(check.statementRevisionStatus,'not_marked_revised');
+ assert.deepEqual(check.revisionEventIds,[]);
+ assert.equal(check.truthStatus,'not_assessed');
+ assert.equal(Object.hasOwn(buildContextPacket({snapshot,audience:'reader_visible'}),
+   'npcKnowledgeChecks'),false);
+});

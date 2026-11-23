@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {saveLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
+import {saveLivingWorldTurn,stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {savePaths, decodeFiveFiles, encodeFiveFiles} from '../tools/save_transaction.mjs';
 import {buildContextPacket, resolvePrivateContextReference,
   checkNPCFactEvidence} from '../tools/context_manager.mjs';
@@ -238,4 +238,73 @@ test('saved hearsay proves hearing a statement, not the alleged outside truth',a
    fact:fictionalFact});
  assert.equal(another.status,'not_recorded');
  assert.equal(another.mayAssumeKnown,false);
+});
+
+
+test('synthetic corrected belief survives chapter recovery without deleting earlier memory',async()=>{
+ const {afterDecision}=await storyRehearsal();
+ const before=JSON.stringify(afterDecision);
+ const previous=afterDecision.state.world.actors[actorId].knowledge.find(x=>
+   x.includes(fictionalFact));
+ assert.ok(previous?.includes('EV-000031'));
+ const revisedFact='SYNTHETIC QA: The clock owner now requests handover today.';
+ const changedPlan='SYNTHETIC QA ONLY: arrange handover today after new owner request.';
+ const proposed={actor_id:actorId,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Rosa receives a newer request directly from the clock owner.',
+   outcome:'SYNTHETIC QA PRIVATE: Rosa updates her plan without losing the earlier request.',
+   changes:[{field:'knowledge',fact:revisedFact,
+     source:'SYNTHETIC QA: direct owner update',
+     revision_of:previous,
+     revision_reason:'The owner directly changed their preferred handover time.'},
+   {field:'independent_plan',
+     before:afterDecision.state.world.actors[actorId].independent_plan,
+     after:changedPlan}]};
+ const staged=stageLivingWorldTurn({snapshot:afterDecision,
+   turn:makeTurn(3),observedHead:'a'.repeat(40),npcResolutions:[proposed]});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(JSON.stringify(afterDecision),before);
+ assert.equal(staged.manifest.last_completed_turn,12);
+ assert.equal(staged.manifest.last_event_id,'EV-000035');
+ const oldCheck=checkNPCFactEvidence({snapshot:staged,actorId,fact:fictionalFact});
+ assert.equal(oldCheck.status,'recorded_event');
+ assert.equal(oldCheck.mayAssumeKnown,true);
+ assert.equal(oldCheck.statementRevisionStatus,'explicitly_revised');
+ assert.deepEqual(oldCheck.revisionEventIds,['EV-000035']);
+ assert.equal(oldCheck.latestLinkedStatementForReview,revisedFact);
+ const newCheck=checkNPCFactEvidence({snapshot:staged,actorId,fact:revisedFact});
+ assert.equal(newCheck.status,'recorded_event');
+ assert.equal(newCheck.statementRevisionStatus,'not_marked_revised');
+ const ignorant=checkNPCFactEvidence({snapshot:staged,
+   actorId:'NPC-006',fact:revisedFact});
+ assert.equal(ignorant.mayAssumeKnown,false);
+ assert.equal(ignorant.status,'not_recorded');
+ assert.ok(staged.state.world.actors[actorId].knowledge.includes(previous));
+ assert.ok(staged.state.world.actors[actorId].knowledge.some(x=>x.includes(revisedFact)));
+ const nextPlan={plan_version:1,chapter_id:'CH-001',
+   title:'SYNTHETIC QA: revised knowledge continuity',status:'prepared',
+   source_commit:'a'.repeat(40),
+   purpose:'SYNTHETIC QA: preserve a later correction and the initial claim.',
+   time_context:{day:staged.state.time.day,period:staged.state.time.time_of_day,
+     constraints:['No new canon or unreviewed player action.']},
+   location_ids:[staged.state.player.location_id],npc_ids:[actorId],
+   thread_ids:staged.state.narrative_threads.filter(x=>x.status==='open').map(x=>x.id),
+   hidden_plan_ids:[],possible_developments:['Review synthetic correction evidence.'],
+   exit_conditions:['Synthetic continuity review ends.']};
+ const closed=stageChapterTransition({snapshot:{...staged,
+     sourceFiles:encodeFiveFiles(staged)},nextPlan,observedHead:'a'.repeat(40),
+   reason:'Synthetic chapter transition after a revised private claim.',reviewed:true});
+ const reloaded=decodeFiveFiles({...encodeFiveFiles(staged),
+   ...encodeFiveFiles(closed)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(reloaded),true);
+ assert.deepEqual(checkNPCFactEvidence({snapshot:reloaded,
+   actorId,fact:fictionalFact}).revisionEventIds,['EV-000035']);
+ assert.deepEqual(checkNPCFactEvidence({snapshot:reloaded,
+   actorId,fact:fictionalFact}).latestLinkedStatementForReview,revisedFact);
+ assert.equal(reloaded.state.world.actors[actorId].independent_plan,changedPlan);
+ assert.ok(reloaded.state.world.actors[actorId].knowledge.includes(previous));
+ assert.ok(!reloaded.chapter.includes(revisedFact));
+ const safe=buildContextPacket({snapshot:reloaded,audience:'reader_visible'});
+ assert.equal(safe.npcKnowledgeChecks,undefined);
+ for(const [path,text] of Object.entries(originals))
+   assert.equal(readFileSync(resolve(root,path),'utf8'),text);
 });

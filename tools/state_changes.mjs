@@ -20,6 +20,7 @@ const itemAt = (actor, id) => (actor.inventory ?? []).find(item => item.id === i
 const knownLocation = (state, id) => typeof id === 'string' && Object.hasOwn(state.world.locations, id);
 const stringList = value => Array.isArray(value) && value.every(x => typeof x === 'string' && x.trim()) && new Set(value).size === value.length;
 const actorIds = state => new Set([state.player.id, ...Object.keys(state.world.actors)]);
+const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
 
 function applyStateChangesUnchecked(state, record, changes = []) {
   requireFact(Array.isArray(changes) && changes.length <= 40, 'State changes must be a bounded array');
@@ -80,8 +81,22 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       actor.knowledge ??= [];
       const entry = `${change.fact} (source: ${change.source}; ${record.id})`;
       requireFact(!actor.knowledge.includes(entry), 'Duplicate knowledge');
+      const revision=change.revision_of!==undefined||change.revision_reason!==undefined;
+      if(revision){
+        requireFact(actor.knowledge.includes(change.revision_of)&&change.revision_of!==entry,
+          'Knowledge revision must cite an earlier exact actor-owned memory');
+        requireFact(typeof change.revision_reason==='string'&&
+          change.revision_reason.trim().length>=10,
+          'Knowledge revision requires a causal reason');
+        const priorEvent=sourcedKnowledge.exec(change.revision_of)?.[3];
+        requireFact(!priorEvent||Number(priorEvent.slice(3))<Number(record.id.slice(3)),
+          'Knowledge revision cannot cite a same-event or future memory');
+      }
       actor.knowledge.push(entry);
-      record.state_changes.push({actor_id: actorId, field, fact: change.fact, source: change.source, after: entry});
+      record.state_changes.push({actor_id: actorId, field, fact: change.fact,
+        source: change.source, after: entry,
+        ...(revision?{revision_of:change.revision_of,
+          revision_reason:change.revision_reason}: {})});
     } else if (field === 'resources') {
       requireFact(change.before && change.after && typeof change.before === 'object' &&
         typeof change.after === 'object' && !Array.isArray(change.before) &&
@@ -234,9 +249,8 @@ function verifyStateChanges(snapshot) {
       // The world-level history is keyed by location rather than event actor;
       // different people may cause consecutive changes to the same building.
       if(field==='location_state')continue;
-      // Creation is validated against the historic actor roster and private
-      // introduction event by verifyNPCIntroductionHistory(), not as a change
-      // to an already-existing actor's field.
+      // Creation is validated separately against reviewed introduction events
+      // and the frozen initial roster, not as an existing actor field edit.
       if(field==='npc_introduction')continue;
       if(field==='plans'){
         requireFact(change.actor_id!==state.player.id,'Only NPC plans may change');
@@ -265,6 +279,28 @@ function verifyStateChanges(snapshot) {
       if(field==='resources')resourceContext.set(change.actor_id,copy(change.after));
       if (field === 'knowledge') {
         requireFact((actor.knowledge ?? []).includes(change.after), 'Recorded knowledge not retained');
+        requireFact(typeof change.fact==='string'&&typeof change.source==='string'&&
+          change.after===`${change.fact} (source: ${change.source}; ${event.id})`,
+          'Recorded knowledge provenance differs from source event');
+        const revises=Object.hasOwn(change,'revision_of')||
+          Object.hasOwn(change,'revision_reason');
+        if(revises){
+          requireFact(typeof change.revision_of==='string'&&
+            (actor.knowledge??[]).includes(change.revision_of)&&
+            change.revision_of!==change.after&&
+            typeof change.revision_reason==='string'&&
+            change.revision_reason.trim().length>=10,
+            'Recorded knowledge revision lacks prior actor memory or causal reason');
+          const priorId=sourcedKnowledge.exec(change.revision_of)?.[3];
+          if(priorId){
+            const prior=events.find(e=>e.id===priorId);
+            requireFact(prior&&Number(priorId.slice(3))<Number(event.id.slice(3))&&
+              prior.actor_ids?.[0]===change.actor_id&&prior.state_changes?.some(c=>
+                c.actor_id===change.actor_id&&c.field==='knowledge'&&
+                c.after===change.revision_of),
+              'Knowledge revision requires earlier actor-owned event provenance');
+          }
+        }
         continue;
       }
       const key = `${change.actor_id}|${field}|${change.item_id ?? change.target_actor_id ?? ''}`;

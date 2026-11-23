@@ -47,3 +47,60 @@ test('stale NPC repair change blocks the entire batch',()=>{
  assert.equal(JSON.stringify(s.state.world.actors['NPC-004']),before);
  assert.equal(event.state_changes.length,0);
 });
+
+
+test('later NPC knowledge revision retains the original and links newer evidence',()=>{
+ const s=make();
+ const original='SYNTHETIC: the station is open today.';
+ const n=add(s,'NPC-004',22);
+ applyStateChanges(s.state,n,[{field:'knowledge',fact:original,source:'direct visit'}]);
+ const old=s.state.world.actors['NPC-004'].knowledge.at(-1);
+ const newer=add(s,'NPC-004',23);
+ applyStateChanges(s.state,newer,[{field:'knowledge',
+   fact:'SYNTHETIC: the station has now closed.',source:'second direct visit',
+   revision_of:old,revision_reason:'The NPC saw the new closure notice.'}]);
+ assert.equal(verifyStateChanges(s),true);
+ assert.equal(s.state.world.actors['NPC-004'].knowledge.length,2);
+ assert.ok(s.state.world.actors['NPC-004'].knowledge.includes(old));
+ const revision=newer.state_changes.at(-1);
+ assert.equal(revision.revision_of,old);
+ assert.equal(revision.revision_reason,'The NPC saw the new closure notice.');
+ assert.ok(revision.after.includes('station has now closed'));
+});
+
+test('knowledge revision blocks unknown and cross-actor earlier memories atomically',()=>{
+ const s=make(),e=add(s,'NPC-004',22),before=JSON.stringify(s.state);
+ assert.throws(()=>applyStateChanges(s.state,e,[{field:'knowledge',
+   fact:'SYNTHETIC: new station status',source:'direct observation',
+   revision_of:'A private statement belonging to someone else',
+   revision_reason:'Updated after independent observation.'}]),/earlier exact actor-owned memory/);
+ assert.equal(JSON.stringify(s.state),before);
+ assert.deepEqual(e.state_changes,[]);
+});
+
+test('knowledge revision readback refuses fabricated or future source events',()=>{
+ const s=make(),e=add(s,'NPC-004',22);
+ applyStateChanges(s.state,e,[{field:'knowledge',
+   fact:'SYNTHETIC: an old observed status',source:'recorded locally'}]);
+ const prior=s.state.world.actors['NPC-004'].knowledge.at(-1);
+ const n=add(s,'NPC-004',23);
+ applyStateChanges(s.state,n,[{field:'knowledge',
+   fact:'SYNTHETIC: a changed observed status',source:'observed later',
+   revision_of:prior,revision_reason:'The NPC returned to the site later.'}]);
+ assert.equal(verifyStateChanges(s),true);
+ n.state_changes.at(-1).revision_of=
+  'FORGED (source: observation; EV-999999)';
+ assert.throws(()=>verifyStateChanges(s),/lacks prior actor memory|earlier actor-owned/);
+});
+
+test('knowledge revision cannot cite a same-event belief or omit review reason',()=>{
+ const s=make(),e=add(s,'NPC-004',22);
+ applyStateChanges(s.state,e,[{field:'knowledge',
+   fact:'SYNTHETIC: remembered timetable',source:'observed earlier'}]);
+ const old=s.state.world.actors['NPC-004'].knowledge.at(-1);
+ const next=add(s,'NPC-004',23);
+ assert.throws(()=>applyStateChanges(s.state,next,[{field:'knowledge',
+   fact:'SYNTHETIC: corrected timetable',source:'observed now',
+   revision_of:old}]),/causal reason/);
+ assert.deepEqual(next.state_changes,[]);
+});
