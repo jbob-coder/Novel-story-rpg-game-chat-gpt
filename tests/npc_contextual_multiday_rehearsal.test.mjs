@@ -169,3 +169,166 @@ test('staging is explicit; no accepted proposal creates an unattended event or h
  assert.equal(JSON.stringify(start),before);
  assert.equal(start.manifest.last_completed_turn,9);
 });
+
+
+// Thirty-turn *structural* stress rehearsal. The callable below is a controlled
+// test double, NOT an LLM and NOT evidence of high-quality authored initiative.
+// Critically, each proposal is calculated from the newly decoded checkpoint,
+// not from a prewritten 30-step event ledger or an old actor context.
+const thirtyActorCycle=[
+ 'NPC-006','NPC-005','NPC-003','NPC-001','NPC-002','NPC-004','NPC-007'
+];
+const thirtyPolicy={
+ 'NPC-006':[
+  'Audit the existing workshop task notes before considering any new purchase.',
+  'Separate uncertain parts requirements from those already described in the records.',
+  'Reconsider the ordering priority without assuming a supplier or customer has replied.'
+ ],
+ 'NPC-005':[
+  'Keep the already repaired alarm clock distinct from unfinished household work.',
+  'Prepare an ordinary handover reminder without assuming the neighbor is present.',
+  'Review whether returning the clock still needs actual contact with the neighbor.'
+ ],
+ 'NPC-003':[
+  'Check the known parcel obligation without inventing a recipient address.',
+  'Keep the delivery deadline visible while the precise destination remains uncertain.',
+  'Reassess whether a supported next route exists before making a delivery claim.'
+ ],
+ 'NPC-001':[
+  'Separate the recorded transit display fault from unverified service delays.',
+  'Reconsider which existing staff report is needed before changing dispatch guidance.',
+  'Keep a private dispatch priority note without claiming a new incident.'
+ ],
+ 'NPC-002':[
+  'Preserve the unresolved inspection observations in the maintenance notes.',
+  'Reconsider the evidence needed before identifying a technical root cause.',
+  'Review the existing work order rather than asserting a completed new inspection.'
+ ]
+};
+const thirtyTurn=i=>({
+ key:'SYNTHETIC-30-TURN-NPC-CONTINUITY-'+String(i).padStart(2,'0'),
+ intent:'[SYNTHETIC QA] No player-initiated NPC task.',
+ outcome:'A short fictional test interval passes without releasing private NPC information.',
+ player_text:'[SYNTHETIC QA] Jack makes no offscreen NPC decisions.',
+ narration_messages:['[SYNTHETIC QA] No confidential NPC outcome is disclosed.'],
+ elapsed_days:0,elapsed_minutes:10,next_time_of_day:'morning'
+});
+function fixtureForCurrentActor(request){
+ const {actorId,evidence}=request;
+ const options=thirtyPolicy[actorId];
+ // No established current school arrival or fresh cafe shift: do not invent one.
+ if(!options)return {proposal:{actorId,decision:'abstain',
+  reasoning:'No verified present opportunity is available; earlier travel or a past shift cannot establish an unseen new encounter.'},
+  outcome:null,changes:[]};
+ const priorPlan=evidence.independentPlan;
+ const currentIndex=options.indexOf(priorPlan);
+ const nextPlan=options[(currentIndex+1)%options.length];
+ const prior=evidence.previousResult?.eventId??null;
+ const source=prior&&evidence.knownEventIds.includes(prior)?[prior]:[];
+ const intention=nextPlan+' The actor treats the attempt as a private current-step choice, not a guaranteed result.';
+ const reasoning='This test-double choice follows the actor own recorded goal and current plan, and does not infer another person location, a sale, an encounter or a successful delivery.';
+ return {proposal:{actorId,decision:'act',intention,reasoning,sourceEventIds:source},
+  outcome:'SYNTHETIC PRIVATE: The actor records a narrower next priority without establishing any offscreen meeting, sale or delivery.',
+  changes:[{field:'independent_plan',before:priorPlan,after:nextPlan}]};
+}
+
+function thirtyTurnRehearsal(){
+ let snapshot=baseline();
+ const originalPlayer=JSON.stringify(snapshot.state.player);
+ const initialBytes=Object.fromEntries(Object.entries(originalFiles));
+ const trace=[],priorRequests=new Map();
+ let freshFollowups=0,reviewedActions=0,abstentions=0,planChanges=0;
+ for(let index=1;index<=30;index++){
+  const actorId=thirtyActorCycle[(index-1)%thirtyActorCycle.length];
+  const request=prepareNPCIntentionRequests({snapshot,actorIds:[actorId],
+   elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning',limit:1}).requests[0];
+  assert.ok(request,'Each selected actor should have a saved goal');
+  assert.equal(request.actorId,actorId);
+  assert.equal(request.checkpoint.completedTurn,9+index-1);
+  assert.ok(request.evidence.knownEvents.every(e=>
+   request.evidence.knownEventIds.includes(e.id)));
+  assert.ok(request.evidence.knownEvents.length<=8);
+  const previous=priorRequests.get(actorId);
+  if(previous)assert.notDeepEqual(request.checkpoint,previous.checkpoint);
+  if(request.evidence.previousResult){
+   const priorId=request.evidence.previousResult.eventId;
+   assert.ok(request.evidence.knownEventIds.includes(priorId));
+   assert.ok(request.evidence.knownEvents.some(x=>x.id===priorId));
+   freshFollowups++;
+  }
+  const legacy=recommendNPCIntentReviews({state:snapshot.state,
+   actorIds:[actorId],elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+  assert.ok(legacy.length<=1);
+  const chosen=fixtureForCurrentActor(request);
+  const isAction=chosen.proposal.decision==='act';
+  const choices=[{request,proposal:chosen.proposal,
+   ...(isAction?{reviewed:true,outcome:chosen.outcome,changes:chosen.changes}:{})}];
+  const eventCountBefore=snapshot.manifest.last_event_sequence;
+  const originalSnapshot=JSON.stringify(snapshot);
+  const staged=stageReviewedNPCIntentionTurn({
+   snapshot,observedHead:observedHead,turn:thirtyTurn(index),choices});
+  assert.equal(verifyNarrativeSnapshot(staged),true);
+  assert.equal(staged.manifest.last_completed_turn,9+index);
+  assert.equal(staged.manifest.last_event_sequence-eventCountBefore,
+   isAction?2:1,'Only player-placeholder event and optionally NPC result');
+  assert.equal(staged.npcTurnReview.createdCanonicalSave,false);
+  assert.equal(JSON.stringify(snapshot),originalSnapshot);
+  assert.equal(JSON.stringify(staged.state.player),originalPlayer);
+  if(isAction){
+   reviewedActions++;planChanges+=chosen.changes.length;
+   const event=staged.events.events.at(-1);
+   assert.equal(event.kind,'independent_actor');
+   assert.deepEqual(event.actor_ids,[actorId]);
+   assert.deepEqual(event.caused_by,chosen.proposal.sourceEventIds);
+   assert.equal(staged.state.world.actors[actorId].independent_plan,
+    chosen.changes[0].after);
+   assert.ok(!staged.chapter.includes(chosen.outcome));
+   assert.ok(staged.transcript.entries.every(x=>!x.text.includes(chosen.outcome)));
+  }else{
+   abstentions++;
+   assert.deepEqual(staged.npcTurnReview.abstainedActorIds,[actorId]);
+  }
+  const reread=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+  assert.equal(verifyNarrativeSnapshot(reread),true);
+  assert.equal(JSON.stringify(reread.state.player),originalPlayer);
+  trace.push({turn:index,actorId,decision:chosen.proposal.decision,
+   verifiedPreviousResult:request.evidence.previousResult?.eventId??null,
+   sourceIds:chosen.proposal.sourceEventIds??[],
+   beforePlan:request.evidence.independentPlan,
+   afterPlan:reread.state.world.actors[actorId].independent_plan,
+   baselineSuggestions:legacy.length,
+   privateResultSaved:isAction});
+  priorRequests.set(actorId,request);
+  snapshot=reread;
+ }
+ for(const [path,bytes] of Object.entries(initialBytes)){
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ }
+ return {snapshot,trace,reviewedActions,abstentions,planChanges,freshFollowups};
+}
+
+test('thirty consecutive contextual QA turns replay actual saved results without writing Jack save',()=>{
+ const x=thirtyTurnRehearsal();
+ assert.equal(x.trace.length,30);
+ assert.equal(x.snapshot.manifest.last_completed_turn,39);
+ assert.equal(x.snapshot.state.time.day,-29);
+ assert.equal(x.snapshot.state.time.elapsed_minutes_since_opening_approx,
+  baseline().state.time.elapsed_minutes_since_opening_approx+300);
+ assert.ok(x.reviewedActions>=20);
+ assert.ok(x.abstentions>=6);
+ assert.equal(x.reviewedActions+x.abstentions,30);
+ assert.equal(x.planChanges,x.reviewedActions);
+ assert.ok(x.freshFollowups>=10);
+ assert.equal(new Set(x.trace.filter(row=>row.privateResultSaved)
+  .map(row=>row.actorId)).size,5);
+ // Count is a replay/consistency result; do not equate templates with autonomy.
+ console.log('NPC_30_TURN_SYNTHETIC_QA '+JSON.stringify({
+  syntheticTurns:30,reviewedActions:x.reviewedActions,
+  abstentions:x.abstentions,planChanges:x.planChanges,
+  actorOwnedFollowups:x.freshFollowups,
+  currentContextReadEveryTurn:true,reloadedAfterEveryTurn:true,
+  originalPlayerTurns:0,canonicalSaveWrites:0,
+  automaticModelAuthoredIntentions:0,
+  narratorAutonomyQualityEstablished:false
+ }));
+});
