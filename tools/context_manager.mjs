@@ -176,7 +176,38 @@ function linkedStatementRevision(snapshot,actorId,entry){
     ...(terminals.length>8?{alternativesTruncated:true}: {})};
 }
 
- // Exact recorded knowledge proves an actor holds a statement, never its truth.
+ 
+// These are shared-EV pointers, not permission to infer that an NPC learned
+// every thread summary or that the player may read a private thread.
+function threadReferencesAtEvent(snapshot,eventId){
+  return snapshot.state.narrative_threads.flatMap(thread=>thread.history
+    .filter(step=>step.event_id===eventId).map(step=>({
+      threadId:thread.id,threadPath:'game/STATE.json',
+      sourceEventId:eventId,threadOperation:step.kind,
+      association:'shared_event_pointer_only'
+    })));
+}
+function threadEventEvidence(snapshot,thread,event,step){
+  const actorId=thread.owner_actor_id;
+  const owner=actorId===snapshot.state.player.id?snapshot.state.player:
+    snapshot.state.world.actors[actorId];
+  const exactSavedChanges=(event.state_changes??[]).filter(change=>
+    change.field==='knowledge'&&change.actor_id===actorId&&
+    typeof change.fact==='string'&&typeof change.source==='string'&&
+    change.after===change.fact+' (source: '+change.source+'; '+event.id+')'&&
+    (owner.knowledge??[]).includes(change.after)).length;
+  return {id:step.event_id,kind:step.kind,
+    path:'chapters/'+event.chapter_id+'.events.json',
+    threadVisibility:step.visibility,
+    ownerActorInEvent:(event.actor_ids??[]).includes(actorId),
+    ownerListedInKnownTo:(event.known_to??[]).includes(actorId),
+    ownerRecordedKnowledgeChangesInEvent:exactSavedChanges,
+    ownerKnowledgeEvidence:exactSavedChanges>0?
+      'actor_owned_recorded_change_in_same_event':'no_actor_owned_change_in_event',
+    playerDisclosureAuthorized:false};
+}
+
+// Exact recorded knowledge proves an actor holds a statement, never its truth.
 function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const actor=snapshot.state.world.actors[actorId];
   const entry=(actor.knowledge??[]).find(value=>
@@ -197,6 +228,7 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
   return {...foundation,status:'recorded_event',
     mayAssumeKnown:true,sourceEventId:event.id,truthStatus:'not_assessed',
     eventPath:'chapters/'+event.chapter_id+'.events.json',
+    relatedThreadReferences:threadReferencesAtEvent(snapshot,event.id),
     ...linkedStatementRevision(snapshot,actorId,entry)};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */
@@ -371,7 +403,8 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     warnings:audience==='narrator_private'?
       ['Summaries and pointers are not canon. Check original references before resolving actions.',
        'Run the durable save-journal gate before advancing the story.',
-       'Private NPC plans/needs and events must not be copied into player-visible narration.']:
+       'Private NPC plans/needs and events must not be copied into player-visible narration.',
+       'THREAD visibility and known_to do not prove player disclosure or actor knowledge.']:
       ['Transcript pointers are not permission to disclose historical private narration.']};
 }
 
@@ -383,10 +416,8 @@ export function resolvePrivateContextReference({snapshot,referenceId}={}){
   if(thread){
     const byId=new Map(allEvents(snapshot).map(event=>[event.id,event]));
     return {classification:'narrator_private_only',kind:'thread',path:'game/STATE.json',
-      data:copy(thread),eventReferences:thread.history.map(change=>({
-        id:change.event_id,kind:change.kind,
-        path:'chapters/'+byId.get(change.event_id).chapter_id+'.events.json'
-      }))};
+      data:copy(thread),eventReferences:thread.history.map(change=>
+        threadEventEvidence(snapshot,thread,byId.get(change.event_id),change))};
   }
   const event=allEvents(snapshot).find(e=>e.id===referenceId);
   if(event)return {classification:'narrator_private_only',kind:'event',

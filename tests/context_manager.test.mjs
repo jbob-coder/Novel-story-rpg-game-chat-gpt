@@ -514,3 +514,80 @@ test('integrated duplicate-name ambiguity and private thread recall remain indep
  assert.equal(reader.npcAmbiguities,undefined);
  assert.ok(reader.references.every(x=>x.kind==='transcript'));
 });
+
+test('historical thread visibility never becomes evidence that Jack learned private event details',()=>{
+ const snapshot=initial(),before=JSON.stringify(snapshot);
+ const thread=resolvePrivateContextReference({snapshot,referenceId:'THREAD-000003'});
+ assert.equal(thread.classification,'narrator_private_only');
+ assert.equal(thread.kind,'thread');
+ const closing=thread.eventReferences.find(x=>x.id==='EV-000011');
+ assert.equal(closing.threadVisibility,'known');
+ assert.equal(closing.playerDisclosureAuthorized,false);
+ assert.equal(closing.ownerRecordedKnowledgeChangesInEvent,0);
+ assert.equal(closing.ownerKnowledgeEvidence,'no_actor_owned_change_in_event');
+ assert.equal(JSON.stringify(snapshot),before);
+ const visible=buildContextPacket({snapshot,query:'THREAD-000003 Mara',
+   audience:'reader_visible',maxReferences:15});
+ assert.ok(visible.references.every(x=>x.kind==='transcript'));
+ assert.equal(JSON.stringify(visible).includes('ownerKnowledgeEvidence'),false);
+ assert.equal(JSON.stringify(visible).includes('THREAD-000003'),false);
+});
+
+test('an NPC fact and a thread point to the same original EV without licensing disclosure',async()=>{
+ const {stageLivingWorldTurn}=await import('../tools/living_world_coordinator.mjs');
+ const snapshot=initial(),before=JSON.stringify(snapshot),actorId='NPC-002';
+ const fact='SYNTHETIC QA: Sora heard the equipment hum after closing.';
+ function draft(base,actor,key,changes,threadUpdate){
+  const eventId='EV-'+String(base.manifest.last_event_sequence+2).padStart(6,'0');
+  return stageLivingWorldTurn({snapshot:base,observedHead:'a'.repeat(40),
+   turn:{key:'synthetic-evidence-'+key,
+    intent:'SYNTHETIC QA: stationary and unplayed workshop interval.',
+    outcome:'SYNTHETIC QA: Jack is not informed.',
+    player_text:'SYNTHETIC QA INPUT — NOT AN OWNER ACTION',
+    narration_messages:['SYNTHETIC QA: quiet workshop interval.'],
+    elapsed_days:0,elapsed_minutes:15,
+    consequence_updates:[{...threadUpdate,event_id:eventId}]},
+   npcResolutions:[{actor_id:actor,reviewed:true,resolved:true,
+    causal_basis:'SYNTHETIC QA: a private NPC reviews a local equipment report.',
+    outcome:'SYNTHETIC QA PRIVATE: an actor-specific report is recorded.',
+    changes}]});
+ }
+ const first=draft(snapshot,actorId,'learn',
+   [{field:'knowledge',fact,source:'SYNTHETIC QA: heard directly'}],
+   {op:'open',summary:'SYNTHETIC QA: equipment noise is being investigated.',
+    visibility:'hidden',owner_actor_id:actorId,scope:'world',
+    question:'Which ordinary equipment noise is being investigated?'});
+ assert.equal(first.manifest.last_event_id,'EV-000031');
+ const opened=first.state.narrative_threads.at(-1);
+ const evidence=checkNPCFactEvidence({snapshot:first,actorId,fact});
+ assert.equal(evidence.status,'recorded_event');
+ assert.deepEqual(evidence.relatedThreadReferences,[{
+  threadId:opened.id,threadPath:'game/STATE.json',
+  sourceEventId:'EV-000031',threadOperation:'open',
+  association:'shared_event_pointer_only'
+ }]);
+ const initialThread=resolvePrivateContextReference({snapshot:first,referenceId:opened.id});
+ assert.equal(initialThread.eventReferences[0].ownerActorInEvent,true);
+ assert.equal(initialThread.eventReferences[0].ownerRecordedKnowledgeChangesInEvent,1);
+ assert.equal(initialThread.eventReferences[0].ownerKnowledgeEvidence,
+   'actor_owned_recorded_change_in_same_event');
+ assert.equal(initialThread.eventReferences[0].playerDisclosureAuthorized,false);
+ const second=draft(first,'NPC-007','other-actor',[],
+   {op:'develop',thread_id:opened.id,
+    summary:'SYNTHETIC QA: another NPC submitted an unresolved private report.',
+    visibility:'known'});
+ const thread=resolvePrivateContextReference({snapshot:second,referenceId:opened.id});
+ assert.deepEqual(thread.eventReferences.map(x=>x.id),['EV-000031','EV-000033']);
+ assert.equal(thread.eventReferences[1].ownerActorInEvent,false);
+ assert.equal(thread.eventReferences[1].ownerRecordedKnowledgeChangesInEvent,0);
+ assert.equal(thread.eventReferences[1].playerDisclosureAuthorized,false);
+ assert.equal(thread.eventReferences[1].threadVisibility,'known');
+ assert.equal(checkNPCFactEvidence({snapshot:second,actorId:'NPC-007',fact}).status,
+  'not_recorded');
+ const visible=buildContextPacket({snapshot:second,query:opened.id,
+   audience:'reader_visible',maxReferences:20});
+ assert.ok(visible.references.every(x=>x.kind==='transcript'));
+ assert.equal(JSON.stringify(visible).includes(opened.id),false);
+ assert.equal(JSON.stringify(visible).includes(fact),false);
+ assert.equal(JSON.stringify(snapshot),before);
+});
