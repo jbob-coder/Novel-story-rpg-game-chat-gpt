@@ -109,7 +109,7 @@ export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
 
 /** Produce one reviewed draft for the existing coordinator, never a story turn. */
 export function draftOpenNPCAction({snapshot,frame,elapsedMinutes=0,elapsedDays=0,
- nextPeriod=null,intention,reasoning,outcome,changes=[],reviewed=false}={}){
+ nextPeriod=null,intention,reasoning,outcome,sourceEventIds=[],changes=[],reviewed=false}={}){
  insist(reviewed===true,'Narrator review required for NPC action');
  insist(frame?.classification==='npc_private_open_frame_v1',
   'Private NPC frame required');
@@ -122,8 +122,15 @@ export function draftOpenNPCAction({snapshot,frame,elapsedMinutes=0,elapsedDays=
   'Stale NPC evidence: actor state or last resolved result changed');
  const causalBasis='Reviewed NPC intention: '+intention+' Evidence: '+reasoning;
  insist(prose(causalBasis,16,1200),'Causal explanation too long');
- if(frame.sourceEventId!==null)return draftReviewedNPCCausalContinuation({
-  snapshot,actorId:frame.actorId,sourceEventIds:[frame.sourceEventId],
+ // A previous event is context, not necessarily the cause of the next act.
+ // A continuation must explicitly cite actor-known evidence; independent
+ // initiatives may omit causal event links rather than manufacture them.
+ insist(Array.isArray(sourceEventIds)&&sourceEventIds.length<=3&&
+  sourceEventIds.every(id=>typeof id==='string'&&/^EV-\d{6,}$/.test(id))&&
+  new Set(sourceEventIds).size===sourceEventIds.length,
+  'NPC causal sources must be up to three distinct event IDs');
+ if(sourceEventIds.length)return draftReviewedNPCCausalContinuation({
+  snapshot,actorId:frame.actorId,sourceEventIds,
   reasoning:causalBasis,outcome,changes,reviewed:true
  });
  insist(prose(frame.goal??frame.independentPlan,6,700),
