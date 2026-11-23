@@ -186,6 +186,17 @@ function selectEntries(snapshot,audience){
       search: [event.id,event.kind,...(event.actor_ids??[]),event.intent??'',event.outcome??''].join(' '),
       preview:String(event.outcome??'')});
   }
+  if(audience==='narrator_private'){
+    const byId=new Map(allEvents(snapshot).map(event=>[event.id,event]));
+    for(const thread of snapshot.state.narrative_threads){
+      const last=thread.history.at(-1),event=byId.get(last.event_id);
+      result.push({id:thread.id,kind:'thread',chapterId:event.chapter_id,turn:event.turn,
+        path:'game/STATE.json',lastEventId:last.event_id,open:thread.status==='open',
+        search:[thread.id,thread.status,thread.scope,thread.owner_actor_id,
+          thread.question,...thread.history.map(h=>h.summary)].join(' '),
+        preview:thread.question});
+    }
+  }
   for(const entry of allTranscriptEntries(snapshot)){
     result.push({id:entry.id,kind:'transcript',chapterId:entry.chapter_id,turn:entry.turn,
       path:'chapters/'+entry.chapter_id+'.transcript.json',
@@ -198,7 +209,8 @@ function selectEntries(snapshot,audience){
   return result;
 }
 function rank(entry,queryTokens,nowTurn){
-  if(!queryTokens.length)return entry.kind==='event'?Math.max(0,20-(nowTurn-entry.turn)*2):0;
+  if(!queryTokens.length)return entry.kind==='thread'&&entry.open?18:
+    entry.kind==='event'?Math.max(0,20-(nowTurn-entry.turn)*2):0;
   const words=new Set(tokens(entry.search));
   const matched=queryTokens.reduce((sum,t)=>sum+(words.has(t)?1:0),0);
   return matched?matched*100+(entry.turn===null?0:Math.min(entry.turn,nowTurn)/1000):0;
@@ -251,6 +263,7 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
   const references=[...selected.values()].map(entry=>{
     const out={id:entry.id,kind:entry.kind,chapterId:entry.chapterId,
       turn:entry.turn,path:entry.path};
+    if(entry.kind==='thread')out.lastEventId=entry.lastEventId;
     if(remaining>0&&entry.preview){
       const excerpt=entry.preview.slice(0,Math.min(remaining,240));
       out.preview=excerpt;
@@ -284,6 +297,15 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
 export function resolvePrivateContextReference({snapshot,referenceId}={}){
   ensure(typeof referenceId==='string'&&referenceId.length>0,'Reference ID required');
   basis(snapshot);
+  const thread=snapshot.state.narrative_threads.find(t=>t.id===referenceId);
+  if(thread){
+    const byId=new Map(allEvents(snapshot).map(event=>[event.id,event]));
+    return {classification:'narrator_private_only',kind:'thread',path:'game/STATE.json',
+      data:copy(thread),eventReferences:thread.history.map(change=>({
+        id:change.event_id,kind:change.kind,
+        path:'chapters/'+byId.get(change.event_id).chapter_id+'.events.json'
+      }))};
+  }
   const event=allEvents(snapshot).find(e=>e.id===referenceId);
   if(event)return {classification:'narrator_private_only',kind:'event',
     path:'chapters/'+event.chapter_id+'.events.json',data:copy(event)};
