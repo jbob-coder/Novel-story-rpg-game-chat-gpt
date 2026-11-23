@@ -79,7 +79,8 @@ const plan=s=>({plan_version:1,chapter_id:'CH-001',
  time_context:{day:s.state.time.day,period:s.state.time.time_of_day,
   constraints:['Preserve existing NPC knowledge and player choice']},
  location_ids:[s.state.player.location_id],
- npc_ids:['NPC-003','NPC-006','NPC-008'],thread_ids:[],hidden_plan_ids:[],
+ npc_ids:['NPC-003','NPC-006',...(s.state.world.actors['NPC-008']?['NPC-008']:[])],
+ thread_ids:[],hidden_plan_ids:[],
  possible_developments:['Characters may decide later whether any report matters.'],
  exit_conditions:['The synthetic audit is completed.']});
 const close=s=>stageChapterTransition({
