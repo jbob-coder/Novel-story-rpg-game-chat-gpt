@@ -39,7 +39,11 @@ export function prepareNPCIntentionRequests({snapshot,actorIds=null,
     relationships:frame.relationships,
     commitments:frame.commitments,
     knowledge:frame.knowledge,
-    knownEventIds:own.evidence.knownEventIds
+    plans:own.evidence.plans,
+    // Semantic recall is essential: IDs alone do not tell a narrator what happened.
+    // Both the ID list and these short event records are actor-known only.
+    knownEventIds:own.evidence.knownEventIds,
+    knownEvents:own.evidence.knownEvents
    },
    instruction:'Decide from this actor own goals, context, knowledge and recent consequences what they might try now. The action can be novel, revised, delayed, or no action; do not reuse a stock menu. State a grounded motive, uncertainty, and only source events known to this NPC. Do not invent travel routes, business openings, other actors knowledge, success or the next turn outcome.',
    optionsFormat:'one original intention OR abstain, not a scripted future chain',
