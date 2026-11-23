@@ -78,3 +78,4 @@ These files already existed in the authoritative source and are listed here for 
 - [Integridad de la comparación M1/P1, QA y guardado (lote 11)](branch_m1p1_comparison_lot11.test.mjs).
 
 - [Verificación de custodia de PR #138, #140, #142, #146 y sus QA espejo](branch_cross_family_lot12.test.mjs).
+- [7 verificaciones finales de cierre, custodia de ramas y modo ChatGPT-only](chat_closeout_branch_audit.test.mjs).

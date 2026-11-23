@@ -84,3 +84,9 @@ Sin nuevas calles aprobadas, ni turnos jugados.
 - [Lote 12: migración de memoria NPC PR #138 y estudios Crosswater/M1/P1 #140, #142, #146](BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.md).
 - [Matriz por SHA de origen, QA y bloqueos de integración](BRANCH_CROSS_FAMILY_LOT_12_2026-11-22.json).
 No implica fusión ni continuidad narrativa.
+
+## Cierre de chat — 2026-11-22 (solo ChatGPT)
+
+- [Verificación final de PR #150/#152/#154, CI, integridad y prueba aislada de recuperación](BRANCH_CLOSEOUT_PR150_154_2026-11-22.md).
+- [Matriz de SHA, CI, fuentes y cinco archivos protegidos](BRANCH_CLOSEOUT_PR150_154_2026-11-22.json).
+- **[Entrega sin ampliaciones: estado, decisiones y reinicio en un chat nuevo](CHATGPT_ONLY_HANDOFF_2026-11-22.md).**
