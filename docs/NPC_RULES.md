@@ -79,3 +79,17 @@ el estado de conocimiento con la verdad objetiva. El NPC puede mentir, callar,
 malinterpretar, sospechar, inferir o cambiar de opinión si la situación lo
 justifica. No existen nuevas restricciones sobre sus acciones; los efectos
 persistentes requieren revisión causal y guardado.
+
+## Referencia de vida cotidiana y noticias (propuesta, no canon)
+
+Cuando un turno narrativo requiera contexto de barrio, trabajo, familia, noticias,
+rumores o consecuencias después del Día 0, consultar la
+[biblioteca de sucesos y noticias](01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md)
+**solo como fuente de candidatos editoriales**. No es un calendario, generador
+automático ni lista de eventos cumplidos. No es obligatorio insertar una noticia
+en cada escena. Primero comprobar estado guardado, tiempo ficticio, actor,
+motivo, fuente, audiencia y contradicciones con el canon. Una noticia puede
+ser falsa o rectificada: registrar la publicación por separado de la verdad
+alegada. Solo un evento adjudicado y guardado incorpora consecuencias al mundo.
+El material anterior al Día 0 no anticipa poderes; las posibilidades posteriores
+no asignan despertares, destinos ni resultados a personajes concretos.
