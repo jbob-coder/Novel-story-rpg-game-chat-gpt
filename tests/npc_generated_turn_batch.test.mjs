@@ -772,7 +772,9 @@ export function replayNarratorThirtyTurnReviewThroughStep05(){
    destinationId:dest,sourceEventIds:[request.evidence.previousResult.eventId]},
   reviewed:true,outcome:privateOutcome,
   changes:[
-   {field:'location_id',before:from,after:dest,route:[from,dest]},
+   {field:'location_id',before:from,after:dest,route:[from,dest],
+    travel:{mode:'walk',elapsed_minutes:6,
+     basis:'Narrator reviewed short walking passage from the Market Row district to Noah own adjacent publicly accessible shop; approximate QA estimate, not a canon distance.'}},
    {field:'independent_plan',before:request.evidence.independentPlan,after:newPlan}
   ]
  }:{
@@ -805,6 +807,7 @@ export function replayNarratorThirtyTurnReviewThroughStep05(){
  assert.deepEqual(result.caused_by,[noah.evidence.previousResult.eventId]);
  assert.ok(result.state_changes.some(e=>e.field==='location_id'&&
   e.before===from&&e.after===dest&&
+  e.travel?.mode==='walk'&&e.travel.elapsed_minutes===6&&
   JSON.stringify(e.route)===JSON.stringify([from,dest])));
  for(const id of Object.keys(reasons))assert.deepEqual(
   recovered.state.world.actors[id],previous.state.world.actors[id],
