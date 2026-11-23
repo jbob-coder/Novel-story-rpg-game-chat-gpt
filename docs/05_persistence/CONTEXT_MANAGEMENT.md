@@ -69,8 +69,8 @@ what the character remembers.
 Use `loadVerifiedContextPacket({remote,journal,branch,npcIds})` to obtain the
 same private projection after the immutable-HEAD, five-file and journal checks.
 Select explicit **established** NPC IDs from the active scene or action;
-unknown, duplicate or player IDs are rejected. With no `npcIds` the existing
-packet remains unchanged. `reader_visible` forbids nonempty NPC selections and
+unknown, duplicate or player IDs are rejected. When `npcIds` is omitted,
+auto-selection may add compact NPC memories as described below. `reader_visible` forbids nonempty NPC selections and
 never contains private actor state. Related event pointers are only contextual
 evidence: `known_to` does not mean an actor learned every detail. Consult
 the actor's saved knowledge and causal sources before deciding what they can
@@ -80,12 +80,12 @@ save turns or start a background process.
 
 ## Automatic bounded NPC recall (2026-11-22)
 
-For the narrator-private packet, \`buildContextPacket({snapshot,query})\` and
-\`loadVerifiedContextPacket({remote,journal,branch,query})\` now retrieve up to
+For the narrator-private packet, `buildContextPacket({snapshot,query})` and
+`loadVerifiedContextPacket({remote,journal,branch,query})` now retrieve up to
 **three** candidate NPC memory projections automatically, matched from the
 **saved actor identity** and the input's exact NPC ID, full name or unique given
 name. A character whose saved location exactly equals the player's may also
-be selected. \`sceneNpcIds\` permits explicitly attributed scene actors when
+be selected. `sceneNpcIds` permits explicitly attributed scene actors when
 a narrator has prior evidence of their involvement (e.g. a remote call). It
 does **not** prove that they are physically present; neither a graph neighbor
 nor a claimed place name can silently establish an encounter.
@@ -98,10 +98,10 @@ grant the NPC extra knowledge or permission to disclose a fact. Critical
 details omitted by this compact projection must be checked in the original
 state/events before changing actor behavior.
 
-An explicit \`npcIds\` input continues to return complete actor state and up to
+An explicit `npcIds` input continues to return complete actor state and up to
 ten event pointers, and overrides automatic selection. Use
-\`autoNpcMemory:false\` to get the previous manual-only behavior.
-\`reader_visible\` never auto-retrieves NPC memory and rejects explicit/scene
+`autoNpcMemory:false` to get the previous manual-only behavior.
+`reader_visible` never auto-retrieves NPC memory and rejects explicit/scene
 selection. The loader still checks an immutable Git commit, five-file
 checkpoint, branch stability and any available journal. No new memory store,
 background process, NPC action, new canon or turn is created.
