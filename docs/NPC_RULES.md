@@ -98,3 +98,20 @@ Una vieja afirmación puede seguir siendo conocida sin representar la creencia
 presente. Si hay varias revisiones alternativas, debe revisarlas el narrador;
 no se elige una de manera automática. Esto no restringe mentiras, dudas,
 nuevas hipótesis ni cambios de opinión basados en acontecimientos reales.
+
+
+### Testimonios divergentes y revisiones ramificadas
+
+Los conocimientos de un NPC pueden incluir testimonios mutuamente incompatibles.
+La memoria registra **quién dijo qué** en las fuentes de eventos, no decide
+quién tiene razón. Si un recuerdo tiene dos revisiones explícitas alternativas,
+`checkNPCFactEvidence` devuelve `multiple_review_required`,
+`alternativeLatestStatementsForReview` y las rutas de eventos; no selecciona
+una versión como creencia definitiva. Si una alternativa recibe después otra
+revisión, el narrador ve su última afirmación sin perder los eslabones previos.
+
+Dos testimonios diferentes sin `revision_of` siguen siendo afirmaciones
+separadas; no se fabrica automáticamente un vínculo de corrección. El narrador
+puede decidir que el NPC dude, sospeche, acepte, rechace o mienta según
+evidencias y circunstancias. Ninguna revisión exige certeza ni convierte
+una declaración de terceros en verdad objetiva.

@@ -217,3 +217,25 @@ La regresión aislada de `tests/context_manager.test.mjs` cubre hilos
 abiertos y resueltos, recuperación exacta, ausencia de mutación, privacidad
 del lector y una corrección hipotética de rumor por NPC mediante dos EV
 distintos. Estos turnos sintéticos no se guardan en GitHub ni son historia.
+
+## Multiple revisions and competing testimony (2026-11-22)
+
+The narrator-private `linkedStatementRevision` now walks the full same-actor
+revision tree rather than stopping at the first fork. A linear chain still
+reports `explicitly_revised` with ordered event IDs and the last linked
+statement; a fork reports `multiple_review_required` and up to eight
+`alternativeLatestStatementsForReview` (each with statement, source EV/path,
+last revision reason and ordered path of events). Evidence ID output is
+bounded to 16; overflow is explicitly flagged and counts are retained.
+
+The alternatives are **not** ranked as true or accepted. Later descendants
+of one branch replace only that branch's *review pointer*, never the earlier
+historical knowledge. Independently recorded, incompatible reports without
+`revision_of` remain separate claims and are not called revisions by keyword
+overlap. Their speakers remain in the original sources. This is evidence
+retrieval and QA, not a contradiction detector or automated belief engine.
+
+Regression coverage uses synthetic three-step chains, forked reports followed
+by a later correction, independent opposing speakers, cross-actor privacy and
+CH-000 -> CH-001 recovery. No canonical story files, journals, new turns or
+persistent NPC fields are changed.
