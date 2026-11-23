@@ -289,6 +289,9 @@
     ],
     "npc_duplicate_full_name_guard_2026_11_22": [
       "docs/06_quality/NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md"
+    ],
+    "context_thread_reconciliation_2026_11_22": [
+      "docs/06_quality/CONTEXT_THREAD_RECONCILIATION_20261122.md"
     ]
   },
   "repository_checkpoints": [
