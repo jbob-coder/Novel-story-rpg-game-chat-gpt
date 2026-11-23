@@ -561,7 +561,11 @@ export function replayNarratorThirtyTurnReviewThroughStep03(){
  assert.equal(third.manifest.last_event_sequence,38,
   'One player-placeholder event, no involuntary NPC result');
  assert.deepEqual(third.npcTurnReview.actedActorIds,[]);
- assert.deepEqual(third.npcTurnReview.abstainedActorIds,Object.keys(reasons));
+ assert.deepEqual(third.npcTurnReview.abstainedActorIds,
+  choices.map(x=>x.proposal.actorId),
+  'Fairness rotation may reorder reviews; no actor may be lost');
+ assert.deepEqual(new Set(third.npcTurnReview.abstainedActorIds),
+  new Set(Object.keys(reasons)));
  const recovered=decodeFiveFiles(encodeFiveFiles(third),'CH-000');
  assert.equal(verifyNarrativeSnapshot(recovered),true);
  assert.deepEqual(recovered.state.world.actors,prior.state.world.actors,
