@@ -283,6 +283,9 @@
     ],
     "consequence_ledger_order_repair_2026_11_22": [
       "docs/06_quality/CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md"
+    ],
+    "consequence_origin_actor_guard_2026_11_22": [
+      "docs/06_quality/CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md"
     ]
   },
   "repository_checkpoints": [

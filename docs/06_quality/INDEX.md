@@ -20,3 +20,4 @@
 - [Second independent checkpoint and direct recovery boundary audit (D-061)](REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md)
 - [NPC social memory, revised decision and chapter-reload rehearsal (synthetic only)](NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md)
 - [Cierre de inconsistencia: orden y unicidad de los eventos de consecuencias narrativas](CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md)
+- [Protección del actor de origen de hilos narrativos y persistencia causal](CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md)

@@ -3,6 +3,13 @@ import {allEvents} from './chapter_history.mjs';
 // A thread is a causally supported open question, not a predetermined ending.
 function need(ok,message){if(!ok)throw new Error(message)}
 const duplicate=x=>JSON.parse(JSON.stringify(x));
+// A question's owner needs a source link: acted in, or was listed as
+// a recipient/observer of, the event. An EV known_to link never proves the
+// owner knows every detail; the narrator must still check knowledge records.
+// Subsequent developments can legitimately come from other actors.
+const eventLinksActor=(event,actorId)=>Boolean(event&&(
+ (Array.isArray(event.actor_ids)&&event.actor_ids.includes(actorId))||
+ (Array.isArray(event.known_to)&&event.known_to.includes(actorId))));
 function verifyConsequences(snapshot){
  const s=snapshot.state,e=snapshot.events;
  need(Array.isArray(s.narrative_threads),"Narrative thread ledger missing");
@@ -17,6 +24,8 @@ function verifyConsequences(snapshot){
   need(["private","observable","world"].includes(x.scope),"Consequence thread scope invalid");
   need(Array.isArray(x.history)&&x.history.length>=1,"Consequence thread has no event history");
   need(x.origin_event_id===x.history[0].event_id,"Consequence thread origin mismatch");
+  need(eventLinksActor(events.get(x.origin_event_id)?.event,x.owner_actor_id),
+   "Consequence origin has no actor or observer evidence");
   let lastEventOrder=-1;
   x.history.forEach((h,i)=>{
    need(h&&["open","develop","resolve"].includes(h.kind),"Consequence operation invalid");
@@ -56,6 +65,8 @@ function stageConsequences(snapshot,updates=[]){
   if(change.op==="open"){
    const owner=change.owner_actor_id;
    need(owner===next.state.player.id||Object.hasOwn(next.state.world.actors,owner),"Consequence opening actor unknown");
+   need(eventLinksActor(event,owner),
+    "Consequence opening event has no actor or observer evidence");
    need(typeof change.question==="string"&&change.question.trim().length>=10,"Opening question required");
    need(["private","observable","world"].includes(change.scope),"Scope missing");
    const id="THREAD-"+String(records.length+1).padStart(6,"0");
