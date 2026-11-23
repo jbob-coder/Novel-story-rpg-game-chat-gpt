@@ -318,3 +318,46 @@ test('no lexical match does not imply absolute ignorance or prevent fictional ly
  assert.equal(visible.npcMemory,undefined);
  assert.equal(JSON.stringify(visible).includes('relatedStatementsForReview'),false);
 });
+
+test('duplicate full names need an explicit actor ID even when every name token matches',()=>{
+ const snapshot=initial(),before=JSON.stringify(snapshot);
+ const duplicate=structuredClone(snapshot.state.world.actors['NPC-005']);
+ duplicate.id='NPC-008';
+ snapshot.state.world.actors['NPC-008']=duplicate;
+ const exactName='Rosa Wilson';
+ // Neither established NPC should be guessed from the identical name.
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:exactName}),[]);
+ const ambiguous=buildContextPacket({snapshot,query:exactName});
+ assert.equal(ambiguous.npcMemory,undefined);
+ assert.deepEqual(ambiguous.npcAmbiguities,[{
+  name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
+  status:'requires_explicit_identity'
+ }]);
+ // A validated stable ID or pre-established scene hint is independent evidence.
+ assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'NPC-008'}),['NPC-008']);
+ const explicit=buildContextPacket({snapshot,query:'Rosa Wilson',npcIds:['NPC-008']});
+ assert.deepEqual(explicit.npcMemory.map(x=>x.actorId),['NPC-008']);
+ const hinted=buildContextPacket({snapshot,query:exactName,sceneNpcIds:['NPC-008']});
+ assert.deepEqual(hinted.npcMemory.map(x=>x.actorId),['NPC-008']);
+ assert.deepEqual(hinted.npcAmbiguities,[{
+  name:'rosa wilson',candidateActorIds:['NPC-005','NPC-008'],
+  status:'requires_explicit_identity'
+ }]);
+ // Reader output never receives private identity alternatives.
+ const reader=buildContextPacket({snapshot,query:exactName,audience:'reader_visible'});
+ assert.equal(Object.hasOwn(reader,'npcAmbiguities'),false);
+ assert.equal(Object.hasOwn(reader,'npcMemory'),false);
+ assert.equal(JSON.stringify(initial().state.world.actors['NPC-005']),
+  JSON.stringify(snapshot.state.world.actors['NPC-005']));
+ assert.notEqual(JSON.stringify(snapshot),before); // Only this fixture changed.
+});
+
+test('duplicate full-name alert is scoped to the referenced name, not an unrelated NPC',()=>{
+ const state=structuredClone(initial().state);
+ const twin=structuredClone(state.world.actors['NPC-005']);
+ twin.id='NPC-008';state.world.actors['NPC-008']=twin;
+ assert.deepEqual(selectNPCMemoryCandidates({state,query:'Elena'}),['NPC-004']);
+ assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa'}),[]);
+ // Explicit ID still identifies the selected person regardless of their name.
+ assert.deepEqual(selectNPCMemoryCandidates({state,query:'NPC-005'}),['NPC-005']);
+});

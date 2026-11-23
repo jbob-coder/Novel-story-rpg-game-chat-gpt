@@ -216,6 +216,9 @@
     ],
     "consequence_origin_actor_guard_2026_11_22": [
       "docs/06_quality/CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md"
+    ],
+    "npc_duplicate_full_name_guard_2026_11_22": [
+      "docs/06_quality/NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md"
     ]
   },
   "repository_checkpoints": [
