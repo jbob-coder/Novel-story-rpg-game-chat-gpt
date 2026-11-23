@@ -156,9 +156,11 @@
       "docs/FILE_INVENTORY.json"
     ],
     "supporting_docs": [
+      "docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md",
       "docs/04_story/FUTURE_NARRATIVE_BRANCHING_PLAN.md",
       "docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md",
       "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
+      "docs/06_quality/NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md",
       "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
       "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
       "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
@@ -171,8 +173,7 @@
       "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md",
       "docs/LIVING_WORLD_ROUTINE_QA_20261110.md",
       "docs/LIVING_WORLD_TEST_RESULTS_20261110.md",
-      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md",
-      "docs/06_quality/NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md"
+      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
     ],
     "additional_active_modules": [
       "tools/github_save_journal.mjs",
@@ -192,10 +193,12 @@
       "tests/living_world_coordinator.test.mjs",
       "tests/living_world_diagnostics.test.mjs",
       "tests/living_world_integrated_rehearsal.test.mjs",
+      "tests/living_world_news_causal_revisions.test.mjs",
+      "tests/living_world_news_reference.test.mjs",
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
-      "tests/test_checkpoint_audit.py",
-      "tests/npc_memory_social_continuity.test.mjs"
+      "tests/npc_memory_social_continuity.test.mjs",
+      "tests/test_checkpoint_audit.py"
     ],
     "design_proposals": [
       "docs/01_world/MERIDIAN_BAY_PHASE1.md",
