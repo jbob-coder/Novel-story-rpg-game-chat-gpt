@@ -1,0 +1,334 @@
+{
+  "schema": "pr-files-audit/v1",
+  "note": "Exact PR changed paths, not equivalent to current branch-vs-latest-base diff",
+  "records": [
+    {
+      "name": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "pr_number": 67,
+      "pr_base": "work/meridian-bay-harbor-coast-fragment-20261117",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: build coastal fragment 02 and stitch Harbor Walk shoreline",
+      "doc_use": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.svg",
+        "tests/INDEX.md",
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py",
+        "tools/meridian_bay_coastal_blueprints.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-harbor-coast-fragment-20261117",
+      "head_sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+      "pr_number": 66,
+      "pr_base": "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: build first physical coastal region fragment at Harbor Walk",
+      "doc_use": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-business-frontage-20261116",
+      "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "pr_number": 50,
+      "pr_base": "work/meridian-bay-market-culture-frontage-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Market Row business-services frontage",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_business_frontage.test.mjs",
+        "tools/meridian_bay_market_business_frontage.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-crosswater-detail-20261116",
+      "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "pr_number": 52,
+      "pr_base": "work/meridian-bay-corridor-detail-rail-market-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Market Row–Crosswater after the first complete corridor",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
+      "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "pr_number": 69,
+      "pr_base": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: build third landward fragment joining Market Row, Crosswater and bay",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.svg",
+        "tests/INDEX.md",
+        "tests/meridian_bay_land_region_blueprint.test.mjs",
+        "tests/test_meridian_bay_land_region_svg.py",
+        "tools/meridian_bay_land_region_blueprint.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-culture-frontage-20261116",
+      "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "pr_number": 48,
+      "pr_base": "work/meridian-bay-market-delivery-frontage-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail prepared Market Row Cultural Passage frontage",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-delivery-frontage-20261116",
+      "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "pr_number": 46,
+      "pr_base": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Market Row delivery-point frontage in three spans",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-market-harbor-detail-20261116",
+      "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "pr_number": 58,
+      "pr_base": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail direct Market Row ↔ Harbor Walk in five connected sections",
+      "doc_use": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-needs-tradeoffs-20261112",
+      "head_sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+      "pr_number": 14,
+      "pr_base": "work/meridian-bay-social-relations-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: event-backed NPC needs, observed costs and competing responsibilities",
+      "doc_use": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "paths": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_NEEDS_TRADEOFFS_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/living_world_needs.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-phase1-20261116",
+      "head_sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+      "pr_number": 33,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": true,
+      "pr_title": "Integrate Meridian Bay design, routes and physically grounded discovery",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/FILE_INVENTORY.json",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/living_world_diagnostics.test.mjs",
+        "tests/meridian_bay_city_scale.test.mjs",
+        "tests/meridian_bay_discovery.test.mjs",
+        "tests/meridian_bay_foundation.test.mjs",
+        "tests/meridian_bay_integration.test.mjs",
+        "tests/meridian_bay_prebuilt_routes.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_discovery.mjs",
+        "tools/meridian_bay_integration.mjs",
+        "tools/meridian_bay_locations.mjs",
+        "tools/meridian_bay_prebuilt_routes.mjs",
+        "tools/meridian_bay_scale_plan.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "pr_number": 56,
+      "pr_base": "work/meridian-bay-plaza-terminal-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Crosswater Plaza ↔ Harbor Walk in four linked segments",
+      "doc_use": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-plaza-terminal-detail-20261116",
+      "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "pr_number": 54,
+      "pr_base": "work/meridian-bay-market-crosswater-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail the Crosswater Plaza ↔ Terminal entrance in two subsegments",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-integration-20261112",
+      "head_sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+      "pr_number": 21,
+      "pr_base": "work/meridian-bay-prebuilt-world-fix-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: prebuilt Meridian Bay places exist before Jack encounters them",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_RAILMARKET_20261112.md",
+        "docs/DECISIONS.md",
+        "docs/MERIDIAN_BAY_VISITABLES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "game/MERIDIAN_BAY_PREBUILT.json",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_locations.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-prebuilt-routes-20261112",
+      "head_sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+      "pr_number": 22,
+      "pr_base": "work/meridian-bay-prebuilt-integration-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: navigator routes to prebuilt Meridian Bay places without playing story",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_ROUTE_INTEGRATION_20261112.md",
+        "tests/meridian_bay_atlas_crosswalk.test.mjs",
+        "tests/meridian_bay_prebuilt_routes.test.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_prebuilt_routes.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "pr_number": 64,
+      "pr_base": "work/meridian-bay-railgarden-grocery-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Railgarden ↔ health center exterior in two linked sections",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_DETAIL_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_ROUTE_COVERAGE_20261117.md",
+        "tests/INDEX.md",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-railgarden-grocery-detail-20261116",
+      "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "pr_number": 62,
+      "pr_base": "work/meridian-bay-wilson-railgarden-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Railgarden ↔ grocery frontage in two linked segments",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs"
+      ],
+      "ok": true
+    }
+  ]
+}

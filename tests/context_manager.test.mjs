@@ -577,3 +577,12 @@ test('private editor-only news reference does not leak or create an event',()=>{
   assert.equal(snapshot.manifest.last_completed_turn,9);
   assert.equal(JSON.stringify(snapshot),unchanged);
 });
+
+test('full context packets reject unsourced actor injection despite ambiguous name support',()=>{
+  const snapshot=initial(),copy=structuredClone(snapshot.state.world.actors['NPC-005']);
+  copy.id='NPC-008';copy.name='Rosa Rivera';
+  snapshot.state.world.actors['NPC-008']=copy;
+  assert.deepEqual(selectNPCMemoryCandidates({state:snapshot.state,query:'Rosa'}),[]);
+  assert.throws(()=>buildContextPacket({snapshot,query:'Rosa'}),
+    /unsourced additions or removals/);
+});

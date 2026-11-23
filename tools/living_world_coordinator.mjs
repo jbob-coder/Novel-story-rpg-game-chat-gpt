@@ -4,6 +4,8 @@ import {stageNPCResolution} from './living_world_routines.mjs';
 import {stageNarrativeTurn, verifyNarrativeSnapshot} from './turn_engine.mjs';
 import {saveFiveFileTurn} from './save_transaction.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
+import {validateSocialResolutionBatch} from './living_world_social.mjs';
+import {validateNPCContinuationDraft} from './living_world_causal_continuations.mjs';
 
 const ensure=(ok,message)=>{if(!ok)throw new Error(message)};
 const hasOwn=(obj,key)=>Object.prototype.hasOwnProperty.call(obj,key);
@@ -20,6 +22,11 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
     turn.elapsed_minutes<=525600,'Explicit, nonnegative narrative minutes required');
   ensure(!hasOwn(turn,'awards') || !turn.awards?.length,'No RPG progression');
   ensure(Array.isArray(npcResolutions) && npcResolutions.length<=20,'Too many NPC resolutions');
+  ensure(Array.isArray(turn.npc_introductions??[])&&
+    (turn.npc_introductions??[]).length<=1,
+    'Only one separately reviewed NPC may be admitted per turn');
+  // PR #13: a claimed encounter must have two actor-owned, matching results.
+  validateSocialResolutionBatch({state:snapshot.state,npcResolutions});
   const nextTurn=snapshot.manifest.last_completed_turn+1;
   const nextDay=snapshot.state.time.day+turn.elapsed_days;
   const seen=new Set();
@@ -29,8 +36,19 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
       'NPC act requires explicit causal resolution and review');
     ensure(!seen.has(resolved.actor_id),'Multiple outcomes for one NPC require separate adjudication');
     seen.add(resolved.actor_id);
+    // A private follow-on action may cite only verified, previously known
+    // events. An unresolved proposal never becomes an automatic NPC action.
+    const continuation=validateNPCContinuationDraft({snapshot,item:{
+      actor_id:resolved.actor_id,intent:resolved.causal_basis,
+      ...(resolved.social_context===undefined?{}:{social_context:resolved.social_context}),
+      ...(resolved.continuation_context===undefined?{}:
+        {continuation_context:resolved.continuation_context}),
+      ...(resolved.causal_source_event_ids===undefined?{}:
+        {causal_source_event_ids:resolved.causal_source_event_ids})
+    }});
     // The player action is the first event in a turn. NPC events follow in order.
-    const eventId='EV-'+String(snapshot.manifest.last_event_sequence+i+2).padStart(6,'0');
+    const eventId='EV-'+String(snapshot.manifest.last_event_sequence+i+2+
+      (turn.npc_introductions??[]).length).padStart(6,'0');
     ensure(!resolved.disclosures?.length,
       'Disclosure must be recorded explicitly as a causal knowledge change, not emitted from a private draft');
     const staged=stageNPCResolution({state:snapshot.state,actorId:resolved.actor_id,
@@ -38,7 +56,10 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
       changes:resolved.changes??[],disclosures:[]});
     ensure(staged.status==='staged_only','Unexpected routine resolution state');
     return {actor_id:resolved.actor_id,intent:resolved.causal_basis,
-      outcome:staged.event.outcome,changes:staged.changeDrafts};
+      outcome:staged.event.outcome,changes:staged.changeDrafts,
+      ...(resolved.social_context===undefined?{}:
+        {social_context:copy(resolved.social_context)}),
+      ...(continuation===null?{}:{continuation_context:continuation})};
   });
   const {elapsed_minutes, next_time_of_day, ...canonicalTurn}=turn;
   // Omission preserves the saved period; validate that actual destination,

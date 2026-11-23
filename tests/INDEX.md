@@ -54,6 +54,14 @@
 - [Referencia no canónica de noticias (50 propuestas)](living_world_news_reference.test.mjs)
 - [Simulación sintética: publicación, receptor, rectificación y memoria](living_world_news_causal_revisions.test.mjs)
 
+- [Decisiones causales NPC: 19 regresiones sobre el mundo admitido](npc_causal_decisions_admitted.test.mjs)
+- [Regresiones de relaciones sociales NPC sobre la ciudad admitida (Lote 09)](npc_social_relations_admitted.test.mjs)
+- [Regresión de procedencia social y recuperación entre capítulos (6 escenarios)](npc_social_cross_chapter_provenance.test.mjs)
+- [Pruebas de referencia fijada, memoria social y detección de falsificaciones (8 casos)](npc_social_knowledge_anchor.test.mjs)
+- [Migración de referencia NPC: 14 pruebas de fuente, revisión y rechazo](npc_knowledge_anchor_migration.test.mjs)
+- [Admisión de actores NPC: regresiones de identidad, privacidad y capítulos (18 escenarios)](npc_actor_introduction_admitted.test.mjs)
+- [Cadenas causales abiertas de NPC: 16 regresiones sintéticas](npc_open_causal_continuations.test.mjs)
+
 ## Current source index supplement — audited November 17, 2026
 
 These files already existed in the authoritative source and are listed here for discoverability; indexing them is not a change to story state.

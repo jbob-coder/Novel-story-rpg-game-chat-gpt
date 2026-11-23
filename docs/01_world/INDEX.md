@@ -14,6 +14,15 @@
 
 - [Biblioteca propuesta de noticias, vida cotidiana y macroeventos (NO CANON)](LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md)
 
+- [Agenda causal NPC (candidato integrado: revisiones privadas, sin ejecutar turnos)](NPC_CAUSAL_AGENDA_INTEGRATION_20261120.md)
+- [Decisiones causales NPC sobre mundo admitido, Lote 08 (borrador)](NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md)
+- [Relaciones sociales NPC y eventos causales de encuentro — Lote 09](NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md)
+- [Lote 10: memoria social, cronología de testimonios y capítulos cerrados](NPC_SOCIAL_PROVENANCE_CROSS_CHAPTER_20261122.md)
+- [Lote 11: referencia fijada de conocimientos NPC en el turno 9](NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md)
+- [Lote 12: migración revisada y sin escritura de la referencia de conocimientos NPC](NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md)
+- [Lote 13: admisión causal de NPC nuevos y recuperación histórica](NPC_ACTOR_INTRODUCTION_ADMITTED_20261122.md)
+- [Continuaciones causales abiertas entre NPC y acciones generales (revisión)](NPC_OPEN_CAUSAL_CONTINUATIONS_20261122.md)
+
 **Regla:** este índice apunta a archivos originales. No crear copias divergentes ni mover documentos canónicos sin migración probada.
 
 **Narración:** si falla cualquier paso del guardado, detener el avance y mostrar el porcentaje de etapas comprobadas. `CONTINUAR GUARDADO` en el siguiente mensaje solo recupera el intento, no mueve a Jack.
