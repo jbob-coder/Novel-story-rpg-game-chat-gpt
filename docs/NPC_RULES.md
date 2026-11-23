@@ -79,3 +79,22 @@ el estado de conocimiento con la verdad objetiva. El NPC puede mentir, callar,
 malinterpretar, sospechar, inferir o cambiar de opinión si la situación lo
 justifica. No existen nuevas restricciones sobre sus acciones; los efectos
 persistentes requieren revisión causal y guardado.
+
+
+### Revisión de conocimientos sin perder recuerdos
+
+Una creencia o afirmación guardada en `knowledge` **no se borra** cuando
+el personaje recibe datos posteriores. En una resolución narrativa revisada,
+un nuevo cambio `field:'knowledge'` puede incluir `revision_of` con la
+cadena exacta de la memoria anterior del **mismo NPC** y
+`revision_reason` para explicar por qué actualiza su postura. El sistema
+registra ambos hechos y sus eventos; no exige que se demuestre verdad
+objetiva, ni interpreta la relación como contradicción automática.
+
+`checkNPCFactEvidence` conserva `mayAssumeKnown` para la experiencia histórica,
+pero añade `statementRevisionStatus`, `revisionEventIds` y, si la
+revisión es una cadena inequívoca, `latestLinkedStatementForReview`.
+Una vieja afirmación puede seguir siendo conocida sin representar la creencia
+presente. Si hay varias revisiones alternativas, debe revisarlas el narrador;
+no se elige una de manera automática. Esto no restringe mentiras, dudas,
+nuevas hipótesis ni cambios de opinión basados en acontecimientos reales.

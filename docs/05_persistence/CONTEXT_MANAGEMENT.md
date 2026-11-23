@@ -163,3 +163,31 @@ is not an action gate; it must not block inference, misinformation,
 concealment or changing beliefs. New observed or communicated facts require
 reviewed actor-specific event changes before they can be considered saved.
 All functionality is read-only, private, capped and noncanonical by itself.
+
+
+## Evidence-linked revisions of NPC statements (2026-11-22)
+
+A reviewed `knowledge` change can provide `revision_of` containing the
+**exact saved prior knowledge entry owned by the same actor**, and a
+nonempty `revision_reason` describing the new observation or communication.
+The later event appends a new statement; it never deletes the older one.
+The original and changed assertions remain inspectable in the canonical
+event history. Sourced earlier entries must point to a strictly older
+actor-owned knowledge event. A missing prior memory, forged provenance or
+missing revision reason is rejected by staging or save replay validation.
+
+`checkNPCFactEvidence` remains literal and reports historical
+`mayAssumeKnown` as before, plus `statementRevisionStatus`. A single
+actor-owned chain reports `explicitly_revised`, the event IDs and
+`latestLinkedStatementForReview`. Competing revisions return
+`multiple_review_required`; the narrator must decide whether the NPC
+is uncertain, contradictory, misinformed or considering alternatives.
+These are explicit **statement links**, not a semantic contradiction
+detector, objective fact certification, forced belief or autonomous action.
+
+Synthetic chapter and event tests verify both earlier and later knowledge
+remain saved, a changed independent plan is retained, another actor
+does not inherit the newer information, forged source links are rejected,
+and CH-001 can restore all supporting CH-000 events without touching
+the actual player checkpoint. No new actor schema or additional storage
+is introduced.

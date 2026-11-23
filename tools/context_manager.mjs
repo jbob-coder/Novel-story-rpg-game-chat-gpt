@@ -119,7 +119,33 @@ function relatedKnowledgeForReview(actor,fact){
       statement,matchedTerms,classification:'review_only_possible_relation'
     }));
 }
-// Exact recorded knowledge proves an actor holds a statement, never its truth.
+
+// A later event can explicitly revise an older actor-held statement.
+// This is an editorially reviewed belief link, not automatic truth inference.
+function linkedStatementRevision(snapshot,actorId,entry){
+  const history=allEvents(snapshot),visited=new Set([entry]),eventIds=[];
+  let current=entry;
+  for(let i=0;i<history.length;i++){
+    const candidates=history.flatMap(event=>(event.state_changes??[])
+      .filter(change=>change.actor_id===actorId&&change.field==='knowledge'&&
+        change.revision_of===current).map(change=>({event,change})));
+    if(candidates.length===0)break;
+    if(candidates.length>1)return {statementRevisionStatus:'multiple_review_required',
+      revisionEventIds:[...eventIds,...candidates.map(c=>c.event.id)]};
+    const chosen=candidates[0];
+    if(visited.has(chosen.change.after))return {
+      statementRevisionStatus:'invalid_revision_cycle',revisionEventIds:eventIds};
+    visited.add(chosen.change.after);
+    eventIds.push(chosen.event.id);
+    current=chosen.change.after;
+  }
+  return eventIds.length?{statementRevisionStatus:'explicitly_revised',
+    revisionEventIds:eventIds,latestLinkedStatementForReview:
+      sourcedKnowledge.exec(current)?.[1]??current}:
+    {statementRevisionStatus:'not_marked_revised',revisionEventIds:[]};
+}
+
+ // Exact recorded knowledge proves an actor holds a statement, never its truth.
 function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const actor=snapshot.state.world.actors[actorId];
   const entry=(actor.knowledge??[]).find(value=>
@@ -129,7 +155,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
     truthStatus:'not_assessed',relatedStatementsForReview:relatedKnowledgeForReview(actor,fact)};
   const source=sourcedKnowledge.exec(entry);
   if(!source)return {...foundation,status:'recorded_checkpoint',
-    mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed'};
+    mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed',
+    ...linkedStatementRevision(snapshot,actorId,entry)};
   const event=allEvents(snapshot).find(value=>value.id===source[3]);
   const backed=event?.actor_ids?.includes(actorId)&&event.state_changes?.some(change=>
     change.field==='knowledge'&&change.actor_id===actorId&&
@@ -138,7 +165,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
     mayAssumeKnown:false,sourceEventId:source[3],truthStatus:'not_assessed'};
   return {...foundation,status:'recorded_event',
     mayAssumeKnown:true,sourceEventId:event.id,truthStatus:'not_assessed',
-    eventPath:'chapters/'+event.chapter_id+'.events.json'};
+    eventPath:'chapters/'+event.chapter_id+'.events.json',
+    ...linkedStatementRevision(snapshot,actorId,entry)};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */
 export function checkNPCFactEvidence({snapshot,actorId,fact}={}){
