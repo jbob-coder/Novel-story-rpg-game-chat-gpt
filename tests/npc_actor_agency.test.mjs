@@ -63,7 +63,7 @@ test('Noah initiates a new offscreen business decision, then reconsiders saved r
   intention:'Noah reviews his newly established procurement priorities before deciding on an order.',
   reasoning:'The first event supports private re-evaluation but no transaction, supplier arrival or completed purchase.',
   outcome:'SYNTHETIC PRIVATE: Noah maintains a new priority without assuming parts delivery.',
-  reviewed:true});
+  sourceEventIds:[next.sourceEventId],reviewed:true});
  const second=stageLivingWorldTurn({
   snapshot:reread,observedHead:head,turn:turn('two'),npcResolutions:[follow]});
  assert.equal(verifyNarrativeSnapshot(second),true);
@@ -111,4 +111,26 @@ test('zero fictional time produces no review and at most one outcome per actor p
   npcResolutions:[draft,draft]}),/Multiple outcomes for one NPC/);
  for(const [path,bytes] of Object.entries(original))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+});
+
+
+test('a later independent initiative does not silently cite a previous unrelated NPC result',()=>{
+ const s=baseline(),focus=frame(s,'NPC-005');
+ assert.equal(focus.sourceEventId,'EV-000029');
+ const unrelated=draftOpenNPCAction({snapshot:s,frame:focus,elapsedMinutes:25,
+  intention:'Rosa considers another ordinary household priority unrelated to the repaired clock.',
+  reasoning:'Her saved independent goals permit a separate private household initiative without assuming a meeting or delivery.',
+  outcome:'SYNTHETIC PRIVATE: Rosa reconsiders an independent household task without any invented contact.',
+  reviewed:true});
+ assert.equal(Object.hasOwn(unrelated,'continuation_context'),false);
+ const staged=stageLivingWorldTurn({snapshot:s,observedHead:head,
+  turn:turn('new-independent-priority'),npcResolutions:[unrelated]});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.deepEqual(staged.events.events.at(-1).caused_by,[]);
+ assert.throws(()=>draftOpenNPCAction({snapshot:s,frame:focus,elapsedMinutes:25,
+  intention:'Rosa plans an ordinary independent household task after thinking it through.',
+  reasoning:'Her existing independent goals remain available and no outside secrets can be assumed.',
+  outcome:'SYNTHETIC PRIVATE: An unknown event cannot justify the action.',
+  sourceEventIds:['EV-999999'],reviewed:true}),
+  /event it does not know/);
 });
