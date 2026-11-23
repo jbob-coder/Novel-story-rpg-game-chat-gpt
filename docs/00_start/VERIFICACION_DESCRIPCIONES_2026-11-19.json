@@ -1,0 +1,2601 @@
+{
+  "schema": "branch-description-check/v1",
+  "date": "2026-11-19",
+  "total": 108,
+  "descriptions_refined": 20,
+  "shared_head_groups": [
+    [
+      "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "backup/before-meridian-world-admission-20261118"
+    ],
+    [
+      "backup/narrative-before-20261115-readiness-integration",
+      "work/living-world-time-interval-hardening-20261112"
+    ],
+    [
+      "qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-cross-harbor-20261116"
+    ],
+    [
+      "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "work/meridian-bay-harbor-coast-fragment-02-20261117"
+    ],
+    [
+      "qa/meridian-bay-market-business-frontage-ci-20261116",
+      "work/meridian-bay-market-business-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-cross-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-market-cross-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "work/meridian-bay-market-crosswater-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "work/meridian-bay-market-culture-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "work/meridian-bay-market-delivery-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-market-harbor-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "work/meridian-bay-market-harbor-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "work/meridian-bay-market-crosswater-land-fragment-03-20261117"
+    ],
+    [
+      "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "work/meridian-bay-plaza-harbor-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-plaza-terminal-ci-20261116",
+      "work/meridian-bay-plaza-terminal-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "work/meridian-bay-core-integrated-atlas-20261117",
+      "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "work/meridian-bay-railgarden-regional-map-20261117"
+    ],
+    [
+      "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "work/meridian-bay-railgarden-grocery-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-road-web-ci-20261116",
+      "work/meridian-bay-road-growth-slice1-20261116"
+    ],
+    [
+      "qa/meridian-bay-road-web-slice2-ci-20261116",
+      "work/meridian-bay-road-growth-slice2-20261116"
+    ],
+    [
+      "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "work/meridian-bay-wilson-railgarden-detail-20261116"
+    ],
+    [
+      "qa/rail-market-corridor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-rail-market-20261116"
+    ],
+    [
+      "work/chat-narrative-foundation",
+      "work/meridian-admission-handoff-20261119"
+    ],
+    [
+      "work/meridian-bay-district-blueprint-20261112",
+      "work/meridian-bay-railgarden-marketrow-20261112"
+    ]
+  ],
+  "rows": [
+    {
+      "branch": "audit/independent-checkpoint-verification-20261117",
+      "sha": "9a760d25070a77ed1746bd2d69c0b06c9f6182be",
+      "grupo": "audit",
+      "pr": 75,
+      "uso_previo": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
+      "uso_revisado": "Auditar el checkpoint y endurecer la verificación del journal y la recuperación remota.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "INDEX.md",
+        "docs/00_start/INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/HANDOFF.md",
+        "tests/INDEX.md",
+        "tests/chapter_save_transaction.test.mjs",
+        "tests/save_transaction.test.mjs",
+        "tests/test_checkpoint_audit.py",
+        "tests/verified_context_loader.test.mjs"
+      ],
+      "total_archivos_escaneados": 135,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "audit/living-world-critical-review-20261112",
+      "sha": "c3ab3a679e96927d509de54b75b8caffc5c1c274",
+      "grupo": "audit",
+      "pr": null,
+      "uso_previo": "Revisar y documentar confiabilidad del motor; no incorpora funciones por sí sola.",
+      "uso_revisado": "Revisar y documentar confiabilidad del motor; no incorpora funciones por sí sola.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/LIVING_WORLD_CRITICAL_AUDIT_20261112.md"
+      ],
+      "total_archivos_escaneados": 101,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "grupo": "audit",
+      "pr": 77,
+      "uso_previo": "Revisar y documentar guardado y recuperación ante interrupciones; no incorpora funciones por sí sola.",
+      "uso_revisado": "Comprobar recuperación ante datos falsificados y cerrar el bypass de validación del journal.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md",
+        "tests/save_transaction.test.mjs",
+        "tools/save_transaction.mjs"
+      ],
+      "total_archivos_escaneados": 136,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "backup/before-meridian-world-admission-20261118"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "audit/world-plan-npc-integration-20261114",
+      "sha": "26422133498340fed3bd96ea0898c1da96ca164b",
+      "grupo": "audit",
+      "pr": 26,
+      "uso_previo": "Revisar y documentar necesidades y comportamiento de NPC; no incorpora funciones por sí sola.",
+      "uso_revisado": "Revisar y documentar necesidades y comportamiento de NPC; no incorpora funciones por sí sola.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INTEGRATION_AUDIT_20261114.md",
+        "tests/integration_multi_actor_plans.test.mjs",
+        "tests/integration_npc_chapter_contract.test.mjs"
+      ],
+      "total_archivos_escaneados": 122,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "backup/before-meridian-world-admission-20261118",
+      "sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "grupo": "backup",
+      "pr": null,
+      "uso_previo": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_revisado": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md"
+      ],
+      "total_archivos_escaneados": 136,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "backup/narrative-before-20261115-readiness-integration",
+      "sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "grupo": "backup",
+      "pr": null,
+      "uso_previo": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_revisado": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+      ],
+      "total_archivos_escaneados": 108,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/living-world-time-interval-hardening-20261112"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "backup/narrative-before-verified-context-20261115",
+      "sha": "4c32b464a6b7dbd80600b25890641cb19185838a",
+      "grupo": "backup",
+      "pr": null,
+      "uso_previo": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "uso_revisado": "Conservar una versión de recuperación anterior a cambios importantes.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md"
+      ],
+      "total_archivos_escaneados": 121,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "journal/living-world-save-attempts",
+      "sha": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+      "grupo": "journal",
+      "pr": null,
+      "uso_previo": "Registrar y recuperar operaciones de guardado; nunca mezclar como escenas o código de juego.",
+      "uso_revisado": "Registrar y recuperar operaciones de guardado; nunca mezclar como escenas o código de juego.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".narrative-save-attempts/d29yay9jaGF0LW5hcnJhdGl2ZS1mb3VuZGF0aW9u.json"
+      ],
+      "total_archivos_escaneados": 103,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "journal/qa-live-journal-runtime-43767698159",
+      "sha": "f7f440fea6183badfaeb56354932dcbd99e2c9e2",
+      "grupo": "journal",
+      "pr": null,
+      "uso_previo": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_revisado": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".narrative-save-attempts/cWEvbGl2ZS1qb3VybmFsLXJ1bnRpbWUtNDM3Njc2OTgxNTk.json"
+      ],
+      "total_archivos_escaneados": 102,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "journal/qa-living-world-smoke-20261112",
+      "sha": "ef2337feaa1f7181c52ba3d56ecff5574982da29",
+      "grupo": "journal",
+      "pr": null,
+      "uso_previo": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_revisado": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".narrative-save-attempts/cWEvbGl2aW5nLXdvcmxkLWpvdXJuYWwtc21va2UtMjAyNjExMTI.json"
+      ],
+      "total_archivos_escaneados": 109,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "journal/qa-narrative-five-file-smoke-20261115",
+      "sha": "1fd8e0afa87e85685026e5fcb1139404386faf5a",
+      "grupo": "journal",
+      "pr": null,
+      "uso_previo": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_revisado": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".narrative-save-attempts/cWEvbmFycmF0aXZlLWZpdmUtZmlsZS1qb3VybmFsLXNtb2tlLTIwMjYxMTE1.json"
+      ],
+      "total_archivos_escaneados": 102,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "journal/qa-world-admission-20261118",
+      "sha": "220a05b96704291503ccb8756186473ae9398e3a",
+      "grupo": "journal",
+      "pr": null,
+      "uso_previo": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "uso_revisado": "Guardar evidencia aislada de transacciones y recuperación, separada de la historia real.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".narrative-save-attempts/cWEvd29ybGQtYWRtaXNzaW9uLXJlY292ZXJ5LTIwMjYxMTE4.json"
+      ],
+      "total_archivos_escaneados": 158,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "main",
+      "sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+      "grupo": "main",
+      "pr": null,
+      "uso_previo": "Publicar la versión consolidada después de revisión y pruebas.",
+      "uso_revisado": "Publicar la versión consolidada después de revisión y pruebas.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "README.md"
+      ],
+      "total_archivos_escaneados": 1,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/chatgpt-native-journal-transport-20261117",
+      "sha": "124a8114c9cbd121adc1aea9c89f0cf1698c5d81",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "grupo": "qa",
+      "pr": 43,
+      "uso_previo": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json"
+      ],
+      "total_archivos_escaneados": 163,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-corridor-detail-cross-harbor-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/live-journal-runtime-43767698159",
+      "sha": "29d88759a37203a0278c0989f373f20e11ca22ed",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json"
+      ],
+      "total_archivos_escaneados": 121,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-integration-20261110",
+      "sha": "56d946a3e3a56c2ddce1c87e70f798c2937f4778",
+      "grupo": "qa",
+      "pr": 3,
+      "uso_previo": "Probar de forma aislada living world integration sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada living world integration sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-integration-qa.yml",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json"
+      ],
+      "total_archivos_escaneados": 97,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-overnight-20261112",
+      "sha": "e7e9c6d16d13b6d4d4b5a2c0d251f700eea5b46e",
+      "grupo": "qa",
+      "pr": 5,
+      "uso_previo": "Probar de forma aislada coherencia del tiempo y disponibilidad sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada coherencia del tiempo y disponibilidad sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-overnight-qa.yml"
+      ],
+      "total_archivos_escaneados": 101,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-private-chapter-20261110",
+      "sha": "dfa3608d1e79cfa81c6e5a37c01f91a0e6386ccc",
+      "grupo": "qa",
+      "pr": 4,
+      "uso_previo": "Probar de forma aislada la separación entre información privada y texto visible sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada la separación entre información privada y texto visible sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-privacy-qa.yml"
+      ],
+      "total_archivos_escaneados": 99,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-reliability-20261112",
+      "sha": "642bedd5f05dc9e6d675c0662f5674093511be45",
+      "grupo": "qa",
+      "pr": 6,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-reliability-qa.yml"
+      ],
+      "total_archivos_escaneados": 104,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-reliability-v2-20261112",
+      "sha": "9cdc61e5e671735ea91ab1722c4aa9034f17a89c",
+      "grupo": "qa",
+      "pr": 7,
+      "uso_previo": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-reliability-qa-v2.yml"
+      ],
+      "total_archivos_escaneados": 106,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-reliability-v3-20261112",
+      "sha": "9395dad48f636ac3a359d99e3a85e469c95ebeb9",
+      "grupo": "qa",
+      "pr": 8,
+      "uso_previo": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada confiabilidad del motor sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-reliability-qa-v3.yml"
+      ],
+      "total_archivos_escaneados": 108,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/living-world-time-windows-20261112",
+      "sha": "23c0501bd7babd2574cf93fbde361299092ce69d",
+      "grupo": "qa",
+      "pr": 9,
+      "uso_previo": "Probar de forma aislada living world time windows sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada living world time windows sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/living-world-time-window-qa.yml"
+      ],
+      "total_archivos_escaneados": 108,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "grupo": "qa",
+      "pr": 68,
+      "uso_previo": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "chapters/CH-000.PREP.md",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000/INDEX.md",
+        "chapters/INDEX.md",
+        "chapters/revisions/INDEX.md",
+        "chapters/revisions/REV-CH000-0001.json"
+      ],
+      "total_archivos_escaneados": 191,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-harbor-coast-fragment-02-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-business-frontage-ci-20261116",
+      "sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "grupo": "qa",
+      "pr": 51,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE_20261116.json"
+      ],
+      "total_archivos_escaneados": 179,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-business-frontage-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-cross-detail-ci-20261116",
+      "sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "grupo": "qa",
+      "pr": 41,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-corridor-detail-market-cross-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "grupo": "qa",
+      "pr": 53,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-crosswater-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "grupo": "qa",
+      "pr": 49,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json"
+      ],
+      "total_archivos_escaneados": 175,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-culture-frontage-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "grupo": "qa",
+      "pr": 47,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json"
+      ],
+      "total_archivos_escaneados": 171,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-delivery-frontage-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "grupo": "qa",
+      "pr": 45,
+      "uso_previo": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json"
+      ],
+      "total_archivos_escaneados": 167,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-corridor-detail-market-harbor-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "grupo": "qa",
+      "pr": 59,
+      "uso_previo": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md"
+      ],
+      "total_archivos_escaneados": 169,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-harbor-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "grupo": "qa",
+      "pr": 70,
+      "uso_previo": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada costa y conexiones del puerto sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "chapters/CH-000.PREP.md",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000/INDEX.md",
+        "chapters/INDEX.md",
+        "chapters/revisions/INDEX.md",
+        "chapters/revisions/REV-CH000-0001.json"
+      ],
+      "total_archivos_escaneados": 197,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-market-crosswater-land-fragment-03-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "grupo": "qa",
+      "pr": 57,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json"
+      ],
+      "total_archivos_escaneados": 165,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-plaza-harbor-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-plaza-terminal-ci-20261116",
+      "sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "grupo": "qa",
+      "pr": 55,
+      "uso_previo": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json"
+      ],
+      "total_archivos_escaneados": 161,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-plaza-terminal-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "grupo": "qa",
+      "pr": 65,
+      "uso_previo": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada lugares y conexiones de Meridian Bay sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "chapters/CH-000.PREP.md",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000/INDEX.md",
+        "chapters/INDEX.md",
+        "chapters/revisions/INDEX.md",
+        "chapters/revisions/REV-CH000-0001.json"
+      ],
+      "total_archivos_escaneados": 182,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "grupo": "qa",
+      "pr": 63,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md"
+      ],
+      "total_archivos_escaneados": 177,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-railgarden-grocery-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-road-web-ci-20261116",
+      "sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "grupo": "qa",
+      "pr": 35,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json",
+        "docs/FILE_INVENTORY.json",
+        "docs/STATUS.md",
+        "tests/INDEX.md"
+      ],
+      "total_archivos_escaneados": 145,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-road-growth-slice1-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-road-web-slice2-ci-20261116",
+      "sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "grupo": "qa",
+      "pr": 37,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json",
+        "docs/FILE_INVENTORY.json"
+      ],
+      "total_archivos_escaneados": 149,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-road-growth-slice2-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "grupo": "qa",
+      "pr": 61,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md"
+      ],
+      "total_archivos_escaneados": 173,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-wilson-railgarden-detail-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/narrative-five-file-journal-smoke-20261115",
+      "sha": "debd0746a8b651074522d0bc4f894c441dfdfc2c",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [],
+      "total_archivos_escaneados": 120,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/rail-market-corridor-detail-ci-20261116",
+      "sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "grupo": "qa",
+      "pr": 39,
+      "uso_previo": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada rutas, calles y accesos urbanos sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json",
+        "docs/FILE_INVENTORY.json"
+      ],
+      "total_archivos_escaneados": 149,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-corridor-detail-rail-market-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/story-save-recovery-d043-20261110",
+      "sha": "d637304e2665828e5c53cb76fd40e0e4a6ade7ec",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json"
+      ],
+      "total_archivos_escaneados": 79,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/trigger-live-context-read-20261115",
+      "sha": "78f56c65ad4f8183720599b6bf8d4eb2e88c4d5b",
+      "grupo": "qa",
+      "pr": 32,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/qa-context-readonly-20261115.yml",
+        "tools/qa_live_context_remote_read_20261115.mjs"
+      ],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/trigger-live-journal-20261115",
+      "sha": "d19c276a44cdafe3797b763be005dd7422728071",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/qa-live-journal-20261115.yml"
+      ],
+      "total_archivos_escaneados": 123,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "qa/world-admission-recovery-20261118",
+      "sha": "7a0d73900be12d80a794fcaf40a52b026b8d28c7",
+      "grupo": "qa",
+      "pr": null,
+      "uso_previo": "Probar de forma aislada la incorporación controlada de lugares al mundo sin alterar la partida canónica.",
+      "uso_revisado": "Probar de forma aislada la incorporación controlada de lugares al mundo sin alterar la partida canónica.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "game/STATE.json"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/chapter-plan-pilot-20261113",
+      "sha": "c9448eeaee555b3eb1474eec1832a0aa2991a1b2",
+      "grupo": "work",
+      "pr": 25,
+      "uso_previo": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_revisado": "Conservar planes condicionales de NPC al cruzar capítulos verificados; incluye QA sintética.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "docs/CHAPTER_PROTOCOL.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/RECOVERY.md",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/chapter_management.test.mjs",
+        "tests/chapter_save_transaction.test.mjs",
+        "tests/github_save_adapter.test.mjs",
+        "tests/save_transaction.test.mjs"
+      ],
+      "total_archivos_escaneados": 119,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/chat-narrative-foundation",
+      "sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "grupo": "work",
+      "pr": 2,
+      "uso_previo": "Mantener el núcleo de la novela, su partida autorizada y el código de continuidad.",
+      "uso_revisado": "Mantener el núcleo de la novela, su partida autorizada y el código de continuidad.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "chapters/CH-000.PREP.md",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000/INDEX.md",
+        "chapters/INDEX.md",
+        "chapters/revisions/INDEX.md",
+        "chapters/revisions/REV-CH000-0001.json"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-admission-handoff-20261119"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/chatgpt-native-journal-readiness-20261117",
+      "sha": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+      "grupo": "work",
+      "pr": 71,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md",
+        "tests/github_save_journal.test.mjs",
+        "tests/save_transaction.test.mjs",
+        "tests/verified_context_loader.test.mjs",
+        "tools/github_save_journal.mjs",
+        "tools/living_world_coordinator.mjs",
+        "tools/save_transaction.mjs",
+        "tools/verified_context_loader.mjs"
+      ],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/checkpoint-audit-date-precision-20261118",
+      "sha": "a10e049cedf662f2d9d7be0fefdba853035ebdbc",
+      "grupo": "work",
+      "pr": 76,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Corregir la fecha local del informe de auditoría y registrar evidencia de CI.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
+        "docs/HANDOFF.md"
+      ],
+      "total_archivos_escaneados": 135,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/connector-transport-qa-handoff-20261117",
+      "sha": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+      "grupo": "work",
+      "pr": 73,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md"
+      ],
+      "total_archivos_escaneados": 129,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/context-retrieval-pilot-20261114",
+      "sha": "25b99ee207dfca7fa07a9e0b4ef069fe2fea9f4f",
+      "grupo": "work",
+      "pr": 28,
+      "uso_previo": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_revisado": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+        "docs/05_persistence/INDEX.md",
+        "tests/INDEX.md",
+        "tests/context_manager.test.mjs",
+        "tools/INDEX.md",
+        "tools/context_manager.mjs"
+      ],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/journal-handoff-fast-resume-20261117",
+      "sha": "ba19db963162e5c5f4ce4ad2e8d6a71cc9dff57e",
+      "grupo": "work",
+      "pr": 72,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "README.md",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md"
+      ],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/literal-recovery-contextual-time-20261113",
+      "sha": "73fd82757b7cdef4cc7ca931f7b1bbded0f431ca",
+      "grupo": "work",
+      "pr": 24,
+      "uso_previo": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_revisado": "Recuperar escenas guardadas literalmente y validar tiempos de viaje según el contexto.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "README.md",
+        "docs/NARRATIVE_EXECUTION_MODEL.md",
+        "docs/RECOVERY.md",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/living_world_coordinator.test.mjs",
+        "tests/living_world_travel.test.mjs",
+        "tests/save_transaction.test.mjs",
+        "tests/turn_engine.test.mjs"
+      ],
+      "total_archivos_escaneados": 110,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-between-turns-20261112",
+      "sha": "000b912ce792b4fb215aca12639a3f570ce42b66",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_revisado": "Conservar actividades diferidas de NPC entre turnos del jugador, sin simulación continua.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tools/living_world_coordinator.mjs"
+      ],
+      "total_archivos_escaneados": 117,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-design-review-20261110",
+      "sha": "068a2bf25dd3fa3552f16fde45a87f0eabcac13f",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Explorar living world design review; confirmar su contenido antes de integrarlo.",
+      "uso_revisado": "Documentar la revisión técnica y las pruebas del sistema Living World.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md"
+      ],
+      "total_archivos_escaneados": 97,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-foundation",
+      "sha": "f121c8bfed7c17b45b0239bb5d0a52d54eb57070",
+      "grupo": "work",
+      "pr": 1,
+      "uso_previo": "Conservar un prototipo histórico del mundo vivo; no sustituye la novela actual.",
+      "uso_revisado": "Conservar un prototipo histórico del mundo vivo; no sustituye la novela actual.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "README.md",
+        "docs/CANON.md",
+        "docs/DECISIONS.md",
+        "docs/SIMULATION.md",
+        "docs/STATUS.md",
+        "index.html",
+        "package.json",
+        "src/main.js",
+        "src/simulation.js",
+        "styles.css",
+        "tests/simulation.test.js"
+      ],
+      "total_archivos_escaneados": 11,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-overnight-availability-20261112",
+      "sha": "dc84b2da5d8a32fbc5b88ab7402e65602c716aa1",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "uso_revisado": "Probar disponibilidad y rutinas de NPC durante intervalos nocturnos, sin inventar horarios.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md"
+      ],
+      "total_archivos_escaneados": 100,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-persistent-commitments-20261112",
+      "sha": "ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead",
+      "grupo": "work",
+      "pr": 10,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/LIVING_WORLD_JOURNAL_REMOTE_SMOKE_20261112.md",
+        "docs/LIVING_WORLD_OBLIGATIONS_IMPLEMENTATION_20261112.md",
+        "tests/living_world_obligations.test.mjs",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_obligations.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "total_archivos_escaneados": 112,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-private-chapter-20261110",
+      "sha": "bcfd86fe5ca5cd8598d6e3e9969221c5697a98be",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_revisado": "Evitar que los resultados privados de NPC aparezcan en capítulos visibles al jugador.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tests/living_world_coordinator.test.mjs",
+        "tests/turn_engine.test.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "total_archivos_escaneados": 98,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-reliability-20261112",
+      "sha": "3a690c87ffd7800e277613da4c7a2df4a781a0c4",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Explorar confiabilidad del motor; confirmar su contenido antes de integrarlo.",
+      "uso_revisado": "Endurecer fiabilidad de rutinas, guardado y recuperación, con pruebas de regresión.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md"
+      ],
+      "total_archivos_escaneados": 107,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/living-world-time-interval-hardening-20261112",
+      "sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "uso_revisado": "Corregir y comprobar la coherencia entre días, franjas horarias y minutos transcurridos.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/HANDOFF.md",
+        "docs/INDEX.md",
+        "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+      ],
+      "total_archivos_escaneados": 108,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "backup/narrative-before-20261115-readiness-integration"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-admission-handoff-20261119",
+      "sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "grupo": "work",
+      "pr": 79,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Documentar la admisión verificada de Meridian Bay y la recuperación exacta, ya integrada.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md",
+        "docs/HANDOFF.md",
+        "docs/STATUS.md"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/chat-narrative-foundation"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-atlas-20261112",
+      "sha": "5cbf433e5cb1e59945ba5cf3d79a3e127d9406b6",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/MERIDIAN_BAY_ATLAS_BASIC_20261112.md"
+      ],
+      "total_archivos_escaneados": 109,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-causal-decisions-20261112",
+      "sha": "7b0c6ddf9c07192b2e8b2560725712b2efb0f82f",
+      "grupo": "work",
+      "pr": 12,
+      "uso_previo": "Diseñar o comprobar necesidades y comportamiento de NPC antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Evaluar decisiones de NPC por objetivos, recursos y obstáculos; exigir evidencia para resultados.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_CAUSAL_DECISIONS_20261112.md",
+        "tests/living_world_decisions.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs"
+      ],
+      "total_archivos_escaneados": 119,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-causal-routines-20261112",
+      "sha": "7301f2b511dbb6dfdefe065aa9e9a74c600bbd35",
+      "grupo": "work",
+      "pr": 11,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/DECISIONS.md",
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_ROUTINES_EXPANSION_20261112.md",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "total_archivos_escaneados": 116,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-city-scale-20261112",
+      "sha": "3b4d1b4f2a6339161f397d5806a1950f66886afb",
+      "grupo": "work",
+      "pr": 23,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.md",
+        "tests/meridian_bay_city_scale.test.mjs",
+        "tools/meridian_bay_scale_plan.mjs"
+      ],
+      "total_archivos_escaneados": 142,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-core-integrated-atlas-20261117",
+      "sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Conservar una referencia a la integración de mapas; comparte commit con otras ramas de Railgarden.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tests/INDEX.md"
+      ],
+      "total_archivos_escaneados": 182,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
+      "sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "grupo": "work",
+      "pr": 42,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_CROSS_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE3_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_WATERFRONT_STORY_EVIDENCE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tools/meridian_bay_cross_harbor_corridor.mjs"
+      ],
+      "total_archivos_escaneados": 163,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/crosswater-harbor-corridor-detail-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-market-cross-20261116",
+      "sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "grupo": "work",
+      "pr": 40,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSS_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-cross-detail-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "grupo": "work",
+      "pr": 44,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_DIRECT_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs"
+      ],
+      "total_archivos_escaneados": 167,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-harbor-detail-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-rail-market-20261116",
+      "sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "grupo": "work",
+      "pr": 38,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_MARKET_CORRIDOR_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs"
+      ],
+      "total_archivos_escaneados": 149,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/rail-market-corridor-detail-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-district-blueprint-20261112",
+      "sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "grupo": "work",
+      "pr": 20,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_DISTRICT_BLUEPRINT_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_DISTRICT_BLUEPRINT_20261112.md",
+        "tests/meridian_bay_district_blueprint.test.mjs"
+      ],
+      "total_archivos_escaneados": 112,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-railgarden-marketrow-20261112"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "grupo": "work",
+      "pr": 67,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.svg",
+        "tests/INDEX.md",
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py",
+        "tools/meridian_bay_coastal_blueprints.mjs"
+      ],
+      "total_archivos_escaneados": 191,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-coast-fragment-02-ci-20261117-a"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-harbor-coast-fragment-20261117",
+      "sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+      "grupo": "work",
+      "pr": 66,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_01_20261117.svg"
+      ],
+      "total_archivos_escaneados": 185,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-business-frontage-20261116",
+      "sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "grupo": "work",
+      "pr": 50,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_BUSINESS_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_business_frontage.test.mjs",
+        "tools/meridian_bay_market_business_frontage.mjs"
+      ],
+      "total_archivos_escaneados": 179,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-business-frontage-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-crosswater-detail-20261116",
+      "sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "grupo": "work",
+      "pr": 52,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_CORRIDOR_DETAIL_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-crosswater-detail-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
+      "sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "grupo": "work",
+      "pr": 69,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_HARBOR_COAST_FRAGMENT_02_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CROSSWATER_LAND_FRAGMENT_03_20261117.svg",
+        "tests/INDEX.md",
+        "tests/meridian_bay_land_region_blueprint.test.mjs",
+        "tests/test_meridian_bay_land_region_svg.py",
+        "tools/meridian_bay_land_region_blueprint.mjs"
+      ],
+      "total_archivos_escaneados": 197,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-culture-frontage-20261116",
+      "sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "grupo": "work",
+      "pr": 48,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_CULTURE_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs"
+      ],
+      "total_archivos_escaneados": 175,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-culture-frontage-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-delivery-frontage-20261116",
+      "sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "grupo": "work",
+      "pr": 46,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_DELIVERY_FRONTAGE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs"
+      ],
+      "total_archivos_escaneados": 171,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-delivery-frontage-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-market-harbor-detail-20261116",
+      "sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "grupo": "work",
+      "pr": 58,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_MARKET_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs"
+      ],
+      "total_archivos_escaneados": 169,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-market-harbor-section5-ci-20261116-a"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-needs-tradeoffs-20261112",
+      "sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+      "grupo": "work",
+      "pr": 14,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_NEEDS_TRADEOFFS_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/living_world_needs.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "total_archivos_escaneados": 125,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-phase1-20261116",
+      "sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+      "grupo": "work",
+      "pr": 33,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Integrar el catálogo y las rutas base de seis lugares de Meridian Bay; la admisión real fue posterior.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/FILE_INVENTORY.json",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/living_world_diagnostics.test.mjs",
+        "tests/meridian_bay_city_scale.test.mjs",
+        "tests/meridian_bay_discovery.test.mjs"
+      ],
+      "total_archivos_escaneados": 140,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "grupo": "work",
+      "pr": 56,
+      "uso_previo": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar costa y conexiones del puerto antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_HARBOR_CORRIDOR_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs"
+      ],
+      "total_archivos_escaneados": 165,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-plaza-harbor-corridor-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-plaza-terminal-detail-20261116",
+      "sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "grupo": "work",
+      "pr": 54,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_PLAZA_TERMINAL_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs"
+      ],
+      "total_archivos_escaneados": 161,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-plaza-terminal-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-integration-20261112",
+      "sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+      "grupo": "work",
+      "pr": 21,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_RAILMARKET_20261112.md",
+        "docs/DECISIONS.md",
+        "docs/MERIDIAN_BAY_VISITABLES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "game/MERIDIAN_BAY_PREBUILT.json",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_locations.mjs"
+      ],
+      "total_archivos_escaneados": 133,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-routes-20261112",
+      "sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+      "grupo": "work",
+      "pr": 22,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_ROUTE_INTEGRATION_20261112.md",
+        "tests/meridian_bay_atlas_crosswalk.test.mjs",
+        "tests/meridian_bay_prebuilt_routes.test.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_prebuilt_routes.mjs"
+      ],
+      "total_archivos_escaneados": 138,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-world-fix-20261112",
+      "sha": "14421a9d883a0d9b1a964ff2bcb7478a3e2e5289",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Impedir que un evento del jugador cree lugares; observar un sitio solo cambia conocimiento.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tools/state_changes.mjs"
+      ],
+      "total_archivos_escaneados": 132,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "grupo": "work",
+      "pr": 64,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_CLINIC_DETAIL_20261117.json",
+        "docs/01_world/MERIDIAN_BAY_ROUTE_COVERAGE_20261117.md",
+        "tests/INDEX.md",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs"
+      ],
+      "total_archivos_escaneados": 182,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-grocery-detail-20261116",
+      "sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "grupo": "work",
+      "pr": 62,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_RAILGARDEN_GROCERY_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs"
+      ],
+      "total_archivos_escaneados": 177,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-railgarden-grocery-ci-20261116-a"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-marketrow-20261112",
+      "sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Documentar el diseño y la revisión del corredor Railgarden–Market Row.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/MERIDIAN_BAY_DISTRICT_BLUEPRINT_20261112.md"
+      ],
+      "total_archivos_escaneados": 112,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "work/meridian-bay-district-blueprint-20261112"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-regional-map-20261117",
+      "sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Conservar el mapa regional de Railgarden; comparte commit con la rama del detalle de clínica.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tests/INDEX.md"
+      ],
+      "total_archivos_escaneados": 182,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice1-20261116",
+      "sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "grupo": "work",
+      "pr": 34,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "total_archivos_escaneados": 145,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-road-web-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice2-20261116",
+      "sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "grupo": "work",
+      "pr": 36,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "total_archivos_escaneados": 149,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-road-web-slice2-ci-20261116"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice3-20261116",
+      "sha": "61818e07f9602486bf6d42ff52758d522b2ddea9",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/MERIDIAN_BAY_WATERFRONT_STORY_EVIDENCE_20261116.json"
+      ],
+      "total_archivos_escaneados": 151,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-route-choices-20261112",
+      "sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+      "grupo": "work",
+      "pr": 17,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/MERIDIAN_BAY_ROUTE_CHOICES_20261112.md",
+        "tests/meridian_bay_walk_slice.test.mjs",
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "total_archivos_escaneados": 113,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-services-20261112",
+      "sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+      "grupo": "work",
+      "pr": 15,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Gestionar tres servicios civiles existentes mediante casos persistentes y eventos causales.",
+      "resultado": "descripción precisada",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_SERVICES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/meridian_bay_services.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/meridian_bay_services.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "total_archivos_escaneados": 128,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-social-relations-20261112",
+      "sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+      "grupo": "work",
+      "pr": 13,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_SOCIAL_RELATIONS_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/living_world_social.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_coordinator.mjs",
+        "tools/living_world_social.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "total_archivos_escaneados": 122,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-visitables-20261112",
+      "sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+      "grupo": "work",
+      "pr": 19,
+      "uso_previo": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_VISITABLES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/meridian_bay_locations.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_locations.mjs",
+        "tools/state_changes.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "total_archivos_escaneados": 131,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-walk-slice-20261112",
+      "sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+      "grupo": "work",
+      "pr": 16,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/MERIDIAN_BAY_WALK_SLICE_20261112.md",
+        "tests/meridian_bay_walk_slice.test.mjs",
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "total_archivos_escaneados": 112,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/meridian-bay-wilson-railgarden-detail-20261116",
+      "sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "grupo": "work",
+      "pr": 60,
+      "uso_previo": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "uso_revisado": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "total_archivos_escaneados": 173,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [
+        "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a"
+      ],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/narrative-continuous-scenes-20261112",
+      "sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+      "grupo": "work",
+      "pr": 18,
+      "uso_previo": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "uso_revisado": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/CONTINUOUS_SCENE_FLOW_20261112.md",
+        "docs/NARRATIVE_CONTRACT.md",
+        "docs/SCENE_CRAFT.md"
+      ],
+      "total_archivos_escaneados": 109,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/narrative-journal-http-e2e-20261115",
+      "sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+      "grupo": "work",
+      "pr": 30,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "tests/github_journaled_http_integration.test.mjs"
+      ],
+      "total_archivos_escaneados": 121,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/narrative-verified-context-20261115",
+      "sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+      "grupo": "work",
+      "pr": 31,
+      "uso_previo": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "uso_revisado": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+        "docs/05_persistence/INDEX.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/context_manager.test.mjs",
+        "tests/verified_context_loader.test.mjs",
+        "tools/INDEX.md",
+        "tools/context_manager.mjs",
+        "tools/verified_context_loader.mjs"
+      ],
+      "total_archivos_escaneados": 126,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/npc-needs-chapter-bridge-20261114",
+      "sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+      "grupo": "work",
+      "pr": 27,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/INTEGRATION_NPC_NEEDS_20261114.md",
+        "tests/integration_npc_needs_plans.test.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/narrative_archive.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "total_archivos_escaneados": 125,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/persistent-obligation-review-20261115",
+      "sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+      "grupo": "work",
+      "pr": 29,
+      "uso_previo": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "uso_revisado": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/living_world_diagnostics.test.mjs",
+        "tests/living_world_persistent_commitments.test.mjs",
+        "tests/world_plan_pilot.test.mjs",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_diagnostics.mjs"
+      ],
+      "total_archivos_escaneados": 120,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/repository-complete-checkpoint-20261117",
+      "sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+      "grupo": "work",
+      "pr": 74,
+      "uso_previo": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "uso_revisado": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md",
+        "docs/00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md",
+        "docs/00_start/INDEX.md",
+        "docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md",
+        "docs/00_start/REPOSITORY_FILE_SNAPSHOT_2026-11-17.json",
+        "docs/05_persistence/INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/INDEX.md"
+      ],
+      "total_archivos_escaneados": 133,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/story-rpg-foundation",
+      "sha": "63d1c1e430291ac20b4063333aacd990b38f8dfc",
+      "grupo": "work",
+      "pr": null,
+      "uso_previo": "Preparar la base de código y reglas del proyecto antes de su integración.",
+      "uso_revisado": "Conservar el plan histórico inicial de diseño; no representa el formato narrativo actual.",
+      "resultado": "descripción precisada",
+      "fuente": "commit HEAD y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "docs/PROJECT_PLAN.md"
+      ],
+      "total_archivos_escaneados": 2,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    },
+    {
+      "branch": "work/world-admission-location-state-20261116",
+      "sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+      "grupo": "work",
+      "pr": 78,
+      "uso_previo": "Explorar lugares y conexiones de Meridian Bay; confirmar su contenido antes de integrarlo.",
+      "uso_revisado": "Explorar lugares y conexiones de Meridian Bay; confirmar su contenido antes de integrarlo.",
+      "resultado": "coherencia temática preliminar",
+      "fuente": "PR título y rutas modificadas",
+      "archivos_cambiados_evidencia": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/RECOVERY.md",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md"
+      ],
+      "total_archivos_escaneados": 157,
+      "sha_match": true,
+      "otros_nombres_mismo_commit": [],
+      "limitacion": "Sin ejecución actual de pruebas ni inspección línea por línea de todo el código."
+    }
+  ]
+}

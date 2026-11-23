@@ -1,0 +1,132 @@
+{
+  "schema": "branch-no-pr-commits/v1",
+  "note": "HEAD commit message and changed paths only, not full history or tests",
+  "rows": [
+    {
+      "name": "qa/chatgpt-native-journal-transport-20261117",
+      "head_sha": "124a8114c9cbd121adc1aea9c89f0cf1698c5d81",
+      "doc_use": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "head_commit_message": "test: QA-only no-op five-file Git connector commit; no story turn",
+      "date": "2026-11-18T03:15:31Z",
+      "changed_paths": [],
+      "file_count": 0,
+      "ok": true
+    },
+    {
+      "name": "qa/live-journal-runtime-43767698159",
+      "head_sha": "29d88759a37203a0278c0989f373f20e11ca22ed",
+      "doc_use": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "head_commit_message": "Narrative turn with reviewed Living World activity",
+      "date": "2026-11-15T22:09:44Z",
+      "changed_paths": [
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json"
+      ],
+      "file_count": 5,
+      "ok": true
+    },
+    {
+      "name": "qa/narrative-five-file-journal-smoke-20261115",
+      "head_sha": "debd0746a8b651074522d0bc4f894c441dfdfc2c",
+      "doc_use": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "head_commit_message": "test: detached five-file checkpoint readback on isolated QA branch (no story turn)",
+      "date": "2026-11-15T17:16:13Z",
+      "changed_paths": [],
+      "file_count": 0,
+      "ok": true
+    },
+    {
+      "name": "qa/story-save-recovery-d043-20261110",
+      "head_sha": "d637304e2665828e5c53cb76fd40e0e4a6ade7ec",
+      "doc_use": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "head_commit_message": "test(d043): detached synthetic five-file save for Git crash recovery (NOT CANON)",
+      "date": "2026-11-10T22:07:38Z",
+      "changed_paths": [
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.md",
+        "chapters/CH-000.transcript.json",
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json"
+      ],
+      "file_count": 5,
+      "ok": true
+    },
+    {
+      "name": "qa/trigger-live-journal-20261115",
+      "head_sha": "d19c276a44cdafe3797b763be005dd7422728071",
+      "doc_use": "Probar de forma aislada guardado y recuperación ante interrupciones sin alterar la partida canónica.",
+      "head_commit_message": "chore(qa): archive one-shot write-capable live journal workflow",
+      "date": "2026-11-15T22:11:12Z",
+      "changed_paths": [
+        ".github/workflows/qa-live-journal-20261115.yml"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "qa/world-admission-recovery-20261118",
+      "head_sha": "7a0d73900be12d80a794fcaf40a52b026b8d28c7",
+      "doc_use": "Probar de forma aislada la incorporación controlada de lugares al mundo sin alterar la partida canónica.",
+      "head_commit_message": "Admit reviewed world design without playing a turn",
+      "date": "2026-11-18T14:17:41Z",
+      "changed_paths": [
+        "game/STATE.json"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/living-world-between-turns-20261112",
+      "head_sha": "000b912ce792b4fb215aca12639a3f570ce42b66",
+      "doc_use": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "head_commit_message": "feat: carry deferred NPC activities between completed player turns",
+      "date": "2026-11-13T00:32:42Z",
+      "changed_paths": [
+        "tools/living_world_coordinator.mjs"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/living-world-design-review-20261110",
+      "head_sha": "068a2bf25dd3fa3552f16fde45a87f0eabcac13f",
+      "doc_use": "Explorar living world design review; confirmar su contenido antes de integrarlo.",
+      "head_commit_message": "Link authoritative completed Living World QA results",
+      "date": "2026-11-11T03:24:04Z",
+      "changed_paths": [
+        "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/living-world-overnight-availability-20261112",
+      "head_sha": "dc84b2da5d8a32fbc5b88ab7402e65602c716aa1",
+      "doc_use": "Explorar coherencia del tiempo y disponibilidad; confirmar su contenido antes de integrarlo.",
+      "head_commit_message": "docs: record overnight QA pass and isolated workflow cleanup",
+      "date": "2026-11-12T21:48:40Z",
+      "changed_paths": [
+        "docs/LIVING_WORLD_OVERNIGHT_AVAILABILITY_20261112.md"
+      ],
+      "file_count": 1,
+      "ok": true
+    },
+    {
+      "name": "work/living-world-private-chapter-20261110",
+      "head_sha": "bcfd86fe5ca5cd8598d6e3e9969221c5697a98be",
+      "doc_use": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "head_commit_message": "fix: keep offscreen NPC outcomes out of reader-facing chapter text; add regression tests",
+      "date": "2026-11-11T03:29:29Z",
+      "changed_paths": [
+        "tests/living_world_coordinator.test.mjs",
+        "tests/turn_engine.test.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "file_count": 3,
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,3041 @@
+{
+  "schema": "branch-source-gap-matrix/v1",
+  "date": "2026-11-19",
+  "repository": "jbob-coder/Novel-story-rpg-game-chat-gpt",
+  "active_branch": "work/chat-narrative-foundation",
+  "active_head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+  "active_file_count": 157,
+  "provenance": "Prior 2026-11-19 branch_checks/LOT_01..LOT_09 snapshots; not new live validation of all refs",
+  "method": "Per-path Git blob SHA compare to active narrative HEAD; NOT an ancestry-aware diff or execution test",
+  "baseline_canonical_blob_sha": {
+    "game/SAVE_MANIFEST.json": "897ec2e77ece4f8edf506c7058552a5dd3cdb320",
+    "game/STATE.json": "3f4e9c98a7211068faefd31d0a0acbd4260ef589",
+    "chapters/CH-000.events.json": "1f40c724e44f70c9b45814dc11ff1f73262c5a5f",
+    "chapters/CH-000.transcript.json": "1350916ead7fb1f2f15fdd635dda42e69a0a3fed",
+    "chapters/CH-000.md": "e4c11953eae355c2e06b0a1c7aa01ade3d28e4d4"
+  },
+  "counts": {
+    "original_branches": 108,
+    "shared_head_groups": 22,
+    "branches_in_shared_groups": 46,
+    "exact_file_tree_matches": 2,
+    "unique_tool_paths_not_in_active": 28,
+    "unique_test_paths_not_in_active": 34,
+    "branches_with_absent_tool_path": 57,
+    "branches_missing_any_canonical_file": 3
+  },
+  "unique_tool_paths": [
+    "tools/living_world_agenda.mjs",
+    "tools/living_world_decisions.mjs",
+    "tools/living_world_deferred.mjs",
+    "tools/living_world_needs.mjs",
+    "tools/living_world_social.mjs",
+    "tools/meridian_bay_city.mjs",
+    "tools/meridian_bay_coastal_blueprints.mjs",
+    "tools/meridian_bay_cross_harbor_corridor.mjs",
+    "tools/meridian_bay_land_region_blueprint.mjs",
+    "tools/meridian_bay_market_business_frontage.mjs",
+    "tools/meridian_bay_market_cross_corridor.mjs",
+    "tools/meridian_bay_market_crosswater_corridor.mjs",
+    "tools/meridian_bay_market_culture_frontage.mjs",
+    "tools/meridian_bay_market_delivery_frontage.mjs",
+    "tools/meridian_bay_market_harbor_corridor.mjs",
+    "tools/meridian_bay_market_harbor_direct.mjs",
+    "tools/meridian_bay_plaza_harbor_corridor.mjs",
+    "tools/meridian_bay_plaza_terminal_detail.mjs",
+    "tools/meridian_bay_rail_market_corridor.mjs",
+    "tools/meridian_bay_railgarden_clinic_detail.mjs",
+    "tools/meridian_bay_railgarden_grocery_detail.mjs",
+    "tools/meridian_bay_road_web.mjs",
+    "tools/meridian_bay_road_web_expansion.mjs",
+    "tools/meridian_bay_services.mjs",
+    "tools/meridian_bay_walk_slice.mjs",
+    "tools/meridian_bay_wilson_railgarden_detail.mjs",
+    "tools/qa_live_context_remote_read_20261115.mjs",
+    "tools/qa_live_journal_remote_20261115.mjs"
+  ],
+  "unique_test_paths": [
+    "tests/integration_multi_actor_plans.test.mjs",
+    "tests/integration_npc_chapter_contract.test.mjs",
+    "tests/integration_npc_needs_plans.test.mjs",
+    "tests/living_world_decisions.test.mjs",
+    "tests/living_world_needs.test.mjs",
+    "tests/living_world_obligations.test.mjs",
+    "tests/living_world_social.test.mjs",
+    "tests/meridian_bay_agenda.test.mjs",
+    "tests/meridian_bay_atlas_crosswalk.test.mjs",
+    "tests/meridian_bay_coastal_blueprints.test.mjs",
+    "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+    "tests/meridian_bay_district_blueprint.test.mjs",
+    "tests/meridian_bay_land_region_blueprint.test.mjs",
+    "tests/meridian_bay_locations.test.mjs",
+    "tests/meridian_bay_market_business_frontage.test.mjs",
+    "tests/meridian_bay_market_cross_corridor.test.mjs",
+    "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+    "tests/meridian_bay_market_culture_frontage.test.mjs",
+    "tests/meridian_bay_market_delivery_frontage.test.mjs",
+    "tests/meridian_bay_market_harbor_corridor.test.mjs",
+    "tests/meridian_bay_market_harbor_direct.test.mjs",
+    "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+    "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+    "tests/meridian_bay_rail_market_corridor.test.mjs",
+    "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+    "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+    "tests/meridian_bay_road_web.test.mjs",
+    "tests/meridian_bay_road_web_expansion.test.mjs",
+    "tests/meridian_bay_services.test.mjs",
+    "tests/meridian_bay_walk_slice.test.mjs",
+    "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+    "tests/simulation.test.js",
+    "tests/test_meridian_bay_coastal_svg.py",
+    "tests/test_meridian_bay_land_region_svg.py"
+  ],
+  "shared_head_groups": [
+    [
+      "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "backup/before-meridian-world-admission-20261118"
+    ],
+    [
+      "backup/narrative-before-20261115-readiness-integration",
+      "work/living-world-time-interval-hardening-20261112"
+    ],
+    [
+      "qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-cross-harbor-20261116"
+    ],
+    [
+      "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "work/meridian-bay-harbor-coast-fragment-02-20261117"
+    ],
+    [
+      "qa/meridian-bay-market-business-frontage-ci-20261116",
+      "work/meridian-bay-market-business-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-cross-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-market-cross-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "work/meridian-bay-market-crosswater-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "work/meridian-bay-market-culture-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "work/meridian-bay-market-delivery-frontage-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-market-harbor-20261116"
+    ],
+    [
+      "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "work/meridian-bay-market-harbor-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "work/meridian-bay-market-crosswater-land-fragment-03-20261117"
+    ],
+    [
+      "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "work/meridian-bay-plaza-harbor-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-plaza-terminal-ci-20261116",
+      "work/meridian-bay-plaza-terminal-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "work/meridian-bay-core-integrated-atlas-20261117",
+      "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "work/meridian-bay-railgarden-regional-map-20261117"
+    ],
+    [
+      "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "work/meridian-bay-railgarden-grocery-detail-20261116"
+    ],
+    [
+      "qa/meridian-bay-road-web-ci-20261116",
+      "work/meridian-bay-road-growth-slice1-20261116"
+    ],
+    [
+      "qa/meridian-bay-road-web-slice2-ci-20261116",
+      "work/meridian-bay-road-growth-slice2-20261116"
+    ],
+    [
+      "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "work/meridian-bay-wilson-railgarden-detail-20261116"
+    ],
+    [
+      "qa/rail-market-corridor-detail-ci-20261116",
+      "work/meridian-bay-corridor-detail-rail-market-20261116"
+    ],
+    [
+      "work/chat-narrative-foundation",
+      "work/meridian-admission-handoff-20261119"
+    ],
+    [
+      "work/meridian-bay-district-blueprint-20261112",
+      "work/meridian-bay-railgarden-marketrow-20261112"
+    ]
+  ],
+  "rows": [
+    {
+      "branch": "audit/independent-checkpoint-verification-20261117",
+      "head_sha": "9a760d25070a77ed1746bd2d69c0b06c9f6182be",
+      "pr": 75,
+      "group": "audit",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 21,
+      "active_paths_absent_in_branch_count": 22,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "audit/living-world-critical-review-20261112",
+      "head_sha": "c3ab3a679e96927d509de54b75b8caffc5c1c274",
+      "pr": null,
+      "group": "audit",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 36,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118",
+      "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "pr": 77,
+      "group": "audit",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "backup/before-meridian-world-admission-20261118"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 17,
+      "active_paths_absent_in_branch_count": 21,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "audit/world-plan-npc-integration-20261114",
+      "head_sha": "26422133498340fed3bd96ea0898c1da96ca164b",
+      "pr": 26,
+      "group": "audit",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [
+        "tests/integration_multi_actor_plans.test.mjs",
+        "tests/integration_npc_chapter_contract.test.mjs"
+      ],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 32,
+      "active_paths_absent_in_branch_count": 38,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "backup/before-meridian-world-admission-20261118",
+      "head_sha": "117fb6b8f4f10293236ff67c49a5087e01751e07",
+      "pr": null,
+      "group": "backup",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "audit/recovery-edge-cases-and-checkpoint-crosscheck-20261118"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 17,
+      "active_paths_absent_in_branch_count": 21,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "backup/narrative-before-20261115-readiness-integration",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "pr": null,
+      "group": "backup",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/living-world-time-interval-hardening-20261112"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "backup/narrative-before-verified-context-20261115",
+      "head_sha": "4c32b464a6b7dbd80600b25890641cb19185838a",
+      "pr": null,
+      "group": "backup",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 29,
+      "active_paths_absent_in_branch_count": 36,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "journal/living-world-save-attempts",
+      "head_sha": "8765d855336f49b2ccb9db1a57d3a9e95b96c9f5",
+      "pr": null,
+      "group": "journal",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 36,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "journal/qa-live-journal-runtime-43767698159",
+      "head_sha": "f7f440fea6183badfaeb56354932dcbd99e2c9e2",
+      "pr": null,
+      "group": "journal",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 36,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "journal/qa-living-world-smoke-20261112",
+      "head_sha": "ef2337feaa1f7181c52ba3d56ecff5574982da29",
+      "pr": null,
+      "group": "journal",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "journal/qa-narrative-five-file-smoke-20261115",
+      "head_sha": "1fd8e0afa87e85685026e5fcb1139404386faf5a",
+      "pr": null,
+      "group": "journal",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 36,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "journal/qa-world-admission-20261118",
+      "head_sha": "220a05b96704291503ccb8756186473ae9398e3a",
+      "pr": null,
+      "group": "journal",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 5,
+      "active_paths_absent_in_branch_count": 0,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "main",
+      "head_sha": "52fcff9f2a9b94670b614fdac6b60032f5164c6d",
+      "pr": null,
+      "group": "main",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 1,
+      "active_paths_absent_in_branch_count": 156,
+      "canonical_file_diffs": [],
+      "canonical_file_absences": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/chatgpt-native-journal-transport-20261117",
+      "head_sha": "124a8114c9cbd121adc1aea9c89f0cf1698c5d81",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 27,
+      "active_paths_absent_in_branch_count": 29,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/crosswater-harbor-corridor-detail-ci-20261116",
+      "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "pr": 43,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-corridor-detail-cross-harbor-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 13,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/live-journal-runtime-43767698159",
+      "head_sha": "29d88759a37203a0278c0989f373f20e11ca22ed",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 33,
+      "active_paths_absent_in_branch_count": 36,
+      "canonical_file_diffs": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-integration-20261110",
+      "head_sha": "56d946a3e3a56c2ddce1c87e70f798c2937f4778",
+      "pr": 3,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 43,
+      "active_paths_absent_in_branch_count": 61,
+      "canonical_file_diffs": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-overnight-20261112",
+      "head_sha": "e7e9c6d16d13b6d4d4b5a2c0d251f700eea5b46e",
+      "pr": 5,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 37,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-private-chapter-20261110",
+      "head_sha": "dfa3608d1e79cfa81c6e5a37c01f91a0e6386ccc",
+      "pr": 4,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 59,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-reliability-20261112",
+      "head_sha": "642bedd5f05dc9e6d675c0662f5674093511be45",
+      "pr": 6,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 54,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-reliability-v2-20261112",
+      "head_sha": "9cdc61e5e671735ea91ab1722c4aa9034f17a89c",
+      "pr": 7,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 52,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-reliability-v3-20261112",
+      "head_sha": "9395dad48f636ac3a359d99e3a85e469c95ebeb9",
+      "pr": 8,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 50,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/living-world-time-windows-20261112",
+      "head_sha": "23c0501bd7babd2574cf93fbde361299092ce69d",
+      "pr": 9,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 50,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-coast-fragment-02-ci-20261117-a",
+      "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "pr": 68,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-harbor-coast-fragment-02-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_coastal_blueprints.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py"
+      ],
+      "other_unique_path_count": 28,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-business-frontage-ci-20261116",
+      "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "pr": 51,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-business-frontage-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_business_frontage.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_business_frontage.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 21,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-cross-detail-ci-20261116",
+      "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "pr": 41,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-corridor-detail-market-cross-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 9,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-crosswater-detail-ci-20261116",
+      "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "pr": 53,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-crosswater-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 9,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-culture-frontage-ci-20261116",
+      "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "pr": 49,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-culture-frontage-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 19,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-delivery-frontage-ci-20261116",
+      "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "pr": 47,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-delivery-frontage-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 17,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-harbor-detail-ci-20261116",
+      "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "pr": 45,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-corridor-detail-market-harbor-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 15,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-market-harbor-section5-ci-20261116-a",
+      "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "pr": 59,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-harbor-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 15,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a",
+      "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "pr": 70,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-market-crosswater-land-fragment-03-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_coastal_blueprints.mjs",
+        "tools/meridian_bay_land_region_blueprint.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/meridian_bay_land_region_blueprint.test.mjs",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py",
+        "tests/test_meridian_bay_land_region_svg.py"
+      ],
+      "other_unique_path_count": 31,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-plaza-harbor-corridor-ci-20261116",
+      "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "pr": 57,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-plaza-harbor-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 13,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-plaza-terminal-ci-20261116",
+      "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "pr": 55,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-plaza-terminal-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 11,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-railgarden-clinic-ci-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "pr": 65,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 22,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-railgarden-grocery-ci-20261116-a",
+      "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "pr": 63,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-railgarden-grocery-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 19,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-road-web-ci-20261116",
+      "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "pr": 35,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-road-growth-slice1-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_road_web.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-road-web-slice2-ci-20261116",
+      "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "pr": 37,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-road-growth-slice2-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 5,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a",
+      "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "pr": 61,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-wilson-railgarden-detail-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 17,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/narrative-five-file-journal-smoke-20261115",
+      "head_sha": "debd0746a8b651074522d0bc4f894c441dfdfc2c",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 29,
+      "active_paths_absent_in_branch_count": 37,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/rail-market-corridor-detail-ci-20261116",
+      "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "pr": 39,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-corridor-detail-rail-market-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs"
+      ],
+      "other_unique_path_count": 5,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/story-save-recovery-d043-20261110",
+      "head_sha": "d637304e2665828e5c53cb76fd40e0e4a6ade7ec",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 46,
+      "active_paths_absent_in_branch_count": 78,
+      "canonical_file_diffs": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/trigger-live-context-read-20261115",
+      "head_sha": "78f56c65ad4f8183720599b6bf8d4eb2e88c4d5b",
+      "pr": 32,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/qa_live_context_remote_read_20261115.mjs"
+      ],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 31,
+      "active_paths_absent_in_branch_count": 31,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/trigger-live-journal-20261115",
+      "head_sha": "d19c276a44cdafe3797b763be005dd7422728071",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/qa_live_journal_remote_20261115.mjs"
+      ],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 29,
+      "active_paths_absent_in_branch_count": 36,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "qa/world-admission-recovery-20261118",
+      "head_sha": "7a0d73900be12d80a794fcaf40a52b026b8d28c7",
+      "pr": null,
+      "group": "qa",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 5,
+      "active_paths_absent_in_branch_count": 0,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/chapter-plan-pilot-20261113",
+      "head_sha": "c9448eeaee555b3eb1474eec1832a0aa2991a1b2",
+      "pr": 25,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 32,
+      "active_paths_absent_in_branch_count": 38,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/chat-narrative-foundation",
+      "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "pr": 2,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-admission-handoff-20261119"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 0,
+      "active_paths_absent_in_branch_count": 0,
+      "canonical_file_diffs": [],
+      "canonical_file_absences": [],
+      "identical_file_tree": true
+    },
+    {
+      "branch": "work/chatgpt-native-journal-readiness-20261117",
+      "head_sha": "d1218c16f3b141816267b4daa33d8a9f8ef495b6",
+      "pr": 71,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 27,
+      "active_paths_absent_in_branch_count": 29,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/checkpoint-audit-date-precision-20261118",
+      "head_sha": "a10e049cedf662f2d9d7be0fefdba853035ebdbc",
+      "pr": 76,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 20,
+      "active_paths_absent_in_branch_count": 22,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/connector-transport-qa-handoff-20261117",
+      "head_sha": "ff2fc65d3359830729a97a440a4ec9b341815ec2",
+      "pr": 73,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 27,
+      "active_paths_absent_in_branch_count": 28,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/context-retrieval-pilot-20261114",
+      "head_sha": "25b99ee207dfca7fa07a9e0b4ef069fe2fea9f4f",
+      "pr": 28,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_needs.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/integration_multi_actor_plans.test.mjs",
+        "tests/integration_npc_chapter_contract.test.mjs",
+        "tests/integration_npc_needs_plans.test.mjs"
+      ],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 34,
+      "active_paths_absent_in_branch_count": 35,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/journal-handoff-fast-resume-20261117",
+      "head_sha": "ba19db963162e5c5f4ce4ad2e8d6a71cc9dff57e",
+      "pr": 72,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 27,
+      "active_paths_absent_in_branch_count": 29,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/literal-recovery-contextual-time-20261113",
+      "head_sha": "73fd82757b7cdef4cc7ca931f7b1bbded0f431ca",
+      "pr": 24,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 37,
+      "active_paths_absent_in_branch_count": 47,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-between-turns-20261112",
+      "head_sha": "000b912ce792b4fb215aca12639a3f570ce42b66",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_deferred.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_obligations.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-design-review-20261110",
+      "head_sha": "068a2bf25dd3fa3552f16fde45a87f0eabcac13f",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 38,
+      "active_paths_absent_in_branch_count": 60,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-foundation",
+      "head_sha": "f121c8bfed7c17b45b0239bb5d0a52d54eb57070",
+      "pr": 1,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [
+        "tests/simulation.test.js"
+      ],
+      "other_unique_path_count": 6,
+      "changed_existing_path_count": 4,
+      "active_paths_absent_in_branch_count": 153,
+      "canonical_file_diffs": [],
+      "canonical_file_absences": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-overnight-availability-20261112",
+      "head_sha": "dc84b2da5d8a32fbc5b88ab7402e65602c716aa1",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 36,
+      "active_paths_absent_in_branch_count": 57,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-persistent-commitments-20261112",
+      "head_sha": "ab6fab02c079ff3e1fce27a8ae53ae8f9e5afead",
+      "pr": 10,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [
+        "tests/living_world_obligations.test.mjs"
+      ],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-private-chapter-20261110",
+      "head_sha": "bcfd86fe5ca5cd8598d6e3e9969221c5697a98be",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 59,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-reliability-20261112",
+      "head_sha": "3a690c87ffd7800e277613da4c7a2df4a781a0c4",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 50,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/living-world-time-interval-hardening-20261112",
+      "head_sha": "b096f84dca1ec4e01f1a2742a67ae41688bd11d6",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "backup/narrative-before-20261115-readiness-integration"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-admission-handoff-20261119",
+      "head_sha": "0efd2586ac8647faae10eb84695437dca430df04",
+      "pr": 79,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/chat-narrative-foundation"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 0,
+      "active_paths_absent_in_branch_count": 0,
+      "canonical_file_diffs": [],
+      "canonical_file_absences": [],
+      "identical_file_tree": true
+    },
+    {
+      "branch": "work/meridian-bay-atlas-20261112",
+      "head_sha": "5cbf433e5cb1e59945ba5cf3d79a3e127d9406b6",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-causal-decisions-20261112",
+      "head_sha": "7b0c6ddf9c07192b2e8b2560725712b2efb0f82f",
+      "pr": 12,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs"
+      ],
+      "other_unique_path_count": 4,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-causal-routines-20261112",
+      "head_sha": "7301f2b511dbb6dfdefe065aa9e9a74c600bbd35",
+      "pr": 11,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_obligations.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-city-scale-20261112",
+      "head_sha": "3b4d1b4f2a6339161f397d5806a1950f66886afb",
+      "pr": 23,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_atlas_crosswalk.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 12,
+      "changed_existing_path_count": 48,
+      "active_paths_absent_in_branch_count": 41,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-core-integrated-atlas-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 22,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-cross-harbor-20261116",
+      "head_sha": "c6267dcf181c7e2e9a3bee524ba98d3ccffa4664",
+      "pr": 42,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/crosswater-harbor-corridor-detail-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 13,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-market-cross-20261116",
+      "head_sha": "4308dabf0f2e3fb8b04233b63e2049ae5d826517",
+      "pr": 40,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-cross-detail-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 9,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-market-harbor-20261116",
+      "head_sha": "1b51a0050deb95309b4380768cb13a3139019dbc",
+      "pr": 44,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-harbor-detail-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 15,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-corridor-detail-rail-market-20261116",
+      "head_sha": "56f23d18eb53552187dab05745ba2434702a43d3",
+      "pr": 38,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/rail-market-corridor-detail-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs"
+      ],
+      "other_unique_path_count": 5,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-district-blueprint-20261112",
+      "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "pr": 20,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-railgarden-marketrow-20261112"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_district_blueprint.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-harbor-coast-fragment-02-20261117",
+      "head_sha": "8bdf34c5eddf4e12e34352018b2a893cb9a14056",
+      "pr": 67,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-coast-fragment-02-ci-20261117-a"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_coastal_blueprints.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py"
+      ],
+      "other_unique_path_count": 28,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-harbor-coast-fragment-20261117",
+      "head_sha": "d5f8af27779aa49ecfa082e091f6bb57308a146a",
+      "pr": 66,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 25,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-business-frontage-20261116",
+      "head_sha": "8d3ffb2acd7e89fbb1bb1b5105a1c8dfe6441557",
+      "pr": 50,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-business-frontage-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_business_frontage.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_business_frontage.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 21,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-crosswater-detail-20261116",
+      "head_sha": "22d86a46fbded9a6885b50b3e6f5db144e79a1cd",
+      "pr": 52,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-crosswater-detail-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 9,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-crosswater-land-fragment-03-20261117",
+      "head_sha": "f424538e03755b62b91c6b589e9a121cc10019d3",
+      "pr": 69,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-physical-inland-fragment-03-ci-20261117-a"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_coastal_blueprints.mjs",
+        "tools/meridian_bay_land_region_blueprint.mjs",
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_coastal_blueprints.test.mjs",
+        "tests/meridian_bay_land_region_blueprint.test.mjs",
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tests/test_meridian_bay_coastal_svg.py",
+        "tests/test_meridian_bay_land_region_svg.py"
+      ],
+      "other_unique_path_count": 31,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-culture-frontage-20261116",
+      "head_sha": "851c0db203652e5216fb86b9aff934c78b53c9ef",
+      "pr": 48,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-culture-frontage-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_culture_frontage.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_culture_frontage.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 19,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-delivery-frontage-20261116",
+      "head_sha": "b64a880a7654867413c0b264bf090f1364f3f74d",
+      "pr": 46,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-delivery-frontage-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_cross_harbor_corridor.mjs",
+        "tools/meridian_bay_market_cross_corridor.mjs",
+        "tools/meridian_bay_market_delivery_frontage.mjs",
+        "tools/meridian_bay_market_harbor_direct.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_cross_harbor_corridor.test.mjs",
+        "tests/meridian_bay_market_cross_corridor.test.mjs",
+        "tests/meridian_bay_market_delivery_frontage.test.mjs",
+        "tests/meridian_bay_market_harbor_direct.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 17,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-market-harbor-detail-20261116",
+      "head_sha": "b11332aa53796717cf299bebccf043d72620220e",
+      "pr": 58,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-market-harbor-section5-ci-20261116-a"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 15,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-needs-tradeoffs-20261112",
+      "head_sha": "b38c0139bf29c6d49bd90f19a2c896f92edbb5bc",
+      "pr": 14,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs"
+      ],
+      "other_unique_path_count": 6,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-phase1-20261116",
+      "head_sha": "ec4aedf01491890bc21ddb91dcc06a8dabc172e4",
+      "pr": 33,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-plaza-harbor-detail-20261116",
+      "head_sha": "199b3843085d8b4b2ab92739357263d598757331",
+      "pr": 56,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-plaza-harbor-corridor-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 13,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-plaza-terminal-detail-20261116",
+      "head_sha": "5974d5d096c0265344397363cdbc84d49af21e71",
+      "pr": 54,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-plaza-terminal-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 11,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-integration-20261112",
+      "head_sha": "25d66f453c6fb688013a2558bbd197237338f79a",
+      "pr": 21,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 10,
+      "changed_existing_path_count": 42,
+      "active_paths_absent_in_branch_count": 47,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-routes-20261112",
+      "head_sha": "edb0d06791b7b441e23b21802ccbc01b2d7641d9",
+      "pr": 22,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_atlas_crosswalk.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 11,
+      "changed_existing_path_count": 45,
+      "active_paths_absent_in_branch_count": 44,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-prebuilt-world-fix-20261112",
+      "head_sha": "14421a9d883a0d9b1a964ff2bcb7478a3e2e5289",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 9,
+      "changed_existing_path_count": 42,
+      "active_paths_absent_in_branch_count": 47,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-clinic-detail-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "pr": 64,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-regional-map-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 22,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-grocery-detail-20261116",
+      "head_sha": "3bad47131f631d7edb472ef57dc8495226a22835",
+      "pr": 62,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-railgarden-grocery-ci-20261116-a"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 19,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-marketrow-20261112",
+      "head_sha": "af3148622a0c345825fa119e5913265552e20c18",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "work/meridian-bay-district-blueprint-20261112"
+      ],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_district_blueprint.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-railgarden-regional-map-20261117",
+      "head_sha": "3a359a171ecf31d3e7492e600b1cbae3e2aec426",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-railgarden-clinic-ci-20261117",
+        "work/meridian-bay-core-integrated-atlas-20261117",
+        "work/meridian-bay-railgarden-clinic-detail-20261117"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_railgarden_clinic_detail.mjs",
+        "tools/meridian_bay_railgarden_grocery_detail.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_railgarden_clinic_detail.test.mjs",
+        "tests/meridian_bay_railgarden_grocery_detail.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 22,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice1-20261116",
+      "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "pr": 34,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-road-web-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_road_web.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice2-20261116",
+      "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "pr": 36,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-road-web-slice2-ci-20261116"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 5,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-road-growth-slice3-20261116",
+      "head_sha": "61818e07f9602486bf6d42ff52758d522b2ddea9",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs"
+      ],
+      "other_unique_path_count": 7,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-route-choices-20261112",
+      "head_sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+      "pr": 17,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_walk_slice.test.mjs"
+      ],
+      "other_unique_path_count": 3,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-services-20261112",
+      "head_sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+      "pr": 15,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 7,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-social-relations-20261112",
+      "head_sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+      "pr": 13,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs"
+      ],
+      "other_unique_path_count": 5,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 48,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-visitables-20261112",
+      "head_sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+      "pr": 19,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_agenda.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_social.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_services.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/living_world_decisions.test.mjs",
+        "tests/living_world_needs.test.mjs",
+        "tests/living_world_obligations.test.mjs",
+        "tests/living_world_social.test.mjs",
+        "tests/meridian_bay_agenda.test.mjs",
+        "tests/meridian_bay_locations.test.mjs",
+        "tests/meridian_bay_services.test.mjs"
+      ],
+      "other_unique_path_count": 8,
+      "changed_existing_path_count": 42,
+      "active_paths_absent_in_branch_count": 47,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-walk-slice-20261112",
+      "head_sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+      "pr": 16,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_walk_slice.test.mjs"
+      ],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 39,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/meridian-bay-wilson-railgarden-detail-20261116",
+      "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "pr": 60,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [
+        "qa/meridian-bay-wilson-railgarden-detail-ci-20261116-a"
+      ],
+      "absent_from_active_tools": [
+        "tools/meridian_bay_market_crosswater_corridor.mjs",
+        "tools/meridian_bay_market_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_harbor_corridor.mjs",
+        "tools/meridian_bay_plaza_terminal_detail.mjs",
+        "tools/meridian_bay_rail_market_corridor.mjs",
+        "tools/meridian_bay_road_web.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/meridian_bay_market_crosswater_corridor.test.mjs",
+        "tests/meridian_bay_market_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_harbor_corridor.test.mjs",
+        "tests/meridian_bay_plaza_terminal_detail.test.mjs",
+        "tests/meridian_bay_rail_market_corridor.test.mjs",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs"
+      ],
+      "other_unique_path_count": 17,
+      "changed_existing_path_count": 40,
+      "active_paths_absent_in_branch_count": 17,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/narrative-continuous-scenes-20261112",
+      "head_sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+      "pr": 18,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 41,
+      "active_paths_absent_in_branch_count": 49,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/narrative-journal-http-e2e-20261115",
+      "head_sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+      "pr": 30,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 29,
+      "active_paths_absent_in_branch_count": 36,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/narrative-verified-context-20261115",
+      "head_sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+      "pr": 31,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 31,
+      "active_paths_absent_in_branch_count": 31,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/npc-needs-chapter-bridge-20261114",
+      "head_sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+      "pr": 27,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [
+        "tools/living_world_needs.mjs"
+      ],
+      "absent_from_active_tests": [
+        "tests/integration_multi_actor_plans.test.mjs",
+        "tests/integration_npc_chapter_contract.test.mjs",
+        "tests/integration_npc_needs_plans.test.mjs"
+      ],
+      "other_unique_path_count": 2,
+      "changed_existing_path_count": 33,
+      "active_paths_absent_in_branch_count": 38,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/persistent-obligation-review-20261115",
+      "head_sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+      "pr": 29,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 29,
+      "active_paths_absent_in_branch_count": 37,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/repository-complete-checkpoint-20261117",
+      "head_sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+      "pr": 74,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 23,
+      "active_paths_absent_in_branch_count": 24,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/story-rpg-foundation",
+      "head_sha": "63d1c1e430291ac20b4063333aacd990b38f8dfc",
+      "pr": null,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 1,
+      "changed_existing_path_count": 1,
+      "active_paths_absent_in_branch_count": 156,
+      "canonical_file_diffs": [],
+      "canonical_file_absences": [
+        "game/SAVE_MANIFEST.json",
+        "game/STATE.json",
+        "chapters/CH-000.events.json",
+        "chapters/CH-000.transcript.json",
+        "chapters/CH-000.md"
+      ],
+      "identical_file_tree": false
+    },
+    {
+      "branch": "work/world-admission-location-state-20261116",
+      "head_sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+      "pr": 78,
+      "group": "work",
+      "sha_matches_snapshot": true,
+      "shared_head_with": [],
+      "absent_from_active_tools": [],
+      "absent_from_active_tests": [],
+      "other_unique_path_count": 0,
+      "changed_existing_path_count": 5,
+      "active_paths_absent_in_branch_count": 0,
+      "canonical_file_diffs": [
+        "game/STATE.json"
+      ],
+      "canonical_file_absences": [],
+      "identical_file_tree": false
+    }
+  ],
+  "limitations": [
+    "Paths present only in old branches do not prove runnable new capabilities.",
+    "Many differing blob SHAs reflect an older ancestor of the active branch, not an independent feature.",
+    "No per-branch runtime suites executed in this matrix.",
+    "QA, journal and backups are not eligible for direct merges.",
+    "Do not mutate the five canonical save files."
+  ]
+}

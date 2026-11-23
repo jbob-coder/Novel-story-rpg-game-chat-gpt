@@ -1,0 +1,321 @@
+{
+  "schema": "pr-files-audit/v1",
+  "note": "Exact PR changed paths, not equivalent to current branch-vs-latest-base diff",
+  "records": [
+    {
+      "name": "work/meridian-bay-road-growth-slice1-20261116",
+      "head_sha": "1afaa5ca1b9413117488cd9f3093fc47996dcdf2",
+      "pr_number": 34,
+      "pr_base": "work/meridian-bay-phase1-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay road-web slice 1: Railgarden–Market Row and local branches",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE1_20261116.json",
+        "docs/01_world/MERIDIAN_BAY_STORY_MAP_EVIDENCE_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_road_web.test.mjs",
+        "tools/meridian_bay_road_web.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-road-growth-slice2-20261116",
+      "head_sha": "809c9712ac008afad451a5e2ff04624b04749369",
+      "pr_number": 36,
+      "pr_base": "work/meridian-bay-road-growth-slice1-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay road web slice 2: Market Row → Crosswater Plaza",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2.md",
+        "docs/01_world/MERIDIAN_BAY_ROAD_WEB_SLICE2_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_road_web_expansion.test.mjs",
+        "tools/meridian_bay_road_web_expansion.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-route-choices-20261112",
+      "head_sha": "b21c6b53b952f18cda406ec75f399c9ba6fd6f48",
+      "pr_number": 17,
+      "pr_base": "work/meridian-bay-walk-slice-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: reader-directed waypoint routes in Meridian Bay narrative preview",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/MERIDIAN_BAY_ROUTE_CHOICES_20261112.md",
+        "tests/meridian_bay_walk_slice.test.mjs",
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-services-20261112",
+      "head_sha": "59bf58cf2668ce284e68f539217979902ce062b4",
+      "pr_number": 15,
+      "pr_base": "work/meridian-bay-needs-tradeoffs-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: three existing Meridian Bay service workflows with causal case history",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_SERVICES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/meridian_bay_services.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_decisions.mjs",
+        "tools/living_world_diagnostics.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/meridian_bay_services.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-social-relations-20261112",
+      "head_sha": "cc1fbdf149fc6ae2ad4703fc4ed14e70a77ec226",
+      "pr_number": 13,
+      "pr_base": "work/meridian-bay-causal-decisions-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: verified NPC social encounters and directional relationships",
+      "doc_use": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "paths": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_SOCIAL_RELATIONS_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/living_world_social.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_coordinator.mjs",
+        "tools/living_world_social.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-visitables-20261112",
+      "head_sha": "69d1e744717c500d4091b7c386351a0cfcf7e065",
+      "pr_number": 19,
+      "pr_base": "work/meridian-bay-services-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: scene-established public Meridian Bay places with linked navigation",
+      "doc_use": "Diseñar o comprobar lugares y conexiones de Meridian Bay antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/INDEX.md",
+        "docs/MERIDIAN_BAY_VISITABLES_20261112.md",
+        "docs/STATE_SCHEMA.md",
+        "tests/meridian_bay_locations.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_diagnostics.mjs",
+        "tools/meridian_bay_city.mjs",
+        "tools/meridian_bay_locations.mjs",
+        "tools/state_changes.mjs",
+        "tools/turn_engine.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-walk-slice-20261112",
+      "head_sha": "e74099657b1c9dfa5c206ec303769af6c146052a",
+      "pr_number": 16,
+      "pr_base": "work/meridian-bay-atlas-20261112",
+      "pr_merged": false,
+      "pr_title": "QA draft: Meridian Bay read-only house-to-plaza walking slice",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/MERIDIAN_BAY_WALK_SLICE_20261112.md",
+        "tests/meridian_bay_walk_slice.test.mjs",
+        "tools/meridian_bay_walk_slice.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/meridian-bay-wilson-railgarden-detail-20261116",
+      "head_sha": "253435bf792830d0fb7bb6859d04e1270c4c284f",
+      "pr_number": 60,
+      "pr_base": "work/meridian-bay-market-harbor-detail-20261116",
+      "pr_merged": false,
+      "pr_title": "Meridian Bay: detail Wilson home ↔ Railgarden in two local frontage sections",
+      "doc_use": "Diseñar o comprobar rutas, calles y accesos urbanos antes de admitirlo al mundo jugable.",
+      "paths": [
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL.md",
+        "docs/01_world/MERIDIAN_BAY_WILSON_RAILGARDEN_DETAIL_20261116.json",
+        "tests/INDEX.md",
+        "tests/meridian_bay_wilson_railgarden_detail.test.mjs",
+        "tools/meridian_bay_wilson_railgarden_detail.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/narrative-continuous-scenes-20261112",
+      "head_sha": "cfcb5364e2d282607d906ad2635373c3b7ada1ef",
+      "pr_number": 18,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": false,
+      "pr_title": "Narrative policy draft: continuous scenes from a single player decision",
+      "doc_use": "Mejorar capítulos, decisiones y narración manteniendo la agencia del jugador.",
+      "paths": [
+        "docs/CONTINUOUS_SCENE_FLOW_20261112.md",
+        "docs/NARRATIVE_CONTRACT.md",
+        "docs/SCENE_CRAFT.md"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/narrative-journal-http-e2e-20261115",
+      "head_sha": "2be0ffc5c4f65fff16472bb4665b8b25f10fa257",
+      "pr_number": 30,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": true,
+      "pr_title": "QA: exercise journaled narrative saves through both GitHub REST adapters",
+      "doc_use": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "paths": [
+        "tests/github_journaled_http_integration.test.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/narrative-verified-context-20261115",
+      "head_sha": "3a623554948e1ac2f7e50d61a7b0e23e69907206",
+      "pr_number": 31,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": true,
+      "pr_title": "QA: port evidence-linked context packets with immutable checkpoint and journal gate",
+      "doc_use": "Recuperar contexto con referencias verificables para evitar perder continuidad.",
+      "paths": [
+        "docs/05_persistence/CONTEXT_MANAGEMENT.md",
+        "docs/05_persistence/INDEX.md",
+        "docs/FILE_INVENTORY.json",
+        "tests/INDEX.md",
+        "tests/context_manager.test.mjs",
+        "tests/verified_context_loader.test.mjs",
+        "tools/INDEX.md",
+        "tools/context_manager.mjs",
+        "tools/verified_context_loader.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/npc-needs-chapter-bridge-20261114",
+      "head_sha": "b08bf14d99fd094c52f2272f20228c12369fcf3a",
+      "pr_number": 27,
+      "pr_base": "audit/world-plan-npc-integration-20261114",
+      "pr_merged": false,
+      "pr_title": "QA draft: event-backed NPC needs integrated with plans and chapter history",
+      "doc_use": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "paths": [
+        "docs/INTEGRATION_NPC_NEEDS_20261114.md",
+        "tests/integration_npc_needs_plans.test.mjs",
+        "tools/living_world_needs.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/narrative_archive.mjs",
+        "tools/state_changes.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/persistent-obligation-review-20261115",
+      "head_sha": "64927b30d9f888b3677bcdf8c33945f9f563cb79",
+      "pr_number": 29,
+      "pr_base": "work/chapter-plan-pilot-20261113",
+      "pr_merged": false,
+      "pr_title": "Review saved NPC obligations beyond nearby routines and chapter boundaries",
+      "doc_use": "Desarrollar decisiones, necesidades y obligaciones de NPC con consecuencias causales.",
+      "paths": [
+        ".github/workflows/narrative-qa.yml",
+        "AGENTS.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/living_world_diagnostics.test.mjs",
+        "tests/living_world_persistent_commitments.test.mjs",
+        "tests/world_plan_pilot.test.mjs",
+        "tools/living_world_commitments.mjs",
+        "tools/living_world_diagnostics.mjs"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/repository-complete-checkpoint-20261117",
+      "head_sha": "d37650eadf189ea3b58dbdf6966a2d2ceef816eb",
+      "pr_number": 74,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": true,
+      "pr_title": "Full dated repository checkpoint: area rules, tasks, map drafts and immutable 129-file inventory",
+      "doc_use": "Probar o documentar guardado, verificación de estado y recuperación segura.",
+      "paths": [
+        "AGENTS.md",
+        "INDEX.md",
+        "README.md",
+        "docs/00_start/AREA_STATUS_AND_TASKS_2026-11-17.md",
+        "docs/00_start/BRANCH_AND_MAP_WORKSTACK_2026-11-17.md",
+        "docs/00_start/INDEX.md",
+        "docs/00_start/REPOSITORY_CHECKPOINT_2026-11-17.md",
+        "docs/00_start/REPOSITORY_FILE_SNAPSHOT_2026-11-17.json",
+        "docs/05_persistence/INDEX.md",
+        "docs/06_quality/INDEX.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/INDEX.md",
+        "tests/INDEX.md",
+        "tests/index_paths.test.mjs",
+        "tools/INDEX.md"
+      ],
+      "ok": true
+    },
+    {
+      "name": "work/world-admission-location-state-20261116",
+      "head_sha": "68faa9abcce60a94b4ca62dd917c7e180407a6d5",
+      "pr_number": 78,
+      "pr_base": "work/chat-narrative-foundation",
+      "pr_merged": true,
+      "pr_title": "Admit Meridian Bay independently and record mutable location conditions",
+      "doc_use": "Explorar lugares y conexiones de Meridian Bay; confirmar su contenido antes de integrarlo.",
+      "paths": [
+        "AGENTS.md",
+        "docs/01_world/INDEX.md",
+        "docs/01_world/MERIDIAN_BAY_ATLAS_PREBUILT_CROSSWALK_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_CITY_SCALE_PLAN_20261112.json",
+        "docs/01_world/MERIDIAN_BAY_PHASE1.md",
+        "docs/01_world/MERIDIAN_BAY_PREBUILT_DESIGN.json",
+        "docs/01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md",
+        "docs/FILE_INVENTORY.json",
+        "docs/RECOVERY.md",
+        "docs/STATE_SCHEMA.md",
+        "docs/STATUS.md",
+        "tests/INDEX.md",
+        "tests/helpers/meridian_bay_fixture.mjs",
+        "tests/living_world_diagnostics.test.mjs",
+        "tests/location_state.test.mjs",
+        "tests/location_state_integration.test.mjs",
+        "tests/meridian_bay_city_scale.test.mjs",
+        "tests/meridian_bay_discovery.test.mjs",
+        "tests/meridian_bay_foundation.test.mjs",
+        "tests/meridian_bay_integration.test.mjs",
+        "tests/meridian_bay_prebuilt_routes.test.mjs",
+        "tests/test_checkpoint_audit.py",
+        "tests/world_admission.test.mjs",
+        "tools/INDEX.md",
+        "tools/living_world_diagnostics.mjs",
+        "tools/living_world_routines.mjs",
+        "tools/location_state.mjs",
+        "tools/meridian_bay_discovery.mjs",
+        "tools/meridian_bay_integration.mjs",
+        "tools/meridian_bay_locations.mjs",
+        "tools/meridian_bay_prebuilt_routes.mjs",
+        "tools/meridian_bay_scale_plan.mjs",
+        "tools/save_transaction.mjs",
+        "tools/state_changes.mjs",
+        "tools/turn_engine.mjs",
+        "tools/world_admission.mjs"
+      ],
+      "ok": true
+    }
+  ]
+}
