@@ -33,3 +33,5 @@
 - [Revisión de agencia NPC fuera de escena, sin acción obligatoria](NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md)
 
 - [NPC: peticiones abiertas al narrador, revisión de intenciones y resultados](NPC_INTENTION_GENERATION_BRIDGE_20261122.md)
+
+- [NPC: composición de propuestas y abstenciones revisadas en un mismo turno](NPC_GENERATED_TURN_BATCH_QA_20261122.md)

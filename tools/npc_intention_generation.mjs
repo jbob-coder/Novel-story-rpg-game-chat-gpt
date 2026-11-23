@@ -3,6 +3,7 @@
 // reviewed outcomes. No hardcoded menu, LLM/network calls, background ticks,
 // player disclosure, automatic movement or live save writes.
 import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
+import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
  from './npc_contextual_intents.mjs';
@@ -145,4 +146,69 @@ export function draftOutcomeFromNPCIntention({snapshot,request,proposal,
   reasoning:causalBasis,outcome,changes,reviewed:true});
  return copy({actor_id:request.actorId,reviewed:true,resolved:true,
   causal_basis:causalBasis,outcome,changes,disclosures:[]});
+}
+
+
+/**
+ * Build exactly one in-memory fictional turn from narrator-authored decisions.
+ * The engine never creates a player input, chooses an NPC intention or saves
+ * anything. It validates complete choice-to-actor ownership, abstention,
+ * private outcome separation and the existing turn coordinator rules.
+ */
+export function stageReviewedNPCIntentionTurn({snapshot,turn,observedHead,
+ choices=[]}={}){
+ ensure(snapshot?.state?.world?.actors&&turn&&typeof turn==='object',
+  'Verified checkpoint and an actual authored narrative turn required');
+ ensure(Array.isArray(choices)&&choices.length<=20,
+  'At most 20 NPC review choices per turn');
+ const elapsedMinutes=turn.elapsed_minutes,elapsedDays=turn.elapsed_days;
+ const nextPeriod=turn.next_time_of_day??snapshot.state.time.time_of_day;
+ const seen=new Set(),npcResolutions=[],abstained=[];
+ const publicScene=[
+  turn.player_text,turn.intent,turn.outcome,
+  ...(Array.isArray(turn.narration_messages)?turn.narration_messages:[])
+ ].filter(x=>typeof x==='string').join('\n');
+ for(const item of choices){
+  ensure(item&&typeof item==='object'&&
+   item.request?.actorId===item.proposal?.actorId,
+   'Actor-owned request and proposal must match');
+  const actorId=item.request.actorId;
+  ensure(!seen.has(actorId),'Only one NPC choice per actor and turn');
+  seen.add(actorId);
+  ensure(item.request?.reviewParameters?.elapsedMinutes===elapsedMinutes&&
+   item.request?.reviewParameters?.elapsedDays===elapsedDays&&
+   item.request?.reviewParameters?.nextPeriod===
+    (turn.next_time_of_day??null),
+   'NPC intention must review the same fictional turn interval');
+  const validated=inspectNPCGeneratedIntention({
+   snapshot,request:item.request,proposal:item.proposal});
+  if(validated.classification==='npc_intention_abstention_v1'){
+   ensure(item.reviewed===undefined&&item.outcome===undefined&&
+    item.changes===undefined,
+    'Abstaining NPC cannot hide an outcome or state change');
+   abstained.push(actorId);
+   continue;
+  }
+  ensure(item.reviewed===true,'NPC action needs separate causal review');
+  ensure(nonempty(item.outcome,12,2000),
+   'A reviewed NPC action needs a real current-turn outcome');
+  // Exact-string guard; full semantic disclosure still belongs to the
+  // narrator and checked knowledge transfers in the narrative engine.
+  ensure(!publicScene.includes(item.outcome),
+   'Private NPC outcome must not appear verbatim in player scene');
+  npcResolutions.push(draftOutcomeFromNPCIntention({
+   snapshot,request:item.request,proposal:item.proposal,
+   reviewed:true,outcome:item.outcome,changes:item.changes??[]
+  }));
+ }
+ return {
+  ...stageLivingWorldTurn({snapshot,turn,observedHead,npcResolutions}),
+  npcTurnReview:copy({
+   classification:'synthetic_or_authored_turn_review_metadata_v1',
+   reviewedActorIds:[...seen],actedActorIds:npcResolutions.map(x=>x.actor_id),
+   abstainedActorIds:abstained,
+   createdCanonicalSave:false,requiresTransactionalReadback:true,
+   privateReviewerOnly:true
+  })
+ };
 }
