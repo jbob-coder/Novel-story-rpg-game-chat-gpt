@@ -35,3 +35,5 @@
 - [NPC: peticiones abiertas al narrador, revisión de intenciones y resultados](NPC_INTENTION_GENERATION_BRIDGE_20261122.md)
 
 - [NPC: composición de propuestas y abstenciones revisadas en un mismo turno](NPC_GENERATED_TURN_BATCH_QA_20261122.md)
+
+- [NPC: selección acotada y rotación equitativa fuera de escena](NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md)

@@ -10,6 +10,56 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const prose=(s,min,max)=>typeof s==='string'&&s.trim().length>=min&&s.length<=max;
 
+
+/**
+ * Bound expensive event-history/context retrieval to a small relevant set.
+ * Due responsibilities receive review priority; equally relevant actors
+ * rotate across successive narrative turns so offscreen newcomers are not
+ * permanently excluded by lexical order or prior-action history.
+ * Review priority is not a command to act.
+ */
+export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
+ elapsedDays=0,actorIds=null,limit=20}={}){
+ insist(actors&&typeof actors==='object'&&!Array.isArray(actors),
+  'Saved NPC actor registry required');
+ insist(Number.isSafeInteger(worldDay)&&Number.isSafeInteger(completedTurn)&&
+  completedTurn>=0&&Number.isSafeInteger(elapsedDays)&&elapsedDays>=0,
+  'Valid fictional review time required');
+ insist(Number.isSafeInteger(limit)&&limit>=1&&limit<=40,
+  'Invalid NPC review limit');
+ const ids=actorIds??Object.keys(actors).sort();
+ insist(Array.isArray(ids)&&ids.length<=100000&&
+  new Set(ids).size===ids.length&&
+  ids.every(id=>typeof id==='string'&&Object.hasOwn(actors,id)),
+  'Unknown or duplicate NPC review selection');
+ const eligible=ids.flatMap(actorId=>{
+  const a=actors[actorId];
+  if(!a||!a.goal&&!a.independent_plan&&!(a.commitments?.length))return [];
+  const open=(a.commitments??[]).filter(c=>
+   c?.status==='pending'||c?.status==='blocked');
+  const due=open.some(c=>Number.isSafeInteger(c.due_day)&&
+   c.due_day<=worldDay+elapsedDays);
+  // Neither past action frequency nor distance to Jack buys permanent
+  // selection priority. A known commitment is a reason to check relevance.
+  const priority=due?3:open.length?1:0;
+  return [{actorId,priority}];
+ });
+ const grouped=new Map();
+ for(const row of eligible){
+  if(!grouped.has(row.priority))grouped.set(row.priority,[]);
+  grouped.get(row.priority).push(row);
+ }
+ const sorted=[];
+ for(const priority of [...grouped.keys()].sort((a,b)=>b-a)){
+  const group=grouped.get(priority).sort((a,b)=>
+   a.actorId.localeCompare(b.actorId));
+  const start=completedTurn%group.length;
+  sorted.push(...group.slice(start),...group.slice(0,start));
+ }
+ return clone({eligibleCount:eligible.length,
+  selected:sorted.slice(0,limit)});
+}
+
 export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
  elapsedDays=0,nextPeriod=null,limit=20}={}){
  verifyNarrativeSnapshot(snapshot);
@@ -24,21 +74,20 @@ export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
  if(elapsedMinutes===0)return {
   classification:'npc_private_open_agency_v1',frames:[],reviewCount:0,
   actorCount:0,actionsPerformed:0,timeAdvanced:false,readerVisible:false};
- const selected=actorIds??Object.keys(actors).sort();
- const frames=selected.flatMap(actorId=>{
+ const ranking=rankOpenNPCReviewCandidates({actors,
+  worldDay:snapshot.state.time.day,
+  completedTurn:snapshot.manifest.last_completed_turn,
+  elapsedDays,actorIds,limit});
+ const frames=ranking.selected.map(({actorId,priority})=>{
   const actor=actors[actorId];
-  if(!actor?.goal&&!actor?.independent_plan&&!(actor?.commitments?.length))return [];
   const previous=inspectNPCNextTurn({snapshot,actorId});
   const ctx=previous.context;
   const openCommitments=(actor.commitments??[]).filter(c=>
    c.status==='pending'||c.status==='blocked').map(c=>({
     id:c.id,summary:c.summary,status:c.status,dueDay:c.due_day??null
    }));
-  const due=openCommitments.some(c=>c.dueDay!==null&&
-   c.dueDay<=snapshot.state.time.day+elapsedDays);
   const knownLast=ctx.evidence.knownEventIds.at(-1)??null;
   const sourceEventId=previous.previousResult?.eventId??knownLast;
-  const priority=(due?3:0)+(previous.previousResult?1:0);
   return [{
    classification:'npc_private_open_frame_v1',actorId,
    checkpoint:ctx.checkpoint,locationId:ctx.evidence.locationId,
@@ -51,10 +100,10 @@ export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
    actionSelected:false,resultKnown:false,requiresNarratorReview:true
   }];
  });
- frames.sort((a,b)=>b.priority-a.priority||a.actorId.localeCompare(b.actorId));
+ // Preselection has already bounded the expensive snapshot/actor review.
  return clone({classification:'npc_private_open_agency_v1',
-  frames:frames.slice(0,limit),reviewCount:Math.min(limit,frames.length),
-  actorCount:frames.length,actionsPerformed:0,timeAdvanced:false,
+  frames,reviewCount:frames.length,
+  actorCount:ranking.eligibleCount,actionsPerformed:0,timeAdvanced:false,
   readerVisible:false});
 }
 

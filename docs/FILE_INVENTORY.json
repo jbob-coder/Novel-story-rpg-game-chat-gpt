@@ -143,7 +143,8 @@
       "tests/npc_sequential_turns.test.mjs",
       "tests/npc_actor_agency.test.mjs",
       "tests/npc_intention_generation.test.mjs",
-      "tests/npc_generated_turn_batch.test.mjs"
+      "tests/npc_generated_turn_batch.test.mjs",
+      "tests/npc_actor_review_fairness.test.mjs"
     ]
   },
   "newChapterPaths": [
@@ -315,7 +316,8 @@
       "docs/06_quality/NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md",
       "docs/06_quality/NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md",
       "docs/06_quality/NPC_INTENTION_GENERATION_BRIDGE_20261122.md",
-      "docs/06_quality/NPC_GENERATED_TURN_BATCH_QA_20261122.md"
+      "docs/06_quality/NPC_GENERATED_TURN_BATCH_QA_20261122.md",
+      "docs/06_quality/NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md"
     ]
   },
   "repository_checkpoints": [
