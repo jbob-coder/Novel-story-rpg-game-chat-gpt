@@ -90,7 +90,7 @@ test('knowledge revision readback refuses fabricated or future source events',()
  assert.equal(verifyStateChanges(s),true);
  n.state_changes.at(-1).revision_of=
   'FORGED (source: observation; EV-999999)';
- assert.throws(()=>verifyStateChanges(s),/earlier actor memory|earlier actor-owned/);
+ assert.throws(()=>verifyStateChanges(s),/lacks prior actor memory|earlier actor-owned/);
 });
 
 test('knowledge revision cannot cite a same-event belief or omit review reason',()=>{
