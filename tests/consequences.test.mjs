@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {verifyConsequences,stageConsequences} from '../tools/consequences.mjs';
 const state={player:{id:'PLAYER-001'},world:{actors:{'NPC-001':{}}},narrative_threads:[]};
-const events={events:[{id:'EV-000001',turn:1},{id:'EV-000002',turn:2}]};
+const events={events:[{id:'EV-000001',turn:1,actor_ids:['PLAYER-001']},
+ {id:'EV-000002',turn:2,actor_ids:['PLAYER-001']}]};
 const snapshot=(turn)=>({state:structuredClone(state),events:structuredClone(events),manifest:{last_completed_turn:turn}});
 const open={op:'open',event_id:'EV-000001',owner_actor_id:'PLAYER-001',question:'¿Cómo afectará la decisión a los demás?',scope:'observable',summary:'Jack decide intervenir con resultados todavía inciertos.',visibility:'known'};
 test('initial ledger is valid and empty',()=>assert.equal(verifyConsequences(snapshot(1)),true));
@@ -91,4 +92,50 @@ test('event order checks do not restrict actor identity or independent thread sc
  assert.equal(verifyConsequences(staged),true);
  assert.equal(staged.state.narrative_threads[0].owner_actor_id,'NPC-001');
  assert.equal(staged.state.narrative_threads[0].scope,'world');
+});
+
+
+test('opening an NPC question using only another actor event is rejected',()=>{
+ const s=snapshot(1);
+ assert.throws(()=>stageConsequences(s,[{
+  ...open,owner_actor_id:'NPC-001'
+ }]),/opening event does not include its owning actor/);
+ // A PLAYER record cannot be assigned to NPC-001 merely by changing the ID.
+ assert.equal(s.state.narrative_threads.length,0);
+});
+
+test('a forged stored consequence owner must have participated in its opening event',()=>{
+ const saved=stageConsequences(snapshot(1),[open]);
+ const forged=structuredClone(saved);
+ forged.state.narrative_threads[0].owner_actor_id='NPC-001';
+ assert.throws(()=>verifyConsequences(forged),
+  /origin event does not include its owning actor/);
+ assert.equal(verifyConsequences(saved),true);
+});
+
+test('legitimate NPC origin and cross-actor later developments remain permitted',()=>{
+ const s=snapshot(2);
+ s.events.events[1].actor_ids=['NPC-001'];
+ s.events.events.push({id:'EV-000003',turn:2,actor_ids:['PLAYER-001']});
+ const first=stageConsequences(s,[{
+  ...open,event_id:'EV-000002',owner_actor_id:'NPC-001',
+  scope:'world',visibility:'hidden'
+ }]);
+ const second=stageConsequences(first,[{
+  op:'develop',thread_id:'THREAD-000001',event_id:'EV-000003',
+  summary:'The player makes a separate decision affecting the NPC concern.',
+  visibility:'hidden'
+ }]);
+ assert.equal(verifyConsequences(second),true);
+ assert.equal(second.state.narrative_threads[0].owner_actor_id,'NPC-001');
+ assert.deepEqual(second.state.narrative_threads[0].history.map(x=>x.event_id),
+  ['EV-000002','EV-000003']);
+ assert.equal(first.state.narrative_threads[0].history.length,1);
+});
+
+test('missing origin event actor attribution is not silently treated as knowledge',()=>{
+ const s=snapshot(1);
+ delete s.events.events[0].actor_ids;
+ assert.throws(()=>stageConsequences(s,[open]),
+  /opening event does not include its owning actor/);
 });
