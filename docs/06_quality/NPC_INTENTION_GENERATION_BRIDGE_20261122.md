@@ -4,7 +4,7 @@ The engine is a **ChatGPT-narrated interactive novel**, not an autonomous hosted
 
 ## Working mechanism
 
-`prepareNPCIntentionRequests` builds **independent, private actor prompts** from each existing NPC's saved goal, plan, last outcome, conditions, needs, resources, social connections and personally known event IDs. The prompts provide an open-ended task instead of fixed action verbs or a scene script, and explicitly allow abstention.
+`prepareNPCIntentionRequests` builds **independent, private actor prompts** from each existing NPC's saved goal, plan, last outcome, conditions, needs, resources, social connections and personally known event IDs. The prompts provide an open-ended task instead of fixed action verbs or a scene script, and explicitly allow abstention. They now carry up to eight **actor-known event summaries** (intent, outcome, turn and event ID) plus the actor's recorded plans. Opaque event IDs alone did not supply the meaning of previous experiences; the bounded summaries allow the narrator to reconsider its actual history without reading another NPC's undisclosed memories. These packets remain private and do not authorize automatic decisions.
 
 `inspectNPCGeneratedIntention` receives the narrator/model's original candidate, **does not execute it**, verifies it belongs to the same actor and fresh checkpoint, checks prior known event IDs, checks admitted-map routes for named destinations, and rejects predeclared success, state mutations or invented events. Code cannot establish semantic accuracy solely from fluent text: narrator editorial review remains required for access, resources, and meaning.
 
