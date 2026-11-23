@@ -105,3 +105,34 @@ ten event pointers, and overrides automatic selection. Use
 selection. The loader still checks an immutable Git commit, five-file
 checkpoint, branch stability and any available journal. No new memory store,
 background process, NPC action, new canon or turn is created.
+
+
+## Ambiguous identity and literal NPC fact evidence (2026-11-22)
+
+The narrator-private packet now emits `npcAmbiguities` when a mentioned given
+name belongs to multiple established NPC records and no explicit full name
+identifies one. No actor is selected on that ambiguous name alone; pronouns
+are not resolved by guesswork. This is a **review hint**, not evidence of
+presence. `reader_visible` never receives ambiguous private actor IDs.
+
+`checkNPCFactEvidence({snapshot,actorId,fact})` and optional
+`npcKnowledgeClaims:[{actorId,fact}]` in both context/verified loader check a
+literal fact against that actor's recorded `knowledge`. Event-sourced entries
+are recognized only when the exact event's state_changes contain the same
+actor, original fact, source and saved knowledge string. Outcomes are:
+
+- `recorded_event`: precise actor-specific EV provenance found.
+- `recorded_checkpoint`: literal actor knowledge already in saved state,
+  without a newer event pointer.
+- `not_recorded`: no matching literal knowledge; don't treat mentions or
+  `known_to` flags as proof.
+- `unverified_provenance`: an apparent EV suffix does not match original
+  actor-owned state change; don't assume the claim was learned.
+
+Only the first two are sufficient **literal** evidence. Inference, hearsay,
+ambiguous paraphrase, contradictory evidence, changing circumstances and
+social transfer still require narrator review and a justified event; this
+guard is **not** a general natural-language truth checker. The new claim
+checks are capped at eight, read-only, narrator-private, source-backed and
+journal-checked through the existing immutable loader. No story turn
+advances and no new state fields are persisted.

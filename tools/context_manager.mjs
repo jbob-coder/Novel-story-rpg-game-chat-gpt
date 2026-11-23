@@ -59,6 +59,56 @@ export function selectNPCMemoryCandidates({state,query='',sceneNpcIds=[],maxActo
     .slice(0,maxActors).map(x=>x.id);
 }
 
+
+// Report ambiguous given names without guessing who a pronoun or name denotes.
+function unresolvedGivenNames(state,query){
+  const groups=new Map(),spoken=new Set(tokens(query));
+  const queryText=' '+tokens(query).join(' ')+' ';
+  for(const [id,actor] of Object.entries(state.world.actors)){
+    const parts=tokens(actor.name??'');
+    if(!/^NPC-\d{3,}$/.test(id)||!parts.length)continue;
+    const first=parts[0],group=groups.get(first)??[];
+    group.push({id,parts});groups.set(first,group);
+  }
+  return [...groups.entries()].filter(([name,items])=>items.length>1&&spoken.has(name))
+    .flatMap(([name,items])=>{
+      // An unambiguous full name may already resolve the mention.
+      const matched=items.filter(item=>queryText.includes(' '+item.parts.join(' ')+' '));
+      return matched.length?[]:[{name,candidateActorIds:items.map(x=>x.id).sort(),
+        status:'requires_explicit_identity'}];
+    }).sort((a,b)=>a.name.localeCompare(b.name));
+}
+const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
+// Exact recorded knowledge is evidence; event presence or known_to alone is not.
+function factEvidenceAtSnapshot(snapshot,actorId,fact){
+  const actor=snapshot.state.world.actors[actorId];
+  const entry=(actor.knowledge??[]).find(value=>
+    value===fact||sourcedKnowledge.exec(value)?.[1]===fact);
+  const foundation={actorId,fact,sourcePath:'game/STATE.json'};
+  if(!entry)return {...foundation,status:'not_recorded',mayAssumeKnown:false};
+  const source=sourcedKnowledge.exec(entry);
+  if(!source)return {...foundation,status:'recorded_checkpoint',
+    mayAssumeKnown:true,sourceEventId:null};
+  const event=allEvents(snapshot).find(value=>value.id===source[3]);
+  const backed=event?.actor_ids?.includes(actorId)&&event.state_changes?.some(change=>
+    change.field==='knowledge'&&change.actor_id===actorId&&
+    change.fact===fact&&change.after===entry&&change.source===source[2]);
+  if(!backed)return {...foundation,status:'unverified_provenance',
+    mayAssumeKnown:false,sourceEventId:source[3]};
+  return {...foundation,status:'recorded_event',
+    mayAssumeKnown:true,sourceEventId:event.id,
+    eventPath:'chapters/'+event.chapter_id+'.events.json'};
+}
+/** Strict evidence check; never equate event involvement or rumors with knowledge. */
+export function checkNPCFactEvidence({snapshot,actorId,fact}={}){
+  basis(snapshot);
+  ensure(typeof actorId==='string'&&Object.hasOwn(snapshot.state.world.actors,actorId),
+    'Unknown NPC fact-check owner');
+  ensure(typeof fact==='string'&&fact.trim().length>=4&&fact.length<=600,
+    'Invalid NPC fact to verify');
+  return factEvidenceAtSnapshot(snapshot,actorId,fact.trim());
+}
+
 const compactFields=['name','age','role','location_id','goal','independent_plan',
   'conditions','last_resolved_action'];
 function compactActorState(actor,query,relatedIds){
@@ -139,7 +189,7 @@ function rank(entry,queryTokens,nowTurn){
 /** A derived, bounded and read-only packet, never a source of story truth. */
 export function buildContextPacket({snapshot,audience='narrator_private',query='',
   maxReferences=8,maxPreviewCharacters=1600,sourceCommit=null,npcIds=[],
-  sceneNpcIds=[],autoNpcMemory=true}={}){
+  sceneNpcIds=[],autoNpcMemory=true,npcKnowledgeClaims=[]}={}){
   ensure(validAudience.has(audience),'Unsupported context audience');
   ensure(typeof query==='string'&&query.length<=500,'Invalid context query');
   ensure(Number.isSafeInteger(maxReferences)&&maxReferences>=1&&maxReferences<=30,
@@ -157,8 +207,13 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     sceneNpcIds.every(id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id)&&
       Object.hasOwn(snapshot?.state?.world?.actors??{},id)), 'Invalid scene NPC selection');
   ensure(typeof autoNpcMemory==='boolean','Invalid auto NPC selection flag');
-  ensure(audience==='narrator_private'||(npcIds.length===0&&sceneNpcIds.length===0),
-    'NPC memory is narrator-private only');
+  ensure(Array.isArray(npcKnowledgeClaims)&&npcKnowledgeClaims.length<=8&&
+    npcKnowledgeClaims.every(claim=>claim&&typeof claim==='object'&&
+      typeof claim.actorId==='string'&&Object.hasOwn(snapshot?.state?.world?.actors??{},claim.actorId)&&
+      typeof claim.fact==='string'&&claim.fact.trim().length>=4&&claim.fact.length<=600),
+    'Invalid NPC knowledge checks');
+  ensure(audience==='narrator_private'||(npcIds.length===0&&sceneNpcIds.length===0&&
+    npcKnowledgeClaims.length===0),'NPC memory is narrator-private only');
   const checkpoint=basis(snapshot),entries=selectEntries(snapshot,audience),q=tokens(query);
   const automatic=audience==='narrator_private'&&autoNpcMemory&&npcIds.length===0;
   const selectedNpcIds=automatic?selectNPCMemoryCandidates({
@@ -195,6 +250,10 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     references,
     ...(selectedNpcIds.length?{npcMemory:actorMemoryAtCheckpoint(snapshot,selectedNpcIds,
       {compact:automatic,query})}:{}),
+    ...(automatic&&unresolvedGivenNames(snapshot.state,query).length?{
+      npcAmbiguities:unresolvedGivenNames(snapshot.state,query)}:{}),
+    ...(npcKnowledgeClaims.length?{npcKnowledgeChecks:npcKnowledgeClaims.map(claim=>
+      factEvidenceAtSnapshot(snapshot,claim.actorId,claim.fact.trim()))}:{}),
     requiredReads:audience==='narrator_private'?mandatoryReads:[],
     warnings:audience==='narrator_private'?
       ['Summaries and pointers are not canon. Check original references before resolving actions.',

@@ -7,7 +7,8 @@ import {resolve, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {saveLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {savePaths, decodeFiveFiles, encodeFiveFiles} from '../tools/save_transaction.mjs';
-import {buildContextPacket, resolvePrivateContextReference} from '../tools/context_manager.mjs';
+import {buildContextPacket, resolvePrivateContextReference,
+  checkNPCFactEvidence} from '../tools/context_manager.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {allEvents} from '../tools/chapter_history.mjs';
@@ -194,4 +195,26 @@ test('QA checkpoint rejects erasing a learned fact after the choice was saved',a
   forged.state.world.actors[actorId].knowledge=
     forged.state.world.actors[actorId].knowledge.filter(fact=>fact!==remembered);
   assert.throws(()=>verifyNarrativeSnapshot(forged),/Recorded knowledge not retained/);
+});
+
+test('event-backed NPC learning is verified strictly after chapter reload',async()=>{
+ const {reloaded}=await storyRehearsal();
+ const correct=checkNPCFactEvidence({snapshot:reloaded,
+   actorId,fact:fictionalFact});
+ assert.equal(correct.status,'recorded_event');
+ assert.equal(correct.sourceEventId,'EV-000031');
+ assert.equal(correct.eventPath,'chapters/CH-000.events.json');
+ assert.equal(correct.mayAssumeKnown,true);
+ const unrelated=checkNPCFactEvidence({snapshot:reloaded,
+   actorId:'NPC-006',fact:fictionalFact});
+ assert.equal(unrelated.status,'not_recorded');
+ assert.equal(unrelated.mayAssumeKnown,false);
+ const ungrounded=checkNPCFactEvidence({snapshot:reloaded,
+   actorId,fact:'SYNTHETIC QA: The owner has already received the clock.'});
+ assert.equal(ungrounded.status,'not_recorded');
+ assert.equal(ungrounded.mayAssumeKnown,false);
+ const packet=buildContextPacket({snapshot:reloaded,query:'Rosa',
+   npcKnowledgeClaims:[{actorId,fact:fictionalFact}]});
+ assert.equal(packet.npcKnowledgeChecks[0].status,'recorded_event');
+ assert.equal(packet.npcKnowledgeChecks[0].sourceEventId,'EV-000031');
 });

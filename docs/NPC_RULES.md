@@ -44,3 +44,21 @@ nombre o identificador aparece en la consulta o comparte la ubicación
 conocimientos de un actor a otro. La proyección automática es breve: antes de
 resolver algo material, el narrador debe consultar el estado y los eventos
 originales completos del actor.
+
+
+### Identidad dudosa y conocimiento causal
+
+Si dos NPC comparten nombre de pila, una mención ambigua no selecciona uno
+arbitrariamente. El narrador recibe `npcAmbiguities` en contexto privado y
+debe consultar identidad, ubicación, diálogo previo y fuentes antes de atribuir
+palabras o acciones. Un pronombre por sí solo tampoco acredita una identidad.
+
+`checkNPCFactEvidence` y la opción privada `npcKnowledgeClaims` contrastan
+**hechos literales** con `knowledge` del NPC y, si figura un EV, con el cambio
+de conocimiento original de ese **mismo actor**. Que un NPC aparezca en
+`actor_ids`, `known_to` o en la escena no demuestra que haya aprendido todos
+los detalles. `not_recorded` significa «no hay prueba suficiente en el
+conocimiento explícito»; no confirma ignorancia absoluta. Si una afirmación
+es una inferencia, rumor, observación nueva o paráfrasis, requiere revisión
+causal y registro antes de representarse como conocimiento cierto. No es una
+restricción a sus acciones libres.

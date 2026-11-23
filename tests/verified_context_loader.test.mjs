@@ -190,3 +190,19 @@ test('verified loader honors scene actor hints without asserting physical presen
  assert.equal(packet.checkpoint.turn,9);
  assert.equal(packet.mayAdvanceStory,false);
 });
+
+test('verified loader checks actor-specific knowledge without leaking to reader context',async()=>{
+ const {remote}=fakeRemote(),fact='Jack construye gadgets.';
+ const packet=await loadVerifiedContextPacket({remote,branch,query:'Rosa',npcKnowledgeClaims:[
+   {actorId:'NPC-005',fact},{actorId:'NPC-006',fact}
+ ]});
+ assert.equal(packet.sourceCommitStatus,'verified_immutable_remote_readback');
+ assert.deepEqual(packet.npcKnowledgeChecks.map(x=>x.status),
+   ['recorded_checkpoint','not_recorded']);
+ assert.deepEqual(packet.npcKnowledgeChecks.map(x=>x.mayAssumeKnown),[true,false]);
+ assert.equal(packet.mayAdvanceStory,false);
+ const {remote:otherRemote}=fakeRemote();
+ await assert.rejects(()=>loadVerifiedContextPacket({remote:otherRemote,branch,
+   audience:'reader_visible',npcKnowledgeClaims:[{actorId:'NPC-005',fact}]}),
+   /narrator-private only/);
+});

@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {buildContextPacket,resolvePrivateContextReference,selectNPCMemoryCandidates} from '../tools/context_manager.mjs';
+import {buildContextPacket,resolvePrivateContextReference,selectNPCMemoryCandidates,
+  checkNPCFactEvidence} from '../tools/context_manager.mjs';
 import {decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 
@@ -206,4 +207,57 @@ test('compact automatic recall includes most relevant facts rather than full acc
   assert.ok(m.state.knowledge.some(x=>x.includes('el reloj no se entregó')));
   assert.ok(m.state.knowledge.every(x=>actor.knowledge.includes(x)));
   assert.ok(m.recentEventReferences.length<=4);
+});
+
+test('strict NPC fact checks allow saved legacy facts but not event association or another actor',()=>{
+  const snapshot=initial(),rosa=snapshot.state.world.actors['NPC-005'];
+  const fact=rosa.knowledge[0];
+  const trusted=checkNPCFactEvidence({snapshot,actorId:'NPC-005',fact});
+  assert.equal(trusted.status,'recorded_checkpoint');
+  assert.equal(trusted.mayAssumeKnown,true);
+  assert.equal(trusted.sourceEventId,null);
+  const other=checkNPCFactEvidence({snapshot,actorId:'NPC-006',fact});
+  assert.equal(other.status,'not_recorded');
+  assert.equal(other.mayAssumeKnown,false);
+  const eventOnly=checkNPCFactEvidence({snapshot,actorId:'NPC-005',
+    fact:'SYNTHETIC QA: a neighbor secret reported in the private event log'});
+  assert.equal(eventOnly.mayAssumeKnown,false);
+  assert.throws(()=>checkNPCFactEvidence({snapshot,actorId:'NPC-999',fact}),/Unknown NPC/);
+  assert.throws(()=>checkNPCFactEvidence({snapshot,actorId:'NPC-005',fact:'x'}),/Invalid NPC fact/);
+});
+
+test('ambiguous given names produce a private resolution warning but no guessed NPC',()=>{
+  const snapshot=initial(),actors=snapshot.state.world.actors;
+  const copy=structuredClone(actors['NPC-005']);
+  copy.id='NPC-008';copy.name='Rosa Rivera';
+  actors['NPC-008']=copy;
+  const query='Rosa';
+  const selected=selectNPCMemoryCandidates({state:snapshot.state,query});
+  assert.deepEqual(selected,[]);
+  const packet=buildContextPacket({snapshot,query});
+  assert.equal(packet.npcMemory,undefined);
+  assert.deepEqual(packet.npcAmbiguities,[{
+    name:'rosa',candidateActorIds:['NPC-005','NPC-008'],
+    status:'requires_explicit_identity'
+  }]);
+  const precise=buildContextPacket({snapshot,query:'Rosa Wilson'});
+  assert.deepEqual(precise.npcMemory?.map(x=>x.actorId),['NPC-005']);
+  assert.equal(Object.hasOwn(precise,'npcAmbiguities'),false);
+  const reader=buildContextPacket({snapshot,audience:'reader_visible',query});
+  assert.ok(!JSON.stringify(reader).includes('candidateActorIds'));
+});
+
+test('unknown fact claims never inherit the event pointers or another NPC knowledge',()=>{
+  const snapshot=initial(),fact='SYNTHETIC QA: Rosa learned a secret from the old event';
+  const packet=buildContextPacket({snapshot,query:'Rosa',npcKnowledgeClaims:[
+    {actorId:'NPC-005',fact},{actorId:'NPC-006',fact}
+  ]});
+  assert.ok(packet.npcKnowledgeChecks.every(x=>x.status==='not_recorded'&&!x.mayAssumeKnown));
+  assert.ok(packet.npcMemory[0].recentEventReferences.length>0);
+  assert.throws(()=>buildContextPacket({snapshot,npcKnowledgeClaims:[{actorId:'NPC-999',fact}]}),
+    /Invalid NPC knowledge checks/);
+  assert.throws(()=>buildContextPacket({snapshot,audience:'reader_visible',
+    npcKnowledgeClaims:[{actorId:'NPC-005',fact}]}),/narrator-private only/);
+  assert.equal(Object.hasOwn(buildContextPacket({snapshot,audience:'reader_visible',query:'Rosa'}),
+    'npcKnowledgeChecks'),false);
 });
