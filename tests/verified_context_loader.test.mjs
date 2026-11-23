@@ -152,3 +152,17 @@ test('ready baseline with incorrect event ID does not authorize context',async()
  await assert.rejects(()=>loadVerifiedContextPacket({remote,journal,branch}),
   /Ready journal checkpoint differs/);
 });
+
+test('verified loader offers private NPC memories only from the immutable checkpoint',async()=>{
+ const {remote}=fakeRemote(),{journal}=fakeJournal(null);
+ const packet=await loadVerifiedContextPacket({remote,journal,branch,npcIds:['NPC-005']});
+ const saved=JSON.parse(base['game/STATE.json']).world.actors['NPC-005'];
+ assert.equal(packet.sourceCommitStatus,'verified_immutable_remote_readback');
+ assert.equal(packet.npcMemory[0].sourcePath,'game/STATE.json');
+ assert.deepEqual(packet.npcMemory[0].state.knowledge,saved.knowledge);
+ assert.equal(packet.mayAdvanceStory,false);
+ const {remote:readerRemote}=fakeRemote();
+ await assert.rejects(()=>loadVerifiedContextPacket({
+   remote:readerRemote,branch,audience:'reader_visible',npcIds:['NPC-005']
+ }),/narrator-private only/);
+});

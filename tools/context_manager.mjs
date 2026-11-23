@@ -23,6 +23,29 @@ const fixedDocs=[
 const mandatoryReads=['AGENTS.md','docs/NARRATIVE_CONTRACT.md','docs/CANON.md',
   'docs/DECISIONS.md','docs/RECOVERY.md','docs/NARRATOR_RULES.md'];
 const validAudience=new Set(['narrator_private','reader_visible']);
+const npcMemoryFields=['name','age','role','location_id','goal','independent_plan',
+  'knowledge','relationships','conditions','resources','inventory','commitments',
+  'plans','needs','service_cases','last_resolved_action'];
+
+// Memory is a projection of the exact saved actor, not a generated biography.
+// Event IDs are evidence pointers, not a claim that the NPC knows every detail.
+function actorMemoryAtCheckpoint(snapshot,npcIds){
+  const history=allEvents(snapshot),actors=snapshot.state.world.actors;
+  return npcIds.map(actorId=>{
+    const actor=actors[actorId];
+    const state=Object.fromEntries(npcMemoryFields
+      .filter(key=>Object.hasOwn(actor,key))
+      .map(key=>[key,copy(actor[key])]));
+    const related=history.filter(event=>(event.actor_ids??[]).includes(actorId)||
+      (event.known_to??[]).includes(actorId));
+    return {actorId,sourcePath:'game/STATE.json',state,
+      relatedEventCount:related.length,
+      recentEventReferences:related.slice(-10).reverse().map(event=>({
+        id:event.id,path:'chapters/'+event.chapter_id+'.events.json',
+        chapterId:event.chapter_id,turn:event.turn
+      }))};
+  });
+}
 
 function basis(snapshot){
   verifyNarrativeSnapshot(snapshot);
@@ -63,7 +86,7 @@ function rank(entry,queryTokens,nowTurn){
 
 /** A derived, bounded and read-only packet, never a source of story truth. */
 export function buildContextPacket({snapshot,audience='narrator_private',query='',
-  maxReferences=8,maxPreviewCharacters=1600,sourceCommit=null}={}){
+  maxReferences=8,maxPreviewCharacters=1600,sourceCommit=null,npcIds=[]}={}){
   ensure(validAudience.has(audience),'Unsupported context audience');
   ensure(typeof query==='string'&&query.length<=500,'Invalid context query');
   ensure(Number.isSafeInteger(maxReferences)&&maxReferences>=1&&maxReferences<=30,
@@ -72,6 +95,12 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     maxPreviewCharacters<=10000,'Invalid preview budget');
   ensure(sourceCommit===null||(typeof sourceCommit==='string'&&/^[0-9a-f]{40}$/.test(sourceCommit)),
     'Invalid source commit identifier');
+  ensure(Array.isArray(npcIds)&&npcIds.length<=8&&
+    new Set(npcIds).size===npcIds.length &&
+    npcIds.every(id=>typeof id==='string'&&/^NPC-\\d{3,}$/.test(id)&&
+      Object.hasOwn(snapshot?.state?.world?.actors??{},id)), 'Invalid NPC memory selection');
+  ensure(audience==='narrator_private'||npcIds.length===0,
+    'NPC memory is narrator-private only');
   const checkpoint=basis(snapshot),entries=selectEntries(snapshot,audience),q=tokens(query);
   const ranked=entries.map(entry=>({...entry,score:rank(entry,q,checkpoint.turn)}))
     .filter(entry=>entry.score>0)
@@ -103,6 +132,7 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
       ', '+(checkpoint.timeOfDay??'unknown period')+'; player at '+checkpoint.playerLocationId+'.':
       null,
     references,
+    ...(npcIds.length?{npcMemory:actorMemoryAtCheckpoint(snapshot,npcIds)}:{}),
     requiredReads:audience==='narrator_private'?mandatoryReads:[],
     warnings:audience==='narrator_private'?
       ['Summaries and pointers are not canon. Check original references before resolving actions.',

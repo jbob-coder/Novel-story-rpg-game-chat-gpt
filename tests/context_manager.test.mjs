@@ -80,3 +80,51 @@ test('closed chapter evidence remains addressable after a synthetic transition',
   assert.equal(resolvePrivateContextReference({snapshot:opened,referenceId:'EV-000029'}).data.id,
     'EV-000029');
 });
+
+test('explicit NPC memory is restored from saved state with exact event pointers',()=>{
+  const snapshot=initial(),before=JSON.stringify(snapshot);
+  const npc=snapshot.state.world.actors['NPC-005'];
+  const packet=buildContextPacket({snapshot,query:'Rosa',npcIds:['NPC-005']});
+  assert.equal(packet.npcMemory.length,1);
+  const memory=packet.npcMemory[0];
+  assert.equal(memory.actorId,'NPC-005');
+  assert.equal(memory.sourcePath,'game/STATE.json');
+  assert.deepEqual(memory.state.knowledge,npc.knowledge);
+  assert.deepEqual(memory.state.relationships,npc.relationships);
+  assert.deepEqual(memory.state.last_resolved_action,npc.last_resolved_action);
+  assert.ok(memory.recentEventReferences.every(ref=>/^EV-\\d{6}$/.test(ref.id)&&
+    ref.path.endsWith('.events.json')));
+  assert.ok(memory.recentEventReferences.length>0);
+  assert.equal(JSON.stringify(snapshot),before);
+  memory.state.knowledge.push('FORGED PRIVATE MEMORY');
+  assert.equal(JSON.stringify(snapshot),before);
+});
+
+test('NPC memory request rejects unknown actors, duplicates and reader access',()=>{
+  const snapshot=initial();
+  assert.throws(()=>buildContextPacket({snapshot,npcIds:['NPC-999']}),/Invalid NPC memory/);
+  assert.throws(()=>buildContextPacket({snapshot,npcIds:['NPC-005','NPC-005']}),/Invalid NPC memory/);
+  assert.throws(()=>buildContextPacket({snapshot,npcIds:['PLAYER-001']}),/Invalid NPC memory/);
+  assert.throws(()=>buildContextPacket({
+    snapshot,audience:'reader_visible',npcIds:['NPC-005']
+  }),/narrator-private only/);
+  assert.equal(Object.hasOwn(buildContextPacket({snapshot,audience:'reader_visible'}),'npcMemory'),false);
+});
+
+test('NPC memory and event evidence survive synthetic chapter transitions',()=>{
+  const snapshot=initial(),head='a'.repeat(40);
+  const plan={plan_version:1,chapter_id:'CH-001',title:'Memory review only',status:'prepared',
+    source_commit:head,purpose:'Test stable memory and historical pointers.',
+    time_context:{day:snapshot.state.time.day,period:snapshot.state.time.time_of_day,
+      constraints:['No story advancement or invented experiences.']},
+    location_ids:[snapshot.state.player.location_id],npc_ids:['NPC-005'],
+    thread_ids:snapshot.state.narrative_threads.filter(x=>x.status==='open').map(x=>x.id),
+    hidden_plan_ids:[],possible_developments:['Synthetic test only.'],
+    exit_conditions:['Finish synthetic memory test.']};
+  const opened=stageChapterTransition({snapshot,nextPlan:plan,
+    reason:'Synthetic memory test only.',observedHead:head,reviewed:true});
+  const packet=buildContextPacket({snapshot:opened,npcIds:['NPC-005']});
+  assert.equal(packet.checkpoint.chapterId,'CH-001');
+  assert.deepEqual(packet.npcMemory[0].state.knowledge,snapshot.state.world.actors['NPC-005'].knowledge);
+  assert.ok(packet.npcMemory[0].recentEventReferences.some(x=>x.chapterId==='CH-000'));
+});

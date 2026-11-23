@@ -53,3 +53,26 @@ The loader never treats the active chapter as a fixed `CH-000`: it first reads `
 ### Integration tests
 
 `tests/context_manager.test.mjs` preserves the original pilot's exact checkpoint and chapter-transition checks. `tests/verified_context_loader.test.mjs` exercises remote readback, journal absence/blocked/verified states, source-commit byte reconciliation, race rejection, reader-projection limits and invalid input. Both tests are synthetic and must pass on the independent branch before integration; the PR and CI run are the authoritative verification record.
+
+## NPC memory retrieval (bounded, private, no extra database)
+
+`buildContextPacket({snapshot,npcIds:['NPC-005']})` can include the selected NPC's
+exact saved qualitative actor state (knowledge, relationships, goals, resources,
+independent plan, needs/cases/commitments, last resolved action) and up to ten
+recent actor-related EV pointers with source paths. The actor's full current
+state is read from the *verified* `game/STATE.json` snapshot; pointers lead
+back to original archived events across chapter transitions. No memory is
+invented or overwritten by summarization. For older events, read the verified
+original event history; the ten pointers are a context budget, not a limit on
+what the character remembers.
+
+Use `loadVerifiedContextPacket({remote,journal,branch,npcIds})` to obtain the
+same private projection after the immutable-HEAD, five-file and journal checks.
+Select explicit **established** NPC IDs from the active scene or action;
+unknown, duplicate or player IDs are rejected. With no `npcIds` the existing
+packet remains unchanged. `reader_visible` forbids nonempty NPC selections and
+never contains private actor state. Related event pointers are only contextual
+evidence: `known_to` does not mean an actor learned every detail. Consult
+the actor's saved knowledge and causal sources before deciding what they can
+react to or tell Jack. This function does not make decisions, advance time,
+save turns or start a background process.

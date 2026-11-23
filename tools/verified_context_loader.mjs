@@ -25,7 +25,8 @@ function checkJournalRecord(record,branch){
  * An absent journal still allows read-only research, never permission to play.
  */
 export async function loadVerifiedContextPacket({remote,journal=null,branch,
- query='',audience='narrator_private',maxReferences=8,maxPreviewCharacters=1600}={}){
+ query='',audience='narrator_private',maxReferences=8,maxPreviewCharacters=1600,
+ npcIds=[]}={}){
  insist(remote&&typeof remote.readHead==='function'&&typeof remote.readFiles==='function',
   'Remote read-only Git adapter required');
  insist(typeof branch==='string'&&branch.length>0&&
@@ -59,7 +60,7 @@ export async function loadVerifiedContextPacket({remote,journal=null,branch,
   await assertVerifiedJournalCheckpoint({
    remote,record:journalBefore,branch,sourceHead:head,snapshot});
  const packet=buildContextPacket({snapshot,audience,query,maxReferences,
-  maxPreviewCharacters,sourceCommit:head});
+  maxPreviewCharacters,sourceCommit:head,npcIds});
  insist(await remote.readHead(branch)===head,
   'Branch moved during context retrieval; restart from new HEAD');
  if(journal!==null){
