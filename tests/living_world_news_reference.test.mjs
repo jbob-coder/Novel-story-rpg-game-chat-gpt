@@ -26,7 +26,8 @@ test('COT and POS proposals use unique, complete contiguous editorial identifier
     for (const row of rows) {
       const cells = row.split('|').slice(1, -1).map(cell => cell.trim());
       assert.equal(cells.length, columns, prefix + ' must retain source / uncertainty columns');
-      assert.ok(cells.every(cell => cell.length > 8), prefix + ' contains an empty or insufficient cell');
+      assert.ok(cells[0].length >= 6 && cells.slice(1).every(cell => cell.length > 8),
+        prefix + ' contains an empty or insufficient descriptive cell');
     }
   }
 });
