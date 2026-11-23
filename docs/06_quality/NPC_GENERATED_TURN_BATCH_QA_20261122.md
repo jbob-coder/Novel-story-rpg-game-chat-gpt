@@ -53,3 +53,12 @@ Step 02 is **pinned to the exact decoded first-turn snapshot SHA-256** and canno
 These are voluntary, newly written narrator decisions, **not actions selected by an automated language-model connector**. The assertions verify per-actor event sources, current context, plan changes, no duplicate completed courier delivery, no unverified arrival or social contact, no private outcome in player-visible text, unchanged player state, exact turn/event counts, in-memory save roundtrip, and byte-for-byte preservation of the five original files. The first authored turn had previously been confirmed independently; the second is a new QA addition.
 
 **Do not mistake this exploratory two-step authored corpus for the 30-step blind semantic-quality acceptance.** The remaining 28 original narrative turns, independent scoring of decision quality and semantic privacy (including paraphrases) still require evaluation; the draft PR cannot be merged on the basis of this test alone.
+
+
+## Sequential step 03: legitimate inactivity, not a compulsory routine
+
+The third original narrator review is intentionally **not another scripted task**. The step starts from the five-file in-memory result of step 02, pinned by SHA-256 \`62c42ceb4eee19542726016c51e06b24f7aba88127d8c2463da210141afa1081\`. The previous two ten-minute intervals recorded internal preparations, not new outside information, meetings, courier jobs, school arrival, supplier orders, faults, or a fresh cafe shift.
+
+The narrator therefore chooses **seven justified abstentions** rather than repeating Noah's proposed question, Rosa's clock reminder or Lena's sorting of prior reports, or inventing business, transit, school and maintenance activity for Darius, Mara, Elena or Sora. The test requires the coordinator to stage only the placeholder player interval, **zero NPC events**, unchanged individual actor records including last genuine memories, and a new checkpoint that reflects elapsed time. The decoded snapshot SHA-256 is logged by the test if CI passes.
+
+**Interpretation:** an alive world does not entail one compulsory action per NPC per short turn. Preserving freedom to wait is a substantive anti-loop behavior, while a later verified observation or new opportunity can still trigger initiative. This remains a **narrator-authored, frozen, three-step exploratory corpus**, not a live model integration or an independent long-term assessment; keep the PR in draft.
