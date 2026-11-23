@@ -161,7 +161,6 @@
       "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
       "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
       "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
-      "docs/06_quality/NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md",
       "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
       "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md",
       "docs/LIVING_WORLD_DESIGN_PROPOSAL.md",
@@ -172,7 +171,8 @@
       "docs/LIVING_WORLD_RELIABILITY_IMPLEMENTATION_20261112.md",
       "docs/LIVING_WORLD_ROUTINE_QA_20261110.md",
       "docs/LIVING_WORLD_TEST_RESULTS_20261110.md",
-      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md"
+      "docs/LIVING_WORLD_TIME_WINDOW_QA_20261112.md",
+      "docs/06_quality/NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md"
     ],
     "additional_active_modules": [
       "tools/github_save_journal.mjs",
@@ -194,8 +194,8 @@
       "tests/living_world_integrated_rehearsal.test.mjs",
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
-      "tests/npc_memory_social_continuity.test.mjs",
-      "tests/test_checkpoint_audit.py"
+      "tests/test_checkpoint_audit.py",
+      "tests/npc_memory_social_continuity.test.mjs"
     ],
     "design_proposals": [
       "docs/01_world/MERIDIAN_BAY_PHASE1.md",
@@ -210,6 +210,76 @@
       "tests/integration_npc_needs_plans.test.mjs",
       "tests/meridian_bay_services.test.mjs",
       "tests/meridian_bay_phase2_integration.test.mjs"
+    ],
+    "npc_causal_agenda_increment": [
+      "docs/01_world/NPC_CAUSAL_AGENDA_INTEGRATION_20261120.md",
+      "tools/living_world_agenda.mjs",
+      "tests/npc_causal_agenda.test.mjs"
+    ],
+    "branch_audit_2026_11_19": [
+      "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.json",
+      "docs/00_start/BRANCH_SOURCE_GAP_MATRIX_2026-11-19.md",
+      "docs/00_start/INVENTARIO_RAMAS_2026-11-19.json",
+      "docs/00_start/INVENTARIO_RAMAS_2026-11-19.md",
+      "docs/00_start/LEER_PRIMERO_RAMAS_2026-11-19.md",
+      "docs/00_start/SEGUIMIENTO_DEL_DESARROLLO.md",
+      "docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.json",
+      "docs/00_start/VERIFICACION_DESCRIPCIONES_2026-11-19.md",
+      "docs/00_start/branch_checks/LOT_01.json",
+      "docs/00_start/branch_checks/LOT_02.json",
+      "docs/00_start/branch_checks/LOT_03.json",
+      "docs/00_start/branch_checks/LOT_04.json",
+      "docs/00_start/branch_checks/LOT_05.json",
+      "docs/00_start/branch_checks/LOT_06.json",
+      "docs/00_start/branch_checks/LOT_07.json",
+      "docs/00_start/branch_checks/LOT_08.json",
+      "docs/00_start/branch_checks/LOT_09.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_01.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_02.json",
+      "docs/00_start/branch_checks/NO_PR_COMMITS_03.json",
+      "docs/00_start/branch_checks/PR_FILES_01.json",
+      "docs/00_start/branch_checks/PR_FILES_02.json",
+      "docs/00_start/branch_checks/PR_FILES_03.json",
+      "docs/00_start/branch_checks/PR_FILES_04.json",
+      "docs/00_start/branch_checks/PR_FILES_05.json"
+    ],
+    "branch_audit_2026_11_20": [
+      "docs/00_start/CURRENT_STATE_RECHECK_2026-11-20.md",
+      "docs/00_start/MAIN_CONSOLIDATION_2026-11-20.md"
+    ],
+    "npc_decision_increment_2026_11_22": [
+      "docs/01_world/NPC_CAUSAL_DECISIONS_ADMITTED_INTEGRATION_20261122.md",
+      "tools/living_world_decisions.mjs",
+      "tests/npc_causal_decisions_admitted.test.mjs"
+    ],
+    "npc_social_increment_2026_11_22": [
+      "docs/01_world/NPC_SOCIAL_RELATIONS_ADMITTED_INTEGRATION_20261122.md",
+      "tools/living_world_social.mjs",
+      "tests/npc_social_relations_admitted.test.mjs"
+    ],
+    "npc_social_chronology_2026_11_22": [
+      "docs/01_world/NPC_SOCIAL_PROVENANCE_CROSS_CHAPTER_20261122.md",
+      "tests/npc_social_cross_chapter_provenance.test.mjs"
+    ],
+    "npc_knowledge_anchor_2026_11_22": [
+      "docs/01_world/NPC_SOCIAL_KNOWLEDGE_ANCHOR_20261122.md",
+      "tools/living_world_knowledge_anchor.mjs",
+      "tests/npc_social_knowledge_anchor.test.mjs"
+    ],
+    "npc_knowledge_migration_2026_11_22": [
+      "docs/01_world/NPC_KNOWLEDGE_ANCHOR_MIGRATION_20261122.md",
+      "tools/living_world_knowledge_migration.mjs",
+      "tests/npc_knowledge_anchor_migration.test.mjs"
+    ],
+    "npc_actor_introduction_2026_11_22": [
+      "docs/01_world/NPC_ACTOR_INTRODUCTION_ADMITTED_20261122.md",
+      "tools/living_world_npc_introduction.mjs",
+      "tests/npc_actor_introduction_admitted.test.mjs"
+    ],
+    "npc_open_causal_continuations_2026_11_22": [
+      "docs/01_world/NPC_OPEN_CAUSAL_CONTINUATIONS_20261122.md",
+      "tools/living_world_causal_continuations.mjs",
+      "tests/npc_open_causal_continuations.test.mjs"
     ],
     "consequence_ledger_order_repair_2026_11_22": [
       "docs/06_quality/CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md"
