@@ -141,3 +141,131 @@ test('unknown source and forbidden location cannot bypass batch checks',()=>{
    outcome:'SYNTHETIC PRIVATE: Uncharted destinations should be rejected.'}]}),
   /existing admitted location/);
 });
+
+
+// Editorial review of new prose written from the real CH-000 turn-9
+// evidence, not picked from the deterministic multiday QA policy. The author
+// is the ChatGPT narrator in this review, NOT a model invoked by Node/CI.
+// This is an inspectable exploratory sample, not a blind 30-turn evaluation.
+test('narrator-authored seven-actor scene respects completed work, uncertainty and private memory across two turns',()=>{
+ const original=start(),originalEncoded=JSON.stringify(original);
+ const ids=['NPC-001','NPC-002','NPC-003','NPC-004','NPC-005','NPC-006','NPC-007'];
+ const r=Object.fromEntries(ids.map(id=>[id,request(original,id)]));
+ const actWith=(id,intention,reasoning,sourceEventIds,plan,outcome)=>({
+  request:r[id],proposal:{actorId:id,decision:'act',intention,reasoning,
+   sourceEventIds},reviewed:true,outcome,
+  changes:[{field:'independent_plan',
+   before:r[id].evidence.independentPlan,after:plan}]
+ });
+ const abstainWith=(id,reasoning)=>({
+  request:r[id],proposal:{actorId:id,decision:'abstain',reasoning}
+ });
+ // One original decision per NPC, based on its own saved information;
+ // no newly invented NPC meetings, clients, deliveries or locations.
+ const choices=[
+  abstainWith('NPC-001',
+   'The delayed route belongs to the prior evening; the saved morning has no verified new dispatch report. Reissuing the old instruction would be a fabricated repeat.'),
+  actWith('NPC-002',
+   'Sora chooses to distinguish confirmed display symptoms from hypotheses before suggesting any follow-up to maintenance.',
+   'She witnessed the Crosswater anomaly and closed her inspection without a confirmed technical cause; she cannot claim a new failure or suspect.',
+   ['EV-000012'],
+   'Separate observed Crosswater display symptoms from unverified causes; suggest follow-up only with a new assignment.',
+   'SYNTHETIC PRIVATE SORA: Her next maintenance priority distinguishes documented symptoms from assumptions; no new inspection is claimed.'),
+  abstainWith('NPC-003',
+   'The last resolved courier event says that Darius already delivered the known parcel. There is no confirmed new package or deadline to act on.'),
+  actWith('NPC-004',
+   'Elena decides to rehearse how she will explain the corrected street perspective while continuing toward school with her artwork stored.',
+   'She knows she corrected the drawing and carries the USB, but the checkpoint shows her en route rather than inside a classroom.',
+   ['EV-000028'],
+   'Rehearse the perspective explanation while continuing toward school; classroom arrival and presentation remain unconfirmed.',
+   'SYNTHETIC PRIVATE ELENA: Elena chooses an explanation for her illustration, without reaching school or meeting a teacher.'),
+  actWith('NPC-005',
+   'Rosa decides to keep the repaired alarm clock identified as awaiting return rather than treating the repair as unfinished.',
+   'She personally tested the repaired clock and knows it still needs to be returned; the neighbor presence is not established.',
+   ['EV-000029'],
+   'Keep the tested alarm clock marked for return when the neighbor is available; do not repeat the repair.',
+   'SYNTHETIC PRIVATE ROSA: Rosa keeps the alarm clock return on her own priority list without meeting the neighbor.'),
+  actWith('NPC-006',
+   'Noah decides to distinguish parts he can verify from requirements that need checking before considering a supplier order.',
+   'His shop goal calls for affordable legitimate service, but he has no confirmed new order, stock count or supplier response.',
+   [],
+   'Verify specific parts requirements before placing any supplier order; do not assume available stock.',
+   'SYNTHETIC PRIVATE NOAH: Noah narrows his parts-planning priority and makes no sale, purchase or supplier contact.'),
+  abstainWith('NPC-007',
+   'Mara last closed a prior cafe shift. No new shift, customer payment or reopened register has been established in the saved morning.')
+ ];
+ for(const choice of choices){
+  const e=choice.request.evidence;
+  assert.ok(choice.proposal.reasoning.length>=16);
+  assert.ok((choice.proposal.sourceEventIds??[]).every(id=>
+   e.knownEventIds.includes(id)));
+ }
+ const first=stageReviewedNPCIntentionTurn({snapshot:original,
+  turn:turn('model-authored-seven-npc-pass-one'),observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(first),true);
+ assert.equal(first.manifest.last_completed_turn,10);
+ assert.deepEqual(first.npcTurnReview.actedActorIds,
+  ['NPC-002','NPC-004','NPC-005','NPC-006']);
+ assert.deepEqual(first.npcTurnReview.abstainedActorIds,
+  ['NPC-001','NPC-003','NPC-007']);
+ assert.equal(first.manifest.last_event_sequence,34);
+ assert.equal(first.state.world.actors['NPC-004'].location_id,
+  original.state.world.actors['NPC-004'].location_id);
+ assert.equal(first.state.world.actors['NPC-003'].last_resolved_action.event_id,
+  'EV-000008','Do not deliver Darius old parcel again');
+ assert.equal(first.state.world.actors['NPC-005'].resources.current_repair,
+  original.state.world.actors['NPC-005'].resources.current_repair);
+ for(const item of choices.filter(x=>x.outcome)){
+  assert.ok(!first.chapter.includes(item.outcome));
+  assert.ok(first.transcript.entries.every(e=>!e.text.includes(item.outcome)));
+ }
+ const reread=decodeFiveFiles(encodeFiveFiles(first),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(reread),true);
+ assert.equal(JSON.stringify(reread.state.player),JSON.stringify(original.state.player));
+
+ // Only after the first outcome has actually been staged and recovered,
+ // obtain a new private request and make a distinct, actor-led choice.
+ const n=request(reread,'NPC-006');
+ const old=r['NPC-006'];
+ const newPlan='Keep supplier orders on hold until concrete parts requirements can be checked.';
+ assert.notEqual(n.evidence.independentPlan,old.evidence.independentPlan);
+ assert.equal(n.evidence.previousResult.eventId,
+  reread.events.events.at(-1).id);
+ assert.ok(n.evidence.knownEvents.some(e=>e.id===n.evidence.previousResult.eventId));
+ const second=stageReviewedNPCIntentionTurn({
+  snapshot:reread,turn:turn('model-authored-seven-npc-pass-two'),
+  observedHead:head,
+  choices:[
+   {request:n,proposal:{actorId:'NPC-006',decision:'act',
+    intention:'Noah decides to postpone an order until he can check which open shop requirements actually need particular components.',
+    reasoning:'His previous private decision narrowed the parts question; there is still no established inventory count or supplier agreement, so he changes purchasing priority without claiming completion.',
+    sourceEventIds:[n.evidence.previousResult.eventId]},
+    reviewed:true,
+    outcome:'SYNTHETIC PRIVATE NOAH NEXT: Noah defers ordering while the actual parts requirements are still uncertain.',
+    changes:[{field:'independent_plan',before:n.evidence.independentPlan,
+     after:newPlan}]},
+   ...['NPC-005','NPC-004'].map(actorId=>({
+    request:request(reread,actorId),proposal:{actorId,decision:'abstain',
+     reasoning:actorId==='NPC-005'?
+      'Nothing establishes that the neighbor is present for a clock handover; do not invent a meeting.':
+      'No verified arrival at school or new contact warrants another activity for Elena in this short interval.'}
+   }))
+  ]});
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ assert.equal(second.manifest.last_completed_turn,11);
+ assert.equal(second.state.world.actors['NPC-006'].independent_plan,newPlan);
+ assert.deepEqual(second.events.events.at(-1).caused_by,
+  [n.evidence.previousResult.eventId]);
+ assert.deepEqual(second.npcTurnReview.abstainedActorIds,
+  ['NPC-005','NPC-004']);
+ assert.equal(JSON.stringify(original),originalEncoded);
+ for(const [p,content] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),content);
+ console.log('NPC_NARRATOR_AUTHORED_EXPLORATORY_QA '+JSON.stringify({
+  initialActorsReviewed:7,initialActs:4,initialAbstentions:3,
+  nextTurnActorFollowups:1,nextTurnAbstentions:2,
+  independentNewActionWithoutForgedCause:true,
+  actorKnownCausalFollowup:true,stagedTurns:2,canonicalSaveWrites:0,
+  liveProviderCallsInCI:0,blindNarrativeQualityCertified:false
+ }));
+});
