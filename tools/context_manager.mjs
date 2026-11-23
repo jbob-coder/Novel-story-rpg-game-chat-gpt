@@ -15,6 +15,8 @@ const fixedDocs=[
   ['docs/STATE_SCHEMA.md','state fields actors knowledge event provenance'],
   ['docs/WORLD_BIBLE.md','places universe lore background'],
   ['docs/NPC_RULES.md','npc autonomy knowledge independent actions'],
+  ['docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md',
+    'noncanonical everyday news macroevent rumor source corrections conditions MAC COT POS HIL'],
   ['game/ASTER_SPEC.md','aster robot brazo actuadores taller especificaciones first arm workshop specifications'],
   ['game/JACK_HACKER_HISTORY.md','jack background devices history'],
   ['game/STARTING_CAST.md','characters rosa elena noah relationships'],
@@ -209,6 +211,17 @@ function selectEntries(snapshot,audience){
       search: [event.id,event.kind,...(event.actor_ids??[]),event.intent??'',event.outcome??''].join(' '),
       preview:String(event.outcome??'')});
   }
+  if(audience==='narrator_private'){
+    const byId=new Map(allEvents(snapshot).map(event=>[event.id,event]));
+    for(const thread of snapshot.state.narrative_threads){
+      const last=thread.history.at(-1),event=byId.get(last.event_id);
+      result.push({id:thread.id,kind:'thread',chapterId:event.chapter_id,turn:event.turn,
+        path:'game/STATE.json',lastEventId:last.event_id,open:thread.status==='open',
+        search:[thread.id,thread.status,thread.scope,thread.owner_actor_id,
+          thread.question,...thread.history.map(h=>h.summary)].join(' '),
+        preview:thread.question});
+    }
+  }
   for(const entry of allTranscriptEntries(snapshot)){
     result.push({id:entry.id,kind:'transcript',chapterId:entry.chapter_id,turn:entry.turn,
       path:'chapters/'+entry.chapter_id+'.transcript.json',
@@ -221,7 +234,8 @@ function selectEntries(snapshot,audience){
   return result;
 }
 function rank(entry,queryTokens,nowTurn){
-  if(!queryTokens.length)return entry.kind==='event'?Math.max(0,20-(nowTurn-entry.turn)*2):0;
+  if(!queryTokens.length)return entry.kind==='thread'&&entry.open?18:
+    entry.kind==='event'?Math.max(0,20-(nowTurn-entry.turn)*2):0;
   const words=new Set(tokens(entry.search));
   const matched=queryTokens.reduce((sum,t)=>sum+(words.has(t)?1:0),0);
   return matched?matched*100+(entry.turn===null?0:Math.min(entry.turn,nowTurn)/1000):0;
@@ -274,6 +288,7 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
   const references=[...selected.values()].map(entry=>{
     const out={id:entry.id,kind:entry.kind,chapterId:entry.chapterId,
       turn:entry.turn,path:entry.path};
+    if(entry.kind==='thread')out.lastEventId=entry.lastEventId;
     if(remaining>0&&entry.preview){
       const excerpt=entry.preview.slice(0,Math.min(remaining,240));
       out.preview=excerpt;
