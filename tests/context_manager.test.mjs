@@ -92,7 +92,7 @@ test('explicit NPC memory is restored from saved state with exact event pointers
   assert.deepEqual(memory.state.knowledge,npc.knowledge);
   assert.deepEqual(memory.state.relationships,npc.relationships);
   assert.deepEqual(memory.state.last_resolved_action,npc.last_resolved_action);
-  assert.ok(memory.recentEventReferences.every(ref=>/^EV-\\d{6}$/.test(ref.id)&&
+  assert.ok(memory.recentEventReferences.every(ref=>/^EV-\d{6}$/.test(ref.id)&&
     ref.path.endsWith('.events.json')));
   assert.ok(memory.recentEventReferences.length>0);
   assert.equal(JSON.stringify(snapshot),before);

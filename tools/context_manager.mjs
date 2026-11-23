@@ -97,7 +97,7 @@ export function buildContextPacket({snapshot,audience='narrator_private',query='
     'Invalid source commit identifier');
   ensure(Array.isArray(npcIds)&&npcIds.length<=8&&
     new Set(npcIds).size===npcIds.length &&
-    npcIds.every(id=>typeof id==='string'&&/^NPC-\\d{3,}$/.test(id)&&
+    npcIds.every(id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id)&&
       Object.hasOwn(snapshot?.state?.world?.actors??{},id)), 'Invalid NPC memory selection');
   ensure(audience==='narrator_private'||npcIds.length===0,
     'NPC memory is narrator-private only');
