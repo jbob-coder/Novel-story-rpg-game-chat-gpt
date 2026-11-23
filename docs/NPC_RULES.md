@@ -153,3 +153,23 @@ confianza, comprensión íntegra ni intención de repetirla. La ausencia de
 el comportamiento anterior sin garantía estructurada de procedencia.
 Las consultas privadas exponen el origen exacto sin enviar secretos
 al texto visible de Jack ni a otros actores automáticamente.
+
+
+### Confidencialidad, transmisión parcial y relatos alterados
+
+Un NPC puede optar por no contar algo: sin un evento propio del destinatario,
+no aparece un recuerdo ajeno en su estado. Si comunica solo parte de una
+afirmación o la altera, el campo opcional
+`transmitted_from.reported_form` admite `as_heard`, `partial` o
+`altered`. La etiqueta es una **clasificación revisada por el narrador**,
+no un análisis semántico ni una demostración de mentira, intención o verdad.
+El texto que recibe cada personaje se guarda exclusivamente como **su**
+conocimiento; el secreto original sigue perteneciendo a su fuente.
+
+La narración pública impide ahora copiar literalmente una frase privada de
+`knowledge` añadida durante una acción fuera de escena o el contenido
+original de una `transmitted_from.knowledge_entry`. El control cubre
+cadenas literales extensas; una paráfrasis reveladora todavía exige la
+revisión editorial del narrador. Los NPC pueden seguir hablando, callando,
+engañando y reconsiderando información según causas humanas, sin menús de
+acciones ni difusión automática.

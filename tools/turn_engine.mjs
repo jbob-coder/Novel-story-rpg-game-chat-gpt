@@ -132,6 +132,24 @@ function stageNarrativeTurn(snapshot, turn) {
     const secret=typeof item.outcome==='string'?item.outcome.trim():'';
     if(secret.length>=12) check(!turn.narration_messages.some(message=>message.includes(secret)),
      'Private NPC outcome leaked into visible narration');
+    // Actor-specific private facts are not public narration just because a
+    // draft contains them. The earlier speaker's original statement must not
+    // spill into the reader-facing chapter during a partial or altered report.
+    // This is a literal guard, not a substitute for causal editorial review.
+    const knowledgeChanges=(item.changes??[]).filter(change=>change?.field==='knowledge');
+    const privateStatements=[
+      ...(typeof item.learned_fact==='string'?[item.learned_fact]:[]),
+      ...knowledgeChanges.flatMap(change=>[
+        change.fact,
+        change.transmitted_from?.knowledge_entry?.replace(
+          / \(source: .+; EV-\d{6,}\)$/,'')
+      ])
+    ];
+    for(const statement of privateStatements){
+      if(typeof statement!=='string'||statement.trim().length<24)continue;
+      check(!turn.narration_messages.some(message=>message.includes(statement.trim())),
+        'Private NPC knowledge leaked into visible narration');
+    }
   }
   // Consequences are factual open threads; updates must cite the current turn's event IDs.
   const withConsequences=stageConsequences(next,turn.consequence_updates??[]);

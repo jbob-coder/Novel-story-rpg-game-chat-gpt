@@ -28,6 +28,9 @@ function validateTransferredKnowledge(state,recipientId,eventId,transfer){
     transfer.actor_id!==recipientId && typeof transfer.knowledge_entry==='string' &&
     typeof transfer.event_id==='string' && /^EV-\d{6,}$/.test(transfer.event_id),
     'Transferred knowledge requires a distinct NPC and exact source event');
+  if(Object.hasOwn(transfer,'reported_form'))
+    requireFact(['as_heard','partial','altered'].includes(transfer.reported_form),
+      'Invalid narrator-reviewed report form');
   const sender=state.world.actors[transfer.actor_id];
   const source=sourcedKnowledge.exec(transfer.knowledge_entry);
   requireFact(sender&&Array.isArray(sender.knowledge)&&

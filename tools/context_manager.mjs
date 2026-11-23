@@ -237,6 +237,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
         allEvents(snapshot).find(e=>e.id===recorded.transmitted_from.event_id).chapter_id+
         '.events.json',
       recipientLearningEventId:event.id,
+      reportedForm:recorded.transmitted_from.reported_form??'unspecified',
+      reportedFormEvidence:'narrator_label_not_semantic_proof',
       claimTruth:'not_assessed',
       scope:'only_the_recipient_recorded_statement'
     }}:{}),

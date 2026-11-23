@@ -108,3 +108,14 @@ test('narrator copying a private NPC outcome verbatim is blocked',()=>{
   offscreen:[{actor_id:'NPC-005',outcome:secret}],
   narration_messages:['Jack somehow learns: '+secret]}),/Private NPC outcome leaked/);
 });
+
+
+test('private NPC learned fact cannot be copied verbatim into reader-visible prose',()=>{
+ const fact='SYNTHETIC-PRIVATE-NEIGHBOR-MEMORY-NOT-SHARED-WITH-JACK';
+ assert.throws(()=>stageNarrativeTurn(initial,{...playerTurn,
+   narration_messages:['The workshop is quiet. '+fact],
+   offscreen:[{actor_id:'NPC-005',
+     outcome:'Rosa privately learns a new detail without Jack present.',
+     learned_fact:fact,source:'a separate private observation'}]}),
+   /Private NPC knowledge leaked into visible narration/);
+});
