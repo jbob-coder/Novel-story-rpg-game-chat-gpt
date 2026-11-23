@@ -162,6 +162,7 @@
       "docs/06_quality/CHATGPT_CONNECTOR_TRANSPORT_QA_20261117.md",
       "docs/06_quality/REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md",
       "docs/06_quality/REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md",
+      "docs/06_quality/NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md",
       "docs/LIVING_WORLD_ACTIVATION_HANDOFF_20261110.md",
       "docs/LIVING_WORLD_COORDINATOR_QA_20261110.md",
       "docs/LIVING_WORLD_DESIGN_PROPOSAL.md",
@@ -195,6 +196,7 @@
       "tests/living_world_routines.test.mjs",
       "tests/living_world_news_reference.test.mjs",
       "tests/living_world_travel.test.mjs",
+      "tests/npc_memory_social_continuity.test.mjs",
       "tests/test_checkpoint_audit.py"
     ],
     "design_proposals": [

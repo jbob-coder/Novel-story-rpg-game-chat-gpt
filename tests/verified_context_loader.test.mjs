@@ -166,3 +166,27 @@ test('verified loader offers private NPC memories only from the immutable checkp
    remote:readerRemote,branch,audience:'reader_visible',npcIds:['NPC-005']
  }),/narrator-private only/);
 });
+
+test('verified GitHub loader auto-selects bounded NPC memory from a named query',async()=>{
+ const {remote}=fakeRemote(),{journal}=fakeJournal(readyRecord());
+ const packet=await loadVerifiedContextPacket({remote,journal,branch,query:'Rosa y el reloj'});
+ assert.equal(packet.loadStatus,'verified_read_only');
+ assert.equal(packet.sourceCommitStatus,'verified_immutable_remote_readback');
+ assert.deepEqual(packet.npcMemory.map(x=>x.actorId),['NPC-005']);
+ assert.equal(packet.npcMemory[0].memoryMode,'compact_auto');
+ assert.equal(packet.npcMemory[0].sourcePath,'game/STATE.json');
+ assert.ok(packet.npcMemory[0].recentEventReferences.length<=4);
+ assert.equal(packet.mayAdvanceStory,false);
+ const {remote:remoteReader}=fakeRemote();
+ const read=await loadVerifiedContextPacket({remote:remoteReader,branch,audience:'reader_visible',query:'Rosa'});
+ assert.equal(Object.hasOwn(read,'npcMemory'),false);
+});
+
+test('verified loader honors scene actor hints without asserting physical presence',async()=>{
+ const {remote}=fakeRemote();
+ const packet=await loadVerifiedContextPacket({remote,branch,query:'el reloj',sceneNpcIds:['NPC-005']});
+ assert.deepEqual(packet.npcMemory.map(x=>x.actorId),['NPC-005']);
+ assert.equal(packet.npcMemory[0].memoryMode,'compact_auto');
+ assert.equal(packet.checkpoint.turn,9);
+ assert.equal(packet.mayAdvanceStory,false);
+});

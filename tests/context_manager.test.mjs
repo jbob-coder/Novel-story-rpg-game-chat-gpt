@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {buildContextPacket,resolvePrivateContextReference} from '../tools/context_manager.mjs';
+import {buildContextPacket,resolvePrivateContextReference,selectNPCMemoryCandidates} from '../tools/context_manager.mjs';
 import {decodeFiveFiles,savePaths} from '../tools/save_transaction.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 
@@ -127,4 +127,83 @@ test('NPC memory and event evidence survive synthetic chapter transitions',()=>{
   assert.equal(packet.checkpoint.chapterId,'CH-001');
   assert.deepEqual(packet.npcMemory[0].state.knowledge,snapshot.state.world.actors['NPC-005'].knowledge);
   assert.ok(packet.npcMemory[0].recentEventReferences.some(x=>x.chapterId==='CH-000'));
+});
+
+test('auto selects only named or co-located known NPCs, with bounded private memory',()=>{
+  const snapshot=initial(),before=JSON.stringify(snapshot);
+  const rosa=buildContextPacket({snapshot,query:'Quiero preguntar a Rosa por el reloj'});
+  assert.deepEqual(rosa.npcMemory.map(x=>x.actorId),['NPC-005']);
+  assert.equal(rosa.npcMemory[0].memoryMode,'compact_auto');
+  assert.ok(rosa.npcMemory[0].state.knowledge.length<=4);
+  assert.ok(rosa.npcMemory[0].recentEventReferences.length<=4);
+  assert.ok(rosa.npcMemory[0].relatedEventCount>=rosa.npcMemory[0].recentEventReferences.length);
+  assert.ok(!Object.hasOwn(rosa.npcMemory[0].state,'resources'));
+  assert.deepEqual(buildContextPacket({snapshot,query:'Aster brazo taller'}).npcMemory,undefined);
+  assert.equal(JSON.stringify(snapshot),before);
+});
+
+test('auto matching uses saved identities and does not infer remote presence',()=>{
+  const state=initial().state;
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa y Elena'}),['NPC-004','NPC-005']);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'NPC-007'}),['NPC-007']);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa Wilson'}),['NPC-005']);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Wilson'}),[]);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Aster'}),[]);
+  const selected=selectNPCMemoryCandidates({state,query:'Elena',sceneNpcIds:['NPC-006']});
+  assert.deepEqual(selected,['NPC-004','NPC-006']);
+  assert.deepEqual(selectNPCMemoryCandidates({state,sceneNpcIds:['NPC-005'],query:''}),['NPC-005']);
+});
+
+test('saved co-location helps select NPC without inventing travel',()=>{
+  const state=structuredClone(initial().state);
+  const location=state.player.location_id;
+  state.world.actors['NPC-006'].location_id=location;
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:''}),['NPC-006']);
+  // This is only a selector unit fixture, not a valid new story checkpoint.
+  assert.notEqual(initial().state.world.actors['NPC-006'].location_id,location);
+});
+
+test('ambiguous first names are not assumed to identify a unique person',()=>{
+  const state=structuredClone(initial().state);
+  state.world.actors['NPC-008']={id:'NPC-008',name:'Rosa Rivera',
+    location_id:'LOC-COMMERCIAL-DISTRICT'};
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa'}),[]);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa Wilson'}),['NPC-005']);
+  assert.deepEqual(selectNPCMemoryCandidates({state,query:'Rosa Rivera'}),['NPC-008']);
+});
+
+test('explicit NPC IDs retain full memory; disabling auto remains read-only',()=>{
+  const snapshot=initial();
+  const exact=buildContextPacket({snapshot,query:'Rosa',npcIds:['NPC-004']});
+  assert.deepEqual(exact.npcMemory.map(x=>x.actorId),['NPC-004']);
+  assert.deepEqual(exact.npcMemory[0].state.knowledge,
+    snapshot.state.world.actors['NPC-004'].knowledge);
+  assert.equal(Object.hasOwn(exact.npcMemory[0],'memoryMode'),false);
+  assert.equal(buildContextPacket({snapshot,query:'Rosa',autoNpcMemory:false}).npcMemory,undefined);
+  assert.throws(()=>buildContextPacket({snapshot,sceneNpcIds:['NPC-999']}),
+    /Invalid scene NPC selection/);
+  assert.throws(()=>buildContextPacket({snapshot,sceneNpcIds:['NPC-005','NPC-005']}),
+    /Invalid scene NPC selection/);
+  assert.throws(()=>buildContextPacket({snapshot,autoNpcMemory:1}),
+    /Invalid auto NPC selection flag/);
+  const safe=buildContextPacket({snapshot,audience:'reader_visible',query:'Rosa'});
+  assert.equal(Object.hasOwn(safe,'npcMemory'),false);
+  assert.throws(()=>buildContextPacket({snapshot,audience:'reader_visible',
+    sceneNpcIds:['NPC-005']}),/narrator-private only/);
+});
+
+test('compact automatic recall includes most relevant facts rather than full accumulated memory',()=>{
+  const snapshot=initial();
+  const actor=snapshot.state.world.actors['NPC-005'];
+  const oldCount=actor.knowledge.length;
+  actor.knowledge=[...actor.knowledge,
+    ...Array.from({length:20},(_,i)=>'SYNTHETIC past errand '+i),
+    'SYNTHETIC: el reloj no se entregó todavía'];
+  const output=buildContextPacket({snapshot,query:'Rosa reloj'});
+  const m=output.npcMemory[0];
+  assert.equal(m.knowledgeCount,oldCount+21);
+  assert.equal(m.knowledgeIncluded,4);
+  assert.ok(m.state.knowledge.some(x=>x.includes('el reloj no se entregó')));
+  assert.ok(m.state.knowledge.every(x=>actor.knowledge.includes(x)));
+  assert.ok(m.recentEventReferences.length<=4);
 });

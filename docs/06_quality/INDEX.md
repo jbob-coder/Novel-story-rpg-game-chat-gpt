@@ -18,3 +18,4 @@
 - [Area completion and acceptance criteria](../00_start/AREA_STATUS_AND_TASKS_2026-11-17.md)
 - [Independent checkpoint, all-repo link/source and journal correctness audit (D-060)](REPOSITORY_CHECKPOINT_INDEPENDENT_AUDIT_20261117.md)
 - [Second independent checkpoint and direct recovery boundary audit (D-061)](REPOSITORY_RECHECK_AND_RECOVERY_BOUNDARY_20261118.md)
+- [NPC social memory, revised decision and chapter-reload rehearsal (synthetic only)](NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md)

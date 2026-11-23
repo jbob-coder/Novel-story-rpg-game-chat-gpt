@@ -30,6 +30,7 @@
 ## Living World (rama de revisión)
 - [Disponibilidad y rutas](living_world_availability.test.mjs)
 - [Rutinas autónomas](living_world_routines.test.mjs)
+- [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)
 - [Integración con acontecimientos y cinco archivos](living_world_coordinator.test.mjs)
 - [Diagnóstico y privacidad](living_world_diagnostics.test.mjs)
 - [Obligaciones persistidas, actores distantes y vencimientos](living_world_persistent_commitments.test.mjs)
