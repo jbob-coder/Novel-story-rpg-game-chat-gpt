@@ -53,7 +53,7 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
  for(const priority of [...grouped.keys()].sort((a,b)=>b-a)){
   const group=grouped.get(priority).sort((a,b)=>
    a.actorId.localeCompare(b.actorId));
-  const start=completedTurn%group.length;
+  const start=(completedTurn*limit)%group.length;
   sorted.push(...group.slice(start),...group.slice(0,start));
  }
  return clone({eligibleCount:eligible.length,
