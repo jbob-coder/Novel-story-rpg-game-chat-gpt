@@ -10,6 +10,8 @@ import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
 import {draftReviewedNPCCausalContinuation,
   verifyNPCCausalContinuationHistory} from '../tools/living_world_causal_continuations.mjs';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
+import {prepareNPCIntentionRequests,stageReviewedNPCIntentionTurn}
+ from '../tools/npc_intention_generation.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {buildContextPacket} from '../tools/context_manager.mjs';
 
