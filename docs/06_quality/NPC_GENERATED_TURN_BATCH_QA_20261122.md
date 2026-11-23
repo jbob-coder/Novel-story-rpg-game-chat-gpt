@@ -37,3 +37,19 @@ The authored initial choices are:
 After staging the first fictional turn and decoding all five files, Noah receives his new privately known event and authors a distinct follow-up: **postpone purchases until concrete parts requirements are checked**. This second action cites only the verified new event; Rosa and Elena abstain because the missing encounter/arrival evidence has not changed. Both steps are **in-memory QA**, never authorized live story turns. The test checks the unchanged original player, NPC attribution, exact private-text separation, causal links, current plan and original five canonical files.
 
 **Critical limitations (not a completion claim):** This is **one exploratory, two-turn scene**, not a blind, independent 30-turn quality benchmark. The author and reviewer are the same assistant; alternatives are manually inspected, not sampled from a production model connector. The JS validators mostly check provenance and structure, **not semantic truth**; a grammatically plausible but contradictory proposal may pass until a narrator rejects it. Semantic paraphrase leaks are likewise not fully caught. The prior 30-turn run remains a *deterministic structural stress test*. Until distinct, incrementally generated long-horizon model scenes and independent semantic review are available, keep PR #193 in draft.
+
+
+## Sequential authored evaluation: steps 01–02 of 30
+
+The separately authored series in `tests/npc_generated_turn_batch.test.mjs` starts with the protected CH-000, turn 9 checkpoint, without writing the real story. Step 01 is newly authored from the actual seven actor records: **Darius** discards the obsolete plan to deliver a parcel already delivered (EV-000008); **Elena** chooses how to explain the corrected illustration while still en route (EV-000028); **Noah** narrows unverified parts requirements before supplier contact. **Lena, Sora, Rosa, and Mara abstain** when their old duties or an unverified encounter do not justify new activity. The first in-memory turn is staged and passed through the five-file codec before anything in step 02 is evaluated.
+
+Step 02 is **pinned to the exact decoded first-turn snapshot SHA-256** and cannot be replayed against an unrelated first-turn outcome. The new proposals rely only on that updated context:
+
+- **Lena:** distinguish the recorded evening transit delay from a display maintenance report in her private handover notes; do not claim another active delay.
+- **Rosa:** leave herself a reminder to return the already-repaired clock; do not fabricate an encounter with its neighbor owner.
+- **Noah:** after his previous actor-owned plan-change result, prepare a question about missing parts requirements instead of inventing a supplier order. The second-turn event cites only his newly verified first-turn event.
+- **Sora, Darius, Elena, and Mara:** abstain because no new assignment, paid parcel, school arrival or cafe shift has been established.
+
+These are voluntary, newly written narrator decisions, **not actions selected by an automated language-model connector**. The assertions verify per-actor event sources, current context, plan changes, no duplicate completed courier delivery, no unverified arrival or social contact, no private outcome in player-visible text, unchanged player state, exact turn/event counts, in-memory save roundtrip, and byte-for-byte preservation of the five original files. The first authored turn had previously been confirmed independently; the second is a new QA addition.
+
+**Do not mistake this exploratory two-step authored corpus for the 30-step blind semantic-quality acceptance.** The remaining 28 original narrative turns, independent scoring of decision quality and semantic privacy (including paraphrases) still require evaluation; the draft PR cannot be merged on the basis of this test alone.
