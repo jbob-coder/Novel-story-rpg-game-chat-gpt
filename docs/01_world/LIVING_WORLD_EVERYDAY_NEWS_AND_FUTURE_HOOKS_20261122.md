@@ -153,3 +153,81 @@ Para reutilizar una semilla, el narrador puede preparar **privadamente** esta fi
 - **Revisión posterior:** al utilizar cualquier ID para un hecho jugado, registrar el EV/TXT real y, solo si es útil, un enlace de documentación a la fuente. No editar esta lista para afirmar que todas las posibilidades ocurrieron.
 
 **Resultado de diseño:** biblioteca reutilizable de **20 semillas cotidianas, 10 posibilidades posteriores y 10 puentes de lore**, con requisitos de activación, fuente, conocimiento y revisión. **Estado de ejecución:** documentación únicamente; CH-000 turno 10 real no se crea con este documento.
+
+
+
+## 9. Macroeventos independientes: noticias que progresan a escala de mundo
+
+**Extensión editorial solicitada por el propietario:** además de los 40 recursos anteriores, conservar **10 cadenas de macroeventos condicionales (MAC-01…MAC-10)**. Su función es permitir acontecimientos mayores que no están bajo control directo de Jack, con noticias y efectos que evolucionan por causas ajenas a él. Esto **no** implementa una simulación automática, una agenda de catástrofes, misiones, una predicción del futuro ni una obligación de que el jugador intervenga.
+
+**Distinguir dos niveles de inevitabilidad:**
+
+- **Único macroacontecimiento confirmado:** **MAC-07, la llegada de la onda en el Día 0**. El hecho de su llegada es canon y no depende de las elecciones de Jack. **Su apariencia, consecuencias, víctimas, comunicaciones, reacciones locales y grado de conocimiento siguen sin establecerse**. No concluir que cada ciudad la observa igual.
+- **Todos los demás MAC:** **candidatos condicionales**. Pueden comenzar sin Jack cuando hay antecedentes, capacidad de actores y tiempo ficticio suficiente; pueden no suceder, terminar sin crisis, afectar una sola zona o generar repercusiones amplias si la evidencia lo justifica. No convertir una mera posibilidad en acontecimiento a partir de un titular atractivo.
+
+### 9.1 Evolución causal (no cronograma fijo)
+
+| Etapa editorial | Evidencia requerida y posible evolución | Lo que queda prohibido inferir |
+| --- | --- | --- |
+| **F0 · Latente** | Solo existe la hipótesis documentada; ningún EV, hilo activo ni rumor en el mundo por este diseño. | No afirmar que una causa secreta ya está operando. |
+| **F1 · Primer hecho** | Un suceso concreto adjudicado: aviso, falla, observación, decisión de una entidad o la llegada canónica de la onda. Puede ser privado. | No publicar una noticia sin un canal, fuente y tiempo. |
+| **F2 · Reacción/información** | Testigos, operadores, medios o responsables actúan según recursos y conocimientos. Una declaración puede ser equivocada. | No equiparar cobertura con verdad ni popularidad con confirmación. |
+| **F3 · Propagación o contención** | Nuevas causas verificadas justifican extensión geográfica/social, desvíos, cooperación, respuesta fallida o normalización. | No escalar de barrio a nación/mundo automáticamente. |
+| **F4 · Consecuencias persistentes** | Cambios realmente adjudicados en acceso, disponibilidad, salud, confianza, instituciones, relaciones, necesidades o investigaciones. | No imponer pérdidas, poderes, cierres ni decisiones privadas universales. |
+| **F5 · Deriva, resolución o revisión** | Puede recuperarse la situación, cambiar de forma, persistir, detenerse sin respuesta o quedar abierta. Una noticia anterior puede corregirse. | No forzar final feliz, tragedia ni un arco perpetuo. |
+
+**F0…F5 son etiquetas de revisión del narrador, no estados añadidos al motor.** Una evolución puede saltar una fase editorial si existe evidencia, retroceder en la interpretación pública, quedar suspendida o cerrarse sin llegar a F4. Cada nuevo efecto **exige un evento real guardado** y una ventana ficticia compatible; que pasen días no prueba una consecuencia. Un mismo acontecimiento puede tener varios puntos de vista y noticias incompatibles; no crear eventos duplicados por retransmisiones de la misma fuente.
+
+**Autonomía y escala:** Jack no controla la decisión de una compañía, un colectivo, la evolución de una emergencia ni la llegada del fenómeno por ser el protagonista; los terceros tampoco son marionetas de la plantilla. Puede afectar a personas, pruebas, recursos y resultados **locales** si interviene con una vía plausible. Si está ausente, instituciones y NPC pertinentes pueden actuar durante el tiempo **adjudicado en turnos** y producir acontecimientos persistentes. No ejecutar nada mientras el chat está inactivo.
+
+### 9.2 Catálogo de cadenas posibles (NINGUNA ocurrida, salvo la futura llegada canónica de MAC-07)
+
+Los disparadores requieren verificación independiente cuando se usen. Los «titulares» son **modelos hipotéticos de progresión informativa**, nunca noticias ya emitidas. La fuente concreta de una organización, localización, dato o medio se establece únicamente cuando la narración lo requiere.
+
+| ID | Condición necesaria y época | Encadenamiento posible sin Jack | Evolución de noticias como ejemplo (no publicada) | Alternativas y límites |
+| --- | --- | --- | --- | --- |
+| MAC-01 | **Peligro meteorológico/natural regional**: observaciones y aviso plausible en una zona con clima/geografía establecidos; antes o después del Día 0. | Riesgo observado → respuesta local → transportes/servicios ajustan operaciones → asistencia o recuperación. | «Se vigila una condición» → «Servicios advierten interrupciones» → «Se revisa el alcance y se comunica recuperación». | Puede pasar sin daños o desviarse; no inventar huracanes, terremotos ni trayectorias como hecho sin antecedentes; no atribuirlo a la onda automáticamente. |
+| MAC-02 | **Fallo de infraestructura relevante**: existe sistema, dependencia y avería/decisión de mantenimiento realmente detectada; cualquier época. | Operador detecta interrupción → usuarios cambian planes → servicios priorizan reparación → actividades y abastecimiento se adaptan. | «Se notifican interrupciones» → «Operador identifica servicio afectado» → «Restablecimiento parcial; causa aún bajo revisión». | Un problema local puede no escalar; no asumir sabotaje, colapso nacional, autor, tiempo de reparación ni rutas físicamente validadas. |
+| MAC-03 | **Tensión de suministros/comercio**: pedido, ruta comercial o proveedor **establecido** registra retrasos repetidos o nueva presión; cualquier época. | Entregas cambian → negocios ajustan compromisos → población sustituye productos → proveedores reorganizan o normalizan. | «Comercios reportan demoras» → «Proveedores explican límites distintos» → «Llegan entregas a algunas zonas». | Puede mejorar rápido; no inflación, hambruna, cifras ni escasez masiva sin hechos y alcance comparables. |
+| MAC-04 | **Conflicto laboral o civil**: demandas identificadas, actores interesados y organización comprobada; cualquier época. | Reclamaciones → negociación/acción colectiva → cambios de servicio o respuesta institucional → pacto, desgaste o fractura. | «Trabajadores plantean demandas» → «Partes discrepan sobre efectos» → «Acuerdo parcial o posiciones pendientes». | No imponer protesta, disturbios, vencedor, ideología ni leyes nacionales. Pueden negociar, abandonar o no coordinarse. |
+| MAC-05 | **Presión sobre asistencia pública o sanitaria**: incremento o necesidad concreta observado; servicios existentes con límites verificados; cualquier época. | Demanda → priorización profesional → ayuda de redes locales → reapertura o tensión prolongada. | «Un servicio solicita colaboración» → «Personal comunica prioridades» → «Se actualiza la disponibilidad». | No inventar epidemia, diagnóstico, mortalidad, cierre de hospitales o tratamiento; distintas zonas pueden mantener capacidad normal. |
+| MAC-06 | **Crisis de información/comunicaciones**: hay incidente difundido, fuente trazable o caída confirmada de servicio; cualquier época. | Mensaje original → versiones contradictorias → verificación, amplificación o rectificación → consecuencias de confianza. | «Circulan versiones de un suceso» → «La fuente original no confirma algunos detalles» → «Se corrige el mensaje inicial». | Un rumor puede extinguirse sin impacto; no atribuir automáticamente ataque, culpable ni conocimiento secreto a Jack. |
+| MAC-07 | **Día 0 — la onda cósmica llega a la Tierra, hecho CANÓNICO futuro**; no necesita condiciones de activación inventadas. | Llegada real de la onda → **solo según observaciones adjudicadas**, respuestas de individuos e instituciones → posible cobertura y revisión. | «Se reciben reportes difíciles de corroborar» → «Fuentes independientes describen lo que lograron observar» → «Persisten incógnitas sobre el fenómeno». | El evento central llega, pero **ningún titular, señal, efecto físico o reacción particular es inevitable**; no revelar su origen, explicación ni un primer despertar concreto por anticipación. |
+| MAC-08 | **Múltiples testimonios de cambios extraordinarios**: únicamente **desde el Día 0**, tras observaciones verificadas de personas afectadas y vías de comparación. | Individuos responden → rumores y confirmaciones parciales → escuelas, familias o entidades se adaptan → experiencias desiguales. | «Testimonios plantean preguntas» → «Se contrasta un caso documentado» → «Nuevas observaciones no equivalen a una regla universal». | Ninguna tasa, patrón de poder, identidad de despertados, héroes, criminales o registro obligatorio queda establecido. |
+| MAC-09 | **Cambio ecológico notable**: únicamente desde Día 0, hechos observados de fauna/flora/entorno con contraste suficiente, no solo un video. | Observaciones aisladas → comprobaciones locales → respuestas de conservación/seguridad → cambios prolongados o explicación ordinaria. | «Vecinos describen una diferencia» → «Investigadores comparan observaciones» → «Resultados dispares según ubicación». | Un fenómeno puede ser natural, no repetirse o no extenderse; no declarar especies nuevas ni mutaciones masivas por defecto. |
+| MAC-10 | **Respuesta social/institucional de alcance amplio**: exclusivamente cuando hechos previos verificables generan coordinación, debate o competencia entre varias entidades; especialmente después del Día 0. | Diferentes intereses → acuerdos/reglas provisionales **solo si se adoptan** → aplicación desigual, oposición o revisión → consecuencias locales. | «Varias organizaciones intercambian información» → «Se anuncian medidas concretas» → «Se evalúan resultados y desacuerdos». | No fundar automáticamente agencias globales, héroes oficiales, villanos, leyes, facciones o jerarquías; proteger autonomía de personas sin poderes. |
+
+**Dependencias sugeridas, no enlaces automáticos:** MAC-01 puede presionar MAC-02/03/05; MAC-02 puede provocar MAC-03/06; MAC-04 puede influir en MAC-02; MAC-06 puede modificar **percepciones** de cualquier otro MAC sin modificar su verdad; MAC-07 abre la **posibilidad** de MAC-08/09/10, pero no exige que se desarrollen en Meridian Bay ni que lo hagan simultáneamente. Si una cadena no posee fuentes o condiciones, permanece en F0 aunque otra haya avanzado.
+
+### 9.3 Ejemplo concreto de noticia que evoluciona sin intervención del jugador
+
+**Ensayo editorial MAC-02, totalmente hipotético; NO es un suceso de la partida.**
+
+- **F0:** existe una red de servicios ordinaria en una región definida; ninguna falla ha sido registrada. No hay noticia, alarma ni hilo.
+- **F1:** durante un turno futuro, un operador existente constata una interrupción y registra dónde y qué dejó de funcionar. Si nadie la ve, puede permanecer como información interna.
+- **F2:** más tarde, si se emite un aviso por un canal accesible: «Se reportan demoras en parte del servicio». El aviso no declara causa, sabotaje ni alcance nacional.
+- **F3 · opción A:** el operador repara la falla, algunos usuarios llegan tarde, y una actualización real confirma el restablecimiento. No se genera automáticamente crisis adicional.
+- **F3 · opción B:** si un servicio dependiente y su disponibilidad están establecidos, las demoras alcanzan a proveedores. Un comercio puede retrasar entregas; otra zona funciona normalmente. Noticias sucesivas pueden contradecir la estimación original.
+- **F3 · opción C:** un rumor atribuye la falla a una causa espectacular, pero la revisión lo desmiente; el hecho recordado es que **el rumor circuló y fue corregido**, no que la causa fantástica era cierta.
+- **F4/F5:** solo los retrasos, compras, reparaciones, decisiones, cambios de confianza o correcciones **realmente adjudicados** persisten. Jack puede no enterarse jamás, o ver una noticia mucho después. Si ayuda a alguien, afecta esa consecuencia particular; **no reescribe la avería regional ni la intervención independiente de terceros**.
+
+Este ejemplo permite noticias progresivas y acontecimientos grandes sin «resolver» todos los sistemas de una ciudad, sin escribir un futuro fijo y sin hacer que cada problema esté conectado con el fenómeno.
+
+### 9.4 Condiciones de promoción y seguimiento: de propuesta a historia real
+
+Antes de avanzar **cualquier** MAC:
+
+1. **Reabrir el checkpoint autorizado**: versión/HEAD, día y hora ficticios, eventos EV, texto TXT, estado, conocimientos, compromisos y hechos ya narrados. La fecha real del chat nunca acelera el mundo.
+2. **Comprobar base y alcance**: desencadenante real o, solo para MAC-07, umbral canónico del Día 0; actor o entidad capaz de responder; ubicación admitida; dependencias causales **verificadas**; información que cada participante podría poseer.
+3. **Determinar la evolución compatible**: qué pasó, qué se *dice* que pasó, qué se confirmó, quién decidió, quién está afectado y quién queda fuera. Es legítimo que no cambie nada.
+4. **Atribuir hechos a actores independientes**: cada decisión relevante puede salir de terceros sin consultarle a Jack; no forzar su participación, motivos, voz ni emociones. No transformar causalidad abstracta en millones de NPC individuales.
+5. **Presentar noticias solo si hay canal**: la progresión F1…F5 no presupone televisión, internet ni acceso de Jack. Los avisos pueden llegar tarde, corregirse o jamás difundirse.
+6. **Guardar transiciones reales**: EV con fuente/actor, estado correspondiente y, cuando exista un asunto realmente abierto, un *narrative_thread* respaldado por un evento; usar los cinco archivos y el journal protegido. No reservar IDs, anticipar resultados, ni almacenar MAC en los registros canónicos como si ocurrieron.
+7. **Revisar ante nueva evidencia, no por rutina**: un viaje, una llamada, un nuevo boletín o un salto de tiempo pueden justificar reconsideración. Nunca avanzar cadenas, generar rumores o notificar novedades desde un temporizador externo.
+8. **Permitir inacción informativa y cierre normal**: un macroevento puede terminar sin aparecer en ninguna escena de Jack. Los efectos relevantes pueden persistir en el mundo y recuperarse más tarde cuando una referencia real los conecte.
+
+**Regla de escala y no control:** una crisis puede ser inevitable *una vez que sus condiciones y causas ya quedaron establecidas*, sin ser un acontecimiento inevitable *antes* de ellas. Jack no tiene poder narrativo automático para detener un fenómeno regional; tampoco queda prohibido intervenir localmente con medios plausibles. El narrador debe permitir reacciones heterogéneas: instituciones, familias, empresas, científicos y personas cambian sus planes por razones propias. Las consecuencias pueden ser positivas, neutras o negativas. Nada de esto añade niveles, puntuaciones, tablas de riesgo numérico, menús de elección ni poderes anteriores al Día 0.
+
+**Prueba de continuidad para futuras revisiones:** al releer una noticia, buscar el **primer hecho fuente** y las **correcciones posteriores**; una noticia antigua sigue siendo evidencia de lo que alguien supo o creyó, no necesariamente de lo que ocurrió. Una «crisis» sin hechos respaldados debe quedar como candidato o rumor, no como historia guardada.
+
+**Resultado ampliado:** las **40 referencias iniciales** siguen intactas y se añaden **10 cadenas MAC** solo como diseños de evolución futura. El total es **50 referencias editoriales no ejecutadas**. Únicamente la llegada futura de la onda en Día 0 pertenece al canon establecido. Esta ampliación no produce una noticia, un NPC nuevo, un turno jugado ni una mutación del save.
