@@ -123,26 +123,57 @@ function relatedKnowledgeForReview(actor,fact){
 // A later event can explicitly revise an older actor-held statement.
 // This is an editorially reviewed belief link, not automatic truth inference.
 function linkedStatementRevision(snapshot,actorId,entry){
-  const history=allEvents(snapshot),visited=new Set([entry]),eventIds=[];
-  let current=entry;
-  for(let i=0;i<history.length;i++){
-    const candidates=history.flatMap(event=>(event.state_changes??[])
-      .filter(change=>change.actor_id===actorId&&change.field==='knowledge'&&
-        change.revision_of===current).map(change=>({event,change})));
-    if(candidates.length===0)break;
-    if(candidates.length>1)return {statementRevisionStatus:'multiple_review_required',
-      revisionEventIds:[...eventIds,...candidates.map(c=>c.event.id)]};
-    const chosen=candidates[0];
-    if(visited.has(chosen.change.after))return {
-      statementRevisionStatus:'invalid_revision_cycle',revisionEventIds:eventIds};
-    visited.add(chosen.change.after);
-    eventIds.push(chosen.event.id);
-    current=chosen.change.after;
+  // Index literal same-actor revision links; conflicting testimony without an
+  // explicit revision_of remains independent knowledge, never a forced belief.
+  const history=allEvents(snapshot),nextByStatement=new Map();
+  for(const event of history)for(const change of event.state_changes??[]){
+    if(change.actor_id!==actorId||change.field!=='knowledge'||
+       typeof change.revision_of!=='string')continue;
+    const links=nextByStatement.get(change.revision_of)??[];
+    links.push({event,change});
+    nextByStatement.set(change.revision_of,links);
   }
-  return eventIds.length?{statementRevisionStatus:'explicitly_revised',
-    revisionEventIds:eventIds,latestLinkedStatementForReview:
-      sourcedKnowledge.exec(current)?.[1]??current}:
-    {statementRevisionStatus:'not_marked_revised',revisionEventIds:[]};
+  const pending=[{statement:entry,path:[],last:null}],seen=new Set([entry]);
+  const terminals=[],revisions=[];
+  let fork=false,cycle=false;
+  while(pending.length){
+    const node=pending.pop(),next=nextByStatement.get(node.statement)??[];
+    if(next.length>1)fork=true;
+    if(!next.length&&node.path.length)terminals.push(node);
+    for(const edge of next){
+      if(seen.has(edge.change.after)){cycle=true;continue;}
+      seen.add(edge.change.after);
+      revisions.push(edge.event.id);
+      pending.push({statement:edge.change.after,
+        path:[...node.path,edge.event.id],last:edge});
+    }
+  }
+  revisions.sort((a,b)=>Number(a.slice(3))-Number(b.slice(3)));
+  const evidence={revisionEventIds:revisions.slice(0,16),
+    ...(revisions.length>16?{revisionEventCount:revisions.length,
+      revisionEvidenceTruncated:true}: {})};
+  if(cycle)return {statementRevisionStatus:'invalid_revision_cycle',...evidence};
+  if(!revisions.length)return {statementRevisionStatus:'not_marked_revised',
+    revisionEventIds:[]};
+  if(!fork&&terminals.length===1)return {
+    statementRevisionStatus:'explicitly_revised',...evidence,
+    latestLinkedStatementForReview:
+      sourcedKnowledge.exec(terminals[0].statement)?.[1]??terminals[0].statement};
+  // A branch is not a winner. Give the narrator inspectable, bounded leaf
+  // evidence, including a descendant revision after the initial fork.
+  terminals.sort((a,b)=>Number(a.last.event.id.slice(3))-
+    Number(b.last.event.id.slice(3)));
+  return {statementRevisionStatus:'multiple_review_required',...evidence,
+    alternativeStatementCount:terminals.length,
+    alternativeLatestStatementsForReview:terminals.slice(0,8).map(leaf=>({
+      statement:sourcedKnowledge.exec(leaf.statement)?.[1]??leaf.statement,
+      sourceEventId:leaf.last.event.id,
+      eventPath:'chapters/'+leaf.last.event.chapter_id+'.events.json',
+      revisionReason:leaf.last.change.revision_reason,
+      revisionPathEventIds:leaf.path.slice(0,16),
+      ...(leaf.path.length>16?{revisionPathTruncated:true}: {})
+    })),
+    ...(terminals.length>8?{alternativesTruncated:true}: {})};
 }
 
  // Exact recorded knowledge proves an actor holds a statement, never its truth.

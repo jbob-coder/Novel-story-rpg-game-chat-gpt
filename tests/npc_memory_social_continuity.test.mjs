@@ -308,3 +308,133 @@ test('synthetic corrected belief survives chapter recovery without deleting earl
  for(const [path,text] of Object.entries(originals))
    assert.equal(readFileSync(resolve(root,path),'utf8'),text);
 });
+
+
+// Synthetic competing testimonies are not canonical dialogue or player turns.
+function syntheticClaimTurn(snapshot,n,fact,source,revisionOf=null){
+ const change={field:'knowledge',fact,source};
+ if(revisionOf!==null){
+   change.revision_of=revisionOf;
+   change.revision_reason='SYNTHETIC QA: revised after a later, attributable report.';
+ }
+ return stageLivingWorldTurn({snapshot,turn:makeTurn(n),observedHead:'a'.repeat(40),
+   npcResolutions:[{actor_id:actorId,reviewed:true,resolved:true,
+     causal_basis:'SYNTHETIC QA: Rosa hears a new private and attributable statement.',
+     outcome:'SYNTHETIC QA PRIVATE: Rosa records the report without judging its truth.',
+     changes:[change]}]});
+}
+
+test('three linked NPC statements preserve the entire chronology and never rewrite the original',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const before=JSON.stringify(afterDecision);
+ const first='SYNTHETIC QA: neighbor claims delivery is planned for Monday.';
+ const second='SYNTHETIC QA: clock owner reports delivery is planned for Tuesday.';
+ const step1=syntheticClaimTurn(afterDecision,3,first,'SYNTHETIC QA: neighbor testimony',remembered);
+ const firstEntry=step1.state.world.actors[actorId].knowledge.at(-1);
+ const step2=syntheticClaimTurn(step1,4,second,'SYNTHETIC QA: direct owner testimony',firstEntry);
+ assert.equal(verifyNarrativeSnapshot(step2),true);
+ const old=checkNPCFactEvidence({snapshot:step2,actorId,fact:fictionalFact});
+ assert.equal(old.status,'recorded_event');
+ assert.equal(old.statementRevisionStatus,'explicitly_revised');
+ assert.deepEqual(old.revisionEventIds,['EV-000035','EV-000037']);
+ assert.equal(old.latestLinkedStatementForReview,second);
+ assert.equal(old.truthStatus,'not_assessed');
+ assert.ok(step2.state.world.actors[actorId].knowledge.includes(remembered));
+ assert.ok(step2.state.world.actors[actorId].knowledge.includes(firstEntry));
+ assert.equal(step2.state.world.actors[actorId].knowledge.length,
+   afterDecision.state.world.actors[actorId].knowledge.length+2);
+ const other=checkNPCFactEvidence({snapshot:step2,actorId:'NPC-006',fact:second});
+ assert.equal(other.status,'not_recorded');
+ assert.equal(other.mayAssumeKnown,false);
+ assert.equal(JSON.stringify(afterDecision),before);
+ const reader=buildContextPacket({snapshot:step2,audience:'reader_visible'});
+ assert.equal(reader.npcKnowledgeChecks,undefined);
+ assert.equal(reader.npcMemory,undefined);
+});
+
+test('forked NPC testimony exposes distinct latest statements without choosing a winner',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const reportA='SYNTHETIC QA: a neighbor asserts pickup will happen at dawn.';
+ const reportB='SYNTHETIC QA: the clock owner asserts pickup is postponed a week.';
+ const reportC='SYNTHETIC QA: a second neighbor repeats the dawn pickup claim.';
+ const step1=syntheticClaimTurn(afterDecision,3,reportA,
+   'SYNTHETIC QA: first neighbor report',remembered);
+ const entryA=step1.state.world.actors[actorId].knowledge.at(-1);
+ const step2=syntheticClaimTurn(step1,4,reportB,
+   'SYNTHETIC QA: owner report',remembered);
+ const step3=syntheticClaimTurn(step2,5,reportC,
+   'SYNTHETIC QA: second neighbor report',entryA);
+ assert.equal(verifyNarrativeSnapshot(step3),true);
+ const review=checkNPCFactEvidence({snapshot:step3,actorId,fact:fictionalFact});
+ assert.equal(review.status,'recorded_event');
+ assert.equal(review.statementRevisionStatus,'multiple_review_required');
+ assert.deepEqual(review.revisionEventIds,['EV-000035','EV-000037','EV-000039']);
+ assert.equal(review.alternativeStatementCount,2);
+ assert.equal(review.latestLinkedStatementForReview,undefined);
+ assert.deepEqual(review.alternativeLatestStatementsForReview.map(x=>x.statement),
+   [reportB,reportC]);
+ assert.deepEqual(review.alternativeLatestStatementsForReview.map(x=>x.sourceEventId),
+   ['EV-000037','EV-000039']);
+ assert.deepEqual(review.alternativeLatestStatementsForReview[1].revisionPathEventIds,
+   ['EV-000035','EV-000039']);
+ assert.ok(review.alternativeLatestStatementsForReview.every(x=>
+   x.eventPath==='chapters/CH-000.events.json'&&x.revisionReason.includes('later')));
+ assert.equal(review.truthStatus,'not_assessed');
+ const privatePacket=buildContextPacket({snapshot:step3,query:'Rosa',
+   npcKnowledgeClaims:[{actorId,fact:fictionalFact}]});
+ assert.equal(privatePacket.npcKnowledgeChecks[0].alternativeStatementCount,2);
+ const reader=buildContextPacket({snapshot:step3,audience:'reader_visible',query:'Rosa'});
+ assert.equal(JSON.stringify(reader).includes(reportB),false);
+ assert.equal(JSON.stringify(reader).includes(reportC),false);
+ assert.equal(JSON.stringify(reader).includes('alternativeLatestStatementsForReview'),false);
+ const snapshotPlan={plan_version:1,chapter_id:'CH-001',
+   title:'SYNTHETIC QA: forked testimony continuity',status:'prepared',
+   source_commit:'a'.repeat(40),
+   purpose:'SYNTHETIC QA: verify competing source claims across chapters.',
+   time_context:{day:step3.state.time.day,period:step3.state.time.time_of_day,
+     constraints:['No canonical dialogue or authored owner action.']},
+   location_ids:[step3.state.player.location_id],npc_ids:[actorId],
+   thread_ids:step3.state.narrative_threads.filter(x=>x.status==='open').map(x=>x.id),
+   hidden_plan_ids:[],possible_developments:['Synthetic reports are unresolved.'],
+   exit_conditions:['Synthetic source comparison done.']};
+ const transitioned=stageChapterTransition({snapshot:{...step3,
+    sourceFiles:encodeFiveFiles(step3)},nextPlan:snapshotPlan,
+    observedHead:'a'.repeat(40),
+    reason:'SYNTHETIC QA: chapter boundary for competing testimony.',reviewed:true});
+ const restored=decodeFiveFiles({...encodeFiveFiles(step3),...encodeFiveFiles(transitioned)},
+   'CH-001');
+ assert.equal(verifyNarrativeSnapshot(restored),true);
+ const continued=checkNPCFactEvidence({snapshot:restored,actorId,fact:fictionalFact});
+ assert.equal(continued.statementRevisionStatus,'multiple_review_required');
+ assert.deepEqual(continued.alternativeLatestStatementsForReview.map(x=>x.statement),
+   [reportB,reportC]);
+ assert.equal(continued.sourceEventId,'EV-000031');
+ for(const [path,original] of Object.entries(originals))
+   assert.equal(readFileSync(resolve(root,path),'utf8'),original);
+});
+
+test('unlinked opposing reports from different people stay separate and are not forced revisions',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const report1='SYNTHETIC QA: the mechanic says the repaired clock works.';
+ const report2='SYNTHETIC QA: the owner says the repaired clock does not work.';
+ const step1=syntheticClaimTurn(afterDecision,3,report1,
+   'SYNTHETIC QA: mechanic assertion');
+ const step2=syntheticClaimTurn(step1,4,report2,
+   'SYNTHETIC QA: owner assertion');
+ assert.equal(verifyNarrativeSnapshot(step2),true);
+ const original=checkNPCFactEvidence({snapshot:step2,actorId,fact:fictionalFact});
+ assert.equal(original.statementRevisionStatus,'not_marked_revised');
+ const first=checkNPCFactEvidence({snapshot:step2,actorId,fact:report1});
+ const second=checkNPCFactEvidence({snapshot:step2,actorId,fact:report2});
+ assert.equal(first.status,'recorded_event');
+ assert.equal(second.status,'recorded_event');
+ assert.equal(first.statementRevisionStatus,'not_marked_revised');
+ assert.equal(second.statementRevisionStatus,'not_marked_revised');
+ assert.equal(first.truthStatus,'not_assessed');
+ assert.equal(second.truthStatus,'not_assessed');
+ assert.equal(first.mayAssumeKnown,true);
+ assert.equal(second.mayAssumeKnown,true);
+ assert.ok(step2.state.world.actors[actorId].knowledge.includes(remembered));
+ const hidden=checkNPCFactEvidence({snapshot:step2,actorId:'NPC-006',fact:report2});
+ assert.equal(hidden.status,'not_recorded');
+});
