@@ -438,3 +438,101 @@ test('unlinked opposing reports from different people stay separate and are not 
  const hidden=checkNPCFactEvidence({snapshot:step2,actorId:'NPC-006',fact:report2});
  assert.equal(hidden.status,'not_recorded');
 });
+
+
+test('private NPC rumor can travel by two distinct reviewed recipient events without becoming truth',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const before=JSON.stringify(afterDecision);
+ const firstFact='SYNTHETIC QA: Rosa reportedly heard a request to postpone the clock delivery.';
+ const secondFact='SYNTHETIC QA: Sora heard an unverified report about a delayed clock delivery.';
+ const makeTransfer=(base,n,recipient,fact,from,sourceEntry,sourceId)=>{
+   return stageLivingWorldTurn({snapshot:base,turn:makeTurn(n),
+     observedHead:'a'.repeat(40),npcResolutions:[{
+      actor_id:recipient,reviewed:true,resolved:true,
+      causal_basis:'SYNTHETIC QA: an NPC privately conveys an unverified report to one recipient.',
+      outcome:'SYNTHETIC QA PRIVATE: one recipient hears a report, without independent proof.',
+      changes:[{field:'knowledge',fact,
+        source:'SYNTHETIC QA: private, attributed conversation',
+        transmitted_from:{actor_id:from,knowledge_entry:sourceEntry,event_id:sourceId}}]
+    }]});
+ };
+ const first=makeTransfer(afterDecision,3,'NPC-006',firstFact,
+   actorId,remembered,'EV-000031');
+ assert.equal(verifyNarrativeSnapshot(first),true);
+ const receiverRecord=first.state.world.actors['NPC-006'].knowledge.at(-1);
+ assert.ok(receiverRecord.includes('EV-000035'));
+ const report=checkNPCFactEvidence({snapshot:first,actorId:'NPC-006',fact:firstFact});
+ assert.equal(report.status,'recorded_event');
+ assert.equal(report.transmissionEvidence.reportedByActorId,actorId);
+ assert.equal(report.transmissionEvidence.sourceKnowledgeEventId,'EV-000031');
+ assert.equal(report.transmissionEvidence.recipientLearningEventId,'EV-000035');
+ assert.equal(report.transmissionEvidence.claimTruth,'not_assessed');
+ assert.equal(report.transmissionEvidence.scope,'only_the_recipient_recorded_statement');
+ assert.equal(checkNPCFactEvidence({snapshot:first,actorId:'NPC-002',fact:firstFact}).status,
+   'not_recorded');
+ const second=makeTransfer(first,4,'NPC-002',secondFact,
+   'NPC-006',receiverRecord,'EV-000035');
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ const final=checkNPCFactEvidence({snapshot:second,actorId:'NPC-002',fact:secondFact});
+ assert.equal(final.status,'recorded_event');
+ assert.equal(final.transmissionEvidence.reportedByActorId,'NPC-006');
+ assert.equal(final.transmissionEvidence.sourceKnowledgeEventId,'EV-000035');
+ assert.equal(final.transmissionEvidence.recipientLearningEventId,'EV-000037');
+ assert.equal(final.truthStatus,'not_assessed');
+ assert.equal(checkNPCFactEvidence({snapshot:second,actorId:'NPC-007',fact:secondFact}).status,
+   'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:second,actorId:'NPC-007',fact:firstFact}).status,
+   'not_recorded');
+ const another=buildContextPacket({snapshot:second,query:'Sora clock',
+    npcKnowledgeClaims:[{actorId:'NPC-002',fact:secondFact}]});
+ assert.equal(another.npcKnowledgeChecks[0].transmissionEvidence.reportedByActorId,'NPC-006');
+ const reader=buildContextPacket({snapshot:second,audience:'reader_visible',
+   query:'Sora clock',maxReferences:15});
+ assert.equal(reader.npcKnowledgeChecks,undefined);
+ assert.equal(JSON.stringify(reader).includes('transmissionEvidence'),false);
+ assert.equal(JSON.stringify(reader).includes(secondFact),false);
+ assert.equal(JSON.stringify(second.chapter).includes('Sora heard an unverified report'),false);
+ assert.equal(JSON.stringify(afterDecision),before);
+ const plan={plan_version:1,chapter_id:'CH-001',
+   title:'SYNTHETIC QA: private communication across chapters',
+   status:'prepared',source_commit:'a'.repeat(40),
+   purpose:'SYNTHETIC QA: record two successive private reports, preserving source chains.',
+   time_context:{day:second.state.time.day,period:second.state.time.time_of_day,
+     constraints:['Synthetic events only; no real story advance.']},
+   location_ids:[second.state.player.location_id],npc_ids:['NPC-006','NPC-002'],
+   thread_ids:second.state.narrative_threads.filter(x=>x.status==='open').map(x=>x.id),
+   hidden_plan_ids:[],possible_developments:['No disclosure to the player.'],
+   exit_conditions:['QA chain is traceable after reloading.']};
+ const next=stageChapterTransition({snapshot:{...second,sourceFiles:encodeFiveFiles(second)},
+   nextPlan:plan,observedHead:'a'.repeat(40),
+   reason:'SYNTHETIC QA: private hearsay chain chapter boundary.',reviewed:true});
+ const restored=decodeFiveFiles({...encodeFiveFiles(second),...encodeFiveFiles(next)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(restored),true);
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:'NPC-002',fact:secondFact})
+   .transmissionEvidence.sourceKnowledgeEventPath,'chapters/CH-000.events.json');
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:'NPC-006',fact:firstFact})
+   .transmissionEvidence.sourceKnowledgeEventId,'EV-000031');
+ for(const [path,original] of Object.entries(originals))
+   assert.equal(readFileSync(resolve(root,path),'utf8'),original);
+});
+
+test('a forged private source pointer fails replay and cannot claim another actor learned',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const fact='SYNTHETIC QA: isolated visitor learned a private clock report.';
+ const transferred=stageLivingWorldTurn({snapshot:afterDecision,
+  turn:makeTurn(3),observedHead:'a'.repeat(40),npcResolutions:[{
+   actor_id:'NPC-006',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Rosa privately reports a previously learned request.',
+   outcome:'SYNTHETIC QA PRIVATE: one reporter describes a request.',
+   changes:[{field:'knowledge',fact,source:'SYNTHETIC QA: reported by Rosa',
+    transmitted_from:{actor_id:actorId,knowledge_entry:remembered,event_id:'EV-000031'}}]
+  }]});
+ assert.equal(verifyNarrativeSnapshot(transferred),true);
+ const corrupted=structuredClone(transferred);
+ corrupted.events.events.at(-1).state_changes
+   .find(x=>x.field==='knowledge').transmitted_from.event_id='EV-000032';
+ assert.throws(()=>verifyNarrativeSnapshot(corrupted),/earlier saved sender statement|source event/);
+ const unlinked=checkNPCFactEvidence({snapshot:afterDecision,actorId:'NPC-006',fact});
+ assert.equal(unlinked.mayAssumeKnown,false);
+ assert.equal(unlinked.status,'not_recorded');
+});

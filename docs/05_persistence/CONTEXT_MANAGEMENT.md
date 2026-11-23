@@ -265,6 +265,32 @@ subsequent update authored by a different NPC, a historical ambiguous
 `known` flag, exact immutable remote retrieval, nonmutation and exclusion
 from `reader_visible`. No canon, chapter, in-game time or save is changed.
 
+
+## Traced NPC-to-NPC reports without automatic secret propagation (2026-11-22)
+
+A reviewed recipient-owned `knowledge` effect may optionally carry
+`transmitted_from:{actor_id,knowledge_entry,event_id}`. Validation requires
+a **distinct existing NPC**, an exact knowledge string already held by that
+speaker, and a strictly earlier actor-owned knowledge event matching the
+embedded EV suffix. Replay checks the original source event actually recorded
+the same source actor and entry; forged, future and unrelated sources fail.
+The recipient still receives a **new** independent event and fact string:
+paraphrase, rumor, intentional deception and skepticism are not automatically
+promoted to objective truth.
+
+Narrator-private `checkNPCFactEvidence` on that proven recipient fact
+exposes `transmissionEvidence` with the sender's ID, original source EV
+and path, and recipient learning EV. This is traceability, **not**
+automatic dialogue, global news diffusion, acceptance or permission for
+Jack to learn the source's entire private memory. Existing knowledge updates
+without this optional metadata remain supported as before. No NPC action
+whitelist or autonomous simulator is added.
+
+Regression tests simulate Rosa→NPC-006→Sora, an uninformed NPC-007,
+the difference between recorded statements and truth, forged evidence
+rejection, reader privacy, and historical cross-chapter readback. These
+are QA-only simulated turns and do not mutate the canonical five-file save.
+
 ## Referencia editorial de noticias (2026-11-22)
 
 La biblioteca `docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md`

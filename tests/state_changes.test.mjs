@@ -104,3 +104,21 @@ test('knowledge revision cannot cite a same-event belief or omit review reason',
    revision_of:old}]),/causal reason/);
  assert.deepEqual(next.state_changes,[]);
 });
+
+
+test('knowledge transmission refuses unknown or unrecorded sender claims without any write',()=>{
+ const s=make(),e=add(s,'NPC-004',22),before=JSON.stringify(s.state);
+ const missing={actor_id:'NPC-999',knowledge_entry:
+   'SYNTHETIC: impossible message (source: forged; EV-000001)',
+   event_id:'EV-000001'};
+ assert.throws(()=>applyStateChanges(s.state,e,[{field:'knowledge',
+   fact:'SYNTHETIC: recipient hears a claim',source:'SYNTHETIC: reported',
+   transmitted_from:missing}]),/earlier saved sender statement/);
+ assert.equal(JSON.stringify(s.state),before);
+ assert.deepEqual(e.state_changes,[]);
+ const self={...missing,actor_id:'NPC-004'};
+ assert.throws(()=>applyStateChanges(s.state,e,[{field:'knowledge',
+   fact:'SYNTHETIC: recipient repeats the claim',source:'SYNTHETIC: reported',
+   transmitted_from:self}]),/distinct NPC/);
+ assert.deepEqual(e.state_changes,[]);
+});
