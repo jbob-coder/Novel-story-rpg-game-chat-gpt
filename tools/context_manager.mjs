@@ -220,15 +220,26 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
     mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed',
     ...linkedStatementRevision(snapshot,actorId,entry)};
   const event=allEvents(snapshot).find(value=>value.id===source[3]);
-  const backed=event?.actor_ids?.includes(actorId)&&event.state_changes?.some(change=>
+  const recorded=event?.actor_ids?.includes(actorId)?event.state_changes?.find(change=>
     change.field==='knowledge'&&change.actor_id===actorId&&
-    change.fact===fact&&change.after===entry&&change.source===source[2]);
-  if(!backed)return {...foundation,status:'unverified_provenance',
+    change.fact===fact&&change.after===entry&&change.source===source[2]):null;
+  if(!recorded)return {...foundation,status:'unverified_provenance',
     mayAssumeKnown:false,sourceEventId:source[3],truthStatus:'not_assessed'};
   return {...foundation,status:'recorded_event',
     mayAssumeKnown:true,sourceEventId:event.id,truthStatus:'not_assessed',
     eventPath:'chapters/'+event.chapter_id+'.events.json',
     relatedThreadReferences:threadReferencesAtEvent(snapshot,event.id),
+    ...(recorded.transmitted_from?{transmissionEvidence:{
+      status:'recipient_report_event_recorded',
+      reportedByActorId:recorded.transmitted_from.actor_id,
+      sourceKnowledgeEventId:recorded.transmitted_from.event_id,
+      sourceKnowledgeEventPath:'chapters/'+
+        allEvents(snapshot).find(e=>e.id===recorded.transmitted_from.event_id).chapter_id+
+        '.events.json',
+      recipientLearningEventId:event.id,
+      claimTruth:'not_assessed',
+      scope:'only_the_recipient_recorded_statement'
+    }}:{}),
     ...linkedStatementRevision(snapshot,actorId,entry)};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */

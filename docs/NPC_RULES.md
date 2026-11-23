@@ -133,3 +133,23 @@ expresa que esta herramienta **no certifica** qué frase conoce el jugador.
 Antes de narrar información no pública, contrastar los eventos y la
 experiencia real del protagonista. Las correcciones, rumores y decisiones
 libres siguen siendo responsabilidad del narrador.
+
+
+### Comunicación causal entre NPC (rumores, noticias y secretos)
+
+Una afirmación no se propaga solo porque otro NPC esté en `known_to`,
+comparta un lugar, aparezca en un hilo o el narrador tenga acceso privado
+a un evento. Para una transmisión explícitamente rastreable, el cambio
+`field:'knowledge'` del **destinatario** puede incluir
+`transmitted_from:{actor_id,knowledge_entry,event_id}`. Debe señalar
+la entrada literal previamente guardada del **emisor** (otro NPC) y un
+evento de aprendizaje más antiguo perteneciente al emisor. La recepción
+necesita su **propio evento causal revisado** y guarda el texto que el
+destinatario realmente oyó, que puede diferir del original.
+
+El enlace demuestra una cadena de declaraciones, no su verdad, precisión,
+confianza, comprensión íntegra ni intención de repetirla. La ausencia de
+`transmitted_from` no impide que un NPC hable libremente: se mantiene
+el comportamiento anterior sin garantía estructurada de procedencia.
+Las consultas privadas exponen el origen exacto sin enviar secretos
+al texto visible de Jack ni a otros actores automáticamente.
