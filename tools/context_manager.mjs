@@ -15,6 +15,8 @@ const fixedDocs=[
   ['docs/STATE_SCHEMA.md','state fields actors knowledge event provenance'],
   ['docs/WORLD_BIBLE.md','places universe lore background'],
   ['docs/NPC_RULES.md','npc autonomy knowledge independent actions'],
+  ['docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md',
+    'proposed noncanonical noticias news macroeventos macroevents rumores rumors correcciones corrections COT POS HIL MAC'],
   ['game/ASTER_SPEC.md','aster robot brazo actuadores taller especificaciones first arm workshop specifications'],
   ['game/JACK_HACKER_HISTORY.md','jack background devices history'],
   ['game/STARTING_CAST.md','characters rosa elena noah relationships'],
