@@ -21,3 +21,4 @@
 - [NPC social memory, revised decision and chapter-reload rehearsal (synthetic only)](NPC_SOCIAL_MEMORY_REHEARSAL_20261122.md)
 - [Cierre de inconsistencia: orden y unicidad de los eventos de consecuencias narrativas](CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md)
 - [Protección del actor de origen de hilos narrativos y persistencia causal](CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md)
+- [Identidad de NPC: nombres completos duplicados no autorizan memoria automática](NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md)

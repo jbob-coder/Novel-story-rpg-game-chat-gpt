@@ -39,15 +39,22 @@ export function selectNPCMemoryCandidates({state,query='',sceneNpcIds=[],maxActo
      !Number.isSafeInteger(maxActors)||maxActors<0||maxActors>8)return [];
   const names=Object.entries(actors).map(([id,actor])=>({id,
     nameParts:tokens(actor.name??'')}));
-  const givenCounts=new Map();
-  for(const {nameParts} of names)if(nameParts.length>0)
+  const givenCounts=new Map(),fullCounts=new Map();
+  for(const {nameParts} of names)if(nameParts.length>0){
     givenCounts.set(nameParts[0],(givenCounts.get(nameParts[0])??0)+1);
+    const full=nameParts.join(' ');
+    fullCounts.set(full,(fullCounts.get(full)??0)+1);
+  }
   const queryWords=new Set(tokens(query)),paddedQuery=' '+tokens(query).join(' ')+' ';
   const hinted=new Set(sceneNpcIds);
   return names.flatMap(({id,nameParts})=>{
     const actor=actors[id];
     if(!/^NPC-\d{3,}$/.test(id))return [];
-    const fullName=nameParts.length>0 && paddedQuery.includes(' '+nameParts.join(' ')+' ');
+    // A duplicate complete name is still ambiguous: a matching name is not
+    // evidence that either actor was the individual mentioned by the user.
+    const full=nameParts.join(' ');
+    const fullName=nameParts.length>0 && fullCounts.get(full)===1 &&
+      paddedQuery.includes(' '+full+' ');
     const byId=queryWords.has(id.toLowerCase());
     const givenName=nameParts.length>0 && givenCounts.get(nameParts[0])===1 &&
       queryWords.has(nameParts[0]);
@@ -69,14 +76,30 @@ function unresolvedGivenNames(state,query){
     const first=parts[0],group=groups.get(first)??[];
     group.push({id,parts});groups.set(first,group);
   }
+  const queryText=' '+words.join(' ')+' ';
   return [...groups.entries()].filter(([,items])=>items.length>1)
     .flatMap(([name,items])=>{
-      // Every occurrence needs its own identifying surname. One full name in
-      // the query must not silently resolve a second bare-name mention.
+      // Every bare mention needs its own identifying surname. One full name
+      // cannot silently resolve another bare mention.
       const unresolved=words.some((word,i)=>word===name&&!items.some(({parts})=>
         parts.length>1&&parts.every((part,j)=>words[i+j]===part)));
-      return unresolved?[{name,candidateActorIds:items.map(x=>x.id).sort(),
+      const warnings=unresolved?[{name,candidateActorIds:items.map(x=>x.id).sort(),
         status:'requires_explicit_identity'}]:[];
+      // A FULL name may itself be shared by different established people.
+      // Exact-name duplication must also be reported, not silently treated as
+      // unambiguous just because all name tokens match a single query span.
+      const duplicateFullNames=new Map();
+      for(const item of items){
+        if(item.parts.length<2)continue;
+        const full=item.parts.join(' ');
+        const group=duplicateFullNames.get(full)??[];
+        group.push(item.id);duplicateFullNames.set(full,group);
+      }
+      for(const [full,actorIds] of duplicateFullNames)if(actorIds.length>1&&
+        queryText.includes(' '+full+' '))
+        warnings.push({name:full,candidateActorIds:actorIds.sort(),
+          status:'requires_explicit_identity'});
+      return warnings;
     }).sort((a,b)=>a.name.localeCompare(b.name));
 }
 const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
