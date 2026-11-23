@@ -438,3 +438,213 @@ test('unlinked opposing reports from different people stay separate and are not 
  const hidden=checkNPCFactEvidence({snapshot:step2,actorId:'NPC-006',fact:report2});
  assert.equal(hidden.status,'not_recorded');
 });
+
+
+test('private NPC rumor can travel by two distinct reviewed recipient events without becoming truth',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const before=JSON.stringify(afterDecision);
+ const firstFact='SYNTHETIC QA: Rosa reportedly heard a request to postpone the clock delivery.';
+ const secondFact='SYNTHETIC QA: Sora heard an unverified report about a delayed clock delivery.';
+ const makeTransfer=(base,n,recipient,fact,from,sourceEntry,sourceId)=>{
+   return stageLivingWorldTurn({snapshot:base,turn:makeTurn(n),
+     observedHead:'a'.repeat(40),npcResolutions:[{
+      actor_id:recipient,reviewed:true,resolved:true,
+      causal_basis:'SYNTHETIC QA: an NPC privately conveys an unverified report to one recipient.',
+      outcome:'SYNTHETIC QA PRIVATE: one recipient hears a report, without independent proof.',
+      changes:[{field:'knowledge',fact,
+        source:'SYNTHETIC QA: private, attributed conversation',
+        transmitted_from:{actor_id:from,knowledge_entry:sourceEntry,event_id:sourceId}}]
+    }]});
+ };
+ const first=makeTransfer(afterDecision,3,'NPC-006',firstFact,
+   actorId,remembered,'EV-000031');
+ assert.equal(verifyNarrativeSnapshot(first),true);
+ const receiverRecord=first.state.world.actors['NPC-006'].knowledge.at(-1);
+ assert.ok(receiverRecord.includes('EV-000035'));
+ const report=checkNPCFactEvidence({snapshot:first,actorId:'NPC-006',fact:firstFact});
+ assert.equal(report.status,'recorded_event');
+ assert.equal(report.transmissionEvidence.reportedByActorId,actorId);
+ assert.equal(report.transmissionEvidence.sourceKnowledgeEventId,'EV-000031');
+ assert.equal(report.transmissionEvidence.recipientLearningEventId,'EV-000035');
+ assert.equal(report.transmissionEvidence.claimTruth,'not_assessed');
+ assert.equal(report.transmissionEvidence.scope,'only_the_recipient_recorded_statement');
+ assert.equal(checkNPCFactEvidence({snapshot:first,actorId:'NPC-002',fact:firstFact}).status,
+   'not_recorded');
+ const second=makeTransfer(first,4,'NPC-002',secondFact,
+   'NPC-006',receiverRecord,'EV-000035');
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ const final=checkNPCFactEvidence({snapshot:second,actorId:'NPC-002',fact:secondFact});
+ assert.equal(final.status,'recorded_event');
+ assert.equal(final.transmissionEvidence.reportedByActorId,'NPC-006');
+ assert.equal(final.transmissionEvidence.sourceKnowledgeEventId,'EV-000035');
+ assert.equal(final.transmissionEvidence.recipientLearningEventId,'EV-000037');
+ assert.equal(final.truthStatus,'not_assessed');
+ assert.equal(checkNPCFactEvidence({snapshot:second,actorId:'NPC-007',fact:secondFact}).status,
+   'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:second,actorId:'NPC-007',fact:firstFact}).status,
+   'not_recorded');
+ const another=buildContextPacket({snapshot:second,query:'Sora clock',
+    npcKnowledgeClaims:[{actorId:'NPC-002',fact:secondFact}]});
+ assert.equal(another.npcKnowledgeChecks[0].transmissionEvidence.reportedByActorId,'NPC-006');
+ const reader=buildContextPacket({snapshot:second,audience:'reader_visible',
+   query:'Sora clock',maxReferences:15});
+ assert.equal(reader.npcKnowledgeChecks,undefined);
+ assert.equal(JSON.stringify(reader).includes('transmissionEvidence'),false);
+ assert.equal(JSON.stringify(reader).includes(secondFact),false);
+ assert.equal(JSON.stringify(second.chapter).includes('Sora heard an unverified report'),false);
+ assert.equal(JSON.stringify(afterDecision),before);
+ const plan={plan_version:1,chapter_id:'CH-001',
+   title:'SYNTHETIC QA: private communication across chapters',
+   status:'prepared',source_commit:'a'.repeat(40),
+   purpose:'SYNTHETIC QA: record two successive private reports, preserving source chains.',
+   time_context:{day:second.state.time.day,period:second.state.time.time_of_day,
+     constraints:['Synthetic events only; no real story advance.']},
+   location_ids:[second.state.player.location_id],npc_ids:['NPC-006','NPC-002'],
+   thread_ids:second.state.narrative_threads.filter(x=>x.status==='open').map(x=>x.id),
+   hidden_plan_ids:[],possible_developments:['No disclosure to the player.'],
+   exit_conditions:['QA chain is traceable after reloading.']};
+ const next=stageChapterTransition({snapshot:{...second,sourceFiles:encodeFiveFiles(second)},
+   nextPlan:plan,observedHead:'a'.repeat(40),
+   reason:'SYNTHETIC QA: private hearsay chain chapter boundary.',reviewed:true});
+ const restored=decodeFiveFiles({...encodeFiveFiles(second),...encodeFiveFiles(next)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(restored),true);
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:'NPC-002',fact:secondFact})
+   .transmissionEvidence.sourceKnowledgeEventPath,'chapters/CH-000.events.json');
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:'NPC-006',fact:firstFact})
+   .transmissionEvidence.sourceKnowledgeEventId,'EV-000031');
+ for(const [path,original] of Object.entries(originals))
+   assert.equal(readFileSync(resolve(root,path),'utf8'),original);
+});
+
+test('a forged private source pointer fails replay and cannot claim another actor learned',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const fact='SYNTHETIC QA: isolated visitor learned a private clock report.';
+ const transferred=stageLivingWorldTurn({snapshot:afterDecision,
+  turn:makeTurn(3),observedHead:'a'.repeat(40),npcResolutions:[{
+   actor_id:'NPC-006',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Rosa privately reports a previously learned request.',
+   outcome:'SYNTHETIC QA PRIVATE: one reporter describes a request.',
+   changes:[{field:'knowledge',fact,source:'SYNTHETIC QA: reported by Rosa',
+    transmitted_from:{actor_id:actorId,knowledge_entry:remembered,event_id:'EV-000031'}}]
+  }]});
+ assert.equal(verifyNarrativeSnapshot(transferred),true);
+ const corrupted=structuredClone(transferred);
+ corrupted.events.events.at(-1).state_changes
+   .find(x=>x.field==='knowledge').transmitted_from.event_id='EV-000032';
+ assert.throws(()=>verifyNarrativeSnapshot(corrupted),/earlier saved sender statement|source event/);
+ const unlinked=checkNPCFactEvidence({snapshot:afterDecision,actorId:'NPC-006',fact});
+ assert.equal(unlinked.mayAssumeKnown,false);
+ assert.equal(unlinked.status,'not_recorded');
+});
+
+
+test('an NPC can keep silent, share only part, or alter a report without automatic diffusion',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const unchanged=JSON.stringify(afterDecision);
+ const quiet=stageLivingWorldTurn({snapshot:afterDecision,
+   observedHead:'a'.repeat(40),turn:makeTurn(3),npcResolutions:[{
+     actor_id:actorId,reviewed:true,resolved:true,
+     causal_basis:'SYNTHETIC QA: Rosa declines to tell a visitor what the owner requested.',
+     outcome:'SYNTHETIC QA PRIVATE: Rosa keeps a conversation to herself.',
+     changes:[]
+   }]});
+ assert.equal(verifyNarrativeSnapshot(quiet),true);
+ assert.equal(checkNPCFactEvidence({snapshot:quiet,actorId:'NPC-006',fact:fictionalFact}).status,
+   'not_recorded');
+ const partialFact='SYNTHETIC QA: Rosa mentioned a handover request, but not the requested time.';
+ const partial=stageLivingWorldTurn({snapshot:quiet,observedHead:'a'.repeat(40),
+   turn:makeTurn(4),npcResolutions:[{
+     actor_id:'NPC-006',reviewed:true,resolved:true,
+     causal_basis:'SYNTHETIC QA: a visitor hears Rosa describe only a limited part.',
+     outcome:'SYNTHETIC QA PRIVATE: only an incomplete account reaches the visitor.',
+     changes:[{field:'knowledge',fact:partialFact,source:'SYNTHETIC QA: partial account',
+       transmitted_from:{actor_id:actorId,knowledge_entry:remembered,
+         event_id:'EV-000031',reported_form:'partial'}}]
+   }]});
+ assert.equal(verifyNarrativeSnapshot(partial),true);
+ const limited=checkNPCFactEvidence({snapshot:partial,actorId:'NPC-006',fact:partialFact});
+ assert.equal(limited.status,'recorded_event');
+ assert.equal(limited.transmissionEvidence.reportedForm,'partial');
+ assert.equal(limited.transmissionEvidence.reportedFormEvidence,
+  'narrator_label_not_semantic_proof');
+ assert.equal(limited.transmissionEvidence.claimTruth,'not_assessed');
+ assert.equal(checkNPCFactEvidence({snapshot:partial,actorId:'NPC-006',
+   fact:fictionalFact}).status,'not_recorded');
+ const alteredFact='SYNTHETIC QA: Rosa told Sora the owner wanted the clock returned this morning.';
+ const altered=stageLivingWorldTurn({snapshot:partial,observedHead:'a'.repeat(40),
+   turn:makeTurn(5),npcResolutions:[{
+     actor_id:'NPC-002',reviewed:true,resolved:true,
+     causal_basis:'SYNTHETIC QA: Sora hears an attributed but deliberately altered version.',
+     outcome:'SYNTHETIC QA PRIVATE: Sora hears an altered version without verification.',
+     changes:[{field:'knowledge',fact:alteredFact,source:'SYNTHETIC QA: Rosa altered her report',
+       transmitted_from:{actor_id:actorId,knowledge_entry:remembered,
+         event_id:'EV-000031',reported_form:'altered'}}]
+   }]});
+ assert.equal(verifyNarrativeSnapshot(altered),true);
+ const alteredCheck=checkNPCFactEvidence({snapshot:altered,actorId:'NPC-002',fact:alteredFact});
+ assert.equal(alteredCheck.status,'recorded_event');
+ assert.equal(alteredCheck.transmissionEvidence.reportedForm,'altered');
+ assert.equal(alteredCheck.truthStatus,'not_assessed');
+ assert.equal(checkNPCFactEvidence({snapshot:altered,actorId:'NPC-002',
+   fact:fictionalFact}).status,'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:altered,actorId:'NPC-007',
+   fact:partialFact}).status,'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:altered,actorId:'NPC-007',
+   fact:alteredFact}).status,'not_recorded');
+ assert.equal(JSON.stringify(afterDecision),unchanged);
+ const allPrivate=[fictionalFact,partialFact,alteredFact];
+ for(const secret of allPrivate){
+   assert.equal(altered.chapter.includes(secret),false);
+   assert.equal(altered.transcript.entries.some(x=>x.text.includes(secret)),false);
+ }
+ const visible=buildContextPacket({snapshot:altered,audience:'reader_visible'});
+ assert.ok(visible.references.every(x=>x.kind==='transcript'));
+ assert.equal(JSON.stringify(visible).includes('reportedForm'),false);
+ const originalRosa=checkNPCFactEvidence({snapshot:altered,actorId,fact:fictionalFact});
+ assert.equal(originalRosa.status,'recorded_event');
+ assert.equal(originalRosa.truthStatus,'not_assessed');
+ for(const [path,source] of Object.entries(originals))
+   assert.equal(readFileSync(resolve(root,path),'utf8'),source);
+});
+
+test('literal source secrets and recipient facts cannot leak from a private NPC handoff',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const partialFact='SYNTHETIC QA: Rosa mentioned a handover but not the private time.';
+ const recipient={actor_id:'NPC-006',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: a visitor privately hears part of a clock request.',
+   outcome:'SYNTHETIC QA PRIVATE: a limited account reaches the visitor.',
+   changes:[{field:'knowledge',fact:partialFact,source:'SYNTHETIC QA: visitor heard',
+     transmitted_from:{actor_id:actorId,knowledge_entry:remembered,
+       event_id:'EV-000031',reported_form:'partial'}}]};
+ assert.throws(()=>stageLivingWorldTurn({snapshot:afterDecision,
+   observedHead:'a'.repeat(40),
+   turn:{...makeTurn(3),narration_messages:[playerProse+' '+fictionalFact]},
+   npcResolutions:[recipient]}),/Private NPC knowledge leaked/);
+ assert.throws(()=>stageLivingWorldTurn({snapshot:afterDecision,
+   observedHead:'a'.repeat(40),
+   turn:{...makeTurn(3),narration_messages:[playerProse+' '+partialFact]},
+   npcResolutions:[recipient]}),/Private NPC knowledge leaked/);
+ const allowed=stageLivingWorldTurn({snapshot:afterDecision,
+   observedHead:'a'.repeat(40),turn:makeTurn(3),npcResolutions:[recipient]});
+ assert.equal(verifyNarrativeSnapshot(allowed),true);
+ assert.equal(allowed.manifest.last_completed_turn,12);
+ assert.equal(checkNPCFactEvidence({snapshot:allowed,
+   actorId:'NPC-006',fact:partialFact}).status,'recorded_event');
+});
+
+test('invalid report classification is rejected without a recipient write',async()=>{
+ const {afterDecision,remembered}=await storyRehearsal();
+ const original=JSON.stringify(afterDecision);
+ assert.throws(()=>stageLivingWorldTurn({snapshot:afterDecision,
+  observedHead:'a'.repeat(40),turn:makeTurn(3),npcResolutions:[{
+    actor_id:'NPC-006',reviewed:true,resolved:true,
+    causal_basis:'SYNTHETIC QA: a visitor privately hears one attributed report.',
+    outcome:'SYNTHETIC QA PRIVATE: an unreviewed label is refused.',
+    changes:[{field:'knowledge',
+      fact:'SYNTHETIC QA: a visitor received an attributed account.',
+      source:'SYNTHETIC QA: private report',
+      transmitted_from:{actor_id:actorId,knowledge_entry:remembered,
+        event_id:'EV-000031',reported_form:'objectively_true'}}]
+  }]}),/Invalid narrator-reviewed report form/);
+ assert.equal(JSON.stringify(afterDecision),original);
+});

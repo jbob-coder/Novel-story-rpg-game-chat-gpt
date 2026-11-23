@@ -134,6 +134,46 @@ Antes de narrar información no pública, contrastar los eventos y la
 experiencia real del protagonista. Las correcciones, rumores y decisiones
 libres siguen siendo responsabilidad del narrador.
 
+
+### Comunicación causal entre NPC (rumores, noticias y secretos)
+
+Una afirmación no se propaga solo porque otro NPC esté en `known_to`,
+comparta un lugar, aparezca en un hilo o el narrador tenga acceso privado
+a un evento. Para una transmisión explícitamente rastreable, el cambio
+`field:'knowledge'` del **destinatario** puede incluir
+`transmitted_from:{actor_id,knowledge_entry,event_id}`. Debe señalar
+la entrada literal previamente guardada del **emisor** (otro NPC) y un
+evento de aprendizaje más antiguo perteneciente al emisor. La recepción
+necesita su **propio evento causal revisado** y guarda el texto que el
+destinatario realmente oyó, que puede diferir del original.
+
+El enlace demuestra una cadena de declaraciones, no su verdad, precisión,
+confianza, comprensión íntegra ni intención de repetirla. La ausencia de
+`transmitted_from` no impide que un NPC hable libremente: se mantiene
+el comportamiento anterior sin garantía estructurada de procedencia.
+Las consultas privadas exponen el origen exacto sin enviar secretos
+al texto visible de Jack ni a otros actores automáticamente.
+
+
+### Confidencialidad, transmisión parcial y relatos alterados
+
+Un NPC puede optar por no contar algo: sin un evento propio del destinatario,
+no aparece un recuerdo ajeno en su estado. Si comunica solo parte de una
+afirmación o la altera, el campo opcional
+`transmitted_from.reported_form` admite `as_heard`, `partial` o
+`altered`. La etiqueta es una **clasificación revisada por el narrador**,
+no un análisis semántico ni una demostración de mentira, intención o verdad.
+El texto que recibe cada personaje se guarda exclusivamente como **su**
+conocimiento; el secreto original sigue perteneciendo a su fuente.
+
+La narración pública impide ahora copiar literalmente una frase privada de
+`knowledge` añadida durante una acción fuera de escena o el contenido
+original de una `transmitted_from.knowledge_entry`. El control cubre
+cadenas literales extensas; una paráfrasis reveladora todavía exige la
+revisión editorial del narrador. Los NPC pueden seguir hablando, callando,
+engañando y reconsiderando información según causas humanas, sin menús de
+acciones ni difusión automática.
+
 ## Referencia de vida cotidiana y noticias (propuesta, no canon)
 
 Cuando un turno narrativo requiera contexto de barrio, trabajo, familia, noticias,

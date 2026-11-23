@@ -30,7 +30,6 @@
 ## Living World (rama de revisión)
 - [Disponibilidad y rutas](living_world_availability.test.mjs)
 - [Rutinas autónomas](living_world_routines.test.mjs)
-- [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)
 - [Integración con acontecimientos y cinco archivos](living_world_coordinator.test.mjs)
 - [Diagnóstico y privacidad](living_world_diagnostics.test.mjs)
 - [Obligaciones persistidas, actores distantes y vencimientos](living_world_persistent_commitments.test.mjs)
@@ -68,3 +67,11 @@ These files already existed in the authoritative source and are listed here for 
 - [living_world_routines.test.mjs](living_world_routines.test.mjs) — NPC route/goal routine proposals.
 - [living_world_travel.test.mjs](living_world_travel.test.mjs) — Route, elapsed time and chronology guards.
 - [test_checkpoint_audit.py](test_checkpoint_audit.py) — Repo-wide links, inventory, immutable Git snapshot, literal time-of-day and five-file SHA agreement.
+- [Decisiones causales NPC: 19 regresiones sobre el mundo admitido](npc_causal_decisions_admitted.test.mjs)
+- [Regresiones de relaciones sociales NPC sobre la ciudad admitida (Lote 09)](npc_social_relations_admitted.test.mjs)
+- [Regresión de procedencia social y recuperación entre capítulos (6 escenarios)](npc_social_cross_chapter_provenance.test.mjs)
+- [Pruebas de referencia fijada, memoria social y detección de falsificaciones (8 casos)](npc_social_knowledge_anchor.test.mjs)
+- [Migración de referencia NPC: 14 pruebas de fuente, revisión y rechazo](npc_knowledge_anchor_migration.test.mjs)
+- [Admisión de actores NPC: regresiones de identidad, privacidad y capítulos (18 escenarios)](npc_actor_introduction_admitted.test.mjs)
+- [Cadenas causales abiertas de NPC: 16 regresiones sintéticas](npc_open_causal_continuations.test.mjs)
+- [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)

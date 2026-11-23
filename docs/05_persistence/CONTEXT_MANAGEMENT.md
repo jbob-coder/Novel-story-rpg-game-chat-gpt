@@ -265,6 +265,59 @@ subsequent update authored by a different NPC, a historical ambiguous
 `known` flag, exact immutable remote retrieval, nonmutation and exclusion
 from `reader_visible`. No canon, chapter, in-game time or save is changed.
 
+
+## Traced NPC-to-NPC reports without automatic secret propagation (2026-11-22)
+
+A reviewed recipient-owned `knowledge` effect may optionally carry
+`transmitted_from:{actor_id,knowledge_entry,event_id}`. Validation requires
+a **distinct existing NPC**, an exact knowledge string already held by that
+speaker, and a strictly earlier actor-owned knowledge event matching the
+embedded EV suffix. Replay checks the original source event actually recorded
+the same source actor and entry; forged, future and unrelated sources fail.
+The recipient still receives a **new** independent event and fact string:
+paraphrase, rumor, intentional deception and skepticism are not automatically
+promoted to objective truth.
+
+Narrator-private `checkNPCFactEvidence` on that proven recipient fact
+exposes `transmissionEvidence` with the sender's ID, original source EV
+and path, and recipient learning EV. This is traceability, **not**
+automatic dialogue, global news diffusion, acceptance or permission for
+Jack to learn the source's entire private memory. Existing knowledge updates
+without this optional metadata remain supported as before. No NPC action
+whitelist or autonomous simulator is added.
+
+Regression tests simulate Rosa→NPC-006→Sora, an uninformed NPC-007,
+the difference between recorded statements and truth, forged evidence
+rejection, reader privacy, and historical cross-chapter readback. These
+are QA-only simulated turns and do not mutate the canonical five-file save.
+
+
+## NPC selective disclosure and literal private knowledge guard (2026-11-22)
+
+Optional `transmitted_from.reported_form` is validated as
+`as_heard`, `partial` or `altered`. Exact recipient knowledge is still
+saved to the **recipient's** actor-specific event. A private narrator fact
+check returns `transmissionEvidence.reportedForm` with
+`reportedFormEvidence:'narrator_label_not_semantic_proof'`. This is an
+editorial description of the report as staged, not verification of
+truthfulness, lie intent, secrecy classification or full/partial semantics.
+Legacy transmissions with no label remain `unspecified`.
+
+The player-visible narration guard already refused literal copying of
+private offscreen `outcome`. It now also refuses exact long offscreen
+`knowledge` fact strings (including `learned_fact`) and the original
+statement (without its EV suffix) referenced by private
+`transmitted_from.knowledge_entry`. This is a narrow literal guard:
+narrator prose still needs semantic and causal disclosure review. It must
+not be cited as proof that rewritten or implied secrets cannot leak.
+
+Synthetic QA establishes: an NPC may remain silent with no recipient
+knowledge update; a partial report and an altered statement can be
+separately received without copying the full original; other NPCs and
+Jack remain uninformed; accidental direct quotations are rejected;
+invalid editor-only labels fail without a write. All original chapter
+and state files remain unchanged.
+
 ## Referencia editorial de noticias (2026-11-22)
 
 La biblioteca `docs/01_world/LIVING_WORLD_EVERYDAY_NEWS_AND_FUTURE_HOOKS_20261122.md`

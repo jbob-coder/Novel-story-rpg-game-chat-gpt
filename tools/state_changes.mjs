@@ -22,6 +22,26 @@ const stringList = value => Array.isArray(value) && value.every(x => typeof x ==
 const actorIds = state => new Set([state.player.id, ...Object.keys(state.world.actors)]);
 const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
 
+function validateTransferredKnowledge(state,recipientId,eventId,transfer){
+  requireFact(transfer && typeof transfer==='object' && !Array.isArray(transfer) &&
+    typeof transfer.actor_id==='string' && /^NPC-\d{3,}$/.test(transfer.actor_id) &&
+    transfer.actor_id!==recipientId && typeof transfer.knowledge_entry==='string' &&
+    typeof transfer.event_id==='string' && /^EV-\d{6,}$/.test(transfer.event_id),
+    'Transferred knowledge requires a distinct NPC and exact source event');
+  if(Object.hasOwn(transfer,'reported_form'))
+    requireFact(['as_heard','partial','altered'].includes(transfer.reported_form),
+      'Invalid narrator-reviewed report form');
+  const sender=state.world.actors[transfer.actor_id];
+  const source=sourcedKnowledge.exec(transfer.knowledge_entry);
+  requireFact(sender&&Array.isArray(sender.knowledge)&&
+    sender.knowledge.includes(transfer.knowledge_entry)&&
+    source?.[3]===transfer.event_id&&
+    Number(transfer.event_id.slice(3))<Number(eventId.slice(3)),
+    'Transferred knowledge must cite an earlier saved sender statement');
+}
+// The recipient's reviewed event records what they heard, not what is true.
+// Optional source links prove earlier actor-specific knowledge; mere scene
+// presence, known_to, or membership in a thread never transmits information.
 function applyStateChangesUnchecked(state, record, changes = []) {
   requireFact(Array.isArray(changes) && changes.length <= 40, 'State changes must be a bounded array');
   const actorId = record.actor_ids[0], actor = actorAt(state, actorId);
@@ -92,11 +112,15 @@ function applyStateChangesUnchecked(state, record, changes = []) {
         requireFact(!priorEvent||Number(priorEvent.slice(3))<Number(record.id.slice(3)),
           'Knowledge revision cannot cite a same-event or future memory');
       }
+      if(Object.hasOwn(change,'transmitted_from'))
+        validateTransferredKnowledge(state,actorId,record.id,change.transmitted_from);
       actor.knowledge.push(entry);
       record.state_changes.push({actor_id: actorId, field, fact: change.fact,
         source: change.source, after: entry,
         ...(revision?{revision_of:change.revision_of,
-          revision_reason:change.revision_reason}: {})});
+          revision_reason:change.revision_reason}: {}),
+        ...(Object.hasOwn(change,'transmitted_from')?
+          {transmitted_from:copy(change.transmitted_from)}:{})});
     } else if (field === 'resources') {
       requireFact(change.before && change.after && typeof change.before === 'object' &&
         typeof change.after === 'object' && !Array.isArray(change.before) &&
@@ -245,10 +269,13 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases','npc_introduction'].includes(field), 'Unknown tracked change field');
       // The world-level history is keyed by location rather than event actor;
       // different people may cause consecutive changes to the same building.
       if(field==='location_state')continue;
+      // Creation is validated separately against reviewed introduction events
+      // and the frozen initial roster, not as an existing actor field edit.
+      if(field==='npc_introduction')continue;
       if(field==='plans'){
         requireFact(change.actor_id!==state.player.id,'Only NPC plans may change');
         const previousIds=new Set(events.filter(e=>Number(e.id.slice(3))<Number(event.id.slice(3))).map(e=>e.id));
@@ -279,6 +306,15 @@ function verifyStateChanges(snapshot) {
         requireFact(typeof change.fact==='string'&&typeof change.source==='string'&&
           change.after===`${change.fact} (source: ${change.source}; ${event.id})`,
           'Recorded knowledge provenance differs from source event');
+        if(Object.hasOwn(change,'transmitted_from')){
+          validateTransferredKnowledge(state,change.actor_id,event.id,change.transmitted_from);
+          const transfer=change.transmitted_from,prior=events.find(e=>e.id===transfer.event_id);
+          requireFact(prior&&prior.actor_ids?.[0]===transfer.actor_id&&
+            prior.state_changes?.some(c=>c.field==='knowledge'&&
+              c.actor_id===transfer.actor_id&&
+              c.after===transfer.knowledge_entry),
+            'Transferred knowledge source event must belong to the earlier speaker');
+        }
         const revises=Object.hasOwn(change,'revision_of')||
           Object.hasOwn(change,'revision_reason');
         if(revises){
