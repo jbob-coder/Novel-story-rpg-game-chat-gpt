@@ -607,3 +607,120 @@ test('narrator original-initiative assessment turn 03 permits all actors to abst
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 04 resumes ONLY from the verified all-abstention Step 03 snapshot.
+// A genuinely small physical action (Elena checking the USB in her own bag)
+// is possible without inventing a destination, contact or new client task.
+// The other six agents are free to wait. This is authored review prose,
+// NOT a background model provider generating a live game turn.
+export function replayNarratorThirtyTurnReviewThroughStep04(){
+ const priorStep=replayNarratorThirtyTurnReviewThroughStep03();
+ assert.equal(priorStep.snapshotHash,
+  'a728c5e170cfed360e4a6aa805c4b79a7aa45a13c1379c88f4af27cb0614c1b7',
+  'Step 04 requires exact verified Step 03 checkpoint');
+ const previous=priorStep.snapshot,unchanged=JSON.stringify(previous);
+ const context=prepareNPCIntentionRequests({
+  snapshot:previous,elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'
+ });
+ assert.equal(context.requests.length,7);
+ const requests=new Map(context.requests.map(r=>[r.actorId,r]));
+ const elena=requests.get('NPC-004');
+ assert.ok(elena.evidence.knownEventIds.includes('EV-000028'));
+ assert.ok(elena.evidence.previousResult?.eventId);
+ assert.ok(elena.evidence.knownEvents.some(e=>e.id==='EV-000028'));
+ const originalElena=previous.state.world.actors['NPC-004'];
+ assert.equal(originalElena.location_id,'LOC-RAILGARDEN-RESIDENTIAL');
+ assert.ok(originalElena.inventory.some(item=>item.id==='ITEM-USB-SPARE-001'&&
+  item.carried&&item.status.includes('mochila')));
+ const revisedPlan='Elena confirma que la USB sigue en el bolsillo de su mochila; continúa hacia la escuela, todavía sin llegada verificada.';
+ const privateOutcome='SYNTHETIC PRIVATE ELENA STEP04: Elena abre brevemente el bolsillo interior de su propia mochila y confirma que la memoria USB prestada sigue allí. Continúa su trayecto; no ha llegado a clase.';
+ const reasons={
+  'NPC-001':'No fresh dispatch, train or display observation exists since Lena organized the old reports; another report draft would repeat the same task.',
+  'NPC-002':'Sora previous maintenance inspection remains closed; no new fault evidence or work assignment has appeared.',
+  'NPC-003':'Darius already delivered his old parcel and has no newly observed paid job or recipient.',
+  'NPC-005':'Rosa already prepared the clock return reminder; the neighbor presence or a new repair task remains unverified.',
+  'NPC-006':'Noah already prepared a clarification question; there is still no client or supplier reply to alter his actual parts priorities.',
+  'NPC-007':'Mara earlier closing shift is historical, not evidence of another opening, customer or cash discrepancy.'
+ };
+ const choices=context.requests.map(request=>request.actorId==='NPC-004'?{
+  request,
+  proposal:{actorId:'NPC-004',decision:'act',
+   intention:'Elena decides to verify that the borrowed USB carrying her finished illustration is still in the inside pocket of the backpack she is already carrying, before she continues toward school.',
+   reasoning:'The saved actor inventory already confirms the backpack and USB are carried; she is still in Railgarden and can check her own bag without assuming the school, a teacher or a new device.',
+   sourceEventIds:['EV-000028']},
+  reviewed:true,outcome:privateOutcome,
+  changes:[{field:'independent_plan',
+   before:request.evidence.independentPlan,after:revisedPlan}]
+ }:{
+  request,proposal:{actorId:request.actorId,decision:'abstain',
+   reasoning:reasons[request.actorId]}
+ });
+ // Model output is author-reviewed against actual owned resources; the
+ // generic JS pipeline cannot semantically validate this on its own.
+ assert.equal(choices.filter(c=>c.proposal.decision==='act').length,1);
+ assert.equal(choices.filter(c=>c.proposal.decision==='abstain').length,6);
+ for(const choice of choices){
+  assert.ok((choice.proposal.sourceEventIds??[]).every(id=>
+   choice.request.evidence.knownEventIds.includes(id)));
+  assert.equal(choice.request.checkpoint.completedTurn,12);
+ }
+ const turn4={...turn('narrator-30-step-04'),elapsed_minutes:10,
+  intent:'[ISOLATED QA] Jack does not issue orders or learn secrets from distant NPCs.',
+  outcome:'The fictional interval passes while Jack remains uninformed about private offscreen decisions.',
+  narration_messages:['[ISOLATED QA] No new social encounter or school arrival is asserted.']};
+ const staged=stageReviewedNPCIntentionTurn({
+  snapshot:previous,turn:turn4,observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,13);
+ assert.equal(staged.manifest.last_event_sequence,40);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,['NPC-004']);
+ assert.equal(staged.npcTurnReview.abstainedActorIds.length,6);
+ assert.deepEqual(new Set(staged.npcTurnReview.abstainedActorIds),
+  new Set(Object.keys(reasons)));
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const latest=recovered.events.events.at(-1);
+ assert.equal(latest.turn,13);
+ assert.deepEqual(latest.actor_ids,['NPC-004']);
+ assert.deepEqual(latest.caused_by,['EV-000028']);
+ assert.equal(recovered.state.world.actors['NPC-004'].independent_plan,
+  revisedPlan);
+ assert.equal(recovered.state.world.actors['NPC-004'].location_id,
+  originalElena.location_id);
+ assert.deepEqual(recovered.state.world.actors['NPC-004'].inventory,
+  originalElena.inventory,'Bag check must not relocate or duplicate USB');
+ for(const id of Object.keys(reasons)){
+  assert.deepEqual(recovered.state.world.actors[id],
+   previous.state.world.actors[id],
+   'Abstention must not change memories or plans of actor '+id);
+ }
+ assert.deepEqual(recovered.state.player,previous.state.player);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+40);
+ assert.ok(!recovered.chapter.includes(privateOutcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(privateOutcome)));
+ assert.equal(JSON.stringify(previous),unchanged);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256').update(
+  JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,snapshotHash,priorHash:priorStep.snapshotHash};
+}
+test('narrator original-initiative assessment turn 04 checks an owned item without inventing social encounters',()=>{
+ const {snapshot,snapshotHash,priorHash}=
+  replayNarratorThirtyTurnReviewThroughStep04();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_04 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:4,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:priorHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:['NPC-004'],abstained:6,newNpcEvents:1,
+  actorOwnsRelevantItem:true,schoolArrivalNotInvented:true,
+  privateOutcomeNotDisclosed:true,
+  canonicalSaveWrites:0,
+  verifiedSnapshotHash:snapshotHash,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
