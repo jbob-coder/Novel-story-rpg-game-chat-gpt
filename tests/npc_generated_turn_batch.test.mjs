@@ -724,3 +724,118 @@ test('narrator original-initiative assessment turn 04 checks an owned item witho
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 05: a genuinely spatial, owner-motivated NPC decision, not another
+// rewritten intention. The actor travels one ADMITTED graph segment to his
+// own mapped shop. The author separately reviews that it is a confirmed
+// public place owned by the actor; graph connectivity alone is insufficient
+// to assert entry, and no business opening or sale is invented here.
+export function replayNarratorThirtyTurnReviewThroughStep05(){
+ const priorStep=replayNarratorThirtyTurnReviewThroughStep04();
+ assert.equal(priorStep.snapshotHash,
+  '99a0916e93b039ef728b63f311032327f6ab3a030655cddd14a949faa875d399',
+  'Step 05 must start from exact previously verified step 04 result');
+ const previous=priorStep.snapshot,serialized=JSON.stringify(previous);
+ const ctx=prepareNPCIntentionRequests({snapshot:previous,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(ctx.requests.length,7);
+ const byId=new Map(ctx.requests.map(r=>[r.actorId,r]));
+ const noah=byId.get('NPC-006'),shop=previous.state.world.locations['LOC-MARKET-NOAH-REPAIR'];
+ const originalNoah=previous.state.world.actors['NPC-006'];
+ const from='LOC-COMMERCIAL-DISTRICT',dest='LOC-MARKET-NOAH-REPAIR';
+ assert.equal(originalNoah.location_id,from);
+ assert.equal(shop.related_actor_id,'NPC-006');
+ assert.equal(shop.access_status,'public_confirmed');
+ assert.equal(shop.public_area,true);
+ assert.ok(previous.state.world.locations[from].connected_ids.includes(dest));
+ assert.ok(shop.connected_ids.includes(from));
+ assert.ok(noah.evidence.previousResult?.eventId);
+ assert.ok(noah.evidence.knownEvents.some(e=>e.id===
+  noah.evidence.previousResult.eventId &&
+  e.outcome.includes('SYNTHETIC PRIVATE NOAH STEP02')));
+ const reasons={
+  'NPC-001':'Lena already sorted the old reports. Without any new dispatch confirmation, repeating the handover would not be meaningful new activity.',
+  'NPC-002':'Sora maintenance inspection was closed; the intervening records contain no new equipment failure, work order or witnessed suspect.',
+  'NPC-003':'The completed parcel cannot be delivered again, and Darius has no observed new courier job or named recipient.',
+  'NPC-004':'Elena just verified that she carries her artwork USB. She has not been placed in a classroom or given a teacher encounter by the record.',
+  'NPC-005':'The clock has been repaired and its return reminder already exists; no verified neighbor availability warrants acting now.',
+  'NPC-007':'Mara shift closing is from a previous evening; without a new shift record or customer, no present activity should be fabricated.'
+ };
+ const newPlan='Noah reaches his own mapped repair shop in Market Row; he will check existing work needs before deciding on any supplier order.';
+ const privateOutcome='SYNTHETIC PRIVATE NOAH STEP05: Noah walks from Market Row into his already mapped repair shop through its established connection. He makes no sale, confirms no stock quantity, and asserts no new business opening.';
+ const choices=ctx.requests.map(request=>request.actorId==='NPC-006'?{
+  request,
+  proposal:{actorId:'NPC-006',decision:'act',
+   intention:'Noah chooses to walk from the Market Row district to his existing repair and components shop so he can handle his own pending work priorities.',
+   reasoning:'The stored world map directly connects Market Row to his identified publicly accessible shop, and he owns the premises. The reviewer adjudicates one neighboring-place move within the fictional interval without claiming opening hours, customers or inventory.',
+   destinationId:dest,sourceEventIds:[request.evidence.previousResult.eventId]},
+  reviewed:true,outcome:privateOutcome,
+  changes:[
+   {field:'location_id',before:from,after:dest,route:[from,dest]},
+   {field:'independent_plan',before:request.evidence.independentPlan,after:newPlan}
+  ]
+ }:{
+  request,proposal:{actorId:request.actorId,decision:'abstain',
+   reasoning:reasons[request.actorId]}
+ });
+ assert.equal(choices.filter(x=>x.proposal.decision==='act').length,1);
+ assert.deepEqual(new Set(choices.filter(x=>x.proposal.decision==='abstain')
+  .map(x=>x.request.actorId)),new Set(Object.keys(reasons)));
+ for(const item of choices)assert.equal(item.request.checkpoint.completedTurn,13);
+ const candidate=stageReviewedNPCIntentionTurn({
+  snapshot:previous,observedHead:head,
+  turn:{...turn('narrator-30-step-05'),elapsed_minutes:10,
+   intent:'[ISOLATED QA] No player action authorizes or directs Noah work.',
+   outcome:'Ten fictional minutes pass without sharing private NPC locations with Jack.',
+   narration_messages:['[ISOLATED QA] The player receives no unobserved NPC information.']},
+  choices});
+ assert.equal(verifyNarrativeSnapshot(candidate),true);
+ assert.equal(candidate.manifest.last_completed_turn,14);
+ assert.equal(candidate.manifest.last_event_sequence,42);
+ assert.deepEqual(candidate.npcTurnReview.actedActorIds,['NPC-006']);
+ assert.equal(candidate.npcTurnReview.abstainedActorIds.length,6);
+ const recovered=decodeFiveFiles(encodeFiveFiles(candidate),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const actor=recovered.state.world.actors['NPC-006'];
+ assert.equal(actor.location_id,dest);
+ assert.equal(actor.independent_plan,newPlan);
+ const result=recovered.events.events.at(-1);
+ assert.deepEqual(result.actor_ids,['NPC-006']);
+ assert.deepEqual(result.caused_by,[noah.evidence.previousResult.eventId]);
+ assert.ok(result.state_changes.some(e=>e.field==='location_id'&&
+  e.before===from&&e.after===dest&&
+  JSON.stringify(e.route)===JSON.stringify([from,dest])));
+ for(const id of Object.keys(reasons))assert.deepEqual(
+  recovered.state.world.actors[id],previous.state.world.actors[id],
+  'Abstention changed an unrelated actor: '+id);
+ assert.deepEqual(recovered.state.player,previous.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+50);
+ assert.ok(!recovered.chapter.includes(privateOutcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(privateOutcome)));
+ assert.equal(JSON.stringify(previous),serialized);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256').update(
+  JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,snapshotHash,priorHash:priorStep.snapshotHash};
+}
+test('narrator original-initiative assessment turn 05 uses an admitted path to own shop without invented transactions',()=>{
+ const {snapshot,snapshotHash,priorHash}=
+  replayNarratorThirtyTurnReviewThroughStep05();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_05 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:5,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:priorHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:['NPC-006'],abstained:6,newNpcEvents:1,
+  actorMovedOnAdmittedRoute:true,physicallyAccessibleShopVerified:true,
+  inventoryOrSalesNotInvented:true,privateOutcomeNotDisclosed:true,
+  canonicalSaveWrites:0,
+  verifiedSnapshotHash:snapshotHash,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
