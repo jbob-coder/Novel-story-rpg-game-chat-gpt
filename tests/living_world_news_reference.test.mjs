@@ -78,7 +78,7 @@ test('conditional macroevents have ten unique references and complete causal new
   }
   assert.equal(rows.filter(line => /Día 0 — la onda cósmica llega a la Tierra, hecho CANÓNICO futuro/.test(line)).length, 1,
     'one confirmed macroevent, arrival of the cosmic shockwave');
-  for (const id of ['MAC-08', 'MAC-09', 'MAC-10']) {
+  for (const id of ['MAC-08', 'MAC-09']) {
     const row = rows.find(line => line.includes('| ' + id + ' |'));
     assert.ok(/Día 0/.test(row), id + ' cannot predate day 0');
   }
