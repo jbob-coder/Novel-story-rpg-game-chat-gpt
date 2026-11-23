@@ -88,7 +88,7 @@ export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
    }));
   const knownLast=ctx.evidence.knownEventIds.at(-1)??null;
   const sourceEventId=previous.previousResult?.eventId??knownLast;
-  return [{
+  return {
    classification:'npc_private_open_frame_v1',actorId,
    checkpoint:ctx.checkpoint,locationId:ctx.evidence.locationId,
    goal:ctx.evidence.goal,independentPlan:ctx.evidence.independentPlan,
@@ -98,7 +98,7 @@ export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
    previousResult:previous.previousResult,sourceEventId,
    priority,reviewTask:'Consider a plausible new action, reconsideration, delay or inactivity based on actor-owned evidence; do not prewrite outcomes.',
    actionSelected:false,resultKnown:false,requiresNarratorReview:true
-  }];
+  };
  });
  // Preselection has already bounded the expensive snapshot/actor review.
  return clone({classification:'npc_private_open_agency_v1',
