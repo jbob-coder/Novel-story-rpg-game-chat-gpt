@@ -525,7 +525,7 @@ test('a forged private source pointer fails replay and cannot claim another acto
    causal_basis:'SYNTHETIC QA: Rosa privately reports a previously learned request.',
    outcome:'SYNTHETIC QA PRIVATE: one reporter describes a request.',
    changes:[{field:'knowledge',fact,source:'SYNTHETIC QA: reported by Rosa',
-    transmitted_from:{actor_id,knowledge_entry:remembered,event_id:'EV-000031'}}]
+    transmitted_from:{actor_id:actorId,knowledge_entry:remembered,event_id:'EV-000031'}}]
   }]});
  assert.equal(verifyNarrativeSnapshot(transferred),true);
  const corrupted=structuredClone(transferred);
