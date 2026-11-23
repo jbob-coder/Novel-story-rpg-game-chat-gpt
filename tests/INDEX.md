@@ -79,3 +79,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)
 
 - [NPC: intenciones contextuales abiertas, procedencia y simulación aislada](npc_contextual_intents.test.mjs)
+
+- [NPC: siete días de ensayo causal y comparación con selector previo](npc_contextual_multiday_rehearsal.test.mjs)
