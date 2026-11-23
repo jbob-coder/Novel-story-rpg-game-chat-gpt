@@ -218,3 +218,24 @@ test('event-backed NPC learning is verified strictly after chapter reload',async
  assert.equal(packet.npcKnowledgeChecks[0].status,'recorded_event');
  assert.equal(packet.npcKnowledgeChecks[0].sourceEventId,'EV-000031');
 });
+
+
+test('saved hearsay proves hearing a statement, not the alleged outside truth',async()=>{
+ const {reloaded}=await storyRehearsal();
+ const heard=checkNPCFactEvidence({snapshot:reloaded,actorId,
+   fact:fictionalFact});
+ assert.equal(heard.status,'recorded_event');
+ assert.equal(heard.mayAssumeKnown,true);
+ assert.equal(heard.truthStatus,'not_assessed');
+ const rumor=checkNPCFactEvidence({snapshot:reloaded,actorId,
+   fact:'SYNTHETIC QA: The clock owner definitely abandoned the city'});
+ assert.equal(rumor.status,'not_recorded');
+ assert.equal(rumor.mayAssumeKnown,false);
+ assert.equal(rumor.truthStatus,'not_assessed');
+ assert.ok(rumor.relatedStatementsForReview.some(x=>
+   x.statement.includes('clock owner')));
+ const another=checkNPCFactEvidence({snapshot:reloaded,actorId:'NPC-006',
+   fact:fictionalFact});
+ assert.equal(another.status,'not_recorded');
+ assert.equal(another.mayAssumeKnown,false);
+});

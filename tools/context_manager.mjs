@@ -62,41 +62,59 @@ export function selectNPCMemoryCandidates({state,query='',sceneNpcIds=[],maxActo
 
 // Report ambiguous given names without guessing who a pronoun or name denotes.
 function unresolvedGivenNames(state,query){
-  const groups=new Map(),spoken=new Set(tokens(query));
-  const queryText=' '+tokens(query).join(' ')+' ';
+  const groups=new Map(),words=tokens(query);
   for(const [id,actor] of Object.entries(state.world.actors)){
     const parts=tokens(actor.name??'');
     if(!/^NPC-\d{3,}$/.test(id)||!parts.length)continue;
     const first=parts[0],group=groups.get(first)??[];
     group.push({id,parts});groups.set(first,group);
   }
-  return [...groups.entries()].filter(([name,items])=>items.length>1&&spoken.has(name))
+  return [...groups.entries()].filter(([,items])=>items.length>1)
     .flatMap(([name,items])=>{
-      // An unambiguous full name may already resolve the mention.
-      const matched=items.filter(item=>queryText.includes(' '+item.parts.join(' ')+' '));
-      return matched.length?[]:[{name,candidateActorIds:items.map(x=>x.id).sort(),
-        status:'requires_explicit_identity'}];
+      // Every occurrence needs its own identifying surname. One full name in
+      // the query must not silently resolve a second bare-name mention.
+      const unresolved=words.some((word,i)=>word===name&&!items.some(({parts})=>
+        parts.length>1&&parts.every((part,j)=>words[i+j]===part)));
+      return unresolved?[{name,candidateActorIds:items.map(x=>x.id).sort(),
+        status:'requires_explicit_identity'}]:[];
     }).sort((a,b)=>a.name.localeCompare(b.name));
 }
 const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
-// Exact recorded knowledge is evidence; event presence or known_to alone is not.
+// Similar wording can indicate a paraphrase, rumor, contradiction or lie.
+// A lexical suggestion is never factual proof, even if words overlap.
+function relatedKnowledgeForReview(actor,fact){
+  const terms=new Set(tokens(fact).filter(t=>t.length>=4));
+  if(!terms.size)return [];
+  return (actor.knowledge??[]).map((entry,index)=>{
+    const statement=sourcedKnowledge.exec(entry)?.[1]??entry;
+    const overlaps=[...new Set(tokens(statement).filter(t=>t.length>=4))]
+      .filter(word=>terms.has(word));
+    return {statement,index,matchedTerms:overlaps};
+  }).filter(x=>x.matchedTerms.length)
+    .sort((a,b)=>b.matchedTerms.length-a.matchedTerms.length||b.index-a.index)
+    .slice(0,3).map(({statement,matchedTerms})=>({
+      statement,matchedTerms,classification:'review_only_possible_relation'
+    }));
+}
+// Exact recorded knowledge proves an actor holds a statement, never its truth.
 function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const actor=snapshot.state.world.actors[actorId];
   const entry=(actor.knowledge??[]).find(value=>
     value===fact||sourcedKnowledge.exec(value)?.[1]===fact);
   const foundation={actorId,fact,sourcePath:'game/STATE.json'};
-  if(!entry)return {...foundation,status:'not_recorded',mayAssumeKnown:false};
+  if(!entry)return {...foundation,status:'not_recorded',mayAssumeKnown:false,
+    truthStatus:'not_assessed',relatedStatementsForReview:relatedKnowledgeForReview(actor,fact)};
   const source=sourcedKnowledge.exec(entry);
   if(!source)return {...foundation,status:'recorded_checkpoint',
-    mayAssumeKnown:true,sourceEventId:null};
+    mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed'};
   const event=allEvents(snapshot).find(value=>value.id===source[3]);
   const backed=event?.actor_ids?.includes(actorId)&&event.state_changes?.some(change=>
     change.field==='knowledge'&&change.actor_id===actorId&&
     change.fact===fact&&change.after===entry&&change.source===source[2]);
   if(!backed)return {...foundation,status:'unverified_provenance',
-    mayAssumeKnown:false,sourceEventId:source[3]};
+    mayAssumeKnown:false,sourceEventId:source[3],truthStatus:'not_assessed'};
   return {...foundation,status:'recorded_event',
-    mayAssumeKnown:true,sourceEventId:event.id,
+    mayAssumeKnown:true,sourceEventId:event.id,truthStatus:'not_assessed',
     eventPath:'chapters/'+event.chapter_id+'.events.json'};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */

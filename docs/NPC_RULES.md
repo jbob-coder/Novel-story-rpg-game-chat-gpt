@@ -62,3 +62,20 @@ conocimiento explícito»; no confirma ignorancia absoluta. Si una afirmación
 es una inferencia, rumor, observación nueva o paráfrasis, requiere revisión
 causal y registro antes de representarse como conocimiento cierto. No es una
 restricción a sus acciones libres.
+
+
+### Rumores, mentiras y recuerdos expresados de otra forma
+
+Una entrada literal de `knowledge` demuestra que el NPC **recuerda una
+afirmación**, no que la afirmación sea cierta. Los hechos difundidos por
+terceros pueden ser rumores, errores o mentiras; las creencias y sospechas
+dependen de la interpretación del narrador y sus fuentes originales.
+
+Cuando no hay coincidencia literal, `relatedStatementsForReview` propone
+hasta tres frases ya guardadas que comparten términos. Son **pistas para
+revisión**, no equivalencias: también pueden ser negaciones, contradicciones
+o descripciones de otro hecho. `truthStatus:'not_assessed'` impide confundir
+el estado de conocimiento con la verdad objetiva. El NPC puede mentir, callar,
+malinterpretar, sospechar, inferir o cambiar de opinión si la situación lo
+justifica. No existen nuevas restricciones sobre sus acciones; los efectos
+persistentes requieren revisión causal y guardado.

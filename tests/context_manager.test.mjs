@@ -261,3 +261,60 @@ test('unknown fact claims never inherit the event pointers or another NPC knowle
   assert.equal(Object.hasOwn(buildContextPacket({snapshot,audience:'reader_visible',query:'Rosa'}),
     'npcKnowledgeChecks'),false);
 });
+
+
+test('a named Rosa and a separate bare Rosa remain ambiguous instead of being merged',()=>{
+ const snapshot=initial();
+ const duplicate=structuredClone(snapshot.state.world.actors['NPC-005']);
+ duplicate.id='NPC-008';duplicate.name='Rosa Rivera';
+ snapshot.state.world.actors['NPC-008']=duplicate;
+ const ambiguous=buildContextPacket({snapshot,query:'Rosa Wilson habló con Rosa'});
+ assert.deepEqual(ambiguous.npcMemory?.map(x=>x.actorId),['NPC-005']);
+ assert.deepEqual(ambiguous.npcAmbiguities,[{
+   name:'rosa',candidateActorIds:['NPC-005','NPC-008'],
+   status:'requires_explicit_identity'
+ }]);
+ const twoFull=buildContextPacket({snapshot,query:'Rosa Wilson habló con Rosa Rivera'});
+ assert.deepEqual(twoFull.npcMemory?.map(x=>x.actorId),['NPC-005','NPC-008']);
+ assert.equal(twoFull.npcAmbiguities,undefined);
+ const reverse=buildContextPacket({snapshot,query:'Rosa habló con Rosa Rivera'});
+ assert.ok(reverse.npcAmbiguities?.some(x=>x.name==='rosa'));
+});
+
+test('similar paraphrases, rumors and opposite assertions yield review hints, not factual permission',()=>{
+ const snapshot=initial(),actor=snapshot.state.world.actors['NPC-005'];
+ const saved=JSON.stringify(snapshot);
+ const exact=checkNPCFactEvidence({snapshot,actorId:'NPC-005',fact:actor.knowledge[0]});
+ assert.equal(exact.status,'recorded_checkpoint');
+ assert.equal(exact.mayAssumeKnown,true);
+ assert.equal(exact.truthStatus,'not_assessed');
+ const paraphrase=checkNPCFactEvidence({snapshot,actorId:'NPC-005',
+   fact:'Jack constructs gadgets himself'});
+ assert.equal(paraphrase.status,'not_recorded');
+ assert.equal(paraphrase.mayAssumeKnown,false);
+ assert.equal(paraphrase.truthStatus,'not_assessed');
+ assert.ok(paraphrase.relatedStatementsForReview.some(x=>
+   x.statement.includes('Jack')&&x.matchedTerms.includes('jack')));
+ const falseClaim=checkNPCFactEvidence({snapshot,actorId:'NPC-005',
+   fact:'Jack never makes gadgets'});
+ assert.equal(falseClaim.status,'not_recorded');
+ assert.equal(falseClaim.mayAssumeKnown,false);
+ assert.equal(falseClaim.truthStatus,'not_assessed');
+ assert.ok(falseClaim.relatedStatementsForReview.some(x=>x.matchedTerms.includes('gadgets')));
+ assert.ok(falseClaim.relatedStatementsForReview.every(x=>x.classification==='review_only_possible_relation'));
+ assert.equal(JSON.stringify(snapshot),saved);
+});
+
+test('no lexical match does not imply absolute ignorance or prevent fictional lying',()=>{
+ const snapshot=initial();
+ const invented=checkNPCFactEvidence({snapshot,actorId:'NPC-006',
+   fact:'The mayor secretly replaced every traffic light in the city'});
+ assert.equal(invented.status,'not_recorded');
+ assert.equal(invented.mayAssumeKnown,false);
+ assert.deepEqual(invented.relatedStatementsForReview,[]);
+ assert.equal(invented.truthStatus,'not_assessed');
+ const visible=buildContextPacket({snapshot,audience:'reader_visible',query:'Rosa'});
+ assert.equal(visible.npcKnowledgeChecks,undefined);
+ assert.equal(visible.npcMemory,undefined);
+ assert.equal(JSON.stringify(visible).includes('relatedStatementsForReview'),false);
+});

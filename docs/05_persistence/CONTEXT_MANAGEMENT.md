@@ -136,3 +136,30 @@ guard is **not** a general natural-language truth checker. The new claim
 checks are capped at eight, read-only, narrator-private, source-backed and
 journal-checked through the existing immutable loader. No story turn
 advances and no new state fields are persisted.
+
+
+## Non-literal claims, rumors and falsehoods (2026-11-22)
+
+A fact-check's `mayAssumeKnown` refers only to an actor's exact recorded
+*awareness of a statement*, **not** objective truth, justified belief,
+perfect recall or permission to disclose. All checks now report
+`truthStatus:'not_assessed'`. For a `not_recorded` statement, the
+narrator-private result can include up to three
+`relatedStatementsForReview` with shared lexical tokens and source-backed
+text from the actor's own saved knowledge. They are explicitly classified
+`review_only_possible_relation`; related wording may be a paraphrase,
+negation, misconception, lie or unrelated statement. Never treat it as a
+semantic match or verified knowledge.
+
+Multiple people sharing a given name are checked **per occurrence**:
+`Rosa Wilson ... Rosa` retains an unresolved bare-name mention even when
+the first full name is known; two fully specified names are not treated as
+bare references. Any subsequent pronoun still requires conversational
+evidence. The helper does not make an identification or determine who
+spoke.
+
+A liar needs no recorded belief in the falsehood they utter. This checker
+is not an action gate; it must not block inference, misinformation,
+concealment or changing beliefs. New observed or communicated facts require
+reviewed actor-specific event changes before they can be considered saved.
+All functionality is read-only, private, capped and noncanonical by itself.
