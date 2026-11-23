@@ -22,3 +22,4 @@
 - [Cierre de inconsistencia: orden y unicidad de los eventos de consecuencias narrativas](CONSEQUENCE_LEDGER_ORDER_REPAIR_20261122.md)
 - [Protección del actor de origen de hilos narrativos y persistencia causal](CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md)
 - [Identidad de NPC: nombres completos duplicados no autorizan memoria automática](NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md)
+- [Reconciliación de referencias THREAD y memoria de NPC de nombre duplicado](CONTEXT_THREAD_RECONCILIATION_20261122.md)
