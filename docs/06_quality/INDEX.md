@@ -23,3 +23,5 @@
 - [Protección del actor de origen de hilos narrativos y persistencia causal](CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md)
 - [Identidad de NPC: nombres completos duplicados no autorizan memoria automática](NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md)
 - [Reconciliación de referencias THREAD y memoria de NPC de nombre duplicado](CONTEXT_THREAD_RECONCILIATION_20261122.md)
+
+- [NPC: prototipo aislado de intenciones abiertas y contexto privado](../../docs/06_quality/NPC_CONTEXTUAL_INTENT_PROTOTYPE_20261122.md)

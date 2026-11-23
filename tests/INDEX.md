@@ -77,3 +77,5 @@ These files already existed in the authoritative source and are listed here for 
 - [Admisión de actores NPC: regresiones de identidad, privacidad y capítulos (18 escenarios)](npc_actor_introduction_admitted.test.mjs)
 - [Cadenas causales abiertas de NPC: 16 regresiones sintéticas](npc_open_causal_continuations.test.mjs)
 - [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)
+
+- [NPC: intenciones contextuales abiertas, procedencia y simulación aislada](npc_contextual_intents.test.mjs)
