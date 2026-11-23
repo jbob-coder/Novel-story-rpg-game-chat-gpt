@@ -81,3 +81,5 @@ These files already existed in the authoritative source and are listed here for 
 - [NPC: intenciones contextuales abiertas, procedencia y simulación aislada](npc_contextual_intents.test.mjs)
 
 - [NPC: siete días de ensayo causal y comparación con selector previo](npc_contextual_multiday_rehearsal.test.mjs)
+
+- [NPC: continuidad secuencial y rechazo de resultados duplicados](npc_sequential_turns.test.mjs)
