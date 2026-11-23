@@ -15,3 +15,24 @@ Use **causal abstraction** for distant populations and detailed tracking only fo
 
 ## Before and after the shockwave
 The opening thirty days establish normal society. No superhuman manifestation before Day 0. On or after Day 0, some humans may awaken, others later or never, and wildlife/plants/terrain can change. Specific rates, powers, geography and ecology are not yet approved; don't present placeholder outcomes as canon.
+
+## Acción libre y memoria de NPC
+
+Las siete entradas de `ROUTINE_PROPOSALS` son sugerencias de actividad, **no**
+una lista de acciones permitidas. Un NPC establecido con identificador, objetivo
+y plan propio también puede recibir una revisión narrativa genérica, aunque no
+tenga plantilla de rutina. La hora, el destino y la ruta quedan sin especificar
+si no existe evidencia; el resultado nunca se ejecuta por adelantado.
+
+ChatGPT puede resolver otras acciones plausibles según intención, conocimiento,
+recursos y circunstancias. Los campos de cambio admitidos son un contrato de
+persistencia y causalidad, no un menú de conductas. Un efecto que no se pueda
+registrar de forma segura requiere una extensión revisada, no un resultado
+inventado ni una mutación fuera del guardado.
+
+La memoria persistente incluye hechos con origen en `knowledge`, relaciones,
+`last_resolved_action`, planes, compromisos, necesidades y sucesos históricos
+con identificadores EV. La memoria **no** implica omnisciencia: se recuperan
+las fuentes pertinentes al interpretar una escena y los datos privados no se
+revelan a Jack sin una causa. No se simulan acciones durante la inactividad del
+chat ni se avanza la historia para rellenar recuerdos.

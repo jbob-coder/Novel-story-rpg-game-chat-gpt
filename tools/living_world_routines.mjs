@@ -48,13 +48,22 @@ export function previewNPCRoutines({state, actorIds=[], elapsedMinutes=0, weekda
       !Array.isArray(actorIds) || actorIds.length > 100 || !Array.isArray(proposals)) return [];
   const selected = new Set(actorIds);
   const period = state?.time?.time_of_day;
-  return proposals.flatMap(p => {
-    if (!p || !selected.has(p.actorId)) return [];
+  // Catalog entries suggest familiar routines; they are not an NPC action
+  // whitelist. New actors retain a generic, narrator-private review path.
+  const templates = proposals.filter(p => p && selected.has(p.actorId));
+  const covered = new Set(templates.map(p => p.actorId));
+  const untemplated = [...selected].filter(id => !covered.has(id)).map(actorId => ({
+    actorId, activity:'independent_goal_review', periods:null, destination:null
+  }));
+  return [...templates, ...untemplated].flatMap(p => {
     const actor = actorAt(state,p.actorId);
-    if (!actor || !validActorId(p.actorId) || !actor.goal || !actor.independent_plan) return [];
+    if (!actor || !validActorId(p.actorId) ||
+        typeof actor.goal !== 'string' || !actor.goal.trim() ||
+        typeof actor.independent_plan !== 'string' || !actor.independent_plan.trim()) return [];
     const window = availability({schedule:schedules?.[p.actorId], exception:exceptions?.[p.actorId], weekday, minute});
     return [{actorId:p.actorId, activity:p.activity, kind:'unresolved_proposal',
-      visibility:'narrator_private', timing:Array.isArray(p.periods) && p.periods.includes(period) ? 'suggested_period':'outside_suggested_period',
+      visibility:'narrator_private', timing:!Array.isArray(p.periods) ? 'unspecified_period' :
+        p.periods.includes(period) ? 'suggested_period':'outside_suggested_period',
       availability:window.status, availabilitySource:window.source,
       route:p.destination ? worldRoute(state,actor.location_id,p.destination) : null,
       destination:p.destination ?? null, requiresCausalResolution:true}];

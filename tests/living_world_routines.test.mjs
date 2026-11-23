@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {ROUTINE_PROPOSALS, worldRoute, previewNPCRoutines, stageNPCResolution, visibleFacts} from '../tools/living_world_routines.mjs';
+import {applyStateChanges} from '../tools/state_changes.mjs';
 
 const makeState = () => ({
   chapter:{id:'CH-000'}, time:{day:-29,time_of_day:'morning',clock_time:null},
@@ -40,3 +41,53 @@ test('only explicitly disclosed facts reach the matching viewer',()=>{const stat
 test('invalid disclosure recipient rejected',()=>assert.throws(()=>stageNPCResolution({...makeResolution(makeState()),disclosures:[{fact:'Some valid narrative information',viewerIds:['NPC-999']}]}),/Disclosure/));
 test('malformed saved adjacency is handled without crashing',()=>{const state=makeState();state.world.locations['LOC-WILSON-WORKSHOP'].connected_ids={oops:true};assert.equal(worldRoute(state,'LOC-WILSON-WORKSHOP','LOC-CROSSWATER-PLAZA'),null)});
 test('invalid effects cannot be staged',()=>assert.throws(()=>stageNPCResolution({...makeResolution(makeState()),changes:[{field:'progression',after:100}]}),/Cross-actor or invalid effect/));
+
+test('new NPC without a hardcoded routine still receives a private, unresolved goal review',()=>{
+  const state=makeState();
+  state.world.actors['NPC-008']={
+    id:'NPC-008',goal:'Keep the workshop supplied',independent_plan:'Ask a supplier about missing tools',
+    location_id:'LOC-COMMERCIAL-DISTRICT',knowledge:['A supplier called yesterday. (source: witness; EV-000029)'],
+    relationships:{},last_resolved_action:{event_id:'EV-000029',day:-29,summary:'Asked for a quote'}
+  };
+  const before=JSON.stringify(state);
+  const items=previewNPCRoutines({state,actorIds:['NPC-008'],elapsedMinutes:15});
+  assert.equal(items.length,1);
+  assert.equal(items[0].actorId,'NPC-008');
+  assert.equal(items[0].activity,'independent_goal_review');
+  assert.equal(items[0].timing,'unspecified_period');
+  assert.equal(items[0].destination,null);
+  assert.equal(items[0].route,null);
+  assert.equal(items[0].kind,'unresolved_proposal');
+  assert.equal(items[0].availability,'unknown');
+  assert.equal(items[0].requiresCausalResolution,true);
+  assert.equal(items[0].visibility,'narrator_private');
+  assert.equal(JSON.stringify(state),before);
+});
+
+test('generic review neither invents activity for actors without goals nor skips saved memory',()=>{
+  const state=makeState();
+  state.world.actors['NPC-008']={
+    id:'NPC-008',goal:'',independent_plan:'Ask for a spare part',location_id:'LOC-COMMERCIAL-DISTRICT'
+  };
+  assert.deepEqual(previewNPCRoutines({state,actorIds:['NPC-008','NPC-999'],elapsedMinutes:15}),[]);
+  state.world.actors['NPC-008'].goal='Get a spare part for the shop';
+  state.world.actors['NPC-008'].knowledge=['Previous supplier meeting'];
+  const event={id:'EV-000030',actor_ids:['NPC-008'],state_changes:[]};
+  applyStateChanges(state,event,[{
+    field:'knowledge',fact:'Supplier cannot deliver the ordered parts today.',
+    source:'Supplier answered the phone directly'
+  }]);
+  assert.equal(event.state_changes[0].field,'knowledge');
+  assert.ok(state.world.actors['NPC-008'].knowledge.some(x=>x.includes('EV-000030')));
+  const before=JSON.stringify(state);
+  assert.equal(previewNPCRoutines({state,actorIds:['NPC-008'],elapsedMinutes:15}).length,1);
+  assert.equal(JSON.stringify(state),before);
+  const drafted=stageNPCResolution({
+    state,actorId:'NPC-008',eventId:'EV-000031',turn:10,day:-29,
+    outcome:'The shopkeeper considers another supplier instead of waiting.',
+    changes:[{field:'independent_plan',before:'Ask for a spare part',after:'Contact a second supplier'}]
+  });
+  assert.equal(drafted.status,'staged_only');
+  assert.equal(drafted.event.known_to.includes('PLAYER-001'),false);
+  assert.equal(JSON.stringify(state),before);
+});
