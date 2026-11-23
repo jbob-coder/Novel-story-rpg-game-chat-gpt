@@ -193,6 +193,7 @@
       "tests/living_world_diagnostics.test.mjs",
       "tests/living_world_integrated_rehearsal.test.mjs",
       "tests/living_world_routines.test.mjs",
+      "tests/living_world_news_reference.test.mjs",
       "tests/living_world_travel.test.mjs",
       "tests/test_checkpoint_audit.py"
     ],
