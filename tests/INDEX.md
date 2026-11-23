@@ -53,6 +53,8 @@
 - [Referencia no canónica de noticias (50 propuestas)](living_world_news_reference.test.mjs)
 - [Simulación sintética: publicación, receptor, rectificación y memoria](living_world_news_causal_revisions.test.mjs)
 
+- [QA de aceptación: autonomía, memoria específica y transferencia causal de NPC](npc_behavior_acceptance_qa.test.mjs)
+
 ## Current source index supplement — audited November 17, 2026
 
 These files already existed in the authoritative source and are listed here for discoverability; indexing them is not a change to story state.
