@@ -84,3 +84,16 @@ The six other known NPCs abstain: they have no new reviewed courier job, teacher
 These are authored, frozen test decisions. They demonstrate structural continuity for one concrete change in NPC position, **not** independent semantic-quality certification by a live generative provider; PR stays in draft pending 30 original steps and independent evaluation.
 
 The first test attempt was correctly rejected by `verifyTravelHistory` for omitting this contextual estimate, despite the route being connected; the test was corrected with the required metadata, without bypassing the engine's travel rule. The official successful rerun is [GitHub Actions #45113900126](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/actions/runs/45113900126): **661/661 JavaScript**, **47/47 Python**, and checkpoint **PASS**. The resulting in-memory snapshot hash is `b546eb8301636332c08d8a871bb93c10b456f7917dda854ad1e9bbfa8e0c1b88`.
+
+
+## Sequential step 06: actor-driven courier search and shop work, no fabricated transactions
+
+The sixth separately authored exploratory turn starts **only** from the verified, decoded Step 05 snapshot SHA-256 `b546eb8301636332c08d8a871bb93c10b456f7917dda854ad1e9bbfa8e0c1b88`. No future turn is prewritten.
+
+**Darius (NPC-003)** has already delivered the previous parcel. He now independently chooses to walk from `LOC-COMMERCIAL-DISTRICT` to `LOC-MARKET-DELIVERY-POINT`: the destination is an existing `commercial_delivery_hub`, marked `public_confirmed` with a direct return graph link. The narrator supplies an approximate **six-minute** walking estimate for the ten-minute isolated interval; it does not establish world-canon distances or opening hours. Darius *seeks* legitimate new work; the test must **not** claim a new package, dispatcher encounter, contract, recipient, or deadline. His own last outcome (from Step 01) is the sole relevant private causal event.
+
+**Noah (NPC-006)**, after actually arriving at his mapped repair shop in Step 05, begins reviewing existing pending work priorities before considering parts orders. The outcome does not confirm particular stock, quantities, clients, purchases, supplier replies, or extra devices. It cites only his own verified Step 05 outcome. Both decisions update owned plans; Darius also updates his owned position. The **five other NPCs abstain** without any changed memory or location.
+
+The added test requires exact Step 05 hash; all seven actor reviews tied to fictional turn 15; 2 actor events and 5 abstentions; an admitted destination with reviewed travel metadata; no re-delivery of the completed parcel; Noah's current shop location; unchanged actor resources; actor-owned causal event IDs; unchanged protected player; zero disclosure of exact private outcomes; and in-memory five-file checkpoint recovery. The five canonical CH-000/save files are read for exact byte comparison, never written.
+
+**Acceptance status:** this is a **narrator-authored, frozen exploratory fixture**, not a language-model call or independent semantic review. Keep PR #193 DRAFT/unmerged until official CI and the separate 30-step/semantic-quality gate pass. Do not report this sixth turn as verified solely from the test commit.
