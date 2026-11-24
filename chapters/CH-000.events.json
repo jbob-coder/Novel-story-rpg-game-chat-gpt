@@ -1851,6 +1851,122 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000030",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Comprobar a mano el recorrido del codo.",
+      "outcome": "El codo recorre el arco bajo presión manual.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
+    },
+    {
+      "id": "EV-000031",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "NPC-006"
+      ],
+      "kind": "independent_actor",
+      "intent": "Noah lleva una caja del distrito al mostrador de su negocio.",
+      "outcome": "El comerciante entra con su caja y deja libre el mostrador.",
+      "known_to": [
+        "NPC-006"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-006",
+          "field": "last_resolved_action",
+          "before": null,
+          "after": {
+            "event_id": "EV-000031",
+            "day": -29,
+            "summary": "El comerciante entra con su caja y deja libre el mostrador."
+          }
+        },
+        {
+          "actor_id": "NPC-006",
+          "field": "location_id",
+          "before": "LOC-COMMERCIAL-DISTRICT",
+          "after": "LOC-MARKET-NOAH-REPAIR",
+          "route": [
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-MARKET-NOAH-REPAIR"
+          ],
+          "travel": {
+            "mode": "walk",
+            "elapsed_minutes": 3,
+            "basis": "Noah lleva la caja desde la calle."
+          }
+        }
+      ],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
+    },
+    {
+      "id": "EV-000032",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Navigate the evening transit crowd toward the commercial district. La destinataria firma el recibo al recibir el paquete.",
+      "outcome": "Darius entrega el bulto y sale con el recibo firmado.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-003",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000008",
+            "day": -30,
+            "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
+          },
+          "after": {
+            "event_id": "EV-000032",
+            "day": -29,
+            "summary": "Darius entrega el bulto y sale con el recibo firmado."
+          }
+        },
+        {
+          "actor_id": "NPC-003",
+          "field": "knowledge",
+          "fact": "La destinataria firma el recibo al recibir el paquete.",
+          "source": "Darius en persona en el puesto de entrega de Market Row.",
+          "after": "La destinataria firma el recibo al recibir el paquete. (source: Darius en persona en el puesto de entrega de Market Row.; EV-000032)"
+        },
+        {
+          "actor_id": "NPC-003",
+          "field": "resources",
+          "before": {
+            "parcel": "one unremarkable delivery, contents unspecified"
+          },
+          "after": {}
+        }
+      ],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
     }
   ]
 }

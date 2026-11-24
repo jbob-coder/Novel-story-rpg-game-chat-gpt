@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000029"
+    "last_resolved_event_id": "EV-000032"
   },
   "time": {
     "day": -29,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "morning",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 889
+    "elapsed_minutes_since_opening_approx": 919
   },
   "player": {
     "initialized": true,
@@ -492,13 +492,12 @@
         "goal": "Deliver a paid parcel on time and protect his income.",
         "independent_plan": "Navigate the evening transit crowd toward the commercial district.",
         "knowledge": [
-          "He has a delivery deadline."
+          "He has a delivery deadline.",
+          "La destinataria firma el recibo al recibir el paquete. (source: Darius en persona en el puesto de entrega de Market Row.; EV-000032)"
         ],
         "relationships": {},
         "conditions": [],
-        "resources": {
-          "parcel": "one unremarkable delivery, contents unspecified"
-        },
+        "resources": {},
         "progression": {
           "attributes": null,
           "skills": {},
@@ -507,9 +506,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000008",
-          "day": -30,
-          "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
+          "event_id": "EV-000032",
+          "day": -29,
+          "summary": "Darius entrega el bulto y sale con el recibo firmado."
         }
       },
       "NPC-004": {
@@ -625,7 +624,7 @@
         "name": "Noah Vale",
         "age": 32,
         "role": "dueño de un pequeño local de reparación y componentes",
-        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "goal": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
         "independent_plan": "Revisar encargos pendientes y buscar repuestos generales.",
         "knowledge": [
@@ -650,7 +649,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null,
+        "last_resolved_action": {
+          "event_id": "EV-000031",
+          "day": -29,
+          "summary": "El comerciante entra con su caja y deja libre el mostrador."
+        },
         "description": "Contacta con Jack por proyectos técnicos sin conocer todos sus planes."
       },
       "NPC-007": {
@@ -935,9 +938,9 @@
     }
   },
   "history": {
-    "last_event_sequence": 29,
+    "last_event_sequence": 32,
     "completed_chapters": [],
-    "last_transcript_sequence": 20,
+    "last_transcript_sequence": 22,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
@@ -947,7 +950,8 @@
       "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
       "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
       "CH000-TURN-0008-MORNING-TRANSITION",
-      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM"
+      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM",
+      "qa-ordinary-workbench"
     ],
     "story_revisions": [
       {
@@ -972,12 +976,12 @@
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Día -29, media mañana: Jack está en su taller junto a Aster, con el primer brazo montado manualmente pero sin actuadores conectados. Rosa tiene el reloj reparado; Elena salió hacia la escuela con su mochila y la USB. Esperar decisión libre del jugador.",
-    "last_player_action": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo"
+    "message": "Jack awaits the next free-form action.",
+    "last_player_action": "Me quedo en el taller. Muevo despacio el codo de Aster a mano para comprobar si roza."
   },
   "save": {
-    "last_verified_turn": 9,
-    "notes": "CH-000 turn 9: Jack hands Elena her schoolbag, fixes Rosa's neighbor clock, and physically mounts Aster's first arm without powered operation; Elena heads toward school."
+    "last_verified_turn": 10,
+    "notes": "Candidate checkpoint: commit and read-back required before calling this turn verified."
   },
   "narrative_threads": [
     {
