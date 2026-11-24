@@ -1000,3 +1000,135 @@ test('narrator original-initiative assessment turn 06 acts from new locations wi
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 07 is written only after examining the decoded Step 06 result. Rosa
+// may leave her own family apartment through an admitted residential link to
+// seek a possible future clock handover. Neither the clock's transfer, a
+// neighbor's location, nor an encounter is inferred. Others are free to wait.
+// Frozen editorial QA, not a model-provider call or real gameplay turn.
+export function replayNarratorThirtyTurnReviewThroughStep07(){
+ const sixth=replayNarratorThirtyTurnReviewThroughStep06();
+ assert.equal(sixth.snapshotHash,
+  '428eff8aa2f1a012b09660cb26361b5494186d81176eace330172ccba7aa0ca7',
+  'Step 07 requires the exact verified decoded Step 06 snapshot');
+ const previous=sixth.snapshot,priorSerialized=JSON.stringify(previous);
+ const batch=prepareNPCIntentionRequests({snapshot:previous,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const ids=Object.keys(previous.state.world.actors);
+ assert.deepEqual(new Set(batch.requests.map(x=>x.actorId)),new Set(ids));
+ const byId=new Map(batch.requests.map(x=>[x.actorId,x]));
+ const rosa=byId.get('NPC-005');
+ const from='LOC-WILSON-APARTMENT',dest='LOC-RAILGARDEN-RESIDENTIAL';
+ const before=previous.state.world.actors['NPC-005'];
+ assert.equal(before.location_id,from);
+ assert.equal(previous.state.world.locations[from].name,'Hogar de los Wilson');
+ assert.equal(previous.state.world.locations[dest].type,'barrio residencial urbano');
+ assert.ok(previous.state.world.locations[from].connected_ids.includes(dest));
+ assert.ok(previous.state.world.locations[dest].connected_ids.includes(from));
+ assert.ok(rosa.evidence.knownEventIds.includes('EV-000029'));
+ assert.ok(rosa.evidence.knownEvents.some(e=>e.id==='EV-000029'&&
+  e.outcome.includes('reparado')));
+ assert.ok(rosa.evidence.previousResult?.eventId);
+ assert.ok(rosa.evidence.knownEvents.some(e=>
+  e.id===rosa.evidence.previousResult.eventId&&
+  e.outcome.includes('SYNTHETIC PRIVATE ROSA STEP02')));
+ const plan='Rosa steps into Railgarden from her own family apartment to look for an appropriate future opportunity to arrange return of the repaired alarm clock; the neighbor has not been found and no handover has occurred.';
+ const outcome='SYNTHETIC PRIVATE ROSA STEP07: Rosa leaves her family apartment for the connected Railgarden residential area, considering how to arrange a later return of the repaired alarm clock. The neighbor is not found or contacted, the clock is not transferred, and no new location is invented.';
+ const abstain={
+  'NPC-001':'Lena already separated historical reports and still has no new current dispatch or technical observation; another handover would be repetitive.',
+  'NPC-002':'Sora closed her inspection and has no new fault or assignment in her personal evidence.',
+  'NPC-003':'Darius has reached the public delivery point, but no opening hours, staff contact or new paid delivery is known. An assignment cannot be assumed.',
+  'NPC-004':'Elena still has no recorded arrival or school access; rechecking the same USB or inventing the teacher would repeat or falsify events.',
+  'NPC-006':'Noah already started reviewing existing workshop priorities; without verified inventory, order or client detail there is no distinct new result to record.',
+  'NPC-007':'Mara past cafe close remains historical, not a new morning shift or verified work obligation.'
+ };
+ const choices=batch.requests.map(request=>request.actorId==='NPC-005'?{
+  request,proposal:{actorId:'NPC-005',decision:'act',
+   intention:'Rosa independently goes from her family apartment into the connected Railgarden residential area to seek an opportunity to arrange a future return of the repaired clock, without claiming to meet its owner.',
+   reasoning:'Her own actor-known repair and earlier return reminder establish a reason to consider a handover. Her family home has an admitted direct link to the residential area; there is no recorded neighbor address or presence, and no clock transfer is assumed.',
+   destinationId:dest,sourceEventIds:[
+    request.evidence.previousResult.eventId
+   ]},
+  reviewed:true,outcome,changes:[
+   {field:'location_id',before:from,after:dest,route:[from,dest],
+    travel:{mode:'walk',elapsed_minutes:4,
+     basis:'Narrator-reviewed direct public-neighborhood exit from Rosa own family apartment into the connected Railgarden district; approximate QA timing only, not a world distance.'}},
+   {field:'independent_plan',before:request.evidence.independentPlan,
+    after:plan}
+  ]
+ }:{
+  request,proposal:{actorId:request.actorId,decision:'abstain',
+   reasoning:abstain[request.actorId]}
+ });
+ assert.equal(choices.filter(x=>x.proposal.decision==='act').length,1);
+ assert.deepEqual(new Set(choices.filter(x=>x.proposal.decision==='abstain')
+  .map(x=>x.request.actorId)),new Set(Object.keys(abstain)));
+ for(const row of choices){
+  assert.equal(row.request.checkpoint.completedTurn,15);
+  assert.ok((row.proposal.sourceEventIds??[]).every(e=>
+   row.request.evidence.knownEventIds.includes(e)));
+ }
+ const staged=stageReviewedNPCIntentionTurn({snapshot:previous,observedHead:head,
+  turn:{...turn('narrator-30-step-07'),elapsed_minutes:10,
+   intent:'[ISOLATED QA] Jack gives no instructions about Rosa or any unseen NPC.',
+   outcome:'Ten fictional minutes pass without reporting private offscreen actions to Jack.',
+   narration_messages:['[ISOLATED QA] No new neighbor encounter or disclosure is asserted.']},
+  choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,16);
+ assert.equal(staged.manifest.last_event_sequence,47);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,['NPC-005']);
+ assert.deepEqual(new Set(staged.npcTurnReview.abstainedActorIds),
+  new Set(Object.keys(abstain)));
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const after=recovered.state.world.actors['NPC-005'];
+ assert.equal(after.location_id,dest);
+ assert.equal(after.independent_plan,plan);
+ assert.deepEqual(after.resources,before.resources);
+ assert.deepEqual(after.knowledge,before.knowledge);
+ const ev=recovered.events.events.at(-1);
+ assert.equal(ev.turn,16);
+ assert.deepEqual(ev.actor_ids,['NPC-005']);
+ assert.deepEqual(ev.caused_by,[rosa.evidence.previousResult.eventId]);
+ assert.ok(ev.state_changes.some(c=>c.field==='location_id'&&
+  c.before===from&&c.after===dest&&
+  JSON.stringify(c.route)===JSON.stringify([from,dest])&&
+  c.travel?.mode==='walk'&&c.travel.elapsed_minutes===4));
+ for(const id of Object.keys(abstain)){
+  assert.deepEqual(recovered.state.world.actors[id],
+   previous.state.world.actors[id],
+   'Abstaining NPC state and memory cannot be changed: '+id);
+ }
+ assert.deepEqual(recovered.state.player,previous.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+70);
+ assert.ok(!recovered.chapter.includes(outcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(outcome)));
+ assert.equal(JSON.stringify(previous),priorSerialized);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,snapshotHash,priorHash:sixth.snapshotHash};
+}
+test('narrator original-initiative assessment turn 07 makes a neighbor-seeking movement without fake handover',()=>{
+ const {snapshot,snapshotHash,priorHash}=
+  replayNarratorThirtyTurnReviewThroughStep07();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_07 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:7,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:priorHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:['NPC-005'],abstained:6,newNpcEvents:1,
+  neighborNotFound:true,clockNotTransferred:true,
+  existingResidentialRoute:true,actorMemoryPreserved:true,
+  privateOutcomeNotDisclosed:true,canonicalSaveWrites:0,
+  verifiedSnapshotHash:snapshotHash,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
