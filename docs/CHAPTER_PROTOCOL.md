@@ -26,6 +26,12 @@ See [NARRATIVE_EXECUTION_MODEL.md](NARRATIVE_EXECUTION_MODEL.md) for the operati
 ## Chapter boundaries
 Chapters are meaningful story arcs, not one day apiece. Preserve chronology, capabilities, inventory, relationships, secrets, NPC objectives and events across transitions. New chapter records must have stable IDs. Do not retcon past resolved events without explicitly recording a correction and reason.
 
+### Revisión del Día 0 durante un turno
+
+Cuando el intervalo autorizado llega por primera vez al Día 0, el narrador indica en el turno `day_zero_phase` con el valor `before_arrival` o `arrival`. El primero permite una escena ordinaria ese día. El segundo cierra el intervalo en la llegada y registra un único evento global `cosmic_shockwave` sin actores ni destinatarios. Una petición larga que abarque la llegada se resuelve hasta esa pausa. Las escenas posteriores parten del nuevo guardado. La hora, el origen, las manifestaciones y las reacciones individuales quedan abiertos. Una observación requiere el evento y la fuente de quien la realiza.
+
+El cierre de un capítulo real corresponde al narrador bajo las reglas editoriales delegadas por el propietario. Requiere una razón explícita para cerrar el arco y el registro de preparación del capítulo siguiente. La llegada, un cambio de fecha o un ensayo de QA por sí solos no cierran un capítulo.
+
 ### Synthetic chapter/plan pilot (2026-11-14)
 
 `stageChapterTransition` closes a played chapter only after an explicit reviewed

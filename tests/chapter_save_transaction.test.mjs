@@ -172,3 +172,86 @@ test('authoritative chapter transition accepts exact previously verified ready b
  assert.equal(journal.entry.status,'verified');
  assert.equal(journal.entry.attempt.chapter_id,'CH-001');
 });
+
+test('an ordinary choice, its private consequence and the Day 0 arrival survive separate chapter and save boundaries', async () => {
+ const {ordinaryMorning} = await import('./helpers/ordinary_morning.mjs');
+ const {verifyNarrativeSnapshot} = await import('../tools/turn_engine.mjs');
+ const {allEvents} = await import('../tools/chapter_history.mjs');
+ for (const visit of [false, true]) {
+  const remote = new Remote(), journal = new Journal();
+  let chapterId = 'CH-000';
+  const snapshot = () => readCheckpoint({remote, commitSha: remote.head, chapterId});
+  const save = turn => saveLivingWorldTurn({remote, journal, branch, chapterId, turn});
+  const interval = (key, days, minutes, phase) => ({
+   key, intent: 'Dejar pasar el intervalo solicitado.', outcome: 'Termina el intervalo.',
+   player_text: 'Dejo pasar el tiempo.', narration_messages: ['La luz entra por la ventana.'],
+   elapsed_days: days, elapsed_minutes: minutes,
+   ...(phase === undefined ? {} : {day_zero_phase: phase})
+  });
+  const first = await saveLivingWorldTurn({remote, journal, branch, chapterId,
+   ...ordinaryMorning(await snapshot(), {visit, recipientPresent: !visit})});
+  assert.equal(first.status, 'verified', first.reason);
+  const choice = await snapshot();
+  const advance = await save(interval('qa-time-to-minus-one', 28, 28 * 1440));
+  assert.equal(advance.status, 'verified', advance.reason);
+  const boundary = plan('CH-001', remote.head);
+  boundary.time_context.day = -1;
+  const closed = await transition(remote, journal, {nextPlan: boundary});
+  assert.equal(closed.status, 'verified', closed.reason);
+  chapterId = 'CH-001';
+  const early = await save(interval('qa-before-arrival', 1, 1440, 'before_arrival'));
+  assert.equal(early.status, 'verified', early.reason);
+  const before = await snapshot();
+  assert.equal(before.state.time.day, 0);
+  assert.equal(before.state.world.shockwave_arrived, false);
+  for (const invalid of [interval('qa-skip-arrival', 1, 1440), interval('qa-no-interval', 0, 0, 'arrival')]) {
+   const rejected = await save(invalid);
+   assert.equal(rejected.status, 'blocked');
+   assert.equal(remote.head, early.commitHead);
+  }
+  const arrival = interval('qa-actual-arrival', 0, 5, 'arrival');
+  remote.failUpdate = true;
+  const interrupted = await save(arrival);
+  assert.equal(interrupted.status, 'blocked');
+  assert.equal(remote.head, early.commitHead);
+  remote.failUpdate = false;
+  const recovered = await recoverJournaledSave({remote, journal, branch});
+  assert.equal(recovered.status, 'verified', recovered.reason);
+  assert.equal(recovered.commitHead, interrupted.commitHead);
+  assert.deepEqual(recovered.narration_messages, arrival.narration_messages);
+  assert.equal((await save(interval('qa-duplicate-arrival', 0, 5, 'arrival'))).status, 'blocked');
+  // A private observation after arrival can persist without proving a cause or
+  // granting anyone an ability. Only Darius examines the synthetic receipt.
+  const post = interval('qa-following-day', 1, 1440);
+  const observation = 'Al soltar el recibo, el papel queda suspendido un instante.';
+  const resolutions = visit ? [] : [{actor_id: 'NPC-003', reviewed: true, resolved: true,
+   causal_basis: 'Darius ordena el comprobante que recibió en la entrega.',
+   outcome: 'El mensajero anota una observación cuya causa desconoce.',
+   changes: [{field: 'knowledge', fact: observation, source: 'Darius observa el recibo directamente.'}]}];
+  const next = await saveLivingWorldTurn({remote, journal, branch, chapterId, turn: post,
+   npcResolutions: resolutions});
+  assert.equal(next.status, 'verified', next.reason);
+  const later = await snapshot();
+  const anchors = allEvents(later).filter(event => event.kind === 'cosmic_shockwave');
+  assert.equal(anchors.length, 1);
+  assert.deepEqual(anchors[0].known_to, []);
+  assert.equal(later.state.time.day, 1);
+  assert.deepEqual(later.state.player, choice.state.player);
+  assert.equal(later.state.world.shockwave_arrived, true);
+  const courier = later.state.world.actors['NPC-003'];
+  assert.equal(courier.knowledge.some(f => f.includes(observation)), !visit);
+  assert.deepEqual(courier.resources, choice.state.world.actors[courier.id].resources);
+  assert.deepEqual(courier.progression, choice.state.world.actors[courier.id].progression);
+  assert.ok(!later.chapter.includes(observation));
+  assert.ok(!later.state.player.knowledge.some(f => f.includes(observation)));
+  assert.equal(later.state.world.humans_with_powers_observed, false);
+  assert.ok(later.archives['CH-000'].chapter.includes(first.narration_messages[0]));
+  for (const corrupt of [s => {s.state.world.shockwave_arrived = false;},
+   s => {s.events.events.find(e => e.kind === 'cosmic_shockwave').known_to.push(s.state.player.id);},
+   s => {s.events.events.find(e => e.kind === 'cosmic_shockwave').day = 1;}]) {
+   const broken = structuredClone(later);
+   corrupt(broken);
+   assert.throws(() => verifyNarrativeSnapshot(broken));
+  }
+ }
+});
