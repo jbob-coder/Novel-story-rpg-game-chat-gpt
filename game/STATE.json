@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000029"
+    "last_resolved_event_id": "EV-000032"
   },
   "time": {
     "day": -29,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "morning",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 889
+    "elapsed_minutes_since_opening_approx": 919
   },
   "player": {
     "initialized": true,
@@ -24,7 +24,7 @@
     "role": "gray-hat hacker",
     "background": "Hacker gray-hat de 21 años; apasionado por la tecnología y la construcción de gadgets. Creció en Meridian Bay y aprendió reparación de dispositivos por su abuela y formación autodidacta. Vive modestamente con su hermana y su abuela, aunque reserva discretamente fondos suficientes para comprar una casa. Tiene TDAH y dificultad para hablar con claridad; escribe en el teléfono y el collar reproduce su mensaje.",
     "background_origin": "owner-confirmed",
-    "location_id": "LOC-WILSON-WORKSHOP",
+    "location_id": "LOC-MARKET-NOAH-REPAIR",
     "progression": {
       "attributes": {
         "strength": 2,
@@ -61,7 +61,9 @@
     "knowledge": [
       "Al revisar el panel de sus cuentas, Jack observó dos saldos personales (86.450,20 y 173.890,75) y dos saldos operativos de sociedades (43.600,00 y 97.340,10); las cuatro entradas visibles estaban disponibles, sin avisos de bloqueo. Los nombres legales y la unidad monetaria no están fijados. (source: Panel financiero privado que Jack consultó desde el taller en CH-000 turno 7; EV-000022)",
       "Una vista previa de cámara en la red antigua de Jack respondió con una imagen estable de un pasillo iluminado y una puerta cerrada; la ubicación exacta no estaba identificada. Las entradas silenciosas de Café Bruma no mostraron imágenes nuevas. (source: Sección de cámaras del monitor privado de Jack observada durante CH-000 turno 7; EV-000022)",
-      "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)"
+      "La tapa del despertador del vecino presionaba el mando de ajuste y adelantaba las agujas; después de corregir la pestaña interior, la hora se mantuvo al cerrar y abrir la carcasa varias veces. (source: Observación y reparación manual del despertador junto a Rosa durante la mañana del día -29; EV-000027)",
+      "La pestaña del casquillo sobresale del rebaje. (source: Examen directo del casquillo en el mostrador de Noah.; EV-000030)",
+      "Observed public access at LOC-MARKET-NOAH-REPAIR (source: La puerta del taller de Noah está abierta a Market Row. | Noah sostiene la hoja con el talón mientras pasa una caja al otro lado del umbral.; EV-000030)"
     ],
     "relationships": {
       "NPC-004": {
@@ -91,7 +93,7 @@
         "id": "ITEM-PHONE",
         "name": "Teléfono personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-WORKSHOP",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "carried": true,
         "status": "funcional",
         "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
@@ -101,7 +103,7 @@
         "id": "ITEM-VOICE-COLLAR",
         "name": "Collar sintetizador de voz",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-WORKSHOP",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "carried": true,
         "status": "funcional",
         "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
@@ -111,7 +113,7 @@
         "id": "ITEM-COMPACT-CASE",
         "name": "Estuche compacto de electrónica",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-WORKSHOP",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "carried": true,
         "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
         "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
@@ -197,7 +199,7 @@
         "id": "ITEM-WALLET",
         "name": "Cartera personal",
         "size": "pequeño",
-        "location_id": "LOC-WILSON-WORKSHOP",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "carried": true,
         "status": "funcional; contiene efectivo para gastos corrientes",
         "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
@@ -492,7 +494,8 @@
         "goal": "Deliver a paid parcel on time and protect his income.",
         "independent_plan": "Navigate the evening transit crowd toward the commercial district.",
         "knowledge": [
-          "He has a delivery deadline."
+          "He has a delivery deadline.",
+          "El puesto de la destinataria está cerrado al llegar el mensajero. (source: Darius en persona en el puesto de entrega de Market Row.; EV-000032)"
         ],
         "relationships": {},
         "conditions": [],
@@ -507,9 +510,9 @@
           "milestones": []
         },
         "last_resolved_action": {
-          "event_id": "EV-000008",
-          "day": -30,
-          "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
+          "event_id": "EV-000032",
+          "day": -29,
+          "summary": "Darius conserva el paquete para un segundo intento."
         }
       },
       "NPC-004": {
@@ -625,7 +628,7 @@
         "name": "Noah Vale",
         "age": 32,
         "role": "dueño de un pequeño local de reparación y componentes",
-        "location_id": "LOC-COMMERCIAL-DISTRICT",
+        "location_id": "LOC-MARKET-NOAH-REPAIR",
         "goal": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
         "independent_plan": "Revisar encargos pendientes y buscar repuestos generales.",
         "knowledge": [
@@ -650,7 +653,11 @@
           "lifetime_skill_xp": 0,
           "milestones": []
         },
-        "last_resolved_action": null,
+        "last_resolved_action": {
+          "event_id": "EV-000031",
+          "day": -29,
+          "summary": "El comerciante entra con su caja y deja libre el mostrador."
+        },
         "description": "Contacta con Jack por proyectos técnicos sin conocer todos sus planes."
       },
       "NPC-007": {
@@ -935,9 +942,9 @@
     }
   },
   "history": {
-    "last_event_sequence": 29,
+    "last_event_sequence": 32,
     "completed_chapters": [],
-    "last_transcript_sequence": 20,
+    "last_transcript_sequence": 22,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
@@ -947,7 +954,8 @@
       "CH000-TURN-0006-LEGACY-DEVICE-AND-ASSETS-REVIEW",
       "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
       "CH000-TURN-0008-MORNING-TRANSITION",
-      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM"
+      "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM",
+      "qa-ordinary-visit"
     ],
     "story_revisions": [
       {
@@ -971,13 +979,13 @@
   "pending": {
     "type": "await_player_action",
     "interaction_mode": "free_text_no_numbered_options",
-    "location_id": "LOC-WILSON-WORKSHOP",
-    "message": "Día -29, media mañana: Jack está en su taller junto a Aster, con el primer brazo montado manualmente pero sin actuadores conectados. Rosa tiene el reloj reparado; Elena salió hacia la escuela con su mochila y la USB. Esperar decisión libre del jugador.",
-    "last_player_action": "Coger la mochila y dárselo a Elena después regresa a la cocina y arregla el reloj después volver at taller y verificar aster entonces bregar montando el brazo"
+    "location_id": "LOC-MARKET-NOAH-REPAIR",
+    "message": "Jack awaits the next free-form action.",
+    "last_player_action": "Voy al local de Noah. Escribo «¿Me dejas ver el casquillo?» y examino la pieza, sin comprarla."
   },
   "save": {
-    "last_verified_turn": 9,
-    "notes": "CH-000 turn 9: Jack hands Elena her schoolbag, fixes Rosa's neighbor clock, and physically mounts Aster's first arm without powered operation; Elena heads toward school."
+    "last_verified_turn": 10,
+    "notes": "Candidate checkpoint: commit and read-back required before calling this turn verified."
   },
   "narrative_threads": [
     {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 20,
+  "last_entry_sequence": 22,
   "entries": [
     {
       "id": "TXT-000001",
@@ -241,6 +241,30 @@
         "EV-000027",
         "EV-000028",
         "EV-000029"
+      ]
+    },
+    {
+      "id": "TXT-000021",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Voy al local de Noah. Escribo «¿Me dejas ver el casquillo?» y examino la pieza, sin comprarla.",
+      "event_ids": [
+        "EV-000030"
+      ]
+    },
+    {
+      "id": "TXT-000022",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "La puerta del taller de Noah está abierta a Market Row. Noah sostiene la hoja con el talón mientras pasa una caja al otro lado del umbral. La deja en el suelo y hace sitio en el mostrador.\n\nEl collar reproduce el mensaje.\n\n—¿Me dejas ver el casquillo?\n\n—Claro. De canto se ve mejor.\n\nNoah apoya la pieza sobre un paño y retira la mano. La pestaña del casquillo sobresale del rebaje. Al poner el casquillo de plano, queda un hilo de luz entre el borde y el paño.",
+      "event_ids": [
+        "EV-000030",
+        "EV-000031",
+        "EV-000032"
       ]
     }
   ]

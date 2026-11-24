@@ -1851,6 +1851,258 @@
         }
       ],
       "progression_awards": []
+    },
+    {
+      "id": "EV-000030",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Visitar a Noah e inspeccionar el casquillo.",
+      "outcome": "La inspección deja a la vista la pestaña.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "PLAYER-001",
+          "field": "location_id",
+          "before": "LOC-WILSON-WORKSHOP",
+          "after": "LOC-MARKET-NOAH-REPAIR",
+          "route": [
+            "LOC-WILSON-WORKSHOP",
+            "LOC-WILSON-APARTMENT",
+            "LOC-RAILGARDEN-RESIDENTIAL",
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-MARKET-NOAH-REPAIR"
+          ],
+          "travel": {
+            "mode": "walk",
+            "elapsed_minutes": 24,
+            "basis": "Trayecto a pie desde Railgarden hasta el comercio."
+          }
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-PHONE",
+          "before": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-PHONE",
+            "name": "Teléfono personal",
+            "size": "pequeño",
+            "location_id": "LOC-MARKET-NOAH-REPAIR",
+            "carried": true,
+            "status": "funcional",
+            "description": "Se usa para escribir mensajes para el collar y organizar tareas.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-VOICE-COLLAR",
+          "before": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-VOICE-COLLAR",
+            "name": "Collar sintetizador de voz",
+            "size": "pequeño",
+            "location_id": "LOC-MARKET-NOAH-REPAIR",
+            "carried": true,
+            "status": "funcional",
+            "description": "Pronuncia en voz artificial los mensajes que Jack escribe en su teléfono. No lee pensamientos.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-COMPACT-CASE",
+          "before": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-COMPACT-CASE",
+            "name": "Estuche compacto de electrónica",
+            "size": "pequeño",
+            "location_id": "LOC-MARKET-NOAH-REPAIR",
+            "carried": true,
+            "status": "red anterior activa de más de 500 dispositivos; nueve accesos añadidos en Café Bruma (dos respuestas intermitentes, siete sin respuesta en la consulta actual)",
+            "description": "Jack mantiene desde hace años una red activa de más de 500 dispositivos (canon confirmado por el propietario). Café Bruma añadió nueve accesos persistentes; dos contestaron intermitentemente y siete no respondieron al último chequeo. La ausencia de respuesta no cancela el acceso establecido; no se inventan identificadores para los 500 anteriores.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "inventory_item",
+          "item_id": "ITEM-WALLET",
+          "before": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-WILSON-WORKSHOP",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "after": {
+            "id": "ITEM-WALLET",
+            "name": "Cartera personal",
+            "size": "pequeño",
+            "location_id": "LOC-MARKET-NOAH-REPAIR",
+            "carried": true,
+            "status": "funcional; contiene efectivo para gastos corrientes",
+            "description": "Cartera normal que Jack lleva consigo; durante el cobro sacó un billete de diez y recibió dos con veinte de cambio. No se fija el efectivo total restante.",
+            "narrative_only": true
+          },
+          "automatic_carry": true
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "La pestaña del casquillo sobresale del rebaje.",
+          "source": "Examen directo del casquillo en el mostrador de Noah.",
+          "after": "La pestaña del casquillo sobresale del rebaje. (source: Examen directo del casquillo en el mostrador de Noah.; EV-000030)"
+        },
+        {
+          "actor_id": "PLAYER-001",
+          "field": "knowledge",
+          "fact": "Observed public access at LOC-MARKET-NOAH-REPAIR",
+          "source": "La puerta del taller de Noah está abierta a Market Row. | Noah sostiene la hoja con el talón mientras pasa una caja al otro lado del umbral.",
+          "after": "Observed public access at LOC-MARKET-NOAH-REPAIR (source: La puerta del taller de Noah está abierta a Market Row. | Noah sostiene la hoja con el talón mientras pasa una caja al otro lado del umbral.; EV-000030)",
+          "place_observation": {
+            "version": 1,
+            "location_id": "LOC-MARKET-NOAH-REPAIR",
+            "observed_from": "LOC-COMMERCIAL-DISTRICT",
+            "scene_quote": "La puerta del taller de Noah está abierta a Market Row.",
+            "access_quote": "Noah sostiene la hoja con el talón mientras pasa una caja al otro lado del umbral."
+          }
+        }
+      ],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
+    },
+    {
+      "id": "EV-000031",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "NPC-006"
+      ],
+      "kind": "independent_actor",
+      "intent": "Noah lleva una caja del distrito al mostrador de su negocio.",
+      "outcome": "El comerciante entra con su caja y deja libre el mostrador.",
+      "known_to": [
+        "NPC-006"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-006",
+          "field": "last_resolved_action",
+          "before": null,
+          "after": {
+            "event_id": "EV-000031",
+            "day": -29,
+            "summary": "El comerciante entra con su caja y deja libre el mostrador."
+          }
+        },
+        {
+          "actor_id": "NPC-006",
+          "field": "location_id",
+          "before": "LOC-COMMERCIAL-DISTRICT",
+          "after": "LOC-MARKET-NOAH-REPAIR",
+          "route": [
+            "LOC-COMMERCIAL-DISTRICT",
+            "LOC-MARKET-NOAH-REPAIR"
+          ],
+          "travel": {
+            "mode": "walk",
+            "elapsed_minutes": 3,
+            "basis": "Noah lleva la caja desde la calle."
+          }
+        }
+      ],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
+    },
+    {
+      "id": "EV-000032",
+      "chapter_id": "CH-000",
+      "turn": 10,
+      "day": -29,
+      "actor_ids": [
+        "NPC-003"
+      ],
+      "kind": "independent_actor",
+      "intent": "Navigate the evening transit crowd toward the commercial district. El puesto de la destinataria está cerrado al llegar el mensajero.",
+      "outcome": "Darius conserva el paquete para un segundo intento.",
+      "known_to": [
+        "NPC-003"
+      ],
+      "caused_by": [],
+      "state_changes": [
+        {
+          "actor_id": "NPC-003",
+          "field": "last_resolved_action",
+          "before": {
+            "event_id": "EV-000008",
+            "day": -30,
+            "summary": "Darius delivers his parcel at a Market Row shop and moves on to the rest of his evening's work."
+          },
+          "after": {
+            "event_id": "EV-000032",
+            "day": -29,
+            "summary": "Darius conserva el paquete para un segundo intento."
+          }
+        },
+        {
+          "actor_id": "NPC-003",
+          "field": "knowledge",
+          "fact": "El puesto de la destinataria está cerrado al llegar el mensajero.",
+          "source": "Darius en persona en el puesto de entrega de Market Row.",
+          "after": "El puesto de la destinataria está cerrado al llegar el mensajero. (source: Darius en persona en el puesto de entrega de Market Row.; EV-000032)"
+        }
+      ],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 30
     }
   ]
 }
