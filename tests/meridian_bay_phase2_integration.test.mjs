@@ -1,4 +1,5 @@
 // Synthetic city workflow only. All remote commits live in memory, never in canon.
+import {draftReviewedSocialContact} from '../tools/living_world_social.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -217,4 +218,50 @@ test('private café work stays conditional across a chapter and recovers the exa
  assert.deepEqual(f.counts,counts,'Repeated recovery makes no new writes');
  for(const [path,text] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),text);
+});
+
+test('social testimony survives interrupted save, chapter closure and later travel',async()=>{
+ const f=fixture(),initial=await f.snapshot(),actors=['NPC-006','NPC-003'];
+ const encounter=draftReviewedSocialContact({state:initial.state,interactionId:'SOC-QA-COMPONENTS',
+  participantIds:actors,elapsedMinutes:5,reviewed:true,
+  observation:{kind:'current_turn_observation',confirmed_by_reviewer:true,
+   observer_actor_id:actors[0],fact:'Noah and Darius discuss their previous work at Market Row.',
+   causal_source:'A direct conversation heard by the two participants.'},
+  outcomes:{[actors[0]]:'Noah describes his experience with local supplies.',
+   [actors[1]]:'Darius listens to the account while waiting for his delivery.'},
+  knowledgeTransfer:{speaker_id:actors[0],recipient_id:actors[1],
+   known_entry:initial.state.world.actors[actors[0]].knowledge[0]},
+  relationshipUpdates:[{actorId:actors[1],relation:'local contact',bond:'willing to ask for advice'}]});
+ const turn=action(initial);
+ f.rejectRef=true;
+ const interrupted=await saveLivingWorldTurn({remote:f.remote,journal:f.journal,branch,
+  chapterId:'CH-000',turn,npcResolutions:encounter});
+ assert.equal(interrupted.status,'blocked');assert.ok(interrupted.commitHead);
+ f.rejectRef=false;
+ const recovered=await recoverJournaledSave({remote:f.remote,journal:f.journal,branch});
+ assert.equal(recovered.status,'verified',recovered.reason);
+ assert.equal(recovered.commitHead,interrupted.commitHead);
+ assert.deepEqual(recovered.narration_messages,turn.narration_messages);
+ const current=await f.snapshot();
+ const nextPlan={plan_version:1,chapter_id:'CH-001',title:'Synthetic Market Row continuity',
+  status:'prepared',source_commit:f.head,purpose:'Carry a private relationship across chapters.',
+  time_context:{day:current.state.time.day,period:current.state.time.time_of_day,constraints:[]},
+  location_ids:['LOC-COMMERCIAL-DISTRICT'],npc_ids:actors,thread_ids:[],hidden_plan_ids:[],
+  possible_developments:[],exit_conditions:['The next ordinary work interval closes.']};
+ const transition=await saveChapterTransition({remote:f.remote,journal:f.journal,branch,
+  chapterId:'CH-000',nextPlan,reviewed:true,reason:'Synthetic chapter boundary for social recovery.'});
+ assert.equal(transition.status,'verified',transition.reason);
+ const later=await f.snapshot();
+ const moved=await saveLivingWorldTurn({remote:f.remote,journal:f.journal,branch,
+  chapterId:'CH-001',turn:action(later),npcResolutions:[{actor_id:actors[1],reviewed:true,
+   resolved:true,causal_basis:'Darius continues his delivery after the conversation.',
+   outcome:'Darius reaches the collection point in Market Row.',
+   changes:[{field:'location_id',before:'LOC-COMMERCIAL-DISTRICT',after:'LOC-MARKET-DELIVERY-POINT',
+    travel:{mode:'walking',elapsed_minutes:5,basis:'Short walk to the connected collection point.'}}]}]});
+ assert.equal(moved.status,'verified',moved.reason);
+ const final=await f.snapshot();
+ assert.equal(allEvents(final).filter(e=>e.social_context).length,2);
+ assert.equal(final.state.world.actors[actors[1]].relationships[actors[0]].bond,'willing to ask for advice');
+ assert.deepEqual(final.state.world.actors[actors[0]].relationships,initial.state.world.actors[actors[0]].relationships);
+ assert.deepEqual(final.state.player.knowledge,initial.state.player.knowledge);
 });

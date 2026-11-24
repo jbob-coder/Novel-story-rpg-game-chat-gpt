@@ -188,3 +188,19 @@ ser falsa o rectificada: registrar la publicación por separado de la verdad
 alegada. Solo un evento adjudicado y guardado incorpora consecuencias al mundo.
 El material anterior al Día 0 no anticipa poderes; las posibilidades posteriores
 no asignan despertares, destinos ni resultados a personajes concretos.
+
+## Encuentros privados entre dos NPC
+
+Al preparar un encuentro directo, registra qué observó cada participante y
+qué relación o conocimiento cambió. Puedes pasar `elapsedMinutes` a
+`draftReviewedSocialContact` para indicar cuánto duró la conversación. Los dos
+participantes emplean ese tiempo a la vez. Cada uno debe disponer de él además
+del tiempo que ya dedicó a trabajar o desplazarse. Los registros anteriores
+que solo indican el intervalo del turno necesitan al menos un minuto disponible
+por participante. El historial conserva la duración exacta como desconocida.
+
+La recuperación comprueba las ubicaciones en el momento del encuentro,
+incluidos los movimientos posteriores y las incorporaciones de nuevos NPC.
+La narración puede citar un detalle privado cuando el conocimiento de Jack
+incluya ese dato con una fuente. El control automático detecta copias literales.
+El narrador revisa por separado las paráfrasis y lo que Jack pudo observar.

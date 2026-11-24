@@ -299,3 +299,40 @@ test('social knowledge does not automatically disclose speaker secret to the pla
  assert.ok(!staged.chapter.includes(noahFact));
  assert.equal(JSON.stringify(snapshot),before);
 });
+
+test('historical encounters use the participants’ locations at the time',()=>{
+ const saved=stage(draft({knowledgeTransfer:null}));
+ for(const event of saved.events.events.slice(-2))event.social_context.location_id='LOC-CAFE-BRUMA';
+ assert.throws(()=>verifySocialEventHistory(saved),/share the recorded location/);
+});
+
+test('replay preserves relationship attributes and keeps social testimony private',()=>{
+ const saved=stage(draft());
+ const effect=saved.events.events.at(-1).state_changes.find(change=>change.field==='relationship');
+ effect.after.knowledge_of_crimes=true;
+ assert.throws(()=>verifySocialEventHistory(saved),/rewrites prior relationship attributes/);
+ const leaked=stage(draft());
+ leaked.events.events.at(-2).known_to.push(state.player.id);
+ assert.throws(()=>verifySocialEventHistory(leaked),/private NPC event/);
+ const stripped=stage(draft());
+ for(const event of stripped.events.events.slice(-2))delete event.social_context;
+ assert.throws(()=>verifySocialEventHistory(stripped),/encounter provenance|Missing social context/);
+});
+
+test('each participant can spend the same meeting interval but cannot exceed it',()=>{
+ const pair=draft({elapsedMinutes:25});
+ assert.equal(stage(pair).events.events.at(-1).social_context.elapsed_minutes,25);
+ assert.throws(()=>stage(draft({elapsedMinutes:26})),/exceed turn duration/);
+ assert.throws(()=>draft({elapsedMinutes:0}),/Invalid social contact duration/);
+ assert.throws(()=>stageLivingWorldTurn({snapshot,observedHead:'a'.repeat(40),
+  turn:{...turn(),elapsed_minutes:0},npcResolutions:draft()}),/duration/);
+});
+
+test('visible prose requires a source before quoting a private encounter',()=>{
+ const privateText=observation.fact;
+ const render=changes=>stageLivingWorldTurn({snapshot:stage(draft()),observedHead:'a'.repeat(40),
+  turn:{...turn(),key:'synthetic-source-disclosure',changes,narration_messages:[privateText]}});
+ assert.throws(()=>render([]),/Private social encounter leaked/);
+ const disclosed=render([{field:'knowledge',fact:privateText,source:'A participant reports the exchange to Jack in this synthetic turn.'}]);
+ assert.equal(disclosed.transcript.entries.at(-1).text,privateText);
+});

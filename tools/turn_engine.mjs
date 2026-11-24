@@ -147,6 +147,7 @@ function stageNarrativeTurn(snapshot, turn) {
     }
     const before=actor.last_resolved_action==null?null:JSON.parse(JSON.stringify(actor.last_resolved_action));
     const after={event_id:record.id,day:newDay,summary:item.outcome};
+    if(record.social_context)after.social_interaction_id=record.social_context.interaction_id;
     actor.last_resolved_action=after;
     record.state_changes.push({actor_id:item.actor_id,field:"last_resolved_action",before,after});
     const npcChanges=[];
