@@ -97,3 +97,14 @@ The sixth separately authored exploratory turn starts **only** from the verified
 The added test requires exact Step 05 hash; all seven actor reviews tied to fictional turn 15; 2 actor events and 5 abstentions; an admitted destination with reviewed travel metadata; no re-delivery of the completed parcel; Noah's current shop location; unchanged actor resources; actor-owned causal event IDs; unchanged protected player; zero disclosure of exact private outcomes; and in-memory five-file checkpoint recovery. The five canonical CH-000/save files are read for exact byte comparison, never written.
 
 **Acceptance status:** this is a **narrator-authored, frozen exploratory fixture**, not a language-model call or independent semantic review. Keep PR #193 DRAFT/unmerged until official CI and the separate 30-step/semantic-quality gate pass. Do not report this sixth turn as verified solely from the test commit.
+
+
+## Sequential step 07: independent neighborhood movement, no invented neighbor
+
+This authored exploratory scene was written **after verifying Step 06**, and requires the exact recovered six-step snapshot SHA-256 `428eff8aa2f1a012b09660cb26361b5494186d81176eace330172ccba7aa0ca7`. It never changes the real CH-000 save.
+
+**Rosa (NPC-005)** has personally verified that the alarm clock is repaired (EV-000029), previously recorded a reminder to return it, and is still in her family apartment. She now chooses one physical step toward arranging a possible handover: walking from `LOC-WILSON-APARTMENT` to the **directly connected** `LOC-RAILGARDEN-RESIDENTIAL` district. The test uses a narrator-reviewed approximate **four-minute** walk within a ten-minute synthetic interval; it does **not** assert exact world distances, where the neighbor lives, any meeting, any conversation, or taking/transferring the clock. Only Rosa's location and private plan change. The other **six** NPCs can abstain without losing plans or memories.
+
+The test checks exact Step 06 input hash, actor-owned motive and event linkage, admitted graph path and explicit travel metadata, no handover, no invented neighbor, unchanged resources/knowledge and six other actor states, the preserved player, exact event count, private text excluded from player-visible narration, and a full in-memory five-file codec roundtrip. Original five-file contents are read and compared byte-for-byte, not written.
+
+**Not a live autonomy claim.** These are frozen, narrator-authored QA examples executed by Node, not an independently evaluated model-generated run. Official CI, protected blob comparison and separate semantic evaluation remain required. Keep PR #193 in draft and unmerged.
