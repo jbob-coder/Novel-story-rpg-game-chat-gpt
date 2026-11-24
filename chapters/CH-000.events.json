@@ -2103,6 +2103,26 @@
       "progression_awards": [],
       "travel_policy_version": 1,
       "turn_elapsed_minutes": 30
+    },
+    {
+      "id": "EV-000033",
+      "chapter_id": "CH-000",
+      "turn": 11,
+      "day": -29,
+      "actor_ids": [
+        "PLAYER-001"
+      ],
+      "kind": "player_action",
+      "intent": "Esperar.",
+      "outcome": "Transcurre un minuto.",
+      "known_to": [
+        "PLAYER-001"
+      ],
+      "caused_by": [],
+      "state_changes": [],
+      "progression_awards": [],
+      "travel_policy_version": 1,
+      "turn_elapsed_minutes": 1
     }
   ]
 }
