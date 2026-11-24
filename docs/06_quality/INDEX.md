@@ -23,3 +23,17 @@
 - [Protección del actor de origen de hilos narrativos y persistencia causal](CONSEQUENCE_ORIGIN_ACTOR_GUARD_20261122.md)
 - [Identidad de NPC: nombres completos duplicados no autorizan memoria automática](NPC_DUPLICATE_FULL_NAME_GUARD_20261122.md)
 - [Reconciliación de referencias THREAD y memoria de NPC de nombre duplicado](CONTEXT_THREAD_RECONCILIATION_20261122.md)
+
+- [NPC: prototipo aislado de intenciones abiertas y contexto privado](../../docs/06_quality/NPC_CONTEXTUAL_INTENT_PROTOTYPE_20261122.md)
+
+- [Siete días sintéticos: comparación de decisiones abiertas, memoria e integridad](../../docs/06_quality/NPC_CONTEXTUAL_MULTIDAY_REHEARSAL_20261122.md)
+
+- [NPC: una resolución por turno y continuación desde el resultado verificado](NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md)
+
+- [Revisión de agencia NPC fuera de escena, sin acción obligatoria](NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md)
+
+- [NPC: peticiones abiertas al narrador, revisión de intenciones y resultados](NPC_INTENTION_GENERATION_BRIDGE_20261122.md)
+
+- [NPC: composición de propuestas y abstenciones revisadas en un mismo turno](NPC_GENERATED_TURN_BATCH_QA_20261122.md)
+
+- [NPC: selección acotada y rotación equitativa fuera de escena](NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md)
