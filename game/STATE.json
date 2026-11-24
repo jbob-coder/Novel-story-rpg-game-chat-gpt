@@ -6,7 +6,7 @@
   "chapter": {
     "id": "CH-000",
     "status": "opening",
-    "last_resolved_event_id": "EV-000032"
+    "last_resolved_event_id": "EV-000033"
   },
   "time": {
     "day": -29,
@@ -14,7 +14,7 @@
     "calendar_date": null,
     "time_of_day": "morning",
     "clock_time": null,
-    "elapsed_minutes_since_opening_approx": 919
+    "elapsed_minutes_since_opening_approx": 920
   },
   "player": {
     "initialized": true,
@@ -938,9 +938,9 @@
     }
   },
   "history": {
-    "last_event_sequence": 32,
+    "last_event_sequence": 33,
     "completed_chapters": [],
-    "last_transcript_sequence": 22,
+    "last_transcript_sequence": 24,
     "completed_turn_keys": [
       "CH000-PLAYER-0001-CROSSWATER-GLITCH",
       "CH000-TURN-0002-CAFE-SECOND-PHASE",
@@ -951,7 +951,8 @@
       "CH000-TURN-0007-USB-FINANCIAL-CAMERA",
       "CH000-TURN-0008-MORNING-TRANSITION",
       "CH000-TURN-0009-BACKPACK-CLOCK-ASTER-ARM",
-      "qa-ordinary-workbench"
+      "qa-ordinary-workbench",
+      "qa-ordinary-pause"
     ],
     "story_revisions": [
       {
@@ -977,10 +978,10 @@
     "interaction_mode": "free_text_no_numbered_options",
     "location_id": "LOC-WILSON-WORKSHOP",
     "message": "Jack awaits the next free-form action.",
-    "last_player_action": "Me quedo en el taller. Muevo despacio el codo de Aster a mano para comprobar si roza."
+    "last_player_action": "Espero un momento."
   },
   "save": {
-    "last_verified_turn": 10,
+    "last_verified_turn": 11,
     "notes": "Candidate checkpoint: commit and read-back required before calling this turn verified."
   },
   "narrative_threads": [

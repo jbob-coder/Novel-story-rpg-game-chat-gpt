@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "chapter_id": "CH-000",
-  "last_entry_sequence": 22,
+  "last_entry_sequence": 24,
   "entries": [
     {
       "id": "TXT-000001",
@@ -265,6 +265,28 @@
         "EV-000030",
         "EV-000031",
         "EV-000032"
+      ]
+    },
+    {
+      "id": "TXT-000023",
+      "chapter_id": "CH-000",
+      "turn": 11,
+      "role": "player",
+      "kind": "player_action",
+      "text": "Espero un momento.",
+      "event_ids": [
+        "EV-000033"
+      ]
+    },
+    {
+      "id": "TXT-000024",
+      "chapter_id": "CH-000",
+      "turn": 11,
+      "role": "assistant",
+      "kind": "resolution",
+      "text": "Por la ventana del taller entra el sonido de un coche al pasar.",
+      "event_ids": [
+        "EV-000033"
       ]
     }
   ]
