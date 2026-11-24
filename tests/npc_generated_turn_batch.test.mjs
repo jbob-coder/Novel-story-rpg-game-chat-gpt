@@ -842,3 +842,161 @@ test('narrator original-initiative assessment turn 05 uses an admitted path to o
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 06 is written only from the exact decoded Step 05 result. A completed
+// courier parcel cannot be re-delivered: Darius may independently approach an
+// admitted public parcel facility to look for work, without creating a job.
+// Noah, having arrived at his own shop, may start assessing existing pending
+// work without inventing stock, customers or orders. This is frozen QA prose,
+// not an LLM provider invocation or a production-world turn.
+export function replayNarratorThirtyTurnReviewThroughStep06(){
+ const fifth=replayNarratorThirtyTurnReviewThroughStep05();
+ assert.equal(fifth.snapshotHash,
+  'b546eb8301636332c08d8a871bb93c10b456f7917dda854ad1e9bbfa8e0c1b88',
+  'Step 06 requires the exact verified decoded Step 05 snapshot');
+ const prior=fifth.snapshot,unchanged=JSON.stringify(prior);
+ const batch=prepareNPCIntentionRequests({snapshot:prior,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const byId=new Map(batch.requests.map(r=>[r.actorId,r]));
+ const darius=byId.get('NPC-003'),noah=byId.get('NPC-006');
+ const from='LOC-COMMERCIAL-DISTRICT',dest='LOC-MARKET-DELIVERY-POINT';
+ const point=prior.state.world.locations[dest];
+ assert.equal(prior.state.world.actors['NPC-003'].location_id,from);
+ assert.equal(point.type,'commercial_delivery_hub');
+ assert.equal(point.public_area,true);
+ assert.equal(point.access_status,'public_confirmed');
+ assert.ok(prior.state.world.locations[from].connected_ids.includes(dest));
+ assert.ok(point.connected_ids.includes(from));
+ assert.equal(point.opening_hours,null,'Do not presume open reception hours');
+ assert.equal(prior.state.world.actors['NPC-006'].location_id,
+  'LOC-MARKET-NOAH-REPAIR');
+ assert.equal(prior.state.world.locations['LOC-MARKET-NOAH-REPAIR']
+  .related_actor_id,'NPC-006');
+ assert.ok(darius.evidence.previousResult?.eventId);
+ assert.ok(darius.evidence.knownEventIds.includes('EV-000008'));
+ assert.ok(darius.evidence.knownEvents.some(e=>e.id==='EV-000008'&&
+  e.outcome.includes('delivers his parcel')));
+ assert.ok(noah.evidence.previousResult?.eventId);
+ assert.ok(noah.evidence.knownEvents.some(e=>
+  e.id===noah.evidence.previousResult.eventId&&
+  e.outcome.includes('SYNTHETIC PRIVATE NOAH STEP05')));
+ const dariusPlan='At the public Market Row parcel reception point, Darius can seek a new paid courier task; no assignment, recipient or deadline has been confirmed.';
+ const noahPlan='At his own repair shop, Noah begins reviewing existing pending work by actual component needs before considering any order; stock counts and sales remain unknown.';
+ const privateDarius='SYNTHETIC PRIVATE DARIUS STEP06: Darius walks to the existing publicly accessible Market Row parcel reception point to look for a new paid courier opportunity. He does not receive a parcel, meet a dispatcher or secure a job.';
+ const privateNoah='SYNTHETIC PRIVATE NOAH STEP06: In his own shop, Noah begins reviewing known pending work priorities. He verifies no specific item quantity, customer order, sale or supplier agreement.';
+ const otherReasons={
+  'NPC-001':'Lena already separated historic dispatch and panel reports; no current route, departure or technical update has been observed.',
+  'NPC-002':'Sora prior inspection is finished; no new fault or work order is verified and inventing another one would misstate her memory.',
+  'NPC-004':'Elena still carries her USB; the map does not establish an admitted school location or verified arrival, so another classroom event cannot be inferred.',
+  'NPC-005':'Rosa clock was repaired and her reminder is recorded; no neighbor availability or handover occurred.',
+  'NPC-007':'Mara recorded shift closing remains a past event and does not establish a new cafe opening or customer.'
+ };
+ const choices=batch.requests.map(request=>{
+  const id=request.actorId;
+  if(id==='NPC-003')return {request,proposal:{
+    actorId:id,decision:'act',
+    intention:'Darius chooses to walk from Market Row to the existing public parcel reception point to look for a legitimate new courier assignment, without treating the old delivered parcel as outstanding.',
+    reasoning:'His last completed parcel is recorded as delivered, and the publicly admitted Market Row reception point is directly connected to his current district. Walking there does not establish operating hours, a new order or another person presence.',
+    sourceEventIds:[request.evidence.previousResult.eventId],
+    destinationId:dest
+   },reviewed:true,outcome:privateDarius,changes:[
+    {field:'location_id',before:from,after:dest,route:[from,dest],
+     travel:{mode:'walk',elapsed_minutes:6,
+      basis:'Reviewer estimates one short on-foot transition from the Market Row district to its mapped public parcel reception point; approximate isolated QA timing, not a canonical map distance.'}},
+    {field:'independent_plan',before:request.evidence.independentPlan,
+     after:dariusPlan}
+   ]};
+  if(id==='NPC-006')return {request,proposal:{
+    actorId:id,decision:'act',
+    intention:'Noah begins an on-site review of existing pending repair priorities at his own shop, separating what must be checked before he considers ordering components.',
+    reasoning:'He reached the shop during the verified prior turn and has an established goal to address pending work; no inventory figures, customer visits, supplier offers or part specifications are known.',
+    sourceEventIds:[request.evidence.previousResult.eventId]
+   },reviewed:true,outcome:privateNoah,
+   changes:[{field:'independent_plan',
+    before:request.evidence.independentPlan,after:noahPlan}]};
+  return {request,proposal:{actorId:id,decision:'abstain',
+   reasoning:otherReasons[id]}};
+ });
+ assert.deepEqual(new Set(choices.map(x=>x.request.actorId)),
+  new Set(Object.keys(prior.state.world.actors)));
+ assert.equal(choices.filter(x=>x.proposal.decision==='act').length,2);
+ assert.equal(choices.filter(x=>x.proposal.decision==='abstain').length,5);
+ for(const choice of choices){
+  assert.equal(choice.request.checkpoint.completedTurn,14);
+  assert.ok((choice.proposal.sourceEventIds??[]).every(id=>
+   choice.request.evidence.knownEventIds.includes(id)));
+ }
+ const staged=stageReviewedNPCIntentionTurn({
+  snapshot:prior,observedHead:head,
+  turn:{...turn('narrator-30-step-06'),elapsed_minutes:10,
+   intent:'[ISOLATED QA] Jack gives no instructions to Darius or Noah.',
+   outcome:'Ten fictional minutes pass with no player knowledge of offscreen decisions.',
+   narration_messages:['[ISOLATED QA] No private courier or shop details reach Jack.']},
+  choices
+ });
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,15);
+ assert.equal(staged.manifest.last_event_sequence,45);
+ assert.deepEqual(new Set(staged.npcTurnReview.actedActorIds),
+  new Set(['NPC-003','NPC-006']));
+ assert.deepEqual(new Set(staged.npcTurnReview.abstainedActorIds),
+  new Set(Object.keys(otherReasons)));
+ const reloaded=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(reloaded),true);
+ const actorD=reloaded.state.world.actors['NPC-003'];
+ const actorN=reloaded.state.world.actors['NPC-006'];
+ assert.equal(actorD.location_id,dest);
+ assert.equal(actorD.independent_plan,dariusPlan);
+ assert.equal(actorN.location_id,'LOC-MARKET-NOAH-REPAIR');
+ assert.equal(actorN.independent_plan,noahPlan);
+ assert.deepEqual(actorD.resources,prior.state.world.actors['NPC-003'].resources);
+ assert.deepEqual(actorN.resources,prior.state.world.actors['NPC-006'].resources);
+ const eventD=reloaded.events.events.find(e=>e.turn===15&&
+  e.actor_ids.includes('NPC-003'));
+ const eventN=reloaded.events.events.find(e=>e.turn===15&&
+  e.actor_ids.includes('NPC-006'));
+ assert.ok(eventD&&eventN);
+ assert.deepEqual(eventD.caused_by,[darius.evidence.previousResult.eventId]);
+ assert.deepEqual(eventN.caused_by,[noah.evidence.previousResult.eventId]);
+ assert.ok(eventD.state_changes.some(c=>c.field==='location_id'&&
+  c.before===from&&c.after===dest&&c.travel?.mode==='walk'&&
+  c.travel.elapsed_minutes===6&&
+  JSON.stringify(c.route)===JSON.stringify([from,dest])));
+ for(const id of Object.keys(otherReasons))
+  assert.deepEqual(reloaded.state.world.actors[id],
+   prior.state.world.actors[id],'Abstention must retain actor memory '+id);
+ assert.deepEqual(reloaded.state.player,prior.state.player);
+ assert.equal(reloaded.state.time.day,-29);
+ assert.equal(reloaded.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+60);
+ for(const privateText of [privateDarius,privateNoah]){
+  assert.ok(!reloaded.chapter.includes(privateText));
+  assert.ok(reloaded.transcript.entries.every(e=>!e.text.includes(privateText)));
+ }
+ assert.equal(JSON.stringify(prior),unchanged);
+ for(const [path,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(reloaded))).digest('hex');
+ return {snapshot:reloaded,snapshotHash,priorHash:fifth.snapshotHash};
+}
+test('narrator original-initiative assessment turn 06 acts from new locations without inventing work or sales',()=>{
+ const {snapshot,snapshotHash,priorHash}=
+  replayNarratorThirtyTurnReviewThroughStep06();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_06 '+JSON.stringify({
+  modelAuthoredAtReviewTime:true,modelApiInvokedByTest:false,
+  reviewTurn:6,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:priorHash,
+  stagedSyntheticTurn:snapshot.manifest.last_completed_turn,
+  acted:['NPC-003','NPC-006'],abstained:5,newNpcEvents:2,
+  publicCourierPointReachedWithoutJob:true,
+  shopWorkReviewWithoutInventedInventory:true,
+  allOtherActorMemoriesPreserved:true,
+  privateOutcomeNotDisclosed:true,canonicalSaveWrites:0,
+  verifiedSnapshotHash:snapshotHash,
+  independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
