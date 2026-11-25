@@ -429,3 +429,14 @@ authentic turn-nine snapshot, plus a valid synthetic private NPC learning
 event with an exact source record. The automatic memory relevance test now
 stages its 21 synthetic notes via an owned event rather than changing
 `actor.knowledge` directly. The original five-file save remains untouched.
+
+## Day 0 actorless event replay guard (QA)
+The sealed-knowledge replayer must check that a historical event actually has
+a social `transfer` before comparing its speaker to `actor_ids[0]`.
+Otherwise an actorless world event (the legitimate Day 0 shockwave) makes
+`undefined===undefined` true and dereferencing `context.transfer` rejects
+an otherwise valid save before any detached commit can be created.
+The ordinary-choice / private-consequence / Day 0 arrival / recovery
+integration test exercises this exact path. The new condition preserves
+social provenance checks while ignoring non-social, actorless world events.
+
