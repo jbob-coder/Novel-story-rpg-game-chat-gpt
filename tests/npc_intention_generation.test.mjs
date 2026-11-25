@@ -194,7 +194,7 @@ test('the cited older known source is preserved instead of silently forcing late
 
 
 test('generated NPC requests do not launder another actor event detail via known_to',()=>{
- const request=prepareNPCIntentionRequests({snapshot:baseline,actorIds:['NPC-005'],
+ const request=prepareNPCIntentionRequests({snapshot:baseline(),actorIds:['NPC-005'],
   elapsedMinutes:15}).requests[0];
  assert.equal(request.actorId,'NPC-005');
  assert.ok(request.evidence.knownEventIds.includes('EV-000025'));
