@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {
  inspectNPCCausalContinuations,draftReviewedNPCCausalContinuation,
- validateNPCContinuationDraft,verifyNPCCausalContinuationHistory
+ validateNPCContinuationDraft,verifyNPCCausalContinuationHistory,
+ inspectNPCDecisionConsequenceHistory
 } from '../tools/living_world_causal_continuations.mjs';
 import {draftReviewedSocialContact} from '../tools/living_world_social.mjs';
 import {draftReviewedNPCIntroduction} from '../tools/living_world_npc_introduction.mjs';
@@ -419,4 +420,107 @@ test('forged final-state knowledge cannot backdate a private NPC decision',()=>{
  assert.throws(()=>verifyNPCCausalContinuationHistory(forged),
   /future event or an event it does not know/);
  assert.equal(verifyNarrativeSnapshot(later),true);
+});
+
+test('reviewed decision effects stay actor-owned across work obligation, trust and independent plan',()=>{
+ const old=JSON.stringify(baseline),first=socialFirst();
+ const actorId='NPC-003',otherId='NPC-006';
+ const sourceId=first.events.events.at(-1).id;
+ const memory=first.state.world.actors[actorId].knowledge.at(-1);
+ const createEvent='EV-000034',followEvent='EV-000036';
+ const obligation={
+  id:'OBL-SYNTHETIC-SUPPLY-VERIFY',summary:'SYNTHETIC QA: confirm a repair part delivery.',
+  source_event_id:createEvent,last_change_event_id:createEvent,
+  due_day:null,status:'pending',priority:'normal',blockers:[],
+  resolution:null,resolution_event_id:null
+ };
+ const chosenPlan='SYNTHETIC QA: verify the parts delivery before accepting a promise.';
+ const actor=first.state.world.actors[actorId],before=actor.commitments??[];
+ const firstDecision=npcAction(first,actorId,[sourceId],{
+  reasoning:'SYNTHETIC QA: Darius weighs a sourced report and chooses to check the supplies.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius starts an independent verification obligation.',
+  memoryBasis:{
+   knowledge_entry:memory,
+   interpretation:'SYNTHETIC QA: the secondhand report is not enough to guarantee stock.',
+   alternative_considered:'SYNTHETIC QA: he could accept the report as settled without checking.'
+  },
+  changes:[
+   {field:'independent_plan',before:actor.independent_plan,after:chosenPlan},
+   {field:'relationship',target_actor_id:otherId,before:null,
+    after:{relation:'colleague from the market',bond:'cautious cooperation'}},
+   {field:'commitments',before,after:[...before,obligation]}
+  ]
+ });
+ const noahDecision=npcAction(first,otherId,[first.events.events.at(-2).id],{
+  outcome:'SYNTHETIC QA PRIVATE: Noah chooses to continue his existing work without a new obligation.'
+ });
+ const decisions=stage(first,[firstDecision,noahDecision],
+  'synthetic-decision-consequences-first');
+ assert.equal(verifyNarrativeSnapshot(decisions),true);
+ const effects=inspectNPCDecisionConsequenceHistory({snapshot:decisions});
+ assert.equal(effects.length,2);
+ const d=effects.find(x=>x.actorId===actorId),n=effects.find(x=>x.actorId===otherId);
+ assert.equal(d.decisionEventId,createEvent);
+ assert.equal(d.recordedEffectCount,3);
+ assert.deepEqual(d.recordedEffectFields,['commitments','independent_plan','relationship']);
+ assert.deepEqual(d.commitmentIdsChanged,[obligation.id]);
+ assert.deepEqual(d.relationshipTargetIds,[otherId]);
+ assert.equal(d.independentPlanChanged,true);
+ assert.equal(d.memorySourceEventId,sourceId);
+ assert.deepEqual(d.laterOwnCitedFollowupEventIds,[]);
+ assert.equal(d.inferredCompletion,false);
+ assert.equal(n.status,'no_material_state_effect_recorded');
+ assert.deepEqual(n.commitmentIdsChanged,[]);
+ assert.equal(n.independentPlanChanged,false);
+ assert.equal(decisions.state.world.actors[otherId].relationships?.[actorId],undefined);
+ assert.deepEqual(decisions.state.world.actors[otherId].commitments??[],
+   first.state.world.actors[otherId].commitments??[]);
+ const blocked={...obligation,status:'blocked',
+  blockers:['SYNTHETIC QA: the supplier confirmation has not arrived.'],
+  last_change_event_id:followEvent};
+ const later=npcAction(decisions,actorId,[createEvent],{
+  reasoning:'SYNTHETIC QA: Darius reviews his original commitment and notes an unresolved supplier reply.',
+  outcome:'SYNTHETIC QA PRIVATE: verification remains blocked, not silently completed.',
+  changes:[{field:'commitments',before:[obligation],after:[blocked]}]
+ });
+ const next=stage(decisions,[later],'synthetic-decision-consequences-followup');
+ assert.equal(verifyNarrativeSnapshot(next),true);
+ const report=inspectNPCDecisionConsequenceHistory({snapshot:next,actorIds:[actorId]});
+ assert.equal(report.length,2);
+ assert.deepEqual(report[0].laterOwnCitedFollowupEventIds,[followEvent]);
+ assert.equal(report[0].laterOwnCitedFollowupCount,1);
+ assert.deepEqual(report[1].commitmentIdsChanged,[obligation.id]);
+ assert.equal(next.state.world.actors[actorId].commitments[0].status,'blocked');
+ assert.equal(next.state.world.actors[actorId].commitments[0].resolution_event_id,null);
+ const closed=close(next);
+ assert.equal(verifyNarrativeSnapshot(closed),true);
+ const replay=stage(closed,[],'synthetic-consequence-after-archive');
+ assert.equal(verifyNarrativeSnapshot(replay),true);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({snapshot:replay,actorIds:[actorId]}),
+  report);
+ assert.equal(replay.manifest.chapter_id,'CH-001');
+ assert.equal(replay.state.world.actors[actorId].commitments[0].status,'blocked');
+ assert.ok(!replay.chapter.includes(obligation.summary));
+ assert.equal(JSON.stringify(baseline),old);
+});
+
+test('decision effect audit refuses forged causal links and never infers completion',()=>{
+ const first=socialFirst(),event=first.events.events.at(-1).id;
+ const decision=stage(first,[npcAction(first,'NPC-003',[event],{
+  outcome:'SYNTHETIC QA PRIVATE: Darius weighs his options without a material new action.'
+ })],'synthetic-decision-consequences-noop');
+ const original=JSON.stringify(decision);
+ const evidence=inspectNPCDecisionConsequenceHistory({snapshot:decision,actorIds:['NPC-003']});
+ assert.equal(evidence.length,1);
+ assert.equal(evidence[0].recordedEffectCount,0);
+ assert.equal(evidence[0].inferredCompletion,false);
+ assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
+  actorIds:['NPC-007','NPC-007']}),/Unknown or repeated/);
+ assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
+  limit:101}),/Invalid decision consequence/);
+ const forged=structuredClone(decision);
+ forged.events.events.at(-1).continuation_context.source_event_ids=['EV-000029'];
+ assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:forged}),
+  /event it does not know|unreviewed, altered|causal/i);
+ assert.equal(JSON.stringify(decision),original);
 });
