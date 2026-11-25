@@ -73,3 +73,29 @@ test('invalid candidate limits and actor identities are rejected',()=>{
   worldDay:-29,completedTurn:9,limit:5,actorIds:['NPC-100','NPC-100']}),
   /Unknown or duplicate NPC review selection/);
 });
+
+
+test('mixed priorities rotate through the remaining slots without permanent gaps',()=>{
+ const actors=structuredClone(syntheticActors);
+ actors['NPC-180']={goal:'Review an outstanding responsibility.',
+  commitments:[{status:'pending',due_day:-29}]};
+ const seen=new Set();
+ for(let turn=0;turn<20;turn++){
+  const review=rankOpenNPCReviewCandidates({actors,completedTurn:turn,worldDay:-29,limit:5});
+  assert.equal(review.eligibleCount,81);
+  assert.equal(review.selected.length,5);
+  assert.equal(review.selected[0].actorId,'NPC-180');
+  assert.equal(new Set(review.selected.map(x=>x.actorId)).size,5);
+  review.selected.forEach(row=>seen.add(row.actorId));
+ }
+ assert.equal(seen.size,81,'All 80 ordinary actors must receive review across 20 four-slot windows');
+});
+
+test('saturated due priorities remain a separate policy limitation',()=>{
+ const actors=structuredClone(syntheticActors);
+ for(let i=100;i<105;i++)actors['NPC-'+i].commitments=[{status:'pending',due_day:-29}];
+ const review=rankOpenNPCReviewCandidates({actors,completedTurn:0,worldDay:-29,limit:5});
+ assert.equal(review.eligibleCount,80);
+ assert.ok(review.selected.every(row=>row.priority===3));
+ // This patch preserves strict due-first policy. It does not promise lower-priority coverage under saturation.
+});
