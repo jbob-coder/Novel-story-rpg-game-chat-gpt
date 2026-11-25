@@ -274,3 +274,16 @@ una frase idéntica. No se extrapola automáticamente verdad, creencia activa,
 intención, capacidad ni obligación de actuar. Nada cambia sin un evento
 independiente del NPC y una resolución editorial revisada. El campo es
 opcional: las continuaciones antiguas conservan su contrato.
+
+ 
+### Consecuencias verificables de decisiones independientes
+
+La consulta privada `inspectNPCDecisionConsequenceHistory` identifica por
+`EV` la decisión revisada, los **cambios realmente guardados** de ese NPC
+(plan, relación, compromiso, servicio u otros campos), y las acciones
+posteriores del **mismo actor** que citan explícitamente esa decisión.
+Una decisión sin mutación material aparece como `no_material_state_effect_recorded`;
+eso no significa fracaso, éxito ni inacción definitiva. Las obligaciones
+`pending` o `blocked` no se declaran resueltas por existir una decisión.
+Las acciones de otro NPC no se cuentan como propias ni se transmiten
+automáticamente. Toda consecuencia nueva necesita su propio evento.
