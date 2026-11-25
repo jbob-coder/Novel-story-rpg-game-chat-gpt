@@ -53,8 +53,11 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
  for(const priority of [...grouped.keys()].sort((a,b)=>b-a)){
   const group=grouped.get(priority).sort((a,b)=>
    a.actorId.localeCompare(b.actorId));
-  const start=(completedTurn*limit)%group.length;
-  sorted.push(...group.slice(start),...group.slice(0,start));
+  // Advance by the capacity actually available to this priority group.
+  const take=Math.min(group.length,Math.max(0,limit-sorted.length));
+  if(take===0)break;
+  const start=(completedTurn*take)%group.length;
+  sorted.push(...[...group.slice(start),...group.slice(0,start)].slice(0,take));
  }
  return clone({eligibleCount:eligible.length,
   selected:sorted.slice(0,limit)});
