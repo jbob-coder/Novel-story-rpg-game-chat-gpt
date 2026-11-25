@@ -20,6 +20,28 @@
           "after": "Revisar encargos pendientes y buscar repuestos generales; antes de comprometer precios o plazos, confirmar los componentes necesarios y distinguir diagnóstico de reparación."
         }
       ]
+    },
+    {
+      "requestSha256": "3551cefda47ff28425a9086cee0e817aa5b25b3d5817ae158f37de819493c5f7",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-005",
+        "decision": "act",
+        "intention": "Establecer una precaución para la devolución del despertador: cuando encuentre al vecino, enseñarle cómo cerrar la tapa sin alterar el ajuste y ofrecerle que vuelva si el defecto reaparece, sin buscarlo de inmediato.",
+        "reasoning": "Rosa presenció la corrección y comprobó varios cierres en EV-000029. Quiere ayudar a sus vecinos conservando su independencia. Explicar una comprobación sencilla puede evitar una reparación repetida; no necesita suponer que el vecino está disponible ni que el problema nunca volverá.",
+        "sourceEventIds": [
+          "EV-000029"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Rosa decide incluir una demostración breve del cierre de la tapa al devolver el reloj. Mantiene pendiente el encuentro con el vecino y no da por garantizado que la reparación dure.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana.",
+          "after": "Devolver al vecino el despertador reparado cuando sea oportuno, mostrarle cómo comprobar el cierre de la tapa y ofrecer revisar el defecto si reaparece; seguir con las actividades habituales de la mañana."
+        }
+      ]
     }
   ]
 }
