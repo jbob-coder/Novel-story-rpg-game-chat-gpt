@@ -77,7 +77,7 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
  * Record a review only after it actually occurred (including abstention).
  */
 export function rankNPCReviewWithAging({actors,worldDay,completedTurn,
- elapsedDays=0,actorIds=null,limit=20,lastReviewedAt={}}={}){
+ elapsedDays=0,actorIds=null,limit=20,lastReviewedAt={},urgentDueOverride=false}={}){
  const eligible=collectNPCReviewCandidates({actors,worldDay,completedTurn,elapsedDays,actorIds,limit});
  insist(lastReviewedAt&&typeof lastReviewedAt==='object'&&
   !Array.isArray(lastReviewedAt)&&Object.keys(lastReviewedAt).length<=100000&&
@@ -86,22 +86,103 @@ export function rankNPCReviewWithAging({actors,worldDay,completedTurn,
  const last=id=>Object.hasOwn(lastReviewedAt,id)?lastReviewedAt[id]:-1;
  const oldest=(a,b)=>last(a.actorId)-last(b.actorId)||
   b.priority-a.priority||a.actorId.localeCompare(b.actorId);
- const due=eligible.filter(row=>row.priority===3).sort(oldest);
+ insist(typeof urgentDueOverride==='boolean','Explicit urgent override boolean required');
+ const urgent=eligible.filter(row=>row.priority===3&&
+  (actors[row.actorId].commitments??[]).some(c=>
+   ['pending','blocked'].includes(c.status)&&c.priority==='urgent'&&
+   Number.isSafeInteger(c.due_day)&&c.due_day<=worldDay+elapsedDays)).sort(oldest);
+ const criticalSelected=urgentDueOverride?urgent.slice(0,limit):[];
+ const criticalIds=new Set(criticalSelected.map(row=>row.actorId));
+ const due=eligible.filter(row=>row.priority===3&&!criticalIds.has(row.actorId)).sort(oldest);
  const other=eligible.filter(row=>row.priority!==3).sort(oldest);
+ const capacity=limit-criticalSelected.length;
  // Preserve urgent capacity, while reserving one lower-priority review
  // under saturation. With one slot, reserve every fourth review window.
- const reserve=due.length&&other.length?
-  (limit>1?1:(completedTurn%4===3?1:0)):0;
- const dueSelected=due.slice(0,limit-reserve);
- const otherSelected=other.slice(0,limit-dueSelected.length);
+ const reserve=due.length&&other.length&&capacity>0?
+  (capacity>1?1:(completedTurn%4===3?1:0)):0;
+ const dueSelected=due.slice(0,capacity-reserve);
+ const otherSelected=other.slice(0,capacity-dueSelected.length);
+ const selected=[...criticalSelected,...dueSelected,...otherSelected];
+ const selectedIds=new Set(selected.map(row=>row.actorId));
  return clone({
   classification:'npc_review_aging_policy_experimental_v1',
-  eligibleCount:eligible.length,selected:[...dueSelected,...otherSelected],
-  dueCount:due.length,deferredDueCount:due.length-dueSelected.length,
+  eligibleCount:eligible.length,selected,
+  dueCount:due.length+criticalSelected.length,deferredDueCount:due.length-dueSelected.length,
+  urgentDueCount:urgent.length,deferredUrgentDueCount:urgent.filter(row=>!selectedIds.has(row.actorId)).length,
+  urgentOverrideApplied:criticalSelected.length>0,
   otherCount:other.length,deferredOtherCount:other.length-otherSelected.length,
   reviewCapacity:limit,historyPersisted:false,actionsPerformed:0,
   timeAdvanced:false,readerVisible:false
  });
+}
+
+
+/**
+ * QA-only sidecar ledger. A receipt records narrator review, NOT NPC knowledge.
+ * The injected verification function must independently check the durable
+ * story journal and commit, including the actual staged review metadata.
+ * Never reconstruct abstentions from event absence or mark selected actors
+ * as reviewed. This module does not install a production storage adapter.
+ */
+const reviewSha=s=>typeof s==='string'&&/^[a-f0-9]{40}$/.test(s);
+const reviewActor=s=>typeof s==='string'&&/^NPC-\d{3,}$/.test(s);
+export function createNPCReviewLedger({branch,head,completedTurn}={}){
+ insist(typeof branch==='string'&&branch.startsWith('qa/')&&reviewSha(head)&&
+  Number.isSafeInteger(completedTurn)&&completedTurn>=0,'QA branch and verified checkpoint required');
+ return {version:1,classification:'npc_review_sidecar_qa_v1',branch,
+  checkpointHead:head,completedTurn,lastReviewedAt:{},lastReceipt:null};
+}
+function validateNPCReviewLedger(ledger){
+ insist(ledger?.version===1&&ledger.classification==='npc_review_sidecar_qa_v1'&&
+  typeof ledger.branch==='string'&&ledger.branch.startsWith('qa/')&&
+  reviewSha(ledger.checkpointHead)&&Number.isSafeInteger(ledger.completedTurn)&&
+  ledger.completedTurn>=0&&ledger.lastReviewedAt&&typeof ledger.lastReviewedAt==='object'&&
+  !Array.isArray(ledger.lastReviewedAt)&&Object.keys(ledger.lastReviewedAt).length<=100000&&
+  Object.entries(ledger.lastReviewedAt).every(([id,t])=>reviewActor(id)&&
+   Number.isSafeInteger(t)&&t>=0&&t<ledger.completedTurn),
+  'Invalid QA review ledger');
+ return ledger;
+}
+export function encodeNPCReviewLedger(ledger){
+ return JSON.stringify(validateNPCReviewLedger(ledger))+'\n';
+}
+export function decodeNPCReviewLedger(bytes){
+ insist(typeof bytes==='string','Review ledger bytes required');
+ return clone(validateNPCReviewLedger(JSON.parse(bytes)));
+}
+export async function persistNPCReviewReceipt({storage,branch,receipt,verifyReceipt}={}){
+ insist(storage&&typeof storage.read==='function'&&typeof storage.compareAndSwap==='function'&&
+  typeof verifyReceipt==='function','Versioned QA storage and independent verifier required');
+ insist(typeof branch==='string'&&branch.startsWith('qa/')&&receipt?.branch===branch&&
+  reviewSha(receipt.sourceHead)&&reviewSha(receipt.commitHead)&&receipt.sourceHead!==receipt.commitHead&&
+  Number.isSafeInteger(receipt.sourceTurn)&&receipt.sourceTurn>=0&&
+  receipt.completedTurn===receipt.sourceTurn+1&&
+  Array.isArray(receipt.reviewedActorIds)&&receipt.reviewedActorIds.length<=40&&
+  new Set(receipt.reviewedActorIds).size===receipt.reviewedActorIds.length&&
+  receipt.reviewedActorIds.every(reviewActor),'Invalid QA review receipt');
+ const observed=await storage.read(branch);
+ insist(typeof observed?.revision==='string'&&observed.revision.length>0,'Missing versioned review ledger');
+ const current=decodeNPCReviewLedger(observed.bytes);
+ insist(current.branch===branch,'Review ledger branch mismatch');
+ // Verify even on retry; neither a status string nor a matching SHA alone is proof.
+ insist(await verifyReceipt(clone(receipt))===true,'Independent durable receipt verification failed');
+ if(current.checkpointHead===receipt.commitHead&&current.completedTurn===receipt.completedTurn){
+  insist(equal(current.lastReceipt,receipt),'Conflicting receipt for already recorded checkpoint');
+  return {status:'already_recorded',ledger:current};
+ }
+ insist(current.checkpointHead===receipt.sourceHead&&current.completedTurn===receipt.sourceTurn,
+  'Stale, skipped or unrelated review checkpoint');
+ const next=clone(current);
+ next.checkpointHead=receipt.commitHead;
+ next.completedTurn=receipt.completedTurn;
+ next.lastReceipt=clone(receipt);
+ for(const id of receipt.reviewedActorIds)next.lastReviewedAt[id]=receipt.sourceTurn;
+ const bytes=encodeNPCReviewLedger(next);
+ insist(await storage.compareAndSwap(branch,observed.revision,bytes)===true,
+  'Concurrent review ledger update rejected');
+ const reread=await storage.read(branch);
+ insist(reread?.bytes===bytes,'Review ledger readback mismatch; inspect before retry');
+ return {status:'recorded',ledger:decodeNPCReviewLedger(reread.bytes)};
 }
 
 export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
