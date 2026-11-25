@@ -194,6 +194,33 @@
           }
         }
       ]
+    },
+    {
+      "requestSha256": "587026a79282ef33541ebfd52e293e19cf08826399434080161ce184b3bf7f0e",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-003",
+        "decision": "act",
+        "intention": "Reconcile my record of the parcel with the completed delivery before accepting more work, so the previous assignment is no longer treated as a parcel I still have to carry.",
+        "reasoning": "EV-000008 records my completed delivery. In EV-000035 I already replaced the obsolete travel plan, but my recorded parcel still describes the old assignment. Treating it as outstanding could lead to duplicate work. I can correct my own task record without inventing a payment, a new customer or another parcel.",
+        "sourceEventIds": [
+          "EV-000008",
+          "EV-000035"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Darius reconciles the recorded parcel with his remembered completed delivery at Market Row. The old parcel is marked delivered in his personal resource record. His next-job plan stays unchanged; no new transfer, payment or assignment occurs.",
+      "changes": [
+        {
+          "field": "resources",
+          "before": {
+            "parcel": "one unremarkable delivery, contents unspecified"
+          },
+          "after": {
+            "parcel": "Previous Market Row parcel delivered (EV-000008); no new parcel assignment established."
+          }
+        }
+      ]
     }
   ]
 }
