@@ -29,15 +29,37 @@ const publicNextSummary=(request,completedResponses)=>({
  completedResponses,targetResponses:30,
  syntheticCompletedTurn:request.checkpoint.completedTurn
 });
+// Never publish a hash of a low-entropy actor/decision list: known actor
+// order and small choice space permit brute-force reconstruction. Even
+// aggregate act/abstain totals leak the newly appended actor's decision by
+// differencing consecutive CI runs. Only progress and fixed QA flags are public.
 const publicReplaySummary=decisions=>({
- completedResponses:decisions.length,
- actionCount:decisions.filter(x=>x.decision==='act').length,
- abstentionCount:decisions.filter(x=>x.decision==='abstain').length,
- selectorComparedCount:decisions.filter(x=>Number.isSafeInteger(x.legacyCandidateCount)).length,
- privateDecisionsSha256:hash(decisions),
+ completedResponses:decisions.length,targetResponses:30,
  realPlayerTurns:0,canonicalSaveWrites:0,modelInvocationByEngine:false,
  independentNarrativeQualityEstablished:false
 });
+
+// Structural assessment is calculated locally and kept in memory, never sent
+// to CI logs. Counts describe typed saved effects, not whether an actor's
+// original intention was narratively convincing, truthful or useful.
+const privateReplayEvidence=(decisions,confirmedActions)=>{
+ const acts=decisions.filter(x=>x.decision==='act').length;
+ const idle=decisions.filter(x=>x.decision==='abstain').length;
+ const fields=confirmedActions.flatMap(x=>x.materialFields);
+ const knownFields=new Set(['independent_plan','knowledge','resources']);
+ return {
+  responses:decisions.length,acts,abstentions:idle,
+  confirmedActionRecords:confirmedActions.length,
+  actionsWithCitedEvents:confirmedActions.filter(x=>x.sourceCount>0).length,
+  actionsWithoutMaterialChange:confirmedActions.filter(x=>x.materialFields.length===0).length,
+  planChanges:fields.filter(x=>x==='independent_plan').length,
+  knowledgeChanges:fields.filter(x=>x==='knowledge').length,
+  resourceChanges:fields.filter(x=>x==='resources').length,
+  otherMaterialChanges:fields.filter(x=>!knownFields.has(x)).length,
+  // A typed effect is not evidence that an autonomous world was simulated.
+  semanticQualityEstablished:false
+ };
+};
 /**
  * The trace is a durable QA fixture, not an unfiltered prompt transcript.
  * Unknown fields (especially nested private request/evidence) must not be
@@ -98,7 +120,7 @@ test('sequential external model trace replays only responses bound to freshly ve
  let snapshot=decodeFiveFiles(original,'CH-000');
  assert.equal(snapshot.manifest.last_completed_turn,9);
  const player=JSON.stringify(snapshot.state.player);
- const decisions=[];
+ const decisions=[],confirmedActions=[];
  for(const [i,response] of trace.responses.entries()){
   assertCleanTraceResponse(response);
   const request=nextRequest(snapshot,i);
@@ -133,12 +155,22 @@ test('sequential external model trace replays only responses bound to freshly ve
    assert.deepEqual(e.caused_by,response.proposal.sourceEventIds??[]);
    assert.ok(!staged.chapter.includes(response.outcome));
    assert.ok(staged.transcript.entries.every(x=>!x.text.includes(response.outcome)));
+   confirmedActions.push({
+    sourceCount:e.caused_by?.length??0,
+    materialFields:e.state_changes.filter(c=>c.field!=='last_resolved_action')
+     .map(c=>c.field)
+   });
   }
   snapshot=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
   assert.equal(verifyNarrativeSnapshot(snapshot),true);
   assert.equal(JSON.stringify(snapshot.state.player),player);
   decisions.push({actorId:request.actorId,decision:response.proposal.decision,legacyCandidateCount:legacy.length});
  }
+ const privateMetrics=privateReplayEvidence(decisions,confirmedActions);
+ assert.equal(privateMetrics.responses,trace.responses.length);
+ assert.equal(privateMetrics.acts+privateMetrics.abstentions,trace.responses.length);
+ assert.equal(privateMetrics.confirmedActionRecords,privateMetrics.acts);
+ assert.equal(privateMetrics.semanticQualityEstablished,false);
  for(const p of paths)assert.equal(read(p),original[p]);
  const next=trace.responses.length<30?nextRequest(snapshot,trace.responses.length):null;
  if(next){
@@ -165,14 +197,20 @@ test('CI next-request and replay summaries never expose narrator-private actor e
  assert.deepEqual(Object.keys(metadata),[
   'requestSha256','completedResponses','targetResponses','syntheticCompletedTurn']);
  assert.deepEqual(Object.keys(summary),[
-  'completedResponses','actionCount','abstentionCount','selectorComparedCount',
-  'privateDecisionsSha256','realPlayerTurns','canonicalSaveWrites',
+  'completedResponses','targetResponses','realPlayerTurns','canonicalSaveWrites',
   'modelInvocationByEngine','independentNarrativeQualityEstablished']);
  assert.equal(metadata.requestSha256,hash(next));
- assert.equal(summary.privateDecisionsSha256,hash(actions));
- assert.equal(summary.actionCount,1);
- assert.equal(summary.abstentionCount,1);
- assert.equal(summary.selectorComparedCount,2);
+ assert.equal(summary.completedResponses,2);
+ assert.equal(summary.targetResponses,30);
+ const privateMetrics=privateReplayEvidence(actions,[
+  {sourceCount:2,materialFields:['independent_plan','knowledge']}
+ ]);
+ assert.deepEqual(privateMetrics,{
+  responses:2,acts:1,abstentions:1,confirmedActionRecords:1,
+  actionsWithCitedEvents:1,actionsWithoutMaterialChange:0,
+  planChanges:1,knowledgeChanges:1,resourceChanges:0,
+  otherMaterialChanges:0,semanticQualityEstablished:false
+ });
  assert.equal(metadata.syntheticCompletedTurn,21);
  for(const entry of [metadata,summary]){
   const publicText=JSON.stringify(entry);
@@ -185,6 +223,40 @@ test('CI next-request and replay summaries never expose narrator-private actor e
  }
 });
 
+test('public progress cannot reveal individual choices by hashing or incremental totals',()=>{
+ const secret='SYNTHETIC-PRIVATE-CHOICE-NEVER-LOGGED';
+ const a=[{actorId:secret,decision:'act',legacyCandidateCount:1}];
+ const b=[{actorId:secret,decision:'abstain',legacyCandidateCount:1}];
+ const first=publicReplaySummary(a),second=publicReplaySummary(b);
+ assert.deepEqual(first,second);
+ assert.equal(JSON.stringify(first).includes(secret),false);
+ for(const key of ['decisions','actorIds','actionCount','abstentionCount',
+   'selectorComparedCount','privateDecisionsSha256','privateEvidence']){
+  assert.ok(!Object.hasOwn(first,key),'Private decision metadata in CI output');
+ }
+ const expanded=publicReplaySummary([...a,...b]);
+ assert.equal(expanded.completedResponses,2);
+ assert.equal(expanded.targetResponses,30);
+});
+
+test('private replay assessment separates saved typed effects from creative quality',()=>{
+ const decisions=[
+  {actorId:'NPC-001',decision:'act',legacyCandidateCount:1},
+  {actorId:'NPC-005',decision:'abstain',legacyCandidateCount:0},
+  {actorId:'NPC-006',decision:'act',legacyCandidateCount:1}
+ ];
+ const measured=privateReplayEvidence(decisions,[
+  {sourceCount:1,materialFields:['independent_plan','knowledge','resources','relationship']},
+  {sourceCount:0,materialFields:[]}
+ ]);
+ assert.deepEqual(measured,{
+  responses:3,acts:2,abstentions:1,confirmedActionRecords:2,
+  actionsWithCitedEvents:1,actionsWithoutMaterialChange:1,
+  planChanges:1,knowledgeChanges:1,resourceChanges:1,
+  otherMaterialChanges:1,semanticQualityEstablished:false
+ });
+ assert.equal(JSON.stringify(publicReplaySummary(decisions)).includes('relationship'),false);
+});
 test('external trace rejects hidden private packets and unreviewed extra fields without logging them',()=>{
  const sealed='SYNTHETIC-HIDDEN-PRIVATE-PACKET-SHOULD-NOT-APPEAR-IN-ERROR';
  const goodAction={
