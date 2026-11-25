@@ -441,6 +441,8 @@ export function inspectNPCNegotiationHistory({snapshot,actorIds=null,limit=20}={
  return clone((limit===0?[]:offers.slice(-limit)).map(event=>{
   const offer=event.continuation_context.negotiation_offer;
   const matchingReceipts=history.filter(e=>
+   e.actor_ids?.[0]===offer.counterparty_actor_id&&
+   e.known_to?.includes(offer.counterparty_actor_id)&&
    e.social_context?.transfer?.speaker_id===event.actor_ids[0]&&
    e.social_context.transfer.recipient_id===offer.counterparty_actor_id&&
    e.social_context.transfer.known_entry===offerKnowledgeChange(event)?.after);
