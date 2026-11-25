@@ -287,3 +287,17 @@ eso no significa fracaso, éxito ni inacción definitiva. Las obligaciones
 `pending` o `blocked` no se declaran resueltas por existir una decisión.
 Las acciones de otro NPC no se cuentan como propias ni se transmiten
 automáticamente. Toda consecuencia nueva necesita su propio evento.
+
+
+### Obligaciones contrapuestas y prioridades
+
+`inspectNPCObligationConflicts` examina **todos** los compromisos abiertos
+guardados del NPC, no solo los que caben en la agenda de rutina. Señala
+posibles coincidencias de vencimiento, obstáculos, prioridades y pruebas de
+procedencia. Un compromiso urgente se presenta primero **solo entre
+compromisos de la misma categoría temporal**; esto ordena la revisión
+editorial, no la conducta obligatoria del personaje. No se inventan
+duraciones, conflictos materiales, trabajo realizado ni conclusiones por
+vencimiento. El personaje puede posponer, delegar, investigar, renunciar
+justificadamente o intentar avanzar si existen hechos narrativos que lo
+permitan. Cada modificación continúa necesitando un evento propio.
