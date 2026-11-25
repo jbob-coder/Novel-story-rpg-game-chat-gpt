@@ -144,7 +144,9 @@
       "tests/npc_actor_agency.test.mjs",
       "tests/npc_intention_generation.test.mjs",
       "tests/npc_generated_turn_batch.test.mjs",
-      "tests/npc_actor_review_fairness.test.mjs"
+      "tests/npc_actor_review_fairness.test.mjs",
+      "tests/helpers/ordinary_morning.mjs",
+      "tests/ordinary_morning.test.mjs"
     ]
   },
   "newChapterPaths": [

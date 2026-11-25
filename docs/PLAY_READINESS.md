@@ -1,3 +1,24 @@
+# Preparación para jugar
+
+## Reanudar en el taller
+
+El punto de entrada es el manifiesto de `work/chat-narrative-foundation`. En la comprobación del 24 de noviembre de 2026 indicaba CH-000, turno 9, Día −29 por la mañana. Jack estaba en el taller y los actuadores del primer brazo de Aster seguían desconectados. Cada sesión debe recuperar el manifiesto y el diario vigentes antes de aceptar la siguiente acción. [Protocolo de guardado en ChatGPT](05_persistence/CHATGPT_GITHUB_NATIVE_SAVE.md)
+
+Se guardaron dos continuaciones ficticias en ramas de pruebas a partir de los mismos cinco archivos. En una Jack examinó el codo a mano. En la otra visitó a Noah, el collar reprodujo la pregunta escrita y Jack pudo examinar el casquillo sin comprarlo. El estado de cada rama conserva su ubicación, sus pertenencias y lo que pudo averiguar. El texto del mensajero quedó en sus propios eventos. [Escena en el taller](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/commit/d2f30236a3743daeac43111c4116f308c2edd683) · [Escena en el comercio](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/commit/3cbcc3fc787c0b346dd73181ed2b46955a4bfc95)
+
+El conector de GitHub releyó los cinco archivos. Un proceso nuevo recuperó la visita tras la interrupción anterior a la actualización de la rama. Para comprobar la última parte de la experiencia de lectura, otra conversación auténtica de ChatGPT debe recuperar la última narración de una rama de QA usando exclusivamente su referencia y el diario de QA. La escena de la partida real espera la acción del jugador. [Diario aislado de los ensayos](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/tree/journal/qa-ordinary-morning-20261124)
+
+En las dos ramas se guardó después la misma entrada, «Espero un momento». Cada proceso cargó únicamente su propio estado. La visita continuó ante el mostrador y la otra escena continuó en el taller. En esta última se cortó deliberadamente la operación después de mover la rama y antes de releer los archivos. El diario permitió verificar y entregar el mismo texto. [Continuación en el comercio](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/commit/0acc5af90a054823448650c99d9bb0f712f1cf2a) · [Continuación en el taller](https://github.com/jbob-coder/Novel-story-rpg-game-chat-gpt/commit/ac2c2282250e3cd798005d6cb91dc9ceba8f4607)
+
+## Continuar la campaña
+
+La prueba de varios días lleva ambas decisiones a un cambio editorial de capítulo, al Día 0 antes de la llegada, a la llegada y al día posterior. Comprueba la ubicación de Jack, la custodia del paquete y el conocimiento individual tras recuperar un guardado interrumpido. Las veintiocho jornadas omitidas en el ensayo sirven para alcanzar el intervalo de prueba. La calidad de veintiocho jornadas de juego efectivo sigue abierta. [Ensayo de continuidad](../tests/chapter_save_transaction.test.mjs)
+
+Las transacciones entre compradores y negocios, la evolución de organizaciones y las manifestaciones individuales siguen requiriendo sus propias pruebas de campaña. Los expedientes públicos conservan los secretos para el narrador dentro de la ficción. La llegada de la onda por sí sola deja abiertas su causa y la experiencia concreta de cada personaje.
+
+<details>
+<summary>Informe histórico de noviembre de 2026</summary>
+
 > **Actualización D-036/D-037 — 2026-11-10:** este informe de preparación fue una estimación **histórica** de la fase RPG, no una evaluación actual. El formato vigente es una novela interactiva SIN XP/atributos/niveles; la fila «Habilidades y progreso» ya no es aplicable. La partida se encuentra en CH-000, turno 6 (EV-000021), no en turno 0. La red activa 500+ anterior y las nueve incorporaciones de Café Bruma son canon de la ficción. Ver `docs/NARRATIVE_CONTRACT.md` y `game/SAVE_MANIFEST.json`. Los porcentajes debajo NO deben reutilizarse como estado actual.
 
 # Preparación de juego — estado verificable (2026-11-10)
@@ -38,3 +59,5 @@ Se puede comenzar el capítulo introductorio sin esperar una enciclopedia del mu
 ### Actualización de integridad tras el informe
 
 Se añadió el bloqueo explícito de guardado con porcentajes por evidencia, índices temáticos en subcarpetas y validación del archivo literal. La preparación global sigue siendo **una estimación**, no un porcentaje medido. Aún faltan pruebas CLI completas, un turno de juego auténtico recuperado entre chats, transición de capítulo y Día 0. No convertir este progreso de ingeniería en un evento de juego.
+
+</details>

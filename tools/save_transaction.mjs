@@ -423,6 +423,7 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
    const snapshot=await readCheckpoint({remote,commitSha:head,chapterId:stored.chapterId});
    await assertReadyJournalBaseline({remote,record:stored,branch,sourceHead:head,snapshot});
    check(await remote.readHead(branch)===head,'Remote branch moved during ready-journal inspection');
+   check(same(await journal.read(branch),stored),'Journal changed during recovery');
    return {status:'ready',branch,sourceHead:head,attempt:null,narration_messages:[],
     reason:'Verified baseline is ready; no new turn was created or recovered'};
   }
@@ -449,6 +450,7 @@ export async function recoverJournaledSave({remote,journal,branch}={}){
     remote,record:stored,branch,sourceHead:currentHead,snapshot});
    const narration=narrationFor(snapshot,attempt);
    check(await remote.readHead(branch)===currentHead,'Remote branch moved during recovery');
+   check(same(await journal.read(branch),stored),'Journal changed during recovery');
    return {status:'verified',attempt,commitHead,sourceHead,branch,
     operation:operationOf(attempt),narration_messages:narration,
     reason:operationOf(attempt)==='world_admission'?'World admission recovered; no turn or scene generated':

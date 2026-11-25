@@ -214,6 +214,21 @@ test('verified journal recovers multiple literal messages after delivery/context
  assert.deepEqual(fixture.journal.entries,originalJournal);
  assert.deepEqual(fixture.remote.commits,originalCommits);
 });
+test('a new pending journal during literal recovery withholds the superseded narration',async()=>{
+ const {remote,journal}=await verifiedSession();
+ const read=remote.readFiles;
+ remote.readFiles=async(...args)=>{
+  const result=await read(...args);
+  journal.entries.set(branch,{branch,status:'blocked'});
+  return result;
+ };
+ const result=await recoverJournaledSave({remote,journal,branch});
+ assert.equal(result.status,'blocked');
+ assert.match(result.reason,/Journal changed during recovery/);
+ assert.equal(result.narration_messages,undefined);
+ assert.equal((await journal.read(branch)).status,'blocked');
+});
+
 test('verified journal recovery is repeatable without duplicate turns or regeneration',async()=>{
  const fixture=await verifiedSession(),buildCount=builds;
  const first=await recoverJournaledSave({...fixture,branch});

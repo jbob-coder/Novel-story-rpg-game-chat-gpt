@@ -122,7 +122,7 @@ def validate(root: Path) -> list[str]:
         if player.get("initialized") is False:
             expect(attr is None and not skill_entries and not progress.get("powers") and progress.get("lifetime_skill_xp") == 0,
                    "uninitialized player must have no assigned stats or powers")
-    if type(day) is int and day < 0:
+    if type(day) is int and (day < 0 or not world.get("shockwave_arrived")):
         for flag in ("shockwave_arrived", "humans_with_powers_observed",
                      "animals_affected", "plants_affected", "environment_affected"):
             expect(world.get(flag) is False, f"{flag}: not permitted before Day 0")
@@ -298,6 +298,22 @@ def validate(root: Path) -> list[str]:
     expect(manifest.get("last_event_id") == last_id, "manifest last event ID differs from event history")
     expect(not turns or max(turns) <= save.get("last_verified_turn", -1), "event turn is later than checkpoint")
     expect(not turns or turns == sorted(turns), "event turns reverse chronology")
+    arrivals = [event for event in event_records if event.get("kind") == "cosmic_shockwave"]
+    arrived = world.get("shockwave_arrived")
+    expect(type(arrived) is bool and len(arrivals) == int(arrived is True),
+           "shockwave flag and event history disagree")
+    expect(type(day) is int and (day <= 0 or arrived is True), "day after missing shockwave")
+    for arrival in arrivals:
+        same_turn = [event for event in event_records if event.get("turn") == arrival.get("turn")]
+        minutes = arrival.get("turn_elapsed_minutes")
+        actions = [event for event in same_turn if event.get("kind") == "player_action"]
+        expect(len(actions) == 1 and actions[0].get("day") == 0
+               and actions[0].get("turn_elapsed_minutes") == minutes
+               and arrival.get("day") == 0 and same_turn[-1] is arrival
+               and type(minutes) is int and minutes > 0
+               and all(arrival.get(key) == [] for key in
+                       ("actor_ids", "known_to", "caused_by", "state_changes", "progression_awards")),
+               "invalid Day 0 world event")
     expect(not days or (type(day) is int and max(days) <= day), "event day after checkpoint")
     expect(not days or days == sorted(days), "events reverse in-world chronology")
     if isinstance(progress, dict) and isinstance(progress.get("skills"), dict):
