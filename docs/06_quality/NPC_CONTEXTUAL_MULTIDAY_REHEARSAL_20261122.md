@@ -97,3 +97,23 @@ This does not prove that allowed free-text reasoning or outcome has no
 semantic leak, and does not authenticate whether the stated author was a
 particular model. External review must still inspect each allowed
 decision for source grounding and narrative plausibility.
+
+## Safe failure diagnostics for narrator-private replay
+
+Even if success-path `NPC_MODEL_NEXT` and `NPC_MODEL_REPLAY` logs publish only
+bounded metadata, a failed Node `assert.equal` or `assert.deepEqual` may
+automatically print its `actual` and `expected` values in public job logs.
+The earlier sequential harness compared full snapshot JSON, the raw
+five-file canonical save text, player state, actor identifiers and causal event
+IDs this way. A single regression could disclose private evidence.
+
+The replay test now uses fixed-message **boolean assertions** for those
+comparisons. Failure output reports which invariant broke, **without printing
+either private value or a structural diff**. A synthetic sentinel regression
+intentionally fails representative actor, causal and save-data comparisons
+and confirms that their exception messages/stacks do not contain that
+sensitive value. Public success projections remain restricted to
+non-decision progress metadata. This is defense in depth for the replay
+test itself; errors thrown by external helpers, engines, or GitHub workflows
+still require a separate audit for private-value leakage.
+
