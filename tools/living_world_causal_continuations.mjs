@@ -183,3 +183,58 @@ export function verifyNPCCausalContinuationHistory(snapshot){
  }
  return seen;
 }
+
+// Read-only consequence custody for reviewed, individually owned decisions.
+// The index records actual effects and explicit later citations, not inferred
+// success, NPC emotions, omitted work, or automatic world developments.
+export function inspectNPCDecisionConsequenceHistory({snapshot,actorIds=null,limit=20}={}){
+ const history=actualEventHistory(snapshot),actors=snapshot.state.world.actors;
+ insist(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100&&
+   new Set(actorIds).size===actorIds.length&&
+   actorIds.every(id=>Object.hasOwn(actors,id))),
+   'Unknown or repeated actor in decision consequence review');
+ insist(Number.isSafeInteger(limit)&&limit>=0&&limit<=100,
+   'Invalid decision consequence review limit');
+ // Refuse to present effect evidence from an invalid causal event history.
+ verifyNPCCausalContinuationHistory(snapshot);
+ const chosen=actorIds===null?null:new Set(actorIds);
+ const decisions=history.filter(e=>e.continuation_context?.kind==='known_event'&&
+   (chosen===null||chosen.has(e.actor_ids?.[0])));
+ return clone(decisions.slice(-limit).map(event=>{
+   const actorId=event.actor_ids[0];
+   const changed=(event.state_changes??[]).filter(change=>
+     change.actor_id===actorId&&change.field!=='last_resolved_action');
+   const fields=[...new Set(changed.map(c=>c.field))].sort();
+   const relationTargets=[...new Set(changed.filter(c=>c.field==='relationship')
+     .map(c=>c.target_actor_id))].sort();
+   const changedRecords=field=>[...new Set(changed.filter(c=>c.field===field)
+     .flatMap(c=>{
+       const previous=new Map((c.before??[]).map(item=>[item.id,item]));
+       return (c.after??[]).filter(item=>
+         !same(previous.get(item.id)??null,item)).map(item=>item.id);
+     }))].sort();
+   const later=history.filter(e=>e.turn>event.turn&&
+     e.actor_ids?.length===1&&e.actor_ids[0]===actorId&&
+     e.continuation_context?.source_event_ids?.includes(event.id));
+   return {
+     actorId,decisionEventId:event.id,
+     eventPath:'chapters/'+event.chapter_id+'.events.json',
+     sourceEventIds:[...event.continuation_context.source_event_ids],
+     memorySourceEventId:event.continuation_context.decision_memory_basis?
+       sourcedMemory.exec(event.continuation_context.decision_memory_basis.knowledge_entry)?.[3]??null:null,
+     recordedEffectCount:changed.length,
+     recordedEffectFields:fields,
+     relationshipTargetIds:relationTargets,
+     commitmentIdsChanged:changedRecords('commitments'),
+     serviceCaseIdsChanged:changedRecords('service_cases'),
+     independentPlanChanged:fields.includes('independent_plan'),
+     laterOwnCitedFollowupEventIds:later.map(e=>e.id).slice(0,12),
+     laterOwnCitedFollowupCount:later.length,
+     ...(later.length>12?{followupsTruncated:true}:{}),
+     status:changed.length?'actor_effects_recorded':'no_material_state_effect_recorded',
+     proofScope:'event_mutations_and_explicit_same_actor_citations_only',
+     outcomeTruth:'not_assessed',
+     inferredCompletion:false
+   };
+ }));
+}

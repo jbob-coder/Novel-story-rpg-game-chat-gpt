@@ -511,3 +511,41 @@ One NPC may change a plan while another continues their existing work;
 no other actor is updated by implication. Provenance is verified, motivation
 and objective truth are not. CH-000/turn 9 and the five protected save files
 are unchanged.
+
+ 
+## Actor-owned decision consequences, source-to-effect inspection (2026-11-24)
+
+`inspectNPCDecisionConsequenceHistory({snapshot,actorIds,limit})` is a
+narrator-only, read-only event-history index of **recorded effects** from
+reviewed causal NPC decisions. It reports event and memory-source IDs, exact
+changed state field categories, directional relationship target IDs,
+commitment/service-case IDs genuinely changed by an event, independent-plan
+mutation, and later same-actor decisions that explicitly cite the earlier
+decision event. Every result declares `inferredCompletion:false` and
+`outcomeTruth:'not_assessed'`; no semantic outcome or success is inferred.
+The index validates the continuation history and spans archived chapters.
+
+Synthetic tests demonstrate one NPC starting a reviewed supply-verification
+obligation, updating his own plan and trust, then explicitly marking that
+obligation **blocked** on a later actor-owned follow-up; another NPC may
+independently keep its original plans. The query does not magically resolve
+obligations, insert additional effects, or grant private details to Jack.
+
+
+## Review of competing NPC obligations across saved chapters (2026-11-24)
+
+`inspectNPCObligationConflicts({snapshot,actorIds,elapsedMinutes,elapsedDays,maxPerActor})`
+is a narrator-private, read-only report over **all active saved obligations**
+per selected NPC. It is not subject to the agenda's eight-item limit.
+Unknown due dates remain unknown. A shared due day or multiple commitments
+signals **potential competition**, never a proven impossible schedule.
+Source and latest-change EV pointers for post-turn-nine obligations are
+checked against their owner's exact recorded commitment mutations, even
+when those events are in archived chapters. Legacy references are labeled
+as such and not misrepresented as fully proven actor-owned origins.
+
+The ordinary agenda now uses commitment priority (`urgent`,
+`important`, `normal`) only to break ties among identical time-review
+classes; it still proposes **no** automatic action. Blocked obligations
+stay blocked, deadlines never imply failure, and an NPC can retain
+uncertainty or independently choose an alternative.

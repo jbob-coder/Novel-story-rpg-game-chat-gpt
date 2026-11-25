@@ -36,6 +36,14 @@ def _goal_text(value, minimum, maximum):
             and len(value.encode("utf-16-le", errors="surrogatepass")) // 2 <= maximum)
 
 
+def _goal_value(value):
+    return value is None or _goal_text(value, 8, 360)
+
+
+def _normalized_goal(value):
+    return None if value is None else value.strip()
+
+
 def validate_npc_goal_history(events, actors, player_id):
     """Independently replay goal changes, not the narrator's semantic judgment."""
     if len(events) < 29:
@@ -84,8 +92,9 @@ def validate_npc_goal_history(events, actors, player_id):
                     and event.get("actor_ids") == [actor_id]
                     and event.get("known_to") == [actor_id]
                     and type(event.get("turn")) is int and event["turn"] > 9
-                    and _goal_text(before, 8, 360) and _goal_text(after, 8, 360)
-                    and before.strip() != after.strip()
+                    and "before" in change and "after" in change
+                    and _goal_value(before) and _goal_value(after)
+                    and _normalized_goal(before) != _normalized_goal(after)
                     and _goal_text(change.get("reason"), 12, 500)):
                 problems.append("NPC goal revision requires a private owning event, distinct goals and causal reason")
                 continue
@@ -95,7 +104,7 @@ def validate_npc_goal_history(events, actors, player_id):
             goals[actor_id] = after
     for actor_id, goal in goals.items():
         actor = actors.get(actor_id)
-        if not isinstance(actor, dict) or actor.get("goal") != goal:
+        if not isinstance(actor, dict) or "goal" not in actor or actor.get("goal") != goal:
             problems.append(f"Saved NPC goal differs from causal history: {actor_id}")
     if set(actors) != set(goals):
         problems.append("NPC goal history has an unrecorded actor or missing introduction")

@@ -34,7 +34,8 @@ function collectNPCReviewCandidates({actors,worldDay,completedTurn,
   'Unknown or duplicate NPC review selection');
  const eligible=ids.flatMap(actorId=>{
   const a=actors[actorId];
-  if(!a||!a.goal&&!a.independent_plan&&!(a.commitments?.length))return [];
+  // A person without an active motive or plan remains eligible to deliberate.
+  if(!a||typeof a!=='object'||Array.isArray(a))return [];
   const open=(a.commitments??[]).filter(c=>
    c?.status==='pending'||c?.status==='blocked');
   const due=open.some(c=>Number.isSafeInteger(c.due_day)&&
@@ -272,8 +273,9 @@ export function draftOpenNPCAction({snapshot,frame,elapsedMinutes=0,elapsedDays=
   snapshot,actorId:frame.actorId,sourceEventIds,
   reasoning:causalBasis,outcome,changes,reviewed:true
  });
- insist(prose(frame.goal??frame.independentPlan,6,700),
-  'NPC without prior event needs a recorded actor goal or plan');
+ // A source-free initiative may emerge from the actor's current reviewed
+ // context even without an existing goal or plan; never fabricate a prior EV.
+ // This matches the open intention bridge's separate outcome review.
  return clone({actor_id:frame.actorId,reviewed:true,resolved:true,
   causal_basis:causalBasis,outcome,changes,disclosures:[]});
 }

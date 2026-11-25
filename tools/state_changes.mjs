@@ -32,13 +32,16 @@ const NPC_GOAL_ANCHOR=Object.freeze({
   "NPC-007": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo."
 });
 const goalText=value=>typeof value==='string'&&value.trim().length>=8&&value.length<=360;
+const goalValue=value=>value===null||goalText(value);
+const normalizedGoal=value=>value===null?null:value.trim();
 const goalReason=value=>typeof value==='string'&&value.trim().length>=12&&value.length<=500;
 function checkGoalRevision(event,change,actorId,playerId){
   requireFact(actorId!==playerId&&event.kind==='independent_actor'&&
     event.actor_ids?.length===1&&event.actor_ids[0]===actorId&&
     event.known_to?.length===1&&event.known_to[0]===actorId&&
-    event.turn>9&&goalText(change.before)&&goalText(change.after)&&
-    change.before.trim()!==change.after.trim()&&goalReason(change.reason),
+    event.turn>9&&Object.hasOwn(change,'before')&&Object.hasOwn(change,'after')&&
+    goalValue(change.before)&&goalValue(change.after)&&
+    normalizedGoal(change.before)!==normalizedGoal(change.after)&&goalReason(change.reason),
     'NPC goal revision requires a private owning event, distinct goals and causal reason');
 }
 const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
@@ -215,10 +218,17 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       record.state_changes.push({actor_id:actorId,field,before:change.before,
         after:change.after,reason:change.reason});
     } else if (field === 'independent_plan') {
-      requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
+      requireFact(actorId !== state.player.id && Object.hasOwn(change,'before') &&
+        Object.hasOwn(change,'after') && (change.after===null ||
+        typeof change.after === 'string' && change.after.trim()), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
+      const nullable=change.before===null||change.after===null;
+      if(nullable)requireFact(record.kind==='independent_actor'&&record.turn>9&&
+        equal(record.known_to,[actorId])&&change.before!==change.after&&goalReason(change.reason),
+        'Nullable NPC plan requires a private owning event and causal reason');
       actor.independent_plan = change.after;
-      record.state_changes.push({actor_id: actorId, field, before: change.before, after: change.after});
+      record.state_changes.push({actor_id: actorId, field, before: change.before, after: change.after,
+        ...(nullable?{reason:change.reason}:{})});
     } else {
       throw new Error(`Unsupported state change: ${String(field)}`);
     }
@@ -328,7 +338,7 @@ function verifyStateChanges(snapshot) {
         }
       }
     }
-    for(const [id,goal] of goals)requireFact(state.world.actors[id]?.goal===goal,
+    for(const [id,goal] of goals)requireFact(state.world.actors[id]&&Object.hasOwn(state.world.actors[id],'goal')&&state.world.actors[id].goal===goal,
       'Saved NPC goal differs from causal history');
   }
   // Legacy events before D-040 are archived and not retroactively reinterpreted.
@@ -345,6 +355,13 @@ function verifyStateChanges(snapshot) {
       // Creation is validated separately against reviewed introduction events
       // and the frozen initial roster, not as an existing actor field edit.
       if(field==='npc_introduction')continue;
+      if(field==='independent_plan'&&(change.before===null||change.after===null)){
+        requireFact(change.actor_id!==state.player.id&&event.kind==='independent_actor'&&event.turn>9&&
+          equal(event.known_to,[change.actor_id])&&Object.hasOwn(change,'before')&&Object.hasOwn(change,'after')&&
+          change.before!==change.after&&[change.before,change.after].every(x=>x===null||typeof x==='string'&&x.trim())&&
+          goalReason(change.reason),'Nullable NPC plan requires a private owning event and causal reason');
+        requireFact(Object.hasOwn(actor,'independent_plan'),'Nullable NPC plan must be explicitly stored');
+      }
       if(field==='plans'){
         requireFact(change.actor_id!==state.player.id,'Only NPC plans may change');
         const previousIds=new Set(events.filter(e=>Number(e.id.slice(3))<Number(event.id.slice(3))).map(e=>e.id));

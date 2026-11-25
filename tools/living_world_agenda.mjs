@@ -30,6 +30,12 @@ export const CIVILIAN_ROUTINES=Object.freeze([
 ]);
 const candidatesByActor=actorId=>CIVILIAN_ROUTINES.filter(x=>x.actor===actorId);
 const urgencyRank={overdue_review:0,due_today_review:1,blocked_review:2,deadline_unknown:3,upcoming:4};
+const commitmentPriorityRank={urgent:0,important:1,normal:2};
+const compareObligationReviews=(a,b)=>
+ (urgencyRank[a.review]??9)-(urgencyRank[b.review]??9)||
+ (commitmentPriorityRank[a.priority]??3)-(commitmentPriorityRank[b.priority]??3)||
+ a.id.localeCompare(b.id);
+// These ranks select what deserves editorial attention, not what an NPC must do.
 
 export function planNPCAgendas({state,actorIds=null,elapsedMinutes=0,elapsedDays=0,
   nextPeriod=null,weekday=null,minute=null,schedules={},exceptions={},limitPerActor=3}={}){
@@ -64,7 +70,7 @@ export function planNPCAgendas({state,actorIds=null,elapsedMinutes=0,elapsedDays
         o.dueDay===targetDay?'due_today_review':
         o.status==='blocked'?'blocked_review':
         o.dueDay===null?'deadline_unknown':'upcoming'}))
-    .sort((a,b)=>(urgencyRank[a.review]??9)-(urgencyRank[b.review]??9)||a.id.localeCompare(b.id));
+    .sort(compareObligationReviews);
   for(const o of obligations){
    selected.push({...base,id:'agenda:'+o.id,kind:'obligation',
     objective:o.summary,obligationId:o.id,sourceEventId:o.sourceEventId,
@@ -139,8 +145,7 @@ export function recommendNPCIntentReviews(options={}){
  const results=[];
  for(const [actorId,items] of grouped){
   const due=items.filter(x=>x.kind==='obligation')
-    .sort((a,b)=>(urgencyRank[a.review]??9)-(urgencyRank[b.review]??9)||
-      a.id.localeCompare(b.id));
+    .sort(compareObligationReviews);
   const compatible=items.filter(x=>x.kind==='civilian_routine'&&
     x.suggestedPeriod==='compatible'&&x.availability!=='closed'&&
     x.feasibility!=='no_verified_route');
