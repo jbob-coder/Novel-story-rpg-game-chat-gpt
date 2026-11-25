@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {savePaths,decodeFiveFiles} from '../tools/save_transaction.mjs';
-import {rankOpenNPCReviewCandidates,rankNPCReviewWithAging,inspectOpenNPCAgency}
+import {rankOpenNPCReviewCandidates,rankNPCReviewWithAging,createNPCReviewLedger,encodeNPCReviewLedger,decodeNPCReviewLedger,persistNPCReviewReceipt,inspectOpenNPCAgency}
  from '../tools/npc_actor_agency.mjs';
 
 const files=Object.fromEntries(savePaths('CH-000').map(p=>
@@ -161,4 +161,61 @@ test('new or returning actors without prior reviews can receive the reserved slo
  const p=rankNPCReviewWithAging({actors,worldDay:-29,completedTurn:1,limit:3,lastReviewedAt});
  assert.ok(p.selected.some(x=>x.actorId==='NPC-106'));
  assert.ok(!p.selected.some(x=>x.actorId==='NPC-105'));
+});
+
+
+test('urgent override is explicit and reports the ordinary capacity conflict',()=>{
+ const actors=agingActors(10,5);
+ for(let i=100;i<103;i++)actors['NPC-'+i].commitments[0].priority='urgent';
+ const args={actors,worldDay:-29,completedTurn:0,limit:3};
+ const ordinary=rankNPCReviewWithAging(args);
+ assert.equal(ordinary.urgentOverrideApplied,false);
+ assert.equal(ordinary.selected.filter(x=>x.priority===3).length,2);
+ const urgent=rankNPCReviewWithAging({...args,urgentDueOverride:true});
+ assert.deepEqual(urgent.selected.map(x=>x.actorId),['NPC-100','NPC-101','NPC-102']);
+ assert.equal(urgent.deferredUrgentDueCount,0);
+ assert.equal(urgent.deferredOtherCount,5);
+ assert.equal(urgent.actionsPerformed,0);
+});
+function receiptFixture(){
+ const branch='qa/review-ledger-test',sourceHead='a'.repeat(40),commitHead='b'.repeat(40);
+ const receipt={branch,sourceHead,commitHead,sourceTurn:9,completedTurn:10,reviewedActorIds:['NPC-100','NPC-101']};
+ let bytes=encodeNPCReviewLedger(createNPCReviewLedger({branch,head:sourceHead,completedTurn:9})),revision='1',writes=0;
+ const storage={
+  read:async()=>({bytes,revision}),
+  compareAndSwap:async(_,r,next)=>{if(r!==revision)return false;bytes=next;revision=String(++writes+1);return true}
+ };
+ const verifyReceipt=async r=>JSON.stringify(r)===JSON.stringify(receipt);
+ return {branch,receipt,storage,verifyReceipt,writes:()=>writes};
+}
+test('review receipt roundtrips and retry never records a duplicate',async()=>{
+ const f=receiptFixture(),out=await persistNPCReviewReceipt(f);
+ assert.equal(out.status,'recorded');
+ assert.deepEqual(out.ledger.lastReviewedAt,{'NPC-100':9,'NPC-101':9});
+ assert.deepEqual(decodeNPCReviewLedger((await f.storage.read()).bytes),out.ledger);
+ assert.equal((await persistNPCReviewReceipt(f)).status,'already_recorded');
+ assert.equal(f.writes(),1);
+});
+test('unverified, stale, malformed and production receipts cannot write',async()=>{
+ const f=receiptFixture();
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,verifyReceipt:async()=>false}),/verification failed/);
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,receipt:{...f.receipt,sourceHead:'c'.repeat(40)},verifyReceipt:async()=>true}),/Stale/);
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,receipt:{...f.receipt,privateNarration:'not allowed'}}),/Invalid QA review receipt/);
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,receipt:{...f.receipt,reviewedActorIds:['NPC-100','NPC-100']}}),/Invalid QA review receipt/);
+ assert.throws(()=>createNPCReviewLedger({branch:'work/chat-narrative-foundation',head:'a'.repeat(40),completedTurn:9}),/QA branch/);
+ assert.equal(f.writes(),0);
+});
+test('sidecar rejects a lost write lease and detects false acknowledgement',async()=>{
+ const f=receiptFixture();
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,storage:{...f.storage,compareAndSwap:async()=>false}}),/Concurrent/);
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,storage:{...f.storage,compareAndSwap:async()=>true}}),/readback mismatch/);
+ assert.equal(f.writes(),0);
+});
+test('ledger rejects fabricated metadata and conflicting retry',async()=>{
+ const f=receiptFixture();
+ const out=await persistNPCReviewReceipt(f);
+ assert.throws(()=>encodeNPCReviewLedger({...out.ledger,privateNarration:'not allowed'}),/sidecar metadata/);
+ assert.throws(()=>encodeNPCReviewLedger({...out.ledger,lastReviewedAt:{'NPC-100':9}}),/sidecar metadata/);
+ await assert.rejects(()=>persistNPCReviewReceipt({...f,receipt:{...f.receipt,reviewedActorIds:[]},verifyReceipt:async()=>true}),/Conflicting receipt/);
+ assert.equal(f.writes(),1);
 });
