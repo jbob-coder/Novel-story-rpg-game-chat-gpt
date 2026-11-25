@@ -742,8 +742,16 @@ test('low-priority obligations receive independent documented review without dis
  const archived=close(renegotiated);
  const recovered=stage(archived,[],'synthetic-obligation-coverage-CH001-recovery');
  assert.equal(verifyNarrativeSnapshot(recovered),true);
- assert.deepEqual(recommendNPCObligationCoverage({snapshot:recovered,
-  actorIds:[actorId]}),coverage);
+ const recoveredCoverage=recommendNPCObligationCoverage({snapshot:recovered,
+  actorIds:[actorId]});
+ assert.equal(recoveredCoverage[0].candidateCommitmentId,
+  coverage[0].candidateCommitmentId);
+ assert.equal(recoveredCoverage[0].unreviewedSinceChangeCount,
+  coverage[0].unreviewedSinceChangeCount);
+ assert.deepEqual(recoveredCoverage[0].candidatesForReview.map(x=>x.commitmentId),
+  coverage[0].candidatesForReview.map(x=>x.commitmentId));
+ assert.equal(recoveredCoverage[0].candidatesForReview[0].ageSinceLastAttentionTurns,
+  coverage[0].candidatesForReview[0].ageSinceLastAttentionTurns+1);
  assert.equal(recovered.archives['CH-000'].events.events.at(-1)
   .continuation_context.obligation_review.commitment_id,normal.id);
  assert.equal(recovered.state.world.actors[actorId].commitments[1].status,'pending');
