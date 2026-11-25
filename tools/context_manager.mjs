@@ -231,6 +231,22 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
     mayAssumeKnown:true,sourceEventId:event.id,truthStatus:'not_assessed',
     eventPath:'chapters/'+event.chapter_id+'.events.json',
     relatedThreadReferences:threadReferencesAtEvent(snapshot,event.id),
+    // An admitted direct social exchange has its own source/recipient proof.
+    // Return pointers, not the private speaker statement, and never assert truth.
+    ...(event.social_context?.transfer?.recipient_id===actorId?(()=>{
+      const transfer=event.social_context.transfer;
+      const origin=sourcedKnowledge.exec(transfer.known_entry)?.[3]??null;
+      return {socialTransmissionEvidence:{
+        status:'reviewed_direct_contact_recorded',
+        interactionId:event.social_context.interaction_id,
+        speakerActorId:transfer.speaker_id,
+        recipientActorId:actorId,recipientLearningEventId:event.id,
+        sourceStatementOriginEventId:origin,
+        reportedForm:transfer.reported_form??'legacy_full_quote',
+        truthStatus:'not_assessed',
+        evidenceScope:'private_event_pointer_only'
+      }};
+    })():{}),
     ...(recorded.transmitted_from?{transmissionEvidence:{
       status:'recipient_report_event_recorded',
       reportedByActorId:recorded.transmitted_from.actor_id,
