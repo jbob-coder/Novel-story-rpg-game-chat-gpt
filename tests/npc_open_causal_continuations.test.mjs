@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {
  inspectNPCCausalContinuations,draftReviewedNPCCausalContinuation,
  validateNPCContinuationDraft,verifyNPCCausalContinuationHistory,
- inspectNPCDecisionConsequenceHistory
+ inspectNPCDecisionConsequenceHistory,inspectNPCNegotiationHistory
 } from '../tools/living_world_causal_continuations.mjs';
 import {draftReviewedSocialContact} from '../tools/living_world_social.mjs';
 import {draftReviewedNPCIntroduction} from '../tools/living_world_npc_introduction.mjs';
@@ -801,4 +801,208 @@ test('obligation review rejects other-actor, stale, unsupported and forged prior
  assert.throws(()=>verifyNPCCausalContinuationHistory(fake),
   /latest prior actor-owned open commitment change/);
  assert.equal(verifyNarrativeSnapshot(valid),true);
+});
+
+
+// Each case starts from the immutable canonical CH-000 turn-nine snapshot.
+// These consent branches are separate synthetic possibilities, not story canon.
+const negotiationNoah='NPC-006',negotiationDarius='NPC-003';
+const negotiationOfferText=
+ 'SYNTHETIC QA PRIVATE: Noah proposes that Darius assist with a spare-parts inquiry without taking ownership of Noah\u0027s existing customer promise.';
+function beginNegotiationScenario(){
+ const old=JSON.stringify(baseline);
+ const ownCommitment={
+  id:'OBL-SYNTH-NEGOTIATE-NOAH',
+  summary:'SYNTHETIC QA: Noah must independently confirm the spare-parts inquiry.',
+  source_event_id:'EV-000031',last_change_event_id:'EV-000031',
+  due_day:null,status:'pending',priority:'normal',blockers:[],
+  resolution:null,resolution_event_id:null
+ };
+ const created=stage(baseline,[{
+  actor_id:negotiationNoah,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Noah records his own outstanding parts inquiry.',
+  outcome:'SYNTHETIC QA PRIVATE: only Noah acquires this responsibility.',
+  changes:[{field:'commitments',before:[],after:[ownCommitment]}]
+ }],'synthetic-negotiation-own-promise');
+ assert.equal(verifyNarrativeSnapshot(created),true);
+ assert.equal(created.manifest.last_event_id,'EV-000031');
+ const offer=npcAction(created,negotiationNoah,['EV-000031'],{
+  reasoning:'SYNTHETIC QA: Noah considers seeking voluntary help while retaining his own original promise.',
+  outcome:'SYNTHETIC QA PRIVATE: Noah records a proposal; Darius has not yet heard or agreed.',
+  negotiationOffer:{
+   counterparty_actor_id:negotiationDarius,
+   commitment_id:ownCommitment.id,
+   offer_fact:negotiationOfferText
+  },
+  changes:[{field:'knowledge',fact:negotiationOfferText,
+   source:'SYNTHETIC QA: Noah records his own uncommunicated proposal'}]
+ });
+ const proposed=stage(created,[offer],'synthetic-negotiation-proposal');
+ assert.equal(verifyNarrativeSnapshot(proposed),true);
+ const offerEvent=proposed.events.events.at(-1);
+ assert.equal(offerEvent.id,'EV-000033');
+ const knowledgeEntry=proposed.state.world.actors[negotiationNoah].knowledge.at(-1);
+ assert.ok(knowledgeEntry.includes(offerEvent.id));
+ let inspect=inspectNPCNegotiationHistory({snapshot:proposed});
+ assert.equal(inspect.length,1);
+ assert.equal(inspect[0].recordedResponseCount,0);
+ assert.deepEqual(inspect[0].witnessedRecipientReceiptEventIds,[]);
+ assert.deepEqual(proposed.state.world.actors[negotiationDarius].commitments??[],[]);
+ const contact=draftReviewedSocialContact({
+  state:proposed.state,interactionId:'SOC-SYNTH-NEGOTIATION-01',
+  participantIds:[negotiationNoah,negotiationDarius],reviewed:true,
+  observation:{
+   kind:'current_turn_observation',
+   fact:'SYNTHETIC QA: Noah directly discusses an optional spare-parts inquiry with Darius.',
+   causal_source:'SYNTHETIC QA: both NPCs are reviewed at the same real saved location.',
+   observer_actor_id:negotiationNoah,confirmed_by_reviewer:true
+  },
+  knowledgeTransfer:{
+   speaker_id:negotiationNoah,recipient_id:negotiationDarius,
+   known_entry:knowledgeEntry
+  },
+  outcomes:{
+   [negotiationNoah]:'SYNTHETIC QA PRIVATE: Noah describes his request but no consent is assumed.',
+   [negotiationDarius]:'SYNTHETIC QA PRIVATE: Darius hears the request and reserves his decision.'
+  }
+ });
+ const heard=stage(proposed,contact,'synthetic-negotiation-actual-delivery');
+ assert.equal(verifyNarrativeSnapshot(heard),true);
+ assert.equal(heard.manifest.last_event_id,'EV-000036');
+ assert.equal(heard.events.events.at(-1).actor_ids[0],negotiationDarius);
+ inspect=inspectNPCNegotiationHistory({snapshot:heard});
+ assert.deepEqual(inspect[0].witnessedRecipientReceiptEventIds,['EV-000036']);
+ assert.equal(inspect[0].recordedResponseCount,0);
+ assert.deepEqual(heard.state.world.actors[negotiationDarius].commitments??[],[]);
+ assert.deepEqual(heard.state.world.actors[negotiationNoah].commitments,[ownCommitment]);
+ assert.equal(JSON.stringify(baseline),old);
+ return {created,proposed,heard,ownCommitment,knowledgeEntry,old};
+}
+function recipientReply(snapshot,stance,changes=[]){
+ return npcAction(snapshot,negotiationDarius,['EV-000036'],{
+  reasoning:'SYNTHETIC QA: Darius considers the received terms and independently chooses his response.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius records a personal reply; Noah has not been told the reply.',
+  negotiationResponse:{
+   offer_event_id:'EV-000033',received_event_id:'EV-000036',stance,
+   reason:stance==='accept'?
+    'SYNTHETIC QA: Darius voluntarily offers limited help without cancelling Noah original promise.':
+    'SYNTHETIC QA: Darius declines because his own delivery schedule remains uncertain.'
+  },
+  changes
+ });
+}
+test('negotiation requires separately recorded offer, social receipt and voluntary acceptance',()=>{
+ const {heard,ownCommitment,old}=beginNegotiationScenario();
+ const ownAssistance={
+  id:'OBL-SYNTH-NEGOTIATE-DARIUS',
+  summary:'SYNTHETIC QA: Darius independently offers to check one spare-parts availability.',
+  source_event_id:'EV-000038',last_change_event_id:'EV-000038',
+  due_day:null,status:'pending',priority:'normal',blockers:[],
+  resolution:null,resolution_event_id:null
+ };
+ const accepted=stage(heard,[recipientReply(heard,'accept',[
+  {field:'commitments',before:[],after:[ownAssistance]}
+ ])],'synthetic-negotiation-voluntary-acceptance');
+ assert.equal(verifyNarrativeSnapshot(accepted),true);
+ const event=accepted.events.events.at(-1);
+ assert.equal(event.id,'EV-000038');
+ assert.equal(event.actor_ids[0],negotiationDarius);
+ assert.deepEqual(event.caused_by,['EV-000036']);
+ assert.equal(event.continuation_context.negotiation_response.stance,'accept');
+ assert.deepEqual(accepted.state.world.actors[negotiationNoah].commitments,[ownCommitment]);
+ assert.deepEqual(accepted.state.world.actors[negotiationDarius].commitments,
+  [ownAssistance]);
+ const report=inspectNPCNegotiationHistory({snapshot:accepted,actorIds:[negotiationNoah]});
+ assert.equal(report.length,1);
+ assert.equal(report[0].offerEventId,'EV-000033');
+ assert.equal(report[0].offerorCommitmentId,ownCommitment.id);
+ assert.equal(report[0].recordedResponseCount,1);
+ assert.deepEqual(report[0].witnessedRecipientReceiptEventIds,['EV-000036']);
+ assert.deepEqual(report[0].responses,[{
+  eventId:'EV-000038',actorId:negotiationDarius,receivedEventId:'EV-000036',
+  stance:'accept',ownCommitmentsChanged:true
+ }]);
+ assert.equal(report[0].proposerKnowsResponse,
+  'not_established_by_this_review');
+ assert.equal(report[0].bindingCommitmentInferred,false);
+ assert.equal(report[0].automaticCounterpartyObligation,false);
+ assert.deepEqual(inspectNPCNegotiationHistory({snapshot:accepted,limit:0}),[]);
+ assert.equal(accepted.manifest.last_completed_turn,13);
+ assert.equal(accepted.state.player.knowledge.length,baseline.state.player.knowledge.length);
+ for(const text of [negotiationOfferText,ownAssistance.summary]){
+  assert.equal(accepted.chapter.includes(text),false);
+  assert.equal(JSON.stringify(accepted.transcript).includes(text),false);
+ }
+ const closed=close(accepted);
+ assert.equal(verifyNarrativeSnapshot(closed),true);
+ const reopened=stage(closed,[],'synthetic-negotiation-after-CH001');
+ assert.equal(verifyNarrativeSnapshot(reopened),true);
+ assert.deepEqual(inspectNPCNegotiationHistory({snapshot:reopened}),report);
+ assert.deepEqual(reopened.state.world.actors[negotiationNoah].commitments,
+  [ownCommitment]);
+ assert.deepEqual(reopened.state.world.actors[negotiationDarius].commitments,
+  [ownAssistance]);
+ assert.equal(reopened.manifest.chapter_id,'CH-001');
+ assert.equal(JSON.stringify(baseline),old);
+});
+test('recipient may independently decline the same offer without any imposed obligation',()=>{
+ const {heard,ownCommitment}=beginNegotiationScenario();
+ const declined=stage(heard,[recipientReply(heard,'decline')],
+  'synthetic-negotiation-voluntary-decline');
+ assert.equal(verifyNarrativeSnapshot(declined),true);
+ assert.equal(declined.state.world.actors[negotiationDarius].commitments?.length??0,0);
+ assert.deepEqual(declined.state.world.actors[negotiationNoah].commitments,
+  [ownCommitment]);
+ const result=inspectNPCNegotiationHistory({snapshot:declined})[0];
+ assert.equal(result.responses[0].stance,'decline');
+ assert.equal(result.responses[0].ownCommitmentsChanged,false);
+ assert.equal(result.bindingCommitmentInferred,false);
+ assert.equal(result.proposerKnowsResponse,'not_established_by_this_review');
+});
+test('consent rejects a missing offer, mismatched recipient, forged receipt and altered saved terms',()=>{
+ const {created,proposed,heard}=beginNegotiationScenario();
+ const offer=proposed.events.events.at(-1).continuation_context.negotiation_offer;
+ const source='EV-000031';
+ assert.throws(()=>npcAction(created,negotiationNoah,[source],{
+  negotiationOffer:{...offer,counterparty_actor_id:negotiationNoah},
+  changes:[{field:'knowledge',fact:negotiationOfferText,source:'SYNTHETIC QA: own memo'}]
+ }),/concrete obligation, recipient and terms/);
+ assert.throws(()=>npcAction(created,negotiationNoah,[source],{
+  negotiationOffer:offer,changes:[]
+ }),/recorded actor-owned proposal statement/);
+ assert.throws(()=>npcAction(proposed,negotiationDarius,['EV-000033'],{
+  negotiationResponse:{
+   offer_event_id:'EV-000033',received_event_id:'EV-000033',
+   stance:'accept',reason:'SYNTHETIC QA: a claimed consent without communication.'}
+ }),/event it does not know|receipt/);
+ assert.throws(()=>npcAction(heard,negotiationDarius,['EV-000036'],{
+  negotiationResponse:{
+   offer_event_id:'EV-000033',received_event_id:'EV-000035',
+   stance:'accept',reason:'SYNTHETIC QA: a source-only social event is not the recipient receipt.'}
+ }),/verified prior social receipt/);
+ assert.throws(()=>npcAction(heard,negotiationNoah,['EV-000035'],{
+  negotiationResponse:{
+   offer_event_id:'EV-000033',received_event_id:'EV-000035',
+   stance:'accept',reason:'SYNTHETIC QA: a proposer may not consent on behalf of Darius.'}
+ }),/another actor negotiation offer/);
+ assert.throws(()=>npcAction(heard,negotiationDarius,['EV-000036'],{
+  negotiationResponse:{
+   offer_event_id:'EV-000033',received_event_id:'EV-000036',
+   stance:'forced',reason:'SYNTHETIC QA: forced replies are not a valid stance.'}
+ }),/attributed offer, receipt and free choice/);
+ const accepted=stage(heard,[recipientReply(heard,'accept')],
+  'synthetic-negotiation-readback-check');
+ assert.equal(verifyNarrativeSnapshot(accepted),true);
+ const forged=structuredClone(accepted);
+ forged.events.events.find(e=>e.id==='EV-000033')
+  .continuation_context.negotiation_offer.offer_fact=
+  'SYNTHETIC QA: somebody silently rewrote the original proposed terms.';
+ assert.throws(()=>verifyNPCCausalContinuationHistory(forged),
+  /exact knowledge effect/);
+ const forgedReceipt=structuredClone(accepted);
+ forgedReceipt.events.events.at(-1)
+  .continuation_context.negotiation_response.received_event_id='EV-000035';
+ assert.throws(()=>verifyNPCCausalContinuationHistory(forgedReceipt),
+  /verified prior social receipt/);
+ assert.equal(verifyNarrativeSnapshot(accepted),true);
 });

@@ -40,6 +40,7 @@ export function prepareLivingWorldTurn({snapshot,turn,observedHead,npcResolution
     // events. An unresolved proposal never becomes an automatic NPC action.
     const continuation=validateNPCContinuationDraft({snapshot,item:{
       actor_id:resolved.actor_id,intent:resolved.causal_basis,
+      changes:resolved.changes??[],
       ...(resolved.social_context===undefined?{}:{social_context:resolved.social_context}),
       ...(resolved.continuation_context===undefined?{}:
         {continuation_context:resolved.continuation_context}),

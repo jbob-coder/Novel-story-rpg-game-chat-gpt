@@ -107,6 +107,98 @@ function validateObligationReviewBasis({snapshot,events,actorId,sourceEventIds,
  return clone(basis);
 }
 
+
+// A proposal is an actor-owned statement about an existing open obligation,
+// not a contract. The recipient must hear the exact proposal through an
+// actual reviewed social exchange and reply in a separate actor-owned event.
+function latestOwnedObligation(events,actorId,commitmentId){
+ let latest=null;
+ for(const event of events)for(const change of event.state_changes??[]){
+  if(change.field!=='commitments'||change.actor_id!==actorId||
+   event.actor_ids?.[0]!==actorId)continue;
+  const before=(change.before??[]).find(x=>x.id===commitmentId)??null;
+  const after=(change.after??[]).find(x=>x.id===commitmentId)??null;
+  if(after&&!same(before,after))latest={event,commitment:after};
+ }
+ return latest;
+}
+function offerKnowledgeChange(event){
+ const offer=event?.continuation_context?.negotiation_offer;
+ return event?.state_changes?.find(c=>c.field==='knowledge'&&
+  c.actor_id===event.actor_ids?.[0]&&c.fact===offer?.offer_fact&&
+  c.after===c.fact+' (source: '+c.source+'; '+event.id+')');
+}
+function validateNegotiationOffer({snapshot,events,actorId,sourceEventIds,
+ offer,changes,priorTurn,requireCurrent=true,recordedEvent=null}){
+ if(offer===undefined)return null;
+ insist(offer&&typeof offer==='object'&&!Array.isArray(offer)&&
+  same(Object.keys(offer).sort(),[
+   'counterparty_actor_id','commitment_id','offer_fact'].sort())&&
+  Object.hasOwn(snapshot.state.world.actors,offer.counterparty_actor_id)&&
+  offer.counterparty_actor_id!==actorId&&
+  typeof offer.commitment_id==='string'&&
+  /^OBL-[A-Za-z0-9_-]{3,64}$/.test(offer.commitment_id)&&
+  text(offer.offer_fact,16,500),
+  'NPC negotiation offer requires a concrete obligation, recipient and terms');
+ const previous=latestOwnedObligation(events,actorId,offer.commitment_id);
+ insist(previous&&eventNumber(previous.event.id)>baselineLastEvent&&
+  previous.event.turn<priorTurn&&
+  sourceEventIds.includes(previous.event.id)&&
+  previous.commitment.last_change_event_id===previous.event.id&&
+  ['pending','blocked'].includes(previous.commitment.status),
+  'NPC negotiation offer must cite the latest prior actor-owned open obligation');
+ if(requireCurrent){
+  const held=(snapshot.state.world.actors[actorId].commitments??[])
+   .find(x=>x.id===offer.commitment_id);
+  insist(held&&same(held,previous.commitment),
+   'NPC negotiation offer cites an outdated or missing obligation');
+ }
+ if(recordedEvent){
+  insist(offerKnowledgeChange(recordedEvent)&&
+   recordedEvent.actor_ids?.[0]===actorId,
+   'Recorded NPC negotiation offer lacks its own exact knowledge effect');
+ }else{
+  insist(Array.isArray(changes)&&changes.some(x=>x?.field==='knowledge'&&
+   x.fact===offer.offer_fact),
+   'NPC negotiation offer requires a recorded actor-owned proposal statement');
+ }
+ return clone(offer);
+}
+function validateNegotiationResponse({snapshot,events,actorId,sourceEventIds,
+ response,priorTurn}){
+ if(response===undefined)return null;
+ insist(response&&typeof response==='object'&&!Array.isArray(response)&&
+  same(Object.keys(response).sort(),[
+   'offer_event_id','received_event_id','stance','reason'].sort())&&
+  eventID(response.offer_event_id)&&eventID(response.received_event_id)&&
+  ['accept','decline','counter','defer'].includes(response.stance)&&
+  text(response.reason,16,600),
+  'NPC negotiation response requires an attributed offer, receipt and free choice');
+ const offer=events.find(e=>e.id===response.offer_event_id);
+ const receipt=events.find(e=>e.id===response.received_event_id);
+ const offerContext=offer?.continuation_context?.negotiation_offer;
+ const offeredKnowledge=offerKnowledgeChange(offer);
+ insist(offer&&offerContext&&offeredKnowledge&&
+  offer.actor_ids?.length===1&&
+  offer.actor_ids[0]!==actorId&&
+  offerContext.counterparty_actor_id===actorId&&
+  offer.turn<priorTurn,
+  'NPC cannot respond to a missing or another actor negotiation offer');
+ const transfer=receipt?.social_context?.transfer;
+ insist(receipt&&receipt.turn>offer.turn&&receipt.turn<priorTurn&&
+  sourceEventIds.includes(receipt.id)&&
+  receipt.actor_ids?.length===1&&receipt.actor_ids[0]===actorId&&
+  receipt.known_to?.includes(actorId)&&
+  transfer?.speaker_id===offer.actor_ids[0]&&
+  transfer?.recipient_id===actorId&&
+  transfer?.known_entry===offeredKnowledge.after&&
+  receipt.state_changes?.some(c=>c.actor_id===actorId&&c.field==='knowledge'&&
+   typeof c.after==='string'&&
+   (snapshot.state.world.actors[actorId].knowledge??[]).includes(c.after)),
+  'NPC response requires its own verified prior social receipt of the exact offer');
+ return clone(response);
+}
+
 /**
  * Private, read-only continuation possibilities, ordered deterministically.
  * A candidate is a reminder to the narrator, not a resolved actor decision.
@@ -133,7 +225,8 @@ export function inspectNPCCausalContinuations({snapshot,actorIds=null,limitPerAc
 /** Review a chosen continuation; never write a story turn or invent an outcome. */
 export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEventIds,
  reasoning,outcome,changes=[],reviewed=false,memoryBasis=undefined,
- obligationReview=undefined}={}){
+ obligationReview=undefined,negotiationOffer=undefined,
+ negotiationResponse=undefined}={}){
  const events=actualEventHistory(snapshot);
  insist(Object.hasOwn(snapshot.state.world.actors,actorId),
   'NPC continuation requires an existing actor');
@@ -148,6 +241,13 @@ export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEvent
  const obligation=validateObligationReviewBasis({snapshot,events,actorId,
   sourceEventIds,basis:obligationReview,
   priorTurn:snapshot.manifest.last_completed_turn+1});
+ insist(negotiationOffer===undefined||negotiationResponse===undefined,
+  'Negotiation proposal and response require independently recorded events');
+ const offer=validateNegotiationOffer({snapshot,events,actorId,sourceEventIds,
+  offer:negotiationOffer,changes,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ const response=validateNegotiationResponse({snapshot,events,actorId,sourceEventIds,
+  response:negotiationResponse,priorTurn:snapshot.manifest.last_completed_turn+1});
  return clone({
   actor_id:actorId,reviewed:true,resolved:true,
   causal_basis:reasoning,outcome,changes,disclosures:[],
@@ -155,7 +255,9 @@ export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEvent
    kind:'known_event',reviewed:true,reasoning,
    source_event_ids:sourceEventIds,
    ...(memory===null?{}:{decision_memory_basis:memory}),
-   ...(obligation===null?{}:{obligation_review:obligation})
+   ...(obligation===null?{}:{obligation_review:obligation}),
+   ...(offer===null?{}:{negotiation_offer:offer}),
+   ...(response===null?{}:{negotiation_response:response})
   }
  });
 }
@@ -174,7 +276,9 @@ export function validateNPCContinuationDraft({snapshot,item}={}){
   same(Object.keys(context).sort(),
    ['kind','reasoning','reviewed','source_event_ids',
     ...(context.decision_memory_basis===undefined?[]:['decision_memory_basis']),
-    ...(context.obligation_review===undefined?[]:['obligation_review'])].sort())&&
+    ...(context.obligation_review===undefined?[]:['obligation_review']),
+    ...(context.negotiation_offer===undefined?[]:['negotiation_offer']),
+    ...(context.negotiation_response===undefined?[]:['negotiation_response'])].sort())&&
   context.kind==='known_event'&&context.reviewed===true&&
   text(context.reasoning,16,1200)&&
   context.reasoning===item.intent,
@@ -190,6 +294,17 @@ export function validateNPCContinuationDraft({snapshot,item}={}){
   priorTurn:snapshot.manifest.last_completed_turn+1});
  validateObligationReviewBasis({snapshot,events,actorId:item.actor_id,
   sourceEventIds:context.source_event_ids,basis:context.obligation_review,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ insist(context.negotiation_offer===undefined||
+  context.negotiation_response===undefined,
+  'Negotiation proposal and response require independently recorded events');
+ validateNegotiationOffer({snapshot,events,actorId:item.actor_id,
+  sourceEventIds:context.source_event_ids,
+  offer:context.negotiation_offer,changes:item.changes,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ validateNegotiationResponse({snapshot,events,actorId:item.actor_id,
+  sourceEventIds:context.source_event_ids,
+  response:context.negotiation_response,
   priorTurn:snapshot.manifest.last_completed_turn+1});
  return clone(context);
 }
@@ -215,7 +330,9 @@ export function verifyNPCCausalContinuationHistory(snapshot){
     event.social_context===undefined&&
     same(Object.keys(c).sort(),['kind','reviewed','reasoning','source_event_ids',
       ...(c.decision_memory_basis===undefined?[]:['decision_memory_basis']),
-      ...(c.obligation_review===undefined?[]:['obligation_review'])].sort())&&
+      ...(c.obligation_review===undefined?[]:['obligation_review']),
+      ...(c.negotiation_offer===undefined?[]:['negotiation_offer']),
+      ...(c.negotiation_response===undefined?[]:['negotiation_response'])].sort())&&
     c.kind==='known_event'&&c.reviewed===true&&
     text(c.reasoning,16,1200)&&event.intent===c.reasoning&&
     same(refs,c.source_event_ids)&&
@@ -231,6 +348,16 @@ export function verifyNPCCausalContinuationHistory(snapshot){
    validateObligationReviewBasis({snapshot,events:[...known.values()],
     actorId:event.actor_ids[0],sourceEventIds:c.source_event_ids,
     basis:c.obligation_review,priorTurn:event.turn,requireCurrent:false});
+   insist(c.negotiation_offer===undefined||
+    c.negotiation_response===undefined,
+    'Negotiation offer and response cannot share one actor event');
+   validateNegotiationOffer({snapshot,events:[...known.values()],
+    actorId:event.actor_ids[0],sourceEventIds:c.source_event_ids,
+    offer:c.negotiation_offer,changes:event.state_changes,
+    priorTurn:event.turn,requireCurrent:false,recordedEvent:event});
+   validateNegotiationResponse({snapshot,events:[...known.values()],
+    actorId:event.actor_ids[0],sourceEventIds:c.source_event_ids,
+    response:c.negotiation_response,priorTurn:event.turn});
    seen.push({event_id:event.id,actor_id:event.actor_ids[0],
     source_event_ids:[...c.source_event_ids]});
   }
@@ -292,5 +419,53 @@ export function inspectNPCDecisionConsequenceHistory({snapshot,actorIds=null,lim
      outcomeTruth:'not_assessed',
      inferredCompletion:false
    };
+ }));
+}
+
+// All proposal and response references are narrator-private. A recorded
+// stance does not inform the offeror or silently bind either participant.
+export function inspectNPCNegotiationHistory({snapshot,actorIds=null,limit=20}={}){
+ const history=actualEventHistory(snapshot),actors=snapshot.state.world.actors;
+ insist(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100&&
+  new Set(actorIds).size===actorIds.length&&
+  actorIds.every(id=>Object.hasOwn(actors,id))),
+  'Unknown or duplicate actors for NPC negotiation review');
+ insist(Number.isSafeInteger(limit)&&limit>=0&&limit<=100,
+  'Invalid NPC negotiation review limit');
+ verifyNPCCausalContinuationHistory(snapshot);
+ const chosen=actorIds===null?null:new Set(actorIds);
+ const offers=history.filter(event=>
+  event.continuation_context?.negotiation_offer!==undefined&&
+  (chosen===null||chosen.has(event.actor_ids[0])||
+   chosen.has(event.continuation_context.negotiation_offer.counterparty_actor_id)));
+ return clone((limit===0?[]:offers.slice(-limit)).map(event=>{
+  const offer=event.continuation_context.negotiation_offer;
+  const matchingReceipts=history.filter(e=>
+   e.social_context?.transfer?.speaker_id===event.actor_ids[0]&&
+   e.social_context.transfer.recipient_id===offer.counterparty_actor_id&&
+   e.social_context.transfer.known_entry===offerKnowledgeChange(event)?.after);
+  const responses=history.filter(e=>
+   e.actor_ids?.[0]===offer.counterparty_actor_id&&
+   e.continuation_context?.negotiation_response?.offer_event_id===event.id)
+   .map(e=>({
+    eventId:e.id,actorId:e.actor_ids[0],
+    receivedEventId:e.continuation_context.negotiation_response.received_event_id,
+    stance:e.continuation_context.negotiation_response.stance,
+    ownCommitmentsChanged:e.state_changes?.some(change=>
+     change.actor_id===e.actor_ids[0]&&change.field==='commitments')??false
+   }));
+  return {
+   offerEventId:event.id,offerorActorId:event.actor_ids[0],
+   counterpartyActorId:offer.counterparty_actor_id,
+   offerorCommitmentId:offer.commitment_id,
+   witnessedRecipientReceiptEventIds:matchingReceipts.map(e=>e.id),
+   recordedResponseCount:responses.length,responses,
+   status:responses.length?'recipient_independent_response_recorded':
+    'no_actor_owned_response_recorded',
+   proposerKnowsResponse:'not_established_by_this_review',
+   bindingCommitmentInferred:false,
+   automaticCounterpartyObligation:false,
+   visibleToPlayer:false
+  };
  }));
 }

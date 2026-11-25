@@ -581,3 +581,42 @@ to change due dates, priority, blockers or status. An actor's personal
 rescheduling note does not prove a creditor, employer or client agreed.
 No automatic world time, obligation resolution or NPC action is added.
 The five canonical CH-000 save files remain untouched; tests are synthetic.
+
+
+## Reviewable NPC-to-NPC negotiations and distinct consent events (2026-11-24)
+
+Optional actor-owned negotiation metadata extends the already reviewed
+`draftReviewedNPCCausalContinuation` contract. A `negotiationOffer`
+requires an exact `counterparty_actor_id`, `commitment_id` and
+`offer_fact`. The author must cite the latest earlier event-backed
+modification of their own still-open obligation, and add the offer statement
+through an actual `knowledge` change in the same actor-owned proposal
+event. Proposing does not automatically inform the named counterparty.
+
+The existing independently reviewed `draftReviewedSocialContact`
+mechanism must later transmit the **exact offer knowledge entry** to the
+named recipient, producing its own authenticated social receipt event.
+Only in a subsequent turn may that recipient create a separate
+`negotiationResponse:{offer_event_id,received_event_id,stance,reason}`.
+Valid stances: `accept`, `decline`, `counter`, `defer`.
+The response can cite only its recipient-owned learning event, not the
+offeror's private proposal. The validator checks both preceding events,
+speaker, recipient, origin statement, acquired text, event sequence,
+same actor and claimed decision, at draft, stage, and chronological
+readback, including archived chapters.
+
+Neither offer nor reply changes a different NPC's `commitments`.
+A response marked `accept` does **not** imply automatic responsibility;
+a new obligation requires an explicit, independently validated actor-owned
+commitment state change. An acceptance not separately communicated to the
+offeror stays private; the inspection API does not presume delivery.
+`inspectNPCNegotiationHistory` returns bounded narrator-private event IDs
+for the offer, reviewed social receipts, independent recipient stances
+and whether a recipient actually made an own-commitment change. It
+does not assert binding contracts, verified promises, shared consent,
+truth of terms, or permission to reveal NPC secrets to Jack.
+
+Synthetic tests exercise one proposal with separate accepted and declined
+possibilities, actor-specific obligations, forged receipts and offer text,
+no automatic transmission, and CH-001 replay. The actual CH-000 turn-nine
+player checkpoint and existing five-file save remain unchanged.

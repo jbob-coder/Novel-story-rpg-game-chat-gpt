@@ -330,3 +330,38 @@ renegociación. Esa aceptación necesita su propia evidencia y, si
 corresponde, la acción de la otra persona. Nunca se supone éxito,
 cancelación, fallo, consentimiento o cambio de prioridades por el mero
 transcurso del tiempo.
+
+
+### Negociación entre NPC: propuesta, conocimiento y consentimiento separados
+
+Las obligaciones **no** pueden transferirse por decisión unilateral de quien
+las posee. Un NPC puede registrar en una continuación causal revisada una
+`negotiationOffer` con `commitment_id` de una responsabilidad propia
+abierta, `counterparty_actor_id` y `offer_fact`. Debe citar el último
+evento propio que modificó esa obligación y guardar el texto de su oferta
+como nuevo recuerdo personal. Esto **no** demuestra que la otra persona
+la haya recibido, ni que haya aceptado.
+
+La propuesta solamente llega al destinatario si ocurre un encuentro social
+revisado, confirmado por ubicación y registrado para ambos participantes.
+El destinatario conserva el relato recibido como conocimiento **atribuido**
+a su fuente; no se copia automáticamente el compromiso.
+
+Más adelante, el destinatario puede registrar una `negotiationResponse`:
+`offer_event_id`, `received_event_id`, `stance` (accept, decline,
+counter o defer) y `reason`. Los validadores exigen que el evento de
+recepción sea **suyo**, anterior y que documente la transmisión literal de
+la oferta original. Las decisiones de quien ofrece y quien responde nunca
+se fusionan ni se realizan en nombre del otro.
+
+Incluso la postura `accept` solo registra una respuesta individual:
+**no** completa, cancela ni cambia automáticamente el compromiso del
+emisor, ni crea una responsabilidad en el receptor. Si este acepta trabajo,
+debe registrarlo explícitamente con su propio cambio de `commitments`
+en su evento. Una respuesta privada tampoco se considera comunicada
+automáticamente al ofertante. La consulta privada
+`inspectNPCNegotiationHistory` muestra eventos de propuesta, recepción y
+respuesta sin inferir un contrato, consentimiento de terceros o una
+consecuencia real que no esté guardada. La relectura verifica estos
+enlaces entre capítulos. La narración visible de Jack nunca recibe estos
+datos privados sin causa narrativamente válida.
