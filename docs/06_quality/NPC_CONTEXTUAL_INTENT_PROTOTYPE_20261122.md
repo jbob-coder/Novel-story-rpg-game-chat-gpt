@@ -29,3 +29,17 @@ paquete que la pasarela de generación entrega al narrador. Tests cubren EV-0000
 (Elena, también listado en `known_to` de Rosa), su lectura por ambas actrices
 y la petición de generación posterior. La proyección no crea nuevos hechos,
 ni cambia el contenido, la cronología o el guardado del juego.
+
+ 
+## Alcance de una fuente citada en las intenciones abiertas
+
+En el borrador privado `inspectNPCGeneratedIntention`, cada EV citado
+ahora se identifica mediante `citedEventEvidence`: `actor_owned_event`
+si el NPC protagonizó el evento, o `known_to_reference_only` si su ID
+solo consta como conocedor de una referencia. El segundo caso activa
+`requiresReferencedContentReview:true`: el narrador debe revisar la
+observación/afirmación **propia** del NPC antes de interpretar los detalles
+como información adquirida. No impide que el NPC forme hipótesis,
+actúe libremente o incluso se equivoque; no cambia la causalidad del motor,
+el esquema de guardado, el estado ni el tiempo. La prueba sintética compara
+EV-000025 y EV-000029 para Rosa y contempla una intención sin causa externa.

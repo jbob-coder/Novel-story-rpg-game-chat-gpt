@@ -108,10 +108,22 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
   sourceEventIds:proposal.sourceEventIds??[],
   destinationId:proposal.destinationId??null,reviewed:true
  });
+ // known_to links to an event, not proof of all another actor's private text.
+ // Preserve source scope for the narrator's final causal adjudication.
+ const citedEvidence=checked.sourceEventIds.map(eventId=>{
+  const e=request.evidence.knownEvents.find(row=>row.id===eventId);
+  ensure(e&&['actor_owned_event','known_to_reference_only'].includes(e.detailScope),
+   'Cited NPC event lacks an actor-owned or reference-only evidence scope');
+  return {eventId,detailScope:e.detailScope,
+   actorOwnedFullEventText:e.detailScope==='actor_owned_event',
+   additionalContentReviewRequired:e.detailScope!=='actor_owned_event'};
+ });
  return copy({
   classification:'npc_actor_authored_proposal_review_v1',
   actorId:request.actorId,intention:checked.intention,
   reasoning:checked.reasoning,sourceEventIds:checked.sourceEventIds,
+  citedEventEvidence:citedEvidence,
+  requiresReferencedContentReview:citedEvidence.some(e=>e.additionalContentReviewRequired),
   destinationId:checked.destinationId,
   graphRouteOnly:checked.possibleGraphRoute,
   physicalAccessUnverified:checked.graphAccessUnverified,

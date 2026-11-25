@@ -207,3 +207,34 @@ test('generated NPC requests do not launder another actor event detail via known
  const owned=request.evidence.knownEvents.find(e=>e.id==='EV-000029');
  assert.ok(owned?.outcome.includes('despertador reparado'));
 });
+
+ 
+test('cited shared-event pointers remain reference-only evidence in private intention review',()=>{
+ const s=baseline(),r=initial(s,'NPC-005');
+ assert.ok(r.evidence.knownEventIds.includes('EV-000025'));
+ assert.ok(r.evidence.knownEventIds.includes('EV-000029'));
+ const pointer=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa privately considers how to check a possible report without assuming its private details.',
+  ['EV-000025'])});
+ assert.deepEqual(pointer.citedEventEvidence,[{
+  eventId:'EV-000025',detailScope:'known_to_reference_only',
+  actorOwnedFullEventText:false,additionalContentReviewRequired:true
+ }]);
+ assert.equal(pointer.requiresReferencedContentReview,true);
+ assert.equal(pointer.actionPerformed,false);
+ assert.equal(pointer.createdEvent,false);
+ const owned=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa considers a safe time to review the already repaired neighbor clock.',
+  ['EV-000029'])});
+ assert.deepEqual(owned.citedEventEvidence,[{
+  eventId:'EV-000029',detailScope:'actor_owned_event',
+  actorOwnedFullEventText:true,additionalContentReviewRequired:false
+ }]);
+ assert.equal(owned.requiresReferencedContentReview,false);
+ const independent=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa reconsiders an ordinary household priority without using any external source.',
+  [])});
+ assert.deepEqual(independent.citedEventEvidence,[]);
+ assert.equal(independent.requiresReferencedContentReview,false);
+ assert.equal(JSON.stringify(s),JSON.stringify(baseline()));
+});
