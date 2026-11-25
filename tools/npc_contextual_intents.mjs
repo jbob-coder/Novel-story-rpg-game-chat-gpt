@@ -46,8 +46,16 @@ export function inspectNPCContextualChoices({snapshot,actorId,limitKnownEvents=8
    plans:a.plans??[],knowledge:a.knowledge??[],
    knownEventIds:known.map(e=>e.id),
    // Actor-known history is private, bounded, and meaningful beyond opaque IDs.
-   knownEvents:known.map(e=>({id:e.id,turn:e.turn,day:e.day,
-    kind:e.kind,actorIds:e.actor_ids,intent:e.intent,outcome:e.outcome}))
+   // known_to is an event reference, NOT proof that the actor learned every
+   // private detail in another actor's intention or narrator-authored outcome.
+   // Literal knowledge already recorded for this actor remains in knowledge.
+   knownEvents:known.map(e=>{
+    const authored=e.actor_ids?.length===1&&e.actor_ids[0]===actorId;
+    return {id:e.id,turn:e.turn,day:e.day,
+     kind:authored?e.kind:null,actorIds:authored?[actorId]:null,
+     intent:authored?e.intent:null,outcome:authored?e.outcome:null,
+     detailScope:authored?'actor_owned_event':'known_to_reference_only'};
+   })
   },
   status:'proposal_only',executionAuthorized:false,
   readerVisible:false,automaticallySelectedAction:false

@@ -191,3 +191,106 @@ test('the cited older known source is preserved instead of silently forcing late
  assert.deepEqual(staged.events.events.at(-1).caused_by,['EV-000025']);
  assert.ok(!staged.transcript.entries.some(x=>x.text.includes('SYNTHETIC PRIVATE:')));
 });
+
+
+test('generated NPC requests do not launder another actor event detail via known_to',()=>{
+ const request=prepareNPCIntentionRequests({snapshot:baseline(),actorIds:['NPC-005'],
+  elapsedMinutes:15}).requests[0];
+ assert.equal(request.actorId,'NPC-005');
+ assert.ok(request.evidence.knownEventIds.includes('EV-000025'));
+ const indirect=request.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(indirect);
+ assert.equal(indirect.detailScope,'known_to_reference_only');
+ assert.equal(indirect.outcome,null);
+ assert.equal(indirect.intent,null);
+ assert.ok(!JSON.stringify(indirect).includes('registros financieros'));
+ const owned=request.evidence.knownEvents.find(e=>e.id==='EV-000029');
+ assert.ok(owned?.outcome.includes('despertador reparado'));
+});
+
+ 
+test('cited shared-event pointers remain reference-only evidence in private intention review',()=>{
+ const s=baseline(),r=initial(s,'NPC-005');
+ assert.ok(r.evidence.knownEventIds.includes('EV-000025'));
+ assert.ok(r.evidence.knownEventIds.includes('EV-000029'));
+ const pointer=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa privately considers how to check a possible report without assuming its private details.',
+  ['EV-000025'])});
+ assert.deepEqual(pointer.citedEventEvidence,[{
+  eventId:'EV-000025',detailScope:'known_to_reference_only',
+  actorOwnedFullEventText:false,additionalContentReviewRequired:true
+ }]);
+ assert.equal(pointer.requiresReferencedContentReview,true);
+ assert.equal(pointer.actionPerformed,false);
+ assert.equal(pointer.createdEvent,false);
+ const owned=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa considers a safe time to review the already repaired neighbor clock.',
+  ['EV-000029'])});
+ assert.deepEqual(owned.citedEventEvidence,[{
+  eventId:'EV-000029',detailScope:'actor_owned_event',
+  actorOwnedFullEventText:true,additionalContentReviewRequired:false
+ }]);
+ assert.equal(owned.requiresReferencedContentReview,false);
+ const independent=inspectNPCGeneratedIntention({snapshot:s,request:r,proposal:propose(r,
+  'Rosa reconsiders an ordinary household priority without using any external source.',
+  [])});
+ assert.deepEqual(independent.citedEventEvidence,[]);
+ assert.equal(independent.requiresReferencedContentReview,false);
+ assert.equal(JSON.stringify(s),JSON.stringify(baseline()));
+});
+
+
+test('older actor-known events stay citeable after they leave the eight-event prompt window',()=>{
+ const authentic=baseline(),original=JSON.stringify(authentic);
+ let staged=authentic;
+ for(let i=0;i<9;i++){
+  staged=stageLivingWorldTurn({snapshot:staged,observedHead:head,
+   turn:turn('older-known-event-'+i),
+   npcResolutions:[{actor_id:'NPC-005',reviewed:true,resolved:true,
+    causal_basis:'SYNTHETIC QA: Rosa quietly reassesses her own existing household priorities.',
+    outcome:'SYNTHETIC PRIVATE: Rosa performs a limited reflection without a new delivery.',
+    changes:[],disclosures:[]}]
+  });
+ }
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ const request=initial(staged,'NPC-005');
+ for(const oldId of ['EV-000025','EV-000029'])
+  assert.ok(!request.evidence.knownEventIds.includes(oldId),
+   'The compact recent-event preview must no longer contain '+oldId);
+ const own=inspectNPCGeneratedIntention({snapshot:staged,request,
+  proposal:propose(request,
+   'Rosa revisits the earlier repaired clock before considering a future return.',
+   ['EV-000029'])});
+ assert.deepEqual(own.citedEventEvidence,[{
+  eventId:'EV-000029',detailScope:'actor_owned_event',
+  actorOwnedFullEventText:true,additionalContentReviewRequired:true,
+  outsideRecentContext:true
+ }]);
+ assert.equal(own.requiresReferencedContentReview,true);
+ const thirdParty=inspectNPCGeneratedIntention({snapshot:staged,request,
+  proposal:propose(request,
+   'Rosa considers a previously known event without assuming Elena private thoughts.',
+   ['EV-000025'])});
+ assert.deepEqual(thirdParty.citedEventEvidence,[{
+  eventId:'EV-000025',detailScope:'known_to_reference_only',
+  actorOwnedFullEventText:false,additionalContentReviewRequired:true,
+  outsideRecentContext:true
+ }]);
+ assert.throws(()=>inspectNPCGeneratedIntention({snapshot:staged,request,
+  proposal:propose(request,
+   'Rosa incorrectly claims details of an unrelated private player event.',
+   ['EV-000027'])}),/not known by its actor/);
+ const reviewed=draftOutcomeFromNPCIntention({snapshot:staged,request,
+  proposal:propose(request,
+   'Rosa privately plans to check whether the old clock still needs returning.',
+   ['EV-000029']),
+  reviewed:true,outcome:'SYNTHETIC PRIVATE: Rosa reviews the old clock, not a confirmed handover.'});
+ assert.deepEqual(reviewed.continuation_context.source_event_ids,['EV-000029']);
+ const next=stageLivingWorldTurn({snapshot:staged,observedHead:head,
+  turn:turn('older-known-event-causal-followup'),npcResolutions:[reviewed]});
+ assert.equal(verifyNarrativeSnapshot(next),true);
+ assert.deepEqual(next.events.events.at(-1).caused_by,['EV-000029']);
+ assert.equal(JSON.stringify(authentic),original);
+ for(const [path,bytes] of Object.entries(originals))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+});

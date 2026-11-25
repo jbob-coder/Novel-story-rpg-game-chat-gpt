@@ -4,6 +4,7 @@
 // player disclosure, automatic movement or live save writes.
 import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
 import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
+import {allEvents} from './chapter_history.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
  from './npc_contextual_intents.mjs';
@@ -97,9 +98,15 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  ensure(Array.isArray(proposal.sourceEventIds??[])&&
   (proposal.sourceEventIds??[]).length<=3,
   'Source-event list must be bounded');
- const known=new Set(request.evidence.knownEventIds);
- ensure((proposal.sourceEventIds??[]).every(id=>known.has(id)),
-  'Intention cites an event not known by its actor');
+ // The request lists only the eight MOST RECENT known events for context
+ // economy. Historical event evidence must not disappear merely because it
+ // dropped out of that compact preview. Check the full recorded event ledger.
+ const history=new Map(allEvents(snapshot).map(e=>[e.id,e]));
+ ensure((proposal.sourceEventIds??[]).every(id=>{
+  const event=history.get(id);
+  return event&&event.turn<=request.checkpoint.completedTurn&&
+   event.known_to?.includes(request.actorId);
+ }), 'Intention cites an event not known by its actor');
  const reviewerContext=inspectNPCContextualChoices({
   snapshot,actorId:request.actorId});
  const checked=reviewNPCFreeformIntent({
@@ -108,10 +115,27 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
   sourceEventIds:proposal.sourceEventIds??[],
   destinationId:proposal.destinationId??null,reviewed:true
  });
+ // known_to links to an event, not proof of all another actor's private text.
+ // Preserve source scope for the narrator's final causal adjudication.
+ const citedEvidence=checked.sourceEventIds.map(eventId=>{
+  const event=history.get(eventId);
+  const recent=request.evidence.knownEvents.find(row=>row.id===eventId);
+  const actorOwned=event.actor_ids?.length===1&&
+   event.actor_ids[0]===request.actorId;
+  const detailScope=actorOwned?'actor_owned_event':'known_to_reference_only';
+  ensure(!recent||recent.detailScope===detailScope,
+   'Cited NPC event has inconsistent private evidence scope');
+  return {eventId,detailScope,
+   actorOwnedFullEventText:actorOwned,
+   additionalContentReviewRequired:!actorOwned||!recent,
+   ...(recent?{}:{outsideRecentContext:true})};
+ });
  return copy({
   classification:'npc_actor_authored_proposal_review_v1',
   actorId:request.actorId,intention:checked.intention,
   reasoning:checked.reasoning,sourceEventIds:checked.sourceEventIds,
+  citedEventEvidence:citedEvidence,
+  requiresReferencedContentReview:citedEvidence.some(e=>e.additionalContentReviewRequired),
   destinationId:checked.destinationId,
   graphRouteOnly:checked.possibleGraphRoute,
   physicalAccessUnverified:checked.graphAccessUnverified,
