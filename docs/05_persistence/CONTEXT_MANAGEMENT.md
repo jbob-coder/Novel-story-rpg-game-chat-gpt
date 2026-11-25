@@ -493,3 +493,21 @@ an otherwise valid save before any detached commit can be created.
 The ordinary-choice / private-consequence / Day 0 arrival / recovery
 integration test exercises this exact path. The new condition preserves
 social provenance checks while ignoring non-social, actorless world events.
+
+ 
+## Explicit actor-owned memory basis for later free-form choices (2026-11-24)
+
+A reviewed causal continuation can optionally include an exact
+`memoryBasis:{knowledge_entry,interpretation,alternative_considered}`.
+The actor's memory entry must have been learned in a *previous* modern
+actor-owned knowledge event, whose EV is explicitly in `sourceEventIds`.
+The saved `continuation_context.decision_memory_basis` is private and
+validated both before staging and on historical readback, including archived
+chapters. Final state knowledge alone cannot backdate or transfer a fact.
+
+The interpretation and considered alternative are editor-reviewed free text:
+they are neither a computed confidence score nor a scripted choice menu.
+One NPC may change a plan while another continues their existing work;
+no other actor is updated by implication. Provenance is verified, motivation
+and objective truth are not. CH-000/turn 9 and the five protected save files
+are unchanged.
