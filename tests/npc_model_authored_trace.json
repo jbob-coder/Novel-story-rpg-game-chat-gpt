@@ -162,6 +162,38 @@
       "reviewed": true,
       "outcome": "Noah ensaya mentalmente tres preguntas para una futura consulta: qué dejó de funcionar, desde cuándo ocurre y qué intentos de reparación se hicieron. Conserva su plan anterior. No se establece una consulta real, una venta, una adquisición ni una reparación.",
       "changes": []
+    },
+    {
+      "requestSha256": "42049701e2218e949a130192a2df791c415a4f5edf14a1296ca2e455f7a2e075",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-005",
+        "decision": "act",
+        "intention": "Apartar el despertador ya reparado de los objetos que utiliza habitualmente, dejándolo preparado para llevárselo al vecino cuando sea posible, sin desmontarlo de nuevo ni salir a buscarlo.",
+        "reasoning": "En EV-000029 comprobé que el problema de la tapa había desaparecido en varias pruebas. En EV-000033 decidí mostrar al vecino cómo comprobar el cierre. El reloj sigue siendo una responsabilidad pendiente; separarlo ahora evita confundirlo con objetos propios y facilita retomar la tarea sin repetir la reparación. No necesito saber dónde está el vecino.",
+        "sourceEventIds": [
+          "EV-000029",
+          "EV-000033"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Rosa separa físicamente el despertador reparado dentro del apartamento para tenerlo listo para la devolución. No cambia su mecanismo ni altera su ajuste. Sigue pendiente de entregarlo y explicar el cierre al vecino; no se establece ningún encuentro.",
+      "changes": [
+        {
+          "field": "resources",
+          "before": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029"
+          },
+          "after": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029",
+            "repair_return_preparation": "Despertador reparado apartado dentro del apartamento y preparado para devolverlo; entrega pendiente, sin nuevo ajuste ni desmontaje."
+          }
+        }
+      ]
     }
   ]
 }
