@@ -354,3 +354,30 @@ transmisión social. No atribuir acceso a otro NPC sin una acción observada,
 comunicada y guardada en ese turno. No hay simulación fuera del chat ni noticias
 canónicas generadas por ejecutar QA. El checkpoint de CH-000 turno 9 permanece
 intacto.
+
+
+## Selective social reports for distinct recipients (2026-11-24)
+
+Previous direct-contact transfer always copied
+`knowledgeTransfer.known_entry` verbatim into the recipient's saved
+`knowledge`, including sender-specific source metadata. An optional
+paired `reported_text` (8–600 characters) and
+`reported_form:'partial'|'altered'` now store only the **recipient-facing**
+report in the recipient-owned event. The full original remains in
+narrator-private `social_context.transfer` for verification of the
+speaker's previously held knowledge and the sequence of events.
+No objective truth, intentional deception, or literal semantic equivalence
+is inferred from the editorial label. Legacy unmarked full transfers remain
+valid. Staging and replay both reject malformed report pairs and forged
+recipient text.
+
+`assertSocialNarrationPrivacy` now rejects direct quotes of the original
+human-readable statement even if it carried an internal `(source: ...; EV-...)`
+suffix, and also checks a selected report quoted without its standard
+recipient prefix. Player-visible prose may still need semantic editorial
+review of paraphrases or other indirect information channels.
+
+Synthetic tests stage an original private statement, one partial report,
+a separate causal NPC walk to a shared location, and a different altered
+report to a second recipient. No global diffusion or extra actor state
+is assumed, and no canonical player turn is authored.

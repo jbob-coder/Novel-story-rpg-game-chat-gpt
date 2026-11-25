@@ -204,3 +204,23 @@ incluidos los movimientos posteriores y las incorporaciones de nuevos NPC.
 La narración puede citar un detalle privado cuando el conocimiento de Jack
 incluya ese dato con una fuente. El control automático detecta copias literales.
 El narrador revisa por separado las paráfrasis y lo que Jack pudo observar.
+
+
+### Divulgación selectiva a varios destinatarios
+
+La misma fuente puede relatar cosas diferentes a distintas personas, con
+**encuentros revisados y guardados por separado**, cada uno con sus
+consecuencias. Los campos opcionales emparejados
+`knowledgeTransfer.reported_text` y
+`knowledgeTransfer.reported_form:'partial'|'altered'` registran en
+`knowledge` del receptor solo las palabras que realmente recibió. La
+entrada original `known_entry` permanece en los metadatos privados como
+evidencia de procedencia del emisor, no como conocimiento del receptor.
+Sin esos campos, las transferencias previas conservan el comportamiento
+anterior.
+
+La etiqueta `altered` es editorial: no decide si hubo mentira, error
+o interpretación. La proximidad no crea diálogos ni difunde secretos
+automáticamente. Antes de narrar lo privado a Jack se requiere una
+vía causal; el control literal también comprueba la frase humana del
+origen sin sufijo `EV` y el texto particular relatado.

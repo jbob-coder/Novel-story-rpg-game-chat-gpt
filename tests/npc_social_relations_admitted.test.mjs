@@ -336,3 +336,118 @@ test('visible prose requires a source before quoting a private encounter',()=>{
  const disclosed=render([{field:'knowledge',fact:privateText,source:'A participant reports the exchange to Jack in this synthetic turn.'}]);
  assert.equal(disclosed.transcript.entries.at(-1).text,privateText);
 });
+
+
+test('separate social encounters give two recipients only their own reviewed accounts',()=>{
+ const before=JSON.stringify(snapshot),head='a'.repeat(40);
+ const sourceFact='SYNTHETIC QA PRIVATE: a parcel contains an unpublished customer address and private delivery instructions.';
+ const stageOn=(snap,key,npcResolutions)=>stageLivingWorldTurn({
+   snapshot:snap,observedHead:head,turn:{...turn(),key},npcResolutions
+ });
+ const original=stageOn(snapshot,'synthetic-social-disclosure-source',[{
+   actor_id:'NPC-003',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Darius privately reads a sealed delivery note.',
+   outcome:'SYNTHETIC QA PRIVATE: Darius retains this note without disclosing it.',
+   changes:[{field:'knowledge',fact:sourceFact,
+      source:'SYNTHETIC QA: direct observation of a sealed note'}]
+ }]);
+ assert.equal(verifyNarrativeSnapshot(original),true);
+ const privateEntry=original.state.world.actors['NPC-003'].knowledge.at(-1);
+ assert.ok(privateEntry.includes('EV-000031'));
+ const observation=recipient=>({
+   kind:'current_turn_observation',
+   fact:'SYNTHETIC QA: two NPCs speak privately without Jack attending.',
+   causal_source:'SYNTHETIC QA: separately reviewed direct communication.',
+   observer_actor_id:recipient,confirmed_by_reviewer:true
+ });
+ const talk=(state,interaction,recipient,mode,text)=>draftReviewedSocialContact({
+   state,interactionId:interaction,participantIds:['NPC-003',recipient],
+   observation:observation(recipient),reviewed:true,
+   relationshipUpdates:[],knowledgeTransfer:{
+     speaker_id:'NPC-003',recipient_id:recipient,
+     known_entry:privateEntry,reported_form:mode,reported_text:text
+   },
+   outcomes:{
+     'NPC-003':'Darius privately chooses what to disclose to this person.',
+     [recipient]:'The listener retains only the particular reviewed account.'
+   }
+ });
+ const partialText='A package is expected, but no recipient address was disclosed.';
+ const partial=stageOn(original,'synthetic-social-disclosure-noah',
+   talk(original.state,'SOC-DISCLOSE-PARTIAL-01','NPC-006','partial',partialText));
+ assert.equal(verifyNarrativeSnapshot(partial),true);
+ const noahEntry=partial.state.world.actors['NPC-006'].knowledge.at(-1);
+ assert.ok(noahEntry.includes(partialText));
+ assert.ok(!noahEntry.includes(sourceFact));
+ assert.ok(!noahEntry.includes('unpublished customer address'));
+ const moved=stageOn(partial,'synthetic-social-disclosure-mara-walk',[{
+   actor_id:'NPC-007',reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Mara independently walks from the cafe to Market Row.',
+   outcome:'SYNTHETIC QA: Mara completes a short ordinary walk.',
+   changes:[{field:'location_id',before:'LOC-CAFE-BRUMA',
+     after:'LOC-COMMERCIAL-DISTRICT',
+     route:['LOC-CAFE-BRUMA','LOC-COMMERCIAL-DISTRICT'],
+     travel:{mode:'walk',basis:'SYNTHETIC QA: travel from cafe to Market Row',
+       elapsed_minutes:12}}]
+ }]);
+ assert.equal(verifyNarrativeSnapshot(moved),true);
+ const alteredText='Darius claims the parcel was cancelled without disclosing any private addresses.';
+ const altered=stageOn(moved,'synthetic-social-disclosure-mara',
+   talk(moved.state,'SOC-DISCLOSE-ALTERED-02','NPC-007','altered',alteredText));
+ assert.equal(verifyNarrativeSnapshot(altered),true);
+ assert.equal(verifySocialEventHistory(altered),true);
+ const maraEntry=altered.state.world.actors['NPC-007'].knowledge.at(-1);
+ assert.ok(maraEntry.includes(alteredText));
+ assert.ok(!maraEntry.includes(partialText));
+ assert.ok(!maraEntry.includes(sourceFact));
+ assert.ok(!noahEntry.includes(alteredText));
+ assert.ok(altered.state.world.actors['NPC-003'].knowledge.includes(privateEntry));
+ assert.ok(!altered.state.world.actors['NPC-002'].knowledge.some(x=>
+   x.includes(partialText)||x.includes(alteredText)));
+ assert.ok(!altered.state.player.knowledge.some(x=>x.includes(sourceFact)));
+ assert.ok(!altered.chapter.includes(sourceFact));
+ assert.ok(!altered.chapter.includes(partialText));
+ assert.ok(!altered.chapter.includes(alteredText));
+ const pairs=altered.events.events.filter(e=>e.social_context);
+ assert.equal(pairs.length,4);
+ assert.deepEqual(pairs.filter(e=>e.social_context.transfer?.recipient_id==='NPC-006')
+   .map(e=>e.social_context.transfer.reported_form),['partial','partial']);
+ assert.deepEqual(pairs.filter(e=>e.social_context.transfer?.recipient_id==='NPC-007')
+   .map(e=>e.social_context.transfer.reported_form),['altered','altered']);
+ assert.equal(JSON.stringify(snapshot),before);
+});
+
+test('social report forms require paired reviewed text and replay rejects altered provenance',()=>{
+ const opt=options();
+ const text='Only a schedule change was mentioned, without customer details.';
+ const t={...opt.knowledgeTransfer,reported_text:text};
+ assert.throws(()=>draftReviewedSocialContact({...opt,knowledgeTransfer:t}),
+   /Selective social report requires reviewed form and text/);
+ assert.throws(()=>draftReviewedSocialContact({...opt,
+   knowledgeTransfer:{...t,reported_form:'verified_truth'}}),
+   /Selective social report requires reviewed form and text/);
+ assert.throws(()=>draftReviewedSocialContact({...opt,
+   knowledgeTransfer:{...t,reported_form:'partial',reported_text:' '}}),
+   /Selective social report requires reviewed form and text/);
+ const pair=draftReviewedSocialContact({...opt,knowledgeTransfer:{
+   ...t,reported_form:'partial'}});
+ const accepted=stage(pair);
+ assert.equal(accepted.events.events.at(-1).state_changes.find(x=>x.field==='knowledge').fact,
+   'Reported by NPC-006 (not independently verified): '+text);
+ for(const e of accepted.events.events.filter(x=>x.social_context))
+   e.social_context.transfer.reported_text='A different unreviewed social claim.';
+ assert.throws(()=>verifySocialEventHistory(accepted),
+   /Saved social information lacks correct reported source/);
+});
+
+test('private social recipient report cannot appear bare in public narration',()=>{
+ const detail='SYNTHETIC QA: only the delivery time is known, not the recipient identity.';
+ const pair=draftReviewedSocialContact({...options(),knowledgeTransfer:{
+   ...options().knowledgeTransfer,reported_form:'partial',reported_text:detail}});
+ const render=message=>stageLivingWorldTurn({
+   snapshot,observedHead:'a'.repeat(40),npcResolutions:pair,
+   turn:{...turn(),key:'synthetic-social-selective-public-quote',
+     narration_messages:['Jack reads: '+message]}
+ });
+ assert.throws(()=>render(detail),/Private social encounter leaked/);
+});
