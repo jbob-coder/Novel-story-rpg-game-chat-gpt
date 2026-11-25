@@ -16,6 +16,28 @@ const trace=JSON.parse(read('tests/npc_model_authored_trace.json'));
 const actors=['NPC-006','NPC-005','NPC-003','NPC-001','NPC-002','NPC-004','NPC-007'];
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const interval={elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'};
+
+/**
+ * CI outputs are often more widely accessible than narrator-private evidence.
+ * Emit only explicit nonsemantic counters and opaque digests. In particular,
+ * goals, plans, known-event IDs, actors and individual decisions are private.
+ * A reviewer must retrieve the next exact request via authorized source access,
+ * never reverse-engineer it from public test logs.
+ */
+const publicNextSummary=(request,completedResponses)=>({
+ requestSha256:hash(request),
+ completedResponses,targetResponses:30,
+ syntheticCompletedTurn:request.checkpoint.completedTurn
+});
+const publicReplaySummary=decisions=>({
+ completedResponses:decisions.length,
+ actionCount:decisions.filter(x=>x.decision==='act').length,
+ abstentionCount:decisions.filter(x=>x.decision==='abstain').length,
+ selectorComparedCount:decisions.filter(x=>Number.isSafeInteger(x.legacyCandidateCount)).length,
+ privateDecisionsSha256:hash(decisions),
+ realPlayerTurns:0,canonicalSaveWrites:0,modelInvocationByEngine:false,
+ independentNarrativeQualityEstablished:false
+});
 const turn=i=>({
  key:'SYNTHETIC-MODEL-QA-'+String(i).padStart(2,'0'),
  intent:'[SYNTHETIC QA] No player-initiated NPC task.',
@@ -79,14 +101,43 @@ test('sequential external model trace replays only responses bound to freshly ve
  if(next){
   assert.ok(next);
   // Public CI: no raw knowledge, event text, relationships or full private request.
-  console.log('NPC_MODEL_NEXT '+JSON.stringify({requestSha256:hash(next),
-   actorId:next.actorId,checkpoint:next.checkpoint,
-   goal:next.evidence.goal,independentPlan:next.evidence.independentPlan,
-   previousEventId:next.evidence.previousResult?.eventId??null,
-   knownEventIds:next.evidence.knownEventIds,
-   recentEventIds:next.evidence.knownEvents.map(x=>x.id)}));
+  console.log('NPC_MODEL_NEXT '+JSON.stringify(publicNextSummary(next,trace.responses.length)));
  }
- console.log('NPC_MODEL_REPLAY '+JSON.stringify({responses:decisions.length,decisions,
-  realPlayerTurns:0,canonicalSaveWrites:0,modelInvocationByEngine:false,
-  independentNarrativeQualityEstablished:false}));
+ console.log('NPC_MODEL_REPLAY '+JSON.stringify(publicReplaySummary(decisions)));
+});
+
+test('CI next-request and replay summaries never expose narrator-private actor evidence',()=>{
+ const privateMarker='PRIVATE-NPC-ACTOR-AND-MEMORY-QA-SENTINEL';
+ const next={
+  actorId:privateMarker,
+  checkpoint:{completedTurn:21,chapterId:'SYNTHETIC',lastEventSequence:101},
+  evidence:{goal:privateMarker,independentPlan:privateMarker,
+   knowledge:[privateMarker],knownEventIds:[privateMarker],
+   knownEvents:[{id:privateMarker,outcome:privateMarker}]}
+ };
+ const actions=[{actorId:privateMarker,decision:'act',legacyCandidateCount:2},
+  {actorId:privateMarker,decision:'abstain',legacyCandidateCount:0}];
+ const metadata=publicNextSummary(next,2);
+ const summary=publicReplaySummary(actions);
+ assert.deepEqual(Object.keys(metadata),[
+  'requestSha256','completedResponses','targetResponses','syntheticCompletedTurn']);
+ assert.deepEqual(Object.keys(summary),[
+  'completedResponses','actionCount','abstentionCount','selectorComparedCount',
+  'privateDecisionsSha256','realPlayerTurns','canonicalSaveWrites',
+  'modelInvocationByEngine','independentNarrativeQualityEstablished']);
+ assert.equal(metadata.requestSha256,hash(next));
+ assert.equal(summary.privateDecisionsSha256,hash(actions));
+ assert.equal(summary.actionCount,1);
+ assert.equal(summary.abstentionCount,1);
+ assert.equal(summary.selectorComparedCount,2);
+ assert.equal(metadata.syntheticCompletedTurn,21);
+ for(const entry of [metadata,summary]){
+  const publicText=JSON.stringify(entry);
+  assert.ok(!publicText.includes(privateMarker));
+  for(const field of ['actorId','goal','independentPlan','knowledge',
+   'knownEventIds','knownEvents','previousEventId','intent','outcome',
+   'decisions','sourceEventIds','relationships']){
+   assert.ok(!Object.hasOwn(entry,field),'Unexpected private log field: '+field);
+  }
+ }
 });
