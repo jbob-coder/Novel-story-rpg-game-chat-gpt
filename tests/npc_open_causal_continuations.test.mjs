@@ -296,3 +296,127 @@ test('review does not execute between player turns or without a saved candidate'
  assert.equal(snapshot.manifest.last_completed_turn,10);
  assert.equal(snapshot.state.world.actors['NPC-003'].last_resolved_action.event_id,source.id);
 });
+
+
+test('two NPCs may choose different free-form outcomes from their own exact memories',()=>{
+ const base=JSON.stringify(baseline);
+ const reported=socialFirst(); // Darius receives an attributed social fact as EV-000032.
+ const dariusEntry=reported.state.world.actors['NPC-003'].knowledge.at(-1);
+ const dSource=reported.events.events.at(-1).id;
+ assert.ok(dariusEntry.includes(dSource));
+ const source=stage(reported,[{
+  actor_id:'NPC-006',reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Noah independently inspects an actual repair supply record.',
+  outcome:'SYNTHETIC QA PRIVATE: Noah notes the supply count without speaking to Jack.',
+  changes:[{field:'knowledge',
+   fact:'SYNTHETIC QA: Noah saw the current repair supply count on his own ledger.',
+   source:'SYNTHETIC QA: Noah personally inspected a stock ledger'}]
+ }],'synthetic-choice-new-independent-source');
+ const noahEntry=source.state.world.actors['NPC-006'].knowledge.at(-1);
+ const nSource=source.events.events.at(-1).id;
+ const alternativeD='Darius could instead trust the hearsay and make an immediate sale.';
+ const alternativeN='Noah could instead stop work and go ask Darius about the rumor.';
+ const nextPlan='SYNTHETIC QA: Darius elects to check the actual delivery before promising supplies.';
+ const first=npcAction(source,'NPC-003',[dSource],{
+  reasoning:'SYNTHETIC QA: Darius weighs the private report and chooses to verify before selling.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius chooses to check for a delivery rather than promise stock.',
+  memoryBasis:{
+   knowledge_entry:dariusEntry,
+   interpretation:'SYNTHETIC QA: Darius treats the attributed report as insufficient evidence.',
+   alternative_considered:alternativeD
+  },
+  changes:[{field:'independent_plan',
+   before:source.state.world.actors['NPC-003'].independent_plan,
+   after:nextPlan}]
+ });
+ const second=npcAction(source,'NPC-006',[nSource],{
+  reasoning:'SYNTHETIC QA: Noah considers his own checked ledger sufficient for routine tasks.',
+  outcome:'SYNTHETIC QA PRIVATE: Noah continues his work without a change to his plan.',
+  memoryBasis:{
+   knowledge_entry:noahEntry,
+   interpretation:'SYNTHETIC QA: Noah treats his personally observed ledger as locally useful.',
+   alternative_considered:alternativeN
+  }
+ });
+ const out=stage(source,[first,second],'synthetic-choice-two-perspectives');
+ assert.equal(verifyNarrativeSnapshot(out),true);
+ const events=out.events.events.slice(-2);
+ assert.deepEqual(events.map(e=>e.actor_ids[0]),['NPC-003','NPC-006']);
+ assert.deepEqual(events.map(e=>e.continuation_context.source_event_ids),[[dSource],[nSource]]);
+ assert.deepEqual(events.map(e=>e.continuation_context.decision_memory_basis.knowledge_entry),
+  [dariusEntry,noahEntry]);
+ assert.deepEqual(events.map(e=>e.continuation_context.decision_memory_basis.alternative_considered),
+  [alternativeD,alternativeN]);
+ assert.equal(out.state.world.actors['NPC-003'].independent_plan,nextPlan);
+ assert.equal(out.state.world.actors['NPC-006'].independent_plan,
+  source.state.world.actors['NPC-006'].independent_plan);
+ assert.deepEqual(out.state.world.actors['NPC-006'].knowledge,
+  source.state.world.actors['NPC-006'].knowledge);
+ assert.deepEqual(out.state.world.actors['NPC-003'].knowledge,
+  source.state.world.actors['NPC-003'].knowledge);
+ assert.equal(out.state.player.knowledge.length,baseline.state.player.knowledge.length);
+ assert.ok(!out.chapter.includes(dariusEntry));
+ assert.ok(!out.chapter.includes(noahEntry));
+ assert.equal(verifyNPCCausalContinuationHistory(out).length,2);
+ const archived=close(out);
+ assert.equal(verifyNarrativeSnapshot(archived),true);
+ const inNextChapter=stage(archived,[],'synthetic-choice-after-chapter-boundary');
+ assert.equal(verifyNarrativeSnapshot(inNextChapter),true);
+ assert.equal(verifyNPCCausalContinuationHistory(inNextChapter).length,2);
+ assert.equal(inNextChapter.archives['CH-000'].events.events.at(-1)
+  .continuation_context.decision_memory_basis.alternative_considered,alternativeN);
+ assert.equal(JSON.stringify(baseline),base);
+});
+
+test('memory-grounded choice refuses someone else source, unsupported event and malformed options',()=>{
+ const first=socialFirst(),fact=first.state.world.actors['NPC-003'].knowledge.at(-1);
+ const eventId=first.events.events.at(-1).id;
+ const other=first.state.world.actors['NPC-006'].knowledge[0];
+ const good={
+  knowledge_entry:fact,
+  interpretation:'SYNTHETIC QA: Darius prefers a cautious interpretation of the report.',
+  alternative_considered:'SYNTHETIC QA: Darius could immediately rely on the same report.'
+ };
+ const original=JSON.stringify(first);
+ assert.throws(()=>npcAction(first,'NPC-003',[eventId],{memoryBasis:{...good,
+  knowledge_entry:other}}),/actor-owned memory/);
+ assert.throws(()=>npcAction(first,'NPC-003',['EV-000030'],{
+  memoryBasis:good}),/event it does not know|cited prior event/);
+ assert.throws(()=>npcAction(first,'NPC-003',[eventId],{memoryBasis:{
+  ...good,alternative_considered:' '}}),/complete reviewed|free-form review/);
+ assert.throws(()=>npcAction(first,'NPC-003',[eventId],{memoryBasis:{
+  ...good,chosen_action:'must follow the script'}}),/complete reviewed|free-form review/);
+ assert.equal(JSON.stringify(first),original);
+});
+
+test('forged final-state knowledge cannot backdate a private NPC decision',()=>{
+ const first=socialFirst(),owned=first.state.world.actors['NPC-003'].knowledge.at(-1);
+ const ev=first.events.events.at(-1).id;
+ const interpretation='SYNTHETIC QA: Darius weighs an attributed report cautiously.';
+ const alternative='SYNTHETIC QA: Darius could instead accept the report as proven.';
+ const one=stage(first,[npcAction(first,'NPC-003',[ev],{
+  memoryBasis:{knowledge_entry:owned,interpretation,alternative_considered:alternative}
+ })],'synthetic-grounded-decision-original');
+ const later=stage(one,[{
+  actor_id:'NPC-003',reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Darius learns a further unrelated detail on a later turn.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius retains a new private note.',
+  changes:[{field:'knowledge',
+    fact:'SYNTHETIC QA: Darius later learns a new material inventory detail.',
+    source:'SYNTHETIC QA: later direct independent inventory note'}]
+ }],'synthetic-grounded-decision-future');
+ assert.equal(verifyNarrativeSnapshot(later),true);
+ const forged=structuredClone(later);
+ const decision=forged.events.events.find(e=>e.continuation_context?.decision_memory_basis);
+ decision.continuation_context.decision_memory_basis.knowledge_entry=
+  forged.state.world.actors['NPC-003'].knowledge.at(-1);
+ assert.throws(()=>verifyNPCCausalContinuationHistory(forged),
+  /actor-owned memory from a cited prior event/);
+ // Even forging the event references cannot make a later EV precede the decision.
+ const futureEvent=forged.events.events.at(-1).id;
+ decision.continuation_context.source_event_ids=[futureEvent];
+ decision.caused_by=[futureEvent];
+ assert.throws(()=>verifyNPCCausalContinuationHistory(forged),
+  /future event or an event it does not know/);
+ assert.equal(verifyNarrativeSnapshot(later),true);
+});

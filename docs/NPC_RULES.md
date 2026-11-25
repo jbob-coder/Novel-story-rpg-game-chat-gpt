@@ -261,3 +261,16 @@ no se concede información a Jack ni se cambia un plan o relación sin
 un evento propio. Dos NPC que oyeron la misma noticia pueden discrepar,
 quedarse indecisos o tomar medidas opuestas por su experiencia y contexto,
 sin un valor numérico de credibilidad ni una conducta prefijada.
+
+ 
+### Base de memoria para una decisión (opcional)
+
+Una continuación revisada puede incluir `memoryBasis` con `knowledge_entry`
+exacto del actor, su interpretación y una alternativa considerada, expresadas
+en texto libre. El identificador EV de adquisición del recuerdo debe estar
+entre las causas citadas y corresponder a un evento anterior **del propio NPC**.
+La recuperación verifica la procedencia, no solo que el estado final contenga
+una frase idéntica. No se extrapola automáticamente verdad, creencia activa,
+intención, capacidad ni obligación de actuar. Nada cambia sin un evento
+independiente del NPC y una resolución editorial revisada. El campo es
+opcional: las continuaciones antiguas conservan su contrato.

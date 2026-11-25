@@ -42,6 +42,28 @@
           "after": "Devolver al vecino el despertador reparado cuando sea oportuno, mostrarle cómo comprobar el cierre de la tapa y ofrecer revisar el defecto si reaparece; seguir con las actividades habituales de la mañana."
         }
       ]
+    },
+    {
+      "requestSha256": "16fd038a02309068ae6b7bae938fae207efc5cbcbeb75bf0bd578bfd806610a9",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-003",
+        "decision": "act",
+        "intention": "Treat yesterday's parcel as delivered rather than repeat the old route. Replace that obsolete travel plan with checking for a genuinely assigned next job before committing to another delivery.",
+        "reasoning": "My own remembered delivery EV-000008 confirms that the earlier parcel reached its destination. The present plan still describes yesterday evening's route even though it is now morning. Protecting my income requires distinguishing finished work from a new confirmed assignment; no next parcel or client is established.",
+        "sourceEventIds": [
+          "EV-000008"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Darius recognizes that his earlier delivery is finished and replaces the obsolete evening travel plan with a conditional next-job plan. No new assignment, trip, payment or parcel transfer occurs.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Navigate the evening transit crowd toward the commercial district.",
+          "after": "Treat the earlier Market Row delivery as complete; check for a confirmed next assignment before committing to another delivery route."
+        }
+      ]
     }
   ]
 }
