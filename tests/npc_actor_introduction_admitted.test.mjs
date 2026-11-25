@@ -6,7 +6,7 @@ import {draftReviewedNPCIntroduction,verifyNPCIntroductionHistory}
  from '../tools/living_world_npc_introduction.mjs';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
-import {encodeFiveFiles} from '../tools/save_transaction.mjs';
+import {encodeFiveFiles,decodeFiveFiles} from '../tools/save_transaction.mjs';
 import {draftReviewedSocialContact,verifySealedNPCKnowledge}
  from '../tools/living_world_social.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
@@ -277,7 +277,7 @@ test('final actor name and goal cannot diverge without authored lifecycle events
  const changed=structuredClone(checkpoint);
  changed.state.world.actors['NPC-008'].goal='Invented new objective without causal event.';
  assert.throws(()=>verifyNarrativeSnapshot(changed),
-  /NPC initial identity diverged without an authored update/);
+  /Saved NPC goal differs from causal history/);
 });
 
 test('past event cannot reference an NPC whose introduction happens later',()=>{
@@ -290,4 +290,29 @@ test('past event cannot reference an NPC whose introduction happens later',()=>{
  forged.events.events[8].actor_ids.push('NPC-008');
  assert.throws(()=>verifyNPCIntroductionHistory(forged),
   /Event references a future NPC before reviewed admission/);
+});
+
+
+test('introduced NPC can revise a goal without changing identity or initial profile across chapters',()=>{
+ const admitted=first(),original=JSON.stringify(admitted),id='NPC-008';
+ const before=admitted.state.world.actors[id];
+ const newGoal='Develop a personal interest outside the inventory clerk assignment.';
+ const revised=stage(admitted,[],'synthetic-admitted-goal-revision',{
+  npcResolutions:[{actor_id:id,reviewed:true,resolved:true,
+   causal_basis:'Synthetic clerk independently reconsiders a long-term personal priority.',
+   outcome:'Synthetic clerk adopts a different personal objective without leaving the current location.',
+   changes:[{field:'goal',before:before.goal,after:newGoal,
+    reason:'Synthetic personal reconsideration of work and private priorities.'}],disclosures:[]}]
+ });
+ assert.equal(verifyNarrativeSnapshot(revised),true);
+ const after=revised.state.world.actors[id];
+ assert.deepEqual(after,{...before,goal:newGoal,last_resolved_action:after.last_resolved_action});
+ assert.equal(verifyNPCIntroductionHistory(revised).get(id).profile.goal,before.goal);
+ const archived=close(revised);
+ const reread=decodeFiveFiles({...encodeFiveFiles(revised),...encodeFiveFiles(archived)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(reread),true);
+ assert.equal(reread.state.world.actors[id].goal,newGoal);
+ assert.equal(verifyNPCIntroductionHistory(reread).get(id).profile.goal,before.goal);
+ assert.equal(JSON.stringify(admitted),original);
+ assert.deepEqual(reread.state.player,admitted.state.player);
 });

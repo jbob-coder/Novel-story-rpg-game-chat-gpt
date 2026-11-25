@@ -225,6 +225,13 @@ function stageNarrativeTurn(snapshot, turn) {
     // draft contains them. The earlier speaker's original statement must not
     // spill into the reader-facing chapter during a partial or altered report.
     // This is a literal guard, not a substitute for causal editorial review.
+    for(const change of (item.changes??[]).filter(c=>c?.field==='goal')){
+      for(const secret of [change.after,change.reason]){
+        if(typeof secret==='string'&&secret.trim().length>=12)
+          check(!turn.narration_messages.some(message=>message.includes(secret.trim())),
+            'Private NPC goal leaked into visible narration');
+      }
+    }
     const knowledgeChanges=(item.changes??[]).filter(change=>change?.field==='knowledge');
     const privateStatements=[
       ...(typeof item.learned_fact==='string'?[item.learned_fact]:[]),

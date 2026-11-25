@@ -227,3 +227,32 @@ alone does not prove open now; a schedule still needs established weekday/time.
 Neither this record nor a private diagnostic grants Jack knowledge of a change.
 See [the full operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md)
 for persistence, recovery, scope and interfaces.
+
+## Experimental actor-owned goal revision (QA branch)
+
+A reviewed private independent NPC event after CH-000 turn 9 may record one
+`field: "goal"` change with exact `before`, distinct nonempty `after` (8–360
+characters), and a causal `reason` (12–500 characters). The initial seven goals
+are pinned to the exact turn-nine STATE blob; later NPC goals begin at their
+reviewed introduction. Global event replay verifies the old-to-new chain and
+final materialized goal. The narrator can replace an obsolete motive, or explicitly abandon it with
+`after: null` and a causal reason. An absent field or empty string is invalid.
+A later owned event can adopt a new goal from `before: null`. The initial
+introduction still requires a nonempty goal.
+A goal change does not complete an obligation, rewrite knowledge, update a
+plan implicitly, or disclose a private motive. Existing semantic review and
+transactional save requirements remain. This experimental contract is not
+permission to change the canonical checkpoint or activate the prototype.
+
+The Python structural validator independently replays the goal chain from the
+same sealed anchor. Regression tests compare both anchor literals against the
+protected checkpoint and exercise cross-chapter recovery, forged motives,
+private event ownership and introduced actor ordering. This is not a full
+semantic or JavaScript validator replacement.
+
+An `independent_plan` may likewise be explicitly paused or resumed via a private
+owned event after turn 9 with a causal `reason` (12–500 characters). This is
+separate from goals and obligations; neither is cleared automatically. Open
+review includes actors with neither an active goal nor plan. Routine suggestions
+may still require a current plan; lack of a suggestion is not an action ban.
+Python replays goals; nullable plan history remains checked by JavaScript only.

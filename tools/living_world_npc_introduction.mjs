@@ -181,7 +181,8 @@ export function verifyNPCIntroductionHistory(snapshot,events=allEvents(snapshot)
      c.after===expected.fact+' (source: '+expected.source+'; '+event.id+')';
    }),
    'New NPC initial knowledge requires actor-owned source events');
-  for(const name of ['id','name','age','role','goal','description']){
+  // Mutable goals are checked from the introduction by verifyStateChanges.
+  for(const name of ['id','name','age','role','description']){
    ensure(actors[id]?.[name]===after[name],
     'NPC initial identity diverged without an authored update');
   }

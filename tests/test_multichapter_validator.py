@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.validate_state import validate
+from tools.validate_state import validate, validate_npc_goal_history, NPC_GOAL_ANCHOR
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -268,6 +268,122 @@ class MultiChapterValidator(unittest.TestCase):
         self.state["history"]["completed_turn_keys"].pop()
         self.flush_state()
         self.assert_invalid("completed turn keys")
+
+
+    def append_goal_revision(self, actor_id, after):
+        self.append_turn()
+        cid = self.manifest["chapter_id"]
+        path = f"chapters/{cid}.events.json"
+        events = self.read(path)
+        seq = self.manifest["last_event_sequence"] + 1
+        eid = f"EV-{seq:06d}"
+        actor = self.state["world"]["actors"][actor_id]
+        before = actor["goal"]
+        events["events"].append(dict(
+            events["events"][-1], id=eid, kind="independent_actor",
+            actor_ids=[actor_id], known_to=[actor_id],
+            intent="Synthetic independent reconsideration.",
+            outcome="Synthetic goal revision.",
+            state_changes=[dict(actor_id=actor_id, field="goal", before=before,
+                                after=after, reason="Reconsider a previous personal priority.")]))
+        actor["goal"] = after
+        self.state["chapter"]["last_resolved_event_id"] = eid
+        self.state["history"]["last_event_sequence"] = seq
+        self.manifest.update(last_event_sequence=seq, last_event_id=eid)
+        self.write(path, events)
+        self.flush_state()
+        return path
+
+    def test_goal_revision_replays_across_archived_chapters(self):
+        actor_id = "NPC-003"
+        self.append_goal_revision(actor_id, "Seek different legitimate work.")
+        self.assertEqual(validate(self.root), [])
+        self.close_and_open()
+        self.append_goal_revision(actor_id, "Consider a personal priority outside work.")
+        self.assertEqual(validate(self.root), [])
+        self.state["world"]["actors"][actor_id]["goal"] = "Invented materialized goal."
+        self.flush_state()
+        self.assert_invalid("Saved NPC goal differs from causal history")
+
+    def test_goal_revision_rejects_forged_history_and_private_recipients(self):
+        path = self.append_goal_revision("NPC-003", "Seek different legitimate work.")
+        original = self.read(path)
+        for variant, message in (
+            ("stale", "goal history precondition mismatch"),
+            ("reason", "goal revision requires"),
+            ("recipient", "goal revision requires"),
+            ("duplicate", "Only one goal revision"),
+        ):
+            with self.subTest(variant=variant):
+                altered = copy.deepcopy(original)
+                event = altered["events"][-1]
+                change = event["state_changes"][0]
+                if variant == "stale":
+                    change["before"] = "Fabricated earlier motive."
+                elif variant == "reason":
+                    change.pop("reason")
+                elif variant == "recipient":
+                    event["known_to"].append("PLAYER-001")
+                else:
+                    event["state_changes"].append(copy.deepcopy(change))
+                self.write(path, altered)
+                self.assert_invalid(message)
+        self.write(path, original)
+        self.assertEqual(validate(self.root), [])
+
+    def test_goal_anchor_matches_js_and_protected_initial_state(self):
+        initial_goals = {key: value["goal"] for key, value in
+                         self.original_state["world"]["actors"].items()}
+        self.assertEqual(initial_goals, NPC_GOAL_ANCHOR)
+        source = (ROOT / "tools/state_changes.mjs").read_text(encoding="utf-8")
+        literal = source.split("const NPC_GOAL_ANCHOR=Object.freeze(", 1)[1].split(");", 1)[0]
+        self.assertEqual(json.loads(literal), NPC_GOAL_ANCHOR)
+        self.state["world"]["actors"]["NPC-003"]["goal"] = "A silent replacement goal."
+        self.flush_state()
+        self.assert_invalid("Saved NPC goal differs from causal history")
+
+    def test_introduced_goal_requires_own_prior_introduction(self):
+        original = self.read("chapters/CH-000.events.json")["events"]
+        actors = copy.deepcopy(self.original_state["world"]["actors"])
+        actor_id = "NPC-008"
+        initial = "Maintain an accurate public record."
+        revised = "Develop a personal interest outside work."
+        actors[actor_id] = {"goal": revised}
+        introduction = {"kind": "npc_introduction", "turn": 10,
+                        "actor_ids": [actor_id], "known_to": [actor_id],
+                        "state_changes": [{"field": "npc_introduction", "actor_id": actor_id,
+                                           "before": None, "after": {"id": actor_id, "goal": initial}}]}
+        decision = {"kind": "independent_actor", "turn": 11,
+                    "actor_ids": [actor_id], "known_to": [actor_id],
+                    "state_changes": [{"field": "goal", "actor_id": actor_id,
+                                       "before": initial, "after": revised,
+                                       "reason": "A reviewed personal reconsideration."}]}
+        self.assertEqual(validate_npc_goal_history(original + [introduction, decision],
+                                                   actors, "PLAYER-001"), [])
+        self.assertTrue(validate_npc_goal_history(original + [decision, introduction],
+                                                  actors, "PLAYER-001"))
+        self.assertTrue(validate_npc_goal_history(original, actors, "PLAYER-001"))
+
+    def test_explicit_goal_pause_then_resumption_across_chapters(self):
+        actor_id = "NPC-003"
+        self.append_goal_revision(actor_id, None)
+        self.assertEqual(validate(self.root), [])
+        self.close_and_open()
+        self.append_goal_revision(actor_id, "Explore a freely chosen personal interest.")
+        self.assertEqual(validate(self.root), [])
+
+    def test_null_goal_is_distinct_from_missing_goal(self):
+        path = self.append_goal_revision("NPC-003", None)
+        self.assertEqual(validate(self.root), [])
+        original = self.read(path)
+        altered = copy.deepcopy(original)
+        del altered["events"][-1]["state_changes"][0]["after"]
+        self.write(path, altered)
+        self.assert_invalid("goal revision requires")
+        self.write(path, original)
+        del self.state["world"]["actors"]["NPC-003"]["goal"]
+        self.flush_state()
+        self.assert_invalid("Saved NPC goal differs from causal history")
 
 
 if __name__ == "__main__":

@@ -17,6 +17,100 @@ EVENT_ID = re.compile(r"^EV-(\d{6})$")
 LEGACY_RPG_LAST_TURN = 6  # D-036 was adopted after turn 6.
 
 
+# Same immutable CH-000 turn-nine goal anchor as tools/state_changes.mjs.
+# Source STATE blob: 3f4e9c98a7211068faefd31d0a0acbd4260ef589.
+NPC_GOAL_ANCHOR = {
+    "NPC-001": "Maintain safe, on-time evening transit while addressing a late service disruption.",
+    "NPC-002": "Complete an assigned inspection before the end of the shift.",
+    "NPC-003": "Deliver a paid parcel on time and protect his income.",
+    "NPC-004": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
+    "NPC-005": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
+    "NPC-006": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
+    "NPC-007": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo."
+}
+
+def _goal_text(value, minimum, maximum):
+    # JavaScript counts UTF-16 code units. Match that bound in Python.
+    return (isinstance(value, str)
+            and len(value.strip().encode("utf-16-le", errors="surrogatepass")) // 2 >= minimum
+            and len(value.encode("utf-16-le", errors="surrogatepass")) // 2 <= maximum)
+
+
+def _goal_value(value):
+    return value is None or _goal_text(value, 8, 360)
+
+
+def _normalized_goal(value):
+    return None if value is None else value.strip()
+
+
+def validate_npc_goal_history(events, actors, player_id):
+    """Independently replay goal changes, not the narrator's semantic judgment."""
+    if len(events) < 29:
+        return []  # Historical pre-anchor checkpoints remain readable.
+    problems = []
+    if not isinstance(actors, dict):
+        return ["NPC goal history requires an actor registry"]
+    goals = dict(NPC_GOAL_ANCHOR)
+    for event in events:
+        if not isinstance(event, dict):
+            problems.append("Malformed NPC goal event")
+            continue
+        changes = event.get("state_changes")
+        if not isinstance(changes, list):
+            problems.append("Malformed NPC goal change list")
+            continue
+        if sum(isinstance(c, dict) and c.get("field") == "goal" for c in changes) > 1:
+            problems.append("Only one goal revision per event")
+        for change in changes:
+            if not isinstance(change, dict):
+                problems.append("Malformed NPC state change")
+                continue
+            field = change.get("field")
+            if field not in ("npc_introduction", "goal"):
+                continue
+            actor_id = change.get("actor_id")
+            if not isinstance(actor_id, str) or not re.fullmatch(r"NPC-\d{3,}", actor_id):
+                problems.append("NPC goal change requires valid actor identity")
+                continue
+            if field == "npc_introduction":
+                profile = change.get("after")
+                if (actor_id in goals or not isinstance(profile, dict)
+                        or not _goal_text(profile.get("goal"), 8, 360)
+                        or event.get("kind") != "npc_introduction"
+                        or event.get("actor_ids") != [actor_id]
+                        or event.get("known_to") != [actor_id]
+                        or profile.get("id") != actor_id
+                        or change.get("before") is not None
+                        or type(event.get("turn")) is not int or event["turn"] <= 9):
+                    problems.append("Invalid initial NPC goal")
+                    continue
+                goals[actor_id] = profile["goal"]
+                continue
+            before, after = change.get("before"), change.get("after")
+            if not (actor_id != player_id and event.get("kind") == "independent_actor"
+                    and event.get("actor_ids") == [actor_id]
+                    and event.get("known_to") == [actor_id]
+                    and type(event.get("turn")) is int and event["turn"] > 9
+                    and "before" in change and "after" in change
+                    and _goal_value(before) and _goal_value(after)
+                    and _normalized_goal(before) != _normalized_goal(after)
+                    and _goal_text(change.get("reason"), 12, 500)):
+                problems.append("NPC goal revision requires a private owning event, distinct goals and causal reason")
+                continue
+            if actor_id not in goals or goals[actor_id] != before:
+                problems.append("NPC goal history precondition mismatch")
+                continue
+            goals[actor_id] = after
+    for actor_id, goal in goals.items():
+        actor = actors.get(actor_id)
+        if not isinstance(actor, dict) or "goal" not in actor or actor.get("goal") != goal:
+            problems.append(f"Saved NPC goal differs from causal history: {actor_id}")
+    if set(actors) != set(goals):
+        problems.append("NPC goal history has an unrecorded actor or missing introduction")
+    return problems
+
+
 def validate(root: Path) -> list[str]:
     problems = []
 
@@ -290,6 +384,8 @@ def validate(root: Path) -> list[str]:
                        f"{cid}: closed chapter {key} mismatch")
             expect(first_turn == last_closed_turn + 1, f"{cid}: gap in closed chapter turns")
             last_closed_turn = last_turn
+
+    problems.extend(validate_npc_goal_history(event_records, world.get("actors"), player.get("id")))
 
     expect([seq for seq, _ in ids] == list(range(1, len(ids) + 1)),
            "event IDs must form unique, gap-free, increasing sequence")
