@@ -2,6 +2,7 @@
 // decision tree, autonomous timer or automatic narrative outcome.
 // A narrator must review every result during an owner-triggered story turn.
 import {allEvents} from './chapter_history.mjs';
+import {verifySocialEventHistory} from './living_world_social.mjs';
 
 const insist=(ok,message)=>{if(!ok)throw new Error(message)};
 const clone=x=>JSON.parse(JSON.stringify(x));
@@ -196,6 +197,9 @@ function validateNegotiationResponse({snapshot,events,actorId,sourceEventIds,
    typeof c.after==='string'&&
    (snapshot.state.world.actors[actorId].knowledge??[]).includes(c.after)),
   'NPC response requires its own verified prior social receipt of the exact offer');
+ // Validate the entire paired encounter, not just the local transfer pointer.
+ // A forged half-conversation must never masquerade as voluntary consent.
+ verifySocialEventHistory(snapshot);
  return clone(response);
 }
 

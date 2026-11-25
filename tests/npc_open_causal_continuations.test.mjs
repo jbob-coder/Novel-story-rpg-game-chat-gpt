@@ -999,6 +999,12 @@ test('consent rejects a missing offer, mismatched recipient, forged receipt and 
   'SYNTHETIC QA: somebody silently rewrote the original proposed terms.';
  assert.throws(()=>verifyNPCCausalContinuationHistory(forged),
   /exact knowledge effect/);
+ const unpaired=structuredClone(accepted);
+ // Deleting one participant's social context invalidates the entire encounter,
+ // even if the recipient retains an apparently matching proposal pointer.
+ unpaired.events.events.find(e=>e.id==='EV-000035').social_context=undefined;
+ assert.throws(()=>verifyNPCCausalContinuationHistory(unpaired),
+  /Missing social context|Saved social exchange requires|Social interaction/);
  const forgedReceipt=structuredClone(accepted);
  forgedReceipt.events.events.at(-1)
   .continuation_context.negotiation_response.received_event_id='EV-000035';
