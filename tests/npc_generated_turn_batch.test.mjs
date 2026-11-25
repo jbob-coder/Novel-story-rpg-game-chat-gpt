@@ -1230,3 +1230,37 @@ test('narrator original-initiative assessment turn 08 forbids automatic knowledg
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+test('staged free-form NPC decisions cannot skip source-content adjudication',()=>{
+ const s=start(),before=JSON.stringify(s),r=request(s,'NPC-005');
+ const proposal=act(r,
+  'Rosa plans to ask a cautious question about a prior family event without assuming Elena thoughts.',
+  ['EV-000025']);
+ const basis={request:r,proposal,reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa privately decides to check a reference, not claim a hidden result.'};
+ const run=choice=>stageReviewedNPCIntentionTurn({
+  snapshot:s,turn:turn('source-content-boundary'),observedHead:head,
+  choices:[choice]});
+ assert.throws(()=>run(basis),/Explicit source evidence review required/);
+ assert.throws(()=>run({...basis,sourceReviews:[{
+  eventId:'EV-000025',reviewed:true,basis:'recorded_actor_knowledge',
+  knownEntry:'FORGED QA KNOWLEDGE',
+  reason:'This fabricated statement must not pass the actor memory check.'
+ }]}),/not actor recorded knowledge/);
+ const valid=run({...basis,sourceReviews:[{
+  eventId:'EV-000025',reviewed:true,basis:'reference_only_uncertain',
+  reason:'Rosa can investigate the event reference, but cannot assume Elena private memories.'
+ }]});
+ assert.equal(verifyNarrativeSnapshot(valid),true);
+ assert.deepEqual(valid.events.events.at(-1).caused_by,['EV-000025']);
+ assert.equal(valid.events.events.at(-1).actor_ids[0],'NPC-005');
+ assert.equal(valid.npcTurnReview.createdCanonicalSave,false);
+ assert.ok(!valid.chapter.includes('SYNTHETIC PRIVATE:'));
+ const abstain=noAction(r);
+ assert.throws(()=>run({request:r,proposal:abstain,
+  sourceReviews:[{eventId:'EV-000025'}]}),/Abstaining NPC cannot hide an outcome/);
+ assert.equal(JSON.stringify(s),before);
+ for(const [p,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),bytes);
+});
