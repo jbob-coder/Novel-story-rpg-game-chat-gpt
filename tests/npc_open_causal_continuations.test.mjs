@@ -514,6 +514,15 @@ test('decision effect audit refuses forged causal links and never infers complet
  assert.equal(evidence.length,1);
  assert.equal(evidence[0].recordedEffectCount,0);
  assert.equal(evidence[0].inferredCompletion,false);
+ // Zero requested private decision records must not return the whole history.
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,limit:0}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,actorIds:['NPC-003'],limit:0}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,actorIds:[],limit:1}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,limit:1}),evidence);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
   actorIds:['NPC-007','NPC-007']}),/Unknown or repeated/);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,

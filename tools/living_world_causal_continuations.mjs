@@ -200,7 +200,9 @@ export function inspectNPCDecisionConsequenceHistory({snapshot,actorIds=null,lim
  const chosen=actorIds===null?null:new Set(actorIds);
  const decisions=history.filter(e=>e.continuation_context?.kind==='known_event'&&
    (chosen===null||chosen.has(e.actor_ids?.[0])));
- return clone(decisions.slice(-limit).map(event=>{
+ // Array.slice(-0) returns the ENTIRE array; zero must mean no records.
+ // Keep the requested private output bound even for an empty page.
+ return clone((limit===0?[]:decisions.slice(-limit)).map(event=>{
    const actorId=event.actor_ids[0];
    const changed=(event.state_changes??[]).filter(change=>
      change.actor_id===actorId&&change.field!=='last_resolved_action');
