@@ -19,7 +19,18 @@ const observationValid=(observation,participants)=>observation&&
  knownText(observation.fact)&&knownText(observation.causal_source)&&
  participants.includes(observation.observer_actor_id)&&
  observation.confirmed_by_reviewer===true;
-const statementFact=(speaker,entry)=>`Reported by ${speaker} (not independently verified): ${entry}`;
+const statementFact=(speaker,entry,transfer=null)=>
+ `Reported by ${speaker} (not independently verified): ${transfer?.reported_text??entry}`;
+// Legacy verbatim reports remain compatible; an edited report needs explicit
+// review labeling to separate what was said from what the speaker knows.
+const validReportShape=t=>{
+ const hasText=Object.hasOwn(t,'reported_text'),hasForm=Object.hasOwn(t,'reported_form');
+ return (!hasText&&!hasForm)||(hasText&&hasForm&&
+   ['partial','altered'].includes(t.reported_form)&&
+   knownText(t.reported_text)&&t.reported_text===t.reported_text.trim());
+};
+const privateStatement=entry=>typeof entry==='string'?
+  entry.replace(/ \(source: .+; EV-\d{6,}\)$/,''):entry;
 const statementSource=(id,place,speaker)=>
  `Reviewed direct exchange ${id} at ${place} from ${speaker}`;
 
@@ -59,7 +70,8 @@ function validateContact(state,context){
    t.speaker_id!==t.recipient_id&&knownText(t.known_entry)&&
    (state.world.actors[t.speaker_id].knowledge??[]).includes(t.known_entry),
    'Speaker must already know the transmitted statement');
-  ensure(statementFact(t.speaker_id,t.known_entry).length<=900,
+  ensure(validReportShape(t),'Selective social report requires reviewed form and text');
+  ensure(statementFact(t.speaker_id,t.known_entry,t).length<=900,
    'Social statement exceeds bounded transfer size');
  }
  return true;
@@ -112,7 +124,7 @@ export function draftReviewedSocialContact({state,interactionId,participantIds,
   const t=context.transfer;
   changes[t.recipient_id].push({
    field:'knowledge',
-   fact:statementFact(t.speaker_id,t.known_entry),
+   fact:statementFact(t.speaker_id,t.known_entry,t),
    source:statementSource(context.interaction_id,context.location_id,t.speaker_id)
   });
  }
@@ -170,7 +182,7 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
    if(context.transfer?.recipient_id===item.actor_id){
     const t=context.transfer;
     ensure(knowledge.length===1&&
-     knowledge[0].fact===statementFact(t.speaker_id,t.known_entry)&&
+     knowledge[0].fact===statementFact(t.speaker_id,t.known_entry,t)&&
      knowledge[0].source===statementSource(id,context.location_id,t.speaker_id),
      'Social knowledge must come exactly from its recorded speaker');
    }else ensure(knowledge.length===0,'Unaddressed NPC cannot receive social knowledge');
@@ -280,7 +292,7 @@ export function verifySocialEventHistory(snapshot){
     c.participant_ids.includes(c.transfer.speaker_id)&&
     c.participant_ids.includes(c.transfer.recipient_id)&&
     c.transfer.speaker_id!==c.transfer.recipient_id&&
-    knownText(c.transfer.known_entry))),
+    knownText(c.transfer.known_entry)&&validReportShape(c.transfer))),
    'Malformed saved social context');
   if(!grouped.has(c.interaction_id))grouped.set(c.interaction_id,[]);
   grouped.get(c.interaction_id).push(event);
@@ -318,7 +330,7 @@ export function verifySocialEventHistory(snapshot){
     'Saved social effect has an unknown recipient or duplicate');
    if(c.transfer?.recipient_id===event.actor_ids[0]){
     ensure(knowledge.length===1&&
-     knowledge[0].fact===statementFact(c.transfer.speaker_id,c.transfer.known_entry)&&
+     knowledge[0].fact===statementFact(c.transfer.speaker_id,c.transfer.known_entry,c.transfer)&&
      knowledge[0].source===statementSource(id,c.location_id,c.transfer.speaker_id),
      'Saved social information lacks correct reported source');
    }else ensure(knowledge.length===0,
@@ -359,7 +371,8 @@ export function assertSocialNarrationPrivacy(snapshot,messages){
   const contact=event.social_context;
   if(!contact)continue;
   const details=[contact.observation.fact,contact.observation.causal_source,
-   contact.transfer?.known_entry,event.outcome];
+   contact.transfer?.known_entry,privateStatement(contact.transfer?.known_entry),
+    contact.transfer?.reported_text,event.outcome];
   for(const detail of details){
    if(typeof detail!=='string'||!detail.trim()||known.some(entry=>entry===detail||entry.startsWith(detail+' (source: ')))continue;
    ensure(!messages.some(message=>message.includes(detail)),'Private social encounter leaked into narration');
