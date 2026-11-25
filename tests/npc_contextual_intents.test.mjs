@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
  from '../tools/npc_contextual_intents.mjs';
 import {recommendNPCIntentReviews} from '../tools/living_world_agenda.mjs';
+import {prepareNPCIntentionRequests} from '../tools/npc_intention_generation.mjs';
 import {savePaths,decodeFiveFiles} from '../tools/save_transaction.mjs';
 
 const originals=Object.fromEntries(savePaths('CH-000').map(path=>
@@ -119,4 +120,41 @@ test('no execution without review, no automatic background advance across many p
  assert.equal(baseline.manifest.last_completed_turn,9);
  for(const [path,bytes] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+});
+
+test('third-party known_to grants an event pointer, not the owner private outcome',()=>{
+ const before=JSON.stringify(baseline),event=baseline.events.events.find(x=>x.id==='EV-000025');
+ assert.ok(event);
+ assert.deepEqual(event.actor_ids,['NPC-004']);
+ assert.ok(event.known_to.includes('NPC-005'));
+ const elena=contextFor('NPC-004'),rosa=contextFor('NPC-005');
+ const own=elena.evidence.knownEvents.find(x=>x.id===event.id);
+ const secondary=rosa.evidence.knownEvents.find(x=>x.id===event.id);
+ assert.ok(own&&secondary);
+ assert.equal(own.contentScope,'actor_owned_event');
+ assert.equal(own.outcome,event.outcome);
+ assert.equal(secondary.contentScope,'reference_only_not_full_event_knowledge');
+ assert.equal(Object.hasOwn(secondary,'intent'),false);
+ assert.equal(Object.hasOwn(secondary,'outcome'),false);
+ assert.ok(rosa.evidence.knownEventIds.includes(event.id));
+ assert.ok(!JSON.stringify(secondary).includes('registros financieros'));
+ assert.equal(JSON.stringify(baseline),before);
+});
+
+test('private generation request never includes the full third-party event text',()=>{
+ const requests=prepareNPCIntentionRequests({
+  snapshot:baseline,actorIds:['NPC-004','NPC-005'],elapsedMinutes:15});
+ const rosa=requests.requests.find(x=>x.actorId==='NPC-005');
+ const elena=requests.requests.find(x=>x.actorId==='NPC-004');
+ const source=baseline.events.events.find(x=>x.id==='EV-000025');
+ assert.ok(rosa&&elena&&source);
+ const hearer=rosa.evidence.knownEvents.find(x=>x.id===source.id);
+ const author=elena.evidence.knownEvents.find(x=>x.id===source.id);
+ assert.equal(hearer.contentScope,'reference_only_not_full_event_knowledge');
+ assert.equal(Object.hasOwn(hearer,'outcome'),false);
+ assert.equal(author.outcome,source.outcome);
+ assert.ok(!JSON.stringify(rosa.evidence.knownEvents).includes('desconoce los registros financieros'));
+ assert.equal(requests.actionsPerformed,0);
+ assert.equal(requests.timeAdvanced,false);
+ assert.equal(baseline.manifest.last_completed_turn,9);
 });
