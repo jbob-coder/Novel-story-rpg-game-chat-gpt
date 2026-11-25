@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "responses": [
+    {
+      "requestSha256": "2fad8324c3ae0c7acffb877fce576096df9bdfcc72b070addd134f2ec0c919ba",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-006",
+        "decision": "act",
+        "intention": "Separar mentalmente los diagnósticos de las promesas de reparación: establecer que cualquier plazo o precio futuro dependerá de confirmar el repuesto necesario, antes de ofrecer un compromiso al cliente.",
+        "reasoning": "Su objetivo es conservar la reputación del negocio y conseguir clientes legítimos. Su plan actual incluye buscar repuestos generales, pero el contexto no confirma existencias ni encargos concretos. Puede mejorar su criterio de atención sin depender de Jack, abrir el local, encontrar un proveedor ni disponer de dinero adicional.",
+        "sourceEventIds": []
+      },
+      "reviewed": true,
+      "outcome": "Noah adopta como prioridad personal distinguir una consulta de diagnóstico de un compromiso de reparación. Decide no prometer plazos ni precios de trabajos cuyos componentes todavía no haya confirmado. No se produce ningún contacto, compra ni reparación.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Revisar encargos pendientes y buscar repuestos generales.",
+          "after": "Revisar encargos pendientes y buscar repuestos generales; antes de comprometer precios o plazos, confirmar los componentes necesarios y distinguir diagnóstico de reparación."
+        }
+      ]
+    },
+    {
+      "requestSha256": "3551cefda47ff28425a9086cee0e817aa5b25b3d5817ae158f37de819493c5f7",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-005",
+        "decision": "act",
+        "intention": "Establecer una precaución para la devolución del despertador: cuando encuentre al vecino, enseñarle cómo cerrar la tapa sin alterar el ajuste y ofrecerle que vuelva si el defecto reaparece, sin buscarlo de inmediato.",
+        "reasoning": "Rosa presenció la corrección y comprobó varios cierres en EV-000029. Quiere ayudar a sus vecinos conservando su independencia. Explicar una comprobación sencilla puede evitar una reparación repetida; no necesita suponer que el vecino está disponible ni que el problema nunca volverá.",
+        "sourceEventIds": [
+          "EV-000029"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Rosa decide incluir una demostración breve del cierre de la tapa al devolver el reloj. Mantiene pendiente el encuentro con el vecino y no da por garantizado que la reparación dure.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Devolver al vecino el despertador reparado cuando sea oportuno y seguir con las actividades habituales de la mañana.",
+          "after": "Devolver al vecino el despertador reparado cuando sea oportuno, mostrarle cómo comprobar el cierre de la tapa y ofrecer revisar el defecto si reaparece; seguir con las actividades habituales de la mañana."
+        }
+      ]
+    },
+    {
+      "requestSha256": "16fd038a02309068ae6b7bae938fae207efc5cbcbeb75bf0bd578bfd806610a9",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-003",
+        "decision": "act",
+        "intention": "Treat yesterday's parcel as delivered rather than repeat the old route. Replace that obsolete travel plan with checking for a genuinely assigned next job before committing to another delivery.",
+        "reasoning": "My own remembered delivery EV-000008 confirms that the earlier parcel reached its destination. The present plan still describes yesterday evening's route even though it is now morning. Protecting my income requires distinguishing finished work from a new confirmed assignment; no next parcel or client is established.",
+        "sourceEventIds": [
+          "EV-000008"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Darius recognizes that his earlier delivery is finished and replaces the obsolete evening travel plan with a conditional next-job plan. No new assignment, trip, payment or parcel transfer occurs.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Navigate the evening transit crowd toward the commercial district.",
+          "after": "Treat the earlier Market Row delivery as complete; check for a confirmed next assignment before committing to another delivery route."
+        }
+      ]
+    },
+    {
+      "requestSha256": "3619ef47b7b4f3165bd7877401eba2dd0b7bf8e7bd3215e5aabc58f9c3b19f6a",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-001",
+        "decision": "abstain",
+        "reasoning": "Yesterday evening I already asked operations to retain the maintenance report and continued prioritizing the delayed route. I have no fresh departure schedule, report of an ongoing delay or confirmed current duty interval this morning. Issuing another instruction now could duplicate yesterday's work. I will leave the existing arrangements alone until actual operational information warrants intervention; I have no evidence that the display issue and route delay share a cause."
+      }
+    },
+    {
+      "requestSha256": "2622449af8aa7af1430489345e2d6bb9ef13568bdede2716f9390fd418fd6234",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-002",
+        "decision": "act",
+        "intention": "Distinguish the closed immediate inspection from the unresolved cause, and adopt a recurrence criterion: if a display anomaly is observed again during an authorized inspection, compare the new symptoms with the previous observations before deciding whether to reopen the issue.",
+        "reasoning": "I observed a brief anomaly and subsequent irregular behavior (EV-000002 and EV-000006), then completed the immediate inspection without identifying the cause (EV-000012). Closing the inspection is not proof of a repaired device or of a deliberate interference. A recurrence criterion preserves uncertainty and avoids repeating an inspection without fresh grounds.",
+        "sourceEventIds": [
+          "EV-000002",
+          "EV-000006",
+          "EV-000012"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Sora adopts a conditional follow-up criterion for the unresolved equipment issue while treating the immediate inspection as complete. She distinguishes observed symptoms from any explanation. No new malfunction, inspection, report submission or culprit is established.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Walk a routine service circuit and file maintenance notes.",
+          "after": "Treat the immediate Crosswater inspection as complete; during the next authorized service circuit, compare any newly observed display anomaly with the recorded symptoms before deciding whether to reopen the equipment issue."
+        }
+      ]
+    },
+    {
+      "requestSha256": "19d7caff629999d03d16af00093563a2950449f74aea06e9171cdb5e03090eae",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-004",
+        "decision": "act",
+        "intention": "Mientras continúa de camino a la escuela, decidir qué tipo de crítica artística desea solicitar después de presentar su dibujo: preguntar a alguien que lo vea por primera vez qué parte de la calle le llama más la atención, antes de explicarle su propia intención.",
+        "reasoning": "Me resultó útil que Jack señalara el problema de perspectiva en EV-000018, pero quiero desarrollar mi propio criterio artístico y no depender exclusivamente de sus opiniones. Ya llevo la copia preparada según EV-000025 y salí hacia la escuela en EV-000028. Puedo preparar una pregunta sin presuponer que he llegado, que haya un compañero disponible o que la presentación haya ocurrido.",
+        "sourceEventIds": [
+          "EV-000018",
+          "EV-000025",
+          "EV-000028"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Elena decide que, si surge una oportunidad después de presentar su ilustración, pedirá una primera impresión visual sin anticipar la respuesta. Mantiene su intención de llegar a la escuela; no se establece una llegada, conversación, presentación ni nueva relación.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase.",
+          "after": "Continuar hacia la escuela con la mochila y la USB para presentar su ilustración; si después surge una oportunidad, pedir una primera impresión visual sin explicar de antemano su intención artística."
+        }
+      ]
+    },
+    {
+      "requestSha256": "d9b11bab64bae250f2b9e120b4d7f10f1b0c0970b53af227620c55c26d226d09",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-007",
+        "decision": "act",
+        "intention": "Reconsiderar mi recuerdo de que quedaba un cobro pendiente: recordar el efectivo recibido y el cambio entregado, para no reclamar dos veces el importe ni confundir un recibo extraño con una deuda real.",
+        "reasoning": "En EV-000009 el cobro aún no se había efectuado, pero en EV-000011 recibí diez en efectivo, devolví dos con veinte y anoté la venta. Ambos recuerdos corresponden a momentos diferentes. Puedo reconocer el pago como realizado sin dar por cuadrada toda la caja ni suponer que estoy trabajando esta mañana.",
+        "sourceEventIds": [
+          "EV-000009",
+          "EV-000011"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Mara reconsidera la anotación mental del cobro pendiente y reconoce que el pago posterior la dejó desactualizada. Conserva el recuerdo inicial como antecedente de la incidencia, no como una deuda vigente. No se realiza otro cobro, contacto, cierre de caja ni cambio de turno.",
+      "changes": [
+        {
+          "field": "knowledge",
+          "fact": "El cobro antes pendiente del café y el pastelito quedó satisfecho con el pago de 7,80 en efectivo; no corresponde reclamarlo de nuevo por el recibo extraño.",
+          "source": "Recuerdo propio de recibir diez en efectivo, entregar dos con veinte de cambio y anotar manualmente la venta en el turno anterior",
+          "revision_of": "El café y el dulce de Jack fueron servidos y su pago sigue pendiente.",
+          "revision_reason": "El recuerdo posterior de haber recibido el efectivo y devuelto el cambio establece que el estado pendiente era anterior al pago."
+        }
+      ]
+    },
+    {
+      "requestSha256": "f5351b15df33a5845c2ceb2c6f5052a9274ccc6ccbb6398ac51a7ea8961714a9",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-006",
+        "decision": "act",
+        "intention": "Ensayar una explicación breve para una futura consulta de reparación, convirtiendo mi criterio anterior en preguntas prácticas sobre los síntomas, cuándo comenzaron y qué se ha intentado ya, sin comprometer todavía precio ni plazo.",
+        "reasoning": "En EV-000031 decidí distinguir diagnóstico de reparación para proteger mi reputación. Puedo practicar una forma concreta de aplicar ese criterio sin depender de que aparezca un cliente, sin asumir existencias y sin modificar otra vez mi plan. Una explicación clara puede reducir malentendidos.",
+        "sourceEventIds": [
+          "EV-000031"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Noah ensaya mentalmente tres preguntas para una futura consulta: qué dejó de funcionar, desde cuándo ocurre y qué intentos de reparación se hicieron. Conserva su plan anterior. No se establece una consulta real, una venta, una adquisición ni una reparación.",
+      "changes": []
+    },
+    {
+      "requestSha256": "42049701e2218e949a130192a2df791c415a4f5edf14a1296ca2e455f7a2e075",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-005",
+        "decision": "act",
+        "intention": "Apartar el despertador ya reparado de los objetos que utiliza habitualmente, dejándolo preparado para llevárselo al vecino cuando sea posible, sin desmontarlo de nuevo ni salir a buscarlo.",
+        "reasoning": "En EV-000029 comprobé que el problema de la tapa había desaparecido en varias pruebas. En EV-000033 decidí mostrar al vecino cómo comprobar el cierre. El reloj sigue siendo una responsabilidad pendiente; separarlo ahora evita confundirlo con objetos propios y facilita retomar la tarea sin repetir la reparación. No necesito saber dónde está el vecino.",
+        "sourceEventIds": [
+          "EV-000029",
+          "EV-000033"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Rosa separa físicamente el despertador reparado dentro del apartamento para tenerlo listo para la devolución. No cambia su mecanismo ni altera su ajuste. Sigue pendiente de entregarlo y explicar el cierre al vecino; no se establece ningún encuentro.",
+      "changes": [
+        {
+          "field": "resources",
+          "before": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029"
+          },
+          "after": {
+            "daily_life": "recursos normales, sin cifras fijadas",
+            "current_repair": "Despertador del vecino reparado: la pestaña interior de la tapa presionaba el mando de ajuste; Jack corrigió su asiento y las pruebas repetidas de cierre ya no adelantaron siete minutos la hora.",
+            "last_repair_event_id": "EV-000029",
+            "repair_return_preparation": "Despertador reparado apartado dentro del apartamento y preparado para devolverlo; entrega pendiente, sin nuevo ajuste ni desmontaje."
+          }
+        }
+      ]
+    },
+    {
+      "requestSha256": "587026a79282ef33541ebfd52e293e19cf08826399434080161ce184b3bf7f0e",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-003",
+        "decision": "act",
+        "intention": "Reconcile my record of the parcel with the completed delivery before accepting more work, so the previous assignment is no longer treated as a parcel I still have to carry.",
+        "reasoning": "EV-000008 records my completed delivery. In EV-000035 I already replaced the obsolete travel plan, but my recorded parcel still describes the old assignment. Treating it as outstanding could lead to duplicate work. I can correct my own task record without inventing a payment, a new customer or another parcel.",
+        "sourceEventIds": [
+          "EV-000008",
+          "EV-000035"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Darius reconciles the recorded parcel with his remembered completed delivery at Market Row. The old parcel is marked delivered in his personal resource record. His next-job plan stays unchanged; no new transfer, payment or assignment occurs.",
+      "changes": [
+        {
+          "field": "resources",
+          "before": {
+            "parcel": "one unremarkable delivery, contents unspecified"
+          },
+          "after": {
+            "parcel": "Previous Market Row parcel delivered (EV-000008); no new parcel assignment established."
+          }
+        }
+      ]
+    },
+    {
+      "requestSha256": "cfe8db9fd4677e046e207261b8cc34b923c6968463a211f516f521bd4bf50aea",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-001",
+        "decision": "abstain",
+        "reasoning": "The last confirmed work is yesterday evening's coordination and retention of the maintenance report. It is now morning, and my current information does not establish a new departure, a duty handover, an ongoing delay or any fresh operational hazard. An additional dispatch instruction would have no established recipient or purpose. I need actual service information before taking an operational decision; the old plan remains conditional on a real departure."
+      }
+    }
+  ]
+}

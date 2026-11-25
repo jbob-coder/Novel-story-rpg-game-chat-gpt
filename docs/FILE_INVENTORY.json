@@ -102,7 +102,11 @@
       "tools/meridian_bay_prebuilt_routes.mjs",
       "tools/meridian_bay_scale_plan.mjs",
       "tools/world_admission.mjs",
-      "tools/location_state.mjs"
+      "tools/location_state.mjs",
+      "tools/npc_contextual_intents.mjs",
+      "tools/npc_sequential_turns.mjs",
+      "tools/npc_actor_agency.mjs",
+      "tools/npc_intention_generation.mjs"
     ],
     "tests": [
       "tests/save_gate.test.mjs",
@@ -133,9 +137,16 @@
       "tests/world_admission.test.mjs",
       "tests/location_state.test.mjs",
       "tests/helpers/meridian_bay_fixture.mjs",
+      "tests/location_state_integration.test.mjs",
+      "tests/npc_contextual_intents.test.mjs",
+      "tests/npc_contextual_multiday_rehearsal.test.mjs",
+      "tests/npc_sequential_turns.test.mjs",
+      "tests/npc_actor_agency.test.mjs",
+      "tests/npc_intention_generation.test.mjs",
+      "tests/npc_generated_turn_batch.test.mjs",
+      "tests/npc_actor_review_fairness.test.mjs",
       "tests/helpers/ordinary_morning.mjs",
-      "tests/ordinary_morning.test.mjs",
-      "tests/location_state_integration.test.mjs"
+      "tests/ordinary_morning.test.mjs"
     ]
   },
   "newChapterPaths": [
@@ -202,9 +213,9 @@
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
       "tests/npc_behavior_acceptance_qa.test.mjs",
-      "tests/npc_experience_reconsideration.test.mjs",
       "tests/npc_memory_social_continuity.test.mjs",
-      "tests/test_checkpoint_audit.py"
+      "tests/test_checkpoint_audit.py",
+      "tests/npc_experience_reconsideration.test.mjs"
     ],
     "design_proposals": [
       "docs/01_world/MERIDIAN_BAY_PHASE1.md",
@@ -301,6 +312,17 @@
     ],
     "context_thread_reconciliation_2026_11_22": [
       "docs/06_quality/CONTEXT_THREAD_RECONCILIATION_20261122.md"
+    ],
+    "npc_contextual_intent_prototype_2026_11_22": [
+      "docs/06_quality/NPC_CONTEXTUAL_INTENT_PROTOTYPE_20261122.md",
+      "docs/06_quality/NPC_CONTEXTUAL_MULTIDAY_REHEARSAL_20261122.md",
+      "docs/06_quality/NPC_SEQUENTIAL_TURN_CONTINUITY_QA_20261122.md",
+      "docs/06_quality/NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md",
+      "docs/06_quality/NPC_INTENTION_GENERATION_BRIDGE_20261122.md",
+      "docs/06_quality/NPC_GENERATED_TURN_BATCH_QA_20261122.md",
+      "docs/06_quality/NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md",
+      "tests/npc_model_authored_replay.test.mjs",
+      "tests/npc_model_authored_trace.json"
     ]
   },
   "repository_checkpoints": [

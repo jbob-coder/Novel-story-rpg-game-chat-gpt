@@ -1,0 +1,11 @@
+# Offscreen NPC agency review — isolated narrator integration
+
+The existing diagnostic chose a small proximity-biased set of NPCs for routine suggestions. This candidate adds a **separate, narrator-private review frame** for established NPCs with goals or pending obligations even when far away from Jack. It does not require every NPC to act.
+
+`inspectOpenNPCAgency` retrieves each actor's last real event, plan, personal knowledge, needs, resources and commitments. It can prioritize overdue commitments **for review only**. It does not manufacture missing schedules, routes, encounters, actions or outcomes. The narrator remains free to propose an unprecedented action, change course, do nothing, or defer.
+
+`draftOpenNPCAction` verifies current actor evidence and requires a separately reviewed intention, reason and outcome. If an intention explicitly cites one to three actor-known relevant earlier events, it uses the established causal continuation validator. A prior event is context, **not an obligatory cause**: a fresh, independently motivated action can omit event linkage even when the actor has already acted. This prevents false `caused_by` chains. Such an action still needs an existing saved goal or independent plan; no fabricated causal event ID is introduced.
+
+**QA scenario:** Noah (NPC-006) has no earlier independent event. He may still decide to privately review his existing shop records, then on a **later synthetic turn** reconsider that decision through its actual saved event. This demonstrates that prior-action chains are not required for an NPC's first independent choice. Tests also cover distant NPC review without Jack learning secrets, no automatic time ticks, stale input rejection and duplicate actor resolution blocking.
+
+This design deliberately **does not** claim that the deterministic JavaScript engine writes original semantic intentions or autonomously adjudicates results. The ChatGPT narrator provides open-ended intent and causal editorial review. Existing in-memory narrative staging proves structural compatibility, not literary quality or full production autonomy. The real five-file checkpoint remains unchanged. No merge into the active narrative branch until the user's desired autonomy standard is demonstrated in broader evaluation.
