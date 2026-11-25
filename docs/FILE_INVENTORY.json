@@ -320,7 +320,9 @@
       "docs/06_quality/NPC_ACTOR_AGENCY_TURN_REVIEW_20261122.md",
       "docs/06_quality/NPC_INTENTION_GENERATION_BRIDGE_20261122.md",
       "docs/06_quality/NPC_GENERATED_TURN_BATCH_QA_20261122.md",
-      "docs/06_quality/NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md"
+      "docs/06_quality/NPC_ACTOR_REVIEW_FAIRNESS_QA_20261122.md",
+      "tests/npc_model_authored_replay.test.mjs",
+      "tests/npc_model_authored_trace.json"
     ]
   },
   "repository_checkpoints": [

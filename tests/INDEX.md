@@ -91,3 +91,5 @@ These files already existed in the authoritative source and are listed here for 
 - [NPC: acciones revisadas por turno, abstención, privacidad y causalidad](npc_generated_turn_batch.test.mjs)
 
 - [NPC: límite de revisión, compromisos y rotación de NPC sin escena](npc_actor_review_fairness.test.mjs)
+
+- [NPC: external model sequential evidence replay (QA only)](npc_model_authored_replay.test.mjs)
