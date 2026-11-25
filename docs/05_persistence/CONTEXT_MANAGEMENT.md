@@ -382,6 +382,33 @@ a separate causal NPC walk to a shared location, and a different altered
 report to a second recipient. No global diffusion or extra actor state
 is assumed, and no canonical player turn is authored.
 
+
+## Synthetic multi-recipient social recovery and later relationships (2026-11-24)
+
+A recipient's **recorded** fact from a reviewed direct social exchange can now
+include narrator-private `socialTransmissionEvidence`: encounter ID, speaker
+and recipient actor IDs, recipient EV, optional speaker's original sourced EV,
+editorially reviewed `reportedForm` (`partial`, `altered` or
+`legacy_full_quote`), `truthStatus:'not_assessed'` and
+`evidenceScope:'private_event_pointer_only'`. It is derived from the already
+verified `event.social_context.transfer` and never copies the sender's full
+statement into fact-check output. It does **not** prove speaker truth, recipient
+belief, motivation or the disclosure of any additional detail. Missing or
+legacy origin event IDs stay `null` rather than invented.
+
+Cross-chapter QA starts from the unchanged turn-9 checkpoint, stages a
+synthetic Darius private source, a partial account to Noah, Mara's legitimate
+short walk to Market Row and an altered account to Mara. It archives CH-000,
+reloads **all** original closed-chapter files with the CH-001 five-file
+checkpoint, verifies both separate recipient facts and source EVs, then
+tests separately reviewed directional relationship changes in two subsequent
+CH-001 interactions. Neither listener inherits the other report, neither
+relationship reciprocates automatically, and neither Jack nor a fourth NPC
+learns the private original. A forged archived original is rejected.
+
+All fictional events in this section exist only inside tests; no canonical
+turn is staged remotely or presented as played.
+
 ## Sealed NPC memories on every valid post-anchor checkpoint (2026-11-24)
 
 `verifyNarrativeSnapshot` must replay the verified NPC knowledge anchor
