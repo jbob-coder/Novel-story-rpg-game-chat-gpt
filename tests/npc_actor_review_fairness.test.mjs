@@ -73,3 +73,66 @@ test('invalid candidate limits and actor identities are rejected',()=>{
   worldDay:-29,completedTurn:9,limit:5,actorIds:['NPC-100','NPC-100']}),
   /Unknown or duplicate NPC review selection/);
 });
+
+test('persistent overdue work cannot permanently exclude ordinary civilians',()=>{
+ const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,12));
+ for(const id of Object.keys(actors).slice(0,6))
+  actors[id].commitments=[{id:'DUE-'+id,status:'pending',due_day:-30,
+   summary:'SYNTHETIC overdue obligation, not an instruction to act.'}];
+ const frozen=JSON.stringify(actors),seen=new Set(),ordinary=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:4});
+  assert.equal(result.selected.length,4);
+  assert.equal(result.selected[0].priority,3);
+  assert.ok(result.selected.some(x=>x.priority===0),
+   'Ordinary civilians need a share of review even when deadlines persist');
+  for(const row of result.selected){
+   seen.add(row.actorId);
+   if(row.priority===0)ordinary.add(row.actorId);
+  }
+ }
+ assert.equal(seen.size,12);
+ assert.equal(ordinary.size,6);
+ assert.equal(JSON.stringify(actors),frozen);
+});
+
+test('a two-slot budget rotates fairly across three priority bands',()=>{
+ const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,6));
+ const ids=Object.keys(actors);
+ for(const id of ids.slice(0,2))actors[id].commitments=[
+  {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
+ for(const id of ids.slice(2,4))actors[id].commitments=[
+  {id:'OPEN-'+id,status:'pending',due_day:10,summary:'SYNTHETIC future work'}];
+ const seen=new Set(),lowerBands=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:2});
+  assert.equal(result.selected.length,2);
+  assert.equal(result.selected[0].priority,3);
+  assert.ok([0,1].includes(result.selected[1].priority));
+  for(const row of result.selected){
+   seen.add(row.actorId);
+   if(row.priority!==3)lowerBands.add(row.priority);
+  }
+ }
+ assert.equal(seen.size,6);
+ assert.deepEqual([...lowerBands].sort(),[0,1]);
+});
+
+test('a single review slot eventually covers overdue and ordinary actors',()=>{
+ const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,4));
+ const ids=Object.keys(actors);
+ for(const id of ids.slice(0,2))actors[id].commitments=[
+  {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
+ const seen=new Set(),priorities=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:1});
+  assert.equal(result.selected.length,1);
+  seen.add(result.selected[0].actorId);
+  priorities.add(result.selected[0].priority);
+ }
+ assert.equal(seen.size,4);
+ assert.deepEqual([...priorities].sort(),[0,3]);
+});
