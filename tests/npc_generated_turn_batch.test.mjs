@@ -1330,3 +1330,88 @@ test('narrator original-initiative assessment turn 09 reconsiders obsolete work 
   independentSemanticReviewCompleted:false,sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 10 follows the independently CI-verified Step 09 state. Darius may
+// change his motive rather than repeat his previous delivery or wait for work.
+export function replayNarratorThirtyTurnReviewThroughStep10(){
+ const ninth=replayNarratorThirtyTurnReviewThroughStep09();
+ assert.equal(ninth.snapshotHash,
+  'b70b333ce7e4feb79ca4f3602ed2bcc5ac1a0b9c3912e1ee325a67bddd18e30b');
+ const prior=ninth.snapshot,original=JSON.stringify(prior),id='NPC-003';
+ const batch=prepareNPCIntentionRequests({snapshot:prior,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const request=batch.requests.find(r=>r.actorId===id),before=prior.state.world.actors[id];
+ assert.equal(request.evidence.locationId,'LOC-MARKET-DELIVERY-POINT');
+ assert.ok(request.evidence.knownEventIds.includes('EV-000008'));
+ assert.ok(request.evidence.knownEvents.some(e=>e.id==='EV-000008'&&e.outcome.includes('delivers his parcel')));
+ assert.ok(request.evidence.knownEvents.some(e=>e.id===request.evidence.previousResult.eventId&&
+  e.outcome.includes('SYNTHETIC PRIVATE DARIUS STEP06')));
+ assert.equal(request.evidence.goal,start().state.world.actors[id].goal);
+ const goal='Protect his livelihood while retaining the freedom to choose worthwhile work and personal priorities.';
+ const plan='Consider possible alternatives to waiting for an unconfirmed courier assignment; do not commit without a real opportunity.';
+ const reason='The previous parcel was delivered, and looking for another task did not establish a new assignment. He can decide what work is worth pursuing.';
+ const outcome='SYNTHETIC PRIVATE: Darius changes his primary objective from completing the old parcel to deciding how to protect his livelihood on his own terms.';
+ const wait={
+  'NPC-001':'No current transit problem is known that requires another dispatch review.',
+  'NPC-002':'The old inspection plan was reconsidered; he may deliberate without receiving another assignment.',
+  'NPC-004':'No further USB check or school arrival has been established.',
+  'NPC-005':'There is no confirmed neighbor encounter; her repaired clock remains available.',
+  'NPC-006':'No new customer or stock observation requires another review.',
+  'NPC-007':'She has just reconsidered the closing plan and need not immediately change another motive.'
+ };
+ const choices=batch.requests.map(r=>r.actorId===id?{
+  request:r,proposal:{actorId:id,decision:'act',
+   intention:'Darius chooses a broader personal objective rather than treating a finished parcel or an unconfirmed next job as his sole reason to act.',
+   reasoning:reason,sourceEventIds:['EV-000008',request.evidence.previousResult.eventId]},
+  reviewed:true,outcome,changes:[
+   {field:'goal',before:request.evidence.goal,after:goal,reason},
+   {field:'independent_plan',before:request.evidence.independentPlan,after:plan}
+  ]
+ }:{request:r,proposal:{actorId:r.actorId,decision:'abstain',reasoning:wait[r.actorId]}});
+ const interval={...turn('narrator-30-step-10'),elapsed_minutes:10,
+  intent:'[ISOLATED QA] No genuine player input or private instruction.',
+  outcome:'A quiet fictional interval passes.',
+  narration_messages:['[ISOLATED QA] No private motive is disclosed.']};
+ const staged=stageReviewedNPCIntentionTurn({snapshot:prior,turn:interval,observedHead:head,choices});
+ assert.equal(staged.manifest.last_completed_turn,19);
+ assert.equal(staged.manifest.last_event_sequence,53);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,[id]);
+ assert.equal(staged.npcTurnReview.abstainedActorIds.length,6);
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const after=recovered.state.world.actors[id],event=recovered.events.events.at(-1);
+ assert.deepEqual(after,{...before,goal,independent_plan:plan,last_resolved_action:after.last_resolved_action});
+ assert.deepEqual(event.known_to,[id]);
+ assert.deepEqual(event.caused_by,['EV-000008',request.evidence.previousResult.eventId]);
+ assert.deepEqual(event.state_changes.find(c=>c.field==='goal'),
+  {actor_id:id,field:'goal',before:before.goal,after:goal,reason});
+ const fresh=prepareNPCIntentionRequests({snapshot:recovered,actorIds:[id],
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'}).requests[0];
+ assert.equal(fresh.evidence.goal,goal);
+ assert.equal(fresh.evidence.previousResult.eventId,event.id);
+ assert.ok(!recovered.chapter.includes(goal)&&!recovered.chapter.includes(outcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(goal)&&!e.text.includes(outcome)));
+ for(const other of Object.keys(wait))assert.deepEqual(recovered.state.world.actors[other],prior.state.world.actors[other]);
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+100);
+ assert.equal(JSON.stringify(prior),original);
+ for(const [p,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),bytes);
+ return {snapshot:recovered,snapshotHash:createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex'),priorHash:ninth.snapshotHash};
+}
+test('narrator original-initiative assessment turn 10 replaces a stale goal with a private personal priority',()=>{
+ const r=replayNarratorThirtyTurnReviewThroughStep10();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_10 '+JSON.stringify({
+  reviewTurn:10,ofPlannedTurns:30,priorVerifiedSnapshotHash:r.priorHash,
+  stagedSyntheticTurn:r.snapshot.manifest.last_completed_turn,
+  acted:['NPC-003'],abstained:6,goalMutationImplemented:true,
+  goalAndPlanPersisted:true,noNewAssignmentInvented:true,canonicalSaveWrites:0,
+  verifiedSnapshotHash:r.snapshotHash,modelApiInvokedByTest:false,
+  independentSemanticReviewCompleted:false,sustainedNarrativeQualityCertified:false
+ }));
+});

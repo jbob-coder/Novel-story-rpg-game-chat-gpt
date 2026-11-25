@@ -241,3 +241,9 @@ A goal change does not complete an obligation, rewrite knowledge, update a
 plan implicitly, or disclose a private motive. Existing semantic review and
 transactional save requirements remain. This experimental contract is not
 permission to change the canonical checkpoint or activate the prototype.
+
+The Python structural validator independently replays the goal chain from the
+same sealed anchor. Regression tests compare both anchor literals against the
+protected checkpoint and exercise cross-chapter recovery, forged motives,
+private event ownership and introduced actor ordering. This is not a full
+semantic or JavaScript validator replacement.
