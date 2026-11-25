@@ -119,3 +119,33 @@ test('private NPC learned fact cannot be copied verbatim into reader-visible pro
      learned_fact:fact,source:'a separate private observation'}]}),
    /Private NPC knowledge leaked into visible narration/);
 });
+
+test('sealed turn-nine NPC memories cannot be silently changed before a social event',()=>{
+ const authentic=JSON.stringify(initial);
+ const injected=structuredClone(initial);
+ injected.state.world.actors['NPC-006'].knowledge.push(
+  'SYNTHETIC FORGERY: a secret invented without an owned event');
+ assert.throws(()=>verifyNarrativeSnapshot(injected),
+  /NPC knowledge diverges from sealed anchor/);
+ const erased=structuredClone(initial);
+ erased.state.world.actors['NPC-005'].knowledge.shift();
+ assert.throws(()=>verifyNarrativeSnapshot(erased),
+  /NPC knowledge diverges from sealed anchor/);
+ assert.equal(JSON.stringify(initial),authentic);
+});
+
+test('legitimate private NPC learning remains valid with the sealed anchor enforced',()=>{
+ const original=JSON.stringify(initial);
+ const staged=stageNarrativeTurn(initial,{...playerTurn,
+  key:'synthetic-anchor-npc-learning-0001',
+  offscreen:[{actor_id:'NPC-005',
+    outcome:'SYNTHETIC PRIVATE: Rosa records one independent observation.',
+    learned_fact:'Rosa observed a small private detail without sharing it with Jack.',
+    source:'Rosa own private observation during a synthetic interval'}],
+  narration_messages:['[SYNTHETIC QA] An ordinary quiet interval passes at the bench.']});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,10);
+ assert.ok(staged.state.world.actors['NPC-005'].knowledge.some(entry=>
+  entry.includes('Rosa observed a small private detail')));
+ assert.equal(JSON.stringify(initial),original);
+});
