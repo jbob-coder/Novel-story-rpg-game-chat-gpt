@@ -5,6 +5,7 @@ import {worldRoute,ROUTINE_PROPOSALS} from './living_world_routines.mjs';
 import {validateNPCCommitments} from './living_world_obligations.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
 import {allEvents} from './chapter_history.mjs';
+import {verifyNPCCausalContinuationHistory} from './living_world_causal_continuations.mjs';
 const requireFact=(ok,message)=>{if(!ok)throw Error(message)};
 const validId=id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id);
 export function selectRelevantNPCs({state,limit=3}={}){
@@ -188,4 +189,70 @@ export function inspectNPCObligationConflicts({snapshot,actorIds=null,
   });
  }
  return JSON.parse(JSON.stringify(result));
+}
+
+
+// A second review lane for obligations that do not win the priority shortlist.
+// An actor's recorded choice to retain/defer counts as a review only when
+// stored in a causally verified independent event. This function never acts
+// for that actor, changes status, or assumes a missed deadline is a failure.
+export function recommendNPCObligationCoverage({snapshot,actorIds=null,limit=20}={}){
+ const state=snapshot?.state,actors=state?.world?.actors;
+ requireFact(actors&&snapshot?.manifest,
+  'Saved NPC state and manifest required for obligation coverage');
+ requireFact(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100&&
+  new Set(actorIds).size===actorIds.length&&
+  actorIds.every(id=>Object.hasOwn(actors,id))),
+  'Unknown or repeated actor in obligation coverage');
+ requireFact(Number.isSafeInteger(limit)&&limit>=0&&limit<=100,
+  'Invalid obligation coverage limit');
+ const events=allEvents(snapshot);
+ requireFact(events.length===snapshot.manifest.last_event_sequence,
+  'Obligation coverage requires complete chapter history');
+ verifyNPCCausalContinuationHistory(snapshot);
+ // Validate the modern creation and latest-edit pointers as well; a forged
+ // last_change_event_id must never manipulate the coverage recommendation.
+ const selected=actorIds??Object.keys(actors).sort();
+ inspectNPCObligationConflicts({snapshot,actorIds:selected});
+ const byId=new Map(events.map(event=>[event.id,event]));
+ const result=[];
+ for(const actorId of selected){
+  const active=(actors[actorId].commitments??[]).filter(c=>
+    c.status==='pending'||c.status==='blocked');
+  if(!active.length)continue;
+  const candidate=active.map(c=>{
+   const history=events.filter(event=>
+    event.actor_ids?.[0]===actorId&&
+    event.continuation_context?.obligation_review?.commitment_id===c.id&&
+    Number(event.id.slice(3))>Number(c.last_change_event_id.slice(3)));
+   const lastReview=history.at(-1)??null;
+   const anchor=lastReview??byId.get(c.last_change_event_id);
+   requireFact(anchor&&Number.isSafeInteger(anchor.turn),
+    'Obligation coverage lacks an event-backed review anchor');
+   return {
+    commitmentId:c.id,priority:c.priority,status:c.status,dueDay:c.due_day,
+    lastChangeEventId:c.last_change_event_id,
+    lastExplicitReviewEventId:lastReview?.id??null,
+    reviewedSinceLastChange:history.length>0,
+    explicitReviewCountSinceLastChange:history.length,
+    ageSinceLastAttentionTurns:snapshot.manifest.last_completed_turn-anchor.turn
+   };
+  }).sort((a,b)=>
+   b.ageSinceLastAttentionTurns-a.ageSinceLastAttentionTurns||
+   (reviewPriorityRank[a.priority]??3)-(reviewPriorityRank[b.priority]??3)||
+   a.commitmentId.localeCompare(b.commitmentId));
+  const selectedCommitment=candidate[0];
+  result.push({
+   actorId,candidateCommitmentId:selectedCommitment.commitmentId,
+   candidateLastChangeEventId:selectedCommitment.lastChangeEventId,
+   candidateLastExplicitReviewEventId:selectedCommitment.lastExplicitReviewEventId,
+   activeCommitmentCount:active.length,
+   unreviewedSinceChangeCount:candidate.filter(x=>!x.reviewedSinceLastChange).length,
+   candidatesForReview:candidate,
+   rationale:'oldest_documented_attention_first_not_execution_priority',
+   reviewedFactsOnly:true,status:'review_only_no_action',
+   outcomeChosen:false,worldAdvanced:false,mandatoryChoice:false
+  });
+ }
+ return JSON.parse(JSON.stringify(result.slice(0,limit)));
 }

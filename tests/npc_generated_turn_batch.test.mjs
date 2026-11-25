@@ -1415,3 +1415,126 @@ test('narrator original-initiative assessment turn 10 replaces a stale goal with
   independentSemanticReviewCompleted:false,sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 11: Sora can explicitly relinquish a completed assignment as her
+// active goal, without replacement, while retaining her unresolved observations.
+export function replayNarratorThirtyTurnReviewThroughStep11(){
+ const tenth=replayNarratorThirtyTurnReviewThroughStep10();
+ assert.equal(tenth.snapshotHash,
+  'a95fc518830e9f8c9070030366756ce4c97536650b35f6d103ce406f4bbd7887');
+ const prior=tenth.snapshot,original=JSON.stringify(prior),id='NPC-002';
+ const batch=prepareNPCIntentionRequests({snapshot:prior,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const request=batch.requests.find(r=>r.actorId===id),before=prior.state.world.actors[id];
+ assert.ok(request.evidence.knownEventIds.includes('EV-000012'));
+ assert.ok(request.evidence.knownEvents.some(e=>e.id===request.evidence.previousResult.eventId&&
+  e.outcome.includes('Sora abandons the obsolete inspection itinerary')));
+ const reason='Her earlier inspection was closed as an unresolved equipment issue. She need not retain a completed assignment as an active goal or immediately choose another.';
+ const outcome='SYNTHETIC PRIVATE: Sora sets aside her completed inspection as a personal objective and pauses the work plan without claiming a new assignment, diagnosis, or departure.';
+ const wait={
+  'NPC-001':'No new dispatch evidence calls for an immediate response.',
+  'NPC-003':'He has just revised his personal objective; no new work opportunity is established.',
+  'NPC-004':'The USB remains with her and no school arrival is established.',
+  'NPC-005':'No neighbor encounter or handover has been observed.',
+  'NPC-006':'No new customer or stock evidence has been established.',
+  'NPC-007':'Her prior cash and closing reconsideration is sufficient for this interval.'
+ };
+ const choices=batch.requests.map(r=>r.actorId===id?{
+  request:r,proposal:{actorId:id,decision:'act',
+   intention:'Sora voluntarily releases the completed assignment as an active motive and allows herself time without a replacement task.',
+   reasoning:reason,sourceEventIds:['EV-000012',request.evidence.previousResult.eventId]},
+  reviewed:true,outcome,changes:[
+   {field:'goal',before:request.evidence.goal,after:null,reason},
+   {field:'independent_plan',before:request.evidence.independentPlan,after:null,reason}
+  ]
+ }:{request:r,proposal:{actorId:r.actorId,decision:'abstain',reasoning:wait[r.actorId]}});
+ const interval={...turn('narrator-30-step-11'),elapsed_minutes:10,
+  intent:'[ISOLATED QA] No genuine player input or private instruction.',
+  outcome:'An ordinary fictional interval passes.',
+  narration_messages:['[ISOLATED QA] No private decision is disclosed.']};
+ const staged=stageReviewedNPCIntentionTurn({snapshot:prior,turn:interval,observedHead:head,choices});
+ assert.equal(staged.manifest.last_completed_turn,20);
+ assert.equal(staged.manifest.last_event_sequence,55);
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,[id]);
+ assert.equal(staged.npcTurnReview.abstainedActorIds.length,6);
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const after=recovered.state.world.actors[id],event=recovered.events.events.at(-1);
+ assert.deepEqual(after,{...before,goal:null,independent_plan:null,last_resolved_action:after.last_resolved_action});
+ assert.deepEqual(event.known_to,[id]);
+ assert.deepEqual(event.caused_by,['EV-000012',request.evidence.previousResult.eventId]);
+ for(const field of ['goal','independent_plan']){
+  assert.deepEqual(event.state_changes.find(c=>c.field===field),
+   {actor_id:id,field,before:before[field],after:null,reason});
+ }
+ const next=prepareNPCIntentionRequests({snapshot:recovered,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(next.requests.length,7);
+ const fresh=next.requests.find(r=>r.actorId===id);
+ assert.equal(fresh.evidence.goal,null);
+ assert.equal(fresh.evidence.independentPlan,null);
+ assert.deepEqual(fresh.evidence.knowledge,request.evidence.knowledge);
+ assert.equal(fresh.evidence.previousResult.eventId,event.id);
+ assert.ok(!recovered.chapter.includes(outcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(outcome)));
+ for(const other of Object.keys(wait))assert.deepEqual(recovered.state.world.actors[other],prior.state.world.actors[other]);
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+110);
+ assert.equal(JSON.stringify(prior),original);
+ for(const [p,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),bytes);
+ return {snapshot:recovered,snapshotHash:createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex'),priorHash:tenth.snapshotHash};
+}
+test('narrator original-initiative assessment turn 11 permits a genuine goal and plan pause without exclusion',()=>{
+ const r=replayNarratorThirtyTurnReviewThroughStep11();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_11 '+JSON.stringify({
+  reviewTurn:11,ofPlannedTurns:30,priorVerifiedSnapshotHash:r.priorHash,
+  stagedSyntheticTurn:r.snapshot.manifest.last_completed_turn,
+  acted:['NPC-002'],abstained:6,explicitNullGoal:true,
+  explicitNullPlan:true,stillEligible:true,canonicalSaveWrites:0,
+  verifiedSnapshotHash:r.snapshotHash,modelApiInvokedByTest:false,
+  independentSemanticReviewCompleted:false,sustainedNarrativeQualityCertified:false
+ }));
+});
+
+// Separate mechanical regression, NOT additional authored assessment turns.
+test('a goal-less NPC can abstain, reload, and later initiate a new goal without a fabricated source event',()=>{
+ const paused=replayNarratorThirtyTurnReviewThroughStep11().snapshot,id='NPC-002';
+ const get=s=>prepareNPCIntentionRequests({snapshot:s,actorIds:[id],
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'}).requests[0];
+ const interval=key=>({...turn(key),elapsed_minutes:10,
+  intent:'[ISOLATED QA] No real player instruction.',
+  outcome:'A quiet fictional interval passes.',
+  narration_messages:['[ISOLATED QA] No private motives are disclosed.']});
+ const req=get(paused);
+ const waiting=stageReviewedNPCIntentionTurn({snapshot:paused,turn:interval('goal-null-regression-abstain'),
+  observedHead:head,choices:[{request:req,proposal:{actorId:id,decision:'abstain',
+   reasoning:'She may remain without a chosen objective and no particular activity is necessary.'}}]});
+ assert.deepEqual(waiting.npcTurnReview.abstainedActorIds,[id]);
+ assert.deepEqual(waiting.npcTurnReview.actedActorIds,[]);
+ assert.equal(waiting.manifest.last_event_sequence,paused.manifest.last_event_sequence+1);
+ assert.deepEqual(waiting.state.world.actors[id],paused.state.world.actors[id]);
+ const loaded=decodeFiveFiles(encodeFiveFiles(waiting),'CH-000'),fresh=get(loaded);
+ assert.equal(fresh.evidence.goal,null);
+ assert.equal(fresh.evidence.independentPlan,null);
+ const goal='Consider a personally meaningful activity unrelated to the old inspection.';
+ const reason='A person can independently deliberate about personal interests without a newly assigned task.';
+ const resumed=stageReviewedNPCIntentionTurn({snapshot:loaded,turn:interval('goal-null-regression-resume'),
+  observedHead:head,choices:[{request:fresh,proposal:{actorId:id,decision:'act',
+   intention:'Sora elects to consider a personal activity instead of awaiting another work assignment.',
+   reasoning:reason,sourceEventIds:[]},reviewed:true,
+   outcome:'SYNTHETIC PRIVATE: A personal motive is chosen without claiming that any activity was completed.',
+   changes:[{field:'goal',before:null,after:goal,reason}]}]});
+ const reread=decodeFiveFiles(encodeFiveFiles(resumed),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(reread),true);
+ assert.equal(get(reread).evidence.goal,goal);
+ assert.equal(get(reread).evidence.independentPlan,null);
+ assert.deepEqual(reread.events.events.at(-1).caused_by,[]);
+ assert.deepEqual(reread.state.world.actors[id].knowledge,paused.state.world.actors[id].knowledge);
+ assert.deepEqual(reread.state.player,paused.state.player);
+});
