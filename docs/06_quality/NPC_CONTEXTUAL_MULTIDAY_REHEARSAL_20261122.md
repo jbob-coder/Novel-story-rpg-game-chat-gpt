@@ -58,3 +58,28 @@ verified request in a private context and then submit a source-bound trace
 entry. The published hash is a consistency identifier, **not** a substitute
 for the private request, proof of independent authorship, or a permission
 to advance the canonical story.
+
+## External trace field allowlist (QA)
+
+Even a private, versioned QA trace is **not** a place to paste an entire NPC
+request, model prompt, actor memory packet or unrelated hidden notes. The
+sequential replay checks an allowlist for each external response and its
+proposal **before** staging any synthetic turn:
+
+- Every record: `requestSha256`, `author`, `proposal`; reviewed actions
+  may additionally contain `reviewed:true`, `outcome` and `changes`.
+- Action proposals permit only `actorId`, `decision`, `intention`,
+  `reasoning`, `sourceEventIds` and optional `destinationId`.
+  Abstentions permit only `actorId`, `decision` and `reasoning` and
+  cannot carry review verdicts, effects or hidden action outcomes.
+- The request hash must be SHA-256-shaped, attribution bounded, and reviewed
+  outcomes have normal narrative length limits. Engine-level actor, causal
+  source, change-schema and chronology validations still apply afterward.
+
+An unexpected key fails with a generic error string; the CI failure message
+does not echo the rejected value. The test uses an explicit private sentinel
+in extra top-level and proposal fields, verifying the error remains silent.
+This does not prove that allowed free-text reasoning or outcome has no
+semantic leak, and does not authenticate whether the stated author was a
+particular model. External review must still inspect each allowed
+decision for source grounding and narrative plausibility.
