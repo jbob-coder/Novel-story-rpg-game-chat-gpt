@@ -2,7 +2,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
+import {inspectNPCContextualChoices,reviewNPCFreeformIntent,
+ listNPCEventMemoryIndex,recallNPCEventEvidence}
  from '../tools/npc_contextual_intents.mjs';
 import {recommendNPCIntentReviews} from '../tools/living_world_agenda.mjs';
 import {savePaths,decodeFiveFiles} from '../tools/save_transaction.mjs';
@@ -117,6 +118,77 @@ test('no execution without review, no automatic background advance across many p
  }
  assert.equal(JSON.stringify(baseline),origin);
  assert.equal(baseline.manifest.last_completed_turn,9);
+ for(const [path,bytes] of Object.entries(originals))
+  assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+});
+
+
+test('known_to points to other actors events without granting their full private outcomes',()=>{
+ const rosa=contextFor('NPC-005');
+ const elena=contextFor('NPC-004');
+ const visibleToRosa=rosa.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(visibleToRosa,'The saved event pointer should remain discoverable');
+ assert.ok(rosa.evidence.knownEventIds.includes('EV-000025'));
+ assert.equal(visibleToRosa.detailScope,'known_to_reference_only');
+ assert.equal(visibleToRosa.intent,null);
+ assert.equal(visibleToRosa.outcome,null);
+ assert.equal(visibleToRosa.actorIds,null);
+ assert.equal(visibleToRosa.kind,null);
+ assert.ok(!JSON.stringify(visibleToRosa).includes('registros financieros'));
+ const owned=elena.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(owned);
+ assert.equal(owned.detailScope,'actor_owned_event');
+ assert.ok(owned.outcome.includes('memoria USB'));
+ assert.equal(rosa.evidence.knownEvents.find(e=>e.id==='EV-000029')?.detailScope,
+  'actor_owned_event');
+});
+
+
+test('bounded paged memory index lists only actor-known references without leaking outcomes',()=>{
+ const before=JSON.stringify(baseline),actorId='NPC-005';
+ const known=baseline.events.events.filter(e=>e.known_to?.includes(actorId));
+ const visited=new Set();
+ let page=listNPCEventMemoryIndex({snapshot:baseline,actorId,limit:2});
+ assert.equal(page.totalKnownEventCount,known.length);
+ for(let step=0;step<=known.length;step++){
+  for(const p of page.pointers){
+   assert.ok(known.some(e=>e.id===p.id));
+   assert.equal(visited.has(p.id),false);
+   visited.add(p.id);
+   assert.equal(Object.hasOwn(p,'intent'),false);
+   assert.equal(Object.hasOwn(p,'outcome'),false);
+  }
+  if(!page.hasOlder)break;
+  page=listNPCEventMemoryIndex({snapshot:baseline,actorId,
+   beforeEventId:page.nextBeforeEventId,limit:2});
+ }
+ assert.equal(visited.size,known.length);
+ assert.equal(page.hasOlder,false);
+ assert.throws(()=>listNPCEventMemoryIndex({snapshot:baseline,actorId,
+  beforeEventId:'EV-000027'}),/cursor is not actor-known/);
+ assert.throws(()=>listNPCEventMemoryIndex({snapshot:baseline,actorId,limit:40}),
+  /one to twelve/);
+ assert.equal(JSON.stringify(baseline),before);
+});
+
+test('read-only recall retains personal event and redacts third-party private outcome',()=>{
+ const before=JSON.stringify(baseline);
+ const recall=recallNPCEventEvidence({snapshot:baseline,actorId:'NPC-005',
+  eventIds:['EV-000025','EV-000029']});
+ assert.deepEqual(recall.knownEvents.map(e=>e.id),['EV-000025','EV-000029']);
+ const other=recall.knownEvents[0],self=recall.knownEvents[1];
+ assert.equal(other.detailScope,'known_to_reference_only');
+ for(const field of ['kind','actorIds','intent','outcome'])
+  assert.equal(other[field],null);
+ assert.equal(self.detailScope,'actor_owned_event');
+ assert.equal(self.outcome,baseline.events.events.find(e=>e.id==='EV-000029').outcome);
+ assert.equal(recall.readerVisible,false);
+ assert.equal(recall.actionsPerformed,0);
+ assert.throws(()=>recallNPCEventEvidence({snapshot:baseline,actorId:'NPC-005',
+  eventIds:['EV-000027']}),/only its previously known/);
+ assert.throws(()=>recallNPCEventEvidence({snapshot:baseline,actorId:'NPC-005',
+  eventIds:['EV-000029','EV-000029']}),/distinct event IDs/);
+ assert.equal(JSON.stringify(baseline),before);
  for(const [path,bytes] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
 });
