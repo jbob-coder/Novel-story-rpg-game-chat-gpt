@@ -56,18 +56,55 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
   if(!grouped.has(row.priority))grouped.set(row.priority,[]);
   grouped.get(row.priority).push(row);
  }
- const sorted=[];
- for(const priority of [...grouped.keys()].sort((a,b)=>b-a)){
-  const group=grouped.get(priority).sort((a,b)=>
-   a.actorId.localeCompare(b.actorId));
-  // Advance by the capacity actually available to this priority group.
-  const take=Math.min(group.length,Math.max(0,limit-sorted.length));
-  if(take===0)break;
-  const start=(completedTurn*take)%group.length;
-  sorted.push(...[...group.slice(start),...group.slice(0,start)].slice(0,take));
+ // Urgency must not permanently exclude every less-urgent NPC from
+ // editorial review. This allocates attention, never compulsory NPC action.
+ const buckets=[...grouped.keys()].sort((a,b)=>b-a).map(priority=>({
+  priority,actors:grouped.get(priority).sort((a,b)=>
+   a.actorId.localeCompare(b.actorId))
+ }));
+ const quotas=new Map(buckets.map(({priority})=>[priority,0]));
+ const rounds=new Map(buckets.map(({priority})=>[priority,completedTurn]));
+ let remaining=Math.min(limit,eligible.length);
+ if(remaining>=buckets.length){
+  for(const bucket of buckets){
+   quotas.set(bucket.priority,1);
+   remaining--;
+  }
+ }else if(remaining===1){
+  // Only one review fits: rotate the priority band over later turns.
+  const bucket=buckets[completedTurn%buckets.length];
+  quotas.set(bucket.priority,1);
+  rounds.set(bucket.priority,Math.floor(completedTurn/buckets.length));
+  remaining=0;
+ }else if(remaining>1){
+  // Keep one urgent slot and rotate scarce slots among other bands.
+  const first=buckets[0];
+  quotas.set(first.priority,1);
+  remaining--;
+  const secondaryCount=buckets.length-1;
+  for(let j=0;j<remaining;j++){
+   const bucket=buckets[1+(completedTurn+j)%secondaryCount];
+   quotas.set(bucket.priority,quotas.get(bucket.priority)+1);
+   rounds.set(bucket.priority,Math.floor(completedTurn/secondaryCount));
+  }
+  remaining=0;
  }
- return clone({eligibleCount:eligible.length,
-  selected:sorted.slice(0,limit)});
+ // Extra capacity is weighted toward the most urgent responsibilities.
+ for(const bucket of buckets){
+  const room=bucket.actors.length-quotas.get(bucket.priority);
+  const added=Math.min(remaining,room);
+  quotas.set(bucket.priority,quotas.get(bucket.priority)+added);
+  remaining-=added;
+ }
+ const selected=buckets.flatMap(bucket=>{
+  const count=quotas.get(bucket.priority);
+  if(count===0)return [];
+  const round=rounds.get(bucket.priority);
+  const start=((round%bucket.actors.length)*count)%bucket.actors.length;
+  return [...bucket.actors.slice(start),...bucket.actors.slice(0,start)]
+   .slice(0,count);
+ });
+ return clone({eligibleCount:eligible.length,selected});
 }
 
 

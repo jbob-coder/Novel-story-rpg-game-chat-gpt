@@ -16,6 +16,8 @@ const syntheticActors=Object.fromEntries(Array.from({length:80},(_,i)=>{
   location_id:'LOC-COMMERCIAL-DISTRICT',resources:{daily_life:'known basic context'}}];
 }));
 
+const syntheticActorFixtureBaseline=JSON.stringify(syntheticActors);
+
 test('a large cast rotates fairly and limits expensive contextual review',()=>{
  const seen=new Set(),sample=[];
  for(let turn=0;turn<16;turn++){
@@ -91,13 +93,13 @@ test('mixed priorities rotate through the remaining slots without permanent gaps
  assert.equal(seen.size,81,'All 80 ordinary actors must receive review across 20 four-slot windows');
 });
 
-test('saturated due priorities remain a separate policy limitation',()=>{
+test('saturated due priorities reserve attention for ordinary civilians',()=>{
  const actors=structuredClone(syntheticActors);
  for(let i=100;i<105;i++)actors['NPC-'+i].commitments=[{status:'pending',due_day:-29}];
  const review=rankOpenNPCReviewCandidates({actors,completedTurn:0,worldDay:-29,limit:5});
  assert.equal(review.eligibleCount,80);
- assert.ok(review.selected.every(row=>row.priority===3));
- // This patch preserves strict due-first policy. It does not promise lower-priority coverage under saturation.
+ assert.equal(review.selected.filter(row=>row.priority===3).length,4);
+ assert.equal(review.selected.filter(row=>row.priority===0).length,1);
 });
 
 
@@ -151,7 +153,8 @@ test('aging rejects future and same-window review history and never alters canon
    lastReviewedAt:{'NPC-100':invalid}}),/completed earlier review windows/);
  }
  const original=rankOpenNPCReviewCandidates({actors,worldDay:-29,completedTurn:0,limit:5});
- assert.ok(original.selected.every(x=>x.priority===3));
+ assert.equal(original.selected.filter(x=>x.priority===3).length,4);
+ assert.equal(original.selected.filter(x=>x.priority===0).length,1);
 });
 test('new or returning actors without prior reviews can receive the reserved slot',()=>{
  const actors=agingActors(6,3);
@@ -218,4 +221,93 @@ test('ledger rejects fabricated metadata and conflicting retry',async()=>{
  assert.throws(()=>encodeNPCReviewLedger({...out.ledger,lastReviewedAt:{'NPC-100':9}}),/sidecar metadata/);
  await assert.rejects(()=>persistNPCReviewReceipt({...f,receipt:{...f.receipt,reviewedActorIds:[]},verifyReceipt:async()=>true}),/Conflicting receipt/);
  assert.equal(f.writes(),1);
+});
+
+// Port of the three independently authored #201 saturation regressions.
+test('persistent overdue work cannot permanently exclude ordinary civilians',()=>{
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,12)));
+ for(const id of Object.keys(actors).slice(0,6))
+  actors[id].commitments=[{id:'DUE-'+id,status:'pending',due_day:-30,
+   summary:'SYNTHETIC overdue obligation, not an instruction to act.'}];
+ const frozen=JSON.stringify(actors),seen=new Set(),ordinary=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:4});
+  assert.equal(result.selected.length,4);
+  assert.equal(result.selected[0].priority,3);
+  assert.ok(result.selected.some(x=>x.priority===0),
+   'Ordinary civilians need a share of review even when deadlines persist');
+  for(const row of result.selected){
+   seen.add(row.actorId);
+   if(row.priority===0)ordinary.add(row.actorId);
+  }
+ }
+ assert.equal(seen.size,12);
+ assert.equal(ordinary.size,6);
+ assert.equal(JSON.stringify(actors),frozen);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
+});
+
+test('a two-slot budget rotates fairly across three priority bands',()=>{
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,6)));
+ const ids=Object.keys(actors);
+ for(const id of ids.slice(0,2))actors[id].commitments=[
+  {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
+ for(const id of ids.slice(2,4))actors[id].commitments=[
+  {id:'OPEN-'+id,status:'pending',due_day:10,summary:'SYNTHETIC future work'}];
+ const seen=new Set(),lowerBands=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:2});
+  assert.equal(result.selected.length,2);
+  assert.equal(result.selected[0].priority,3);
+  assert.ok([0,1].includes(result.selected[1].priority));
+  for(const row of result.selected){
+   seen.add(row.actorId);
+   if(row.priority!==3)lowerBands.add(row.priority);
+  }
+ }
+ assert.equal(seen.size,6);
+ assert.deepEqual([...lowerBands].sort(),[0,1]);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
+});
+
+test('a single review slot eventually covers overdue and ordinary actors',()=>{
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,4)));
+ const ids=Object.keys(actors);
+ for(const id of ids.slice(0,2))actors[id].commitments=[
+  {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
+ const seen=new Set(),priorities=new Set();
+ for(let turn=0;turn<12;turn++){
+  const result=rankOpenNPCReviewCandidates({actors,
+   worldDay:-29,completedTurn:turn,limit:1});
+  assert.equal(result.selected.length,1);
+  seen.add(result.selected[0].actorId);
+  priorities.add(result.selected[0].priority);
+ }
+ assert.equal(seen.size,4);
+ assert.deepEqual([...priorities].sort(),[0,3]);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
+});
+
+
+test('stable population with no goals receives bounded review across all three priority bands',()=>{
+ const actors=Object.fromEntries(Array.from({length:18},(_,i)=>[
+  'NPC-'+(100+i),{goal:null,independent_plan:null,
+   commitments:i<6?[{status:'pending',due_day:-29}]:
+    i<12?[{status:'pending',due_day:-20}]:[]}
+ ]));
+ const frozen=JSON.stringify(actors);
+ for(const limit of [1,2,3,5,18,40]){
+  const seen=new Set();
+  for(let completedTurn=0;completedTurn<54;completedTurn++){
+   const result=rankOpenNPCReviewCandidates({actors,worldDay:-29,completedTurn,limit});
+   assert.equal(result.eligibleCount,18);
+   assert.equal(result.selected.length,Math.min(limit,18));
+   assert.equal(new Set(result.selected.map(r=>r.actorId)).size,result.selected.length);
+   result.selected.forEach(r=>seen.add(r.actorId));
+  }
+  assert.equal(seen.size,18,'Stable population must receive review at capacity '+limit);
+ }
+ assert.equal(JSON.stringify(actors),frozen);
 });
