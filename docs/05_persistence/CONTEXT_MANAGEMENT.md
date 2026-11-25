@@ -530,3 +530,22 @@ obligation, updating his own plan and trust, then explicitly marking that
 obligation **blocked** on a later actor-owned follow-up; another NPC may
 independently keep its original plans. The query does not magically resolve
 obligations, insert additional effects, or grant private details to Jack.
+
+
+## Review of competing NPC obligations across saved chapters (2026-11-24)
+
+`inspectNPCObligationConflicts({snapshot,actorIds,elapsedMinutes,elapsedDays,maxPerActor})`
+is a narrator-private, read-only report over **all active saved obligations**
+per selected NPC. It is not subject to the agenda's eight-item limit.
+Unknown due dates remain unknown. A shared due day or multiple commitments
+signals **potential competition**, never a proven impossible schedule.
+Source and latest-change EV pointers for post-turn-nine obligations are
+checked against their owner's exact recorded commitment mutations, even
+when those events are in archived chapters. Legacy references are labeled
+as such and not misrepresented as fully proven actor-owned origins.
+
+The ordinary agenda now uses commitment priority (`urgent`,
+`important`, `normal`) only to break ties among identical time-review
+classes; it still proposes **no** automatic action. Blocked obligations
+stay blocked, deadlines never imply failure, and an NPC can retain
+uncertainty or independently choose an alternative.

@@ -146,6 +146,22 @@
           "revision_reason": "El recuerdo posterior de haber recibido el efectivo y devuelto el cambio establece que el estado pendiente era anterior al pago."
         }
       ]
+    },
+    {
+      "requestSha256": "f5351b15df33a5845c2ceb2c6f5052a9274ccc6ccbb6398ac51a7ea8961714a9",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-006",
+        "decision": "act",
+        "intention": "Ensayar una explicación breve para una futura consulta de reparación, convirtiendo mi criterio anterior en preguntas prácticas sobre los síntomas, cuándo comenzaron y qué se ha intentado ya, sin comprometer todavía precio ni plazo.",
+        "reasoning": "En EV-000031 decidí distinguir diagnóstico de reparación para proteger mi reputación. Puedo practicar una forma concreta de aplicar ese criterio sin depender de que aparezca un cliente, sin asumir existencias y sin modificar otra vez mi plan. Una explicación clara puede reducir malentendidos.",
+        "sourceEventIds": [
+          "EV-000031"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Noah ensaya mentalmente tres preguntas para una futura consulta: qué dejó de funcionar, desde cuándo ocurre y qué intentos de reparación se hicieron. Conserva su plan anterior. No se establece una consulta real, una venta, una adquisición ni una reparación.",
+      "changes": []
     }
   ]
 }
