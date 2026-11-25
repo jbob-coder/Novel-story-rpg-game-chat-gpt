@@ -408,3 +408,29 @@ learns the private original. A forged archived original is rejected.
 
 All fictional events in this section exist only inside tests; no canonical
 turn is staged remotely or presented as played.
+
+
+## Event-backed NPC reconsideration review (2026-11-24)
+
+The existing NPC knowledge revision mechanism is **append-only**:
+`knowledge.revision_of` must point to an exact older statement belonging to
+the **same NPC**, and the old statement is never removed. A reviewed
+`continuation_context` can separately cite an event that the actor knew
+in a **prior turn**. A later event can record the NPC's own relationship
+or independent-plan change alongside that knowledge revision. Those effects
+are independently validated but **never selected automatically**.
+
+Private `checkNPCFactEvidence` now returns
+`reconsiderationEventCount` and bounded `reconsiderationsForReview`
+for explicitly linked revisions. Each points to the revision EV,
+`causalExperienceEventIds` only where the saved event contains a
+reviewed known-event continuation, and the IDs of relationship targets
+and an `independentPlanChanged` flag only for effects actually recorded
+in that same actor-owned event. A free-text revision reason alone is
+labeled `revision_reason_only`, **not** verified experience.
+`interpretation:'causal_links_only_not_truth_or_intent'` means the index
+cannot establish truth, beliefs, emotional motivation or the adequacy of
+a claimed causal relation.
+
+All outputs are narrator-private, read-only and derived from the actual
+replay-validated checkpoint. The history and gameplay are unchanged.

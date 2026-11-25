@@ -224,3 +224,21 @@ o interpretación. La proximidad no crea diálogos ni difunde secretos
 automáticamente. Antes de narrar lo privado a Jack se requiere una
 vía causal; el control literal también comprueba la frase humana del
 origen sin sufijo `EV` y el texto particular relatado.
+
+
+### Experiencia, reinterpretación y decisiones propias
+
+Una experiencia posterior puede motivar a un NPC a reconsiderar lo oído,
+pero el motor no elige por él una creencia, un vínculo ni una conducta.
+Cuando el narrador revisa la situación, puede guardar una nueva afirmación
+con `revision_of` (sin borrar la anterior), citar el evento que el actor
+conoció mediante una continuación causal revisada y registrar, si resulta
+justificado, un cambio direccional en relación o plan independiente.
+También puede no cambiar nada, desconfiar de otra fuente o mantener
+opiniones contradictorias.
+
+La consulta privada del recuerdo muestra los eventos de revisión, sus
+vínculos causales explícitos y los tipos de cambios que realmente ocurrieron.
+No convierte el motivo alegado en verdad ni presupone que un cambio
+emocional o de creencia ocurrió por el mero paso de tiempo. Las decisiones
+de otros NPC no se modifican por contagio.

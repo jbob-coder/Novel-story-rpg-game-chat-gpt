@@ -214,7 +214,8 @@
       "tests/living_world_travel.test.mjs",
       "tests/npc_behavior_acceptance_qa.test.mjs",
       "tests/npc_memory_social_continuity.test.mjs",
-      "tests/test_checkpoint_audit.py"
+      "tests/test_checkpoint_audit.py",
+      "tests/npc_experience_reconsideration.test.mjs"
     ],
     "design_proposals": [
       "docs/01_world/MERIDIAN_BAY_PHASE1.md",
