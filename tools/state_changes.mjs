@@ -20,6 +20,27 @@ const itemAt = (actor, id) => (actor.inventory ?? []).find(item => item.id === i
 const knownLocation = (state, id) => typeof id === 'string' && Object.hasOwn(state.world.locations, id);
 const stringList = value => Array.isArray(value) && value.every(x => typeof x === 'string' && x.trim()) && new Set(value).size === value.length;
 const actorIds = state => new Set([state.player.id, ...Object.keys(state.world.actors)]);
+// Forward-only goal anchor: exact CH-000 turn 9 STATE blob 3f4e9c98a7211068faefd31d0a0acbd4260ef589.
+// Earlier checkpoints remain readable. New identities are seeded by their own introduction.
+const NPC_GOAL_ANCHOR=Object.freeze({
+  "NPC-001": "Maintain safe, on-time evening transit while addressing a late service disruption.",
+  "NPC-002": "Complete an assigned inspection before the end of the shift.",
+  "NPC-003": "Deliver a paid parcel on time and protect his income.",
+  "NPC-004": "Graduarse con buenas notas y desarrollar su interés artístico sin dejar de tomar decisiones propias.",
+  "NPC-005": "Mantener su autonomía y ayudar a sus vecinos a reparar objetos sencillos.",
+  "NPC-006": "Sostener su negocio y conseguir clientes legítimos sin perder su reputación.",
+  "NPC-007": "Completar el cierre de la cafetería con los cobros correctos y salir a tiempo del trabajo."
+});
+const goalText=value=>typeof value==='string'&&value.trim().length>=8&&value.length<=360;
+const goalReason=value=>typeof value==='string'&&value.trim().length>=12&&value.length<=500;
+function checkGoalRevision(event,change,actorId,playerId){
+  requireFact(actorId!==playerId&&event.kind==='independent_actor'&&
+    event.actor_ids?.length===1&&event.actor_ids[0]===actorId&&
+    event.known_to?.length===1&&event.known_to[0]===actorId&&
+    event.turn>9&&goalText(change.before)&&goalText(change.after)&&
+    change.before.trim()!==change.after.trim()&&goalReason(change.reason),
+    'NPC goal revision requires a private owning event, distinct goals and causal reason');
+}
 const sourcedKnowledge=/^(.*) \(source: (.+); (EV-\d{6,})\)$/;
 
 function validateTransferredKnowledge(state,recipientId,eventId,transfer){
@@ -186,6 +207,13 @@ function applyStateChangesUnchecked(state, record, changes = []) {
       actor.service_cases=copy(change.after);
       record.state_changes.push({actor_id:actorId,field,before:copy(change.before),
         after:copy(change.after),review:copy(change.review)});
+    } else if (field === 'goal') {
+      checkGoalRevision(record,change,actorId,state.player.id);
+      requireFact(actor.goal===change.before,'Stale NPC goal');
+      requireFact(!record.state_changes.some(c=>c.field==='goal'),'Only one goal revision per event');
+      actor.goal=change.after;
+      record.state_changes.push({actor_id:actorId,field,before:change.before,
+        after:change.after,reason:change.reason});
     } else if (field === 'independent_plan') {
       requireFact(actorId !== state.player.id && typeof change.after === 'string' && change.after.trim(), 'Only NPC plans may change');
       requireFact(actor.independent_plan === change.before, 'Stale NPC plan');
@@ -280,6 +308,29 @@ function verifyStateChanges(snapshot) {
       requireFact(!item.carried || item.location_id === actor.location_id, 'Carried item disagrees with actor location');
     }
   }
+  // Replay the complete goal chain from the immutable turn-nine anchor or
+  // the actor's reviewed introduction; no silent edits to initial goals.
+  if(events.length>=29){
+    const goals=new Map(Object.entries(NPC_GOAL_ANCHOR));
+    for(const event of events){
+      const changes=event.state_changes.filter(c=>c.field==='goal');
+      requireFact(changes.length<=1,'Only one goal revision per event');
+      for(const change of event.state_changes){
+        if(change.field==='npc_introduction'){
+          requireFact(!goals.has(change.actor_id)&&goalText(change.after?.goal),'Invalid initial NPC goal');
+          goals.set(change.actor_id,change.after.goal);
+        }
+        if(change.field==='goal'){
+          checkGoalRevision(event,change,change.actor_id,state.player.id);
+          requireFact(goals.has(change.actor_id)&&goals.get(change.actor_id)===change.before,
+            'NPC goal history precondition mismatch');
+          goals.set(change.actor_id,change.after);
+        }
+      }
+    }
+    for(const [id,goal] of goals)requireFact(state.world.actors[id]?.goal===goal,
+      'Saved NPC goal differs from causal history');
+  }
   // Legacy events before D-040 are archived and not retroactively reinterpreted.
   for (const event of events) {
     if (event.turn <= 6) continue;
@@ -287,7 +338,7 @@ function verifyStateChanges(snapshot) {
       const actor = actorAt(state, change.actor_id);
       requireFact(actor && change.actor_id === event.actor_ids[0], 'Change actor differs from event actor');
       const field = change.field;
-      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases','npc_introduction'].includes(field), 'Unknown tracked change field');
+      requireFact(['location_id','location_state','inventory_item','relationship','conditions','knowledge','goal','independent_plan','last_resolved_action','resources','commitments','plans','needs','service_cases','npc_introduction'].includes(field), 'Unknown tracked change field');
       // The world-level history is keyed by location rather than event actor;
       // different people may cause consecutive changes to the same building.
       if(field==='location_state')continue;

@@ -227,3 +227,17 @@ alone does not prove open now; a schedule still needs established weekday/time.
 Neither this record nor a private diagnostic grants Jack knowledge of a change.
 See [the full operation contract](01_world/WORLD_ADMISSION_AND_LOCATION_STATE.md)
 for persistence, recovery, scope and interfaces.
+
+## Experimental actor-owned goal revision (QA branch)
+
+A reviewed private independent NPC event after CH-000 turn 9 may record one
+`field: "goal"` change with exact `before`, distinct nonempty `after` (8–360
+characters), and a causal `reason` (12–500 characters). The initial seven goals
+are pinned to the exact turn-nine STATE blob; later NPC goals begin at their
+reviewed introduction. Global event replay verifies the old-to-new chain and
+final materialized goal. The narrator can replace an obsolete motive with a
+new one or an explicit deliberative goal; a null/empty goal is not yet supported.
+A goal change does not complete an obligation, rewrite knowledge, update a
+plan implicitly, or disclose a private motive. Existing semantic review and
+transactional save requirements remain. This experimental contract is not
+permission to change the canonical checkpoint or activate the prototype.

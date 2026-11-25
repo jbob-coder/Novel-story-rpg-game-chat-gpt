@@ -383,3 +383,68 @@ test('readback refuses a contrast relinked to later NPC memory, even if final st
   /Saved NPC contrast lacks older actor-specific provenance/);
  assert.equal(verifyNarrativeSnapshot(later),true);
 });
+
+
+// Independent goal changes are distinct from plan changes and preserve the
+// exact previous motive in actor-owned causal history. No canonical save.
+const goalDraft=(snapshot,after,reason='SYNTHETIC QA: reconsider an obsolete task after earlier experience.')=>({
+ actor_id:darius,reviewed:true,resolved:true,
+ causal_basis:'SYNTHETIC QA: Darius independently reconsiders a personal goal.',
+ outcome:'SYNTHETIC QA PRIVATE: Darius chooses a different goal.',
+ changes:[{field:'goal',before:snapshot.state.world.actors[darius].goal,after,reason}]
+});
+test('goal replacement survives next turn and chapter boundary without losing old motives',()=>{
+ const base=initial(),original=JSON.stringify(base),old=base.state.world.actors[darius];
+ const first=stage(base,'synthetic-goal-revision-first',[goalDraft(base,'Seek legitimate work rather than repeat the completed delivery.')]);
+ const revised=first.state.world.actors[darius];
+ assert.equal(revised.goal,'Seek legitimate work rather than repeat the completed delivery.');
+ assert.deepEqual(revised.knowledge,old.knowledge);
+ assert.equal(revised.independent_plan,old.independent_plan);
+ assert.deepEqual(first.state.player,base.state.player);
+ const change=first.events.events.at(-1).state_changes.find(c=>c.field==='goal');
+ assert.equal(change.before,old.goal);
+ assert.equal(change.after,revised.goal);
+ const closed=close(first);
+ const reread=decodeFiveFiles({...encodeFiveFiles(first),...encodeFiveFiles(closed)},'CH-001');
+ const second=stage(reread,'synthetic-goal-revision-second',[goalDraft(reread,'Set aside the search and reconsider personal priorities.')]);
+ assert.equal(verifyNarrativeSnapshot(second),true);
+ assert.equal(second.state.world.actors[darius].goal,'Set aside the search and reconsider personal priorities.');
+ assert.equal(second.events.events.at(-1).state_changes.find(c=>c.field==='goal').before,revised.goal);
+ assert.equal(JSON.stringify(base),original);
+});
+test('goal changes reject stale, empty, unexplained, duplicate and cross-actor effects',()=>{
+ const base=initial(),before=JSON.stringify(base);
+ const make=()=>goalDraft(base,'Seek a different legitimate opportunity.');
+ for(const [key,edit,pattern] of [
+  ['stale',d=>d.changes[0].before='A different previous goal',/Stale NPC goal/],
+  ['empty',d=>d.changes[0].after='',/goal revision requires/],
+  ['reason',d=>delete d.changes[0].reason,/goal revision requires/],
+  ['same',d=>d.changes[0].after=d.changes[0].before,/goal revision requires/],
+  ['duplicate',d=>d.changes.push({...d.changes[0],before:d.changes[0].after,after:'Consider a second possible goal.'}),/one goal revision/],
+  ['foreign',d=>d.changes[0].actor_id=noah,/Cross-actor/]
+ ]){
+  const draft=make();edit(draft);
+  assert.throws(()=>stage(base,'synthetic-goal-invalid-'+key,[draft]),pattern);
+ }
+ assert.equal(JSON.stringify(base),before);
+});
+test('goal history rejects silent state edits, forged first motive and invalid privacy',()=>{
+ const base=initial(),silent=structuredClone(base);
+ silent.state.world.actors[darius].goal='A fabricated new goal.';
+ assert.throws(()=>verifyNarrativeSnapshot(silent),/Saved NPC goal differs/);
+ const staged=stage(base,'synthetic-goal-tamper',[goalDraft(base,'Seek a different legitimate opportunity.')]);
+ for(const [edit,pattern] of [
+  [s=>s.events.events.at(-1).state_changes.find(c=>c.field==='goal').before='Invented previous motive.',/goal history precondition/],
+  [s=>s.events.events.at(-1).known_to.push(noah),/goal revision requires/],
+  [s=>s.state.world.actors[darius].goal='Another silent goal edit.',/Saved NPC goal differs/]
+ ]){
+  const copy=structuredClone(staged);edit(copy);
+  assert.throws(()=>verifyNarrativeSnapshot(copy),pattern);
+ }
+});
+test('a private NPC goal cannot be copied verbatim into Jack narration',()=>{
+ const base=initial(),draft=goalDraft(base,'Privately reconsider what kind of ordinary work to pursue.');
+ const scene=turn('synthetic-goal-private-leak');
+ scene.narration_messages=[draft.changes[0].after];
+ assert.throws(()=>stageLivingWorldTurn({snapshot:base,turn:scene,observedHead:head,npcResolutions:[draft]}),/Private NPC goal leaked/);
+});
