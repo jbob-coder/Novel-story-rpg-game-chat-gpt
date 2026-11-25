@@ -80,3 +80,19 @@ un EV de otro actor sigue siendo exclusivamente una referencia sin
 `intent` ni `outcome` ajenos. El índice y la recuperación son de solo
 lectura, no ejecutan acciones, no adelantan tiempo y no certifican verdad,
 inferencia, creencia ni conducta automática.
+
+
+## Segundo control: evaluar el contenido de fuentes antes de resolver un resultado
+
+En `draftOutcomeFromNPCIntention`, un EV marcado con
+`additionalContentReviewRequired:true` exige ahora una atestación
+`sourceReviews` por ID exacto: `reviewed:true`, una explicación y un
+fundamento verificable. Los eventos antiguos propios exigen
+`basis:'actor_owned_recall'`; los ajenos aceptan una referencia
+`basis:'reference_only_uncertain'` (permite investigar sin fingir
+conocer un secreto) o `basis:'recorded_actor_knowledge'` respaldada
+por una entrada literal ya presente en el actor. El turno generativo
+propaga la evaluación antes de consolidar el evento. No es un detector
+semántico de mentira ni un filtro global de todas las rutas editoriales;
+protege la pasarela experimental de generación sin imponer un menú de
+acciones ni modificar la partida.

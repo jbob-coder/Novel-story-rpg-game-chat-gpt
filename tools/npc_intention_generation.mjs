@@ -7,7 +7,7 @@ import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
 import {allEvents} from './chapter_history.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent,
- listNPCEventMemoryIndex}
+ listNPCEventMemoryIndex,recallNPCEventEvidence}
  from './npc_contextual_intents.mjs';
 
 const ensure=(yes,message)=>{if(!yes)throw new Error(message);};
@@ -156,6 +156,51 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  });
 }
 
+
+/**
+ * An event ID is not a private knowledge transfer. Every cited EV flagged as
+ * third-party or outside the prompt needs explicit, actor-scoped source
+ * adjudication before an authored outcome is staged.
+ */
+function assessNPCSourceReviews({snapshot,actorId,citedEventEvidence,sourceReviews}){
+ const flagged=citedEventEvidence.filter(e=>e.additionalContentReviewRequired);
+ if(!flagged.length){
+  ensure(sourceReviews===undefined||(Array.isArray(sourceReviews)&&
+   sourceReviews.length===0),'Unexpected NPC source content reviews');
+  return;
+ }
+ ensure(Array.isArray(sourceReviews)&&sourceReviews.length===flagged.length,
+  'Explicit source evidence review required');
+ const actor=snapshot.state.world.actors[actorId];
+ for(let i=0;i<flagged.length;i++){
+  const source=flagged[i],r=sourceReviews[i];
+  ensure(r&&typeof r==='object'&&!Array.isArray(r)&&
+   r.eventId===source.eventId&&r.reviewed===true&&
+   nonempty(r.reason,24,400),
+   'Flagged NPC source needs exact event ID and reviewed explanation');
+  if(source.detailScope==='actor_owned_event'){
+   ensure(r.basis==='actor_owned_recall'&&r.knownEntry===undefined,
+    'Older personal event needs its own recalled source review');
+   const owned=recallNPCEventEvidence({
+    snapshot,actorId,eventIds:[r.eventId]}).knownEvents[0];
+   ensure(owned.detailScope==='actor_owned_event',
+    'Personal event recall owner did not match');
+  }else{
+   ensure(source.detailScope==='known_to_reference_only'&&
+    ['reference_only_uncertain','recorded_actor_knowledge'].includes(r.basis),
+    'Third-party reference requires limited-content review');
+   if(r.basis==='reference_only_uncertain'){
+    ensure(r.knownEntry===undefined,
+     'Reference-only review must not invent transferred knowledge');
+   }else{
+    ensure(typeof r.knownEntry==='string'&&
+     (actor.knowledge??[]).includes(r.knownEntry),
+     'Cited private detail is not actor recorded knowledge');
+   }
+  }
+ }
+}
+
 /**
  * Bring an inspected intention to the existing reviewed outcome gate.
  * It is NOT a turn, event, save, or proof of success. Any proposed action
@@ -163,12 +208,14 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  * transactional save remain the only authority for durable consequences.
  */
 export function draftOutcomeFromNPCIntention({snapshot,request,proposal,
- outcome,changes=[],reviewed=false}={}){
+ outcome,changes=[],sourceReviews,reviewed=false}={}){
  ensure(reviewed===true,'Causal outcome needs separate editorial review');
  const checked=inspectNPCGeneratedIntention({snapshot,request,proposal});
  ensure(checked.classification==='npc_actor_authored_proposal_review_v1',
   'No action can be staged for abstention');
  ensure(nonempty(outcome,12,2000),'A reviewed actual outcome is required');
+ assessNPCSourceReviews({snapshot,actorId:request.actorId,
+  citedEventEvidence:checked.citedEventEvidence,sourceReviews});
  ensure(Array.isArray(changes)&&changes.length<=40,
   'Too many reviewed NPC state changes');
  const causalBasis='Reviewed NPC intention: '+checked.intention+
@@ -223,7 +270,7 @@ export function stageReviewedNPCIntentionTurn({snapshot,turn,observedHead,
    snapshot,request:item.request,proposal:item.proposal});
   if(validated.classification==='npc_intention_abstention_v1'){
    ensure(item.reviewed===undefined&&item.outcome===undefined&&
-    item.changes===undefined,
+    item.changes===undefined&&item.sourceReviews===undefined,
     'Abstaining NPC cannot hide an outcome or state change');
    abstained.push(actorId);
    continue;
@@ -237,7 +284,8 @@ export function stageReviewedNPCIntentionTurn({snapshot,turn,observedHead,
    'Private NPC outcome must not appear verbatim in player scene');
   npcResolutions.push(draftOutcomeFromNPCIntention({
    snapshot,request:item.request,proposal:item.proposal,
-   reviewed:true,outcome:item.outcome,changes:item.changes??[]
+   reviewed:true,outcome:item.outcome,changes:item.changes??[],
+   sourceReviews:item.sourceReviews
   }));
  }
  return {

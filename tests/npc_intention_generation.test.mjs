@@ -185,6 +185,9 @@ test('the cited older known source is preserved instead of silently forcing late
   ['EV-000025']);
  const draft=draftOutcomeFromNPCIntention({snapshot:s,request:r,
   proposal:alternate,reviewed:true,
+  sourceReviews:[{eventId:'EV-000025',reviewed:true,
+   basis:'reference_only_uncertain',
+   reason:'Rosa is allowed to investigate the event pointer without claiming another actor private intent.'}],
   outcome:'SYNTHETIC PRIVATE: Rosa considers a separate personal priority without moving Jack.'});
  assert.deepEqual(draft.continuation_context.source_event_ids,['EV-000025']);
  const staged=stageLivingWorldTurn({snapshot:s,observedHead:head,
@@ -290,7 +293,10 @@ test('older actor-known events stay citeable after they leave the eight-event pr
   proposal:propose(request,
    'Rosa privately plans to check whether the old clock still needs returning.',
    ['EV-000029']),
-  reviewed:true,outcome:'SYNTHETIC PRIVATE: Rosa reviews the old clock, not a confirmed handover.'});
+  reviewed:true,outcome:'SYNTHETIC PRIVATE: Rosa reviews the old clock, not a confirmed handover.',
+  sourceReviews:[{eventId:'EV-000029',reviewed:true,
+   basis:'actor_owned_recall',
+   reason:'Rosa rechecks her own original saved repair event before drawing conclusions.'}]});
  assert.deepEqual(reviewed.continuation_context.source_event_ids,['EV-000029']);
  const next=stageLivingWorldTurn({snapshot:staged,observedHead:head,
   turn:turn('older-known-event-causal-followup'),npcResolutions:[reviewed]});
@@ -299,4 +305,52 @@ test('older actor-known events stay citeable after they leave the eight-event pr
  assert.equal(JSON.stringify(authentic),original);
  for(const [path,bytes] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
+});
+
+
+test('source-content adjudication is mandatory for third-party event citations',()=>{
+ const s=baseline(),before=JSON.stringify(s),r=initial(s,'NPC-005');
+ const p=propose(r,
+  'Rosa considers whether an old family event reference warrants further inquiry.',
+  ['EV-000025']);
+ const make=sourceReviews=>draftOutcomeFromNPCIntention({
+  snapshot:s,request:r,proposal:p,reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa plans to ask later but learns nothing new.',
+  ...(sourceReviews===undefined?{}:{sourceReviews})
+ });
+ assert.throws(()=>make(),/Explicit source evidence review required/);
+ assert.throws(()=>make([{eventId:'EV-000025',reviewed:true,
+  basis:'actor_owned_recall',
+  reason:'A shared event reference is not a private actor-owned result.'}]),
+  /Third-party reference requires limited-content review/);
+ assert.throws(()=>make([{eventId:'EV-000025',reviewed:true,
+  basis:'recorded_actor_knowledge',knownEntry:'FORGED SECRET',
+  reason:'An invented record must not count as evidence of knowledge.'}]),
+  /not actor recorded knowledge/);
+ const cautious=make([{eventId:'EV-000025',reviewed:true,
+  basis:'reference_only_uncertain',
+  reason:'Rosa may investigate the event without assuming Elena private thoughts.'}]);
+ assert.deepEqual(cautious.continuation_context.source_event_ids,['EV-000025']);
+ assert.ok(r.evidence.knowledge.length>0);
+ const known=make([{eventId:'EV-000025',reviewed:true,
+  basis:'recorded_actor_knowledge',knownEntry:r.evidence.knowledge[0],
+  reason:'A literal Rosa knowledge entry was checked without claiming it must be true.'}]);
+ assert.deepEqual(known.continuation_context.source_event_ids,['EV-000025']);
+ assert.equal(JSON.stringify(s),before);
+});
+
+test('ordinary owned recent events and independent initiatives need no extra source review',()=>{
+ const s=baseline(),r=initial(s,'NPC-005'),original=JSON.stringify(s);
+ const recent=propose(r,'Rosa reconsiders what to do with an already repaired clock.',
+  ['EV-000029']);
+ const reviewed=draftOutcomeFromNPCIntention({snapshot:s,request:r,
+  proposal:recent,reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa does not invent a delivery or an appointment.'});
+ assert.deepEqual(reviewed.continuation_context.source_event_ids,['EV-000029']);
+ const noCause=draftOutcomeFromNPCIntention({snapshot:s,request:r,
+  proposal:propose(r,'Rosa reevaluates another existing household priority.'),
+  reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: An independent plan can change without citing a new event.'});
+ assert.equal(Object.hasOwn(noCause,'continuation_context'),false);
+ assert.equal(JSON.stringify(s),original);
 });
