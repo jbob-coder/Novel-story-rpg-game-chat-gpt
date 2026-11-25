@@ -120,3 +120,24 @@ test('no execution without review, no automatic background advance across many p
  for(const [path,bytes] of Object.entries(originals))
   assert.equal(readFileSync(new URL('../'+path,import.meta.url),'utf8'),bytes);
 });
+
+
+test('known_to points to other actors events without granting their full private outcomes',()=>{
+ const rosa=contextFor('NPC-005');
+ const elena=contextFor('NPC-004');
+ const visibleToRosa=rosa.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(visibleToRosa,'The saved event pointer should remain discoverable');
+ assert.ok(rosa.evidence.knownEventIds.includes('EV-000025'));
+ assert.equal(visibleToRosa.detailScope,'known_to_reference_only');
+ assert.equal(visibleToRosa.intent,null);
+ assert.equal(visibleToRosa.outcome,null);
+ assert.equal(visibleToRosa.actorIds,null);
+ assert.equal(visibleToRosa.kind,null);
+ assert.ok(!JSON.stringify(visibleToRosa).includes('registros financieros'));
+ const owned=elena.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(owned);
+ assert.equal(owned.detailScope,'actor_owned_event');
+ assert.ok(owned.outcome.includes('ilustración'));
+ assert.equal(rosa.evidence.knownEvents.find(e=>e.id==='EV-000029')?.detailScope,
+  'actor_owned_event');
+});

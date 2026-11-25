@@ -191,3 +191,19 @@ test('the cited older known source is preserved instead of silently forcing late
  assert.deepEqual(staged.events.events.at(-1).caused_by,['EV-000025']);
  assert.ok(!staged.transcript.entries.some(x=>x.text.includes('SYNTHETIC PRIVATE:')));
 });
+
+
+test('generated NPC requests do not launder another actor event detail via known_to',()=>{
+ const request=prepareNPCIntentionRequests({snapshot:baseline,actorIds:['NPC-005'],
+  elapsedMinutes:15}).requests[0];
+ assert.equal(request.actorId,'NPC-005');
+ assert.ok(request.evidence.knownEventIds.includes('EV-000025'));
+ const indirect=request.evidence.knownEvents.find(e=>e.id==='EV-000025');
+ assert.ok(indirect);
+ assert.equal(indirect.detailScope,'known_to_reference_only');
+ assert.equal(indirect.outcome,null);
+ assert.equal(indirect.intent,null);
+ assert.ok(!JSON.stringify(indirect).includes('registros financieros'));
+ const owned=request.evidence.knownEvents.find(e=>e.id==='EV-000029');
+ assert.ok(owned?.outcome.includes('despertador reparado'));
+});

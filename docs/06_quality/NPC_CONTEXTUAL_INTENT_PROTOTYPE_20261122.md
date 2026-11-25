@@ -13,3 +13,19 @@ This isolated experiment adds an **open-language, source-bounded intention previ
 **Next recommended experiment:** With an explicitly cloned, synthetic checkpoint, stage reviewed actor events and measure whether selecting from context yields better continuity than the existing priority selector across multiple turns. Require provenance and no invented physical access. Do not advance real CH-000 turn 9.
 
 **Protected scope:** A new tool module and test plus documentation/index/inventory entries only. No changes to game/, chapters/, existing NPC code, main, or world canon.
+
+
+## Seguridad del contexto: `known_to` no equivale a memoria completa
+
+La proyección privada `knownEvents` distingue el evento atribuido al propio
+actor (`detailScope:'actor_owned_event'`, con su intención y resultado) de una
+referencia de evento ajeno (`detailScope:'known_to_reference_only'`). Para un
+tercero se conservan ID, turno y día, pero `kind`, `actorIds`, `intent` y
+`outcome` se omiten mediante valores nulos. La inclusión en `known_to`
+no transfiere el texto privado de otro actor. El conocimiento literal que el
+NPC adquirió sigue disponible mediante su propia `knowledge` grabada; una
+referencia sola no demuestra el contenido aprendido. Esta regla protege el
+paquete que la pasarela de generación entrega al narrador. Tests cubren EV-000025
+(Elena, también listado en `known_to` de Rosa), su lectura por ambas actrices
+y la petición de generación posterior. La proyección no crea nuevos hechos,
+ni cambia el contenido, la cronología o el guardado del juego.
