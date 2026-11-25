@@ -34,3 +34,27 @@ The test-double **is not a language model**. Its example intentions are controll
 `tests/npc_model_authored_replay.test.mjs` consumes an append-only evaluation trace in `tests/npc_model_authored_trace.json`. An empty trace is a valid preparation state, **zero completed authored decisions**. The engine constructs the next actor request only after replaying and verifying every prior response and five-file readback. The SHA-256 of the exact request binds each externally authored response to the current state. Round-robin actor order is a coverage choice, not an action policy. No action menu, automatic proposal, model API, background execution or canonical save. CI logs only bounded fictional context metadata and plan/goal, not raw memories, event outcomes or relationships; retrieve relevant actor-owned evidence from the source as needed. A separate local/private evaluator may inspect the full request.
 
 Append exactly one response after examining the fresh context: `requestSha256`, `author`, `proposal`; for an action also separately reviewed `reviewed:true`, `outcome`, and optional `changes`. Abstentions must not include effects. Preserve prior response entries and their commit provenance. Record semantic concerns and corrections, do not tune the engine to force a desired result. The digest binds a response to a request, but does not prove that an external model saw only that request or that reviewer independence exists. A separate evaluator must score grounded motives, novelty, replanning, evidence/privacy, feasible outcomes and justified inactivity; the runner deliberately never marks the quality gate passed. The old selector is consulted after proposal creation, for comparison only. No more than 30 synthetic turns; no canonical play. Do not publish full actor packets in public CI.
+
+## Public CI log privacy boundary (2026-11-24)
+
+The model-authored sequential replay requires *private* NPC goals, plans,
+knowledge and event evidence to prepare the next proposal, but GitHub Actions
+job output is **not** an approved channel for publishing that evidence.
+
+`NPC_MODEL_NEXT` now prints only the SHA-256 of the current exact private
+request, the count of externally supplied responses, the 30-response goal and
+the synthetic completed turn. It no longer prints NPC ID, goal, independent
+plan, previous result, known event IDs or the private event preview.
+
+`NPC_MODEL_REPLAY` prints aggregate counts of actions, abstentions and
+selector comparisons, plus an opaque decision digest. It does **not** expose
+the actor-to-decision list, causal facts or private model proposals. A
+regression test deliberately places a sentinel in all private fields to
+ensure the public projections cannot echo those values. Prior workflow logs
+may still contain historical outputs; this change affects subsequent runs.
+
+To author the next response, an authorized reviewer must inspect the
+verified request in a private context and then submit a source-bound trace
+entry. The published hash is a consistency identifier, **not** a substitute
+for the private request, proof of independent authorship, or a permission
+to advance the canonical story.
