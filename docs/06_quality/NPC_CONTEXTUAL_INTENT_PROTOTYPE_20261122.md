@@ -43,3 +43,23 @@ como información adquirida. No impide que el NPC forme hipótesis,
 actúe libremente o incluso se equivoque; no cambia la causalidad del motor,
 el esquema de guardado, el estado ni el tiempo. La prueba sintética compara
 EV-000025 y EV-000029 para Rosa y contempla una intención sin causa externa.
+
+
+## Recuerdos antiguos fuera de la ventana reciente
+
+`prepareNPCIntentionRequests` incluye un máximo de ocho eventos recientes
+para controlar el tamaño del contexto, **no** para limitar la memoria real
+de un NPC. `inspectNPCGeneratedIntention` ahora valida los EV citados
+contra `allEvents(snapshot)` y `known_to` del actor en el historial completo.
+Un EV anterior sigue siendo citable si el actor realmente lo conoce, aunque
+ya no figure en `knownEventIds` de la ventana de ocho. Nunca se permite
+citar un evento desconocido o futuro.
+
+El resultado privado marca `outsideRecentContext:true` y
+`additionalContentReviewRequired:true` cuando se cita un evento antiguo
+fuera del resumen reciente, incluido uno propio: el narrador debe recuperarlo
+antes de inferir detalles. La referencia ajena conserva
+`known_to_reference_only` y no filtra su resultado privado. La prueba
+sintética crea nueve turnos en memoria, recupera un evento propio antiguo
+y una referencia ajena, rechaza una fuente no conocida, y verifica un evento
+causal posterior sin escribir los cinco archivos reales del guardado.
