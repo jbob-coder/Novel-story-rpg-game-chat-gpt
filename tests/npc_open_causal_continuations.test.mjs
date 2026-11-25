@@ -516,6 +516,13 @@ test('decision effect audit refuses forged causal links and never infers complet
  assert.equal(evidence.length,1);
  assert.equal(evidence[0].recordedEffectCount,0);
  assert.equal(evidence[0].inferredCompletion,false);
+ // Zero is a valid private bound, not permission to return all records.
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({snapshot:decision,limit:0}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,actorIds:['NPC-003'],limit:0}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({
+  snapshot:decision,actorIds:[],limit:1}),[]);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({snapshot:decision,limit:1}),evidence);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
   actorIds:['NPC-007','NPC-007']}),/Unknown or repeated/);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
@@ -523,6 +530,9 @@ test('decision effect audit refuses forged causal links and never infers complet
  const forged=structuredClone(decision);
  forged.events.events.at(-1).continuation_context.source_event_ids=['EV-000029'];
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:forged}),
+  /event it does not know|unreviewed, altered|causal/i);
+ // A zero-sized query cannot skip validation of a forged event history.
+ assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:forged,limit:0}),
   /event it does not know|unreviewed, altered|causal/i);
  assert.equal(JSON.stringify(decision),original);
 });
