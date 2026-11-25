@@ -18,7 +18,7 @@ const prose=(s,min,max)=>typeof s==='string'&&s.trim().length>=min&&s.length<=ma
  * permanently excluded by lexical order or prior-action history.
  * Review priority is not a command to act.
  */
-export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
+function collectNPCReviewCandidates({actors,worldDay,completedTurn,
  elapsedDays=0,actorIds=null,limit=20}={}){
  insist(actors&&typeof actors==='object'&&!Array.isArray(actors),
   'Saved NPC actor registry required');
@@ -44,6 +44,12 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
   const priority=due?3:open.length?1:0;
   return [{actorId,priority}];
  });
+ return eligible;
+}
+
+export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
+ elapsedDays=0,actorIds=null,limit=20}={}){
+ const eligible=collectNPCReviewCandidates({actors,worldDay,completedTurn,elapsedDays,actorIds,limit});
  const grouped=new Map();
  for(const row of eligible){
   if(!grouped.has(row.priority))grouped.set(row.priority,[]);
@@ -61,6 +67,41 @@ export function rankOpenNPCReviewCandidates({actors,worldDay,completedTurn,
  }
  return clone({eligibleCount:eligible.length,
   selected:sorted.slice(0,limit)});
+}
+
+
+/**
+ * Experimental narrator-review allocation, intentionally not wired into the
+ * active selection or save pipeline. lastReviewedAt is caller-owned QA
+ * metadata, NOT an NPC memory, event, action or obligation outcome.
+ * Record a review only after it actually occurred (including abstention).
+ */
+export function rankNPCReviewWithAging({actors,worldDay,completedTurn,
+ elapsedDays=0,actorIds=null,limit=20,lastReviewedAt={}}={}){
+ const eligible=collectNPCReviewCandidates({actors,worldDay,completedTurn,elapsedDays,actorIds,limit});
+ insist(lastReviewedAt&&typeof lastReviewedAt==='object'&&
+  !Array.isArray(lastReviewedAt)&&Object.keys(lastReviewedAt).length<=100000&&
+  Object.values(lastReviewedAt).every(t=>Number.isSafeInteger(t)&&t>=0&&t<completedTurn),
+  'Review history must contain completed earlier review windows');
+ const last=id=>Object.hasOwn(lastReviewedAt,id)?lastReviewedAt[id]:-1;
+ const oldest=(a,b)=>last(a.actorId)-last(b.actorId)||
+  b.priority-a.priority||a.actorId.localeCompare(b.actorId);
+ const due=eligible.filter(row=>row.priority===3).sort(oldest);
+ const other=eligible.filter(row=>row.priority!==3).sort(oldest);
+ // Preserve urgent capacity, while reserving one lower-priority review
+ // under saturation. With one slot, reserve every fourth review window.
+ const reserve=due.length&&other.length?
+  (limit>1?1:(completedTurn%4===3?1:0)):0;
+ const dueSelected=due.slice(0,limit-reserve);
+ const otherSelected=other.slice(0,limit-dueSelected.length);
+ return clone({
+  classification:'npc_review_aging_policy_experimental_v1',
+  eligibleCount:eligible.length,selected:[...dueSelected,...otherSelected],
+  dueCount:due.length,deferredDueCount:due.length-dueSelected.length,
+  otherCount:other.length,deferredOtherCount:other.length-otherSelected.length,
+  reviewCapacity:limit,historyPersisted:false,actionsPerformed:0,
+  timeAdvanced:false,readerVisible:false
+ });
 }
 
 export function inspectOpenNPCAgency({snapshot,actorIds=null,elapsedMinutes=0,
