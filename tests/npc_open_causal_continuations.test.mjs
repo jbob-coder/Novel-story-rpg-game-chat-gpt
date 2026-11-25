@@ -427,7 +427,7 @@ test('reviewed decision effects stay actor-owned across work obligation, trust a
  const actorId='NPC-003',otherId='NPC-006';
  const sourceId=first.events.events.at(-1).id;
  const memory=first.state.world.actors[actorId].knowledge.at(-1);
- const createEvent='EV-000034',followEvent='EV-000036';
+ const createEvent='EV-000034',followEvent='EV-000037';
  const obligation={
   id:'OBL-SYNTHETIC-SUPPLY-VERIFY',summary:'SYNTHETIC QA: confirm a repair part delivery.',
   source_event_id:createEvent,last_change_event_id:createEvent,
