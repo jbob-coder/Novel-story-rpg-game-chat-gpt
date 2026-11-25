@@ -77,3 +77,17 @@ These files already existed in the authoritative source and are listed here for 
 - [Admisión de actores NPC: regresiones de identidad, privacidad y capítulos (18 escenarios)](npc_actor_introduction_admitted.test.mjs)
 - [Cadenas causales abiertas de NPC: 16 regresiones sintéticas](npc_open_causal_continuations.test.mjs)
 - [Memoria social: conversación, decisión posterior y recuperación entre capítulos (QA sintética)](npc_memory_social_continuity.test.mjs)
+
+- [NPC: intenciones contextuales abiertas, procedencia y simulación aislada](npc_contextual_intents.test.mjs)
+
+- [NPC: siete días de ensayo causal y comparación con selector previo](npc_contextual_multiday_rehearsal.test.mjs)
+
+- [NPC: continuidad secuencial y rechazo de resultados duplicados](npc_sequential_turns.test.mjs)
+
+- [NPC: primera decisión abierta, continuidad y privacidad fuera de escena](npc_actor_agency.test.mjs)
+
+- [NPC: propuestas generadas por narrador, memoria, abstención y causalidad](npc_intention_generation.test.mjs)
+
+- [NPC: acciones revisadas por turno, abstención, privacidad y causalidad](npc_generated_turn_batch.test.mjs)
+
+- [NPC: límite de revisión, compromisos y rotación de NPC sin escena](npc_actor_review_fairness.test.mjs)
