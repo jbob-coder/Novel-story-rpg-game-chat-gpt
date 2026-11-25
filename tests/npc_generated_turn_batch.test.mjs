@@ -1132,3 +1132,101 @@ test('narrator original-initiative assessment turn 07 makes a neighbor-seeking m
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 08: a shared broad district is not proof of an encounter, exchange of
+// secrets or automatic perception. This is a separately authored editorial
+// QA turn from the exact recovered Step 07 output, not production narration.
+export function replayNarratorThirtyTurnReviewThroughStep08(){
+ const seventh=replayNarratorThirtyTurnReviewThroughStep07();
+ assert.equal(seventh.snapshotHash,
+  'b49437274572c660f5d87738e6d451142d3f56720dbb12d0d63e5075a63d25e9',
+  'Step 08 must start from the exact verified Step 07 checkpoint');
+ const prior=seventh.snapshot,original=JSON.stringify(prior);
+ const b=prepareNPCIntentionRequests({snapshot:prior,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(b.requests.length,7);
+ const rosa=b.requests.find(r=>r.actorId==='NPC-005');
+ const elena=b.requests.find(r=>r.actorId==='NPC-004');
+ assert.ok(rosa&&elena);
+ assert.equal(rosa.evidence.locationId,'LOC-RAILGARDEN-RESIDENTIAL');
+ assert.equal(rosa.evidence.locationId,elena.evidence.locationId,
+  'Sharing an area is not evidence of a meeting');
+ const elenaPrivate=prior.events.events.find(e=>
+  e.turn===13&&e.actor_ids.includes('NPC-004'));
+ assert.ok(elenaPrivate,'Prior Elena USB event must still exist');
+ assert.ok(elena.evidence.knownEventIds.includes(elenaPrivate.id));
+ assert.ok(!rosa.evidence.knownEventIds.includes(elenaPrivate.id),
+  'Rosa must not silently learn another actor private USB event');
+ const interval={...turn('narrator-30-step-08'),elapsed_minutes:10,
+  intent:'[ISOLATED QA] Jack makes no request for offscreen information.',
+  outcome:'A ten-minute fictional interval passes without an observed new encounter.',
+  narration_messages:['[ISOLATED QA] No information about private NPCs is given to Jack.']};
+ // A malicious or confused narrator must not convert district co-location
+ // into access to a private actor-owned event, even if the claim is fluent.
+ assert.throws(()=>stageReviewedNPCIntentionTurn({
+  snapshot:prior,turn:interval,observedHead:head,choices:[{
+   request:rosa,proposal:{actorId:'NPC-005',decision:'act',
+    intention:'Rosa claims to know about Elena privately checking the USB.',
+    reasoning:'Only district co-location is recorded; no observation or conversation supports the claim.',
+    sourceEventIds:[elenaPrivate.id]},reviewed:true,
+   outcome:'SYNTHETIC PRIVATE INVALID: Rosa knows a secret by proximity alone.'
+  }]
+ }),/not known by its actor/);
+ const reasons={
+  'NPC-001':'Old transit handover was already sorted; no fresh dispatch update is known.',
+  'NPC-002':'The last maintenance inspection remains closed with no new observed fault.',
+  'NPC-003':'Darius is already at the delivery point but has no confirmed open desk, staff encounter or new courier assignment.',
+  'NPC-004':'Elena remains in the residential district with her USB, not in a confirmed school; Rosa proximity alone is not an encounter.',
+  'NPC-005':'Rosa reached Railgarden but has no neighbor address or verified encounter, and cannot learn about Elena private USB check by proximity.',
+  'NPC-006':'Noah reviewed existing priorities; no new verified stock, customer or repair outcome justifies repeating the work.',
+  'NPC-007':'Mara has no recorded new cafe shift, customer or payment.'
+ };
+ const choices=b.requests.map(request=>({request,proposal:{
+  actorId:request.actorId,decision:'abstain',reasoning:reasons[request.actorId]
+ }}));
+ assert.equal(choices.length,7);
+ for(const c of choices)assert.equal(c.request.checkpoint.completedTurn,16);
+ const staged=stageReviewedNPCIntentionTurn({
+  snapshot:prior,turn:interval,observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,17);
+ assert.equal(staged.manifest.last_event_sequence,48,
+  'Only one synthetic player-placeholder event; no secret social events');
+ assert.deepEqual(staged.npcTurnReview.actedActorIds,[]);
+ assert.deepEqual(new Set(staged.npcTurnReview.abstainedActorIds),
+  new Set(Object.keys(reasons)));
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ assert.deepEqual(recovered.state.world.actors,prior.state.world.actors,
+  'No NPC gains new knowledge or loses memories during an abstention');
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+80);
+ assert.ok(!recovered.chapter.includes(elenaPrivate.outcome));
+ assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(elenaPrivate.outcome)));
+ const fresh=prepareNPCIntentionRequests({snapshot:recovered,
+  actorIds:['NPC-005'],elapsedDays:0,elapsedMinutes:10,
+  nextPeriod:'morning'}).requests[0];
+ assert.notDeepEqual(fresh.checkpoint,rosa.checkpoint);
+ assert.equal(fresh.evidence.previousResult.eventId,rosa.evidence.previousResult.eventId);
+ assert.equal(JSON.stringify(prior),original);
+ for(const [p,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),bytes);
+ const snapshotHash=createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex');
+ return {snapshot:recovered,snapshotHash,priorHash:seventh.snapshotHash};
+}
+test('narrator original-initiative assessment turn 08 forbids automatic knowledge transfer on district co-location',()=>{
+ const r=replayNarratorThirtyTurnReviewThroughStep08();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_08 '+JSON.stringify({
+  reviewTurn:8,ofPlannedTurns:30,
+  priorVerifiedSnapshotHash:r.priorHash,
+  stagedSyntheticTurn:r.snapshot.manifest.last_completed_turn,
+  allSevenAbstain:true,coLocationDoesNotGrantPrivateKnowledge:true,
+  noUnverifiedSocialContact:true,canonicalSaveWrites:0,
+  verifiedSnapshotHash:r.snapshotHash,
+  modelApiInvokedByTest:false,independentSemanticReviewCompleted:false,
+  sustainedNarrativeQualityCertified:false
+ }));
+});
