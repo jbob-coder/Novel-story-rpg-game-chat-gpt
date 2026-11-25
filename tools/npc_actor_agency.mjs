@@ -126,6 +126,17 @@ export function rankNPCReviewWithAging({actors,worldDay,completedTurn,
  */
 const reviewSha=s=>typeof s==='string'&&/^[a-f0-9]{40}$/.test(s);
 const reviewActor=s=>typeof s==='string'&&/^NPC-\d{3,}$/.test(s);
+const receiptKeys=['branch','sourceHead','commitHead','sourceTurn','completedTurn','reviewedActorIds'];
+function validReviewReceipt(receipt,branch){
+ return receipt&&typeof receipt==='object'&&!Array.isArray(receipt)&&
+  Object.keys(receipt).length===receiptKeys.length&&receiptKeys.every(k=>Object.hasOwn(receipt,k))&&
+  receipt.branch===branch&&reviewSha(receipt.sourceHead)&&reviewSha(receipt.commitHead)&&
+  receipt.sourceHead!==receipt.commitHead&&Number.isSafeInteger(receipt.sourceTurn)&&
+  receipt.sourceTurn>=0&&Number.isSafeInteger(receipt.completedTurn)&&
+  receipt.completedTurn===receipt.sourceTurn+1&&Array.isArray(receipt.reviewedActorIds)&&
+  receipt.reviewedActorIds.length<=40&&new Set(receipt.reviewedActorIds).size===receipt.reviewedActorIds.length&&
+  receipt.reviewedActorIds.every(reviewActor);
+}
 export function createNPCReviewLedger({branch,head,completedTurn}={}){
  insist(typeof branch==='string'&&branch.startsWith('qa/')&&reviewSha(head)&&
   Number.isSafeInteger(completedTurn)&&completedTurn>=0,'QA branch and verified checkpoint required');
@@ -141,6 +152,14 @@ function validateNPCReviewLedger(ledger){
   Object.entries(ledger.lastReviewedAt).every(([id,t])=>reviewActor(id)&&
    Number.isSafeInteger(t)&&t>=0&&t<ledger.completedTurn),
   'Invalid QA review ledger');
+ insist(Object.keys(ledger).length===7&&
+  ['version','classification','branch','checkpointHead','completedTurn','lastReviewedAt','lastReceipt'].every(k=>Object.hasOwn(ledger,k))&&
+  (ledger.lastReceipt===null?Object.keys(ledger.lastReviewedAt).length===0:
+   validReviewReceipt(ledger.lastReceipt,ledger.branch)&&
+   ledger.lastReceipt.commitHead===ledger.checkpointHead&&
+   ledger.lastReceipt.completedTurn===ledger.completedTurn&&
+   ledger.lastReceipt.reviewedActorIds.every(id=>ledger.lastReviewedAt[id]===ledger.lastReceipt.sourceTurn)),
+  'Invalid receipt or sidecar metadata');
  return ledger;
 }
 export function encodeNPCReviewLedger(ledger){
@@ -153,13 +172,8 @@ export function decodeNPCReviewLedger(bytes){
 export async function persistNPCReviewReceipt({storage,branch,receipt,verifyReceipt}={}){
  insist(storage&&typeof storage.read==='function'&&typeof storage.compareAndSwap==='function'&&
   typeof verifyReceipt==='function','Versioned QA storage and independent verifier required');
- insist(typeof branch==='string'&&branch.startsWith('qa/')&&receipt?.branch===branch&&
-  reviewSha(receipt.sourceHead)&&reviewSha(receipt.commitHead)&&receipt.sourceHead!==receipt.commitHead&&
-  Number.isSafeInteger(receipt.sourceTurn)&&receipt.sourceTurn>=0&&
-  receipt.completedTurn===receipt.sourceTurn+1&&
-  Array.isArray(receipt.reviewedActorIds)&&receipt.reviewedActorIds.length<=40&&
-  new Set(receipt.reviewedActorIds).size===receipt.reviewedActorIds.length&&
-  receipt.reviewedActorIds.every(reviewActor),'Invalid QA review receipt');
+ insist(typeof branch==='string'&&branch.startsWith('qa/')&&validReviewReceipt(receipt,branch),
+  'Invalid QA review receipt');
  const observed=await storage.read(branch);
  insist(typeof observed?.revision==='string'&&observed.revision.length>0,'Missing versioned review ledger');
  const current=decodeNPCReviewLedger(observed.bytes);
