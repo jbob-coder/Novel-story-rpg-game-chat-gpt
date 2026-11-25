@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {savePaths,decodeFiveFiles} from '../tools/save_transaction.mjs';
-import {rankOpenNPCReviewCandidates,inspectOpenNPCAgency}
+import {rankOpenNPCReviewCandidates,rankNPCReviewWithAging,inspectOpenNPCAgency}
  from '../tools/npc_actor_agency.mjs';
 
 const files=Object.fromEntries(savePaths('CH-000').map(p=>
@@ -98,4 +98,67 @@ test('saturated due priorities remain a separate policy limitation',()=>{
  assert.equal(review.eligibleCount,80);
  assert.ok(review.selected.every(row=>row.priority===3));
  // This patch preserves strict due-first policy. It does not promise lower-priority coverage under saturation.
+});
+
+
+function agingActors(count,due){
+ return Object.fromEntries(Array.from({length:count},(_,i)=>[
+  'NPC-'+(100+i),{goal:'Ordinary personal life.',
+   ...(i<due?{commitments:[{status:'pending',due_day:-29}]}:{})}]));
+}
+function runAging(count,due,limit,windows){
+ const actors=agingActors(count,due),lastReviewedAt={},seen=new Set(),urgentPerWindow=[];
+ for(let completedTurn=0;completedTurn<windows;completedTurn++){
+  const before=JSON.stringify({actors,lastReviewedAt});
+  const result=rankNPCReviewWithAging({actors,worldDay:-29,completedTurn,limit,lastReviewedAt});
+  assert.equal(JSON.stringify({actors,lastReviewedAt}),before);
+  assert.equal(result.selected.length,Math.min(count,limit));
+  assert.equal(new Set(result.selected.map(x=>x.actorId)).size,result.selected.length);
+  assert.equal(result.actionsPerformed,0);
+  assert.equal(result.timeAdvanced,false);
+  assert.equal(result.historyPersisted,false);
+  assert.equal(result.readerVisible,false);
+  const urgent=result.selected.filter(x=>x.priority===3).length;
+  urgentPerWindow.push(urgent);
+  assert.equal(result.deferredDueCount,due-urgent);
+  assert.equal(result.deferredOtherCount,count-due-(result.selected.length-urgent));
+  // Only a genuinely completed synthetic review updates caller-owned history.
+  for(const row of result.selected){
+   seen.add(row.actorId);lastReviewedAt[row.actorId]=completedTurn;
+  }
+ }
+ return {coverage:seen.size,urgentPerWindow};
+}
+test('experimental aging prevents starvation during continuous due saturation',()=>{
+ const r=runAging(10,5,5,5);
+ assert.equal(r.coverage,10);
+ assert.deepEqual(r.urgentPerWindow,[4,4,4,4,4]);
+});
+test('single-slot aging reserves every fourth review for ordinary actors',()=>{
+ const r=runAging(6,3,1,12);
+ assert.equal(r.coverage,6);
+ assert.deepEqual(r.urgentPerWindow,[1,1,1,0,1,1,1,0,1,1,1,0]);
+});
+test('aging uses all available slots without invented urgent duties',()=>{
+ for(const [count,due,limit,windows] of [[80,0,5,16],[12,12,4,3],[81,1,5,20],[0,0,5,2]]){
+  assert.equal(runAging(count,due,limit,windows).coverage,count);
+ }
+});
+test('aging rejects future and same-window review history and never alters canonical ranking',()=>{
+ const actors=agingActors(10,5);
+ for(const invalid of [1,2,-1,0.5]){
+  assert.throws(()=>rankNPCReviewWithAging({actors,worldDay:-29,completedTurn:1,limit:5,
+   lastReviewedAt:{'NPC-100':invalid}}),/completed earlier review windows/);
+ }
+ const original=rankOpenNPCReviewCandidates({actors,worldDay:-29,completedTurn:0,limit:5});
+ assert.ok(original.selected.every(x=>x.priority===3));
+});
+test('new or returning actors without prior reviews can receive the reserved slot',()=>{
+ const actors=agingActors(6,3);
+ const lastReviewedAt=Object.fromEntries(Object.keys(actors).map(id=>[id,0]));
+ delete actors['NPC-105'];
+ actors['NPC-106']={goal:'New ordinary personal goal.'};
+ const p=rankNPCReviewWithAging({actors,worldDay:-29,completedTurn:1,limit:3,lastReviewedAt});
+ assert.ok(p.selected.some(x=>x.actorId==='NPC-106'));
+ assert.ok(!p.selected.some(x=>x.actorId==='NPC-105'));
 });
