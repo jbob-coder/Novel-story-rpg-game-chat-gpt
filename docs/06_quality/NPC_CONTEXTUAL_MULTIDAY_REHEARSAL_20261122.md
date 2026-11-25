@@ -46,12 +46,26 @@ request, the count of externally supplied responses, the 30-response goal and
 the synthetic completed turn. It no longer prints NPC ID, goal, independent
 plan, previous result, known event IDs or the private event preview.
 
-`NPC_MODEL_REPLAY` prints aggregate counts of actions, abstentions and
-selector comparisons, plus an opaque decision digest. It does **not** expose
-the actor-to-decision list, causal facts or private model proposals. A
-regression test deliberately places a sentinel in all private fields to
-ensure the public projections cannot echo those values. Prior workflow logs
-may still contain historical outputs; this change affects subsequent runs.
+`NPC_MODEL_REPLAY` prints **only the total number of responses**, the
+30-response target and constant simulation/quality caveats. It does **not**
+publish actor-to-decision lists, individual decisions, action/abstention
+totals, the old unsalted digest of low-entropy choices, causal facts or model
+proposals. A digest of a short list of act/abstain decisions is not private:
+an observer familiar with the bounded evaluation order could enumerate
+possibilities. Even act/abstain aggregates printed on each incremental CI run
+could reveal which decision the newest actor made by comparing logs.
+
+For legitimate analysis, the test privately computes `privateReplayEvidence`
+from **validated saved event state_changes** and causal source pointers.
+It distinguishes changes of independent plan, knowledge and resources,
+other typed effects, reviewed action records with no material change and
+actions with explicit causal event citations. These are **structural coverage
+counts**, not a measure of whether intentions are sensible or creatively
+authored; the private assessment is intentionally not printed to CI. Tests
+compare two contrasting actor decisions and verify identical public summaries,
+and separately test the exact typed-effect classification without printing
+private texts. Earlier published logs remain historical; code cannot retract
+data already exposed.
 
 To author the next response, an authorized reviewer must inspect the
 verified request in a private context and then submit a source-bound trace
