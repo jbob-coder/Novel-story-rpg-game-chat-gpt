@@ -6,7 +6,8 @@ import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
 import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
 import {allEvents} from './chapter_history.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
-import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
+import {inspectNPCContextualChoices,reviewNPCFreeformIntent,
+ listNPCEventMemoryIndex}
  from './npc_contextual_intents.mjs';
 
 const ensure=(yes,message)=>{if(!yes)throw new Error(message);};
@@ -26,6 +27,8 @@ export function prepareNPCIntentionRequests({snapshot,actorIds=null,
   elapsedDays,nextPeriod,limit});
  const requests=inspected.frames.map(frame=>{
   const own=inspectNPCContextualChoices({snapshot,actorId:frame.actorId});
+  const memoryIndex=listNPCEventMemoryIndex({snapshot,actorId:frame.actorId});
+  const recent=new Set(own.evidence.knownEventIds);
   return {
    classification:'private_npc_intention_generation_request_v1',
    actorId:frame.actorId,
@@ -44,9 +47,17 @@ export function prepareNPCIntentionRequests({snapshot,actorIds=null,
     // Semantic recall is essential: IDs alone do not tell a narrator what happened.
     // Both the ID list and these short event records are actor-known only.
     knownEventIds:own.evidence.knownEventIds,
-    knownEvents:own.evidence.knownEvents
+    knownEvents:own.evidence.knownEvents,
+    historicalMemory:{
+     totalKnownEventCount:memoryIndex.totalKnownEventCount,
+     olderKnownEventCount:memoryIndex.totalKnownEventCount-recent.size,
+     olderEventPointers:memoryIndex.pointers.filter(e=>!recent.has(e.id)),
+     hasEarlierIndexPage:memoryIndex.hasOlder,
+     nextBeforeEventId:memoryIndex.nextBeforeEventId,
+     readOnlyRecallAvailable:true
+    }
    },
-   instruction:'Decide from this actor own goals, context, knowledge and recent consequences what they might try now. The action can be novel, revised, delayed, or no action; do not reuse a stock menu. State a grounded motive, uncertainty, and only source events known to this NPC. Do not invent travel routes, business openings, other actors knowledge, success or the next turn outcome.',
+   instruction:'Decide from this actor own goals, context, knowledge and recent consequences what they might try now. The action can be novel, revised, delayed, or no action; do not reuse a stock menu. Older memories can be explored via the private paged memory index and on-demand recall; a reference does not reveal another actor private outcome. State a grounded motive, uncertainty, and only source events known to this NPC. Do not invent travel routes, business openings, other actors knowledge, success or the next turn outcome.',
    optionsFormat:'one original intention OR abstain, not a scripted future chain',
    mustNotAssumeOutcome:true,readerVisible:false,automaticExecution:false
   };

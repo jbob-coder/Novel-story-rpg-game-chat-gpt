@@ -44,6 +44,8 @@ test('separate actors receive private open-ended generation requests without men
  assert.equal(Object.hasOwn(noah,'routineMenu'),false);
  assert.equal(noah.evidence.knownEventIds.length,0);
  assert.deepEqual(noah.evidence.knownEvents,[]);
+ assert.equal(noah.evidence.historicalMemory.totalKnownEventCount,0);
+ assert.equal(noah.evidence.historicalMemory.readOnlyRecallAvailable,true);
  assert.ok(Array.isArray(noah.evidence.plans));
  assert.ok(rosa.evidence.knownEventIds.includes('EV-000029'));
  assert.ok(rosa.evidence.knownEvents.some(e=>e.id==='EV-000029'&&
@@ -257,6 +259,10 @@ test('older actor-known events stay citeable after they leave the eight-event pr
  for(const oldId of ['EV-000025','EV-000029'])
   assert.ok(!request.evidence.knownEventIds.includes(oldId),
    'The compact recent-event preview must no longer contain '+oldId);
+ assert.ok(request.evidence.historicalMemory.olderKnownEventCount>=2);
+ assert.ok(request.evidence.historicalMemory.olderEventPointers.length<=4);
+ assert.ok(request.evidence.historicalMemory.olderEventPointers.every(e=>
+  !request.evidence.knownEventIds.includes(e.id)));
  const own=inspectNPCGeneratedIntention({snapshot:staged,request,
   proposal:propose(request,
    'Rosa revisits the earlier repaired clock before considering a future return.',

@@ -62,6 +62,61 @@ export function inspectNPCContextualChoices({snapshot,actorId,limitKnownEvents=8
  });
 }
 
+
+/**
+ * Narrator-private historical index. The cursor must already belong to the
+ * actor's known event history; pointers never include event outcome text.
+ */
+export function listNPCEventMemoryIndex({snapshot,actorId,beforeEventId=null,limit=12}={}){
+ const ctx=inspectNPCContextualChoices({snapshot,actorId,limitKnownEvents:1});
+ ensure(Number.isSafeInteger(limit)&&limit>=1&&limit<=12,
+  'NPC memory index page must contain one to twelve references');
+ ensure(beforeEventId===null||eventId(beforeEventId),
+  'Invalid NPC memory index cursor');
+ const known=allEvents(snapshot).filter(e=>
+  e.turn<=ctx.checkpoint.completedTurn&&e.known_to?.includes(actorId)).reverse();
+ let start=0;
+ if(beforeEventId!==null){
+  const idx=known.findIndex(e=>e.id===beforeEventId);
+  ensure(idx>=0,'NPC memory index cursor is not actor-known');
+  start=idx+1;
+ }
+ const page=known.slice(start,start+limit);
+ return copy({classification:'npc_private_historical_memory_index_v1',
+  actorId,checkpoint:ctx.checkpoint,totalKnownEventCount:known.length,
+  pointers:page.map(e=>({id:e.id,turn:e.turn,day:e.day,
+   detailScope:e.actor_ids?.length===1&&e.actor_ids[0]===actorId?
+    'actor_owned_event':'known_to_reference_only'})),
+  hasOlder:start+page.length<known.length,
+  nextBeforeEventId:page.length?page.at(-1).id:null,
+  readerVisible:false,actionsPerformed:0,timeAdvanced:false});
+}
+
+/**
+ * Actor-bounded read-only recall. No third-party intent or outcome is revealed
+ * merely because the requester appears in known_to.
+ */
+export function recallNPCEventEvidence({snapshot,actorId,eventIds=[]}={}){
+ const ctx=inspectNPCContextualChoices({snapshot,actorId,limitKnownEvents:1});
+ ensure(Array.isArray(eventIds)&&eventIds.length>=1&&eventIds.length<=3&&
+  eventIds.every(eventId)&&new Set(eventIds).size===eventIds.length,
+  'NPC historical recall needs one to three distinct event IDs');
+ const events=new Map(allEvents(snapshot).map(e=>[e.id,e]));
+ const knownEvents=eventIds.map(id=>{
+  const e=events.get(id);
+  ensure(e&&e.turn<=ctx.checkpoint.completedTurn&&e.known_to?.includes(actorId),
+   'NPC can recall only its previously known event references');
+  const owned=e.actor_ids?.length===1&&e.actor_ids[0]===actorId;
+  return {id:e.id,turn:e.turn,day:e.day,
+   kind:owned?e.kind:null,actorIds:owned?[actorId]:null,
+   intent:owned?e.intent:null,outcome:owned?e.outcome:null,
+   detailScope:owned?'actor_owned_event':'known_to_reference_only'};
+ });
+ return copy({classification:'npc_private_historical_memory_recall_v1',
+  actorId,checkpoint:ctx.checkpoint,knownEvents,
+  readerVisible:false,actionsPerformed:0,timeAdvanced:false});
+}
+
 /**
  * Accept any meaningful textual intention, not a prescribed action_type. Verify
  * its source IDs and a possible location graph path, but do NOT infer whether

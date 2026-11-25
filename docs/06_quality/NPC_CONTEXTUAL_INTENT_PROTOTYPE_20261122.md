@@ -63,3 +63,20 @@ antes de inferir detalles. La referencia ajena conserva
 sintética crea nueve turnos en memoria, recupera un evento propio antiguo
 y una referencia ajena, rechaza una fuente no conocida, y verifica un evento
 causal posterior sin escribir los cinco archivos reales del guardado.
+
+
+## Índice paginado y recuperación explícita de memorias antiguas
+
+El paquete generativo conserva ocho EV recientes y expone
+`historicalMemory.olderKnownEventCount`, hasta cuatro referencias antiguas
+adicionales y un cursor para continuar consultando el índice privado.
+`listNPCEventMemoryIndex` ofrece hasta doce referencias por página; el cursor
+debe pertenecer a la historia realmente conocida por ese NPC. Cada índice
+contiene solo ID, turno, día y alcance de conocimiento, sin resultados.
+
+`recallNPCEventEvidence` recupera de uno a tres sucesos conocidos
+históricamente. Los eventos propios pueden mostrar su resultado guardado;
+un EV de otro actor sigue siendo exclusivamente una referencia sin
+`intent` ni `outcome` ajenos. El índice y la recuperación son de solo
+lectura, no ejecutan acciones, no adelantan tiempo y no certifican verdad,
+inferencia, creencia ni conducta automática.
