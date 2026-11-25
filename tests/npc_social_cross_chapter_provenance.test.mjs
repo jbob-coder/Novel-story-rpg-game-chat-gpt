@@ -7,7 +7,8 @@ import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {allEvents} from '../tools/chapter_history.mjs';
-import {encodeFiveFiles} from '../tools/save_transaction.mjs';
+import {encodeFiveFiles,decodeFiveFiles} from '../tools/save_transaction.mjs';
+import {checkNPCFactEvidence,buildContextPacket} from '../tools/context_manager.mjs';
 
 const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const baseline={
@@ -177,4 +178,129 @@ test('a forged acquired-knowledge event ID is rejected during social replay',()=
  learned.after=learned.after.replace(recipient.id,'EV-999999');
  assert.throws(()=>verifySocialEventHistory(forged),
   /Event-backed NPC knowledge has inconsistent source or event ID/);
+});
+
+
+test('distinct private recipient accounts survive CH-001 reload and inform only reviewed directional relation changes',()=>{
+ const baselineBefore=JSON.stringify(baseline),mara='NPC-007',sora='NPC-002';
+ const sourceFact='SYNTHETIC QA PRIVATE: a sealed repair package contains an undisclosed client address and delivery instructions.';
+ const source=stage(baseline,[{
+  actor_id:darius,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Darius privately reads a sealed repair order.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius alone retains the customer note.',
+  changes:[{field:'knowledge',fact:sourceFact,
+    source:'SYNTHETIC QA: inspected a sealed customer repair order'}]
+ }],'synthetic-cross-recipients-source');
+ const sourceEntry=source.state.world.actors[darius].knowledge.at(-1);
+ assert.ok(sourceEntry.includes('EV-000031'));
+ const observation=(recipient,tag)=>({
+  kind:'current_turn_observation',
+  fact:'SYNTHETIC QA: '+tag+' spoke privately with Darius in Market Row.',
+  causal_source:'SYNTHETIC QA: independently reviewed ordinary conversation.',
+  observer_actor_id:recipient,confirmed_by_reviewer:true
+ });
+ const talk=(snapshot,id,recipient,mode,reportedText,updates,tag)=>draftReviewedSocialContact({
+  state:snapshot.state,interactionId:id,reviewed:true,
+  participantIds:[darius,recipient],
+  observation:observation(recipient,tag),relationshipUpdates:updates,
+  knowledgeTransfer:mode===null?null:{
+    speaker_id:darius,recipient_id:recipient,known_entry:sourceEntry,
+    reported_form:mode,reported_text:reportedText
+  },
+  outcomes:{
+   [darius]:'Darius acts independently and reviews how much he wants to share.',
+   [recipient]:'The listener interprets an attributed report without knowing the original note.'
+  }
+ });
+ const partialText='A repair package is coming; the recipient and address were not shared.';
+ const partial=stage(source,talk(source,'SOC-ARCH-PARTIAL-01',noah,'partial',partialText,
+  [{actorId:darius,relation:'contacto comercial',bond:'interés reservado'}],'Noah'),
+  'synthetic-cross-recipients-partial');
+ assert.equal(verifyNarrativeSnapshot(partial),true);
+ const maraMoved=stage(partial,[{
+  actor_id:mara,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Mara chooses to walk from Café Bruma to Market Row.',
+  outcome:'SYNTHETIC QA: Mara reaches Market Row after a brief walk.',
+  changes:[{field:'location_id',before:'LOC-CAFE-BRUMA',after:'LOC-COMMERCIAL-DISTRICT',
+   route:['LOC-CAFE-BRUMA','LOC-COMMERCIAL-DISTRICT'],
+   travel:{mode:'walk',basis:'SYNTHETIC QA: café to market sidewalk',elapsed_minutes:12}}]
+ }],'synthetic-cross-recipients-walk');
+ const alteredText='Darius says the order was cancelled; he did not reveal a customer name.';
+ const both=stage(maraMoved,talk(maraMoved,'SOC-ARCH-ALTERED-02',mara,'altered',alteredText,
+  [{actorId:mara,relation:'contacto de mercado',bond:'reserva profesional'}],'Mara'),
+  'synthetic-cross-recipients-altered');
+ assert.equal(verifyNarrativeSnapshot(both),true);
+ assert.equal(verifySocialEventHistory(both),true);
+ const archived=close(both);
+ const restored=decodeFiveFiles({...encodeFiveFiles(both),...encodeFiveFiles(archived)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(restored),true);
+ assert.equal(verifySocialEventHistory(restored),true);
+ const reported=(entry)=>'Reported by NPC-003 (not independently verified): '+entry;
+ const firstCheck=checkNPCFactEvidence({snapshot:restored,actorId:noah,fact:reported(partialText)});
+ const secondCheck=checkNPCFactEvidence({snapshot:restored,actorId:mara,fact:reported(alteredText)});
+ assert.equal(firstCheck.status,'recorded_event');
+ assert.equal(secondCheck.status,'recorded_event');
+ assert.equal(firstCheck.eventPath,'chapters/CH-000.events.json');
+ assert.equal(secondCheck.eventPath,'chapters/CH-000.events.json');
+ assert.equal(firstCheck.socialTransmissionEvidence.speakerActorId,darius);
+ assert.equal(firstCheck.socialTransmissionEvidence.recipientActorId,noah);
+ assert.equal(firstCheck.socialTransmissionEvidence.reportedForm,'partial');
+ assert.equal(firstCheck.socialTransmissionEvidence.sourceStatementOriginEventId,'EV-000031');
+ assert.equal(firstCheck.socialTransmissionEvidence.truthStatus,'not_assessed');
+ assert.equal(secondCheck.socialTransmissionEvidence.recipientActorId,mara);
+ assert.equal(secondCheck.socialTransmissionEvidence.reportedForm,'altered');
+ assert.equal(secondCheck.socialTransmissionEvidence.sourceStatementOriginEventId,'EV-000031');
+ assert.equal(secondCheck.socialTransmissionEvidence.truthStatus,'not_assessed');
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:noah,
+  fact:reported(alteredText)}).status,'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:mara,
+  fact:reported(partialText)}).status,'not_recorded');
+ assert.equal(checkNPCFactEvidence({snapshot:restored,actorId:sora,
+  fact:reported(partialText)}).status,'not_recorded');
+ assert.equal(restored.state.world.actors[darius].relationships[noah].bond,'interés reservado');
+ assert.equal(restored.state.world.actors[noah].relationships[darius],undefined);
+ assert.equal(restored.state.world.actors[mara].relationships[darius].bond,'reserva profesional');
+ assert.equal(restored.state.world.actors[darius].relationships[mara],undefined);
+ const laterNoah=stage(restored,talk(restored,'SOC-REVIEW-NOAH-03',noah,null,null,
+  [{actorId:darius,bond:'confianza limitada tras escuchar dudas'}],'Noah otra vez'),
+  'synthetic-post-chapter-noah-relation');
+ const laterMara=stage(laterNoah,talk(laterNoah,'SOC-REVIEW-MARA-04',mara,null,null,
+  [{actorId:mara,bond:'escepticismo cauteloso'}],'Mara otra vez'),
+  'synthetic-post-chapter-mara-relation');
+ assert.equal(verifyNarrativeSnapshot(laterMara),true);
+ assert.equal(verifySocialEventHistory(laterMara),true);
+ assert.equal(laterMara.state.world.actors[darius].relationships[noah].bond,
+  'confianza limitada tras escuchar dudas');
+ assert.equal(laterMara.state.world.actors[mara].relationships[darius].bond,
+  'escepticismo cauteloso');
+ assert.equal(laterMara.state.world.actors[darius].relationships[mara],undefined);
+ assert.equal(laterMara.state.world.actors[noah].relationships[darius],undefined);
+ assert.deepEqual(laterMara.state.world.actors[noah].knowledge,
+  restored.state.world.actors[noah].knowledge);
+ assert.deepEqual(laterMara.state.world.actors[mara].knowledge,
+  restored.state.world.actors[mara].knowledge);
+ assert.equal(allEvents(laterMara).filter(x=>x.social_context).length,8);
+ assert.equal(laterMara.events.events.filter(x=>x.social_context).length,4);
+ assert.equal(laterMara.archives['CH-000'].events.events.filter(x=>x.social_context).length,4);
+ const privatePacket=buildContextPacket({snapshot:laterMara,audience:'narrator_private',
+  npcKnowledgeClaims:[{actorId:noah,fact:reported(partialText)},
+                      {actorId:mara,fact:reported(alteredText)}]});
+ assert.deepEqual(privatePacket.npcKnowledgeChecks.map(x=>x.socialTransmissionEvidence.reportedForm),
+  ['partial','altered']);
+ const reader=buildContextPacket({snapshot:laterMara,audience:'reader_visible'});
+ assert.equal(reader.npcKnowledgeChecks,undefined);
+ assert.ok(reader.references.every(x=>x.kind==='transcript'));
+ for(const statement of [sourceFact,partialText,alteredText])
+  assert.equal(JSON.stringify(reader).includes(statement),false);
+ assert.equal(JSON.stringify(baseline),baselineBefore);
+ assert.equal(baseline.manifest.last_completed_turn,9);
+});
+
+test('closed-chapter social report details cannot be silently altered after archival custody',()=>{
+ const old=close(first()),tampered=structuredClone(old);
+ const event=tampered.archives['CH-000'].events.events.find(e=>e.social_context &&
+  e.social_context.transfer?.recipient_id===darius);
+ assert.ok(event);
+ event.social_context.transfer.known_entry='SYNTHETIC QA: forged later source.';
+ assert.throws(()=>verifyNarrativeSnapshot(tampered),/Closed chapter|archive|historical|Social speaker/i);
 });
