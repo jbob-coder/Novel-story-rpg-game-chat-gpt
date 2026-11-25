@@ -8,6 +8,7 @@ import {savePaths,decodeFiveFiles,encodeFiveFiles} from '../tools/save_transacti
 import {prepareNPCIntentionRequests,inspectNPCGeneratedIntention,
  draftOutcomeFromNPCIntention} from '../tools/npc_intention_generation.mjs';
 import {stageLivingWorldTurn} from '../tools/living_world_coordinator.mjs';
+import {draftReviewedSocialContact} from '../tools/living_world_social.mjs';
 import {verifyNarrativeSnapshot} from '../tools/turn_engine.mjs';
 import {playerVisibleDiagnostic,inspectLivingWorld} from '../tools/living_world_diagnostics.mjs';
 
@@ -332,10 +333,10 @@ test('source-content adjudication is mandatory for third-party event citations',
   reason:'Rosa may investigate the event without assuming Elena private thoughts.'}]);
  assert.deepEqual(cautious.continuation_context.source_event_ids,['EV-000025']);
  assert.ok(r.evidence.knowledge.length>0);
- const known=make([{eventId:'EV-000025',reviewed:true,
+ assert.throws(()=>make([{eventId:'EV-000025',reviewed:true,
   basis:'recorded_actor_knowledge',knownEntry:r.evidence.knowledge[0],
-  reason:'A literal Rosa knowledge entry was checked without claiming it must be true.'}]);
- assert.deepEqual(known.continuation_context.source_event_ids,['EV-000025']);
+  reason:'An unrelated genuine memory cannot justify claiming the private details of Elena event.'}]),
+  /no recorded provenance linking this cited event/);
  assert.equal(JSON.stringify(s),before);
 });
 
@@ -353,4 +354,57 @@ test('ordinary owned recent events and independent initiatives need no extra sou
   outcome:'SYNTHETIC PRIVATE: An independent plan can change without citing a new event.'});
  assert.equal(Object.hasOwn(noCause,'continuation_context'),false);
  assert.equal(JSON.stringify(s),original);
+});
+
+
+test('socially learned source statement can support a foreign event only with exact event-linked provenance',()=>{
+ const saved=baseline(),before=JSON.stringify(saved);
+ const rosa='NPC-005',elena='NPC-004';
+ const elenaEvidence=saved.state.world.actors[elena].knowledge.find(
+  x=>x.includes('EV-000025'));
+ assert.ok(elenaEvidence);
+ const walk=stageLivingWorldTurn({snapshot:saved,observedHead:head,
+  turn:turn('synthetic-rosa-visit'),
+  npcResolutions:[{actor_id:rosa,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Rosa decides to walk to the known residential district.',
+   outcome:'SYNTHETIC PRIVATE: Rosa reaches the existing residential neighborhood.',
+   changes:[{field:'location_id',before:'LOC-WILSON-APARTMENT',
+    after:'LOC-RAILGARDEN-RESIDENTIAL',
+    route:['LOC-WILSON-APARTMENT','LOC-RAILGARDEN-RESIDENTIAL'],
+    travel:{mode:'walk',basis:'SYNTHETIC QA: admitted neighborhood path',
+     elapsed_minutes:12}}]}]});
+ assert.equal(verifyNarrativeSnapshot(walk),true);
+ const social=draftReviewedSocialContact({state:walk.state,reviewed:true,
+  interactionId:'SOC-QA-INTENT-ORIGIN-001',
+  participantIds:[elena,rosa],
+  observation:{kind:'current_turn_observation',
+   fact:'SYNTHETIC QA: Rosa and Elena speak privately in their known district.',
+   causal_source:'SYNTHETIC QA: independently reviewed direct conversation.',
+   observer_actor_id:rosa,confirmed_by_reviewer:true},
+  relationshipUpdates:[],
+  knowledgeTransfer:{speaker_id:elena,recipient_id:rosa,
+   known_entry:elenaEvidence},
+  outcomes:{
+   [elena]:'SYNTHETIC PRIVATE: Elena reports her own earlier USB preparation.',
+   [rosa]:'SYNTHETIC PRIVATE: Rosa hears the report without assuming it must be true.'
+  }
+ });
+ const shared=stageLivingWorldTurn({snapshot:walk,observedHead:head,
+  turn:turn('synthetic-rosa-hears'),npcResolutions:social});
+ assert.equal(verifyNarrativeSnapshot(shared),true);
+ const learned=shared.state.world.actors[rosa].knowledge.at(-1);
+ assert.ok(learned.includes('Reported by NPC-004'));
+ const r=initial(shared,rosa);
+ const proposal=propose(r,
+  'Rosa considers asking Elena whether the earlier USB preparation still matters.',
+  ['EV-000025']);
+ const draft=draftOutcomeFromNPCIntention({snapshot:shared,request:r,proposal,
+  reviewed:true,
+  outcome:'SYNTHETIC PRIVATE: Rosa weighs what Elena reported, without declaring it true.',
+  sourceReviews:[{eventId:'EV-000025',reviewed:true,
+   basis:'recorded_actor_knowledge',knownEntry:learned,
+   reason:'The earlier Elena event is linked by the verified source origin of Rosa own learned statement.'}]
+ });
+ assert.deepEqual(draft.continuation_context.source_event_ids,['EV-000025']);
+ assert.equal(JSON.stringify(saved),before);
 });

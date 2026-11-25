@@ -96,3 +96,13 @@ propaga la evaluación antes de consolidar el evento. No es un detector
 semántico de mentira ni un filtro global de todas las rutas editoriales;
 protege la pasarela experimental de generación sin imponer un menú de
 acciones ni modificar la partida.
+
+
+La opción `recorded_actor_knowledge` exige además que la frase
+registrada tenga una **cadena verificable hasta el EV citado**:
+un cambio de `knowledge` del propio actor con el mismo EV de origen,
+una transmisión social directa cuyo origen sea el EV, o
+`transmitted_from.sourceKnowledgeEventId`. Que el personaje recuerde
+una frase no relacionada, aunque auténtica, no justifica los detalles
+de otro evento. Esto no verifica si el emisor mintió ni obliga
+al receptor a creer lo que oyó.

@@ -5,6 +5,7 @@
 import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
 import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
 import {allEvents} from './chapter_history.mjs';
+import {checkNPCFactEvidence} from './context_manager.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
 import {inspectNPCContextualChoices,reviewNPCFreeformIntent,
  listNPCEventMemoryIndex,recallNPCEventEvidence}
@@ -196,6 +197,15 @@ function assessNPCSourceReviews({snapshot,actorId,citedEventEvidence,sourceRevie
     ensure(typeof r.knownEntry==='string'&&
      (actor.knowledge??[]).includes(r.knownEntry),
      'Cited private detail is not actor recorded knowledge');
+    const original=/^(.*) \(source: (.+); (EV-\d{6,})\)$/.exec(r.knownEntry);
+    const claim=checkNPCFactEvidence({snapshot,actorId,
+     fact:original?.[1]??r.knownEntry});
+    const references=[claim.sourceEventId,
+     claim.transmissionEvidence?.sourceKnowledgeEventId,
+     claim.socialTransmissionEvidence?.sourceStatementOriginEventId];
+    ensure(claim.status==='recorded_event'&&
+     references.includes(source.eventId),
+     'Actor knowledge has no recorded provenance linking this cited event');
    }
   }
  }
