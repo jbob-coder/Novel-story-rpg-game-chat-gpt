@@ -4,6 +4,8 @@
 import {worldRoute,ROUTINE_PROPOSALS} from './living_world_routines.mjs';
 import {validateNPCCommitments} from './living_world_obligations.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
+import {allEvents} from './chapter_history.mjs';
+import {verifyNPCCausalContinuationHistory} from './living_world_causal_continuations.mjs';
 const requireFact=(ok,message)=>{if(!ok)throw Error(message)};
 const validId=id=>typeof id==='string'&&/^NPC-\d{3,}$/.test(id);
 export function selectRelevantNPCs({state,limit=3}={}){
@@ -102,4 +104,155 @@ export function reviewNPCCommitments({state,actorIds=[],elapsedMinutes=0,elapsed
   deadline_unknown:3,upcoming:4};
  return out.sort((a,b)=>(order[a.review]??5)-(order[b.review]??5)||
   a.actorId.localeCompare(b.actorId)||a.id.localeCompare(b.id));
+}
+
+// Inspect every open commitment per NPC, regardless of the smaller agenda
+// shortlist. This is private, read-only triage; urgency never proves feasibility,
+// exclusive use of time or a mandatory decision.
+const reviewPriorityRank={urgent:0,important:1,normal:2};
+const reviewDeadlineRank={overdue_review:0,due_today_review:1,
+  due_within_interval:2,deadline_unknown:3,upcoming:4};
+const exact=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+
+export function inspectNPCObligationConflicts({snapshot,actorIds=null,
+ elapsedMinutes=0,elapsedDays=0,maxPerActor=32}={}){
+ const state=snapshot?.state,actors=state?.world?.actors;
+ requireFact(actors&&state.time&&snapshot.manifest,
+  'Verified checkpoint required for NPC obligation conflict review');
+ requireFact(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100&&
+  new Set(actorIds).size===actorIds.length&&
+  actorIds.every(id=>Object.hasOwn(actors,id))),
+  'Unknown or repeated actor in obligation conflict review');
+ requireFact(Number.isSafeInteger(maxPerActor)&&maxPerActor>=1&&maxPerActor<=32,
+  'Invalid obligation review bound');
+ validateTemporalAdvance({currentPeriod:state.time.time_of_day,
+  elapsedDays,elapsedMinutes});
+ const endDay=state.time.day+elapsedDays,events=allEvents(snapshot);
+ requireFact(events.length===snapshot.manifest.last_event_sequence,
+  'Obligation conflict review requires complete chapter history');
+ const byEvent=new Map(events.map(event=>[event.id,event]));
+ const allEventIds=new Set(byEvent.keys());
+ const selected=actorIds??Object.keys(actors).sort();
+ const result=[];
+ for(const actorId of selected){
+  const actor=actors[actorId],saved=actor.commitments??[];
+  validateNPCCommitments(saved,{eventIds:allEventIds});
+  const active=saved.filter(c=>c.status==='pending'||c.status==='blocked');
+  if(!active.length)continue;
+  const byDue=new Map();
+  for(const c of active)if(c.due_day!==null)
+   byDue.set(c.due_day,(byDue.get(c.due_day)??0)+1);
+  const records=active.map(c=>{
+   const origin=byEvent.get(c.source_event_id);
+   const latest=byEvent.get(c.last_change_event_id);
+   const created=origin?.state_changes?.some(change=>
+     change.actor_id===actorId&&change.field==='commitments'&&
+     (change.after??[]).some(item=>item.id===c.id)&&
+     !(change.before??[]).some(item=>item.id===c.id));
+   const current=latest?.state_changes?.some(change=>
+     change.actor_id===actorId&&change.field==='commitments'&&
+     (change.after??[]).some(item=>exact(item,c)));
+   const modernSource=Number(c.source_event_id.slice(3))>29;
+   const modernLatest=Number(c.last_change_event_id.slice(3))>29;
+   requireFact(!modernSource||(origin?.actor_ids?.[0]===actorId&&created),
+     'Obligation source event is not an actor-owned creation');
+   requireFact(!modernLatest||(latest?.actor_ids?.[0]===actorId&&current),
+     'Obligation latest change lacks exact actor-owned event evidence');
+   return {
+    id:c.id,status:c.status,priority:c.priority,dueDay:c.due_day,
+    review:deadlineReview(c.due_day,state.time.day,endDay),
+    sourceEventId:c.source_event_id,lastChangeEventId:c.last_change_event_id,
+    originEvidence:modernSource?'exact_actor_created_event':'legacy_reference_only',
+    latestChangeEvidence:modernLatest?'exact_actor_latest_event':'legacy_reference_only',
+    blockers:[...c.blockers],sameKnownDueDayCount:c.due_day===null?0:byDue.get(c.due_day),
+    outcomeInferred:false,requiresIndividualReview:true
+   };
+  }).sort((a,b)=>
+   (reviewDeadlineRank[a.review]??9)-(reviewDeadlineRank[b.review]??9)||
+   (reviewPriorityRank[a.priority]??3)-(reviewPriorityRank[b.priority]??3)||
+   a.id.localeCompare(b.id));
+  result.push({
+   actorId,reviewFromDay:state.time.day,reviewThroughDay:endDay,
+   activeCommitmentCount:active.length,
+   blockedCommitmentCount:active.filter(c=>c.status==='blocked').length,
+   hasPotentialCompetition:active.length>1,
+   sameDueDayOverlapCount:[...byDue.values()].filter(n=>n>1).length,
+   orderedForReviewOnly:true,mandatoryChoice:false,worldAdvanced:false,
+   inferredFailure:false,inferredCompletion:false,
+   unknowns:active.length>1?
+    ['Task durations, feasibility and personal prioritization require separate review']:
+    ['Completion and available capacity are not inferred from saved status'],
+   commitments:records.slice(0,maxPerActor),
+   ...(records.length>maxPerActor?{
+    truncatedCount:records.length-maxPerActor,fullCount:records.length
+   }:{})
+  });
+ }
+ return JSON.parse(JSON.stringify(result));
+}
+
+
+// A second review lane for obligations that do not win the priority shortlist.
+// An actor's recorded choice to retain/defer counts as a review only when
+// stored in a causally verified independent event. This function never acts
+// for that actor, changes status, or assumes a missed deadline is a failure.
+export function recommendNPCObligationCoverage({snapshot,actorIds=null,limit=20}={}){
+ const state=snapshot?.state,actors=state?.world?.actors;
+ requireFact(actors&&snapshot?.manifest,
+  'Saved NPC state and manifest required for obligation coverage');
+ requireFact(actorIds===null||(Array.isArray(actorIds)&&actorIds.length<=100&&
+  new Set(actorIds).size===actorIds.length&&
+  actorIds.every(id=>Object.hasOwn(actors,id))),
+  'Unknown or repeated actor in obligation coverage');
+ requireFact(Number.isSafeInteger(limit)&&limit>=0&&limit<=100,
+  'Invalid obligation coverage limit');
+ const events=allEvents(snapshot);
+ requireFact(events.length===snapshot.manifest.last_event_sequence,
+  'Obligation coverage requires complete chapter history');
+ verifyNPCCausalContinuationHistory(snapshot);
+ // Validate the modern creation and latest-edit pointers as well; a forged
+ // last_change_event_id must never manipulate the coverage recommendation.
+ const selected=actorIds??Object.keys(actors).sort();
+ inspectNPCObligationConflicts({snapshot,actorIds:selected});
+ const byId=new Map(events.map(event=>[event.id,event]));
+ const result=[];
+ for(const actorId of selected){
+  const active=(actors[actorId].commitments??[]).filter(c=>
+    c.status==='pending'||c.status==='blocked');
+  if(!active.length)continue;
+  const candidate=active.map(c=>{
+   const history=events.filter(event=>
+    event.actor_ids?.[0]===actorId&&
+    event.continuation_context?.obligation_review?.commitment_id===c.id&&
+    Number(event.id.slice(3))>Number(c.last_change_event_id.slice(3)));
+   const lastReview=history.at(-1)??null;
+   const anchor=lastReview??byId.get(c.last_change_event_id);
+   requireFact(anchor&&Number.isSafeInteger(anchor.turn),
+    'Obligation coverage lacks an event-backed review anchor');
+   return {
+    commitmentId:c.id,priority:c.priority,status:c.status,dueDay:c.due_day,
+    lastChangeEventId:c.last_change_event_id,
+    lastExplicitReviewEventId:lastReview?.id??null,
+    reviewedSinceLastChange:history.length>0,
+    explicitReviewCountSinceLastChange:history.length,
+    ageSinceLastAttentionTurns:snapshot.manifest.last_completed_turn-anchor.turn
+   };
+  }).sort((a,b)=>
+   b.ageSinceLastAttentionTurns-a.ageSinceLastAttentionTurns||
+   (reviewPriorityRank[a.priority]??3)-(reviewPriorityRank[b.priority]??3)||
+   a.commitmentId.localeCompare(b.commitmentId));
+  const selectedCommitment=candidate[0];
+  result.push({
+   actorId,candidateCommitmentId:selectedCommitment.commitmentId,
+   candidateLastChangeEventId:selectedCommitment.lastChangeEventId,
+   candidateLastExplicitReviewEventId:selectedCommitment.lastExplicitReviewEventId,
+   activeCommitmentCount:active.length,
+   unreviewedSinceChangeCount:candidate.filter(x=>!x.reviewedSinceLastChange).length,
+   candidatesForReview:candidate,
+   rationale:'oldest_documented_attention_first_not_execution_priority',
+   reviewedFactsOnly:true,status:'review_only_no_action',
+   outcomeChosen:false,worldAdvanced:false,mandatoryChoice:false
+  });
+ }
+ return JSON.parse(JSON.stringify(result.slice(0,limit)));
 }

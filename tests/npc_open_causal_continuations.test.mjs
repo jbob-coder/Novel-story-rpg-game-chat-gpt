@@ -14,6 +14,8 @@ import {stageNarrativeTurn,verifyNarrativeSnapshot} from '../tools/turn_engine.m
 import {stageChapterTransition} from '../tools/chapter_management.mjs';
 import {encodeFiveFiles} from '../tools/save_transaction.mjs';
 import {allEvents} from '../tools/chapter_history.mjs';
+import {inspectNPCObligationConflicts,recommendNPCObligationCoverage} from '../tools/living_world_commitments.mjs';
+import {planNPCAgendas,recommendNPCIntentReviews} from '../tools/living_world_agenda.mjs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const baseline={
  state:JSON.parse(read('game/STATE.json')),
@@ -514,15 +516,13 @@ test('decision effect audit refuses forged causal links and never infers complet
  assert.equal(evidence.length,1);
  assert.equal(evidence[0].recordedEffectCount,0);
  assert.equal(evidence[0].inferredCompletion,false);
- // Zero requested private decision records must not return the whole history.
- assert.deepEqual(inspectNPCDecisionConsequenceHistory({
-  snapshot:decision,limit:0}),[]);
+ // Zero is a valid private bound, not permission to return all records.
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({snapshot:decision,limit:0}),[]);
  assert.deepEqual(inspectNPCDecisionConsequenceHistory({
   snapshot:decision,actorIds:['NPC-003'],limit:0}),[]);
  assert.deepEqual(inspectNPCDecisionConsequenceHistory({
   snapshot:decision,actorIds:[],limit:1}),[]);
- assert.deepEqual(inspectNPCDecisionConsequenceHistory({
-  snapshot:decision,limit:1}),evidence);
+ assert.deepEqual(inspectNPCDecisionConsequenceHistory({snapshot:decision,limit:1}),evidence);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
   actorIds:['NPC-007','NPC-007']}),/Unknown or repeated/);
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:decision,
@@ -531,5 +531,284 @@ test('decision effect audit refuses forged causal links and never infers complet
  forged.events.events.at(-1).continuation_context.source_event_ids=['EV-000029'];
  assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:forged}),
   /event it does not know|unreviewed, altered|causal/i);
+ // A zero-sized query cannot skip validation of a forged event history.
+ assert.throws(()=>inspectNPCDecisionConsequenceHistory({snapshot:forged,limit:0}),
+  /event it does not know|unreviewed, altered|causal/i);
  assert.equal(JSON.stringify(decision),original);
+});
+
+test('all active commitments remain visible when equal-deadline priorities and private obstacles compete',()=>{
+ const initial=JSON.stringify(baseline),first=socialFirst();
+ const darius='NPC-003',noah='NPC-006',due=first.state.time.day;
+ const dSource=first.events.events.at(-1).id;
+ const nSource=first.events.events.at(-2).id;
+ const startD='EV-000034',startN='EV-000035',laterD='EV-000037';
+ const make=(id,priority,eventId)=>({
+  id,summary:'SYNTHETIC QA: independently review a separate ordinary delivery.',
+  source_event_id:eventId,last_change_event_id:eventId,
+  due_day:due,status:'pending',priority,blockers:[],
+  resolution:null,resolution_event_id:null
+ });
+ const dNormal=make('OBL-SYNTH-NORMAL','normal',startD);
+ const dUrgent=make('OBL-SYNTH-URGENT','urgent',startD);
+ const nUrgent=make('OBL-SYNTH-URGENT','urgent',startN);
+ const created=stage(first,[
+  npcAction(first,darius,[dSource],{
+   reasoning:'SYNTHETIC QA: Darius considers both independent obligations instead of blindly accepting a priority.',
+   outcome:'SYNTHETIC QA PRIVATE: Darius records two delivery reviews with the same due day.',
+   changes:[{field:'commitments',before:[],after:[dNormal,dUrgent]}]
+  }),
+  npcAction(first,noah,[nSource],{
+   reasoning:'SYNTHETIC QA: Noah independently records his own unrelated urgent work.',
+   outcome:'SYNTHETIC QA PRIVATE: Noah records an obligation with a locally reused ID.',
+   changes:[{field:'commitments',before:[],after:[nUrgent]}]
+  })
+ ],'synthetic-competing-obligations-create');
+ assert.equal(verifyNarrativeSnapshot(created),true);
+ const before=JSON.stringify(created);
+ const agenda=planNPCAgendas({state:created.state,actorIds:[darius],elapsedMinutes:25});
+ assert.deepEqual(agenda.filter(x=>x.kind==='obligation').map(x=>x.obligationId),
+  [dUrgent.id,dNormal.id]);
+ const proposed=recommendNPCIntentReviews({state:created.state,
+  actorIds:[darius],elapsedMinutes:25});
+ assert.equal(proposed.length,1);
+ assert.equal(proposed[0].candidateId,'agenda:'+dUrgent.id);
+ const initialReview=inspectNPCObligationConflicts({snapshot:created,elapsedMinutes:25});
+ assert.deepEqual(initialReview.map(x=>x.actorId),[darius,noah]);
+ const a=initialReview[0],b=initialReview[1];
+ assert.equal(a.activeCommitmentCount,2);
+ assert.equal(a.sameDueDayOverlapCount,1);
+ assert.equal(a.hasPotentialCompetition,true);
+ assert.equal(a.mandatoryChoice,false);
+ assert.equal(a.worldAdvanced,false);
+ assert.deepEqual(a.commitments.map(x=>x.id),[dUrgent.id,dNormal.id]);
+ assert.ok(a.commitments.every(x=>x.originEvidence==='exact_actor_created_event'&&
+  x.latestChangeEvidence==='exact_actor_latest_event'&&x.review==='due_today_review'));
+ assert.equal(b.activeCommitmentCount,1);
+ assert.equal(b.hasPotentialCompetition,false);
+ assert.equal(b.commitments[0].id,dUrgent.id);
+ assert.equal(b.commitments[0].sourceEventId,startN);
+ assert.equal(b.commitments[0].originEvidence,'exact_actor_created_event');
+ assert.equal(JSON.stringify(created),before);
+ const blocked={...dUrgent,status:'blocked',
+  blockers:['SYNTHETIC QA: the parts supplier has not confirmed the delivery.'],
+  last_change_event_id:laterD};
+ const later=stage(created,[npcAction(created,darius,[startD],{
+  reasoning:'SYNTHETIC QA: Darius assesses the unconfirmed supply and keeps two obligations distinct.',
+  outcome:'SYNTHETIC QA PRIVATE: one task is blocked; the other still awaits attention.',
+  changes:[{field:'commitments',before:[dNormal,dUrgent],after:[dNormal,blocked]}]
+ })],'synthetic-competing-obligations-blocked');
+ assert.equal(verifyNarrativeSnapshot(later),true);
+ const verified=inspectNPCObligationConflicts({snapshot:later,actorIds:[darius],elapsedMinutes:25});
+ assert.equal(verified.length,1);
+ assert.equal(verified[0].blockedCommitmentCount,1);
+ assert.equal(verified[0].activeCommitmentCount,2);
+ assert.equal(verified[0].commitments[0].status,'blocked');
+ assert.equal(verified[0].commitments[0].lastChangeEventId,laterD);
+ assert.equal(verified[0].commitments[0].latestChangeEvidence,'exact_actor_latest_event');
+ assert.ok(verified[0].commitments.every(x=>x.outcomeInferred===false));
+ assert.equal(later.state.world.actors[darius].commitments[0].status,'pending');
+ assert.equal(later.state.world.actors[darius].commitments[1].status,'blocked');
+ assert.equal(later.state.world.actors[darius].commitments[1].resolution_event_id,null);
+ const clipped=inspectNPCObligationConflicts({snapshot:later,actorIds:[darius],
+  maxPerActor:1});
+ assert.equal(clipped[0].commitments.length,1);
+ assert.equal(clipped[0].fullCount,2);
+ assert.equal(clipped[0].truncatedCount,1);
+ const closed=close(later);
+ const reopened=stage(closed,[],'synthetic-obligation-conflicts-chapter-recovery');
+ assert.equal(verifyNarrativeSnapshot(reopened),true);
+ assert.deepEqual(inspectNPCObligationConflicts({snapshot:reopened,actorIds:[darius],
+  elapsedMinutes:25}),verified);
+ assert.equal(reopened.manifest.chapter_id,'CH-001');
+ assert.ok(!reopened.chapter.includes(dNormal.summary));
+ assert.equal(JSON.stringify(baseline),initial);
+});
+
+test('conflict review rejects foreign ownership and forged latest-change evidence',()=>{
+ const first=socialFirst(),source=first.events.events.at(-1).id;
+ const actorId='NPC-003',ownEvent='EV-000034';
+ const commitment={id:'OBL-SYNTH-PROVENANCE',
+  summary:'SYNTHETIC QA: inspect an ordinary supplier reply.',
+  source_event_id:ownEvent,last_change_event_id:ownEvent,
+  due_day:null,status:'pending',priority:'important',blockers:[],
+  resolution:null,resolution_event_id:null};
+ const created=stage(first,[npcAction(first,actorId,[source],{
+  reasoning:'SYNTHETIC QA: Darius independently keeps track of one unresolved supplier task.',
+  outcome:'SYNTHETIC QA PRIVATE: an owner-backed obligation is recorded.',
+  changes:[{field:'commitments',before:[],after:[commitment]}]
+ })],'synthetic-obligation-provenance');
+ assert.equal(verifyNarrativeSnapshot(created),true);
+ assert.equal(inspectNPCObligationConflicts({snapshot:created,
+  actorIds:[actorId]})[0].activeCommitmentCount,1);
+ const foreign=structuredClone(created);
+ foreign.state.world.actors[actorId].commitments[0].source_event_id=
+  first.events.events.at(-2).id;
+ assert.throws(()=>inspectNPCObligationConflicts({snapshot:foreign}),
+  /Obligation source event is not an actor-owned creation/);
+ const last=structuredClone(created);
+ last.state.world.actors[actorId].commitments[0].last_change_event_id=
+  first.events.events.at(-2).id;
+ assert.throws(()=>inspectNPCObligationConflicts({snapshot:last}),
+  /Obligation latest change lacks exact actor-owned event evidence/);
+ assert.throws(()=>inspectNPCObligationConflicts({snapshot:created,
+  actorIds:[actorId,actorId]}),/Unknown or repeated actor/);
+ assert.throws(()=>inspectNPCObligationConflicts({snapshot:created,
+  maxPerActor:33}),/Invalid obligation review bound/);
+ assert.equal(created.state.world.actors[actorId].commitments[0].status,'pending');
+});
+
+
+test('low-priority obligations receive independent documented review without displacing urgent execution',()=>{
+ const pristine=JSON.stringify(baseline),initial=socialFirst(),actorId='NPC-003';
+ const sourceEvent=initial.events.events.at(-1).id;
+ const creationId='EV-000034',quietReviewId='EV-000036',changeId='EV-000038';
+ const obligation=(id,priority)=>({
+  id,summary:'SYNTHETIC QA: review an independent ordinary delivery inquiry.',
+  source_event_id:creationId,last_change_event_id:creationId,
+  due_day:null,status:'pending',priority,blockers:[],
+  resolution:null,resolution_event_id:null
+ });
+ const urgent=obligation('OBL-SYNTH-COVERAGE-URGENT','urgent');
+ const normal=obligation('OBL-SYNTH-COVERAGE-NORMAL','normal');
+ const opened=stage(initial,[npcAction(initial,actorId,[sourceEvent],{
+  reasoning:'SYNTHETIC QA: Darius records two independent obligations without committing to an outcome.',
+  outcome:'SYNTHETIC QA PRIVATE: two unresolved delivery questions remain under review.',
+  changes:[{field:'commitments',before:[],after:[urgent,normal]}]
+ })],'synthetic-obligation-coverage-create');
+ assert.equal(verifyNarrativeSnapshot(opened),true);
+ assert.equal(opened.manifest.last_event_id,creationId);
+ const snapshotText=JSON.stringify(opened);
+ const originalReviews=recommendNPCObligationCoverage({snapshot:opened,actorIds:[actorId]});
+ assert.equal(originalReviews.length,1);
+ assert.equal(originalReviews[0].candidateCommitmentId,urgent.id);
+ assert.equal(originalReviews[0].unreviewedSinceChangeCount,2);
+ assert.equal(originalReviews[0].mandatoryChoice,false);
+ assert.equal(originalReviews[0].worldAdvanced,false);
+ assert.equal(JSON.stringify(opened),snapshotText);
+ const selected=originalReviews[0];
+ const keep=npcAction(opened,actorId,[selected.candidateLastChangeEventId],{
+  reasoning:'SYNTHETIC QA: Darius weighs an urgent unresolved task but has no verified new outcome.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius retains the urgent obligation without changing it.',
+  obligationReview:{
+   commitment_id:urgent.id,
+   last_change_event_id:creationId,
+   review_reason:'SYNTHETIC QA: a delivery promise cannot be resolved without confirmation.',
+   alternative_considered:'SYNTHETIC QA: Darius could contact a different supplier before promising completion.'
+  }
+ });
+ const reviewed=stage(opened,[keep],'synthetic-obligation-coverage-urgent-review');
+ assert.equal(verifyNarrativeSnapshot(reviewed),true);
+ assert.equal(reviewed.manifest.last_event_id,quietReviewId);
+ assert.deepEqual(reviewed.state.world.actors[actorId].commitments,[urgent,normal]);
+ const secondReviews=recommendNPCObligationCoverage({snapshot:reviewed,actorIds:[actorId]});
+ assert.equal(secondReviews.length,1);
+ assert.equal(secondReviews[0].candidateCommitmentId,normal.id);
+ assert.equal(secondReviews[0].unreviewedSinceChangeCount,1);
+ const first=secondReviews[0].candidatesForReview.find(x=>x.commitmentId===urgent.id);
+ const second=secondReviews[0].candidatesForReview.find(x=>x.commitmentId===normal.id);
+ assert.equal(first.lastExplicitReviewEventId,quietReviewId);
+ assert.equal(first.explicitReviewCountSinceLastChange,1);
+ assert.equal(second.lastExplicitReviewEventId,null);
+ assert.equal(second.reviewedSinceLastChange,false);
+ const due=reviewed.state.time.day+1;
+ const updatedNormal={...normal,priority:'important',
+  due_day:due,last_change_event_id:changeId};
+ const reconsider=npcAction(reviewed,actorId,[creationId],{
+  reasoning:'SYNTHETIC QA: Darius independently considers a possible new delivery deadline.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius records a personal schedule adjustment, not customer consent.',
+  obligationReview:{
+   commitment_id:normal.id,
+   last_change_event_id:creationId,
+   review_reason:'SYNTHETIC QA: competing delivery checks motivate a proposed later target day.',
+   alternative_considered:'SYNTHETIC QA: Darius could keep the original unknown deadline while seeking details.'
+  },
+  changes:[{field:'commitments',before:[urgent,normal],
+   after:[urgent,updatedNormal]}]
+ });
+ const renegotiated=stage(reviewed,[reconsider],
+  'synthetic-obligation-coverage-normal-reconsider');
+ assert.equal(verifyNarrativeSnapshot(renegotiated),true);
+ assert.equal(renegotiated.manifest.last_event_id,changeId);
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[0].priority,'urgent');
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[1].priority,'important');
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[1].due_day,due);
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[1].status,'pending');
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[1].resolution_event_id,null);
+ assert.equal(renegotiated.state.world.actors[actorId].commitments[0].last_change_event_id,creationId);
+ const coverage=recommendNPCObligationCoverage({snapshot:renegotiated,actorIds:[actorId]});
+ assert.equal(coverage[0].candidateCommitmentId,urgent.id);
+ assert.equal(coverage[0].unreviewedSinceChangeCount,1);
+ assert.equal(coverage[0].candidatesForReview.find(x=>x.commitmentId===normal.id)
+  .lastChangeEventId,changeId);
+ assert.equal(coverage[0].candidatesForReview.find(x=>x.commitmentId===normal.id)
+  .lastExplicitReviewEventId,null);
+ const decisions=inspectNPCDecisionConsequenceHistory({snapshot:renegotiated,
+  actorIds:[actorId]});
+ assert.deepEqual(decisions.map(x=>x.decisionEventId),[creationId,quietReviewId,changeId]);
+ assert.equal(decisions[1].recordedEffectCount,0);
+ assert.equal(decisions[1].inferredCompletion,false);
+ assert.deepEqual(decisions[2].commitmentIdsChanged,[normal.id]);
+ const archived=close(renegotiated);
+ const recovered=stage(archived,[],'synthetic-obligation-coverage-CH001-recovery');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ const recoveredCoverage=recommendNPCObligationCoverage({snapshot:recovered,
+  actorIds:[actorId]});
+ assert.equal(recoveredCoverage[0].candidateCommitmentId,
+  coverage[0].candidateCommitmentId);
+ assert.equal(recoveredCoverage[0].unreviewedSinceChangeCount,
+  coverage[0].unreviewedSinceChangeCount);
+ assert.deepEqual(recoveredCoverage[0].candidatesForReview.map(x=>x.commitmentId),
+  coverage[0].candidatesForReview.map(x=>x.commitmentId));
+ assert.equal(recoveredCoverage[0].candidatesForReview[0].ageSinceLastAttentionTurns,
+  coverage[0].candidatesForReview[0].ageSinceLastAttentionTurns+1);
+ assert.equal(recovered.archives['CH-000'].events.events.at(-1)
+  .continuation_context.obligation_review.commitment_id,normal.id);
+ assert.equal(recovered.state.world.actors[actorId].commitments[1].status,'pending');
+ assert.equal(recovered.state.world.actors['NPC-006'].commitments?.length??0,0);
+ assert.ok(!recovered.chapter.includes(normal.summary));
+ assert.equal(JSON.stringify(baseline),pristine);
+});
+
+test('obligation review rejects other-actor, stale, unsupported and forged prior references',()=>{
+ const initial=socialFirst(),actorId='NPC-003',createId='EV-000034';
+ const task={id:'OBL-SYNTH-COVERAGE-GUARD',
+  summary:'SYNTHETIC QA: confirm a separate ordinary receipt.',
+  source_event_id:createId,last_change_event_id:createId,
+  due_day:null,status:'pending',priority:'normal',blockers:[],
+  resolution:null,resolution_event_id:null};
+ const created=stage(initial,[npcAction(initial,actorId,
+  [initial.events.events.at(-1).id],{
+   reasoning:'SYNTHETIC QA: Darius records a private receipt-verification obligation.',
+   outcome:'SYNTHETIC QA PRIVATE: one pending obligation is recorded.',
+   changes:[{field:'commitments',before:[],after:[task]}]
+  })],'synthetic-obligation-coverage-guard-create');
+ assert.equal(verifyNarrativeSnapshot(created),true);
+ const basis={
+  commitment_id:task.id,last_change_event_id:createId,
+  review_reason:'SYNTHETIC QA: a receipt must be personally verified before confirmation.',
+  alternative_considered:'SYNTHETIC QA: Darius could defer the receipt check and examine inventory.'
+ };
+ const prior=JSON.stringify(created);
+ assert.throws(()=>npcAction(created,'NPC-006',[createId],{
+  obligationReview:basis}),/event it does not know/);
+ assert.throws(()=>npcAction(created,actorId,[createId],{
+  obligationReview:{...basis,commitment_id:'OBL-SYNTH-OTHER-OWNER'}}),
+  /latest prior actor-owned open commitment/);
+ assert.throws(()=>npcAction(created,actorId,[initial.events.events.at(-1).id],{
+  obligationReview:basis}),/latest prior actor-owned open commitment/);
+ assert.throws(()=>npcAction(created,actorId,[createId],{
+  obligationReview:{...basis,alternative_considered:''}}),
+  /exact owner obligation and free-form alternatives/);
+ assert.equal(JSON.stringify(created),prior);
+ const valid=stage(created,[npcAction(created,actorId,[createId],{
+  obligationReview:basis
+ })],'synthetic-obligation-coverage-guard-valid');
+ assert.equal(verifyNarrativeSnapshot(valid),true);
+ const fake=structuredClone(valid);
+ fake.events.events.at(-1).continuation_context.obligation_review.last_change_event_id=
+  initial.events.events.at(-1).id;
+ assert.throws(()=>verifyNPCCausalContinuationHistory(fake),
+  /latest prior actor-owned open commitment change/);
+ assert.equal(verifyNarrativeSnapshot(valid),true);
 });

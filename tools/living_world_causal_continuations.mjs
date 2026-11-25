@@ -64,6 +64,49 @@ function validateDecisionMemoryBasis({snapshot,events,actorId,sourceEventIds,bas
  return clone(basis);
 }
 
+// A documented consideration of an existing obligation, including when the
+// actor elects not to alter it. The reference is to the latest actor-owned
+// *material* change before this decision, not to arbitrary text or a future
+// value in the final checkpoint. A later independent commitment edit remains
+// subject to the normal state-change validator.
+function validateObligationReviewBasis({snapshot,events,actorId,sourceEventIds,
+ basis,priorTurn,requireCurrent=true}){
+ if(basis===undefined)return null;
+ insist(basis&&typeof basis==='object'&&!Array.isArray(basis)&&
+  same(Object.keys(basis).sort(),['commitment_id','last_change_event_id',
+   'review_reason','alternative_considered'].sort())&&
+  typeof basis.commitment_id==='string'&&
+  /^OBL-[A-Za-z0-9_-]{3,64}$/.test(basis.commitment_id)&&
+  eventID(basis.last_change_event_id)&&
+  text(basis.review_reason,16,600)&&
+  text(basis.alternative_considered,16,600),
+  'NPC obligation review requires exact owner obligation and free-form alternatives');
+ const id=basis.commitment_id;
+ const last=events.flatMap(event=>(event.state_changes??[])
+  .filter(change=>change.actor_id===actorId&&change.field==='commitments')
+  .flatMap(change=>{
+   const prior=(change.before??[]).find(c=>c.id===id);
+   const after=(change.after??[]).find(c=>c.id===id);
+   return after&&!same(prior??null,after)?[{event,item:after}]:[];
+  })).at(-1);
+ insist(last&&eventNumber(last.event.id)>baselineLastEvent&&
+  last.event.id===basis.last_change_event_id&&
+  last.event.turn<priorTurn&&
+  last.event.actor_ids?.[0]===actorId&&
+  last.event.known_to?.includes(actorId)&&
+  sourceEventIds.includes(last.event.id)&&
+  ['pending','blocked'].includes(last.item.status)&&
+  last.item.last_change_event_id===last.event.id,
+  'NPC obligation review must cite latest prior actor-owned open commitment change');
+ if(requireCurrent){
+  const saved=(snapshot.state.world.actors[actorId]?.commitments??[])
+   .find(c=>c.id===id);
+  insist(saved&&same(saved,last.item),
+   'NPC obligation review references a changed or absent current commitment');
+ }
+ return clone(basis);
+}
+
 /**
  * Private, read-only continuation possibilities, ordered deterministically.
  * A candidate is a reminder to the narrator, not a resolved actor decision.
@@ -89,7 +132,8 @@ export function inspectNPCCausalContinuations({snapshot,actorIds=null,limitPerAc
 
 /** Review a chosen continuation; never write a story turn or invent an outcome. */
 export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEventIds,
- reasoning,outcome,changes=[],reviewed=false,memoryBasis=undefined}={}){
+ reasoning,outcome,changes=[],reviewed=false,memoryBasis=undefined,
+ obligationReview=undefined}={}){
  const events=actualEventHistory(snapshot);
  insist(Object.hasOwn(snapshot.state.world.actors,actorId),
   'NPC continuation requires an existing actor');
@@ -101,13 +145,17 @@ export function draftReviewedNPCCausalContinuation({snapshot,actorId,sourceEvent
   priorTurn:snapshot.manifest.last_completed_turn+1});
  const memory=validateDecisionMemoryBasis({snapshot,events,actorId,sourceEventIds,
   basis:memoryBasis,priorTurn:snapshot.manifest.last_completed_turn+1});
+ const obligation=validateObligationReviewBasis({snapshot,events,actorId,
+  sourceEventIds,basis:obligationReview,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
  return clone({
   actor_id:actorId,reviewed:true,resolved:true,
   causal_basis:reasoning,outcome,changes,disclosures:[],
   continuation_context:{
    kind:'known_event',reviewed:true,reasoning,
    source_event_ids:sourceEventIds,
-   ...(memory===null?{}:{decision_memory_basis:memory})
+   ...(memory===null?{}:{decision_memory_basis:memory}),
+   ...(obligation===null?{}:{obligation_review:obligation})
   }
  });
 }
@@ -125,7 +173,8 @@ export function validateNPCContinuationDraft({snapshot,item}={}){
  insist(context&&typeof context==='object'&&!Array.isArray(context)&&
   same(Object.keys(context).sort(),
    ['kind','reasoning','reviewed','source_event_ids',
-    ...(context.decision_memory_basis===undefined?[]:['decision_memory_basis'])].sort())&&
+    ...(context.decision_memory_basis===undefined?[]:['decision_memory_basis']),
+    ...(context.obligation_review===undefined?[]:['obligation_review'])].sort())&&
   context.kind==='known_event'&&context.reviewed===true&&
   text(context.reasoning,16,1200)&&
   context.reasoning===item.intent,
@@ -138,6 +187,9 @@ export function validateNPCContinuationDraft({snapshot,item}={}){
   priorTurn:snapshot.manifest.last_completed_turn+1});
  validateDecisionMemoryBasis({snapshot,events,actorId:item.actor_id,
   sourceEventIds:context.source_event_ids,basis:context.decision_memory_basis,
+  priorTurn:snapshot.manifest.last_completed_turn+1});
+ validateObligationReviewBasis({snapshot,events,actorId:item.actor_id,
+  sourceEventIds:context.source_event_ids,basis:context.obligation_review,
   priorTurn:snapshot.manifest.last_completed_turn+1});
  return clone(context);
 }
@@ -162,7 +214,8 @@ export function verifyNPCCausalContinuationHistory(snapshot){
     Object.hasOwn(snapshot.state.world.actors,event.actor_ids[0])&&
     event.social_context===undefined&&
     same(Object.keys(c).sort(),['kind','reviewed','reasoning','source_event_ids',
-      ...(c.decision_memory_basis===undefined?[]:['decision_memory_basis'])].sort())&&
+      ...(c.decision_memory_basis===undefined?[]:['decision_memory_basis']),
+      ...(c.obligation_review===undefined?[]:['obligation_review'])].sort())&&
     c.kind==='known_event'&&c.reviewed===true&&
     text(c.reasoning,16,1200)&&event.intent===c.reasoning&&
     same(refs,c.source_event_ids)&&
@@ -175,6 +228,9 @@ export function verifyNPCCausalContinuationHistory(snapshot){
    validateDecisionMemoryBasis({snapshot,events:[...known.values()],
     actorId:event.actor_ids[0],sourceEventIds:c.source_event_ids,
     basis:c.decision_memory_basis,priorTurn:event.turn});
+   validateObligationReviewBasis({snapshot,events:[...known.values()],
+    actorId:event.actor_ids[0],sourceEventIds:c.source_event_ids,
+    basis:c.obligation_review,priorTurn:event.turn,requireCurrent:false});
    seen.push({event_id:event.id,actor_id:event.actor_ids[0],
     source_event_ids:[...c.source_event_ids]});
   }
@@ -200,8 +256,8 @@ export function inspectNPCDecisionConsequenceHistory({snapshot,actorIds=null,lim
  const chosen=actorIds===null?null:new Set(actorIds);
  const decisions=history.filter(e=>e.continuation_context?.kind==='known_event'&&
    (chosen===null||chosen.has(e.actor_ids?.[0])));
- // Array.slice(-0) returns the ENTIRE array; zero must mean no records.
- // Keep the requested private output bound even for an empty page.
+ // Array.slice(-0) means slice(0), which exposes the entire private history.
+ // Verify causal history first; honor the zero-record request exactly.
  return clone((limit===0?[]:decisions.slice(-limit)).map(event=>{
    const actorId=event.actor_ids[0];
    const changed=(event.state_changes??[]).filter(change=>

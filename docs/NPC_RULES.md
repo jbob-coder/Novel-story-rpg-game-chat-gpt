@@ -287,3 +287,46 @@ eso no significa fracaso, éxito ni inacción definitiva. Las obligaciones
 `pending` o `blocked` no se declaran resueltas por existir una decisión.
 Las acciones de otro NPC no se cuentan como propias ni se transmiten
 automáticamente. Toda consecuencia nueva necesita su propio evento.
+
+
+### Obligaciones contrapuestas y prioridades
+
+`inspectNPCObligationConflicts` examina **todos** los compromisos abiertos
+guardados del NPC, no solo los que caben en la agenda de rutina. Señala
+posibles coincidencias de vencimiento, obstáculos, prioridades y pruebas de
+procedencia. Un compromiso urgente se presenta primero **solo entre
+compromisos de la misma categoría temporal**; esto ordena la revisión
+editorial, no la conducta obligatoria del personaje. No se inventan
+duraciones, conflictos materiales, trabajo realizado ni conclusiones por
+vencimiento. El personaje puede posponer, delegar, investigar, renunciar
+justificadamente o intentar avanzar si existen hechos narrativos que lo
+permitan. Cada modificación continúa necesitando un evento propio.
+
+
+### Cobertura de revisión de compromisos
+
+Un NPC no está obligado a resolver la tarea de mayor prioridad solo porque
+la agenda la sitúe primero. La consulta privada
+`recommendNPCObligationCoverage` presenta, como **segunda vía de revisión**,
+el compromiso que lleva más turnos narrativos sin atención documentada.
+El tiempo transcurrido se mide en turnos de la partida, no en horas inventadas.
+Las prioridades siguen sirviendo para desempatar y la agenda ordinaria no
+se sustituye. La recomendación no realiza tareas, no mueve NPC y no cambia
+ninguna obligación.
+
+Cuando el narrador adjudique una acción propia del NPC, una continuación
+causal puede adjuntar `obligationReview` con el identificador exacto de
+un compromiso abierto, el EV de su **última modificación previa**,
+`review_reason` y `alternative_considered` en texto libre.
+La revisión puede conservar la obligación sin cambios o acompañar una
+modificación normal y revisada del compromiso, registrada en ese evento.
+Las referencias se comprueban en escritura y recuperación, incluso entre
+capítulos: no basta tener la obligación en el estado final ni citar una
+versión antigua superada.
+
+Una propuesta de cambiar la fecha que el NPC se impone a sí mismo no
+significa que un cliente, empleador o contraparte haya aceptado una
+renegociación. Esa aceptación necesita su propia evidencia y, si
+corresponde, la acción de la otra persona. Nunca se supone éxito,
+cancelación, fallo, consentimiento o cambio de prioridades por el mero
+transcurso del tiempo.
