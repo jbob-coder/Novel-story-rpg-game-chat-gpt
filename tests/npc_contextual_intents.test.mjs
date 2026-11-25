@@ -137,7 +137,7 @@ test('known_to points to other actors events without granting their full private
  const owned=elena.evidence.knownEvents.find(e=>e.id==='EV-000025');
  assert.ok(owned);
  assert.equal(owned.detailScope,'actor_owned_event');
- assert.ok(owned.outcome.includes('ilustración'));
+ assert.ok(owned.outcome.includes('memoria USB'));
  assert.equal(rosa.evidence.knownEvents.find(e=>e.id==='EV-000029')?.detailScope,
   'actor_owned_event');
 });
