@@ -1230,3 +1230,103 @@ test('narrator original-initiative assessment turn 08 forbids automatic knowledg
   sustainedNarrativeQualityCertified:false
  }));
 });
+
+
+// Step 09 is authored only after CI verified step 08. Previously inactive
+// actors may reconsider obsolete work plans without inventing a new shift.
+export function replayNarratorThirtyTurnReviewThroughStep09(){
+ const eighth=replayNarratorThirtyTurnReviewThroughStep08();
+ assert.equal(eighth.snapshotHash,
+  '057cec8c794e614d93030dfc99e4879139d7fc6764bc3e3cec03d85cc310e905');
+ const prior=eighth.snapshot,original=JSON.stringify(prior);
+ const batch=prepareNPCIntentionRequests({snapshot:prior,
+  elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'});
+ assert.equal(batch.requests.length,7);
+ const sora=batch.requests.find(r=>r.actorId==='NPC-002');
+ const mara=batch.requests.find(r=>r.actorId==='NPC-007');
+ assert.equal(sora.evidence.previousResult.eventId,'EV-000012');
+ assert.equal(mara.evidence.previousResult.eventId,'EV-000014');
+ assert.ok(mara.evidence.knownEventIds.includes('EV-000011'));
+ assert.equal(sora.evidence.independentPlan,start().state.world.actors['NPC-002'].independent_plan);
+ assert.equal(mara.evidence.independentPlan,start().state.world.actors['NPC-007'].independent_plan);
+ const authored={
+  'NPC-002':{
+   intention:'Sora decides not to repeat the closed panel inspection solely because yesterday’s work plan still mentions it.',
+   reasoning:'His own EV-000012 closed the immediate inspection as an unresolved equipment issue. A new assignment or diagnosis is not established.',
+   sources:['EV-000012'],
+   plan:'Do not repeat the closed panel inspection without new evidence; keep the unresolved issue distinct from a new assignment.',
+   outcome:'SYNTHETIC PRIVATE: Sora abandons the obsolete inspection itinerary and leaves the unresolved equipment issue available for future review.'
+  },
+  'NPC-007':{
+   intention:'Mara chooses to stop treating the previously paid café order as an outstanding responsibility and leave time for her own priorities when free.',
+   reasoning:'She personally accepted the cash in EV-000011 and prepared the closing in EV-000014. Neither event proves that a new shift began or that all closing work finished.',
+   sources:['EV-000011','EV-000014'],
+   plan:'Treat the recorded cash sale as settled; clarify any remaining closing responsibility before undertaking another shift or personal errand.',
+   outcome:'SYNTHETIC PRIVATE: Mara separates the settled sale from the unconfirmed closing status and revises her plan without claiming a new shift or departure.'
+  }
+ };
+ const wait={
+  'NPC-001':'The prior transit note was sorted; no new dispatch evidence is present.',
+  'NPC-003':'The delivery point has not yielded any confirmed assignment; no parcel is invented.',
+  'NPC-004':'The school arrival is still unconfirmed; checking the USB again would not add information.',
+  'NPC-005':'The neighbor has not been located; no handover or family meeting is established.',
+  'NPC-006':'The shop priorities have been reviewed and no new stock or customer evidence warrants another bookkeeping loop.'
+ };
+ const choices=batch.requests.map(request=>{
+  const a=authored[request.actorId];
+  if(!a)return {request,proposal:{actorId:request.actorId,decision:'abstain',reasoning:wait[request.actorId]}};
+  return {request,proposal:{actorId:request.actorId,decision:'act',
+   intention:a.intention,reasoning:a.reasoning,sourceEventIds:a.sources},
+   reviewed:true,outcome:a.outcome,changes:[{field:'independent_plan',
+    before:request.evidence.independentPlan,after:a.plan}]};
+ });
+ const interval={...turn('narrator-30-step-09'),elapsed_minutes:10,
+  intent:'[ISOLATED QA] No authentic player input or instruction to NPCs.',
+  outcome:'A fictional interval passes without new observed encounters.',
+  narration_messages:['[ISOLATED QA] No private decisions are disclosed.']};
+ const staged=stageReviewedNPCIntentionTurn({snapshot:prior,turn:interval,observedHead:head,choices});
+ assert.equal(verifyNarrativeSnapshot(staged),true);
+ assert.equal(staged.manifest.last_completed_turn,18);
+ assert.equal(staged.manifest.last_event_sequence,51);
+ assert.deepEqual(new Set(staged.npcTurnReview.actedActorIds),new Set(Object.keys(authored)));
+ assert.deepEqual(new Set(staged.npcTurnReview.abstainedActorIds),new Set(Object.keys(wait)));
+ const recovered=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
+ assert.equal(verifyNarrativeSnapshot(recovered),true);
+ for(const [id,a] of Object.entries(authored)){
+  const before=prior.state.world.actors[id],after=recovered.state.world.actors[id];
+  assert.equal(after.independent_plan,a.plan);
+  // Goal mutation is intentionally not claimed: the current engine only admits plan changes.
+  assert.deepEqual(after,{...before,independent_plan:a.plan,last_resolved_action:after.last_resolved_action});
+  const ev=recovered.events.events.find(e=>e.turn===18&&e.actor_ids.includes(id));
+  assert.ok(ev);
+  assert.deepEqual(ev.caused_by,a.sources);
+  assert.deepEqual(ev.known_to,[id]);
+  assert.ok(!recovered.chapter.includes(a.outcome));
+  assert.ok(recovered.transcript.entries.every(e=>!e.text.includes(a.outcome)));
+  const fresh=prepareNPCIntentionRequests({snapshot:recovered,actorIds:[id],
+   elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'}).requests[0];
+  assert.equal(fresh.evidence.independentPlan,a.plan);
+  assert.equal(fresh.evidence.previousResult.eventId,ev.id);
+ }
+ for(const id of Object.keys(wait))assert.deepEqual(recovered.state.world.actors[id],prior.state.world.actors[id]);
+ assert.deepEqual(recovered.state.player,prior.state.player);
+ assert.equal(recovered.state.time.day,-29);
+ assert.equal(recovered.state.time.elapsed_minutes_since_opening_approx,
+  start().state.time.elapsed_minutes_since_opening_approx+90);
+ assert.equal(JSON.stringify(prior),original);
+ for(const [p,bytes] of Object.entries(raw))
+  assert.equal(readFileSync(new URL('../'+p,import.meta.url),'utf8'),bytes);
+ return {snapshot:recovered,snapshotHash:createHash('sha256')
+  .update(JSON.stringify(encodeFiveFiles(recovered))).digest('hex'),priorHash:eighth.snapshotHash};
+}
+test('narrator original-initiative assessment turn 09 reconsiders obsolete work plans without fictional new shifts',()=>{
+ const r=replayNarratorThirtyTurnReviewThroughStep09();
+ console.log('NARRATOR_30_TURN_REVIEW_STEP_09 '+JSON.stringify({
+  reviewTurn:9,ofPlannedTurns:30,priorVerifiedSnapshotHash:r.priorHash,
+  stagedSyntheticTurn:r.snapshot.manifest.last_completed_turn,
+  acted:['NPC-002','NPC-007'],abstained:5,obsoletePlansRevised:true,
+  goalMutationImplemented:false,canonicalSaveWrites:0,
+  verifiedSnapshotHash:r.snapshotHash,modelApiInvokedByTest:false,
+  independentSemanticReviewCompleted:false,sustainedNarrativeQualityCertified:false
+ }));
+});
