@@ -38,6 +38,48 @@ const publicReplaySummary=decisions=>({
  realPlayerTurns:0,canonicalSaveWrites:0,modelInvocationByEngine:false,
  independentNarrativeQualityEstablished:false
 });
+/**
+ * The trace is a durable QA fixture, not an unfiltered prompt transcript.
+ * Unknown fields (especially nested private request/evidence) must not be
+ * accepted silently, even though the replay engine currently ignores them.
+ * Fail with generic errors: CI must never echo rejected private payloads.
+ */
+const assertCleanTraceResponse=response=>{
+ const record=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
+ assert.ok(record(response)&&record(response.proposal),
+  'Malformed NPC response record');
+ const proposal=response.proposal,acting=proposal.decision==='act';
+ assert.ok(acting||proposal.decision==='abstain',
+  'Unsupported NPC decision in external trace');
+ const top=acting?
+  ['requestSha256','author','proposal','reviewed','outcome','changes']:
+  ['requestSha256','author','proposal'];
+ const inner=acting?
+  ['actorId','decision','intention','reasoning','sourceEventIds','destinationId']:
+  ['actorId','decision','reasoning'];
+ assert.ok(Object.keys(response).every(key=>top.includes(key)),
+  'Unsupported external trace response field');
+ assert.ok(Object.keys(proposal).every(key=>inner.includes(key)),
+  'Unsupported external trace proposal field');
+ assert.ok(/^[a-f0-9]{64}$/.test(response.requestSha256??''),
+  'Invalid request digest in external trace');
+ assert.ok(typeof response.author==='string'&&
+  response.author.trim().length>=1&&response.author.length<=160,
+  'Missing or oversized trace reviewer attribution');
+ if(acting){
+  assert.ok(response.reviewed===true&&typeof response.outcome==='string'&&
+   response.outcome.trim().length>=12&&response.outcome.length<=2000,
+   'Externally authored action needs a bounded reviewed outcome');
+  assert.ok(response.changes===undefined||
+   (Array.isArray(response.changes)&&response.changes.length<=40),
+   'Invalid NPC trace change list');
+ }else{
+  assert.ok(!Object.hasOwn(response,'reviewed')&&
+   !Object.hasOwn(response,'changes')&&
+   !Object.hasOwn(response,'outcome'),
+   'An abstention cannot carry an NPC action or effects');
+ }
+};
 const turn=i=>({
  key:'SYNTHETIC-MODEL-QA-'+String(i).padStart(2,'0'),
  intent:'[SYNTHETIC QA] No player-initiated NPC task.',
@@ -58,6 +100,7 @@ test('sequential external model trace replays only responses bound to freshly ve
  const player=JSON.stringify(snapshot.state.player);
  const decisions=[];
  for(const [i,response] of trace.responses.entries()){
+  assertCleanTraceResponse(response);
   const request=nextRequest(snapshot,i);
   assert.ok(request);
   assert.equal(response.requestSha256,hash(request),'Response is not bound to current request');
@@ -139,5 +182,44 @@ test('CI next-request and replay summaries never expose narrator-private actor e
    'decisions','sourceEventIds','relationships']){
    assert.ok(!Object.hasOwn(entry,field),'Unexpected private log field: '+field);
   }
+ }
+});
+
+test('external trace rejects hidden private packets and unreviewed extra fields without logging them',()=>{
+ const sealed='SYNTHETIC-HIDDEN-PRIVATE-PACKET-SHOULD-NOT-APPEAR-IN-ERROR';
+ const goodAction={
+  requestSha256:'f'.repeat(64),
+  author:'SYNTHETIC external QA author',
+  proposal:{actorId:'NPC-005',decision:'act',
+   intention:'Rosa checks the original repair notes before deciding what to do next.',
+   reasoning:'Her independently documented household objective requires verifying the old result.',
+   sourceEventIds:[]},
+  reviewed:true,outcome:'SYNTHETIC: Rosa considers a documented repair precaution.',
+  changes:[]
+ };
+ const goodAbstention={
+  requestSha256:'f'.repeat(64),author:'SYNTHETIC external QA author',
+  proposal:{actorId:'NPC-007',decision:'abstain',
+   reasoning:'An unverified shift should not be invented without new evidence.'}
+ };
+ assert.doesNotThrow(()=>assertCleanTraceResponse(goodAction));
+ assert.doesNotThrow(()=>assertCleanTraceResponse(goodAbstention));
+ const additions=[
+  {...goodAction,request:{evidence:{knowledge:[sealed]}}},
+  {...goodAction,context:{secrets:[sealed]}},
+  {...goodAction,privateEvidence:sealed},
+  {...goodAction,proposal:{...goodAction.proposal,fullRequest:sealed}},
+  {...goodAction,proposal:{...goodAction.proposal,privateKnowledge:sealed}},
+  {...goodAbstention,changes:[{field:'knowledge',fact:sealed}]},
+  {...goodAbstention,proposal:{...goodAbstention.proposal,outcome:sealed}},
+  {...goodAction,requestSha256:'not-a-digest'},
+  {...goodAction,author:sealed.repeat(12)}
+ ];
+ for(const response of additions){
+  let message=null;
+  try{assertCleanTraceResponse(response);}catch(error){message=String(error.message);}
+  assert.ok(message,'Unexpected acceptance of malformed external trace');
+  assert.ok(!message.includes(sealed),
+   'Failure message must not copy rejected private trace content into CI');
  }
 });
