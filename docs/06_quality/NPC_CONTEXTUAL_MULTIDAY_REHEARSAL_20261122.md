@@ -34,3 +34,86 @@ The test-double **is not a language model**. Its example intentions are controll
 `tests/npc_model_authored_replay.test.mjs` consumes an append-only evaluation trace in `tests/npc_model_authored_trace.json`. An empty trace is a valid preparation state, **zero completed authored decisions**. The engine constructs the next actor request only after replaying and verifying every prior response and five-file readback. The SHA-256 of the exact request binds each externally authored response to the current state. Round-robin actor order is a coverage choice, not an action policy. No action menu, automatic proposal, model API, background execution or canonical save. CI logs only bounded fictional context metadata and plan/goal, not raw memories, event outcomes or relationships; retrieve relevant actor-owned evidence from the source as needed. A separate local/private evaluator may inspect the full request.
 
 Append exactly one response after examining the fresh context: `requestSha256`, `author`, `proposal`; for an action also separately reviewed `reviewed:true`, `outcome`, and optional `changes`. Abstentions must not include effects. Preserve prior response entries and their commit provenance. Record semantic concerns and corrections, do not tune the engine to force a desired result. The digest binds a response to a request, but does not prove that an external model saw only that request or that reviewer independence exists. A separate evaluator must score grounded motives, novelty, replanning, evidence/privacy, feasible outcomes and justified inactivity; the runner deliberately never marks the quality gate passed. The old selector is consulted after proposal creation, for comparison only. No more than 30 synthetic turns; no canonical play. Do not publish full actor packets in public CI.
+
+## Public CI log privacy boundary (2026-11-24)
+
+The model-authored sequential replay requires *private* NPC goals, plans,
+knowledge and event evidence to prepare the next proposal, but GitHub Actions
+job output is **not** an approved channel for publishing that evidence.
+
+`NPC_MODEL_NEXT` now prints only the SHA-256 of the current exact private
+request, the count of externally supplied responses, the 30-response goal and
+the synthetic completed turn. It no longer prints NPC ID, goal, independent
+plan, previous result, known event IDs or the private event preview.
+
+`NPC_MODEL_REPLAY` prints **only the total number of responses**, the
+30-response target and constant simulation/quality caveats. It does **not**
+publish actor-to-decision lists, individual decisions, action/abstention
+totals, the old unsalted digest of low-entropy choices, causal facts or model
+proposals. A digest of a short list of act/abstain decisions is not private:
+an observer familiar with the bounded evaluation order could enumerate
+possibilities. Even act/abstain aggregates printed on each incremental CI run
+could reveal which decision the newest actor made by comparing logs.
+
+For legitimate analysis, the test privately computes `privateReplayEvidence`
+from **validated saved event state_changes** and causal source pointers.
+It distinguishes changes of independent plan, knowledge and resources,
+other typed effects, reviewed action records with no material change and
+actions with explicit causal event citations. These are **structural coverage
+counts**, not a measure of whether intentions are sensible or creatively
+authored; the private assessment is intentionally not printed to CI. Tests
+compare two contrasting actor decisions and verify identical public summaries,
+and separately test the exact typed-effect classification without printing
+private texts. Earlier published logs remain historical; code cannot retract
+data already exposed.
+
+To author the next response, an authorized reviewer must inspect the
+verified request in a private context and then submit a source-bound trace
+entry. The published hash is a consistency identifier, **not** a substitute
+for the private request, proof of independent authorship, or a permission
+to advance the canonical story.
+
+## External trace field allowlist (QA)
+
+Even a private, versioned QA trace is **not** a place to paste an entire NPC
+request, model prompt, actor memory packet or unrelated hidden notes. The
+sequential replay checks an allowlist for each external response and its
+proposal **before** staging any synthetic turn:
+
+- Every record: `requestSha256`, `author`, `proposal`; reviewed actions
+  may additionally contain `reviewed:true`, `outcome` and `changes`.
+- Action proposals permit only `actorId`, `decision`, `intention`,
+  `reasoning`, `sourceEventIds` and optional `destinationId`.
+  Abstentions permit only `actorId`, `decision` and `reasoning` and
+  cannot carry review verdicts, effects or hidden action outcomes.
+- The request hash must be SHA-256-shaped, attribution bounded, and reviewed
+  outcomes have normal narrative length limits. Engine-level actor, causal
+  source, change-schema and chronology validations still apply afterward.
+
+An unexpected key fails with a generic error string; the CI failure message
+does not echo the rejected value. The test uses an explicit private sentinel
+in extra top-level and proposal fields, verifying the error remains silent.
+This does not prove that allowed free-text reasoning or outcome has no
+semantic leak, and does not authenticate whether the stated author was a
+particular model. External review must still inspect each allowed
+decision for source grounding and narrative plausibility.
+
+## Safe failure diagnostics for narrator-private replay
+
+Even if success-path `NPC_MODEL_NEXT` and `NPC_MODEL_REPLAY` logs publish only
+bounded metadata, a failed Node `assert.equal` or `assert.deepEqual` may
+automatically print its `actual` and `expected` values in public job logs.
+The earlier sequential harness compared full snapshot JSON, the raw
+five-file canonical save text, player state, actor identifiers and causal event
+IDs this way. A single regression could disclose private evidence.
+
+The replay test now uses fixed-message **boolean assertions** for those
+comparisons. Failure output reports which invariant broke, **without printing
+either private value or a structural diff**. A synthetic sentinel regression
+intentionally fails representative actor, causal and save-data comparisons
+and confirms that their exception messages/stacks do not contain that
+sensitive value. Public success projections remain restricted to
+non-decision progress metadata. This is defense in depth for the replay
+test itself; errors thrown by external helpers, engines, or GitHub workflows
+still require a separate audit for private-value leakage.
+
