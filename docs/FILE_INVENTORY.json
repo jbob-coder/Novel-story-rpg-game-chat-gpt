@@ -202,6 +202,7 @@
       "tests/living_world_routines.test.mjs",
       "tests/living_world_travel.test.mjs",
       "tests/npc_behavior_acceptance_qa.test.mjs",
+      "tests/npc_experience_reconsideration.test.mjs",
       "tests/npc_memory_social_continuity.test.mjs",
       "tests/test_checkpoint_audit.py"
     ],
