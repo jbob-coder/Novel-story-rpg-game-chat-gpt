@@ -448,3 +448,40 @@ test('a private NPC goal cannot be copied verbatim into Jack narration',()=>{
  scene.narration_messages=[draft.changes[0].after];
  assert.throws(()=>stageLivingWorldTurn({snapshot:base,turn:scene,observedHead:head,npcResolutions:[draft]}),/Private NPC goal leaked/);
 });
+
+
+test('NPC may abandon goal and plan, remain reviewable, and later adopt a new motive',()=>{
+ const base=initial(),original=JSON.stringify(base),id=darius;
+ const draft=goalDraft(base,null);
+ draft.changes.push({field:'independent_plan',before:base.state.world.actors[id].independent_plan,
+  after:null,reason:'Synthetic voluntary pause without an assigned replacement task.'});
+ const paused=stage(base,'synthetic-goal-and-plan-pause',[draft]);
+ const actor=paused.state.world.actors[id];
+ assert.equal(actor.goal,null);
+ assert.equal(actor.independent_plan,null);
+ assert.deepEqual(actor.knowledge,base.state.world.actors[id].knowledge);
+ assert.equal(verifyNarrativeSnapshot(paused),true);
+ const closed=close(paused);
+ const reread=decodeFiveFiles({...encodeFiveFiles(paused),...encodeFiveFiles(closed)},'CH-001');
+ assert.equal(reread.state.world.actors[id].goal,null);
+ assert.equal(reread.state.world.actors[id].independent_plan,null);
+ const resumed=stage(reread,'synthetic-goal-resume-after-pause',[
+  goalDraft(reread,'Explore a freely chosen personal interest.')]);
+ assert.equal(resumed.state.world.actors[id].goal,'Explore a freely chosen personal interest.');
+ assert.equal(resumed.state.world.actors[id].independent_plan,null);
+ assert.equal(verifyNarrativeSnapshot(resumed),true);
+ const missing=structuredClone(paused);delete missing.state.world.actors[id].goal;
+ assert.throws(()=>verifyNarrativeSnapshot(missing),/Saved NPC goal differs/);
+ assert.equal(JSON.stringify(base),original);
+});
+
+test('goal absence is explicit, causal and not an empty or missing field',()=>{
+ const base=initial(),paused=stage(base,'synthetic-goal-pause-only',[goalDraft(base,null)]);
+ const duplicate=goalDraft(paused,null);
+ assert.throws(()=>stage(paused,'synthetic-goal-null-noop',[duplicate]),/goal revision requires/);
+ const missing=goalDraft(base,null);delete missing.changes[0].after;
+ assert.throws(()=>stage(base,'synthetic-goal-missing-after',[missing]),/goal revision requires/);
+ const noReason=goalDraft(base,null);noReason.changes.push({
+  field:'independent_plan',before:base.state.world.actors[darius].independent_plan,after:null});
+ assert.throws(()=>stage(base,'synthetic-plan-null-no-reason',[noReason]),/Nullable NPC plan/);
+});

@@ -364,6 +364,27 @@ class MultiChapterValidator(unittest.TestCase):
                                                   actors, "PLAYER-001"))
         self.assertTrue(validate_npc_goal_history(original, actors, "PLAYER-001"))
 
+    def test_explicit_goal_pause_then_resumption_across_chapters(self):
+        actor_id = "NPC-003"
+        self.append_goal_revision(actor_id, None)
+        self.assertEqual(validate(self.root), [])
+        self.close_and_open()
+        self.append_goal_revision(actor_id, "Explore a freely chosen personal interest.")
+        self.assertEqual(validate(self.root), [])
+
+    def test_null_goal_is_distinct_from_missing_goal(self):
+        path = self.append_goal_revision("NPC-003", None)
+        self.assertEqual(validate(self.root), [])
+        original = self.read(path)
+        altered = copy.deepcopy(original)
+        del altered["events"][-1]["state_changes"][0]["after"]
+        self.write(path, altered)
+        self.assert_invalid("goal revision requires")
+        self.write(path, original)
+        del self.state["world"]["actors"]["NPC-003"]["goal"]
+        self.flush_state()
+        self.assert_invalid("Saved NPC goal differs from causal history")
+
 
 if __name__ == "__main__":
     unittest.main()
