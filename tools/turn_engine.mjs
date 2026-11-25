@@ -5,6 +5,7 @@ import {applyStateChanges,verifyStateChanges} from './state_changes.mjs';
 import {applyReviewedPlaceDiscovery,verifyReviewedPlaceHistory} from './meridian_bay_discovery.mjs';
 import {verifyTravelHistory} from './living_world_travel.mjs';
 import {verifySocialEventHistory,verifySealedNPCKnowledge} from './living_world_social.mjs';
+import {NPC_KNOWLEDGE_ANCHOR} from './living_world_knowledge_anchor.mjs';
 import {stageReviewedNPCIntroduction,verifyNPCIntroductionHistory} from './living_world_npc_introduction.mjs';
 import {validateNPCContinuationDraft,verifyNPCCausalContinuationHistory} from './living_world_causal_continuations.mjs';
 import {validateTemporalAdvance} from './living_world_time.mjs';
@@ -73,7 +74,13 @@ function verifyNarrativeSnapshot(snapshot) {
   checkFullNarration(snapshot);
   const newNPCs=verifyNPCIntroductionHistory(snapshot,history);
   verifyStateChanges(snapshot);
-  if(newNPCs.size)verifySealedNPCKnowledge(snapshot,history);
+  // Even without new actors or social encounters, memory remains pinned to
+  // the turn-nine knowledge anchor. Otherwise a directly injected fact could
+  // pass full readback and be mistaken for an actor-owned remembered event.
+  // Historical checkpoints before the anchor remain valid without retrofit.
+  const anchorSequence=Number(NPC_KNOWLEDGE_ANCHOR.lastEventId.slice(3));
+  if(newNPCs.size||history.length>=anchorSequence)
+    verifySealedNPCKnowledge(snapshot,history);
   verifyReviewedPlaceHistory(snapshot);
   verifyTravelHistory(snapshot);
   // Social provenance is narrator-private and validated across closed chapters.

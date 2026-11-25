@@ -231,7 +231,7 @@ export function verifySealedNPCKnowledge(snapshot,events=allEvents(snapshot)){
   [id,[...(anchor.actorKnowledge[id]??[])]]));
  for(const event of events.slice(startSeq)){
   const context=event.social_context;
-  if(context?.transfer?.speaker_id===event.actor_ids?.[0]){
+  if(context?.transfer && context.transfer.speaker_id===event.actor_ids?.[0]){
    const transfer=context.transfer;
    ensure(known.get(transfer.speaker_id)?.includes(transfer.known_entry),
     'Social speaker had not yet learned the transferred statement');

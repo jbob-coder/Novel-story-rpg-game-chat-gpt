@@ -230,13 +230,30 @@ test('explicit NPC IDs retain full memory; disabling auto remains read-only',()=
     sceneNpcIds:['NPC-005']}),/narrator-private only/);
 });
 
-test('compact automatic recall includes most relevant facts rather than full accumulated memory',()=>{
-  const snapshot=initial();
+test('compact automatic recall prefers event-backed relevant facts over accumulated memory',()=>{
+  const initialSnapshot=initial(),before=JSON.stringify(initialSnapshot);
+  const oldCount=initialSnapshot.state.world.actors['NPC-005'].knowledge.length;
+  const changes=Array.from({length:20},(_,i)=>({
+    field:'knowledge',fact:'SYNTHETIC past errand '+i,
+    source:'SYNTHETIC QA: actor-owned ordinary recollection'
+  }));
+  changes.push({field:'knowledge',fact:'SYNTHETIC: el reloj no se entregó todavía',
+    source:'SYNTHETIC QA: Rosa personally notes that return is pending'});
+  // Previously this test appended unsourced facts directly to the saved NPC.
+  // A genuine synthetic event now supplies all 21 exact knowledge additions.
+  const snapshot=stageLivingWorldTurn({snapshot:initialSnapshot,
+    observedHead:'e'.repeat(40),
+    turn:{key:'synthetic-context-recall-001',
+      intent:'[SYNTHETIC QA] Jack remains at the workbench.',
+      outcome:'A quiet test interval passes with no public knowledge disclosure.',
+      player_text:'[SYNTHETIC QA] Observe the bench.',
+      narration_messages:['[SYNTHETIC QA] The workshop remains quiet.'],
+      elapsed_days:0,elapsed_minutes:15,next_time_of_day:'morning'},
+    npcResolutions:[{actor_id:'NPC-005',reviewed:true,resolved:true,
+      causal_basis:'Rosa privately reviews her own existing household notes.',
+      outcome:'SYNTHETIC PRIVATE: Rosa writes a batch of private notes without telling Jack.',
+      changes}]});
   const actor=snapshot.state.world.actors['NPC-005'];
-  const oldCount=actor.knowledge.length;
-  actor.knowledge=[...actor.knowledge,
-    ...Array.from({length:20},(_,i)=>'SYNTHETIC past errand '+i),
-    'SYNTHETIC: el reloj no se entregó todavía'];
   const output=buildContextPacket({snapshot,query:'Rosa reloj'});
   const m=output.npcMemory[0];
   assert.equal(m.knowledgeCount,oldCount+21);
@@ -244,6 +261,8 @@ test('compact automatic recall includes most relevant facts rather than full acc
   assert.ok(m.state.knowledge.some(x=>x.includes('el reloj no se entregó')));
   assert.ok(m.state.knowledge.every(x=>actor.knowledge.includes(x)));
   assert.ok(m.recentEventReferences.length<=4);
+  assert.equal(initialSnapshot.manifest.last_completed_turn,9);
+  assert.equal(JSON.stringify(initialSnapshot),before);
 });
 
 test('strict NPC fact checks allow saved legacy facts but not event association or another actor',()=>{

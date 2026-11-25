@@ -214,6 +214,7 @@ test('an ordinary choice, its private consequence and the Day 0 arrival survive 
   const interrupted = await save(arrival);
   assert.equal(interrupted.status, 'blocked');
   assert.equal(remote.head, early.commitHead);
+  assert.ok(interrupted.commitHead, 'Arrival must stage a recoverable commit; unexpected early rejection: '+interrupted.reason);
   remote.failUpdate = false;
   const recovered = await recoverJournaledSave({remote, journal, branch});
   assert.equal(recovered.status, 'verified', recovered.reason);

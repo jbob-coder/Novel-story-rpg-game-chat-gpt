@@ -462,3 +462,34 @@ uncertainty without changing their plan. Both keep the original reports,
 their contrast event remains actor-owned after CH-001 reloading, and
 foreign/future/malformed provenance fails. The player checkpoint and
 five protected story files never change.
+
+## Sealed NPC memories on every valid post-anchor checkpoint (2026-11-24)
+
+`verifyNarrativeSnapshot` must replay the verified NPC knowledge anchor
+on **every** checkpoint at or beyond CH-000 turn 9 / EV-000029, whether
+or not the current history contains any newly admitted NPC or social encounter.
+Previously the anchor check was only invoked by those two special paths,
+which allowed direct insertion/removal of a legacy NPC memory to pass generic
+readback when no social group existed. Event-linked updates still have their
+own ownership/provenance checks; the baseline roster's exact stored facts are
+not optional.
+
+Archived snapshots **before** the pinned event boundary remain eligible for
+their historical validation without retrofitting the later anchor. No narrator
+turn, player action, NPC decision, schedule tick or in-world event is added.
+
+Regression QA covers forged knowledge insertion and deletion from a cloned
+authentic turn-nine snapshot, plus a valid synthetic private NPC learning
+event with an exact source record. The automatic memory relevance test now
+stages its 21 synthetic notes via an owned event rather than changing
+`actor.knowledge` directly. The original five-file save remains untouched.
+
+## Day 0 actorless event replay guard (QA)
+The sealed-knowledge replayer must check that a historical event actually has
+a social `transfer` before comparing its speaker to `actor_ids[0]`.
+Otherwise an actorless world event (the legitimate Day 0 shockwave) makes
+`undefined===undefined` true and dereferencing `context.transfer` rejects
+an otherwise valid save before any detached commit can be created.
+The ordinary-choice / private-consequence / Day 0 arrival / recovery
+integration test exercises this exact path. The new condition preserves
+social provenance checks while ignoring non-social, actorless world events.
