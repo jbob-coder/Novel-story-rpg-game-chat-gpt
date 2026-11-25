@@ -209,6 +209,53 @@ function threadEventEvidence(snapshot,thread,event,step){
     playerDisclosureAuthorized:false};
 }
 
+// Indexed after snapshot validation, this is a *private causal review*, not
+// a computational judgment about belief, credibility or an NPC's intention.
+// Only explicit same-actor revision links count, and the decision effects
+// belong to the same revised actor's later recorded event.
+function reviewedNPCReconsiderations(snapshot,actorId,originalEntry){
+  const events=allEvents(snapshot),nextByPrevious=new Map();
+  for(const event of events)for(const change of event.state_changes??[]){
+    if(change.field!=='knowledge'||change.actor_id!==actorId||
+       typeof change.revision_of!=='string')continue;
+    const list=nextByPrevious.get(change.revision_of)??[];
+    list.push({event,change});
+    nextByPrevious.set(change.revision_of,list);
+  }
+  const pending=[originalEntry],visited=new Set([originalEntry]),revised=[];
+  while(pending.length){
+    const statement=pending.shift();
+    for(const linked of nextByPrevious.get(statement)??[]){
+      if(visited.has(linked.change.after))continue;
+      visited.add(linked.change.after);pending.push(linked.change.after);
+      revised.push(linked);
+    }
+  }
+  revised.sort((a,b)=>Number(a.event.id.slice(3))-Number(b.event.id.slice(3)));
+  return {
+    reconsiderationEventCount:revised.length,
+    reconsiderationsForReview:revised.slice(0,8).map(({event})=>{
+      const context=event.continuation_context;
+      const sourceIds=context?.kind==='known_event'&&context.reviewed===true?
+        context.source_event_ids:[];
+      return {
+        revisionEventId:event.id,
+        revisionEventPath:'chapters/'+event.chapter_id+'.events.json',
+        causalExperienceEventIds:[...sourceIds],
+        causalEvidenceStatus:sourceIds.length?
+          'reviewed_actor_event_links':'revision_reason_only',
+        changedRelationshipTargetIds:[...new Set((event.state_changes??[])
+          .filter(x=>x.actor_id===actorId&&x.field==='relationship')
+          .map(x=>x.target_actor_id))],
+        independentPlanChanged:(event.state_changes??[]).some(x=>
+          x.actor_id===actorId&&x.field==='independent_plan'),
+        interpretation:'causal_links_only_not_truth_or_intent'
+      };
+    }),
+    ...(revised.length>8?{reconsiderationsTruncated:true}:{})
+  };
+}
+
 // Exact recorded knowledge proves an actor holds a statement, never its truth.
 function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const actor=snapshot.state.world.actors[actorId];
@@ -220,7 +267,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const source=sourcedKnowledge.exec(entry);
   if(!source)return {...foundation,status:'recorded_checkpoint',
     mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed',
-    ...linkedStatementRevision(snapshot,actorId,entry)};
+    ...linkedStatementRevision(snapshot,actorId,entry),
+    ...reviewedNPCReconsiderations(snapshot,actorId,entry)};
   const event=allEvents(snapshot).find(value=>value.id===source[3]);
   const recorded=event?.actor_ids?.includes(actorId)?event.state_changes?.find(change=>
     change.field==='knowledge'&&change.actor_id===actorId&&
@@ -260,7 +308,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
       claimTruth:'not_assessed',
       scope:'only_the_recipient_recorded_statement'
     }}:{}),
-    ...linkedStatementRevision(snapshot,actorId,entry)};
+    ...linkedStatementRevision(snapshot,actorId,entry),
+    ...reviewedNPCReconsiderations(snapshot,actorId,entry)};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */
 export function checkNPCFactEvidence({snapshot,actorId,fact}={}){
