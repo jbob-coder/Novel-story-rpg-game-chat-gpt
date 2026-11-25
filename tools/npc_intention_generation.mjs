@@ -4,8 +4,11 @@
 // player disclosure, automatic movement or live save writes.
 import {inspectOpenNPCAgency} from './npc_actor_agency.mjs';
 import {stageLivingWorldTurn} from './living_world_coordinator.mjs';
+import {allEvents} from './chapter_history.mjs';
+import {checkNPCFactEvidence} from './context_manager.mjs';
 import {draftReviewedNPCCausalContinuation} from './living_world_causal_continuations.mjs';
-import {inspectNPCContextualChoices,reviewNPCFreeformIntent}
+import {inspectNPCContextualChoices,reviewNPCFreeformIntent,
+ listNPCEventMemoryIndex,recallNPCEventEvidence}
  from './npc_contextual_intents.mjs';
 
 const ensure=(yes,message)=>{if(!yes)throw new Error(message);};
@@ -25,6 +28,8 @@ export function prepareNPCIntentionRequests({snapshot,actorIds=null,
   elapsedDays,nextPeriod,limit});
  const requests=inspected.frames.map(frame=>{
   const own=inspectNPCContextualChoices({snapshot,actorId:frame.actorId});
+  const memoryIndex=listNPCEventMemoryIndex({snapshot,actorId:frame.actorId});
+  const recent=new Set(own.evidence.knownEventIds);
   return {
    classification:'private_npc_intention_generation_request_v1',
    actorId:frame.actorId,
@@ -43,9 +48,17 @@ export function prepareNPCIntentionRequests({snapshot,actorIds=null,
     // Semantic recall is essential: IDs alone do not tell a narrator what happened.
     // Both the ID list and these short event records are actor-known only.
     knownEventIds:own.evidence.knownEventIds,
-    knownEvents:own.evidence.knownEvents
+    knownEvents:own.evidence.knownEvents,
+    historicalMemory:{
+     totalKnownEventCount:memoryIndex.totalKnownEventCount,
+     olderKnownEventCount:memoryIndex.totalKnownEventCount-recent.size,
+     olderEventPointers:memoryIndex.pointers.filter(e=>!recent.has(e.id)),
+     hasEarlierIndexPage:memoryIndex.hasOlder,
+     nextBeforeEventId:memoryIndex.nextBeforeEventId,
+     readOnlyRecallAvailable:true
+    }
    },
-   instruction:'Decide from this actor own goals, context, knowledge and recent consequences what they might try now. The action can be novel, revised, delayed, or no action; do not reuse a stock menu. State a grounded motive, uncertainty, and only source events known to this NPC. Do not invent travel routes, business openings, other actors knowledge, success or the next turn outcome.',
+   instruction:'Decide from this actor own goals, context, knowledge and recent consequences what they might try now. The action can be novel, revised, delayed, or no action; do not reuse a stock menu. Older memories can be explored via the private paged memory index and on-demand recall; a reference does not reveal another actor private outcome. State a grounded motive, uncertainty, and only source events known to this NPC. Do not invent travel routes, business openings, other actors knowledge, success or the next turn outcome.',
    optionsFormat:'one original intention OR abstain, not a scripted future chain',
    mustNotAssumeOutcome:true,readerVisible:false,automaticExecution:false
   };
@@ -97,9 +110,15 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  ensure(Array.isArray(proposal.sourceEventIds??[])&&
   (proposal.sourceEventIds??[]).length<=3,
   'Source-event list must be bounded');
- const known=new Set(request.evidence.knownEventIds);
- ensure((proposal.sourceEventIds??[]).every(id=>known.has(id)),
-  'Intention cites an event not known by its actor');
+ // The request lists only the eight MOST RECENT known events for context
+ // economy. Historical event evidence must not disappear merely because it
+ // dropped out of that compact preview. Check the full recorded event ledger.
+ const history=new Map(allEvents(snapshot).map(e=>[e.id,e]));
+ ensure((proposal.sourceEventIds??[]).every(id=>{
+  const event=history.get(id);
+  return event&&event.turn<=request.checkpoint.completedTurn&&
+   event.known_to?.includes(request.actorId);
+ }), 'Intention cites an event not known by its actor');
  const reviewerContext=inspectNPCContextualChoices({
   snapshot,actorId:request.actorId});
  const checked=reviewNPCFreeformIntent({
@@ -108,10 +127,27 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
   sourceEventIds:proposal.sourceEventIds??[],
   destinationId:proposal.destinationId??null,reviewed:true
  });
+ // known_to links to an event, not proof of all another actor's private text.
+ // Preserve source scope for the narrator's final causal adjudication.
+ const citedEvidence=checked.sourceEventIds.map(eventId=>{
+  const event=history.get(eventId);
+  const recent=request.evidence.knownEvents.find(row=>row.id===eventId);
+  const actorOwned=event.actor_ids?.length===1&&
+   event.actor_ids[0]===request.actorId;
+  const detailScope=actorOwned?'actor_owned_event':'known_to_reference_only';
+  ensure(!recent||recent.detailScope===detailScope,
+   'Cited NPC event has inconsistent private evidence scope');
+  return {eventId,detailScope,
+   actorOwnedFullEventText:actorOwned,
+   additionalContentReviewRequired:!actorOwned||!recent,
+   ...(recent?{}:{outsideRecentContext:true})};
+ });
  return copy({
   classification:'npc_actor_authored_proposal_review_v1',
   actorId:request.actorId,intention:checked.intention,
   reasoning:checked.reasoning,sourceEventIds:checked.sourceEventIds,
+  citedEventEvidence:citedEvidence,
+  requiresReferencedContentReview:citedEvidence.some(e=>e.additionalContentReviewRequired),
   destinationId:checked.destinationId,
   graphRouteOnly:checked.possibleGraphRoute,
   physicalAccessUnverified:checked.graphAccessUnverified,
@@ -121,6 +157,60 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  });
 }
 
+
+/**
+ * An event ID is not a private knowledge transfer. Every cited EV flagged as
+ * third-party or outside the prompt needs explicit, actor-scoped source
+ * adjudication before an authored outcome is staged.
+ */
+function assessNPCSourceReviews({snapshot,actorId,citedEventEvidence,sourceReviews}){
+ const flagged=citedEventEvidence.filter(e=>e.additionalContentReviewRequired);
+ if(!flagged.length){
+  ensure(sourceReviews===undefined||(Array.isArray(sourceReviews)&&
+   sourceReviews.length===0),'Unexpected NPC source content reviews');
+  return;
+ }
+ ensure(Array.isArray(sourceReviews)&&sourceReviews.length===flagged.length,
+  'Explicit source evidence review required');
+ const actor=snapshot.state.world.actors[actorId];
+ for(let i=0;i<flagged.length;i++){
+  const source=flagged[i],r=sourceReviews[i];
+  ensure(r&&typeof r==='object'&&!Array.isArray(r)&&
+   r.eventId===source.eventId&&r.reviewed===true&&
+   nonempty(r.reason,24,400),
+   'Flagged NPC source needs exact event ID and reviewed explanation');
+  if(source.detailScope==='actor_owned_event'){
+   ensure(r.basis==='actor_owned_recall'&&r.knownEntry===undefined,
+    'Older personal event needs its own recalled source review');
+   const owned=recallNPCEventEvidence({
+    snapshot,actorId,eventIds:[r.eventId]}).knownEvents[0];
+   ensure(owned.detailScope==='actor_owned_event',
+    'Personal event recall owner did not match');
+  }else{
+   ensure(source.detailScope==='known_to_reference_only'&&
+    ['reference_only_uncertain','recorded_actor_knowledge'].includes(r.basis),
+    'Third-party reference requires limited-content review');
+   if(r.basis==='reference_only_uncertain'){
+    ensure(r.knownEntry===undefined,
+     'Reference-only review must not invent transferred knowledge');
+   }else{
+    ensure(typeof r.knownEntry==='string'&&
+     (actor.knowledge??[]).includes(r.knownEntry),
+     'Cited private detail is not actor recorded knowledge');
+    const original=/^(.*) \(source: (.+); (EV-\d{6,})\)$/.exec(r.knownEntry);
+    const claim=checkNPCFactEvidence({snapshot,actorId,
+     fact:original?.[1]??r.knownEntry});
+    const references=[claim.sourceEventId,
+     claim.transmissionEvidence?.sourceKnowledgeEventId,
+     claim.socialTransmissionEvidence?.sourceStatementOriginEventId];
+    ensure(claim.status==='recorded_event'&&
+     references.includes(source.eventId),
+     'Actor knowledge has no recorded provenance linking this cited event');
+   }
+  }
+ }
+}
+
 /**
  * Bring an inspected intention to the existing reviewed outcome gate.
  * It is NOT a turn, event, save, or proof of success. Any proposed action
@@ -128,12 +218,14 @@ export function inspectNPCGeneratedIntention({snapshot,request,proposal}={}){
  * transactional save remain the only authority for durable consequences.
  */
 export function draftOutcomeFromNPCIntention({snapshot,request,proposal,
- outcome,changes=[],reviewed=false}={}){
+ outcome,changes=[],sourceReviews,reviewed=false}={}){
  ensure(reviewed===true,'Causal outcome needs separate editorial review');
  const checked=inspectNPCGeneratedIntention({snapshot,request,proposal});
  ensure(checked.classification==='npc_actor_authored_proposal_review_v1',
   'No action can be staged for abstention');
  ensure(nonempty(outcome,12,2000),'A reviewed actual outcome is required');
+ assessNPCSourceReviews({snapshot,actorId:request.actorId,
+  citedEventEvidence:checked.citedEventEvidence,sourceReviews});
  ensure(Array.isArray(changes)&&changes.length<=40,
   'Too many reviewed NPC state changes');
  const causalBasis='Reviewed NPC intention: '+checked.intention+
@@ -188,7 +280,7 @@ export function stageReviewedNPCIntentionTurn({snapshot,turn,observedHead,
    snapshot,request:item.request,proposal:item.proposal});
   if(validated.classification==='npc_intention_abstention_v1'){
    ensure(item.reviewed===undefined&&item.outcome===undefined&&
-    item.changes===undefined,
+    item.changes===undefined&&item.sourceReviews===undefined,
     'Abstaining NPC cannot hide an outcome or state change');
    abstained.push(actorId);
    continue;
@@ -202,7 +294,8 @@ export function stageReviewedNPCIntentionTurn({snapshot,turn,observedHead,
    'Private NPC outcome must not appear verbatim in player scene');
   npcResolutions.push(draftOutcomeFromNPCIntention({
    snapshot,request:item.request,proposal:item.proposal,
-   reviewed:true,outcome:item.outcome,changes:item.changes??[]
+   reviewed:true,outcome:item.outcome,changes:item.changes??[],
+   sourceReviews:item.sourceReviews
   }));
  }
  return {
