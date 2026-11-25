@@ -356,11 +356,21 @@ export function verifyNPCServiceHistory(snapshot){
    prefix.push(change);
   }
   let budget=budgets.get(event.turn);
-  if(!budget){budget={durations:new Set(),actors:new Map(),hasServices:false};budgets.set(event.turn,budget);}
+  if(!budget){budget={durations:new Set(),actors:new Map(),hasTimedWork:false};budgets.set(event.turn,budget);}
   // The player event anchors the interval even when it has no timed effect.
   // An NPC cannot enlarge its budget by forging its own duration and review.
   budget.durations.add(event.turn_elapsed_minutes);
-  if((event.state_changes??[]).some(c=>c.field==='service_cases'))budget.hasServices=true;
+  if((event.state_changes??[]).some(c=>c.field==='service_cases'))budget.hasTimedWork=true;
+  if(event.social_context){
+   const actorId=event.actor_ids[0];
+   // Older encounters record only the turn interval. Require room for them
+   // in the integer-minute budget without writing a guessed duration to history.
+   const duration=Object.hasOwn(event.social_context,'elapsed_minutes')?
+    event.social_context.elapsed_minutes:1;
+   check(Number.isSafeInteger(duration)&&duration>0,'Invalid social contact duration');
+   budget.hasTimedWork=true;
+   budget.actors.set(actorId,(budget.actors.get(actorId)??0)+duration);
+  }
   for(const c of event.state_changes??[]){
    const minutes=c.field==='service_cases'?c.review.elapsed_minutes:
     c.field==='location_id'?c.travel?.elapsed_minutes??0:0;
@@ -368,7 +378,7 @@ export function verifyNPCServiceHistory(snapshot){
    budget.actors.set(c.actor_id,(budget.actors.get(c.actor_id)??0)+minutes);
   }
  }
- for(const budget of budgets.values())if(budget.hasServices){
+ for(const budget of budgets.values())if(budget.hasTimedWork){
    const [duration]=budget.durations;
    check(budget.durations.size===1&&Number.isSafeInteger(duration)&&duration>0&&duration<=525600,
     'Service events disagree on the authorized turn duration');

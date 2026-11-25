@@ -137,6 +137,8 @@
       "tests/world_admission.test.mjs",
       "tests/location_state.test.mjs",
       "tests/helpers/meridian_bay_fixture.mjs",
+      "tests/helpers/ordinary_morning.mjs",
+      "tests/ordinary_morning.test.mjs",
       "tests/location_state_integration.test.mjs",
       "tests/npc_contextual_intents.test.mjs",
       "tests/npc_contextual_multiday_rehearsal.test.mjs",

@@ -1,3 +1,4 @@
+import {assertSocialNarrationPrivacy} from './living_world_social.mjs';
 import {assertMayAdvance} from './save_gate.mjs';
 import {assertPlanNarrationPrivacy} from './world_plans.mjs';
 import {assertNeedNarrationPrivacy} from './living_world_needs.mjs';
@@ -60,6 +61,7 @@ function stageNarratorScene(snapshot,sceneText,sceneKey,saveGuard){
   assertPlanNarrationPrivacy(snapshot.state,[sceneText]);
   assertNeedNarrationPrivacy(snapshot.state,[sceneText]);
   assertServiceNarrationPrivacy(snapshot.state,[sceneText]);
+  assertSocialNarrationPrivacy(snapshot,[sceneText]);
  ensure(saveGuard && typeof saveGuard==='object' && Object.hasOwn(saveGuard,'previous_attempt'),'Save guard required before staging scene');
  assertMayAdvance({checkpoint_valid:true,observed_head:saveGuard.observed_head,attempt:saveGuard.previous_attempt});
  ensure(typeof sceneKey==="string"&&sceneKey.length>=6,"Scene key required");
@@ -76,6 +78,7 @@ function appendFullTurn(snapshot,playerText,narrationMessages){
  assertPlanNarrationPrivacy(snapshot.state,narrationMessages);
  assertNeedNarrationPrivacy(snapshot.state,narrationMessages);
  assertServiceNarrationPrivacy(snapshot.state,narrationMessages);
+ assertSocialNarrationPrivacy(snapshot,narrationMessages);
  const t=snapshot.manifest.last_completed_turn;
  ensure(t>0&&!allTranscriptEntries(snapshot).some(x=>x.turn===t&&x.role==="player"),"Already recorded player turn");
  const es=snapshot.events.events.filter(x=>x.turn===t),playerEvent=es.find(x=>x.kind==="player_action");

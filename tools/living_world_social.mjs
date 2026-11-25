@@ -23,11 +23,27 @@ const statementFact=(speaker,entry)=>`Reported by ${speaker} (not independently 
 const statementSource=(id,place,speaker)=>
  `Reviewed direct exchange ${id} at ${place} from ${speaker}`;
 
+function preservesRelationship(entry,before,context){
+ return entry.after&&typeof entry.after==='object'&&!Array.isArray(entry.after)&&
+     typeof entry.after.bond==='string'&&entry.after.bond.trim().length>=4&&
+     entry.after.latest_shared_moment===context.observation.fact&&
+     (before===null?
+      typeof entry.after.relation==='string'&&entry.after.relation.trim().length>=4&&
+       Object.keys(entry.after).every(k=>['relation','bond','latest_shared_moment'].includes(k)):
+      Object.keys(before).every(key=>['bond','latest_shared_moment'].includes(key)||
+       same(entry.after[key],before[key]))&&
+       Object.keys(entry.after).every(key=>Object.hasOwn(before,key)||
+        ['bond','latest_shared_moment'].includes(key))&&
+       entry.after.relation===before.relation);
+}
+
 function validateContact(state,context){
  ensure(state?.world?.actors&&state?.world?.locations&&state.time,
   'Saved NPC world required');
  ensure(context&&socialId(context.interaction_id)&&
   contactIds(state,context.participant_ids),'Invalid social interaction participants');
+ if(context.elapsed_minutes!==undefined)ensure(Number.isSafeInteger(context.elapsed_minutes)&&
+  context.elapsed_minutes>0&&context.elapsed_minutes<=525600,'Invalid social contact duration');
  const [a,b]=context.participant_ids;
  const first=state.world.actors[a],second=state.world.actors[b];
  ensure(first.location_id===second.location_id&&
@@ -57,11 +73,12 @@ function validateContact(state,context){
  */
 export function draftReviewedSocialContact({state,interactionId,participantIds,
  observation,relationshipUpdates=[],knowledgeTransfer=null,
- outcomes={},reviewed=false}={}){
+ outcomes={},reviewed=false,elapsedMinutes=undefined}={}){
  ensure(reviewed===true,'Social contact requires editorial review');
  const ids=Array.isArray(participantIds)?[...participantIds].sort():participantIds;
  const context={
   interaction_id:interactionId,participant_ids:ids,
+  ...(elapsedMinutes===undefined?{}:{elapsed_minutes:elapsedMinutes}),
   location_id:ids?.length===2?state?.world?.actors?.[ids[0]]?.location_id:null,
   observation:copy(observation),transfer:knowledgeTransfer===null?null:copy(knowledgeTransfer)
  };
@@ -160,17 +177,7 @@ export function validateSocialResolutionBatch({state,npcResolutions=[]}={}){
    if(relations.length){
     const entry=relations[0],before=actor.relationships?.[other]??null;
     ensure(entry.target_actor_id===other&&same(entry.before,before)&&
-     entry.after&&typeof entry.after==='object'&&!Array.isArray(entry.after)&&
-     typeof entry.after.bond==='string'&&entry.after.bond.trim().length>=4&&
-     entry.after.latest_shared_moment===context.observation.fact&&
-     (before===null?
-      typeof entry.after.relation==='string'&&entry.after.relation.trim().length>=4&&
-       Object.keys(entry.after).every(k=>['relation','bond','latest_shared_moment'].includes(k)):
-      Object.keys(before).every(key=>['bond','latest_shared_moment'].includes(key)||
-       same(entry.after[key],before[key]))&&
-       Object.keys(entry.after).every(key=>Object.hasOwn(before,key)||
-        ['bond','latest_shared_moment'].includes(key))&&
-       entry.after.relation===before.relation),
+     preservesRelationship(entry,before,context),
      'Social relationship update must preserve previous context and target partner');
    }
    materialEffects+=item.changes.length;
@@ -248,13 +255,20 @@ export function verifySocialEventHistory(snapshot){
  const history=allEvents(snapshot);
  const sealedUntil=Number(NPC_KNOWLEDGE_ANCHOR.lastEventId.slice(3));
  for(const event of history){
-  if(event.social_context===undefined)continue;
+  if(event.social_context===undefined){
+   ensure(!event.state_changes.some(change=>change.field==='last_resolved_action'&&
+    change.after?.social_interaction_id!==undefined),'Missing social context for two linked events');
+   ensure(!event.state_changes.some(change=>change.field==='knowledge'&&
+    typeof change.source==='string'&&change.source.startsWith('Reviewed direct exchange SOC-')),
+    'Reported social knowledge requires encounter provenance');
+   continue;
+  }
   // A forged old encounter must fail at the sealed chronology boundary before
   // a malformed payload can disguise its actual historical origin.
   ensure(Number(event.id.slice(3))>sealedUntil,
    'Unverified social interaction predates the sealed knowledge anchor');
   ensure(event.kind==='independent_actor'&&Array.isArray(event.actor_ids)&&
-    event.actor_ids.length===1&&event.known_to?.includes(event.actor_ids[0]),
+    event.actor_ids.length===1&&same(event.known_to,event.actor_ids),
     'Saved social event must be an actor-owned private NPC event');
   const c=event.social_context;
   ensure(socialId(c?.interaction_id)&&Array.isArray(c.participant_ids)&&
@@ -286,6 +300,10 @@ export function verifySocialEventHistory(snapshot){
    ensure(edits.every(x=>x.field==='relationship'||x.field==='knowledge'||
      x.field==='last_resolved_action'),
      'Saved social event includes unrelated actor mutation');
+   for(const change of edits.filter(change=>change.field==='last_resolved_action')){
+    const marker=change.after?.social_interaction_id;
+    ensure(marker===undefined||marker===id,'Saved actor action cites a different encounter');
+   }
    const social=edits.filter(x=>x.field==='relationship'||
     x.field==='knowledge');
    const knowledge=social.filter(x=>x.field==='knowledge');
@@ -293,6 +311,8 @@ export function verifySocialEventHistory(snapshot){
     x.target_actor_id===partner);
    ensure(relations.every(x=>x.after?.latest_shared_moment===c.observation.fact),
     'Saved social relationship lost the reviewed encounter evidence');
+   ensure(relations.every(change=>preservesRelationship(change,change.before,c)),
+    'Saved social relationship rewrites prior relationship attributes');
    ensure(knowledge.length<2&&relations.length<2&&
     social.length===knowledge.length+relations.length,
     'Saved social effect has an unknown recipient or duplicate');
@@ -307,6 +327,42 @@ export function verifySocialEventHistory(snapshot){
   }
   ensure(effectCount>0,'Recorded social encounter lacks any effect');
  }
- if(grouped.size)verifySealedNPCKnowledge(snapshot,history);
+ if(grouped.size){
+  verifyHistoricalPresence(snapshot.state,history);
+  verifySealedNPCKnowledge(snapshot,history);
+ }
  return true;
+}
+
+// Reverse recorded movements so later travel cannot relocate an earlier conversation.
+function verifyHistoricalPresence(state,history){
+ const locations=new Map(Object.entries(state.world.actors).map(([id,npc])=>[id,npc.location_id]));
+ for(let index=history.length-1;index>=0;index--){
+  const event=history[index];
+  for(const change of [...event.state_changes].reverse()){
+   if(change.field==='npc_introduction')locations.delete(change.actor_id);
+   if(change.field==='location_id'&&locations.has(change.actor_id)){
+    ensure(locations.get(change.actor_id)===change.after,'Inconsistent social movement history');
+    locations.set(change.actor_id,change.before);
+   }
+  }
+  const context=event.social_context;
+  if(context)ensure(context.participant_ids.every(id=>locations.get(id)===context.location_id),
+   'Social participants must share the recorded location during the encounter');
+ }
+}
+
+// Only explicit player knowledge can authorize repeating private encounter details.
+export function assertSocialNarrationPrivacy(snapshot,messages){
+ const known=snapshot.state.player.knowledge??[];
+ for(const event of allEvents(snapshot)){
+  const contact=event.social_context;
+  if(!contact)continue;
+  const details=[contact.observation.fact,contact.observation.causal_source,
+   contact.transfer?.known_entry,event.outcome];
+  for(const detail of details){
+   if(typeof detail!=='string'||!detail.trim()||known.some(entry=>entry===detail||entry.startsWith(detail+' (source: ')))continue;
+   ensure(!messages.some(message=>message.includes(detail)),'Private social encounter leaked into narration');
+  }
+ }
 }

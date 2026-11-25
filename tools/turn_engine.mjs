@@ -7,6 +7,7 @@ import {verifyTravelHistory} from './living_world_travel.mjs';
 import {verifySocialEventHistory,verifySealedNPCKnowledge} from './living_world_social.mjs';
 import {stageReviewedNPCIntroduction,verifyNPCIntroductionHistory} from './living_world_npc_introduction.mjs';
 import {validateNPCContinuationDraft,verifyNPCCausalContinuationHistory} from './living_world_causal_continuations.mjs';
+import {validateTemporalAdvance} from './living_world_time.mjs';
 import {allEvents,verifyChapterHistory} from './chapter_history.mjs';
 // Deterministic stage/check module for ChatGPT narrative saves.
 // Staging does not perform a GitHub write; only an atomic commit + read-back can confirm saving.
@@ -32,7 +33,7 @@ function verifyNarrativeSnapshot(snapshot) {
     check(event.id===`EV-${String(i+1).padStart(6,"0")}`, "Duplicate or missing event ID");
     check(Number.isSafeInteger(event.turn) && event.turn>=1 && event.turn<=m.last_completed_turn && event.turn>=highestTurn,"Event turn invalid");
     check(Number.isSafeInteger(event.day) && event.day>=lastDay && event.day<=s.time.day,"Event chronology invalid");
-    check(Array.isArray(event.actor_ids) && event.actor_ids.length>0 && event.actor_ids.every(id=>ids.has(id)), "Unknown actor");
+    check(Array.isArray(event.actor_ids) && (event.kind==="cosmic_shockwave" || event.actor_ids.length>0) && event.actor_ids.every(id=>ids.has(id)), "Unknown actor");
     check(Array.isArray(event.known_to) && event.known_to.every(id=>ids.has(id)), "Unknown knowledge recipient");
     check(Array.isArray(event.state_changes) && Array.isArray(event.progression_awards), "Event changes missing");
     lastDay=event.day;highestTurn=event.turn;
@@ -40,6 +41,22 @@ function verifyNarrativeSnapshot(snapshot) {
   check(m.last_event_id === (history.at(-1)?.id??null), "Manifest latest event mismatch");
   const keys=s.history.completed_turn_keys??[];
   check(Array.isArray(keys) && keys.length===new Set(keys).size && keys.length===m.last_completed_turn, "Turn idempotency keys invalid");
+  check(Number.isSafeInteger(s.time.day) && s.time.day>=-30, "Invalid saved relative day");
+  const arrivals=history.filter(event=>event.kind==='cosmic_shockwave');
+  check(typeof s.world.shockwave_arrived==='boolean' &&
+    arrivals.length===(s.world.shockwave_arrived?1:0), 'Shockwave flag and event history disagree');
+  check(s.time.day<=0 || s.world.shockwave_arrived, 'Day after missing shockwave');
+  if(arrivals.length){
+    const arrival=arrivals[0];
+    const action=history.find(event=>event.turn===arrival.turn && event.kind==='player_action');
+    check(action?.day===0 && action.turn_elapsed_minutes===arrival.turn_elapsed_minutes &&
+      arrival.day===0 && arrival.actor_ids.length===0 && arrival.known_to.length===0 &&
+      arrival.caused_by.length===0 && arrival.state_changes.length===0 &&
+      arrival.progression_awards.length===0 && Number.isSafeInteger(arrival.turn_elapsed_minutes) &&
+      arrival.turn_elapsed_minutes>0 &&
+      history.findLast(event=>event.turn===arrival.turn)===arrival,
+      'Invalid Day 0 world event');
+  }
   const groups=[s.player,...Object.values(s.world.actors)];
   for(const a of groups) {
     check(a.location_id in s.world.locations, "Actor location missing");
@@ -47,9 +64,9 @@ function verifyNarrativeSnapshot(snapshot) {
     check(prog && typeof prog.skills==="object" && Array.isArray(prog.powers),"Actor progression missing");
     check(Object.values(prog.skills).every(x=>Number.isSafeInteger(x.xp) && x.xp>=0 && (x.last_progress_event_id==null || history.some(event=>event.id===x.last_progress_event_id))),"Invalid skill history");
     check(Object.values(prog.skills).reduce((sum,x)=>sum+x.xp,0)===prog.lifetime_skill_xp,"Skill XP tally mismatch");
-    if(s.time.day<0) check(prog.powers.length===0,"Powers before Day 0");
+    if(!s.world.shockwave_arrived) check(prog.powers.length===0,"Powers before Day 0");
   }
-  if(s.time.day<0) {
+  if(!s.world.shockwave_arrived || s.time.day<0) {
     check(!s.world.shockwave_arrived && !s.world.humans_with_powers_observed && !s.world.animals_affected && !s.world.plants_affected && !s.world.environment_affected,"Wave effects before Day 0");
   }
   verifyConsequences(snapshot);
@@ -86,13 +103,25 @@ function stageNarrativeTurn(snapshot, turn) {
   s.history.completed_turn_keys??=[];
   check(!s.history.completed_turn_keys.includes(turn.key),"Duplicate turn key: action already saved");
   const newDay=s.time.day+turn.elapsed_days;
-  check(!(s.time.day<0 && newDay>=0),"Crossing Day 0 requires explicit shockwave transition handling");
+  // The narrator reviews where this interval ends. Arrival has no fixed clock time.
+  const phase=turn.day_zero_phase;
+  if(s.time.day<0 && newDay>=0)
+    check(newDay===0 && ['before_arrival','arrival'].includes(phase),
+      'Crossing Day 0 requires an explicit reviewed stopping point on Day 0');
+  if(phase!==undefined){
+    check(newDay===0 && !s.world.shockwave_arrived &&
+      ['before_arrival','arrival'].includes(phase) && turn.elapsed_minutes>0,
+      'Invalid or repeated Day 0 transition');
+    validateTemporalAdvance({currentPeriod:s.time.time_of_day, elapsedDays:turn.elapsed_days,
+      elapsedMinutes:turn.elapsed_minutes,nextPeriod:null});
+  }
+  check(newDay<=0 || s.world.shockwave_arrived, 'Cannot pass Day 0 before the arrival');
   const t=m.last_completed_turn+1;
   const logs=[];
   function event(kind, actorId, intent, outcome, knownTo) {
     const id=`EV-${String(m.last_event_sequence+logs.length+1).padStart(6,"0")}`;
     // Keep legacy field shape for validators and old event playback.
-    const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
+    const rec={id,chapter_id:m.chapter_id,turn:t,day:newDay,actor_ids:actorId===null?[]:[actorId],kind,intent,outcome,known_to:knownTo,caused_by:[],state_changes:[],progression_awards:[]};
     rec.travel_policy_version=1;
     if(turn.elapsed_minutes!==undefined) rec.turn_elapsed_minutes=turn.elapsed_minutes;
     e.events.push(rec);logs.push(rec);
@@ -147,6 +176,7 @@ function stageNarrativeTurn(snapshot, turn) {
     }
     const before=actor.last_resolved_action==null?null:JSON.parse(JSON.stringify(actor.last_resolved_action));
     const after={event_id:record.id,day:newDay,summary:item.outcome};
+    if(record.social_context)after.social_interaction_id=record.social_context.interaction_id;
     actor.last_resolved_action=after;
     record.state_changes.push({actor_id:item.actor_id,field:"last_resolved_action",before,after});
     const npcChanges=[];
@@ -156,6 +186,10 @@ function stageNarrativeTurn(snapshot, turn) {
     // Additional inventory, relationship, condition and plan effects are independently validated.
     if(item.changes!==undefined) check(Array.isArray(item.changes),"NPC changes must be an array");
     applyStateChanges(s,record,[...npcChanges,...(item.changes??[])]);
+  }
+  if(phase==='arrival'){
+    event('cosmic_shockwave',null,'', 'La onda cósmica alcanza la Tierra.',[]);
+    s.world.shockwave_arrived=true;
   }
   s.time.day=newDay;
   s.history.last_event_sequence=m.last_event_sequence+logs.length;

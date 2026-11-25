@@ -39,7 +39,7 @@ class CurrentCheckpoint(unittest.TestCase):
         if day < 0:
             self.assertFalse(self.state['world']['shockwave_arrived'])
             self.assertEqual(self.state['player']['progression']['powers'], [])
-        else:
+        elif day > 0:
             self.assertTrue(self.state['world']['shockwave_arrived'])
 if __name__=='__main__':
     unittest.main()

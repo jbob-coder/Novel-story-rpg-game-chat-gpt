@@ -115,6 +115,45 @@ class MultiChapterValidator(unittest.TestCase):
             chapter.write(archive["entries"][-1]["text"] + "\n")
         self.flush_state()
 
+    def test_day_zero_before_arrival_and_missing_or_unsupported_arrival(self):
+        self.state["time"]["day"] = 0
+        self.append_turn()
+        self.assertEqual(validate(self.root), [])
+        self.state["world"]["animals_affected"] = True
+        self.flush_state()
+        self.assert_invalid("animals_affected")
+        self.state["world"]["animals_affected"] = False
+        self.state["world"]["shockwave_arrived"] = True
+        self.flush_state()
+        self.assert_invalid("shockwave flag and event history disagree")
+        self.state["time"]["day"] = 1
+        self.state["world"]["shockwave_arrived"] = False
+        self.flush_state()
+        self.assert_invalid("day after missing shockwave")
+
+    def test_day_zero_arrival_has_its_own_event_and_gives_no_actor_knowledge(self):
+        self.state["time"]["day"] = 0
+        self.append_turn()
+        path = "chapters/CH-001.events.json"
+        events = self.read(path)
+        action = events["events"][-1]
+        action["turn_elapsed_minutes"] = 15
+        seq = self.manifest["last_event_sequence"] + 1
+        eid = f"EV-{seq:06d}"
+        arrival = dict(action, id=eid, kind="cosmic_shockwave", actor_ids=[], known_to=[],
+                       intent="", outcome="La onda cósmica alcanza la Tierra.")
+        events["events"].append(arrival)
+        self.write(path, events)
+        self.state["world"]["shockwave_arrived"] = True
+        self.state["chapter"]["last_resolved_event_id"] = eid
+        self.state["history"]["last_event_sequence"] = seq
+        self.manifest.update(last_event_sequence=seq, last_event_id=eid)
+        self.flush_state()
+        self.assertEqual(validate(self.root), [])
+        arrival["known_to"] = ["PLAYER-001"]
+        self.write(path, events)
+        self.assert_invalid("invalid Day 0 world event")
+
     def assert_invalid(self, fragment):
         issues = validate(self.root)
         self.assertTrue(any(fragment in issue for issue in issues), issues)
