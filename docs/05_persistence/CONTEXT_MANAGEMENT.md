@@ -549,3 +549,35 @@ The ordinary agenda now uses commitment priority (`urgent`,
 classes; it still proposes **no** automatic action. Blocked obligations
 stay blocked, deadlines never imply failure, and an NPC can retain
 uncertainty or independently choose an alternative.
+
+
+## Review coverage and optional obligation reconsideration (2026-11-24)
+
+An NPC can keep a persisted commitment unchanged after a real reviewed
+decision. Previously there was no way to distinguish that from a commitment
+that had never been considered since its last change. An optional
+`obligationReview` on `draftReviewedNPCCausalContinuation` now stores
+an actor-owned, narrator-private `continuation_context.obligation_review`.
+It requires `commitment_id`, `last_change_event_id`, `review_reason`,
+and `alternative_considered` in free text. The last-change event must
+be the actual **latest prior material modification** of the same actor's
+still-open commitment, belong to an earlier turn, and be included among the
+reviewed causal source event IDs. Draft, stage and chronological replay
+(including archived chapters) validate the actor and exact event provenance.
+Historical continuations without this optional field remain valid.
+
+`recommendNPCObligationCoverage({snapshot,actorIds,limit})` supplies a
+second, read-only review lane: per actor, it exposes *all* active obligations
+and recommends the one with oldest documented attention (last material
+change or explicit review event). A recorded review of one urgent commitment
+allows another, lower-priority commitment to become the coverage candidate.
+This neither overrides urgency-based agenda selection nor compels the
+actor to choose the candidate. Age uses narrative **turns**, not fabricated
+hours. The query rejects invalid causal history and verifies modern
+commitment event evidence before producing suggestions.
+
+Ordinary actor-owned commitment changes remain the **only** persisted way
+to change due dates, priority, blockers or status. An actor's personal
+rescheduling note does not prove a creditor, employer or client agreed.
+No automatic world time, obligation resolution or NPC action is added.
+The five canonical CH-000 save files remain untouched; tests are synthetic.
