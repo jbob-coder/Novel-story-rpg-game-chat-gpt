@@ -434,3 +434,62 @@ a claimed causal relation.
 
 All outputs are narrator-private, read-only and derived from the actual
 replay-validated checkpoint. The history and gameplay are unchanged.
+
+
+## Actor-owned competing perspectives without automatic truth arbitration (2026-11-24)
+
+An optional `contrasts_with` and `contrast_reason` pair on a **new**
+`knowledge` effect links it to an exact, previously held statement of
+the **same NPC**. The original and later entries are append-only.
+Unlike `revision_of`, this makes **no supersession claim**; the two may
+remain unresolved. Both write-time and replay guards enforce actor
+ownership, bounded editorial reason and temporal provenance (no future
+or same-event sourced memory). Replay checks post-turn-9 source effects
+against the actual original actor event; older pinned baseline memories
+retain their historical limits.
+
+Narrator-private exact `checkNPCFactEvidence` can show the link in either
+direction through `contrastLinkCount` and bounded `contrastLinksForReview`,
+pointing at the exact event and the other statement's originating event.
+Neither record proves objective contradiction, truth, active belief,
+acceptance, or an NPC decision; those require contextual adjudication.
+No statements are copied into reader-visible context, and no automatic
+NPC action or global conflict resolution has been added.
+
+Synthetic QA exercises two independent NPC responses to a shared
+attributed rumor: one chooses additional verification, another registers
+uncertainty without changing their plan. Both keep the original reports,
+their contrast event remains actor-owned after CH-001 reloading, and
+foreign/future/malformed provenance fails. The player checkpoint and
+five protected story files never change.
+
+## Sealed NPC memories on every valid post-anchor checkpoint (2026-11-24)
+
+`verifyNarrativeSnapshot` must replay the verified NPC knowledge anchor
+on **every** checkpoint at or beyond CH-000 turn 9 / EV-000029, whether
+or not the current history contains any newly admitted NPC or social encounter.
+Previously the anchor check was only invoked by those two special paths,
+which allowed direct insertion/removal of a legacy NPC memory to pass generic
+readback when no social group existed. Event-linked updates still have their
+own ownership/provenance checks; the baseline roster's exact stored facts are
+not optional.
+
+Archived snapshots **before** the pinned event boundary remain eligible for
+their historical validation without retrofitting the later anchor. No narrator
+turn, player action, NPC decision, schedule tick or in-world event is added.
+
+Regression QA covers forged knowledge insertion and deletion from a cloned
+authentic turn-nine snapshot, plus a valid synthetic private NPC learning
+event with an exact source record. The automatic memory relevance test now
+stages its 21 synthetic notes via an owned event rather than changing
+`actor.knowledge` directly. The original five-file save remains untouched.
+
+## Day 0 actorless event replay guard (QA)
+The sealed-knowledge replayer must check that a historical event actually has
+a social `transfer` before comparing its speaker to `actor_ids[0]`.
+Otherwise an actorless world event (the legitimate Day 0 shockwave) makes
+`undefined===undefined` true and dereferencing `context.transfer` rejects
+an otherwise valid save before any detached commit can be created.
+The ordinary-choice / private-consequence / Day 0 arrival / recovery
+integration test exercises this exact path. The new condition preserves
+social provenance checks while ignoring non-social, actorless world events.

@@ -216,3 +216,170 @@ test('an NPC cannot claim another person private experience as its own cause',()
  }),/NPC cannot react to a future event or an event it does not know/);
  assert.equal(verifyNarrativeSnapshot(heard),true);
 });
+
+
+test('two NPCs can independently contrast one sourced rumor and choose different actions without erasing memory',()=>{
+ const base=initial(),before=JSON.stringify(base),mara='NPC-007';
+ const rumor='SYNTHETIC QA: Darius claims an ordinary repair parcel was already delivered to its customer.';
+ const source=stage(base,'synthetic-contrasts-source',[{
+  actor_id:darius,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Darius records a privately received shipping report.',
+  outcome:'SYNTHETIC QA PRIVATE: Darius keeps one unverified delivery report.',
+  changes:[{field:'knowledge',fact:rumor,
+    source:'SYNTHETIC QA: attributed private shipping message'}]
+ }]);
+ const sourceEntry=source.state.world.actors[darius].knowledge.at(-1);
+ assert.ok(sourceEntry.includes('EV-000031'));
+ const report='SYNTHETIC QA: a colleague said the parcel was already delivered.';
+ const recipients=stage(source,'synthetic-contrasts-recipients',[
+  {actor_id:noah,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Noah hears an attributed account while working in Market Row.',
+   outcome:'SYNTHETIC QA PRIVATE: Noah hears a claim, not a confirmed delivery.',
+   changes:[{field:'knowledge',fact:report,
+     source:'SYNTHETIC QA: direct report from Darius',
+     transmitted_from:{actor_id:darius,knowledge_entry:sourceEntry,
+       event_id:'EV-000031',reported_form:'as_heard'}}]},
+  {actor_id:mara,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Mara privately reads a message attributed to Darius.',
+   outcome:'SYNTHETIC QA PRIVATE: Mara sees only the claimed delivery.',
+   changes:[{field:'knowledge',fact:report,
+     source:'SYNTHETIC QA: attributed phone message from Darius',
+     transmitted_from:{actor_id:darius,knowledge_entry:sourceEntry,
+       event_id:'EV-000031',reported_form:'as_heard'}}]}
+ ]);
+ assert.equal(verifyNarrativeSnapshot(recipients),true);
+ const noahEntry=recipients.state.world.actors[noah].knowledge.at(-1);
+ const maraEntry=recipients.state.world.actors[mara].knowledge.at(-1);
+ assert.notEqual(noahEntry,maraEntry);
+ assert.ok(noahEntry.includes('EV-000033'));
+ assert.ok(maraEntry.includes('EV-000034'));
+ const oldPlan=recipients.state.world.actors[noah].independent_plan;
+ const noahCounter='SYNTHETIC QA: Noah personally sees the same parcel waiting undelivered on the counter.';
+ const maraCounter='SYNTHETIC QA: Mara sees a generic receipt without a customer name or proof of delivery.';
+ const contrasted=stage(recipients,'synthetic-contrasts-divergent-observations',[
+  {actor_id:noah,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Noah checks the market counter before making an independent decision.',
+   outcome:'SYNTHETIC QA PRIVATE: Noah sees competing evidence and chooses further checks.',
+   changes:[
+    {field:'knowledge',fact:noahCounter,source:'SYNTHETIC QA: own direct inspection',
+     contrasts_with:noahEntry,
+     contrast_reason:'SYNTHETIC QA: the parcel physically remains on the market counter.'},
+    {field:'independent_plan',before:oldPlan,
+     after:'SYNTHETIC QA: verify the parcel destination before promising a handover.'}]},
+  {actor_id:mara,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Mara independently compares her message against an ambiguous receipt.',
+   outcome:'SYNTHETIC QA PRIVATE: Mara remains uncertain rather than choosing a new plan.',
+   changes:[{field:'knowledge',fact:maraCounter,
+    source:'SYNTHETIC QA: own receipt inspection',
+    contrasts_with:maraEntry,
+    contrast_reason:'SYNTHETIC QA: the generic receipt cannot establish delivery of this parcel.'}]}
+ ]);
+ assert.equal(verifyNarrativeSnapshot(contrasted),true);
+ assert.equal(contrasted.manifest.last_event_id,'EV-000037');
+ const noahBefore=checkNPCFactEvidence({snapshot:contrasted,actorId:noah,fact:report});
+ const maraBefore=checkNPCFactEvidence({snapshot:contrasted,actorId:mara,fact:report});
+ const noahAfter=checkNPCFactEvidence({snapshot:contrasted,actorId:noah,fact:noahCounter});
+ const maraAfter=checkNPCFactEvidence({snapshot:contrasted,actorId:mara,fact:maraCounter});
+ assert.equal(noahBefore.status,'recorded_event');
+ assert.equal(maraBefore.status,'recorded_event');
+ assert.equal(noahBefore.contrastLinkCount,1);
+ assert.equal(maraBefore.contrastLinkCount,1);
+ assert.equal(noahBefore.statementRevisionStatus,'not_marked_revised');
+ assert.equal(maraBefore.statementRevisionStatus,'not_marked_revised');
+ assert.deepEqual(noahBefore.contrastLinksForReview,[{
+  recordedByActorId:noah,contrastEventId:'EV-000036',
+  contrastEventPath:'chapters/CH-000.events.json',
+  otherStatementOriginEventId:'EV-000036',
+  direction:'prior_competing_account',
+  status:'actor_reviewed_competing_reports_only',
+  establishedTruth:'not_assessed',decisionInferred:false
+ }]);
+ assert.equal(noahAfter.contrastLinkCount,1);
+ assert.equal(noahAfter.contrastLinksForReview[0].otherStatementOriginEventId,'EV-000033');
+ assert.equal(noahAfter.contrastLinksForReview[0].direction,'later_competing_account');
+ assert.equal(maraBefore.contrastLinksForReview[0].contrastEventId,'EV-000037');
+ assert.equal(maraAfter.contrastLinksForReview[0].otherStatementOriginEventId,'EV-000034');
+ assert.equal(noahAfter.truthStatus,'not_assessed');
+ assert.equal(maraAfter.truthStatus,'not_assessed');
+ assert.ok(contrasted.state.world.actors[noah].knowledge.includes(noahEntry));
+ assert.ok(contrasted.state.world.actors[mara].knowledge.includes(maraEntry));
+ assert.ok(contrasted.state.world.actors[darius].knowledge.includes(sourceEntry));
+ assert.equal(contrasted.state.world.actors[mara].independent_plan,
+  recipients.state.world.actors[mara].independent_plan);
+ assert.notEqual(contrasted.state.world.actors[noah].independent_plan,oldPlan);
+ assert.deepEqual(contrasted.state.player,base.state.player);
+ const closed=close(contrasted);
+ const reloaded=decodeFiveFiles({...encodeFiveFiles(contrasted),...encodeFiveFiles(closed)},'CH-001');
+ assert.equal(verifyNarrativeSnapshot(reloaded),true);
+ assert.deepEqual(checkNPCFactEvidence({snapshot:reloaded,actorId:noah,fact:report})
+  .contrastLinksForReview,noahBefore.contrastLinksForReview);
+ assert.deepEqual(checkNPCFactEvidence({snapshot:reloaded,actorId:mara,fact:report})
+  .contrastLinksForReview,maraBefore.contrastLinksForReview);
+ const privateContext=buildContextPacket({snapshot:reloaded,
+  npcKnowledgeClaims:[{actorId:noah,fact:report},{actorId:mara,fact:report}]});
+ assert.deepEqual(privateContext.npcKnowledgeChecks.map(x=>x.contrastLinkCount),[1,1]);
+ const visible=buildContextPacket({snapshot:reloaded,audience:'reader_visible'});
+ assert.equal(visible.npcKnowledgeChecks,undefined);
+ assert.equal(JSON.stringify(visible).includes('contrastLinksForReview'),false);
+ for(const statement of [rumor,noahCounter,maraCounter]){
+  assert.equal(reloaded.chapter.includes(statement),false);
+  assert.equal(JSON.stringify(visible).includes(statement),false);
+ }
+ assert.equal(JSON.stringify(base),before);
+});
+
+test('contrasts require an older exact actor-owned memory and an explicit review reason',()=>{
+ const {heard,oldEntry}=sourceTestimony();
+ const before=JSON.stringify(heard);
+ const foreign=heard.state.world.actors[noah].knowledge[0];
+ assert.throws(()=>stage(heard,'synthetic-contrast-wrong-actor',[{
+  actor_id:darius,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Darius claims another actor memory as his own.',
+  outcome:'SYNTHETIC QA PRIVATE: the invalid contradiction is refused.',
+  changes:[{field:'knowledge',
+   fact:'SYNTHETIC QA: an unsupported competing observation.',
+   source:'SYNTHETIC QA: fictitious private cause',
+   contrasts_with:foreign,
+   contrast_reason:'SYNTHETIC QA: a competing observation was claimed.'}]
+ }]),/Knowledge contrast requires a prior actor-owned statement and reason/);
+ assert.throws(()=>stage(heard,'synthetic-contrast-missing-reason',[{
+  actor_id:darius,reviewed:true,resolved:true,
+  causal_basis:'SYNTHETIC QA: Darius proposes an unexplained contrast.',
+  outcome:'SYNTHETIC QA PRIVATE: the unexplained contrast is refused.',
+  changes:[{field:'knowledge',
+   fact:'SYNTHETIC QA: a second ungrounded competing observation.',
+   source:'SYNTHETIC QA: private review',
+   contrasts_with:oldEntry}]
+ }]),/Knowledge contrast requires a prior actor-owned statement and reason/);
+ assert.equal(JSON.stringify(heard),before);
+});
+
+test('readback refuses a contrast relinked to later NPC memory, even if final state holds it',()=>{
+ const {heard,oldEntry}=sourceTestimony();
+ const first=stage(heard,'synthetic-contrast-historical',[
+  {actor_id:darius,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Darius finds one apparently competing report.',
+   outcome:'SYNTHETIC QA PRIVATE: the competing fact is kept for review.',
+   changes:[{field:'knowledge',
+    fact:'SYNTHETIC QA: an observation complicates the earlier report.',
+    source:'SYNTHETIC QA: independently checked source',
+    contrasts_with:oldEntry,
+    contrast_reason:'SYNTHETIC QA: the new report may contradict previous testimony.'}]}
+ ]);
+ const later=stage(first,'synthetic-contrast-future-owner',[
+  {actor_id:darius,reviewed:true,resolved:true,
+   causal_basis:'SYNTHETIC QA: Darius learns additional information later.',
+   outcome:'SYNTHETIC QA PRIVATE: a separate later observation is recorded.',
+   changes:[{field:'knowledge',
+    fact:'SYNTHETIC QA: later independent measurement of the same repair.',
+    source:'SYNTHETIC QA: later check'}]}
+ ]);
+ assert.equal(verifyNarrativeSnapshot(later),true);
+ const tampered=structuredClone(later);
+ const old= tampered.events.events.find(x=>x.id==='EV-000034')
+   .state_changes.find(x=>x.field==='knowledge');
+ old.contrasts_with=tampered.state.world.actors[darius].knowledge.at(-1);
+ assert.throws(()=>verifyNarrativeSnapshot(tampered),
+  /Saved NPC contrast lacks older actor-specific provenance/);
+ assert.equal(verifyNarrativeSnapshot(later),true);
+});
