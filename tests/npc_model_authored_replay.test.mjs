@@ -15,6 +15,16 @@ const original=Object.fromEntries(paths.map(p=>[p,read(p)]));
 const trace=JSON.parse(read('tests/npc_model_authored_trace.json'));
 const actors=['NPC-006','NPC-005','NPC-003','NPC-001','NPC-002','NPC-004','NPC-007'];
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+
+// Node assertion diffs print actual and expected values. Source-bound NPC
+// snapshots, actor IDs, causality and save files are narrator-private even on
+// *failure*. Use a boolean assertion with a fixed diagnostic instead.
+const assertPrivateEqual=(actual,expected,diagnostic)=>{
+ assert.ok(actual===expected,diagnostic);
+};
+const assertPrivateDeepEqual=(actual,expected,diagnostic)=>{
+ assert.ok(JSON.stringify(actual)===JSON.stringify(expected),diagnostic);
+};
 const interval={elapsedDays:0,elapsedMinutes:10,nextPeriod:'morning'};
 
 /**
@@ -125,8 +135,8 @@ test('sequential external model trace replays only responses bound to freshly ve
   assertCleanTraceResponse(response);
   const request=nextRequest(snapshot,i);
   assert.ok(request);
-  assert.equal(response.requestSha256,hash(request),'Response is not bound to current request');
-  assert.equal(response.proposal.actorId,request.actorId);
+  assertPrivateEqual(response.requestSha256,hash(request),'NPC response request binding failed');
+  assertPrivateEqual(response.proposal.actorId,request.actorId,'NPC response actor binding failed');
   assert.equal(typeof response.author,'string');
   assert.ok(response.author.trim().length>0);
   const action=response.proposal.decision==='act';
@@ -143,16 +153,16 @@ test('sequential external model trace replays only responses bound to freshly ve
   const before=JSON.stringify(snapshot);
   const staged=stageReviewedNPCIntentionTurn({snapshot,observedHead:'a'.repeat(40),
    turn:turn(i+1),choices:[choice]});
-  assert.equal(JSON.stringify(snapshot),before);
+  assertPrivateEqual(JSON.stringify(snapshot),before,'NPC staging mutated private input snapshot');
   assert.equal(verifyNarrativeSnapshot(staged),true);
   assert.equal(staged.manifest.last_completed_turn,10+i);
   assert.equal(staged.manifest.last_event_sequence-snapshot.manifest.last_event_sequence,action?2:1);
   assert.equal(staged.npcTurnReview.createdCanonicalSave,false);
-  assert.equal(JSON.stringify(staged.state.player),player);
+  assertPrivateEqual(JSON.stringify(staged.state.player),player,'Synthetic replay modified original player');
   if(action){
    const e=staged.events.events.at(-1);
-   assert.deepEqual(e.actor_ids,[request.actorId]);
-   assert.deepEqual(e.caused_by,response.proposal.sourceEventIds??[]);
+   assertPrivateDeepEqual(e.actor_ids,[request.actorId],'NPC event actor ownership failed');
+   assertPrivateDeepEqual(e.caused_by,response.proposal.sourceEventIds??[],'NPC event causal provenance failed');
    assert.ok(!staged.chapter.includes(response.outcome));
    assert.ok(staged.transcript.entries.every(x=>!x.text.includes(response.outcome)));
    confirmedActions.push({
@@ -163,7 +173,7 @@ test('sequential external model trace replays only responses bound to freshly ve
   }
   snapshot=decodeFiveFiles(encodeFiveFiles(staged),'CH-000');
   assert.equal(verifyNarrativeSnapshot(snapshot),true);
-  assert.equal(JSON.stringify(snapshot.state.player),player);
+  assertPrivateEqual(JSON.stringify(snapshot.state.player),player,'Synthetic replay modified original player on readback');
   decisions.push({actorId:request.actorId,decision:response.proposal.decision,legacyCandidateCount:legacy.length});
  }
  const privateMetrics=privateReplayEvidence(decisions,confirmedActions);
@@ -171,7 +181,8 @@ test('sequential external model trace replays only responses bound to freshly ve
  assert.equal(privateMetrics.acts+privateMetrics.abstentions,trace.responses.length);
  assert.equal(privateMetrics.confirmedActionRecords,privateMetrics.acts);
  assert.equal(privateMetrics.semanticQualityEstablished,false);
- for(const p of paths)assert.equal(read(p),original[p]);
+ for(const p of paths)assertPrivateEqual(read(p),original[p],
+  'Canonical save fixture changed during synthetic replay');
  const next=trace.responses.length<30?nextRequest(snapshot,trace.responses.length):null;
  if(next){
   assert.ok(next);
@@ -293,5 +304,31 @@ test('external trace rejects hidden private packets and unreviewed extra fields 
   assert.ok(message,'Unexpected acceptance of malformed external trace');
   assert.ok(!message.includes(sealed),
    'Failure message must not copy rejected private trace content into CI');
+ }
+});
+
+test('private assertion failures never include actor, causal history or save contents',()=>{
+ const secrets=[
+  'PRIVATE-LOCATION-AND-ACTOR-SENTINEL',
+  'PRIVATE-CAUSAL-EVENT-DETAIL-SENTINEL',
+  'PRIVATE-CANONICAL-SAVE-TEXT-SENTINEL'
+ ];
+ for(const secret of secrets){
+  for(const run of [
+   ()=>assertPrivateEqual(secret,'unrelated','Private actor comparison mismatch'),
+   ()=>assertPrivateDeepEqual([{source:secret}],[{source:'other'}],
+    'Private causal comparison mismatch'),
+   ()=>assertPrivateEqual(JSON.stringify({state:{knowledge:[secret]}}),
+    JSON.stringify({state:{knowledge:[]}}),'Canonical save comparison mismatch')
+  ]){
+   let thrown;
+   try{run();}catch(error){thrown=error;}
+   assert.ok(thrown,'A private mismatch must fail');
+   const emitted=String(thrown.stack??thrown);
+   assert.ok(!emitted.includes(secret),
+    'Private assertion exception must not expose actual input value');
+   assert.ok(!emitted.includes('source:')&&!emitted.includes('knowledge:'),
+    'Private assertion exception must not include structured private fields');
+  }
  }
 });
