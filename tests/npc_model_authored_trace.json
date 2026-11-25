@@ -97,6 +97,55 @@
           "after": "Treat the immediate Crosswater inspection as complete; during the next authorized service circuit, compare any newly observed display anomaly with the recorded symptoms before deciding whether to reopen the equipment issue."
         }
       ]
+    },
+    {
+      "requestSha256": "19d7caff629999d03d16af00093563a2950449f74aea06e9171cdb5e03090eae",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-004",
+        "decision": "act",
+        "intention": "Mientras continúa de camino a la escuela, decidir qué tipo de crítica artística desea solicitar después de presentar su dibujo: preguntar a alguien que lo vea por primera vez qué parte de la calle le llama más la atención, antes de explicarle su propia intención.",
+        "reasoning": "Me resultó útil que Jack señalara el problema de perspectiva en EV-000018, pero quiero desarrollar mi propio criterio artístico y no depender exclusivamente de sus opiniones. Ya llevo la copia preparada según EV-000025 y salí hacia la escuela en EV-000028. Puedo preparar una pregunta sin presuponer que he llegado, que haya un compañero disponible o que la presentación haya ocurrido.",
+        "sourceEventIds": [
+          "EV-000018",
+          "EV-000025",
+          "EV-000028"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Elena decide que, si surge una oportunidad después de presentar su ilustración, pedirá una primera impresión visual sin anticipar la respuesta. Mantiene su intención de llegar a la escuela; no se establece una llegada, conversación, presentación ni nueva relación.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Caminar hacia la escuela con la mochila y la memoria USB para presentar hoy su ilustración; todavía no se ha narrado la llegada a clase.",
+          "after": "Continuar hacia la escuela con la mochila y la USB para presentar su ilustración; si después surge una oportunidad, pedir una primera impresión visual sin explicar de antemano su intención artística."
+        }
+      ]
+    },
+    {
+      "requestSha256": "d9b11bab64bae250f2b9e120b4d7f10f1b0c0970b53af227620c55c26d226d09",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-007",
+        "decision": "act",
+        "intention": "Reconsiderar mi recuerdo de que quedaba un cobro pendiente: recordar el efectivo recibido y el cambio entregado, para no reclamar dos veces el importe ni confundir un recibo extraño con una deuda real.",
+        "reasoning": "En EV-000009 el cobro aún no se había efectuado, pero en EV-000011 recibí diez en efectivo, devolví dos con veinte y anoté la venta. Ambos recuerdos corresponden a momentos diferentes. Puedo reconocer el pago como realizado sin dar por cuadrada toda la caja ni suponer que estoy trabajando esta mañana.",
+        "sourceEventIds": [
+          "EV-000009",
+          "EV-000011"
+        ]
+      },
+      "reviewed": true,
+      "outcome": "Mara reconsidera la anotación mental del cobro pendiente y reconoce que el pago posterior la dejó desactualizada. Conserva el recuerdo inicial como antecedente de la incidencia, no como una deuda vigente. No se realiza otro cobro, contacto, cierre de caja ni cambio de turno.",
+      "changes": [
+        {
+          "field": "knowledge",
+          "fact": "El cobro antes pendiente del café y el pastelito quedó satisfecho con el pago de 7,80 en efectivo; no corresponde reclamarlo de nuevo por el recibo extraño.",
+          "source": "Recuerdo propio de recibir diez en efectivo, entregar dos con veinte de cambio y anotar manualmente la venta en el turno anterior",
+          "revision_of": "El café y el dulce de Jack fueron servidos y su pago sigue pendiente.",
+          "revision_reason": "El recuerdo posterior de haber recibido el efectivo y devuelto el cambio establece que el estado pendiente era anterior al pago."
+        }
+      ]
     }
   ]
 }
