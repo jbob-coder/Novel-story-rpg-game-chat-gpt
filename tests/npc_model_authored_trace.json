@@ -1,4 +1,25 @@
 {
   "version": 1,
-  "responses": []
+  "responses": [
+    {
+      "requestSha256": "2fad8324c3ae0c7acffb877fce576096df9bdfcc72b070addd134f2ec0c919ba",
+      "author": "ChatGPT narrator, external to engine; same-session editorial review",
+      "proposal": {
+        "actorId": "NPC-006",
+        "decision": "act",
+        "intention": "Separar mentalmente los diagnósticos de las promesas de reparación: establecer que cualquier plazo o precio futuro dependerá de confirmar el repuesto necesario, antes de ofrecer un compromiso al cliente.",
+        "reasoning": "Su objetivo es conservar la reputación del negocio y conseguir clientes legítimos. Su plan actual incluye buscar repuestos generales, pero el contexto no confirma existencias ni encargos concretos. Puede mejorar su criterio de atención sin depender de Jack, abrir el local, encontrar un proveedor ni disponer de dinero adicional.",
+        "sourceEventIds": []
+      },
+      "reviewed": true,
+      "outcome": "Noah adopta como prioridad personal distinguir una consulta de diagnóstico de un compromiso de reparación. Decide no prometer plazos ni precios de trabajos cuyos componentes todavía no haya confirmado. No se produce ningún contacto, compra ni reparación.",
+      "changes": [
+        {
+          "field": "independent_plan",
+          "before": "Revisar encargos pendientes y buscar repuestos generales.",
+          "after": "Revisar encargos pendientes y buscar repuestos generales; antes de comprometer precios o plazos, confirmar los componentes necesarios y distinguir diagnóstico de reparación."
+        }
+      ]
+    }
+  ]
 }
