@@ -257,6 +257,34 @@ function reviewedNPCReconsiderations(snapshot,actorId,originalEntry){
 }
 
 // Exact recorded knowledge proves an actor holds a statement, never its truth.
+// Unlike revision_of, contrasts_with preserves both claims without asserting
+// that one is false, adopted, resolved, or automatically action-guiding.
+// Only exact same-actor, replay-validated links are shown in narrator context.
+function actorKnowledgeContrasts(snapshot,actorId,entry){
+  const links=[];
+  for(const event of allEvents(snapshot))for(const change of event.state_changes??[]){
+    if(change.field!=='knowledge'||change.actor_id!==actorId||
+      typeof change.contrasts_with!=='string'||
+      (change.after!==entry&&change.contrasts_with!==entry))continue;
+    const other=change.after===entry?change.contrasts_with:change.after;
+    links.push({
+      recordedByActorId:actorId,
+      contrastEventId:event.id,
+      contrastEventPath:'chapters/'+event.chapter_id+'.events.json',
+      otherStatementOriginEventId:sourcedKnowledge.exec(other)?.[3]??null,
+      direction:change.after===entry?'later_competing_account':'prior_competing_account',
+      status:'actor_reviewed_competing_reports_only',
+      establishedTruth:'not_assessed',
+      decisionInferred:false
+    });
+  }
+  return {
+    contrastLinkCount:links.length,
+    contrastLinksForReview:links.slice(0,8),
+    ...(links.length>8?{contrastsTruncated:true}: {})
+  };
+}
+
 function factEvidenceAtSnapshot(snapshot,actorId,fact){
   const actor=snapshot.state.world.actors[actorId];
   const entry=(actor.knowledge??[]).find(value=>
@@ -268,7 +296,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
   if(!source)return {...foundation,status:'recorded_checkpoint',
     mayAssumeKnown:true,sourceEventId:null,truthStatus:'not_assessed',
     ...linkedStatementRevision(snapshot,actorId,entry),
-    ...reviewedNPCReconsiderations(snapshot,actorId,entry)};
+    ...reviewedNPCReconsiderations(snapshot,actorId,entry),
+    ...actorKnowledgeContrasts(snapshot,actorId,entry)};
   const event=allEvents(snapshot).find(value=>value.id===source[3]);
   const recorded=event?.actor_ids?.includes(actorId)?event.state_changes?.find(change=>
     change.field==='knowledge'&&change.actor_id===actorId&&
@@ -309,7 +338,8 @@ function factEvidenceAtSnapshot(snapshot,actorId,fact){
       scope:'only_the_recipient_recorded_statement'
     }}:{}),
     ...linkedStatementRevision(snapshot,actorId,entry),
-    ...reviewedNPCReconsiderations(snapshot,actorId,entry)};
+    ...reviewedNPCReconsiderations(snapshot,actorId,entry),
+    ...actorKnowledgeContrasts(snapshot,actorId,entry)};
 }
 /** Strict evidence check; never equate event involvement or rumors with knowledge. */
 export function checkNPCFactEvidence({snapshot,actorId,fact}={}){

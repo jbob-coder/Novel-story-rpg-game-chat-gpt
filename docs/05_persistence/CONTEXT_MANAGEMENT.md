@@ -434,3 +434,31 @@ a claimed causal relation.
 
 All outputs are narrator-private, read-only and derived from the actual
 replay-validated checkpoint. The history and gameplay are unchanged.
+
+
+## Actor-owned competing perspectives without automatic truth arbitration (2026-11-24)
+
+An optional `contrasts_with` and `contrast_reason` pair on a **new**
+`knowledge` effect links it to an exact, previously held statement of
+the **same NPC**. The original and later entries are append-only.
+Unlike `revision_of`, this makes **no supersession claim**; the two may
+remain unresolved. Both write-time and replay guards enforce actor
+ownership, bounded editorial reason and temporal provenance (no future
+or same-event sourced memory). Replay checks post-turn-9 source effects
+against the actual original actor event; older pinned baseline memories
+retain their historical limits.
+
+Narrator-private exact `checkNPCFactEvidence` can show the link in either
+direction through `contrastLinkCount` and bounded `contrastLinksForReview`,
+pointing at the exact event and the other statement's originating event.
+Neither record proves objective contradiction, truth, active belief,
+acceptance, or an NPC decision; those require contextual adjudication.
+No statements are copied into reader-visible context, and no automatic
+NPC action or global conflict resolution has been added.
+
+Synthetic QA exercises two independent NPC responses to a shared
+attributed rumor: one chooses additional verification, another registers
+uncertainty without changing their plan. Both keep the original reports,
+their contrast event remains actor-owned after CH-001 reloading, and
+foreign/future/malformed provenance fails. The player checkpoint and
+five protected story files never change.

@@ -112,6 +112,22 @@ function applyStateChangesUnchecked(state, record, changes = []) {
         requireFact(!priorEvent||Number(priorEvent.slice(3))<Number(record.id.slice(3)),
           'Knowledge revision cannot cite a same-event or future memory');
       }
+      // A contrast records competing observations; unlike revision_of it does
+      // not claim that one statement supersedes or disproves the other.
+      const contrast=Object.hasOwn(change,'contrasts_with')||
+        Object.hasOwn(change,'contrast_reason');
+      if(contrast){
+        requireFact(typeof change.contrasts_with==='string'&&
+          actor.knowledge.includes(change.contrasts_with)&&
+          change.contrasts_with!==entry&&
+          typeof change.contrast_reason==='string'&&
+          change.contrast_reason.trim().length>=12&&
+          change.contrast_reason.length<=500,
+          'Knowledge contrast requires a prior actor-owned statement and reason');
+        const priorId=sourcedKnowledge.exec(change.contrasts_with)?.[3];
+        requireFact(!priorId||Number(priorId.slice(3))<Number(record.id.slice(3)),
+          'Knowledge contrast cannot cite same-event or future knowledge');
+      }
       if(Object.hasOwn(change,'transmitted_from'))
         validateTransferredKnowledge(state,actorId,record.id,change.transmitted_from);
       actor.knowledge.push(entry);
@@ -119,6 +135,8 @@ function applyStateChangesUnchecked(state, record, changes = []) {
         source: change.source, after: entry,
         ...(revision?{revision_of:change.revision_of,
           revision_reason:change.revision_reason}: {}),
+        ...(contrast?{contrasts_with:change.contrasts_with,
+          contrast_reason:change.contrast_reason}: {}),
         ...(Object.hasOwn(change,'transmitted_from')?
           {transmitted_from:copy(change.transmitted_from)}:{})});
     } else if (field === 'resources') {
@@ -306,6 +324,27 @@ function verifyStateChanges(snapshot) {
         requireFact(typeof change.fact==='string'&&typeof change.source==='string'&&
           change.after===`${change.fact} (source: ${change.source}; ${event.id})`,
           'Recorded knowledge provenance differs from source event');
+        const contrast=Object.hasOwn(change,'contrasts_with')||
+          Object.hasOwn(change,'contrast_reason');
+        if(contrast){
+          requireFact(typeof change.contrasts_with==='string'&&
+            (actor.knowledge??[]).includes(change.contrasts_with)&&
+            change.contrasts_with!==change.after&&
+            typeof change.contrast_reason==='string'&&
+            change.contrast_reason.trim().length>=12&&
+            change.contrast_reason.length<=500,
+            'Saved NPC contrast lacks a prior owned statement or reason');
+          const priorId=sourcedKnowledge.exec(change.contrasts_with)?.[3];
+          if(priorId){
+            const prior=events.find(e=>e.id===priorId);
+            requireFact(prior&&Number(priorId.slice(3))<Number(event.id.slice(3))&&
+              (Number(priorId.slice(3))<=29||
+                (prior.actor_ids?.[0]===change.actor_id&&
+                 prior.state_changes?.some(c=>c.field==='knowledge'&&
+                   c.actor_id===change.actor_id&&c.after===change.contrasts_with))),
+              'Saved NPC contrast lacks older actor-specific provenance');
+          }
+        }
         if(Object.hasOwn(change,'transmitted_from')){
           validateTransferredKnowledge(state,change.actor_id,event.id,change.transmitted_from);
           const transfer=change.transmitted_from,prior=events.find(e=>e.id===transfer.event_id);

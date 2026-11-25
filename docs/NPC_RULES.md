@@ -242,3 +242,22 @@ vínculos causales explícitos y los tipos de cambios que realmente ocurrieron.
 No convierte el motivo alegado en verdad ni presupone que un cambio
 emocional o de creencia ocurrió por el mero paso de tiempo. Las decisiones
 de otros NPC no se modifican por contagio.
+
+
+### Perspectivas en conflicto (sin declarar un ganador)
+
+Un NPC puede mantener dos recuerdos que considera **en tensión** sin borrar,
+corregir ni descartar ninguno. Un nuevo cambio `field:'knowledge'` puede
+llevar `contrasts_with` (entrada literal previamente guardada del mismo
+NPC) y `contrast_reason` (explicación causal revisada). El enlace es una
+**revisión editorial de contraste**, no un detector semántico de mentiras ni
+una obligación de cambiar de opinión. `revision_of` sigue disponible solo
+cuando el narrador y la acción del personaje establecen una rectificación
+explícita; ambos mecanismos son diferentes.
+
+En la consulta privada del narrador aparecen los eventos que vinculan
+las versiones y quién conoce cada una. No se importan recuerdos ajenos,
+no se concede información a Jack ni se cambia un plan o relación sin
+un evento propio. Dos NPC que oyeron la misma noticia pueden discrepar,
+quedarse indecisos o tomar medidas opuestas por su experiencia y contexto,
+sin un valor numérico de credibilidad ni una conducta prefijada.
