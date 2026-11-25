@@ -15,6 +15,7 @@ const syntheticActors=Object.fromEntries(Array.from({length:80},(_,i)=>{
   independent_plan:'Consider practical options as circumstances change.',
   location_id:'LOC-COMMERCIAL-DISTRICT',resources:{daily_life:'known basic context'}}];
 }));
+const syntheticActorFixtureBaseline=JSON.stringify(syntheticActors);
 
 test('a large cast rotates fairly and limits expensive contextual review',()=>{
  const seen=new Set(),sample=[];
@@ -75,7 +76,7 @@ test('invalid candidate limits and actor identities are rejected',()=>{
 });
 
 test('persistent overdue work cannot permanently exclude ordinary civilians',()=>{
- const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,12));
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,12)));
  for(const id of Object.keys(actors).slice(0,6))
   actors[id].commitments=[{id:'DUE-'+id,status:'pending',due_day:-30,
    summary:'SYNTHETIC overdue obligation, not an instruction to act.'}];
@@ -95,10 +96,11 @@ test('persistent overdue work cannot permanently exclude ordinary civilians',()=
  assert.equal(seen.size,12);
  assert.equal(ordinary.size,6);
  assert.equal(JSON.stringify(actors),frozen);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
 });
 
 test('a two-slot budget rotates fairly across three priority bands',()=>{
- const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,6));
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,6)));
  const ids=Object.keys(actors);
  for(const id of ids.slice(0,2))actors[id].commitments=[
   {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
@@ -118,10 +120,11 @@ test('a two-slot budget rotates fairly across three priority bands',()=>{
  }
  assert.equal(seen.size,6);
  assert.deepEqual([...lowerBands].sort(),[0,1]);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
 });
 
 test('a single review slot eventually covers overdue and ordinary actors',()=>{
- const actors=Object.fromEntries(Object.entries(syntheticActors).slice(0,4));
+ const actors=structuredClone(Object.fromEntries(Object.entries(syntheticActors).slice(0,4)));
  const ids=Object.keys(actors);
  for(const id of ids.slice(0,2))actors[id].commitments=[
   {id:'DUE-'+id,status:'pending',due_day:-30,summary:'SYNTHETIC deadline'}];
@@ -135,4 +138,5 @@ test('a single review slot eventually covers overdue and ordinary actors',()=>{
  }
  assert.equal(seen.size,4);
  assert.deepEqual([...priorities].sort(),[0,3]);
+ assert.equal(JSON.stringify(syntheticActors),syntheticActorFixtureBaseline);
 });
